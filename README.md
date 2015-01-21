@@ -1,12 +1,20 @@
 Universal Verification Methodology (UVM) in SystemC
 
 (C) Copyright 2012-2015 NXP B.V.
+
 (C) Copyright 2013-2014 Fraunhofer-Gesellschaft zur Foerderung
                    der angewandten Forschung e.V.
-(C) Copyright 2014 Université Pierre et Marie Curie, Paris(C) Copyright 2007-2012 Mentor Graphics Corporation
+                   
+(C) Copyright 2014 Université Pierre et Marie Curie, Paris
+
+(C) Copyright 2007-2012 Mentor Graphics Corporation
+
 (C) Copyright 2007-2012 Cadence Design Systems, Incorporated
+
 (C) Copyright 2006-2012 Synopsys Inc.
+
 (C) Copyright 2012 Cypress Semiconductor Corp.
+
 
 All Rights Reserved Worldwide
 
