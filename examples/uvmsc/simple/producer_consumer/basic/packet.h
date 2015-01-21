@@ -17,13 +17,6 @@
 //   the License for the specific language governing
 //   permissions and limitations under the License.
 //----------------------------------------------------------------------
-//
-//   SVN Version       :  $Id: packet.h 484 2014-07-14 15:52:39Z barnasconi $
-//   SVN last checkin  :  $Revision $
-//   SVN checkin by    :  $Author: barnasconi $
-//   SVN Id            :  $Id: packet.h 484 2014-07-14 15:52:39Z barnasconi $
-//
-//----------------------------------------------------------------------
 
 #ifndef PACKET_H_
 #define PACKET_H_

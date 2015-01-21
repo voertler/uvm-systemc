@@ -19,13 +19,6 @@
 //   the License for the specific language governing
 //   permissions and limitations under the License.
 //----------------------------------------------------------------------
-//
-//   SVN Version       :  $Revision: 488 $
-//   SVN last checkin  :  $Date: 2014-08-15 00:28:43 +0200 (Fri, 15 Aug 2014) $
-//   SVN checkin by    :  $Author: barnasconi $
-//   SVN Id            :  $Id: uvm_sequencer_base.h 488 2014-08-14 22:28:43Z barnasconi $
-//
-//----------------------------------------------------------------------
 
 #ifndef UVM_SEQUENCER_BASE_H_
 #define UVM_SEQUENCER_BASE_H_

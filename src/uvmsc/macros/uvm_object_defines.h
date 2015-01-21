@@ -19,13 +19,6 @@
 //   the License for the specific language governing
 //   permissions and limitations under the License.
 //----------------------------------------------------------------------
-//
-//   SVN Version       :  $Revision: 491 $
-//   SVN last checkin  :  $Date: 2014-08-20 15:30:28 +0200 (Wed, 20 Aug 2014) $
-//   SVN checkin by    :  $Author: barnasconi $
-//   SVN Id            :  $Id: uvm_object_defines.h 491 2014-08-20 13:30:28Z barnasconi $
-//
-//----------------------------------------------------------------------
 
 #ifndef UVM_OBJECT_DEFINES_H_
 #define UVM_OBJECT_DEFINES_H_

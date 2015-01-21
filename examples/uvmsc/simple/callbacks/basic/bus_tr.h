@@ -17,13 +17,6 @@
 //   License for the specific language governing permissions and limitations
 //   under the License.
 //------------------------------------------------------------------------------
-//
-//   SVN Version       :  $Id: bus_tr.h 491 2014-08-20 13:30:28Z barnasconi $
-//   SVN last checkin  :  $Revision $
-//   SVN checkin by    :  $Author: barnasconi $
-//   SVN Id            :  $Id: bus_tr.h 491 2014-08-20 13:30:28Z barnasconi $
-//
-//----------------------------------------------------------------------
 
 #ifndef BUS_TR_H_
 #define BUS_TR_H_

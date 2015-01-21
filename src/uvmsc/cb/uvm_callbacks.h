@@ -20,13 +20,6 @@
 //   the License for the specific language governing
 //   permissions and limitations under the License.
 //----------------------------------------------------------------------
-//
-//   SVN Version       :  $Revision: 505 $
-//   SVN last checkin  :  $Date: 2014-12-31 19:02:43 +0100 (Wed, 31 Dec 2014) $
-//   SVN checkin by    :  $Author: barnasconi $
-//   SVN Id            :  $Id: uvm_callbacks.h 505 2014-12-31 18:02:43Z barnasconi $
-//
-//----------------------------------------------------------------------
 
 #ifndef UVM_CALLBACKS_H_
 #define UVM_CALLBACKS_H_

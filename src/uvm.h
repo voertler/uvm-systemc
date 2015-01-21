@@ -15,14 +15,6 @@
 //   CONDITIONS OF ANY KIND, either express or implied.  See
 //   the License for the specific language governing
 //   permissions and limitations under the License.
-//
-//----------------------------------------------------------------------
-//
-//   SVN Version       :  $Revision: 475 $
-//   SVN last checkin  :  $Date: 2014-06-29 00:07:19 +0200 (Sun, 29 Jun 2014) $
-//   SVN checkin by    :  $Author: barnasconi $
-//   SVN Id            :  $Id: uvm.h 475 2014-06-28 22:07:19Z barnasconi $
-//
 //----------------------------------------------------------------------
 
 #ifndef UVM_H_

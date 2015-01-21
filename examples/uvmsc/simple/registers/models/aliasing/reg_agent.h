@@ -18,13 +18,6 @@
 //   the License for the specific language governing
 //   permissions and limitations under the License.
 //----------------------------------------------------------------------
-//
-//   SVN Version       :  $Id: reg_agent.h 509 2015-01-05 17:59:29Z barnasconi $
-//   SVN last checkin  :  $Revision $
-//   SVN checkin by    :  $Author: barnasconi $
-//   SVN Id            :  $Id: reg_agent.h 509 2015-01-05 17:59:29Z barnasconi $
-//
-//----------------------------------------------------------------------
 
 #ifndef REG_AGENT_H_
 #define REG_AGENT_H_

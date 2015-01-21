@@ -17,13 +17,6 @@
 //   License for the specific language governing permissions and limitations
 //   under the License.
 //------------------------------------------------------------------------------
-//
-//   SVN Version       :  $Id: sc_main.cpp 492 2014-08-25 14:46:07Z barnasconi $
-//   SVN last checkin  :  $Revision $
-//   SVN checkin by    :  $Author: barnasconi $
-//   SVN Id            :  $Id: sc_main.cpp 492 2014-08-25 14:46:07Z barnasconi $
-//
-//----------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
 // Title: Typical Callback Application

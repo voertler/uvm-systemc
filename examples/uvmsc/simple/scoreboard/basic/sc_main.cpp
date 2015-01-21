@@ -21,13 +21,6 @@
 //   Created on: 2012-10-27
 //
 //----------------------------------------------------------------------
-//
-//   SVN Version       :  $Revision: 492 $
-//   SVN last checkin  :  $Date: 2014-08-25 16:46:07 +0200 (Mon, 25 Aug 2014) $
-//   SVN checkin by    :  $Author: barnasconi $
-//   SVN Id            :  $Id: sc_main.cpp 492 2014-08-25 14:46:07Z barnasconi $
-//
-//----------------------------------------------------------------------
 
 #include <systemc>
 #include <uvm>

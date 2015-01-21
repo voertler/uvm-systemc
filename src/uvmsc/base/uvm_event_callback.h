@@ -19,13 +19,6 @@
 //   the License for the specific language governing
 //   permissions and limitations under the License.
 //------------------------------------------------------------------------------
-//
-//   SVN Version       :  $Revision: 492 $
-//   SVN last checkin  :  $Date: 2014-08-25 16:46:07 +0200 (Mon, 25 Aug 2014) $
-//   SVN checkin by    :  $Author: barnasconi $
-//   SVN Id            :  $Id: uvm_event_callback.h 492 2014-08-25 14:46:07Z barnasconi $
-//
-//----------------------------------------------------------------------
 
 #ifndef UVM_EVENT_CALLBACK_H_
 #define UVM_EVENT_CALLBACK_H_

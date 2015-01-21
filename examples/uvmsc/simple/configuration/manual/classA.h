@@ -17,13 +17,6 @@
 //   the License for the specific language governing
 //   permissions and limitations under the License.
 //----------------------------------------------------------------------
-//
-//   SVN Version       :  $Id: classA.h 499 2014-10-26 22:15:36Z barnasconi $
-//   SVN last checkin  :  $Revision $
-//   SVN checkin by    :  $Author: barnasconi $
-//   SVN Id            :  $Id: classA.h 499 2014-10-26 22:15:36Z barnasconi $
-//
-//----------------------------------------------------------------------
 
 #ifndef CLASSA_H_
 #define CLASSA_H_

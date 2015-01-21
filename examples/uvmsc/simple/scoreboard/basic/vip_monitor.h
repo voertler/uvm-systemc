@@ -21,13 +21,6 @@
 //   Created on: 2012-10-27
 //
 //----------------------------------------------------------------------
-//
-//   SVN Version       :  $Revision: 484 $
-//   SVN last checkin  :  $Date: 2014-07-14 17:52:39 +0200 (Mon, 14 Jul 2014) $
-//   SVN checkin by    :  $Author: barnasconi $
-//   SVN Id            :  $Id: vip_monitor.h 484 2014-07-14 15:52:39Z barnasconi $
-//
-//----------------------------------------------------------------------
 
 #ifndef VIP_MONITOR_H_
 #define VIP_MONITOR_H_

@@ -21,13 +21,6 @@
 //   Created on: 2012-10-27
 //
 //----------------------------------------------------------------------
-//
-//   SVN Version       :  $Revision: 499 $
-//   SVN last checkin  :  $Date: 2014-10-26 23:15:36 +0100 (Sun, 26 Oct 2014) $
-//   SVN checkin by    :  $Author: barnasconi $
-//   SVN Id            :  $Id: scoreboard.h 499 2014-10-26 22:15:36Z barnasconi $
-//
-//----------------------------------------------------------------------
 
 #ifndef SCOREBOARD_H_
 #define SCOREBOARD_H_

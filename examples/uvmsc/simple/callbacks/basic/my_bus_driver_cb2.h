@@ -17,13 +17,6 @@
 //   License for the specific language governing permissions and limitations
 //   under the License.
 //------------------------------------------------------------------------------
-//
-//   SVN Version       :  $Id: my_bus_driver_cb2.h 484 2014-07-14 15:52:39Z barnasconi $
-//   SVN last checkin  :  $Revision $
-//   SVN checkin by    :  $Author: barnasconi $
-//   SVN Id            :  $Id: my_bus_driver_cb2.h 484 2014-07-14 15:52:39Z barnasconi $
-//
-//----------------------------------------------------------------------
 
 #ifndef MY_BUS_DRIVER_CB2_H_
 #define MY_BUS_DRIVER_CB2_H_

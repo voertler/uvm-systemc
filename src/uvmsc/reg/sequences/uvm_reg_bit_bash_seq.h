@@ -18,13 +18,6 @@
 //    the License for the specific language governing
 //    permissions and limitations under the License.
 //----------------------------------------------------------------------
-//
-//   SVN Version       :  $Id: uvm_reg_bit_bash_seq.h 509 2015-01-05 17:59:29Z barnasconi $
-//   SVN last checkin  :  $Revision $
-//   SVN checkin by    :  $Author: barnasconi $
-//   SVN Id            :  $Id: uvm_reg_bit_bash_seq.h 509 2015-01-05 17:59:29Z barnasconi $
-//
-//----------------------------------------------------------------------
 
 #ifndef UVM_REG_BIT_BASH_SEQ_H_
 #define UVM_REG_BIT_BASH_SEQ_H_

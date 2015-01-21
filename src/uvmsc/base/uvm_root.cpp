@@ -21,13 +21,6 @@
 //   the License for the specific language governing
 //   permissions and limitations under the License.
 //----------------------------------------------------------------------
-//
-//   SVN Version       :  $Revision: 512 $
-//   SVN last checkin  :  $Date: 2015-01-13 15:25:23 +0100 (Tue, 13 Jan 2015) $
-//   SVN checkin by    :  $Author: barnasconi $
-//   SVN Id            :  $Id: uvm_root.cpp 512 2015-01-13 14:25:23Z barnasconi $
-//
-//----------------------------------------------------------------------
 
 #include <cstdlib>
 #include <stdexcept>

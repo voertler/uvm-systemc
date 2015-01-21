@@ -19,13 +19,6 @@
 //   the License for the specific language governing
 //   permissions and limitations under the License.
 //----------------------------------------------------------------------
-//
-//   SVN Version       :  $Id: sc_main.cpp 510 2015-01-08 18:31:34Z barnasconi $
-//   SVN last checkin  :  $Revision $
-//   SVN checkin by    :  $Author: barnasconi $
-//   SVN Id            :  $Id: sc_main.cpp 510 2015-01-08 18:31:34Z barnasconi $
-//
-//----------------------------------------------------------------------
 
 #include <systemc>
 #include <uvm>

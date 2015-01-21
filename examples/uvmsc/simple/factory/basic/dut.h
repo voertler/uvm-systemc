@@ -17,13 +17,6 @@
 //   the License for the specific language governing
 //   permissions and limitations under the License.
 //----------------------------------------------------------------------
-//
-//   SVN Version       :  $Id: dut.h 484 2014-07-14 15:52:39Z barnasconi $
-//   SVN last checkin  :  $Revision $
-//   SVN checkin by    :  $Author: barnasconi $
-//   SVN Id            :  $Id: dut.h 484 2014-07-14 15:52:39Z barnasconi $
-//
-//----------------------------------------------------------------------
 
 #ifndef DUT_H_
 #define DUT_H_

@@ -17,13 +17,6 @@
 //   the License for the specific language governing
 //   permissions and limitations under the License.
 //----------------------------------------------------------------------
-//
-//   SVN Version       :  $Id: my_env.h 510 2015-01-08 18:31:34Z barnasconi $
-//   SVN last checkin  :  $Revision $
-//   SVN checkin by    :  $Author: barnasconi $
-//   SVN Id            :  $Id: my_env.h 510 2015-01-08 18:31:34Z barnasconi $
-//
-//----------------------------------------------------------------------
 
 #ifndef MY_ENV_H_
 #define MY_ENV_H_

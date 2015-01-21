@@ -19,13 +19,6 @@
 //   the License for the specific language governing
 //   permissions and limitations under the License.
 //----------------------------------------------------------------------
-//
-//   SVN Version       :  $Revision: 497 $
-//   SVN last checkin  :  $Date: 2014-10-26 11:16:35 +0100 (Sun, 26 Oct 2014) $
-//   SVN checkin by    :  $Author: barnasconi $
-//   SVN Id            :  $Id: uvm_status_container.h 497 2014-10-26 10:16:35Z barnasconi $
-//
-//----------------------------------------------------------------------
 
 #ifndef UVM_STATUS_CONTAINER_H_
 #define UVM_STATUS_CONTAINER_H_

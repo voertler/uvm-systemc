@@ -17,13 +17,6 @@
 //   the License for the specific language governing
 //   permissions and limitations under the License.
 //----------------------------------------------------------------------
-//
-//   SVN Version       :  $Revision: 477 $
-//   SVN last checkin  :  $Date: 2014-07-06 17:47:13 +0200 (Sun, 06 Jul 2014) $
-//   SVN checkin by    :  $Author: barnasconi $
-//   SVN Id            :  $Id: uvm_void.h 477 2014-07-06 15:47:13Z barnasconi $
-//
-//----------------------------------------------------------------------
 
 #ifndef UVM_VOID_H_
 #define UVM_VOID_H_

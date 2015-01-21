@@ -21,13 +21,6 @@
 //   the License for the specific language governing
 //   permissions and limitations under the License.
 //-----------------------------------------------------------------------------
-//
-//   SVN Version       :  $Revision: 494 $
-//   SVN last checkin  :  $Date: 2014-09-02 12:07:50 +0200 (Tue, 02 Sep 2014) $
-//   SVN checkin by    :  $Author: barnasconi $
-//   SVN Id            :  $Id: uvm_reg_indirect_data.cpp 494 2014-09-02 10:07:50Z barnasconi $
-//
-//-----------------------------------------------------------------------------
 
 #include "uvmsc/reg/uvm_reg_indirect_data.h"
 #include "uvmsc/reg/uvm_reg_indirect_ftdr_seq.h"

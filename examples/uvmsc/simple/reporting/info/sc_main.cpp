@@ -16,13 +16,6 @@
 //   the License for the specific language governing
 //   permissions and limitations under the License.
 //----------------------------------------------------------------------
-//
-//   SVN Version       :  $Revision: 504 $
-//   SVN last checkin  :  $Date: 2014-12-24 17:11:29 +0100 (Wed, 24 Dec 2014) $
-//   SVN checkin by    :  $Author: barnasconi $
-//   SVN Id            :  $Id: sc_main.cpp 504 2014-12-24 16:11:29Z barnasconi $
-//
-//----------------------------------------------------------------------
 
 // test reporting info. The default verbosity levels in the UVM standard are
 // (note, the values are NOT defined in the UVM standard, only the enums)

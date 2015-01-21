@@ -21,13 +21,6 @@
 //   Created on: 2012-10-27
 //
 //----------------------------------------------------------------------
-//
-//   SVN Version       :  $Revision: 504 $
-//   SVN last checkin  :  $Date: 2014-12-24 17:11:29 +0100 (Wed, 24 Dec 2014) $
-//   SVN checkin by    :  $Author: barnasconi $
-//   SVN Id            :  $Id: vip_agent.h 504 2014-12-24 16:11:29Z barnasconi $
-//
-//----------------------------------------------------------------------
 
 #ifndef VIP_AGENT_H_
 #define VIP_AGENT_H_

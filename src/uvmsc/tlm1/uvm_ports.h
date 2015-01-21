@@ -16,13 +16,6 @@
 //   the License for the specific language governing
 //   permissions and limitations under the License.
 //----------------------------------------------------------------------
-//
-//   SVN Version       :  $Revision: 493 $
-//   SVN last checkin  :  $Date: 2014-08-25 21:15:45 +0200 (Mon, 25 Aug 2014) $
-//   SVN checkin by    :  $Author: barnasconi $
-//   SVN Id            :  $Id: uvm_ports.h 493 2014-08-25 19:15:45Z barnasconi $
-//
-//----------------------------------------------------------------------
 
 #ifndef UVM_PORTS_H_
 #define UVM_PORTS_H_

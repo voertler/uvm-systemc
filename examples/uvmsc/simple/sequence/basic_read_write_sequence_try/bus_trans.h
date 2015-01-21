@@ -21,13 +21,6 @@
 //   Created on: 2012-07-20
 //
 //----------------------------------------------------------------------
-//
-//   SVN Version       :  $Revision: 497 $
-//   SVN last checkin  :  $Date: 2014-10-26 11:16:35 +0100 (Sun, 26 Oct 2014) $
-//   SVN checkin by    :  $Author: barnasconi $
-//   SVN Id            :  $Id: bus_trans.h 497 2014-10-26 10:16:35Z barnasconi $
-//
-//----------------------------------------------------------------------
 
 #ifndef BUS_TRANS_H_
 #define BUS_TRANS_H_

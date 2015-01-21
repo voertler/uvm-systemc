@@ -19,13 +19,6 @@
 //   the License for the specific language governing
 //   permissions and limitations under the License.
 //----------------------------------------------------------------------
-//
-//   SVN Version       :  $Revision: 499 $
-//   SVN last checkin  :  $Date: 2014-10-26 23:15:36 +0100 (Sun, 26 Oct 2014) $
-//   SVN checkin by    :  $Author: barnasconi $
-//   SVN Id            :  $Id: uvm_comparer.h 499 2014-10-26 22:15:36Z barnasconi $
-//
-//----------------------------------------------------------------------
 
 #ifndef UVM_COMPARER_H_
 #define UVM_COMPARER_H_

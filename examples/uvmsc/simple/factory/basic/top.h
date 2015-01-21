@@ -17,13 +17,6 @@
 //   the License for the specific language governing
 //   permissions and limitations under the License.
 //----------------------------------------------------------------------
-//
-//   SVN Version       :  $Id: top.h 510 2015-01-08 18:31:34Z barnasconi $
-//   SVN last checkin  :  $Revision $
-//   SVN checkin by    :  $Author: barnasconi $
-//   SVN Id            :  $Id: top.h 510 2015-01-08 18:31:34Z barnasconi $
-//
-//----------------------------------------------------------------------
 
 #ifndef TOP_H_
 #define TOP_H_

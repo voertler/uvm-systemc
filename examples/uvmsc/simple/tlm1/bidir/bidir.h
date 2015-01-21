@@ -19,13 +19,6 @@
 //   the License for the specific language governing
 //   permissions and limitations under the License.
 //----------------------------------------------------------------------
-//
-//   SVN Version       :  $Id: bidir.h 487 2014-08-11 17:09:43Z barnasconi $
-//   SVN last checkin  :  $Revision $
-//   SVN checkin by    :  $Author: barnasconi $
-//   SVN Id            :  $Id: bidir.h 487 2014-08-11 17:09:43Z barnasconi $
-//
-//----------------------------------------------------------------------
 
 //----------------------------------------------------------------------
 // This example will illustrate how to create two components: one is the

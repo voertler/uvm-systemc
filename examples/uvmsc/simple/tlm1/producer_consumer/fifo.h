@@ -19,13 +19,6 @@
 //   the License for the specific language governing
 //   permissions and limitations under the License.
 //----------------------------------------------------------------------
-//
-//   SVN Version       :  $Id: fifo.h 488 2014-08-14 22:28:43Z barnasconi $
-//   SVN last checkin  :  $Revision $
-//   SVN checkin by    :  $Author: barnasconi $
-//   SVN Id            :  $Id: fifo.h 488 2014-08-14 22:28:43Z barnasconi $
-//
-//----------------------------------------------------------------------
 
 //----------------------------------------------------------------------
 // About: producer_consumer

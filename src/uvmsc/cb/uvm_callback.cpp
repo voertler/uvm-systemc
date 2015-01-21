@@ -21,13 +21,6 @@
 //   the License for the specific language governing
 //   permissions and limitations under the License.
 //----------------------------------------------------------------------
-//
-//   SVN Version       :  $Revision: 484 $
-//   SVN last checkin  :  $Date: 2014-07-14 17:52:39 +0200 (Mon, 14 Jul 2014) $
-//   SVN checkin by    :  $Author: barnasconi $
-//   SVN Id            :  $Id: uvm_callback.cpp 484 2014-07-14 15:52:39Z barnasconi $
-//
-//----------------------------------------------------------------------
 
 #include "uvmsc/cb/uvm_callback.h"
 #include "uvmsc/macros/uvm_callback_defines.h"

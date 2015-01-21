@@ -21,13 +21,6 @@
 //   Created on: 2012-07-20
 //
 //----------------------------------------------------------------------
-//
-//   SVN Version       :  $Revision: 504 $
-//   SVN last checkin  :  $Date: 2014-12-24 17:11:29 +0100 (Wed, 24 Dec 2014) $
-//   SVN checkin by    :  $Author: barnasconi $
-//   SVN Id            :  $Id: sequenceA.h 504 2014-12-24 16:11:29Z barnasconi $
-//
-//----------------------------------------------------------------------
 
 #ifndef SEQUENCEA_H_
 #define SEQUENCEA_H_

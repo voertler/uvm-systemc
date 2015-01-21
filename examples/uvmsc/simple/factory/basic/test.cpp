@@ -17,13 +17,6 @@
 //   the License for the specific language governing
 //   permissions and limitations under the License.
 //----------------------------------------------------------------------
-//
-//   SVN Version       :  $Id: test.cpp 504 2014-12-24 16:11:29Z barnasconi $
-//   SVN last checkin  :  $Revision $
-//   SVN checkin by    :  $Author: barnasconi $
-//   SVN Id            :  $Id: test.cpp 504 2014-12-24 16:11:29Z barnasconi $
-//
-//----------------------------------------------------------------------
 
 //----------------------------------------------------------------------
 // This example will illustrate the usage of uvm_factory methods.
