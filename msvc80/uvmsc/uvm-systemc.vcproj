@@ -41,7 +41,7 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/vmg"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(ProjectDir)\..\..\src&quot;;&quot;$(ProjectDir)\..\..\..\systemc-2.3.0\src&quot;"
+				AdditionalIncludeDirectories="&quot;$(ProjectDir)\..\..\src&quot;;&quot;$(ProjectDir)\..\..\..\systemc-2.3.1\src&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;_USE_MATH_DEFINES;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -63,7 +63,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				AdditionalLibraryDirectories="&quot;$(ProjectDir)\..\..\..\systemc-2.3.0\msvc80\SystemC\Debug&quot;"
+				AdditionalLibraryDirectories="&quot;$(ProjectDir)\..\..\..\systemc-2.3.1\msvc80\SystemC\Debug&quot;"
 				IgnoreAllDefaultLibraries="false"
 			/>
 			<Tool
@@ -107,7 +107,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/vmg"
-				AdditionalIncludeDirectories="&quot;$(ProjectDir)\..\..\src&quot;;&quot;$(ProjectDir)\..\..\..\systemc-2.3.0\src&quot;"
+				AdditionalIncludeDirectories="&quot;$(ProjectDir)\..\..\src&quot;;&quot;$(ProjectDir)\..\..\..\systemc-2.3.1\src&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;_USE_MATH_DEFINES;"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -131,7 +131,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				AdditionalLibraryDirectories="&quot;$(ProjectDir)\..\..\..\systemc-2.3.0\msvc80\SystemC\Release&quot;"
+				AdditionalLibraryDirectories="&quot;$(ProjectDir)\..\..\..\systemc-2.3.1\msvc80\SystemC\Release&quot;"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -208,10 +208,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\uvmsc\dpi\uvm_hdl.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\base\uvm_ids.cpp"
 				>
 			</File>
 			<File
@@ -399,10 +395,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\uvmsc\base\uvm_typed.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\uvmsc\cb\uvm_typeid.cpp"
 				>
 			</File>
@@ -554,10 +546,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\uvmsc\reg\uvm_hdl_path_concat.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\base\uvm_ids.h"
 				>
 			</File>
 			<File
@@ -910,10 +898,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\uvmsc\print\uvm_tree_printer.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\base\uvm_typed.h"
 				>
 			</File>
 			<File
