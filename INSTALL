@@ -3,8 +3,7 @@ AT YOUR OWN RISK. THIS SOFTWARE SHALL BE SOLELY USED FOR STUDY PURPOSES AND
 SHALL NOT BE USED IN ANY PRODUCTION ENVIRONMENT.
 
 
-          INSTALL NOTES FOR UVM-SystemC Release 1.0-alpha1
-          ------------------------------------------------
+          INSTALL NOTES FOR UVM-SystemC
 
 Contents:
 
@@ -70,7 +69,7 @@ obtain from the following sources:
 
   gmake         http://www.gnu.org/software/make/make.html
 
-The SystemC 2.3.x reference implementation is available under SystemC Open Source License
+The SystemC reference implementations are available under SystemC Open Source License
 and can be obtained from the following location:
 
   SystemC 2.3.0 or 2.3.1   http://www.accellera.org/downloads/standards/systemc
@@ -121,7 +120,7 @@ To install UVM-SystemC on a Linux system, do the following steps:
      the configure script cannot find SystemC, it will stop. You can specify 
      the path to the SystemC installation directory as follows:
 
-        > ../configure --with-systemc=/path/to/your/systemc-2.3.0  
+        > ../configure --with-systemc=/path/to/your/systemc-2.3.1  
 
      Note for System V users: 
      If you are using `csh' on an older version of System V, you might 
@@ -129,10 +128,10 @@ To install UVM-SystemC on a Linux system, do the following steps:
      Otherwise, `csh' will attempt to `configure' itself.
 
      In case you want to install the package in another place than the
-     top level directory (uvm-sc-1.0-alpha1), configure the package e.g. as
+     top level directory, configure the package e.g. as
      follows:
 
-        > ../configure --prefix=/usr/local/uvm-systemc-1.0-alpha1
+        > ../configure --prefix=/usr/local/uvm-systemc
 
      Note: make sure you have created the target directory before installing
            the package. Do _not_ use /usr/local as a prefix.
@@ -230,7 +229,7 @@ the `configure' script, for example to use a newer version of `autoconf'.
 The `configure.in' file is used by the `autoconf' program to create the
 `configure' script.
 
-Note for (key) developers:
+Note for developers:
 
   In case you have changed the `configure.in' file or one of the
   `Makefile.am' files:
@@ -405,14 +404,15 @@ Creating UVM-Systemc Applications in Microsoft Visual C++
 7. From the C/C++ tab, select the Command Line properties and add /vmg
    to the 'Additional Options:' box.
 
-8. From the Linker tab, select the Input properties and type 'uvm-sc.lib' 
-   in the 'Additional Dependencies' box.
+8. From the Linker tab, select the Input properties and add 'systemc.lib'
+   and 'uvm-systemc.lib' in the 'Additional Dependencies' box.
 
 9. Click OK
 
 
-Also make sure that the compiler and linker can find the UVM-SystemC header
-and library files respectively. There are two ways to do this:
+Also make sure that the compiler and linker can find the SystemC and 
+UVM-SystemC header and library files respectively. There are two ways 
+to do this:
 
 To update the include file and library directory search paths for all
 projects:
@@ -423,15 +423,15 @@ projects:
 
 3. Select the 'New' icon and select the following: 
    
-   c:\my\path\to\systemc-2.3.0\msvc80\SystemC\Debug
-   c:\my\path\to\uvm-systemc-1.0-alpha1\msvc80\uvmsc\Debug
+   c:\my\path\to\systemc-2.3.1\msvc80\SystemC\Debug (or Release)
+   c:\my\path\to\uvm-systemc\msvc80\uvmsc\Debug (or Release)
 
 4. Select show directories for: Include files
 
 5. Select the 'New' icon and select the following
 
-   c:\my\path\to\systemc-2.3.0\src
-   c:\my\path\to\uvm-systemc-1.0-alpha1\src
+   c:\my\path\to\systemc-2.3.1\src
+   c:\my\path\to\uvm-systemc\src
 
 
 To add the include file and library directory search paths for the current
@@ -446,8 +446,10 @@ project only:
 
 3. From the Linker tab, select the General properties and type the path to 
    the SystemC and UVM-SystemC libraries:
-   c:\my\path\to\systemc-2.3.0\msvc80\SystemC\Debug
-   c:\my\path\to\uvm-systemc-1.0-alpha1\msvc80\uvmsc\Debug
+   
+   c:\my\path\to\systemc-2.3.1\msvc80\SystemC\Debug (or Release)
+   c:\my\path\to\uvm-systemc\msvc80\uvmsc\Debug (or Release)
+   
    in the 'Additional Library Directories:' box.
 
 9. Click OK
