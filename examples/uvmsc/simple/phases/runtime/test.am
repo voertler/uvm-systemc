@@ -26,7 +26,7 @@ simple_phases_runtime_BUILD =
 
 simple_phases_runtime_EXTRA = 
 
-simple_phases_runtime_test_LDADD = $(top_builddir)/src/uvmsc/libuvm.la
+simple_phases_runtime_test_LDADD = $(top_builddir)/src/uvmsc/libuvm-systemc.la
 
 
 ## Taf!

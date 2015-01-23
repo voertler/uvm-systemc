@@ -17,13 +17,13 @@ SUBDIRS = \
 	seq \
 	tlm1 
 
-lib_LTLIBRARIES = libuvm.la
+lib_LTLIBRARIES = libuvm-systemc.la
 
-libuvm_ladir = 
+libuvm_systemc_ladir = 
 
-libuvm_la_SOURCES = 
+libuvm_systemc_la_SOURCES = 
 
-libuvm_la_LIBADD = \
+libuvm_systemc_la_LIBADD = \
 	base/libbase.la \
 	cb/libcb.la \
 	comps/libcomps.la \
@@ -38,10 +38,10 @@ libuvm_la_LIBADD = \
 	report/libreport.la \
 	seq/libseq.la
 
-libuvm_la_LDFLAGS = -release $(PACKAGE_VERSION) -L$(libdir)
+libuvm_systemc_la_LDFLAGS = -release $(PACKAGE_VERSION) -L$(libdir)
 
 # dummy C++ source file to force C++ linking
-nodist_EXTRA_libuvm_la_SOURCES = dummy.cpp
+nodist_EXTRA_libuvm_systemc_la_SOURCES = dummy.cpp
 
 pkgconfigdir = $(libdir)/pkgconfig
 

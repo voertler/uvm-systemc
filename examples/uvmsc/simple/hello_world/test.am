@@ -30,7 +30,7 @@ simple_hello_world_BUILD =
 
 simple_hello_world_EXTRA = 
 
-simple_hello_world_test_LDADD = $(top_builddir)/src/uvmsc/libuvm.la
+simple_hello_world_test_LDADD = $(top_builddir)/src/uvmsc/libuvm-systemc.la
 
 
 ## Taf!

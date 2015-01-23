@@ -32,7 +32,7 @@ simple_sequence_basic_read_write_sequence_try_BUILD =
 
 simple_sequence_basic_read_write_sequence_try_EXTRA = 
 
-simple_sequence_basic_read_write_sequence_try_test_LDADD = $(top_builddir)/src/uvmsc/libuvm.la
+simple_sequence_basic_read_write_sequence_try_test_LDADD = $(top_builddir)/src/uvmsc/libuvm-systemc.la
 
 
 ## Taf!

@@ -28,7 +28,7 @@ simple_phases_timeout_BUILD =
 
 simple_phases_timeout_EXTRA = 
 
-simple_phases_timeout_test_LDADD = $(top_builddir)/src/uvmsc/libuvm.la
+simple_phases_timeout_test_LDADD = $(top_builddir)/src/uvmsc/libuvm-systemc.la
 
 
 ## Taf!

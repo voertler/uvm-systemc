@@ -26,7 +26,7 @@ simple_objections_basic_BUILD =
 
 simple_objections_basic_EXTRA = 
 
-simple_objections_basic_test_LDADD = $(top_builddir)/src/uvmsc/libuvm.la
+simple_objections_basic_test_LDADD = $(top_builddir)/src/uvmsc/libuvm-systemc.la
 
 
 ## Taf!
