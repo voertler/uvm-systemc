@@ -1,0 +1,18 @@
+#!/bin/sh
+
+if [ "`uname -s`" = "Darwin" ]
+then
+    aclocal -I config && \
+    #glibtoolize --automake --force --copy && \
+    automake --add-missing --copy --foreign && \
+    autoheader && \
+    autoconf 
+else
+    aclocal -I config && \
+    #libtoolize --automake --force --copy && \
+    automake --add-missing --copy --foreign && \
+    autoheader && \
+    autoconf 
+fi
+
+# Taf!
