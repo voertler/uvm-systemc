@@ -49,6 +49,9 @@ class uvm_resource_types;
 template <typename T = int>
 class uvm_resource : public uvm_resource_base
 {
+  template <typename TYPE> friend class uvm_config_db;
+  template <typename TYPE> friend class uvm_resource_db;
+
  public:
   typedef uvm_resource<T>* this_type;
 
@@ -98,7 +101,7 @@ class uvm_resource : public uvm_resource_base
   // not part of UVM Class reference / LRM
   /////////////////////////////////////////////////////
 
-  //private - TODO move implementation defined members to private
+ private:
 
   // constructor
   uvm_resource( const std::string& name_ = "", const std::string& scope_ = "" );

@@ -72,15 +72,17 @@ class uvm_transaction : public uvm_object
   // Implementation-defined member functions below,
   // not part of UVM Class reference / LRM
   /////////////////////////////////////////////////////
-
-  void m_init_transaction();
+protected:
 
   virtual ~uvm_transaction();
 
   virtual void do_print( uvm_printer& printer ) const;
 
+private:
+
+  void m_init_transaction();
+
   // member variables
- private:
   int m_transaction_id; /*!< The transaction id data member. */
   uvm_component* initiator;
 

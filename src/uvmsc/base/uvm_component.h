@@ -58,7 +58,6 @@ class uvm_component : public sc_core::sc_module,
                       public uvm_report_object
 {
  public:
-  friend class uvm_root;
   friend class uvm_config_mgr;
   friend class uvm_topdown_phase;
   friend class uvm_bottomup_phase;
@@ -323,13 +322,11 @@ class uvm_component : public sc_core::sc_module,
   /////////////////////////////////////////////////////
   /////////////////////////////////////////////////////
 
- public:
+  virtual const std::string get_type_name() const;
 
   virtual ~uvm_component();
 
-  virtual const std::string get_type_name() const;
-
-  // SystemC API
+  // SystemC compatibility
   virtual const char* kind() const;
 
  private:
@@ -349,8 +346,6 @@ class uvm_component : public sc_core::sc_module,
                        std::string& leaf,
                        std::string& remainder ) const;
 
-  void m_do_pre_abort();
-
   //----------------------------------------------------------------------------
   // 'legacy' from SystemC - recommended not to use
   //----------------------------------------------------------------------------
@@ -363,6 +358,9 @@ class uvm_component : public sc_core::sc_module,
   void m_apply_verbosity_settings(uvm_phase* phase);
 
  protected:
+
+  void m_do_pre_abort();
+
   void m_set_run_handle(sc_core::sc_process_handle h);
 
   sc_core::sc_process_handle m_run_handle;

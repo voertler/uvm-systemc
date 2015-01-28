@@ -2,7 +2,7 @@
 //   Copyright 2007-2011 Mentor Graphics Corporation
 //   Copyright 2007-2011 Cadence Design Systems, Inc.
 //   Copyright 2010-2011 Synopsys, Inc.
-//   Copyright 2012-2014 NXP B.V.
+//   Copyright 2012-2015 NXP B.V.
 //   All Rights Reserved Worldwide
 //
 //   Licensed under the Apache License, Version 2.0 (the
@@ -52,7 +52,15 @@ class uvm_sequence_item;
 
 class uvm_sequencer_base : public uvm_component
 {
- public:
+  friend class uvm_reg_map;
+  friend class uvm_reg;
+  template <typename BASE> friend class uvm_req_sequence;
+  friend class uvm_reg_indirect_data;
+  template <typename REQ, typename RSP> friend class uvm_sequencer;
+  template <typename REQ, typename RSP> friend class uvm_sequencer_param_base;
+  friend class uvm_sequence_base;
+
+public:
 
   typedef enum { SEQ_TYPE_REQ,
                  SEQ_TYPE_LOCK,
@@ -107,7 +115,7 @@ class uvm_sequencer_base : public uvm_component
 
   virtual const std::string get_type_name() const;
 
-  // TODO make private/protected
+ private:
 
   int m_register_sequence(uvm_sequence_base* sequence_ptr);
   void m_update_lists();
@@ -131,10 +139,9 @@ class uvm_sequencer_base : public uvm_component
   void m_unlock_req( uvm_sequence_base* sequence_ptr );
 
   // member variables
- public:
+
   int m_wait_for_item_sequence_id;
   int m_wait_for_item_transaction_id;
-  int m_sequencer_id;
   sc_core::sc_event m_wait_for_item_sequence_ev;
 
   mutable std::map<seq_req_t, std::string> seq_req_t_str;
@@ -143,6 +150,7 @@ class uvm_sequencer_base : public uvm_component
   int m_arb_size;
 
  protected:
+  int m_sequencer_id;
   std::map<int, bool> arb_completed;
   std::map<int, uvm_sequence_base*> reg_sequences;
 
@@ -155,7 +163,6 @@ class uvm_sequencer_base : public uvm_component
   typedef std::vector<uvm_sequence_base*> lock_vectorT;
   lock_vectorT lock_list;
 
- public:
   static int g_sequencer_id;
   static int g_sequence_id;
   static int g_request_id;

@@ -46,6 +46,11 @@ class uvm_sequencer_base;
 
 class uvm_sequence_base: public uvm_sequence_item
 {
+  friend class uvm_sequencer_base;
+  template <typename REQ, typename RSP> friend class uvm_sequencer;
+  template <typename REQ, typename RSP> friend class uvm_sequencer_param_base;
+  friend class uvm_reg_map;
+
  public:
   explicit uvm_sequence_base( const std::string& name_ );
   virtual ~uvm_sequence_base();
@@ -136,14 +141,17 @@ class uvm_sequence_base: public uvm_sequence_item
   // not part of UVM Class reference / LRM
   /////////////////////////////////////////////////////
 
-  void m_start_core( uvm_sequence_base* parent_sequence, bool call_pre_post );
-
-  int m_get_sqr_sequence_id( int sequencer_id, bool update_sequence_id );
-  void m_set_sqr_sequence_id( int sequencer_id, int sequence_id );
+protected:
 
   virtual void put_response ( const uvm_sequence_item& response );
   virtual void put_base_response( const uvm_sequence_item& response);
   virtual void get_base_response( const uvm_sequence_item*&, int transaction_id = -1);
+
+private:
+  void m_start_core( uvm_sequence_base* parent_sequence, bool call_pre_post );
+
+  int m_get_sqr_sequence_id( int sequencer_id, bool update_sequence_id );
+  void m_set_sqr_sequence_id( int sequencer_id, int sequence_id );
 
   void m_clear();
   void m_kill();
@@ -155,15 +163,14 @@ class uvm_sequence_base: public uvm_sequence_item
   /////////////////////
 
   // data members
- public:
+public:
   sc_core::sc_event response_queue_event;
   uvm_phase* starting_phase;
 
- // TODO make these private
+private:
   int m_wait_for_grant_semaphore;
   int m_next_transaction_id;
 
- private:
   // Each sequencer will assign a sequence id.  When a sequence is talking to multiple
   // sequencers, each sequence_id is managed separately
   std::map<int,int> m_sqr_seq_ids;

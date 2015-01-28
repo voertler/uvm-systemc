@@ -140,11 +140,11 @@ class uvm_callbacks : public uvm_typed_callbacks<T>
   // not part of UVM Class reference / LRM
   /////////////////////////////////////////////////////
 
+ private:
+
   static bool m_register_pair( const std::string& tname = "", const std::string& cbname = "");
 
   static uvm_callbacks<T,CB>* get();
-
- private:
 
   static void m_get_q( uvm_queue<uvm_callback*>*& q, T* obj );
 
