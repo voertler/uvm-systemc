@@ -32,7 +32,7 @@ simple_sequence_arbitration_BUILD =
 
 simple_sequence_arbitration_EXTRA = 
 
-simple_sequence_arbitration_test_LDADD = $(top_builddir)/src/uvmsc/libuvm.la
+simple_sequence_arbitration_test_LDADD = $(top_builddir)/src/uvmsc/libuvm-systemc.la
 
 
 ## Taf!

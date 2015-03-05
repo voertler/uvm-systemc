@@ -31,7 +31,7 @@ simple_factory_basic_BUILD =
 
 simple_factory_basic_EXTRA = 
 
-simple_factory_basic_test_LDADD = $(top_builddir)/src/uvmsc/libuvm.la
+simple_factory_basic_test_LDADD = $(top_builddir)/src/uvmsc/libuvm-systemc.la
 
 
 ## Taf!

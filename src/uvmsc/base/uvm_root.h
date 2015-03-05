@@ -96,11 +96,11 @@ class uvm_root : public uvm_component
 
   ~uvm_root(); // destructor
 
+ private:
+
   // other data members
 
   uvm_root_report_handler* m_rh;
-
- private:
 
   void m_uvm_header();
 

@@ -42,7 +42,9 @@ class uvm_resource_base;
 
 class uvm_resource_base : public uvm_object
 {
- public:
+  friend class uvm_resource_pool;
+
+public:
 
   //--------------------------------------------------------------------------
   // Constructor and destructor
@@ -107,13 +109,27 @@ class uvm_resource_base : public uvm_object
 
   void init_access_record( uvm_resource_types::access_t access_record );
 
+  //--------------------------------------------------------------------------
+  // public variables
+  //--------------------------------------------------------------------------
+
+  unsigned int precedence;
+
+  static int unsigned default_precedence;
+
   /////////////////////////////////////////////////////
   // Implementation-defined member functions below,
   // not part of UVM Class reference / LRM
   /////////////////////////////////////////////////////
 
+private:
+
   std::string convert2string() const;
 
+  void set_read_write();
+
+  // disable copy constructor
+  uvm_resource_base( const uvm_resource_base& );
 
   // data members
 
@@ -123,15 +139,7 @@ class uvm_resource_base : public uvm_object
   access_mapT access;
   access_mapItT access_mapIt;
 
-  unsigned int precedence;
-  static int unsigned default_precedence;
   bool m_is_regex_name;
-
- private:
-  void set_read_write();
-
-  // disable copy constructor
-  uvm_resource_base( const uvm_resource_base& );
 
  protected:
   std::string scope;

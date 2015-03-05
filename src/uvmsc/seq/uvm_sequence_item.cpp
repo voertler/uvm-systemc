@@ -2,7 +2,7 @@
 //   Copyright 2007-2011 Mentor Graphics Corporation
 //   Copyright 2007-2010 Cadence Design Systems, Inc.
 //   Copyright 2010 Synopsys, Inc.
-//   Copyright 2012-2014 NXP B.V.
+//   Copyright 2012-2015 NXP B.V.
 //   All Rights Reserved Worldwide
 //
 //   Licensed under the Apache License, Version 2.0 (the
@@ -252,7 +252,7 @@ bool uvm_sequence_item::is_item() const
 //! Provides the name of the root sequence (the top-most parent sequence).
 //----------------------------------------------------------------------
 
-std::string uvm_sequence_item::get_root_sequence_name() const
+const std::string uvm_sequence_item::get_root_sequence_name() const
 {
   const uvm_sequence_base* root_seq;
   root_seq = get_root_sequence();
@@ -287,6 +287,36 @@ const uvm_sequence_base* uvm_sequence_item::get_root_sequence() const
 
   // TODO recursive loop - check if we always return a value
   return NULL;
+}
+
+//----------------------------------------------------------------------
+// member function: get_sequence_path
+//
+//! Provides a string of names of each sequence in the full hierarchical
+//! path. The dot character "." is used as the separator between each sequence.
+
+//----------------------------------------------------------------------
+
+const std::string uvm_sequence_item::get_sequence_path() const
+{
+  const uvm_sequence_item* this_item;
+  std::string seq_path;
+  this_item = this;
+  seq_path = this->get_name();
+
+  while(true)
+  {
+    if(this_item->get_parent_sequence()!=NULL)
+    {
+      this_item = this_item->get_parent_sequence();
+      seq_path = this_item->get_name() + "." + seq_path;
+    }
+    else
+      return seq_path;
+  }
+
+  // TODO recursive loop - check if we always return a value
+  return "";
 }
 
 

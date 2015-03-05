@@ -321,12 +321,14 @@ void uvm_reg_predictor<BUSTYPE>::check_phase(uvm_phase& phase)
         << " incomplete register transactions still pending completion:";
     UVM_ERROR("PENDING REG ITEMS", str.str());
 
+    /* TODO dead code?
     for( m_pending_itt it = m_pending.begin();
          it != m_pending.end();
          it++)
     {
         uvm_reg* rg = (*it).first;
     }
+    */
   }
 }
 

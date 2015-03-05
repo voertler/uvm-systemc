@@ -202,10 +202,13 @@ public:
 
   friend std::ostream& operator<<( std::ostream& os, const uvm_object& obj );
   friend std::ostream& operator<<( std::ostream& os, const uvm_object* obj );
-/*
+
+  //TODO do we need equality operators?
+  /*
   friend bool operator == ( const uvm_object& a, const uvm_object& b );
   friend bool operator != ( const uvm_object& a, const uvm_object& b );
-*/
+  */
+
  private:
   void m_pack( uvm_packer*& packer );
   void m_unpack_pre( uvm_packer*& packer );

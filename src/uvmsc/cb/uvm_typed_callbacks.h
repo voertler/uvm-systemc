@@ -44,7 +44,7 @@ class uvm_typeid_base;
 //----------------------------------------------------------------------
 // Class: uvm_typed_callbacks<T>
 //
-//! Implementation defined
+//! daggered / implementation specific class
 //!
 //! This class contains the queue of typewide
 //! callbacks. It also contains some of the public interface methods,
@@ -54,6 +54,7 @@ class uvm_typeid_base;
 //!
 //! The add, delete, and display methods are implemented in this class.
 //----------------------------------------------------------------------
+
 
 template <typename T = uvm_object>
 class uvm_typed_callbacks: public uvm_callbacks_base

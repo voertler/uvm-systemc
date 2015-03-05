@@ -54,11 +54,12 @@ class uvm_sequence : public uvm_sequence_base
   // not part of UVM Class reference / LRM
   /////////////////////////////////////////////////////
 
+ private:
+
   virtual void put_response( const uvm_sequence_item& response );
 
   void do_print( uvm_printer& printer ) const;
 
- private:
   uvm_sequencer_param_base<REQ, RSP>* param_sequencer;
 
 };

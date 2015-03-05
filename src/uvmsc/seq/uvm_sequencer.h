@@ -97,8 +97,9 @@ class uvm_sequencer : public uvm_sequencer_param_base<REQ,RSP>,
 
   virtual const char* kind() const; // SystemC API
 
-  // data members
  private:
+  // data members
+
   mutable bool sequence_item_requested;
   bool get_next_item_called;
 

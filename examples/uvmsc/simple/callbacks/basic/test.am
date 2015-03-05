@@ -32,7 +32,7 @@ simple_callbacks_basic_BUILD =
 
 simple_callbacks_basic_EXTRA = 
 
-simple_callbacks_basic_test_LDADD = $(top_builddir)/src/uvmsc/libuvm.la
+simple_callbacks_basic_test_LDADD = $(top_builddir)/src/uvmsc/libuvm-systemc.la
 
 
 ## Taf!

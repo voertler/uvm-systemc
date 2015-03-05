@@ -126,6 +126,8 @@ class uvm_config_db : public uvm_resource_db<T>
   // not part of UVM Class reference / LRM
   /////////////////////////////////////////////////////
 
+ private:
+
   static uvm_resource<T>* m_get_resource_match( uvm_component* cntxt,
                                                 const std::string& field_name,
                                                 const std::string& inst_name);

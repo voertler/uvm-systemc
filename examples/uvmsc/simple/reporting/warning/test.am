@@ -26,7 +26,7 @@ simple_reporting_warning_BUILD =
 
 simple_reporting_warning_EXTRA = 
 
-simple_reporting_warning_test_LDADD = $(top_builddir)/src/uvmsc/libuvm.la
+simple_reporting_warning_test_LDADD = $(top_builddir)/src/uvmsc/libuvm-systemc.la
 
 
 ## Taf!
