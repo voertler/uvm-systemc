@@ -37,7 +37,7 @@ class seq_arb_sequencer : public uvm_sequencer<seq_arb_item>
 
   UVM_COMPONENT_UTILS(seq_arb_sequencer);
 
-  seq_arb_sequencer( uvm_name name ) : uvm_sequencer<seq_arb_item>(name) {}
+  seq_arb_sequencer( uvm_component_name name ) : uvm_sequencer<seq_arb_item>(name) {}
 
   // This method overrides the default user method
   // It returns the last item in the sequence queue rather than the first

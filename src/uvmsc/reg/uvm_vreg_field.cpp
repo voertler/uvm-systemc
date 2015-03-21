@@ -925,7 +925,7 @@ uvm_vreg* uvm_vreg_field::get_register() const
 // Implementation defined
 //----------------------------------------------------------------------
 
-void uvm_vreg_field::do_print( uvm_printer& printer ) const
+void uvm_vreg_field::do_print( const uvm_printer& printer ) const
 {
   uvm_object::do_print(printer);
   printer.print_generic("initiator", m_parent->get_type_name(), -1, convert2string());

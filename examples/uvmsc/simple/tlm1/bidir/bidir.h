@@ -51,7 +51,7 @@ class master : public uvm::uvm_component
   uvm::uvm_blocking_put_port<int> req_port;
   uvm::uvm_blocking_get_port<int> rsp_port;
 
-  master( uvm::uvm_name name )
+  master( uvm::uvm_component_name name )
   : uvm::uvm_component(name),
     req_port("req_port"),
     rsp_port("rsp_port")
@@ -109,7 +109,7 @@ class slave : public uvm::uvm_component
   uvm::uvm_blocking_get_port<int> req_port;
   uvm::uvm_blocking_put_port<int> rsp_port;
    
-  slave( uvm::uvm_name name)
+  slave( uvm::uvm_component_name name)
   : uvm::uvm_component(name),
     req_port("req_port"),
     rsp_port("rsp_port")
@@ -152,7 +152,7 @@ class bidir_env : public uvm::uvm_env
 
   uvm::uvm_tlm_req_rsp_channel<int> req_rsp;
 
-  bidir_env( uvm::uvm_name name )
+  bidir_env( uvm::uvm_component_name name )
   : uvm::uvm_env(name),
     m("master"),
     s("slave"),

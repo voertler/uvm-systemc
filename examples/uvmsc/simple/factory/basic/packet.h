@@ -36,7 +36,7 @@ class packet : public uvm::uvm_object
     : uvm::uvm_object(name), addr(0x1234), data(0x5678)
   {}
 
-  void do_print(uvm::uvm_printer& printer) const
+  void do_print(const uvm::uvm_printer& printer) const
   {
     printer.print_field_int("addr", addr);
     printer.print_field_int("data", data);

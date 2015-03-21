@@ -2,7 +2,7 @@
 //   Copyright 2007-2011 Mentor Graphics Corporation
 //   Copyright 2007-2010 Cadence Design Systems, Inc. 
 //   Copyright 2010 Synopsys, Inc.
-//   Copyright 2012-2014 NXP B.V.
+//   Copyright 2012-2015 NXP B.V.
 //   Copyright 2013 Fraunhofer-Gesellschaft zur Foerderung
 //					der angewandten Forschung e.V.
 //   All Rights Reserved Worldwide
@@ -86,7 +86,7 @@ class uvm_pool : public uvm_object
   virtual uvm_object* create( const std::string& name = "" );
   virtual const std::string get_type_name() const;
   virtual void do_copy(const uvm_object& rhs );
-  virtual void do_print( uvm_printer& printer ) const;
+  virtual void do_print( const uvm_printer& printer ) const;
 
   // data members
  protected:
@@ -413,7 +413,7 @@ void uvm_pool<KEY,T>::do_copy(const uvm_object& rhs )
 //-----------------------------------------------------------------------------
 
 template <typename KEY, typename T>
-void uvm_pool<KEY,T>::do_print( uvm_printer& printer ) const
+void uvm_pool<KEY,T>::do_print( const uvm_printer& printer ) const
 {
   int cnt = 0;
   std::ostringstream item;

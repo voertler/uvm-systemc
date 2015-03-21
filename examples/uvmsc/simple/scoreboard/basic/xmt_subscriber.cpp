@@ -33,7 +33,7 @@
 using namespace uvm;
 using namespace sc_core;
 
-xmt_subscriber::xmt_subscriber( uvm_name name ) : uvm_subscriber<vip_packet>( name )
+xmt_subscriber::xmt_subscriber( uvm_component_name name ) : uvm_subscriber<vip_packet>( name )
 {
   std::cout << sc_time_stamp() << ": constructor " << name << std::endl;
 }

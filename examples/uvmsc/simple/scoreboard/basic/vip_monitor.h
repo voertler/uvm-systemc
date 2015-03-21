@@ -40,7 +40,7 @@ class vip_monitor : public uvm::uvm_monitor
   bool checks_enable;
   bool coverage_enable;
 
-  vip_monitor(uvm::uvm_name name)
+  vip_monitor(uvm::uvm_component_name name)
   : uvm_monitor(name),
     item_collected_port("item_collected_port"),
     vif(0),

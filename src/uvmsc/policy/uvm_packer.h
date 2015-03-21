@@ -1,5 +1,5 @@
 //------------------------------------------------------------------------------
-//   Copyright 2014 NXP B.V.
+//   Copyright 2014-2015 NXP B.V.
 //   Copyright 2007-2011 Mentor Graphics Corporation
 //   Copyright 2007-2011 Cadence Design Systems, Inc. 
 //   Copyright 2010 Synopsys, Inc.
@@ -87,7 +87,7 @@ class uvm_packer
 
   virtual void unpack_object( uvm_object& value );
 
-  virtual unsigned int get_packed_size(); // TODO was int in UVM-SV
+  virtual unsigned int get_packed_size() const;
 
   // Group: Variables
 
@@ -290,12 +290,12 @@ class uvm_packer
   int m_max_size;
 
   virtual void get_bits( std::vector<bool>& bits ) const;
-  virtual void get_bytes( std::vector<char>& bytes ) const;
-  virtual void get_ints( std::vector<int>& ints ) const;
+  virtual void get_bytes( std::vector<unsigned char>& bytes ) const;
+  virtual void get_ints( std::vector<unsigned int>& ints ) const;
 
   virtual void put_bits( const std::vector<bool>& bitstream );
-  virtual void put_bytes( const std::vector<char>& bytestream );
-  virtual void put_ints( const std::vector<int>& intstream );
+  virtual void put_bytes( const std::vector<unsigned char>& bytestream );
+  virtual void put_ints( const std::vector<unsigned int>& intstream );
 
   void reset();
 

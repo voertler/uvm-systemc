@@ -40,7 +40,7 @@ class vip_packet : public uvm::uvm_sequence_item
   vip_packet(int i) { data = i; }
   virtual ~vip_packet() { }
 
-  virtual void do_print(uvm::uvm_printer& printer)
+  virtual void do_print(const uvm::uvm_printer& printer)
   {
     printer.print_field_int("data", data);
   }

@@ -45,7 +45,7 @@ namespace uvm {
 class uvm_domain;
 class uvm_transaction;
 class uvm_config_object_wrapper;
-class uvm_name;
+class uvm_component_name;
 
 //------------------------------------------------------------------------------
 // CLASS: uvm_component
@@ -67,7 +67,7 @@ class uvm_component : public sc_core::sc_module,
 
   typedef uvm_component this_type;
 
-  explicit uvm_component( uvm_name nm );
+  explicit uvm_component( uvm_component_name nm );
 
   //--------------------------------------------------------------------------
   // UVM Standard LRM API below
@@ -91,7 +91,7 @@ class uvm_component : public sc_core::sc_module,
 
   int get_num_children() const;
 
-  int has_child( const std::string& name ) const;
+  bool has_child( const std::string& name ) const;
 
   uvm_component* lookup( const std::string& name ) const;
 
@@ -337,8 +337,7 @@ class uvm_component : public sc_core::sc_module,
 
   virtual void set_name( const std::string& name );
 
-  virtual void do_print( uvm_printer& printer ) const;
-
+  virtual void do_print( const uvm_printer& printer ) const;
 
   void m_set_full_name();
 

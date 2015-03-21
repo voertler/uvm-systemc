@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2014 NXP B.V.
+//   Copyright 2014-2015 NXP B.V.
 //   All Rights Reserved Worldwide
 //
 //   Licensed under the Apache License, Version 2.0 (the
@@ -51,7 +51,7 @@ class uvm_tlm_req_rsp_channel : public tlm::tlm_req_rsp_channel<REQ,RSP,REQ_CHAN
     tlm::tlm_req_rsp_channel<REQ,RSP,REQ_CHANNEL,RSP_CHANNEL>(req_size, rsp_size)
   {}
 
-  uvm_tlm_req_rsp_channel( uvm_name name,
+  uvm_tlm_req_rsp_channel( uvm_component_name name,
                            int req_size = 1, int rsp_size = 1 ) :
     tlm::tlm_req_rsp_channel<REQ,RSP,REQ_CHANNEL,RSP_CHANNEL>(name.name(), req_size, rsp_size)
   {}

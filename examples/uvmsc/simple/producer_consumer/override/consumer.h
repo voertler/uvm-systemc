@@ -35,7 +35,7 @@ class consumer : public uvm::uvm_component
   uvm::uvm_blocking_put_imp<T, consumer<T> > in;
 
   // constructor
-  consumer(uvm::uvm_name nm)
+  consumer(uvm::uvm_component_name nm)
   : uvm::uvm_component(nm),
     in("in", this)
   {}

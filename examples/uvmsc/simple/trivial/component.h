@@ -30,7 +30,7 @@ class my_component : public uvm::uvm_component
   // register component to the factory
   UVM_COMPONENT_UTILS(my_component);
 
-  my_component(uvm::uvm_name name) : uvm::uvm_component(name) {}
+  my_component(uvm::uvm_component_name name) : uvm::uvm_component(name) {}
 
   void run_phase(uvm::uvm_phase& phase)
   {

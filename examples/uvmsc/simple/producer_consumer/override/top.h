@@ -35,7 +35,7 @@ class top : public uvm::uvm_env
  public:
   uvm_component* component_p;
 
-  top(uvm::uvm_name nm) : uvm::uvm_env(nm), component_p(0) {}
+  top(uvm::uvm_component_name nm) : uvm::uvm_env(nm), component_p(0) {}
 
   UVM_COMPONENT_UTILS(top);
 

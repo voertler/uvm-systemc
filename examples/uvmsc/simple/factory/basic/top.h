@@ -27,7 +27,7 @@
 class mygen : public gen
 {
  public:
-  mygen(uvm::uvm_name name) : gen(name) {}
+  mygen(uvm::uvm_component_name name) : gen(name) {}
 
   packet* get_packet()
   {
@@ -56,7 +56,7 @@ class top : public uvm::uvm_env
 
   env* e;
 
-  top(uvm::uvm_name name) : uvm::uvm_env(name)
+  top(uvm::uvm_component_name name) : uvm::uvm_env(name)
   {
   }
 

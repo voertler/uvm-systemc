@@ -41,7 +41,7 @@ class scoreboard : public uvm::uvm_scoreboard
   xmt_subscriber* xmt_listener;
   rcv_subscriber* rcv_listener;
 
-  scoreboard( uvm::uvm_name name ) : uvm::uvm_scoreboard( name )
+  scoreboard( uvm::uvm_component_name name ) : uvm::uvm_scoreboard( name )
   {
     std::cout << sc_core::sc_time_stamp() << ": constructor " << name << std::endl;
   }

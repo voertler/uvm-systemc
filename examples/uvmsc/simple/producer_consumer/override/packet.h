@@ -44,7 +44,7 @@ class packet : public uvm::uvm_object
 
   virtual ~packet() {}
 
-  virtual void do_print(uvm::uvm_printer& printer) const
+  virtual void do_print(const uvm::uvm_printer& printer) const
   {
     printer.print_field_int("data", data);
   }

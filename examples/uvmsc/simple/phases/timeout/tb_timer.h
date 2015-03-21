@@ -28,7 +28,7 @@ class tb_timer : public uvm::uvm_component
 {
 public:
 
-  tb_timer(uvm::uvm_name name) : uvm_component(name) { std::cout << "tb_timer" << std::endl;}
+  tb_timer(uvm::uvm_component_name name) : uvm_component(name) { std::cout << "tb_timer" << std::endl;}
 
   void run_phase(uvm::uvm_phase& phase)
   {

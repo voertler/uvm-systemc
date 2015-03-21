@@ -44,7 +44,7 @@ class testbench : public uvm::uvm_env
 
   UVM_COMPONENT_UTILS(testbench);
 
-  testbench( uvm::uvm_name name) : uvm::uvm_env(name)
+  testbench( uvm::uvm_component_name name) : uvm::uvm_env(name)
   {
    std::cout << sc_core::sc_time_stamp() << ": constructor " << name << std::endl;
   }

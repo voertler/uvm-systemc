@@ -2322,7 +2322,7 @@ uvm_object* uvm_reg_map::clone()
 // Implementation defined
 //----------------------------------------------------------------------
 
-void uvm_reg_map::do_print( uvm_printer& printer ) const
+void uvm_reg_map::do_print( const uvm_printer& printer ) const
 {
   std::vector<uvm_reg*> regs;
   std::vector<uvm_vreg*> vregs;

@@ -30,7 +30,7 @@ class gen : public uvm::uvm_component
 
   UVM_COMPONENT_UTILS(gen);
 
-  gen(uvm::uvm_name name) : uvm::uvm_component(name) {}
+  gen(uvm::uvm_component_name name) : uvm::uvm_component(name) {}
 
   virtual packet* get_packet()
   {

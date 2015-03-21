@@ -35,7 +35,7 @@ using namespace sc_core;
 class comp_a : public uvm_component
 {
  public:
-  comp_a(uvm_name name) : uvm_component(name) {}
+  comp_a(uvm_component_name name) : uvm_component(name) {}
 
   UVM_COMPONENT_UTILS(comp_a);
 

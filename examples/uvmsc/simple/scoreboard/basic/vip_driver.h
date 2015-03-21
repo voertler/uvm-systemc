@@ -38,7 +38,7 @@ class vip_driver : public uvm::uvm_driver<REQ>
  public:
   vip_if* vif;
 
-  vip_driver( uvm::uvm_name name ) : uvm::uvm_driver<REQ>(name)
+  vip_driver( uvm::uvm_component_name name ) : uvm::uvm_driver<REQ>(name)
   {}
 
   UVM_COMPONENT_PARAM_UTILS(vip_driver<REQ>);

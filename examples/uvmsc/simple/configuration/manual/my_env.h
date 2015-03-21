@@ -36,7 +36,7 @@ class my_env : public uvm::uvm_env
 
   UVM_COMPONENT_UTILS(my_env);
 
-  my_env(uvm::uvm_name name) : uvm::uvm_env(name), debug(0)
+  my_env(uvm::uvm_component_name name) : uvm::uvm_env(name), debug(0)
   {}
 
   void build_phase(uvm::uvm_phase& phase)
@@ -56,7 +56,7 @@ class my_env : public uvm::uvm_env
     std::cout << get_full_name() << ": In Build: debug = " << debug << std::endl;
   }
 
-  void do_print(uvm::uvm_printer& printer) const
+  void do_print(const uvm::uvm_printer& printer) const
   {
     printer.print_field_int("debug", debug, sizeof(debug)*CHAR_BIT);
   }

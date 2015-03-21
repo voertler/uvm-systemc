@@ -17,8 +17,8 @@
 //   permissions and limitations under the License.
 //----------------------------------------------------------------------
 
-#ifndef UVM_NAME_H_
-#define UVM_NAME_H_
+#ifndef UVM_COMPONENT_NAME_H_
+#define UVM_COMPONENT_NAME_H_
 
 #include "sysc/kernel/sc_module.h"
 #include "uvmsc/base/uvm_root.h"
@@ -29,19 +29,19 @@ namespace uvm {
 
 
 //------------------------------------------------------------------------------
-// Class uvm_name
+// Class uvm_component_name
 //
 //! UVM component name registration. Same mechanism as in SystemC sc_module_name
 //! to register the parent-child relationship
 //------------------------------------------------------------------------------
 
-class uvm_name
+class uvm_component_name
 {
 public:
-  uvm_name( const sc_core::sc_module_name& nm ) : m_name( nm )
+  uvm_component_name( const sc_core::sc_module_name& nm ) : m_name( nm )
   {}
 
-  uvm_name( const char* nm ) : m_name( nm )
+  uvm_component_name( const char* nm ) : m_name( nm )
   {
     uvm_root::get();
   }
@@ -65,4 +65,4 @@ private:
 
 } // namespace uvm
 
-#endif /* UVM_NAME_H_ */
+#endif /* UVM_COMPONENT_NAME_H_ */

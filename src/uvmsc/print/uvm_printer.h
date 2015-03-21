@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2012-2014 NXP B.V.
+//   Copyright 2012-2015 NXP B.V.
 //   Copyright 2007-2011 Mentor Graphics Corporation
 //   Copyright 2007-2011 Cadence Design Systems, Inc.
 //   Copyright 2010 Synopsys, Inc.
@@ -73,7 +73,7 @@ class uvm_printer
   //--------------------------------------------------------------------------
 
   virtual void print_field( const std::string& name,
-                            uvm_bitstream_t value,
+                            const uvm_bitstream_t& value,
                             int size = -1, // TODO default size not part of standard, but convenient?
                             uvm_radix_enum radix = UVM_NORADIX,
                             const char* scope_separator = ".",
@@ -122,7 +122,7 @@ class uvm_printer
 
   virtual std::string emit();
 
-  virtual std::string format_row( uvm_printer_row_info row );
+  virtual std::string format_row( const uvm_printer_row_info& row );
 
   virtual std::string format_header();
 
@@ -134,11 +134,11 @@ class uvm_printer
   virtual void print_array_header( const std::string& name,
                                    int size,
                                    const std::string& arraytype = "array",
-                                   const char* scope_separator = "." );
+                                   const char* scope_separator = "." ) const;
 
   void print_array_range( int min, int max ) const;
 
-  void print_array_footer( int size = 0 );
+  void print_array_footer( int size = 0 ) const;
 
 
   /////////////////////////////////////////////////////

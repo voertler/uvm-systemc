@@ -49,7 +49,7 @@ class uvm_root : public uvm_component
  public:
   friend class uvm_phase;
   friend class uvm_default_coreservice_t;
-  friend class uvm_name;
+  friend class uvm_component_name;
 
   //--------------------------------------------------------------------
   // UVM Standard LRM API below
@@ -114,7 +114,7 @@ class uvm_root : public uvm_component
     return "uvm::uvm_root";
   }
 
-  explicit uvm_root( uvm_name nm );
+  explicit uvm_root( uvm_component_name nm );
 
   void m_find_all_recurse( const std::string& comp_match, std::vector<uvm_component*>& comps,
                            uvm_component* comp = NULL );

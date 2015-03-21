@@ -41,7 +41,7 @@ class vip_agent : public uvm::uvm_agent
   vip_driver<vip_packet>*    driver;
   vip_monitor*               monitor;
 
-  vip_agent( uvm::uvm_name name )
+  vip_agent( uvm::uvm_component_name name )
     : uvm_agent(name), sequencer(0), driver(0), monitor(0)
   {
     std::cout << sc_core::sc_time_stamp() << ": constructor " << name << std::endl;

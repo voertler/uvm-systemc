@@ -477,6 +477,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\uvmsc\base\uvm_component_name.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\uvmsc\factory\uvm_component_registry.h"
 				>
 			</File>

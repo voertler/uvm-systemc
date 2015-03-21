@@ -111,7 +111,7 @@ class gen : public uvm::uvm_component
  public:
   uvm::uvm_blocking_put_port<transaction> put_port;
 
-  gen( uvm::uvm_name name )
+  gen( uvm::uvm_component_name name )
   : uvm::uvm_component(name),
     put_port("put_port")
   {}
@@ -144,7 +144,7 @@ public:
   uvm::uvm_blocking_get_port<transaction> get_port;
   uvm::uvm_analysis_port<transaction> ap;
 
-  conv( uvm::uvm_name name)
+  conv( uvm::uvm_component_name name)
   : uvm::uvm_component(name),
     put_port("put_port"),
     get_port("get_port"),
@@ -174,7 +174,7 @@ class bfm : public uvm::uvm_component
 public:
   uvm::uvm_blocking_get_port<transaction> get_port;
 
-  bfm( uvm::uvm_name name )
+  bfm( uvm::uvm_component_name name )
   : uvm::uvm_component(name),
     get_port("get_port")
   {}
@@ -200,7 +200,7 @@ public:
 class listener : public uvm::uvm_subscriber<transaction>
 {
  public:
-  listener( uvm::uvm_name name )
+  listener( uvm::uvm_component_name name )
   : uvm::uvm_subscriber<transaction>(name)
   {}
 
@@ -227,7 +227,7 @@ class producer : public uvm::uvm_component
   conv c;
   tlm::tlm_fifo<transaction> f;
 
-  producer( uvm::uvm_name name )
+  producer( uvm::uvm_component_name name )
   : uvm::uvm_component(name),
     put_port("put_port"),
     ap("analysis_port"),
@@ -258,7 +258,7 @@ class consumer : public uvm::uvm_component
   bfm b;
   tlm::tlm_fifo<transaction> f;
 
-  consumer( uvm::uvm_name name )
+  consumer( uvm::uvm_component_name name )
   : uvm::uvm_component(name),
     put_export("put_export"),
     b("bfm"),
@@ -286,7 +286,7 @@ class top : public uvm::uvm_env
   consumer c;
   listener l;
 
-  top( uvm::uvm_name name )
+  top( uvm::uvm_component_name name )
   : uvm::uvm_env(name),
     p("producer"),
     c("consumer"),
@@ -315,7 +315,7 @@ class env : public uvm::uvm_env
  public:
   top t;
 
-  env( uvm::uvm_name name = "env" )
+  env( uvm::uvm_component_name name = "env" )
   : uvm::uvm_env(name),
     t("top")
   {}

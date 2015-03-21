@@ -2,7 +2,7 @@
 //   Copyright 2014 Université Pierre et Marie Curie, Paris
 //   Copyright 2014 Fraunhofer-Gesellschaft zur Foerderung
 //					der angewandten Forschung e.V.
-//   Copyright 2013-2014 NXP B.V.
+//   Copyright 2013-2015 NXP B.V.
 //   Copyright 2007-2010 Mentor Graphics Corporation
 //   Copyright 2007-2011 Cadence Design Systems, Inc.
 //   Copyright 2010 Synopsys, Inc.
@@ -485,7 +485,7 @@ const std::string uvm_event::get_type_name() const
 //! Print the content of the object using the printer policy
 //----------------------------------------------------------------------
 
-void uvm_event::do_print( uvm_printer& printer ) const
+void uvm_event::do_print( const uvm_printer& printer ) const
 {
   /* TODO print events
   printer.print_int("m_num_waiters", m_num_waiters, $bits(m_num_waiters), UVM_DEC, ".", "int");

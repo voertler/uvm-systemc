@@ -1,7 +1,7 @@
 //----------------------------------------------------------------------------
 //   Copyright 2014 Fraunhofer-Gesellschaft zur Foerderung
 //					der angewandten Forschung e.V.
-//   Copyright 2012-2014 NXP B.V.
+//   Copyright 2012-2015 NXP B.V.
 //   Copyright 2007-2011 Mentor Graphics Corporation
 //   Copyright 2007-2011 Cadence Design Systems, Inc.
 //   Copyright 2010 Synopsys, Inc.
@@ -320,7 +320,7 @@ std::string uvm_object::sprint( uvm_printer* printer ) const
 //! <Utility and Field Macros for Components and Objects>.
 //----------------------------------------------------------------------------
 
-void uvm_object::do_print( uvm_printer& printer ) const
+void uvm_object::do_print( const uvm_printer& printer ) const
 {
   uvm_report_warning("DOPRNT", "member function do_print not implemented in " + get_type_name(), UVM_HIGH);
   return;
@@ -525,7 +525,7 @@ int uvm_object::pack( std::vector<bool>& bitstream, uvm_packer* packer )
 //! internal member function
 //----------------------------------------------------------------------------
 
-int uvm_object::pack_bytes( std::vector<char>& bytestream, uvm_packer* packer )
+int uvm_object::pack_bytes( std::vector<unsigned char>& bytestream, uvm_packer* packer )
 {
   m_pack(packer);
   packer->get_bytes(bytestream);
@@ -541,7 +541,7 @@ int uvm_object::pack_bytes( std::vector<char>& bytestream, uvm_packer* packer )
 //! classes shall override the member function #do_pack.
 //----------------------------------------------------------------------------
 
-int uvm_object::pack_ints( std::vector<int>& intstream, uvm_packer* packer )
+int uvm_object::pack_ints( std::vector<unsigned int>& intstream, uvm_packer* packer )
 {
   m_pack(packer);
   packer->get_ints(intstream);
@@ -650,7 +650,7 @@ int uvm_object::unpack( const std::vector<bool>& bitstream, uvm_packer* packer )
 //! packing used to create the input array.
 //----------------------------------------------------------------------------
 
-int uvm_object::unpack_bytes( const std::vector<char>& bytestream, uvm_packer* packer )
+int uvm_object::unpack_bytes( const std::vector<unsigned char>& bytestream, uvm_packer* packer )
 {
   m_unpack_pre(packer);
   packer->put_bytes(bytestream);
@@ -668,7 +668,7 @@ int uvm_object::unpack_bytes( const std::vector<char>& bytestream, uvm_packer* p
 //! packing used to create the input array.
 //----------------------------------------------------------------------------
 
-int uvm_object::unpack_ints( const std::vector<int>& intstream, uvm_packer* packer )
+int uvm_object::unpack_ints( const std::vector<unsigned int>& intstream, uvm_packer* packer )
 {
   m_unpack_pre(packer);
   packer->put_ints(intstream);

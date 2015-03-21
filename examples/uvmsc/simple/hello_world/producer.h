@@ -34,7 +34,7 @@ class producer : public uvm::uvm_component
  public:
   uvm::uvm_blocking_put_port<T> out;
 
-  producer( uvm::uvm_name name ) : uvm::uvm_component(name), out("out"), num_packets(0), count(0)
+  producer( uvm::uvm_component_name name ) : uvm::uvm_component(name), out("out"), num_packets(0), count(0)
   {
     uvm::uvm_config_db<int>::get(this, "", "num_packets", num_packets);
   }

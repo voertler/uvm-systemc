@@ -95,7 +95,7 @@ class uvm_reg_predictor : public uvm_component,
 
   // Constructor
 
-  explicit uvm_reg_predictor( uvm_name name );
+  explicit uvm_reg_predictor( uvm_component_name name );
 
   // Methods
 
@@ -143,7 +143,7 @@ std::string uvm_reg_predictor<BUSTYPE>::type_name = "";
 //------------------------------------------------------------------------------
 
 template <typename BUSTYPE>
-uvm_reg_predictor<BUSTYPE>::uvm_reg_predictor( uvm_name name )
+uvm_reg_predictor<BUSTYPE>::uvm_reg_predictor( uvm_component_name name )
   : uvm_component(name), bus_in("bus_in", this), reg_ap("reg_ap")
 {
   map = NULL;

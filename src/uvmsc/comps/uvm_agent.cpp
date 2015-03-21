@@ -23,7 +23,7 @@
 #include <string>
 
 #include "uvmsc/comps/uvm_agent.h"
-#include "uvmsc/base/uvm_name.h"
+#include "uvmsc/base/uvm_component_name.h"
 #include "uvmsc/conf/uvm_config_db.h"
 
 namespace uvm {
@@ -34,7 +34,7 @@ namespace uvm {
 // Implementation
 //----------------------------------------------------------------------
 
-uvm_agent::uvm_agent( uvm_name name_ ) : uvm_component( name_ )
+uvm_agent::uvm_agent( uvm_component_name name_ ) : uvm_component( name_ )
 {
   is_active = UVM_ACTIVE;
 }

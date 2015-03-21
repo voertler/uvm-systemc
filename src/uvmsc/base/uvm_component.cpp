@@ -34,7 +34,7 @@
 
 #include "uvmsc/base/uvm_component.h"
 #include "uvmsc/base/uvm_root.h"
-#include "uvmsc/base/uvm_name.h"
+#include "uvmsc/base/uvm_component_name.h"
 #include "uvmsc/factory/uvm_factory.h"
 #include "uvmsc/base/uvm_object_globals.h"
 #include "uvmsc/phasing/uvm_common_phases.h"
@@ -64,7 +64,7 @@ bool uvm_component::print_config_matches = false;
 // Constructor
 //----------------------------------------------------------------------------
 
-uvm_component::uvm_component( uvm_name nm )
+uvm_component::uvm_component( uvm_component_name nm )
 : sc_module( nm.name() )
 {
   // prevent recursive registration of uvm_root module
@@ -246,11 +246,11 @@ int uvm_component::get_num_children() const
 //----------------------------------------------------------------------------
 // member function: has_child
 //
-//! Returns 1 if this component has a child with the given name, and 0 otherwise.
+//! Returns true if this component has a child with the given name, and false otherwise.
 //----------------------------------------------------------------------------
 
 
-int uvm_component::has_child( const std::string& name) const
+bool uvm_component::has_child( const std::string& name) const
 {
   return (m_children.find(name) != m_children.end());
 }
@@ -1427,7 +1427,7 @@ void uvm_component::print_config_settings( const std::string& field,
 // Implementation defined
 //----------------------------------------------------------------------------
 
-void uvm_component::do_print( uvm_printer& printer ) const
+void uvm_component::do_print( const uvm_printer& printer ) const
 {
   std::string v;
   uvm_object::do_print(printer);

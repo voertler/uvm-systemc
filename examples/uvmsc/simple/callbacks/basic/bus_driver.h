@@ -50,7 +50,7 @@ class bus_driver : public uvm::uvm_component
 
   UVM_REGISTER_CB(bus_driver, bus_driver_cb);
 
-  bus_driver( uvm::uvm_name name )
+  bus_driver( uvm::uvm_component_name name )
   : uvm::uvm_component(name),
     in("in", this)
   {}

@@ -34,7 +34,7 @@
 class xmt_subscriber : public uvm::uvm_subscriber<vip_packet>
 {
  public:
-  xmt_subscriber( uvm::uvm_name name );
+  xmt_subscriber( uvm::uvm_component_name name );
 
   UVM_COMPONENT_UTILS(xmt_subscriber);
 
