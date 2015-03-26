@@ -29,7 +29,7 @@ class B : public uvm::uvm_component
   C* u1;
 
  public:
-  B(uvm::uvm_name name) : uvm::uvm_component(name), debug(0)
+  B(uvm::uvm_component_name name) : uvm::uvm_component(name), debug(0)
   {}
 
   void build_phase(uvm::uvm_phase& phase)
@@ -44,7 +44,7 @@ class B : public uvm::uvm_component
     std::cout << get_full_name() << ": In Build: debug = " << debug << std::endl;
   }
 
-  void do_print(uvm::uvm_printer& printer) const
+  void do_print(const uvm::uvm_printer& printer) const
   {
     printer.print_field_int("debug", debug, sizeof(debug)*CHAR_BIT);
   }

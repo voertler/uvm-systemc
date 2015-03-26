@@ -1564,7 +1564,7 @@ uvm_reg_block* uvm_vreg::get_block() const
 // Implementation defined
 //----------------------------------------------------------------------
 
-void uvm_vreg::do_print( uvm_printer& printer ) const
+void uvm_vreg::do_print( const uvm_printer& printer ) const
 {
   uvm_object::do_print(printer);
   printer.print_generic( "initiator",

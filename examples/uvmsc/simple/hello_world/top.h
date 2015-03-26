@@ -41,7 +41,7 @@ class top : public uvm::uvm_component
 
   UVM_COMPONENT_UTILS(top);
 
-  top( uvm::uvm_name name )
+  top( uvm::uvm_component_name name )
   : uvm::uvm_component(name),
     p1("producer1"),
     p2("producer2"),

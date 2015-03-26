@@ -21,7 +21,7 @@
 #define UVM_BASE_H_
 
 #include "uvmsc/base/uvm_root.h"
-#include "uvmsc/base/uvm_name.h"
+#include "uvmsc/base/uvm_component_name.h"
 #include "uvmsc/base/uvm_globals.h"
 #include "uvmsc/base/uvm_component.h"
 #include "uvmsc/base/uvm_object.h"

@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2013-2014 NXP B.V.
+//   Copyright 2013-2015 NXP B.V.
 //   Copyright 2004-2009 Synopsys, Inc.
 //   Copyright 2010-2011 Mentor Graphics Corporation
 //   Copyright 2010-2011 Cadence Design Systems, Inc.
@@ -242,7 +242,7 @@ class uvm_reg_field : public uvm_object
   ///////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////
 
-  virtual void do_print( uvm_printer& printer ) const;
+  virtual void do_print( const uvm_printer& printer ) const;
   virtual std::string convert2string() const;
   virtual uvm_object* clone();
   virtual void do_copy( const uvm_object& rhs );

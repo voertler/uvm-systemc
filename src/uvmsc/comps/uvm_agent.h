@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2012-2014 NXP B.V.
+//   Copyright 2012-2015 NXP B.V.
 //   Copyright 2007-2011 Mentor Graphics Corporation
 //   Copyright 2007-2011 Cadence Design Systems, Inc.
 //   Copyright 2010 Synopsys, Inc.
@@ -40,7 +40,7 @@ class uvm_agent : public uvm_component
  public:
   uvm_active_passive_enum is_active;
 
-  explicit uvm_agent( uvm_name name_ );
+  explicit uvm_agent( uvm_component_name name_ );
   	
   virtual const std::string get_type_name() const;
 

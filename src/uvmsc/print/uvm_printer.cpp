@@ -1,7 +1,7 @@
 //----------------------------------------------------------------------
 //   Copyright 2014 Fraunhofer-Gesellschaft zur Foerderung
 //					der angewandten Forschung e.V.
-//   Copyright 2012-2014 NXP B.V.
+//   Copyright 2012-2015 NXP B.V.
 //   Copyright 2007-2011 Mentor Graphics Corporation
 //   Copyright 2007-2011 Cadence Design Systems, Inc.
 //   Copyright 2010 Synopsys, Inc.
@@ -72,7 +72,7 @@ uvm_printer::~uvm_printer()
 //----------------------------------------------------------------------
 
 void uvm_printer::print_field( const std::string& name,
-                               uvm_bitstream_t value,
+                               const uvm_bitstream_t& value,
                                int size,
                                uvm_radix_enum radix,
                                const char* scope_separator,
@@ -447,7 +447,7 @@ std::string uvm_printer::emit()
 //! Hook for producing custom output of a single field (row).
 //----------------------------------------------------------------------
 
-std::string uvm_printer::format_row( uvm_printer_row_info row )
+std::string uvm_printer::format_row( const uvm_printer_row_info& row )
 {
   return "";
 }
@@ -501,7 +501,7 @@ std::string uvm_printer::adjust_name( const std::string& id,
 void uvm_printer::print_array_header( const std::string& name,
                                       int    size,
                                       const std::string& arraytype,
-                                      const char* scope_separator )
+                                      const char* scope_separator ) const
 {
   uvm_printer_row_info row_info;
 
@@ -521,7 +521,7 @@ void uvm_printer::print_array_header( const std::string& name,
   m_rows.push_back(row_info);
 
   m_scope->down(name);
-  m_array_stack.push_back(true);
+  const_cast<uvm_printer *>(this)->m_array_stack.push_back(true);
 }
 
 //----------------------------------------------------------------------
@@ -557,12 +557,12 @@ void uvm_printer::print_array_range( int min, int max ) const
 //! this method lets the printer know that the array printing is complete.
 //----------------------------------------------------------------------
 
-void uvm_printer::print_array_footer( int size )
+void uvm_printer::print_array_footer( int size ) const
 {
   if(m_array_stack.size())
   {
     m_scope->up();
-    m_array_stack.pop_front();
+    const_cast<uvm_printer *>(this)->m_array_stack.pop_front();
   }
 }
 

@@ -39,7 +39,7 @@ class seq_arb_driver : public uvm::uvm_driver<seq_arb_item>
   int seq_3;
   int seq_4;
 
-  seq_arb_driver( uvm::uvm_name name ) : uvm::uvm_driver<seq_arb_item>(name)
+  seq_arb_driver( uvm::uvm_component_name name ) : uvm::uvm_driver<seq_arb_item>(name)
   {
     seq_1 = 0;
     seq_2 = 0;

@@ -41,7 +41,7 @@ class fifo_consumer : public consumer<T>
   tlm::tlm_fifo<packet> fifo;
 
   // constructor
-  fifo_consumer(uvm::uvm_name nm) :
+  fifo_consumer(uvm::uvm_component_name nm) :
     consumer<T>(nm), 
     fifo("fifo", 20) // create a fifo of size 20, the default size is 1
   {}

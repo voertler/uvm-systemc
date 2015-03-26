@@ -35,7 +35,7 @@ template <typename REQ = uvm::uvm_sequence_item, typename RSP = REQ>
 class my_driver : public uvm::uvm_driver<REQ,RSP>
 {
  public:
-  my_driver( uvm::uvm_name name ) : uvm::uvm_driver<REQ,RSP>( name ) {}
+  my_driver( uvm::uvm_component_name name ) : uvm::uvm_driver<REQ,RSP>( name ) {}
 
   UVM_COMPONENT_PARAM_UTILS(my_driver<REQ,RSP>);
 

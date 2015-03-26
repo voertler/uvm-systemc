@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2013-2014 NXP B.V.
+//   Copyright 2013-2015 NXP B.V.
 //   Copyright 2004-2011 Synopsys, Inc.
 //   Copyright 2010-2011 Mentor Graphics Corporation
 //   Copyright 2010-2011 Cadence Design Systems, Inc.
@@ -311,7 +311,7 @@ class uvm_reg_block : public uvm_object
 
   void add_mem( uvm_mem* mem );
 
-  void do_print( uvm_printer& printer ) const;
+  void do_print( const uvm_printer& printer ) const;
 
   uvm_object* clone();
 

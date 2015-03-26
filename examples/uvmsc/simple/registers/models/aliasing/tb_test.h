@@ -33,7 +33,7 @@ class tb_test : public uvm::uvm_test
 {
  public:
 
-  tb_test( uvm::uvm_name name = "tb_test") : uvm::uvm_test(name)
+  tb_test( uvm::uvm_component_name name = "tb_test") : uvm::uvm_test(name)
   {}
 
   virtual void run_phase(uvm::uvm_phase& phase)

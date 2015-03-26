@@ -2317,7 +2317,7 @@ std::string uvm_mem::convert2string() const
 // Implementation defined
 //----------------------------------------------------------------------
 
-void uvm_mem::do_print( uvm_printer& printer ) const
+void uvm_mem::do_print( const uvm_printer& printer ) const
 {
   uvm_object::do_print(printer);
   //printer.print_generic(" ", " ", -1, convert2string());

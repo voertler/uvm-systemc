@@ -73,7 +73,7 @@ class bus_trans : public uvm::uvm_sequence_item
     return ((op == rhs_->op) && (addr == rhs_->addr) && (data == rhs_->data));
   }
 
-  void do_print( uvm::uvm_printer& printer ) const
+  void do_print( const uvm::uvm_printer& printer ) const
   {
     printer.print_string("op", (op ? "BUS_WRITE":"BUS_READ"));
     printer.print_field_int("addr", addr);

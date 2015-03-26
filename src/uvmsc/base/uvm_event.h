@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2013-2014 NXP B.V.
+//   Copyright 2013-2015 NXP B.V.
 //   Copyright 2007-2010 Mentor Graphics Corporation
 //   Copyright 2007-2011 Cadence Design Systems, Inc.
 //   Copyright 2010 Synopsys, Inc.
@@ -102,7 +102,7 @@ class uvm_event : public uvm_object
 
   virtual const std::string get_type_name() const;
 
-  virtual void do_print( uvm_printer& printer ) const;
+  virtual void do_print( const uvm_printer& printer ) const;
 
   virtual void do_copy( const uvm_object& rhs );
 

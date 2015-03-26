@@ -32,7 +32,7 @@
 class tb_test : public uvm::uvm_test
 {
  public:
-  tb_test( uvm::uvm_name name ) : uvm::uvm_test(name)
+  tb_test( uvm::uvm_component_name name ) : uvm::uvm_test(name)
   {
     set_report_verbosity_level(uvm::UVM_FULL);
   }

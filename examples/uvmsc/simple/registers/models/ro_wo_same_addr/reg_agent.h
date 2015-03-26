@@ -67,7 +67,7 @@ class reg_sequencer : public uvm::uvm_sequencer<reg_rw>
  public:
   UVM_COMPONENT_UTILS(reg_sequencer);
 
-  reg_sequencer( uvm::uvm_name name ) : uvm::uvm_sequencer<reg_rw>(name)
+  reg_sequencer( uvm::uvm_component_name name ) : uvm::uvm_sequencer<reg_rw>(name)
   {}
 
 }; // class reg_sequencer
@@ -81,7 +81,7 @@ class reg_monitor : public uvm::uvm_monitor
 
   uvm::uvm_analysis_port<reg_rw> ap;
 
-  reg_monitor( uvm::uvm_name name ) : uvm::uvm_monitor(name), ap("ap")
+  reg_monitor( uvm::uvm_component_name name ) : uvm::uvm_monitor(name), ap("ap")
   {}
 
 }; // class reg_monitor
@@ -96,7 +96,7 @@ class reg_driver: public uvm::uvm_component
 
   uvm::uvm_seq_item_pull_port<reg_rw> seqr_port;
 
-  reg_driver( uvm::uvm_name name )
+  reg_driver( uvm::uvm_component_name name )
     : uvm::uvm_component(name),
       seqr_port("seqr_port"),
       m_parent(get_parent())
@@ -138,7 +138,7 @@ class reg_agent : public uvm::uvm_agent
 
   UVM_COMPONENT_PARAM_UTILS(reg_agent<DO>);
 
-  reg_agent( uvm::uvm_name name )
+  reg_agent( uvm::uvm_component_name name )
   : uvm::uvm_agent(name),
     sqr(NULL), drv(NULL), mon(NULL)
   {}

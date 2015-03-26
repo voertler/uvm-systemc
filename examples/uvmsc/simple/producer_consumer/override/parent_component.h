@@ -36,7 +36,7 @@ class parent_component : public uvm::uvm_component
   consumer<packet>* cons_p;
 
   // constructor
-  parent_component(uvm::uvm_name nm) : uvm::uvm_component(nm), prod_p(0), cons_p(0) {}
+  parent_component(uvm::uvm_component_name nm) : uvm::uvm_component(nm), prod_p(0), cons_p(0) {}
 
   // use macro to generate member methods that the factory requires
   UVM_COMPONENT_UTILS(parent_component);

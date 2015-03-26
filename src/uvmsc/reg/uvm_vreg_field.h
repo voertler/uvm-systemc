@@ -1,7 +1,7 @@
 //----------------------------------------------------------------------
 //   Copyright 2004-2009 Synopsys, Inc.
 //   Copyright 2010 Mentor Graphics Corporation
-//   Copyright 2013-2014 NXP B.V.
+//   Copyright 2013-2015 NXP B.V.
 //   All Rights Reserved Worldwide
 //
 //   Licensed under the Apache License, Version 2.0 (the
@@ -160,7 +160,7 @@ class uvm_vreg_field : public uvm_object
   // Implementation defined: UVM object methods
   //--------------------------------------------------------------------
 
-  virtual void do_print( uvm_printer& printer ) const;
+  virtual void do_print( const uvm_printer& printer ) const;
   virtual std::string convert2string() const;
   virtual uvm_object* clone();
   virtual void do_copy( const uvm_object& rhs );

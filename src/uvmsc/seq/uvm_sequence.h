@@ -58,7 +58,7 @@ class uvm_sequence : public uvm_sequence_base
 
   virtual void put_response( const uvm_sequence_item& response );
 
-  void do_print( uvm_printer& printer ) const;
+  void do_print( const uvm_printer& printer ) const;
 
   uvm_sequencer_param_base<REQ, RSP>* param_sequencer;
 
@@ -200,7 +200,7 @@ void uvm_sequence<REQ,RSP>::put_response( const uvm_sequence_item& response )
 // Implementation defined
 //----------------------------------------------------------------------
 template <typename REQ, typename RSP>
-void uvm_sequence<REQ,RSP>::do_print( uvm_printer& printer ) const
+void uvm_sequence<REQ,RSP>::do_print( const uvm_printer& printer ) const
 {
   uvm_sequence_base::do_print(printer);
   //REQ* req;

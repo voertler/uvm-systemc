@@ -102,7 +102,7 @@ class uvm_sequence_item: public uvm_transaction
 
   virtual const std::string get_type_name() const { return "uvm::uvm_sequence_item"; }
 
-  virtual void do_print( uvm_printer& printer ) const;
+  virtual void do_print( const uvm_printer& printer ) const;
 
 protected:
 

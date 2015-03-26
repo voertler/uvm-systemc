@@ -41,7 +41,7 @@ class producer : public uvm::uvm_component
   std::string in_file;
 
   // constructor
-  producer(uvm::uvm_name nm) : uvm::uvm_component(nm), out("out")
+  producer(uvm::uvm_component_name nm) : uvm::uvm_component(nm), out("out")
   {
     // get parameter value for in_file through the configuration database
     uvm::uvm_config_db<std::string>::get(this, "", "in_file", in_file);

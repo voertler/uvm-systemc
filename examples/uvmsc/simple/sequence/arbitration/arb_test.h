@@ -40,7 +40,7 @@ class arb_test : public uvm::uvm_component
   seq_arb_sequencer* m_sequencer;
   arb_example_seq*   m_seq;
 
-  arb_test( uvm::uvm_name name ) : uvm::uvm_component(name) {}
+  arb_test( uvm::uvm_component_name name ) : uvm::uvm_component(name) {}
 
   void build_phase(uvm::uvm_phase& phase)
   {

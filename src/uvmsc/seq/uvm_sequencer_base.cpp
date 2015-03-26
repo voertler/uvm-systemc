@@ -26,7 +26,7 @@
 #include <systemc>
 
 #include "uvmsc/base/uvm_component.h"
-#include "uvmsc/base/uvm_name.h"
+#include "uvmsc/base/uvm_component_name.h"
 #include "uvmsc/seq/uvm_sequencer_base.h"
 #include "uvmsc/seq/uvm_sequence_base.h"
 #include "uvmsc/seq/uvm_sequence_item.h"
@@ -54,7 +54,7 @@ int uvm_sequencer_base::g_request_id = 0;
 // constructor
 //----------------------------------------------------------------------
 
-uvm_sequencer_base::uvm_sequencer_base( uvm_name name_ )
+uvm_sequencer_base::uvm_sequencer_base( uvm_component_name name_ )
   : uvm_component( name_ )
 {
   m_sequencer_id = g_sequencer_id++;
@@ -1150,7 +1150,7 @@ void uvm_sequencer_base::m_kill_sequence( uvm_sequence_base* sequence_ptr )
 // Implementation-defined member function
 //----------------------------------------------------------------------
 
-void uvm_sequencer_base::do_print( uvm_printer& printer ) const
+void uvm_sequencer_base::do_print( const uvm_printer& printer ) const
 {
   uvm_component::do_print(printer);
   printer.print_array_header("arbitration_queue", arb_sequence_q.size());

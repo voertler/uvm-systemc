@@ -46,7 +46,7 @@ class D : public uvm_component
 {
  public:
   // constructor
-  D(uvm_name name) : uvm_component(name) {}
+  D(uvm_component_name name) : uvm_component(name) {}
 
   void build_phase(uvm_phase& phase)
   {
@@ -102,7 +102,7 @@ class B : public uvm_component
 {
  public:
   // constructor
-  B(uvm_name name) : uvm_component(name)
+  B(uvm_component_name name) : uvm_component(name)
   {
     delay = sc_time(1.1, SC_MS);
   }
@@ -166,7 +166,7 @@ class A : public uvm_component
 {
  public:
   // constructor
-  A(uvm_name name) : uvm_component(name)
+  A(uvm_component_name name) : uvm_component(name)
   {
     b1 = new B("b1");
     d1 = new D("d1");
@@ -242,7 +242,7 @@ class AA : public uvm_component
   A* a;
 
   // constructor
-  AA(uvm_name name) : uvm_component(name)
+  AA(uvm_component_name name) : uvm_component(name)
   {
     a = new A("a");
   }
@@ -254,7 +254,7 @@ class top : public uvm_env
 {
  public:
   // constructor
-  top(uvm_name name) : uvm_env(name)
+  top(uvm_component_name name) : uvm_env(name)
   {
     a1 = new AA("a1");
     a2 = new AA("a2");

@@ -2,7 +2,7 @@
 //   Copyright 2007-2011 Mentor Graphics Corporation
 //   Copyright 2007-2010 Cadence Design Systems, Inc. 
 //   Copyright 2010 Synopsys, Inc.
-//   Copyright 2014 NXP B.V.
+//   Copyright 2014-2015 NXP B.V.
 //   All Rights Reserved Worldwide
 //
 //   Licensed under the Apache License, Version 2.0 (the
@@ -64,7 +64,7 @@ class uvm_object_string_pool : public uvm_pool<std::string,T>
 
   virtual void do_delete( const std::string& key );
 
-  virtual void do_print( uvm_printer& printer ) const;
+  virtual void do_print( const uvm_printer& printer ) const;
 
  protected:
   static uvm_object_string_pool<T>* m_global_pool;
@@ -207,7 +207,7 @@ void uvm_object_string_pool<T>::do_delete( const std::string& key )
 //-----------------------------------------------------------------------------
 
 template <typename T>
-void uvm_object_string_pool<T>::do_print( uvm_printer& printer ) const
+void uvm_object_string_pool<T>::do_print( const uvm_printer& printer ) const
 {
   std::string key;
   printer.print_array_header("pool", this->pool.size(), "aa_object_string");

@@ -34,7 +34,7 @@
 class rcv_subscriber : public uvm::uvm_subscriber<vip_packet>
 {
  public:
-  rcv_subscriber( uvm::uvm_name name );
+  rcv_subscriber( uvm::uvm_component_name name );
 
   UVM_COMPONENT_UTILS(rcv_subscriber);
 

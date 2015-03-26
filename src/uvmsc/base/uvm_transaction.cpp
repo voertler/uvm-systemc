@@ -1,7 +1,7 @@
 //----------------------------------------------------------------------
 //   Copyright 2014 Fraunhofer-Gesellschaft zur Foerderung
 //					der angewandten Forschung e.V.
-//   Copyright 2012-2014 NXP B.V.
+//   Copyright 2012-2015 NXP B.V.
 //   Copyright 2007-2011 Mentor Graphics Corporation
 //   Copyright 2007-2011 Cadence Design Systems, Inc.
 //   Copyright 2010 Synopsys, Inc.
@@ -164,7 +164,7 @@ uvm_transaction::~uvm_transaction()
 //! Implementation-defined member function
 //----------------------------------------------------------------------
 
-void uvm_transaction::do_print( uvm_printer& printer ) const
+void uvm_transaction::do_print( const uvm_printer& printer ) const
 {
   std::string str;
 

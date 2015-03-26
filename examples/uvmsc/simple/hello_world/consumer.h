@@ -35,7 +35,7 @@ class consumer : public uvm::uvm_component
   uvm::uvm_blocking_put_imp<T,consumer<T> > in;
   uvm::uvm_get_port<T> out;
 
-  consumer( uvm::uvm_name name )
+  consumer( uvm::uvm_component_name name )
   : uvm::uvm_component(name),
     in("in", this),
     out("out"),

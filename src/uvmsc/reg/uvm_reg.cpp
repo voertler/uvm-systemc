@@ -3045,7 +3045,7 @@ void  uvm_reg::m_sample( uvm_reg_data_t  data,
 // Implementation defined
 //----------------------------------------------------------------------
 
-void uvm_reg::do_print( uvm_printer& printer ) const
+void uvm_reg::do_print( const uvm_printer& printer ) const
 {
   std::vector<uvm_reg_field*> f;
   uvm_object::do_print(printer);

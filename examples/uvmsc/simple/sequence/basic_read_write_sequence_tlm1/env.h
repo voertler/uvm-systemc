@@ -49,7 +49,7 @@ class env: public uvm::uvm_env
 
   UVM_COMPONENT_UTILS(env);
 
-  env( uvm::uvm_name name ) : uvm::uvm_env( name ), sqr(0), drv(0) {}
+  env( uvm::uvm_component_name name ) : uvm::uvm_env( name ), sqr(0), drv(0) {}
 
   void build_phase(uvm::uvm_phase& phase)
   {

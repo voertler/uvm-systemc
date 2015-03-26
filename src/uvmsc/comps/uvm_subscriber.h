@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2012-2014 NXP B.V.
+//   Copyright 2012-2015 NXP B.V.
 //   Copyright 2007-2011 Mentor Graphics Corporation
 //   Copyright 2007-2010 Cadence Design Systems, Inc.
 //   Copyright 2010 Synopsys, Inc.
@@ -65,7 +65,7 @@ class uvm_subscriber : public uvm_component,
   //! instance
   //----------------------------------------------------------------------
 
-  explicit uvm_subscriber( uvm_name name_ )
+  explicit uvm_subscriber( uvm_component_name name_ )
     : uvm_component( name_ ), analysis_export("analysis_export")
   {
     // bind export to itself, to make use of member function write

@@ -48,7 +48,7 @@ class simple_test: public uvm_test
 {
  public:
 
-  simple_test(uvm_name name) :
+  simple_test(uvm_component_name name) :
     uvm_test(name)
   {}
 

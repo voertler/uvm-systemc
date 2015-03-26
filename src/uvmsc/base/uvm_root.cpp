@@ -26,7 +26,7 @@
 #include <stdexcept>
 
 #include "uvmsc/base/uvm_root.h"
-#include "uvmsc/base/uvm_name.h"
+#include "uvmsc/base/uvm_component_name.h"
 #include "uvmsc/base/uvm_globals.h"
 #include "uvmsc/macros/uvm_message_defines.h"
 #include "uvmsc/phasing/uvm_phase.h"
@@ -69,7 +69,7 @@ bool uvm_root::m_uvm_timeout_overridable = true;
 // Constructor
 //----------------------------------------------------------------------
 
-uvm_root::uvm_root( uvm_name nm )
+uvm_root::uvm_root( uvm_component_name nm )
 : uvm_component(nm)
 {
   enable_print_topology = false;

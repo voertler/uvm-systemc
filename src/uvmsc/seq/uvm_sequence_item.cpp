@@ -392,7 +392,7 @@ void uvm_sequence_item::m_set_p_sequencer()
 // Implementation-defined member function
 //----------------------------------------------------------------------
 
-void uvm_sequence_item::do_print( uvm_printer& printer ) const
+void uvm_sequence_item::do_print( const uvm_printer& printer ) const
 {
   std::string temp_str0, temp_str1;
 

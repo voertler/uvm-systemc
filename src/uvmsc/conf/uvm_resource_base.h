@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2012-2014 NXP B.V.
+//   Copyright 2012-2015 NXP B.V.
 //   Copyright 2011 Cypress Semiconductor
 //   Copyright 2010 Mentor Graphics Corporation
 //   Copyright 2011 Cadence Design Systems, Inc.
@@ -96,7 +96,7 @@ public:
   // Group: Utility Functions
   //--------------------------------------------------------------------------
 
-  void do_print( uvm_printer& printer ) const;
+  void do_print( const uvm_printer& printer ) const;
 
   //--------------------------------------------------------------------------
   // Group: Audit Trail

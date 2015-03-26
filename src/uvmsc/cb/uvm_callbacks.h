@@ -1,6 +1,6 @@
 //   Copyright 2014 Fraunhofer-Gesellschaft zur Foerderung
 //					der angewandten Forschung e.V.
-//   Copyright 2013-2014 NXP B.V.
+//   Copyright 2013-2015 NXP B.V.
 //   Copyright 2007-2011 Mentor Graphics Corporation
 //   Copyright 2007-2010 Cadence Design Systems, Inc.
 //   Copyright 2010-2011 Synopsys, Inc.
@@ -101,7 +101,7 @@ class uvm_callbacks : public uvm_typed_callbacks<T>
   uvm_callbacks(); // Constructor
 
   //----------------------------------------------------------------------
-  // Group: Add/delete inteface
+  // Group: Add/delete interface
   //----------------------------------------------------------------------
 
   static void add( T* obj, uvm_callback* cb, uvm_apprepend ordering = UVM_APPEND );
@@ -140,11 +140,12 @@ class uvm_callbacks : public uvm_typed_callbacks<T>
   // not part of UVM Class reference / LRM
   /////////////////////////////////////////////////////
 
- private:
+  //TODO move to private?
+  static uvm_callbacks<T,CB>* get();
 
   static bool m_register_pair( const std::string& tname = "", const std::string& cbname = "");
 
-  static uvm_callbacks<T,CB>* get();
+ private:
 
   static void m_get_q( uvm_queue<uvm_callback*>*& q, T* obj );
 

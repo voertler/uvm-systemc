@@ -1864,7 +1864,7 @@ void uvm_reg_field::post_randomize()
 // Implementation defined
 //----------------------------------------------------------------------
 
-void uvm_reg_field::do_print( uvm_printer& printer ) const
+void uvm_reg_field::do_print( const uvm_printer& printer ) const
 {
   printer.print_generic(get_name(), get_type_name(), -1, convert2string());
 }

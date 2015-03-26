@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2012-2014 NXP B.V.
+//   Copyright 2012-2015 NXP B.V.
 //   Copyright 2007-2011 Mentor Graphics Corporation
 //   Copyright 2007-2010 Cadence Design Systems, Inc.
 //   Copyright 2010 Synopsys, Inc.
@@ -45,7 +45,7 @@ namespace uvm {
 class uvm_test : public uvm_component
 {
  public:
-  explicit uvm_test( uvm_name name_ ) : uvm_component( name_ ) {};
+  explicit uvm_test( uvm_component_name name_ ) : uvm_component( name_ ) {};
   	
   virtual const std::string get_type_name() const;
 

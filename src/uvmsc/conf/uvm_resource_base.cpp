@@ -2,7 +2,7 @@
 //   Copyright 2011 Cypress Semiconductor
 //   Copyright 2010 Mentor Graphics Corporation
 //   Copyright 2011 Cadence Design Systems, Inc.
-//   Copyright 2012-2014 NXP B.V.
+//   Copyright 2012-2015 NXP B.V.
 //   Copyright 2014 Fraunhofer-Gesellschaft zur Foerderung
 //					der angewandten Forschung e.V.
 //   Copyright 2014 Université Pierre et Marie Curie, Paris
@@ -181,7 +181,7 @@ std::string uvm_resource_base::convert2string() const
 //! Implementation of do_print which is called by print().
 //----------------------------------------------------------------------
 
-void uvm_resource_base::do_print( uvm_printer& printer ) const
+void uvm_resource_base::do_print( const uvm_printer& printer ) const
 {
   // TODO use printer?
   std::cout << get_name() << " [" << get_scope() << "] : " << convert2string() << std::endl;

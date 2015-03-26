@@ -51,7 +51,7 @@ class producer : public uvm::uvm_component
  public:
   uvm::uvm_blocking_put_port<int> put_port;
 
-  producer( uvm::uvm_name name ) :
+  producer( uvm::uvm_component_name name ) :
     uvm::uvm_component(name),
     put_port("put_port")
   {}
@@ -82,7 +82,7 @@ class consumer : public uvm::uvm_component
  public:
   uvm::uvm_blocking_get_port<int> get_port;
 
-  consumer( uvm::uvm_name name )
+  consumer( uvm::uvm_component_name name )
   : uvm::uvm_component(name),
     get_port("get_port")
   {}
@@ -114,7 +114,7 @@ class env : public uvm::uvm_env
   consumer c;
   tlm::tlm_fifo<int> f;
 
-  env ( uvm::uvm_name name = "env" )
+  env ( uvm::uvm_component_name name = "env" )
   :  uvm::uvm_env(name),
      p("producer"),
      c("consumer"),

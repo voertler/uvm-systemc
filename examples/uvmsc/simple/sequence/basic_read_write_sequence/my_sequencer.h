@@ -33,7 +33,7 @@ template <typename REQ = uvm::uvm_sequence_item, typename RSP = REQ>
 class my_sequencer : public uvm::uvm_sequencer<REQ,RSP>
 {
  public:
-  my_sequencer( uvm::uvm_name name ) : uvm::uvm_sequencer<REQ,RSP>( name )
+  my_sequencer( uvm::uvm_component_name name ) : uvm::uvm_sequencer<REQ,RSP>( name )
   {
   }
 

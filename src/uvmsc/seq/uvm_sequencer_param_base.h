@@ -27,7 +27,7 @@
 
 #include <list>
 
-#include "uvmsc/base/uvm_name.h"
+#include "uvmsc/base/uvm_component_name.h"
 #include "uvmsc/seq/uvm_sequencer_base.h"
 #include "uvmsc/seq/uvm_sequence_base.h"
 #include "uvmsc/base/uvm_transaction.h"
@@ -53,7 +53,7 @@ class uvm_sequencer_param_base : public uvm_sequencer_base
   tlm::tlm_fifo<REQ> m_req_fifo;
   //tlm::tlm_analysis_fifo<REQ> m_req_fifo; // TODO add analysis fifo
 
-  explicit uvm_sequencer_param_base( uvm_name name_ );
+  explicit uvm_sequencer_param_base( uvm_component_name name_ );
   virtual ~uvm_sequencer_param_base();
 
   void send_request(uvm_sequence_base* sequence_ptr,
@@ -117,7 +117,7 @@ class uvm_sequencer_param_base : public uvm_sequencer_base
 //----------------------------------------------------------------------
 
 template <typename REQ, typename RSP>
-uvm_sequencer_param_base<REQ,RSP>::uvm_sequencer_param_base( uvm_name name_ )
+uvm_sequencer_param_base<REQ,RSP>::uvm_sequencer_param_base( uvm_component_name name_ )
   : uvm_sequencer_base( name_ ),
     m_req_fifo("m_req_fifo", UVM_MAX_SEQS) // set fifo depth here
 {

@@ -66,7 +66,7 @@ public:
                  SEQ_TYPE_LOCK,
                  SEQ_TYPE_GRAB} seq_req_t;
 
-  explicit uvm_sequencer_base( uvm_name name_ );
+  explicit uvm_sequencer_base( uvm_component_name name_ );
   virtual ~uvm_sequencer_base();
 
   bool is_child( uvm_sequence_base* parent, const uvm_sequence_base* child ) const;
@@ -132,7 +132,7 @@ public:
   void m_wait_arb_not_equal();
   uvm_sequence_base* m_find_sequence(int sequence_id);
   void m_kill_sequence( uvm_sequence_base* sequence_ptr );
-  virtual void do_print( uvm_printer& printer ) const;
+  virtual void do_print( const uvm_printer& printer ) const;
   virtual void print( uvm_printer* printer = NULL ) const;
 
   void m_lock_req( uvm_sequence_base* sequence_ptr, bool lock );

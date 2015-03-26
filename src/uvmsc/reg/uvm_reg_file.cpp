@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2013-2014 NXP B.V.
+//   Copyright 2013-2015 NXP B.V.
 //   Copyright 2010 Synopsys, Inc.
 //   Copyright 2010 Mentor Graphics Corporation
 //   Copyright 2010 Cadence Design Systems, Inc.
@@ -435,7 +435,7 @@ uvm_reg_block* uvm_reg_file::get_block() const
 // Implementation defined
 //----------------------------------------------------------------------
 
-void uvm_reg_file::do_print( uvm_printer& printer ) const
+void uvm_reg_file::do_print( const uvm_printer& printer ) const
 {
   uvm_object::do_print(printer);
 }

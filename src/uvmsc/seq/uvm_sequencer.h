@@ -28,7 +28,7 @@
 #include <systemc>
 #include <tlm.h>
 
-#include "uvmsc/base/uvm_name.h"
+#include "uvmsc/base/uvm_component_name.h"
 #include "uvmsc/seq/uvm_sequencer_param_base.h"
 #include "uvmsc/seq/uvm_sequence_item.h"
 #include "uvmsc/seq/uvm_sequencer_ifs.h"
@@ -63,7 +63,7 @@ class uvm_sequencer : public uvm_sequencer_param_base<REQ,RSP>,
   // Constructor and destructor
   //--------------------------------------------------------------------------
 
-  explicit uvm_sequencer( uvm_name name_ );
+  explicit uvm_sequencer( uvm_component_name name_ );
   virtual ~uvm_sequencer();
 
   //--------------------------------------------------------------------------
@@ -115,7 +115,7 @@ class uvm_sequencer : public uvm_sequencer_param_base<REQ,RSP>,
 //----------------------------------------------------------------------
 
 template <typename REQ, typename RSP>
-uvm_sequencer<REQ,RSP>::uvm_sequencer( uvm_name name_ )
+uvm_sequencer<REQ,RSP>::uvm_sequencer( uvm_component_name name_ )
   : uvm_sequencer_param_base<REQ,RSP>( name_ ), seq_item_export("seq_item_export")
 {
   // bind export to itself

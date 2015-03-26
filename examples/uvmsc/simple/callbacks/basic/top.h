@@ -56,7 +56,7 @@ class top : public uvm::uvm_env
   my_bus_driver_cb* cb1;  // callback object
   my_bus_driver_cb2* cb2; // another callback object
 
-  top(uvm::uvm_name nm) : uvm::uvm_env(nm) {}
+  top(uvm::uvm_component_name nm) : uvm::uvm_env(nm) {}
 
   UVM_COMPONENT_UTILS(top);
 

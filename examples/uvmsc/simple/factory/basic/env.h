@@ -31,7 +31,7 @@ class env : public uvm::uvm_env
 
   UVM_COMPONENT_UTILS(env);
 
-  env(uvm::uvm_name name) : uvm::uvm_env(name)
+  env(uvm::uvm_component_name name) : uvm::uvm_env(name)
   {
   }
 

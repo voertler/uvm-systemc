@@ -30,7 +30,7 @@ class tb_env : public uvm::uvm_env
 
   UVM_COMPONENT_UTILS(tb_env);
 
-  tb_env(uvm::uvm_name name) : uvm::uvm_env(name) {}
+  tb_env(uvm::uvm_component_name name) : uvm::uvm_env(name) {}
 
   void build_phase(uvm::uvm_phase& phase)
   {

@@ -1,5 +1,5 @@
 //------------------------------------------------------------------------------
-//   Copyright 2014 NXP B.V.
+//   Copyright 2014-2015 NXP B.V.
 //   Copyright 2007-2011 Mentor Graphics Corporation
 //   Copyright 2007-2011 Cadence Design Systems, Inc. 
 //   Copyright 2010 Synopsys, Inc.
@@ -513,7 +513,7 @@ void uvm_packer::unpack_object( uvm_object& value )
 //! Returns the number of bits that were packed.
 //------------------------------------------------------------------------------
 
-unsigned int uvm_packer::get_packed_size() //DONE
+unsigned int uvm_packer::get_packed_size() const
 {
   return pack_index;
 }
@@ -678,7 +678,7 @@ void uvm_packer::get_bits( std::vector<bool>& bits ) const
 //! Implementation defined
 //------------------------------------------------------------------------------
 
-void uvm_packer::get_bytes( std::vector<char>& bytes ) const
+void uvm_packer::get_bytes( std::vector<unsigned char>& bytes ) const
 {
   unsigned int n = get_remaining_unpacked_bits();
   unsigned int nbytes = 1 + (n-1)/8;
@@ -706,7 +706,7 @@ void uvm_packer::get_bytes( std::vector<char>& bytes ) const
 //! Implementation defined
 //------------------------------------------------------------------------------
 
-void uvm_packer::get_ints( std::vector<int>& ints ) const
+void uvm_packer::get_ints( std::vector<unsigned int>& ints ) const
 {
   unsigned int n = get_remaining_unpacked_bits();
   unsigned int nints = 1 + (n-1)/32;
@@ -760,7 +760,7 @@ void uvm_packer::put_bits( const std::vector<bool>& bitstream )
 //! Implementation defined
 //------------------------------------------------------------------------------
 
-void uvm_packer::put_bytes( const std::vector<char>& bytestream )
+void uvm_packer::put_bytes( const std::vector<unsigned char>& bytestream )
 {
   reset();
   int byte_size = bytestream.size();
@@ -787,7 +787,7 @@ void uvm_packer::put_bytes( const std::vector<char>& bytestream )
 //! Implementation defined
 //------------------------------------------------------------------------------
 
-void uvm_packer::put_ints( const std::vector<int>& intstream )
+void uvm_packer::put_ints( const std::vector<unsigned int>& intstream )
 {
   reset();
   int int_size = intstream.size();

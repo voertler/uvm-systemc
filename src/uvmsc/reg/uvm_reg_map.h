@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2013-2014 NXP B.V.
+//   Copyright 2013-2015 NXP B.V.
 //   Copyright 2004-2011 Synopsys, Inc.
 //   Copyright 2010-2011 Mentor Graphics Corporation
 //   Copyright 2010-2011 Cadence Design Systems, Inc.
@@ -257,7 +257,7 @@ public:
   virtual std::string convert2string() const;
 
   virtual uvm_object* clone();
-  virtual void do_print( uvm_printer& printer ) const;
+  virtual void do_print( const uvm_printer& printer ) const;
   virtual void do_copy( const uvm_object& rhs );
   // TODO add these methods?
   // virtual bool do_compare( const uvm_object& rhs, const uvm_comparer* comparer);

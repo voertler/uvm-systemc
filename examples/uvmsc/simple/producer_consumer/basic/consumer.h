@@ -32,7 +32,7 @@ class consumer : public uvm::uvm_component
 
   UVM_COMPONENT_UTILS(consumer);
 
-  consumer(uvm::uvm_name name)
+  consumer(uvm::uvm_component_name name)
   : uvm::uvm_component(name), in("in"), count(0)
   {}
 

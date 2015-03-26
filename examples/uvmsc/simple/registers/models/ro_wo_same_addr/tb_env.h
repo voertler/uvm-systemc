@@ -74,7 +74,7 @@ class tb_env : public uvm::uvm_env
   reg_agent<dut>* bus;
   uvm::uvm_reg_predictor<reg_rw>* predict;
 
-  tb_env( uvm::uvm_name name = "tb_env")
+  tb_env( uvm::uvm_component_name name = "tb_env")
   : uvm::uvm_env(name),
     regmodel(NULL),
     bus(NULL),

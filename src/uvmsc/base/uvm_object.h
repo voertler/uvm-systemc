@@ -125,7 +125,7 @@ public:
 
   std::string sprint( uvm_printer* printer = NULL ) const;
 
-  virtual void do_print( uvm_printer& printer ) const;
+  virtual void do_print( const uvm_printer& printer ) const;
 
   virtual std::string convert2string() const;
 
@@ -160,9 +160,9 @@ public:
 
   int pack( std::vector<bool>& bitstream, uvm_packer* packer = NULL );
 
-  int pack_bytes( std::vector<char>& bytestream, uvm_packer* packer = NULL );
+  int pack_bytes( std::vector<unsigned char>& bytestream, uvm_packer* packer = NULL );
 
-  int pack_ints( std::vector<int>& intstream, uvm_packer* packer = NULL );
+  int pack_ints( std::vector<unsigned int>& intstream, uvm_packer* packer = NULL );
 
   virtual void do_pack( uvm_packer& packer ) const;
 
@@ -172,9 +172,9 @@ public:
 
   int unpack( const std::vector<bool>& bitstream, uvm_packer* packer = NULL );
 
-  int unpack_bytes( const std::vector<char>& bytestream, uvm_packer* packer = NULL );
+  int unpack_bytes( const std::vector<unsigned char>& bytestream, uvm_packer* packer = NULL );
 
-  int unpack_ints( const std::vector<int>& intstream, uvm_packer* packer = NULL );
+  int unpack_ints( const std::vector<unsigned int>& intstream, uvm_packer* packer = NULL );
 
   virtual void do_unpack( uvm_packer& packer );
 

@@ -7,7 +7,7 @@ H_FILES = \
 	uvm_event.h \
 	uvm_export_base.h \
 	uvm_globals.h \
-	uvm_name.h \
+	uvm_component_name.h \
 	uvm_object.h \
 	uvm_object_globals.h \
 	uvm_port_base.h \
