@@ -39,7 +39,7 @@ namespace uvm {
 // constructor
 //----------------------------------------------------------------------
 
-uvm_sequence_base::uvm_sequence_base( const std::string& name_ )
+uvm_sequence_base::uvm_sequence_base( uvm_object_name name_ )
  : uvm_sequence_item( name_ ), m_sequence_state(CREATED)
 {
   m_wait_for_grant_semaphore = 0;
@@ -57,6 +57,7 @@ uvm_sequence_base::uvm_sequence_base( const std::string& name_ )
   m_tr_handle = 0;
 
   is_rel_default = true;
+  wait_rel_default = false;
 }
 
 //----------------------------------------------------------------------
@@ -365,6 +366,35 @@ bool uvm_sequence_base::is_relevant() const
   is_rel_default = true;
   return true;
 }
+
+//----------------------------------------------------------------------
+// member function: wait_for_relevant (virtual)
+//
+//! This method is called by the sequencer when all available sequences are
+//! not relevant.  When wait_for_relevant returns the sequencer attempt to
+//! re-arbitrate.
+//
+//! Returning from this call does not guarantee a sequence is relevant,
+//! although that would be the ideal. The method provide some delay to
+//! prevent an infinite loop.
+//
+//! If a sequence defines is_relevant so that it is not always relevant (by
+//! default, a sequence is always relevant), then the sequence must also supply
+//! a wait_for_relevant method.
+//----------------------------------------------------------------------
+
+void uvm_sequence_base::wait_for_relevant() const
+{
+  // callback to be overwritten by application
+
+  sc_core::sc_event _forever;
+  wait_rel_default = true;
+  if (is_rel_default != wait_rel_default)
+    uvm_report_fatal("RELMSM",
+      "is_relevant() was implemented without defining wait_for_relevant()", UVM_NONE);
+  wait(_forever);  // this is intended to never return
+}
+
 
 //----------------------------------------------------------------------
 // member function: lock
@@ -757,6 +787,60 @@ void uvm_sequence_base::response_handler( const uvm_sequence_item* response )
 {
   uvm_report_fatal("RSPHDL", "No response handler defined!", UVM_NONE);
 }
+
+//----------------------------------------------------------------------
+// member function: set_response_queue_error_report_disabled
+//
+//! By default, if the response_queue overflows, an error is reported. The
+//! response_queue will overflow if more responses are sent to this sequence
+//! from the driver than get_response calls are made. Setting value to 0
+//! disables these errors, while setting it to 1 enables them.
+//----------------------------------------------------------------------
+
+void uvm_sequence_base::set_response_queue_error_report_disabled( bool value )
+{
+  response_queue_error_report_disabled = value;
+}
+
+
+//----------------------------------------------------------------------
+// member function: get_response_queue_error_report_disabled
+//
+//! When this bit is 0 (default value), error reports are generated when
+//! the response queue overflows. When this bit is 1, no such error
+//! reports are generated.
+//----------------------------------------------------------------------
+
+bool uvm_sequence_base::get_response_queue_error_report_disabled() const
+{
+  return response_queue_error_report_disabled;
+}
+
+//----------------------------------------------------------------------
+// member function: set_response_queue_depth
+//
+//! The default maximum depth of the response queue is 8. These method is used
+//! to examine or change the maximum depth of the response queue.
+//!
+//! Setting the response_queue_depth to -1 indicates an arbitrarily deep
+//! response queue.  No checking is done.
+//----------------------------------------------------------------------
+
+ void uvm_sequence_base::set_response_queue_depth( int value )
+ {
+   response_queue_depth = value;
+ }
+
+//----------------------------------------------------------------------
+// member function: get_response_queue_depth
+//
+//! Returns the current depth setting for the response queue.
+//----------------------------------------------------------------------
+
+ int uvm_sequence_base::get_response_queue_depth() const
+ {
+   return response_queue_depth;
+ }
 
 //----------------------------------------------------------------------
 // member function: clear_response_queue (virtual)

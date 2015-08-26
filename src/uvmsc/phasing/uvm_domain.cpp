@@ -38,9 +38,9 @@ namespace uvm {
 // Initialization of static data members
 //------------------------------------------------------------------------------
 
-uvm_phase* uvm_domain::m_uvm_schedule = NULL;
-uvm_domain* uvm_domain::m_uvm_domain = NULL;
-uvm_domain* uvm_domain::m_common_domain = NULL;
+//uvm_phase* uvm_domain::m_uvm_schedule = NULL;
+//uvm_domain* uvm_domain::m_uvm_domain = NULL;
+//uvm_domain* uvm_domain::m_common_domain = NULL;
 
 //------------------------------------------------------------------------------
 // Constructor: uvm_domain
@@ -51,14 +51,20 @@ uvm_domain::uvm_domain( const std::string& name )
   if (m_domains().find(name) != m_domains().end())
   {
     std::ostringstream str;
-    str << "Domain created with non-unique name '" << name << "'.";
+    str << "Domain with name '" << name << "' already exists.";
     uvm_report_error("UNIQDOMNAM", str.str());
   }
-  m_domains()[name] = this;
+  else
+  {
+    std::ostringstream str;
+    str << "Create domain with name '" << name << "'...";
+    uvm_report_info("NEWDOMAIN", str.str(), UVM_DEBUG);
+    m_domains()[name] = this;
+  }
 }
 
 //------------------------------------------------------------------------------
-// member function: get_domains
+// member function: get_domains (static)
 //
 //! Returns a list of all domains.
 //------------------------------------------------------------------------------
@@ -69,7 +75,7 @@ void uvm_domain::get_domains( domains_mapT& domains )
 }
 
 //------------------------------------------------------------------------------
-// member function: get_uvm_schedule
+// member function: get_uvm_schedule (static)
 //
 //! Get the "UVM" schedule, which consists of the run-time phases that
 //! all components execute when participating in the "UVM" domain.
@@ -77,12 +83,12 @@ void uvm_domain::get_domains( domains_mapT& domains )
 
 uvm_phase* uvm_domain::get_uvm_schedule()
 {
-  get_uvm_domain();
+  static uvm_phase* m_uvm_schedule = new uvm_phase("uvm_sched", UVM_PHASE_SCHEDULE);
   return m_uvm_schedule;
 }
 
 //------------------------------------------------------------------------------
-// member function: get_common_domain
+// member function: get_common_domain (static)
 //
 //! Get the "common" domain, which consists of the common phases that
 //! all components execute in sync with each other. Phases in the "common"
@@ -92,6 +98,8 @@ uvm_phase* uvm_domain::get_uvm_schedule()
 
 uvm_domain* uvm_domain::get_common_domain()
 {
+  static uvm_domain* m_common_domain = NULL;
+
   uvm_domain* domain = NULL;
 
   if (m_common_domain != NULL)
@@ -107,7 +115,7 @@ uvm_domain* uvm_domain::get_common_domain()
   domain->add(uvm_check_phase::get());
   domain->add(uvm_report_phase::get());
   domain->add(uvm_final_phase::get());
-  m_domains()[domain->get_name()] = domain;
+  m_domains()["common"] = domain;
 
   /*
   // for backward compatibility, make common phases visible;
@@ -124,20 +132,15 @@ uvm_domain* uvm_domain::get_common_domain()
 
   m_common_domain = domain; // common phases
 
-  bool runtime_phasing = true; // default enabled
-  uvm_config_db<bool>::get(0, "", "runtime_phasing", runtime_phasing);
-  if (runtime_phasing==true)
-  {
-    domain = get_uvm_domain(); // get uvm.uvm_sched.<runtimephases>
-    m_common_domain->add(domain, // add runtime phases to common domain
-       m_common_domain->find(uvm_run_phase::get()) ); // with_phase
-  }
+  domain = get_uvm_domain();
+  m_common_domain->add(domain, // add runtime phases to common domain
+     m_common_domain->find(uvm_run_phase::get()) ); // with_phase
 
   return m_common_domain;
 }
 
 //------------------------------------------------------------------------------
-// member function: add_uvm_phases
+// member function: add_uvm_phases (static)
 //
 //! Appends to the given \p schedule the built-in UVM runtime phases.
 //------------------------------------------------------------------------------
@@ -159,22 +162,50 @@ void uvm_domain::add_uvm_phases( uvm_phase* schedule )
 }
 
 //------------------------------------------------------------------------------
-// member function: get_uvm_domain
+// member function: get_uvm_domain (static)
 //
 //! Get a handle to the singleton UVM domain
 //------------------------------------------------------------------------------
 
 uvm_domain* uvm_domain::get_uvm_domain()
 {
+  static uvm_domain* m_uvm_domain = NULL;
+
   if (m_uvm_domain == NULL)
   {
     m_uvm_domain = new uvm_domain("uvm");
     m_domains()[m_uvm_domain->get_name()] = m_uvm_domain;
-    m_uvm_schedule = new uvm_phase("uvm_sched", UVM_PHASE_SCHEDULE);
-    add_uvm_phases(m_uvm_schedule);
-    m_uvm_domain->add(m_uvm_schedule);
+
+    add_uvm_phases(get_uvm_schedule());
+    m_uvm_domain->add(get_uvm_schedule());
   }
+
   return m_uvm_domain;
+}
+
+//------------------------------------------------------------------------------
+// member function: jump
+//
+//! Jumps all active phases of this domain to to-phase if
+//! there is a path between active-phase and to-phase
+//------------------------------------------------------------------------------
+
+void uvm_domain::jump( const uvm_phase* phase )
+{
+  std::vector<uvm_phase*> phases;
+  std::vector<uvm_phase*> active_phases;
+
+  m_get_transitive_children(phases);
+
+  // filter on active phases
+  for (unsigned int i = 0; i < phases.size(); i++)
+    if ((phases[i]->get_state() >= UVM_PHASE_STARTED) && (phases[i]->get_state() <= UVM_PHASE_CLEANUP))
+      active_phases.push_back(phases[i]);
+
+
+  for(unsigned int i = 0; i < active_phases.size(); i++)
+    if(phases[i]->is_before(phase) || phases[i]->is_after(phase))
+      phases[i]->jump(phase);
 }
 
 
@@ -196,30 +227,5 @@ uvm_domain::domains_mapT& uvm_domain::m_domains()
 }
 
 
-//------------------------------------------------------------------------------
-// member function: jump
-//
-//! Implementation defined
-//! Jumps all active phases of this domain to to-phase if
-//! there is a path between active-phase and to-phase
-//------------------------------------------------------------------------------
-
-void uvm_domain::jump( const uvm_phase* phase )
-{
-  std::vector<uvm_phase*> phases;
-  std::vector<uvm_phase*> active_phases;
-
-  m_get_transitive_children(phases);
-
-  // filter on active phases
-  for (unsigned int i=0; i< phases.size(); i++)
-    if ((phases[i]->get_state() >= UVM_PHASE_STARTED) && (phases[i]->get_state() <= UVM_PHASE_CLEANUP))
-      active_phases.push_back(phases[i]);
-
-
-  for(unsigned int i=0; i < active_phases.size(); i++)
-    if(phases[i]->is_before(phase) || phases[i]->is_after(phase))
-      phases[i]->jump(phase);
-}
 
 } // namespace uvm

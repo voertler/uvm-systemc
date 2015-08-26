@@ -519,6 +519,7 @@ uvm_phase* uvm_phase::get_parent() const
 {
   return m_parent;
 }
+
 //----------------------------------------------------------------------
 // member function: get_full_name
 //
@@ -704,7 +705,7 @@ void uvm_phase::drop_objection( uvm_object* obj,
 //!                  otherwise use ~phase~ in the target domain
 //----------------------------------------------------------------------
 
-void uvm_phase::sync( uvm_domain* target,
+void uvm_phase::sync( uvm_domain& target,
                       uvm_phase* phase,
                       uvm_phase* with_phase )
 {
@@ -712,11 +713,7 @@ void uvm_phase::sync( uvm_domain* target,
   {
     UVM_FATAL("PH_BADSYNC","sync() called from a non-domain phase schedule node");
   }
-  else if (target == NULL)
-  {
-    UVM_FATAL("PH_BADSYNC","sync() called with a null target domain");
-  }
-  else if (!target->m_is_domain())
+  else if (!target.m_is_domain())
   {
     UVM_FATAL("PH_BADSYNC","sync() called with a non-domain phase schedule node as target");
   }
@@ -764,7 +761,7 @@ void uvm_phase::sync( uvm_domain* target,
       with_phase = phase;
 
     from_node = find(phase);
-    to_node = target->find(with_phase);
+    to_node = target.find(with_phase);
 
     if(from_node == NULL || to_node == NULL)
       return;
@@ -794,7 +791,7 @@ void uvm_phase::sync( uvm_domain* target,
 //!                  otherwise use ~phase~ in the target domain
 //----------------------------------------------------------------------
 
-void uvm_phase::unsync( uvm_domain* target,
+void uvm_phase::unsync( uvm_domain& target,
                         uvm_phase* phase,
                         uvm_phase* with_phase )
 {
@@ -802,11 +799,7 @@ void uvm_phase::unsync( uvm_domain* target,
   {
     UVM_FATAL("PH_BADSYNC","unsync() called from a non-domain phase schedule node");
   }
-  else if (target == NULL)
-  {
-    UVM_FATAL("PH_BADSYNC","unsync() called with a null target domain");
-  }
-  else if (!target->m_is_domain())
+  else if (!target.m_is_domain())
   {
     UVM_FATAL("PH_BADSYNC","unsync() called with a non-domain phase schedule node as target");
   }
@@ -851,8 +844,14 @@ void uvm_phase::unsync( uvm_domain* target,
     std::vector<phase_listItT> found_to;
     std::vector<phase_listItT> found_from;
 
-    from_node = target->find(phase);
-    to_node = target->find(phase);
+    if (with_phase == NULL)
+      with_phase = phase;
+
+    from_node = find(phase);
+    to_node = target.find(with_phase);
+
+    if (from_node == NULL || to_node == NULL)
+      return;
 
     for ( phase_listItT it = from_node->m_sync.begin();
           it != from_node->m_sync.end();
@@ -1130,10 +1129,6 @@ void uvm_phase::execute_phase( bool proc )
     {
       m_executing_phases()[this] = true;
 
-      std::string proc_name;
-
-      proc_name = "uvm_phase_master_process_"+get_name();
-
       if (m_phase_proc.valid())
       {
         std::ostringstream str;
@@ -1152,28 +1147,22 @@ void uvm_phase::execute_phase( bool proc )
 
         m_phase_proc =
           sc_core::sc_spawn(sc_bind(&uvm_phase::m_master_phase_process,
-            this, process_phase), proc_name.c_str());
+            this, process_phase));
       }
 
       uvm_wait_for_nba_region(); //Give sequences, etc. a chance to object
 
       // JUMP
-      proc_name = "uvm_phase_wait_for_jump_"+get_name();
       sc_core::sc_process_handle jump_handle =
-        sc_core::sc_spawn(sc_bind(&uvm_phase::m_wait_for_jump, this),
-          proc_name.c_str());
+        sc_core::sc_spawn(sc_bind(&uvm_phase::m_wait_for_jump, this));
 
       // WAIT FOR ALL DROPPED
-      proc_name = "uvm_phase_wait_for_all_dropped_"+get_name();
       sc_core::sc_process_handle all_dropped_handle =
-        sc_core::sc_spawn(sc_bind(&uvm_phase::m_wait_for_all_dropped, this),
-          proc_name.c_str());
+        sc_core::sc_spawn(sc_bind(&uvm_phase::m_wait_for_all_dropped, this));
 
       // TIMEOUT
-      proc_name = "uvm_phase_wait_for_timeout_"+get_name();
       sc_core::sc_process_handle timeout_handle =
-        sc_core::sc_spawn(sc_bind(&uvm_phase::m_wait_for_timeout, this),
-          proc_name.c_str());
+        sc_core::sc_spawn(sc_bind(&uvm_phase::m_wait_for_timeout, this));
 
       // wait till any of these processes is terminated
       sc_core::wait( jump_handle.terminated_event() |
@@ -1855,7 +1844,7 @@ void uvm_phase::m_run_phases()
 
     bool valid_proc = ((process_phase != NULL) || (phase->m_phase_type != UVM_PHASE_NODE));
 
-    std::string s = "uvm_exec_phase_" + phase->get_name();
+    //std::string s = "uvm_exec_phase_" + std::string(sc_core::sc_gen_unique_name( this->get_full_name_under().c_str() ));
 
     if (!valid_proc) {
       phase->execute_phase( valid_proc ); // untimed function call
@@ -1863,8 +1852,9 @@ void uvm_phase::m_run_phases()
     else
     {
       sc_core::sc_process_handle exec_run_proc =
-        sc_core::sc_spawn(sc_bind(&uvm_phase::execute_phase, phase, valid_proc ),
-          s.c_str());
+        sc_core::sc_spawn(sc_bind(&uvm_phase::execute_phase, phase, valid_proc )
+//         , s.c_str()
+       );
     }
   }
   while (phase != NULL && phase->m_successors.size() != 0 );
@@ -2189,6 +2179,34 @@ uvm_phase* uvm_phase::m_phase_nodes(const std::string& name, uvm_phase* phase)
     phase_nodes[name] = phase;
 
   return phase_nodes[name];
+}
+
+//----------------------------------------------------------------------
+// member function: get_full_name_under (private)
+//
+//! Implementation defined
+//! Returns the full path from the enclosing domain down to this node.
+//! Instead of the '.' it uses the underscore
+//----------------------------------------------------------------------
+
+const std::string uvm_phase::get_full_name_under() const
+{
+  std::string dom, sch;
+  std::string full_name;
+
+  if (m_phase_type == UVM_PHASE_IMP)
+    return get_name();
+
+  full_name = get_domain_name();
+
+  sch = get_schedule_name();
+  if (!sch.empty())
+    full_name = full_name + "_" + sch;
+
+  if (m_phase_type != UVM_PHASE_DOMAIN && m_phase_type != UVM_PHASE_SCHEDULE)
+    full_name = full_name + "_" + get_name();
+
+  return full_name;
 }
 
 //////////////

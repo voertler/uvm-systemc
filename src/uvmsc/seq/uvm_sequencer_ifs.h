@@ -36,7 +36,9 @@ template <typename REQ, typename RSP = REQ>
 class uvm_sqr_if_base : public virtual sc_core::sc_interface //: public tlm::tlm_blocking_slave_if<REQ, RSP> //
 {
  public:
+
   virtual REQ get_next_item( tlm::tlm_tag<REQ> *req = NULL ) = 0;
+  virtual void get_next_item( REQ& req ) { req = get_next_item(); }
 
   virtual bool try_next_item( REQ& req ) = 0;
 
@@ -46,10 +48,12 @@ class uvm_sqr_if_base : public virtual sc_core::sc_interface //: public tlm::tlm
   virtual void put( const RSP& rsp ) = 0;
 
   virtual REQ get( tlm::tlm_tag<REQ> *req = NULL ) = 0;
+  virtual void get( REQ& req ) { req = get(); }
 
   virtual REQ peek( tlm::tlm_tag<REQ> *req = NULL ) = 0; // FIXME in SystemC TLM1 this is a const method.
+  virtual void peek( REQ& req ) { req = peek(); }   // FIXME in SystemC TLM1 this is a const method.
 
-  // TODO General - do we need these at all?
+  // TODO - do we need these at all?
   //virtual void stop_sequences() = 0; // TODO pure virtual or default implementation?
   //virtual void wait_for_sequences() const = 0; // TODO pure virtual or default implementation?
   //virtual bool has_do_available() = 0; // TODO pure virtual or default implementation?
@@ -61,9 +65,12 @@ class uvm_sqr_if_base : public virtual sc_core::sc_interface //: public tlm::tlm
 
   virtual void put_response( const RSP& rsp ) = 0; // TODO not in standard anymore?
 
-  virtual void get_next_item( REQ& req ) { req = get_next_item(); }
-  virtual void get( REQ& req ) { req = get(); }
-  virtual void peek( REQ& req ) { req = peek(); }   // FIXME in SystemC TLM1 this is a const method.
+ protected: // disabled for application
+  uvm_sqr_if_base(){};
+
+ private:   // disabled for all
+  uvm_sqr_if_base( const uvm_sqr_if_base& );
+  uvm_sqr_if_base& operator = ( const uvm_sqr_if_base& );
 
 };
 

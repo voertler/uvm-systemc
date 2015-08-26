@@ -52,7 +52,7 @@ class uvm_sequence_base: public uvm_sequence_item
   friend class uvm_reg_map;
 
  public:
-  explicit uvm_sequence_base( const std::string& name_ );
+  explicit uvm_sequence_base( uvm_object_name name_ );
   virtual ~uvm_sequence_base();
 
   //--------------------------------------------------------------------------
@@ -89,7 +89,7 @@ class uvm_sequence_base: public uvm_sequence_item
   void set_priority ( int value );
   int get_priority() const;
   virtual bool is_relevant() const;
-  //virtual void wait_for_relevant();
+  virtual void wait_for_relevant() const;
   void lock( uvm_sequencer_base* sequencer = NULL );
   void grab( uvm_sequencer_base* sequencer = NULL );
   void unlock( uvm_sequencer_base* sequencer = NULL );
@@ -129,11 +129,10 @@ class uvm_sequence_base: public uvm_sequence_item
   void use_response_handler( bool enable );
   bool get_use_response_handler() const;
   virtual void response_handler( const uvm_sequence_item* response );
-  //void set_response_queue_error_report_disabled( bool value );
-  //bool get_response_queue_error_report_disabled() const;
-  //void set_response_queue_depth( int value );
-  //int get_response_queue_depth() const;
-
+  void set_response_queue_error_report_disabled( bool value );
+  bool get_response_queue_error_report_disabled() const;
+  void set_response_queue_depth( int value );
+  int get_response_queue_depth() const;
   virtual void clear_response_queue();
 
   /////////////////////////////////////////////////////
@@ -196,6 +195,7 @@ private:
   int m_tr_handle;
 
   mutable bool is_rel_default;
+  mutable bool wait_rel_default;
 };
 
 } /* namespace uvm */

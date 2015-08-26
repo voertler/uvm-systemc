@@ -1,4 +1,3 @@
-//----------------------------------------------------------------------
 //   Copyright 2014 Fraunhofer-Gesellschaft zur Foerderung
 //					der angewandten Forschung e.V.
 //   Copyright 2012-2014 NXP B.V.
@@ -35,7 +34,7 @@ namespace uvm {
 //----------------------------------------------------------------------
 
 uvm_pre_reset_phase::uvm_pre_reset_phase()
-  : uvm_process_phase( sc_core::sc_gen_unique_name("pre_reset") )
+  : uvm_process_phase("pre_reset")
 {}
 
 uvm_pre_reset_phase::uvm_pre_reset_phase( const std::string& name )
@@ -69,7 +68,7 @@ const std::string uvm_pre_reset_phase::type_name = "uvm_pre_reset_phase";
 //----------------------------------------------------------------------
 
 uvm_reset_phase::uvm_reset_phase()
-  : uvm_process_phase( sc_core::sc_gen_unique_name("reset") )
+  : uvm_process_phase("reset")
 {}
 
 uvm_reset_phase::uvm_reset_phase( const std::string& name )
@@ -103,7 +102,7 @@ const std::string uvm_reset_phase::type_name = "uvm_reset_phase";
 //----------------------------------------------------------------------
 
 uvm_post_reset_phase::uvm_post_reset_phase()
-  : uvm_process_phase( sc_core::sc_gen_unique_name("post_reset") )
+  : uvm_process_phase("post_reset")
 {}
 
 uvm_post_reset_phase::uvm_post_reset_phase( const std::string& name )
@@ -137,7 +136,7 @@ const std::string uvm_post_reset_phase::type_name = "uvm_post_reset_phase";
 //----------------------------------------------------------------------
 
 uvm_pre_configure_phase::uvm_pre_configure_phase()
-  : uvm_process_phase( sc_core::sc_gen_unique_name("pre_configure") )
+  : uvm_process_phase("pre_configure")
 {}
 
 uvm_pre_configure_phase::uvm_pre_configure_phase( const std::string& name )
@@ -171,7 +170,7 @@ const std::string uvm_pre_configure_phase::type_name = "uvm_pre_configure_phase"
 //----------------------------------------------------------------------
 
 uvm_configure_phase::uvm_configure_phase()
-  : uvm_process_phase( sc_core::sc_gen_unique_name("configure") )
+  : uvm_process_phase("configure")
 {}
 
 uvm_configure_phase::uvm_configure_phase( const std::string& name )
@@ -205,7 +204,7 @@ const std::string uvm_configure_phase::type_name = "uvm_configure_phase";
 //----------------------------------------------------------------------
 
 uvm_post_configure_phase::uvm_post_configure_phase()
- : uvm_process_phase( sc_core::sc_gen_unique_name("post_configure") )
+ : uvm_process_phase("post_configure")
 {}
 
 uvm_post_configure_phase::uvm_post_configure_phase( const std::string& name )
@@ -239,7 +238,7 @@ const std::string uvm_post_configure_phase::type_name = "uvm_post_configure_phas
 //----------------------------------------------------------------------
 
 uvm_pre_main_phase::uvm_pre_main_phase()
-  : uvm_process_phase( sc_core::sc_gen_unique_name("pre_main") )
+  : uvm_process_phase("pre_main")
 {}
 
 uvm_pre_main_phase::uvm_pre_main_phase( const std::string& name )
@@ -273,7 +272,7 @@ const std::string uvm_pre_main_phase::type_name = "uvm_pre_main_phase";
 //----------------------------------------------------------------------
 
 uvm_main_phase::uvm_main_phase()
-  : uvm_process_phase( sc_core::sc_gen_unique_name("main") )
+  : uvm_process_phase("main")
 {}
 
 uvm_main_phase::uvm_main_phase( const std::string& name )
@@ -307,7 +306,7 @@ const std::string uvm_main_phase::type_name = "uvm_main_phase";
 //----------------------------------------------------------------------
 
 uvm_post_main_phase::uvm_post_main_phase()
-  : uvm_process_phase( sc_core::sc_gen_unique_name("post_main") )
+  : uvm_process_phase("post_main")
 {}
 
 uvm_post_main_phase::uvm_post_main_phase( const std::string& name )
@@ -341,7 +340,7 @@ const std::string uvm_post_main_phase::type_name = "uvm_post_main_phase";
 //----------------------------------------------------------------------
 
 uvm_pre_shutdown_phase::uvm_pre_shutdown_phase()
-  : uvm_process_phase( sc_core::sc_gen_unique_name("pre_shutdown") )
+  : uvm_process_phase("pre_shutdown")
 {}
 
 uvm_pre_shutdown_phase::uvm_pre_shutdown_phase( const std::string& name )
@@ -375,7 +374,7 @@ const std::string uvm_pre_shutdown_phase::type_name = "uvm_pre_shutdown_phase";
 //----------------------------------------------------------------------
 
 uvm_shutdown_phase::uvm_shutdown_phase()
-  : uvm_process_phase( sc_core::sc_gen_unique_name("shutdown") )
+  : uvm_process_phase("shutdown")
 {}
 
 uvm_shutdown_phase::uvm_shutdown_phase( const std::string& name )
@@ -409,7 +408,7 @@ const std::string uvm_shutdown_phase::type_name = "uvm_shutdown_phase";
 //----------------------------------------------------------------------
 
 uvm_post_shutdown_phase::uvm_post_shutdown_phase( )
-  : uvm_process_phase( sc_core::sc_gen_unique_name("post_shutdown") )
+  : uvm_process_phase("post_shutdown")
 {}
 
 uvm_post_shutdown_phase::uvm_post_shutdown_phase( const std::string& name )

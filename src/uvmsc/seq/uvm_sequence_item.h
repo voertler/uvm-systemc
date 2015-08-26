@@ -52,7 +52,7 @@ class uvm_sequence_item: public uvm_transaction
   //--------------------------------------------------------------------------
 
   uvm_sequence_item();
-  explicit uvm_sequence_item( const std::string& name_ );
+  explicit uvm_sequence_item( uvm_object_name name_ );
 
   virtual ~uvm_sequence_item();
 

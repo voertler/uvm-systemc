@@ -101,7 +101,7 @@ class uvm_reg_backdoor : public uvm_object
 
   void start_update_thread( uvm_object* element );
 
-  void start_update_thread_core( uvm_object* element );
+  void start_update_thread_core( uvm_object* element, uvm_reg* rg );
 
   void kill_update_thread( uvm_object* element );
 
@@ -109,14 +109,6 @@ class uvm_reg_backdoor : public uvm_object
 
   std::string m_fname;
   int m_lineno;
-
-  /* TODO which process container to use?
-#ifdef UVM_USE_PROCESS_CONTAINER
-   local process_container_c m_update_thread[uvm_object];
-#else
-   local process m_update_thread[uvm_object];
-#endif
-   */
 
   std::map<uvm_object*, sc_core::sc_process_handle> m_update_thread;
 

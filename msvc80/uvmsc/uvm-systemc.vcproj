@@ -429,6 +429,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\include\uvmsc\tlm1\uvm_analysis_export.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\uvmsc\tlm1\uvm_analysis_imp.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\uvmsc\tlm1\uvm_analysis_port.h"
 				>
 			</File>
@@ -873,6 +881,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\include\uvmsc\tlm1\uvm_sqr_connections.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\uvmsc\misc\uvm_status_container.h"
 				>
 			</File>
@@ -890,6 +902,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\uvmsc\tlm1\uvm_tlm1.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\uvmsc\tlm1\uvm_tlm_req_rsp_channel.h"
 				>
 			</File>
 			<File

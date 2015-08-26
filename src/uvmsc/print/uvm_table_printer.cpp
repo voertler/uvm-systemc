@@ -115,7 +115,8 @@ std::string uvm_table_printer::emit()
         row_str = row_str + row.type_name + space.substr(1,m_max_type-row.type_name.length()+2);
       if (knobs.size)
         row_str = row_str + row.size + space.substr(1,m_max_size-row.size.length()+2);
-      s = s + row_str + row.val + space.substr(1,m_max_value-row.val.length()) + linefeed;
+      // value
+      s = s + row_str + row.val + linefeed; // space.substr(1,m_max_value-row.val.length())
     }
     else
       s = s + user_format + linefeed;

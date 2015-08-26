@@ -1014,20 +1014,21 @@ void uvm_mem::set_frontdoor( uvm_reg_frontdoor* ftdr,
                              int lineno )
 {
   uvm_reg_map_info* map_info;
+  uvm_reg_map* local_map;
 
   m_fname = fname;
   m_lineno = lineno;
 
-  map = get_local_map(map, "set_frontdoor()");
+  local_map = get_local_map(map, "set_frontdoor()");
 
-  if (map == NULL)
+  if (local_map == NULL)
   {
     UVM_ERROR("RegModel", "Memory '" + get_full_name() +
-      "' not found in map '" + map->get_full_name() + "'");
+      "' not found in map '" + local_map->get_full_name() + "'");
     return;
   }
 
-  map_info = map->get_mem_map_info(this);
+  map_info = local_map->get_mem_map_info(this);
   map_info->frontdoor = ftdr;
 }
 
@@ -1047,17 +1048,18 @@ void uvm_mem::set_frontdoor( uvm_reg_frontdoor* ftdr,
 uvm_reg_frontdoor* uvm_mem::get_frontdoor( const uvm_reg_map* map ) const
 {
   uvm_reg_map_info* map_info;
+  uvm_reg_map* local_map;
 
-  map = get_local_map(map, "set_frontdoor()");
+  local_map = get_local_map(map, "set_frontdoor()");
 
-  if (map == NULL)
+  if (local_map == NULL)
   {
     UVM_ERROR("RegModel", "Memory '" + get_full_name() +
-      "' not found in map '" + map->get_full_name() + "'");
+      "' not found in map '" + local_map->get_full_name() + "'");
     return NULL;
   }
 
-  map_info = map->get_mem_map_info(this);
+  map_info = local_map->get_mem_map_info(this);
   return map_info->frontdoor;
 }
 

@@ -51,6 +51,10 @@ class uvm_comparer
   // UVM Standard LRM API below
   //--------------------------------------------------------------------------
 
+  //--------------------------------------------------------------------------
+  // Group: Comparison functions
+  //--------------------------------------------------------------------------
+
   virtual bool compare_field( const std::string& name,
                               const uvm_bitstream_t& lhs,
                               const uvm_bitstream_t& rhs,
@@ -81,6 +85,33 @@ class uvm_comparer
 
   void print_msg( const std::string& msg ) const;
 
+  //--------------------------------------------------------------------------
+  // Group: Comparer settings
+  //--------------------------------------------------------------------------
+
+  void set_policy( uvm_recursion_policy_enum policy = UVM_DEFAULT_POLICY );
+  uvm_recursion_policy_enum get_policy() const;
+
+  void set_max_messages( unsigned int num = 1 );
+  unsigned int get_max_messages() const;
+
+  void set_verbosity( unsigned int verbosity = UVM_LOW );
+  unsigned int get_verbosity() const;
+
+  void set_severity( uvm_severity sev = UVM_INFO );
+  uvm_severity get_severity () const;
+
+  void set_miscompare_string( const std::string& miscompares = "" );
+  std::string get_miscompare_string() const;
+
+  void set_field_attribute( uvm_field_enum attr = UVM_PHYSICAL );
+  uvm_field_enum get_field_attribute() const;
+
+  void compare_type( bool enable = true );
+
+  unsigned int get_result() const;
+
+
   /////////////////////////////////////////////////////
   // Implementation-defined member functions below,
   // not part of UVM Class reference / LRM
@@ -107,6 +138,9 @@ class uvm_comparer
   //--------------------------------------
 
  public:
+  // TODO: We need to make all these data members private, since we introduced new public member
+  // functions in UVM-SystemC to decouple access methods from data members,
+  // see above in new group "Comparer settings"
 
   //--------------------------------------------------------------------------
   // Data member: policy

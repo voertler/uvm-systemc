@@ -66,4 +66,5 @@
     return #__VA_ARGS__; \
   } \
 
+
 #endif /* UVM_OBJECT_DEFINES_H_ */

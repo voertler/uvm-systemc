@@ -153,19 +153,17 @@ class uvm_component : public sc_core::sc_module,
   // Group: phase / schedule / domain API
   //--------------------------------------------------------------------
 
-  void set_domain( uvm_domain* domain, int hier = 1 );
+  void set_domain( uvm_domain& domain, int hier = 1 );
 
   uvm_domain* get_domain() const;
 
-  void define_domain( uvm_domain* domain );
+  void define_domain(  uvm_domain& domain );
 
   void set_phase_imp( uvm_phase* phase, uvm_phase* imp, int hier = 1 );
 
   virtual bool suspend(); // TODO: UVM standard defines it should return void
 
   virtual bool resume(); // TODO: UVM standard defines it should return void
-
-  virtual void resolve_bindings();
 
   //----------------------------------------------------------------------------
   // Group: Configuration interface
@@ -178,6 +176,8 @@ class uvm_component : public sc_core::sc_module,
   void print_config( bool recurse = false, bool audit = false ) const;
 
   void print_config_with_audit( bool recurse = false ) const;
+
+  void print_config_matches( bool enable = true );
 
   //--------------------------------------------------------------------------
   // Group: Objection Interface
@@ -396,9 +396,11 @@ class uvm_component : public sc_core::sc_module,
   //
   // Setting this static variable causes get_config_* to print info about
   // matching configuration settings as they are being applied.
+  //
+  // TODO: prefixed with underscore since we made this a method in UVM-SystemC
   //--------------------------------------------------------------------------
 
-  static bool print_config_matches;
+  static bool _print_config_matches;
 
   //--------------------------------------------------------------------------
   // member variable: print_enabled
@@ -434,6 +436,10 @@ class uvm_component : public sc_core::sc_module,
 
  protected:
   uvm_domain* m_domain;         // set_domain stores our domain handle
+
+  uvm_phase* m_schedule; // temporary schedule
+
+  uvm_domain* m_common; //common domain
 
   // keep track of dynamically added elements
   std::list<uvm_phase*> m_schedule_list;

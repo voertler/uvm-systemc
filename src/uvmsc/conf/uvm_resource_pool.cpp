@@ -73,7 +73,7 @@ uvm_resource_pool::~uvm_resource_pool()
     delete it->second;
   }
 
-  for( get_record_listItT
+  for( get_record_list_cItT
        it = get_record.begin();
        it != get_record.end();
        it++ )
@@ -104,7 +104,7 @@ uvm_resource_pool* uvm_resource_pool::get()
 //! map.
 //----------------------------------------------------------------------
 
-bool uvm_resource_pool::spell_check( const std::string& s )
+bool uvm_resource_pool::spell_check( const std::string& s ) const
 {
   // TODO spelling checker
   //return uvm_spell_chkr<uvm_resource_types::rsrc_q_t>::check(rtab, s);
@@ -251,14 +251,14 @@ void uvm_resource_pool::push_get_record( const std::string& name,
 //! Format and print the get history list.
 //----------------------------------------------------------------------
 
-void uvm_resource_pool::dump_get_records()
+void uvm_resource_pool::dump_get_records() const
 {
   get_t* record;
   bool success;
 
   std::cout << "--- resource get records ---" << std::endl;
 
-  for ( get_record_listItT
+  for ( get_record_list_cItT
         it = get_record.begin();
         it != get_record.end();
         it++ )
@@ -289,7 +289,7 @@ uvm_resource_types::rsrc_q_t* uvm_resource_pool::lookup_name(
   const std::string& scope,
   const std::string& name,
   uvm_resource_base* type_handle,
-  bool rpterr)
+  bool rpterr) const
 {
   uvm_resource_types::rsrc_q_t* rq;
   uvm_resource_types::rsrc_q_t* q = new uvm_resource_types::rsrc_q_t();
@@ -305,7 +305,8 @@ uvm_resource_types::rsrc_q_t* uvm_resource_pool::lookup_name(
   if((rpterr && !spell_check(name)) || (!rpterr && (rtab.find(name)==rtab.end()) ))
     return q;
 
-  rq = rtab[name];
+  rq = rtab.find(name)->second; // rq = rtab[name];
+
   for(int i = 0; i < rq->size(); i++)
   {
     r = rq->get(i);
@@ -328,7 +329,7 @@ uvm_resource_types::rsrc_q_t* uvm_resource_pool::lookup_name(
 //----------------------------------------------------------------------
 
 // TODO: use reference as argument, not pointer
-uvm_resource_base* uvm_resource_pool::get_highest_precedence( uvm_resource_types::rsrc_q_t* q )
+uvm_resource_base* uvm_resource_pool::get_highest_precedence( uvm_resource_types::rsrc_q_t* q ) const
 {
   uvm_resource_base* rsrc;
   uvm_resource_base* r;
@@ -436,7 +437,7 @@ uvm_resource_base* uvm_resource_pool::get_by_name( const std::string& scope,
 //----------------------------------------------------------------------
 
 uvm_resource_types::rsrc_q_t* uvm_resource_pool::lookup_type( const std::string& scope,
-                                                              uvm_resource_base* type_handle)
+                                                              uvm_resource_base* type_handle) const
 {
   uvm_resource_types::rsrc_q_t* q = new uvm_resource_types::rsrc_q_t();
   uvm_resource_types::rsrc_q_t* rq;
@@ -445,7 +446,8 @@ uvm_resource_types::rsrc_q_t* uvm_resource_pool::lookup_type( const std::string&
   if(type_handle == NULL || (ttab.find(type_handle)==ttab.end()) )
     return q;
 
-  rq = ttab[type_handle];
+  rq = ttab.find(type_handle)->second; // rq = ttab[type_handle];
+
   for(int i = 0; i < rq->size(); i++)
   {
     r = rq->get(i);
@@ -787,6 +789,7 @@ void uvm_resource_pool::print_resources( uvm_resource_types::rsrc_q_t* rq,
 {
   uvm_resource_base* r;
   uvm_line_printer printer;
+  int size = 0;
 
   printer.knobs.separator = "";
   printer.knobs.full_name = 0;
@@ -794,13 +797,16 @@ void uvm_resource_pool::print_resources( uvm_resource_types::rsrc_q_t* rq,
   printer.knobs.type_name = 0;
   printer.knobs.reference = 0;
 
-  if(rq == NULL && rq->size() == 0)
+  if(rq != NULL)
+    size = rq->size();
+
+  if(rq == NULL || size == 0)
   {
-    std::cout << "<none>";
+    uvm_report_info("UVM/RESOURCE/PRINT","<none>", UVM_NONE);
     return;
   }
 
-  for(int i=0; i<rq->size(); i++)
+  for(int i = 0; i < size; i++)
   {
     r = rq->get(i);
     r->print(&printer);

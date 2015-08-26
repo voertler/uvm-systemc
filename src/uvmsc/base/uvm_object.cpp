@@ -55,7 +55,7 @@ uvm_status_container* uvm_object::__m_uvm_status_container = NULL;
 // initialization of external members
 //----------------------------------------------------------------------------
 
-uvm_packer* uvm_default_packer = new uvm_packer;
+uvm_packer* uvm_default_packer = uvm_object::get_uvm_packer();
 
 //----------------------------------------------------------------------------
 // Constructors
@@ -74,7 +74,7 @@ uvm_object::uvm_object()
   m_register_cb();
 }
 
-uvm_object::uvm_object(const std::string& name)
+uvm_object::uvm_object( uvm_object_name name)
 {
   m_leaf_name = name;
   m_inst_id = g_inst_count++;
@@ -754,7 +754,7 @@ void uvm_object::set_object_local( const std::string& field_name,
 
 std::ostream& operator<<( std::ostream& os, const uvm_object& obj ) {
   uvm_object* mobj = const_cast<uvm_object*>(&obj);
-  uvm_printer*  prt =  new uvm_tree_printer();
+  uvm_printer* prt = uvm_default_tree_printer;
   os << mobj->sprint(prt);
   return os;
 }
@@ -762,11 +762,12 @@ std::ostream& operator<<( std::ostream& os, const uvm_object& obj ) {
 std::ostream& operator<<( std::ostream& os, const uvm_object* obj )
 {
   uvm_object* mobj = const_cast<uvm_object*>(obj);
-  uvm_printer*  prt =  new uvm_tree_printer();
+  uvm_printer* prt = uvm_default_tree_printer;
   os << mobj->sprint(prt);
   return os;
 }
-/*
+
+/* TODO object comparison operators
 bool operator==( const uvm_object& a, const uvm_object& b )
 {
   return ( ( a.m_leaf_name == b.m_leaf_name ) &&
@@ -793,6 +794,20 @@ bool uvm_object::m_register_cb()
 {
   return false;
 }
+
+//----------------------------------------------------------------------------
+// member function: get_uvm_packer
+//
+//! Implementation defined
+//! Helper method to create a packer singleton as part of the uvm_object
+//----------------------------------------------------------------------------
+
+uvm_packer* uvm_object::get_uvm_packer()
+{
+  static uvm_packer* p = new uvm_packer;
+  return p;
+}
+
 ///////////
 
 } // namespace uvm

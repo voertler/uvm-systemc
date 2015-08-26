@@ -39,7 +39,7 @@ uvm_transaction::uvm_transaction() : uvm_object( sc_core::sc_gen_unique_name( "t
   m_init_transaction();
 }
 
-uvm_transaction::uvm_transaction( const std::string& name ) : uvm_object( name )
+uvm_transaction::uvm_transaction( uvm_object_name name ) : uvm_object( name )
 {
   m_init_transaction();
 }

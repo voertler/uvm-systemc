@@ -133,7 +133,7 @@ class uvm_reg : public uvm_object
   //--------------------------------------------------------------------------
 
   virtual void set( uvm_reg_data_t value,
-		  	  	    const std::string& fname = "",
+                    const std::string& fname = "",
                     int lineno = 0 );
 
   virtual uvm_reg_data_t get( const std::string& fname = "",
@@ -153,7 +153,7 @@ class uvm_reg : public uvm_object
                           bool do_delete = false );
 
   virtual void set_reset( uvm_reg_data_t value,
-		  	  	  	      const std::string& kind = "HARD" );
+                          const std::string& kind = "HARD" );
 
   virtual void write( uvm_status_e& status,
                       uvm_reg_data_t value,
@@ -244,7 +244,7 @@ class uvm_reg : public uvm_object
   void clear_hdl_path( std::string kind = "RTL" );
 
   void add_hdl_path( std::vector<uvm_hdl_path_slice> slices,
-		  	  	     const std::string& kind = "RTL" );
+                     const std::string& kind = "RTL" );
 
   void add_hdl_path_slice( const std::string& name,
                            int offset,
@@ -252,16 +252,16 @@ class uvm_reg : public uvm_object
                            bool first = false,
                            const std::string& kind = "RTL" );
 
-  bool has_hdl_path( std::string kind = "" ) const;
+  bool has_hdl_path( const std::string& kind = "" ) const;
 
   void get_hdl_path( std::vector<uvm_hdl_path_concat>& paths,
-		  	  	  	 const std::string& kind = "" ) const;
+                     const std::string& kind = "" ) const;
 
   void get_hdl_path_kinds( std::vector<std::string>& kinds ) const;
 
   void get_full_hdl_path( std::vector<uvm_hdl_path_concat>& paths,
-		  	  	  	  	  const std::string& kind = "",
-		  	  	  	  	  const std::string& separator = ".") const;
+                          const std::string& kind = "",
+                          const std::string& separator = ".") const;
 
   virtual void backdoor_read( uvm_reg_item* rw );
 

@@ -67,6 +67,8 @@ class uvm_root : public uvm_component
 
   void set_timeout( const sc_core::sc_time& timeout, bool overridable = true );
 
+  void finish_on_completion( bool enable = true );
+
   //--------------------------------------------------------------------
   // Group: Topology
   //--------------------------------------------------------------------
@@ -78,14 +80,11 @@ class uvm_root : public uvm_component
 
   void print_topology( uvm_printer* printer = NULL );
 
+  void enable_print_topology( bool enable = true );
 
   //--------------------------------------------------------------------
   // Variables
   //--------------------------------------------------------------------
-
-  bool enable_print_topology; // default set to false
-
-  bool finish_on_completion; // default set to true
 
   const uvm_root* uvm_top; // returns uvm_root singleton
 
@@ -99,6 +98,10 @@ class uvm_root : public uvm_component
  private:
 
   // other data members
+
+  bool m_enable_print_topology; // default set to false
+
+  bool m_finish_on_completion; // default set to true
 
   uvm_root_report_handler* m_rh;
 

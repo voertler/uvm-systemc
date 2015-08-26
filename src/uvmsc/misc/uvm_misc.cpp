@@ -30,6 +30,7 @@
 #include <iostream>
 #include <string>
 #include <functional>
+#include <iomanip>
 
 #include <systemc>
 
@@ -254,7 +255,7 @@ std::string uvm_object_value_str( const uvm_object* v )
     return "<NULL>";
 
   std::ostringstream str;
-  str << "@" << v->get_inst_id();
+  str << "@" << std::setw(3) << std::setfill('0') << v->get_inst_id();
   return str.str();
 }
 

@@ -35,6 +35,7 @@
 #include "uvmsc/reg/uvm_reg_item.h"
 #include "uvmsc/reg/uvm_reg_map.h"
 #include "uvmsc/reg/uvm_mem.h"
+#include "uvmsc/base/uvm_port_base.h"
 
 namespace uvm {
 
@@ -282,9 +283,9 @@ void uvm_reg_sequence<BASE>::body()
   {
     // TODO check correctness
     uvm_reg_item reg_item;
-    reg_item = reg_seqr->peek();
+    reg_seqr->peek(reg_item);
     do_reg_item(&reg_item);
-    reg_item = reg_seqr->get();
+    reg_seqr->get(reg_item);
     sc_core::wait(sc_core::SC_ZERO_TIME);
   }
 }

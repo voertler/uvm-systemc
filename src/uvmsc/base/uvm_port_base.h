@@ -56,7 +56,6 @@ class uvm_port_base : public sc_core::sc_port<IF>
 
   virtual const char* kind() const;
 
- protected:
   virtual ~uvm_port_base();
 
  private:

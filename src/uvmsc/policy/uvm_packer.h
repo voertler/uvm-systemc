@@ -146,9 +146,6 @@ class uvm_packer
   // not part of UVM Class reference / LRM
   /////////////////////////////////////////////////////
 
-  uvm_packer();
-  virtual ~uvm_packer();
-
   //----------------------------------------------------------------------------
   // Operator << for data types that can be packed using this class
   //
@@ -266,7 +263,11 @@ class uvm_packer
     return *this;
   }
 
+  virtual ~uvm_packer();
+
  private:
+  // Disabled
+  uvm_packer();
 
   // variables and methods primarily for internal use
 

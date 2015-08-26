@@ -58,17 +58,17 @@ namespace uvm {
 
 #define UVM_NONBLOCKING_PUT_PORT_METHODS \
   bool try_put(const T& val) { return get_imp()->imp->nb_put(val); } \
-  bool can_put() { return get_imp()->nb_can_put(); } \
+  bool can_put() const { return get_imp()->nb_can_put(); } \
   bool nb_put(const T& val) { return get_imp()->imp->nb_put(val); } \
-  bool nb_can_put() { return get_imp()->nb_can_put(); } \
+  bool nb_can_put() const { return get_imp()->nb_can_put(); } \
   bool nb_can_put( tlm::tlm_tag<T> *t = 0 ) const { return get_imp()->nb_can_put(); } \
   const sc_core::sc_event& ok_to_put( tlm::tlm_tag<T> *t = 0 ) const { return get_imp()->ok_to_put(); }
 
 #define UVM_NONBLOCKING_GET_PORT_METHODS \
   bool try_get( T& val ) { return get_imp()->nb_get(val); } \
-  bool can_get() { return get_imp()->nb_can_get(); } \
+  bool can_get() const { return get_imp()->nb_can_get(); } \
   bool nb_get( T& val ) { return get_imp()->nb_get(val); } \
-  bool nb_can_get() { return get_imp()->nb_can_get(); } \
+  bool nb_can_get() const { return get_imp()->nb_can_get(); } \
   bool nb_can_get( tlm::tlm_tag<T> *t = 0 ) const { return get_imp()->nb_can_get(); } \
   const sc_core::sc_event& ok_to_get( tlm::tlm_tag<T> *t = 0 ) const { return get_imp()->ok_to_get(); }
 

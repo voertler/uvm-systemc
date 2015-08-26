@@ -32,6 +32,7 @@
 #include "uvmsc/seq/uvm_sequencer_param_base.h"
 #include "uvmsc/seq/uvm_sequence_item.h"
 #include "uvmsc/seq/uvm_sequencer_ifs.h"
+#include "uvmsc/tlm1/uvm_sqr_connections.h"
 
 namespace uvm {
 
@@ -48,6 +49,8 @@ class uvm_sequencer : public uvm_sequencer_param_base<REQ,RSP>,
                       public uvm_sqr_if_base<REQ, RSP>
 {
  public:
+  typedef uvm_sequencer<REQ, RSP> this_type;
+
   //--------------------------------------------------------------------------
   // UVM Standard LRM API below
   //--------------------------------------------------------------------------
@@ -57,7 +60,9 @@ class uvm_sequencer : public uvm_sequencer_param_base<REQ,RSP>,
   //--------------------------------------------------------------------------
 
   // TLM export port
-  sc_core::sc_export<uvm_sqr_if_base<REQ, RSP> > seq_item_export;
+//  sc_core::sc_export<uvm_sqr_if_base<REQ, RSP> > seq_item_export;
+
+   uvm_seq_item_pull_imp<REQ, RSP, this_type > seq_item_export;
 
   //--------------------------------------------------------------------------
   // Constructor and destructor
@@ -71,7 +76,7 @@ class uvm_sequencer : public uvm_sequencer_param_base<REQ,RSP>,
   //--------------------------------------------------------------------------
 
   virtual REQ get_next_item( tlm::tlm_tag<REQ>* req = NULL );
-  //virtual REQ get_next_item( REQ*& req );
+  virtual void get_next_item( REQ& req );
 
   virtual bool try_next_item( REQ& req );
 
@@ -81,9 +86,10 @@ class uvm_sequencer : public uvm_sequencer_param_base<REQ,RSP>,
   virtual void put( const RSP& rsp );
   virtual void put_response( const RSP& rsp ); // TODO not in standard anymore? remove?
 
-  virtual REQ get( tlm::tlm_tag<REQ>* req = NULL );
   virtual void get( REQ& req );
+  virtual REQ get( tlm::tlm_tag<REQ>* req = NULL );
 
+  virtual void peek( REQ& req );
   virtual REQ peek( tlm::tlm_tag<REQ>* req = NULL ); // FIXME: should be const in line with SystemC TLM API?
 
   virtual void stop_sequences();
@@ -97,7 +103,8 @@ class uvm_sequencer : public uvm_sequencer_param_base<REQ,RSP>,
 
   virtual const char* kind() const; // SystemC API
 
- private:
+  this_type get_if() { static uvm_sequencer<REQ, RSP> m_if; return m_if; }
+
   // data members
 
   mutable bool sequence_item_requested;
@@ -118,11 +125,13 @@ template <typename REQ, typename RSP>
 uvm_sequencer<REQ,RSP>::uvm_sequencer( uvm_component_name name_ )
   : uvm_sequencer_param_base<REQ,RSP>( name_ ), seq_item_export("seq_item_export")
 {
-  // bind export to itself
+  // bind export to itself (since it is an imp port)
+  // TODO should be replaced with 2nd constructor argument
   this->seq_item_export(*this);
 
   sequence_item_requested = false;
   get_next_item_called = false;
+
 }
 
 //----------------------------------------------------------------------
@@ -231,7 +240,6 @@ REQ uvm_sequencer<REQ,RSP>::get(tlm::tlm_tag<REQ>* req)
   return r;
 }
 
-
 template <typename REQ, typename RSP>
 void uvm_sequencer<REQ,RSP>::get( REQ& req )
 {
@@ -261,6 +269,13 @@ REQ uvm_sequencer<REQ,RSP>::peek(tlm::tlm_tag<REQ>* req)
   return r;
 }
 
+
+template <typename REQ, typename RSP>
+void uvm_sequencer<REQ,RSP>::peek( REQ& req )
+{
+  req = peek();
+}
+
 //----------------------------------------------------------------------
 // member function: get_next_item
 //
@@ -287,6 +302,13 @@ REQ uvm_sequencer<REQ,RSP>::get_next_item(tlm::tlm_tag<REQ>* req)
 
   return this->m_req_fifo.peek(req);
 }
+
+template <typename REQ, typename RSP>
+void uvm_sequencer<REQ,RSP>::get_next_item( REQ& req )
+{
+  req = get_next_item();
+}
+
 
 //----------------------------------------------------------------------
 // member function: try_next_item

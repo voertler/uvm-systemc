@@ -64,12 +64,14 @@ class uvm_post_shutdown_phase;
 class uvm_domain : public uvm_phase
 {
  public:
+  friend class uvm_component;
+
   typedef std::map<std::string, uvm_domain*> domains_mapT;
   typedef domains_mapT::iterator domains_mapItT;
 
-  static uvm_phase* m_uvm_schedule;
-  static uvm_domain* m_uvm_domain; // run-time phases
-  static uvm_domain* m_common_domain;
+//  static uvm_phase* m_uvm_schedule;
+//  static uvm_domain* m_uvm_domain; // run-time phases
+//  static uvm_domain* m_common_domain;
 
   //--------------------------------------------------------------------------
   // UVM Standard LRM API below
@@ -85,6 +87,10 @@ class uvm_domain : public uvm_phase
 
   static uvm_domain* get_uvm_domain();
 
+  uvm_domain( const std::string& name );
+
+  void jump( const uvm_phase* phase );
+
   /////////////////////////////////////////////////////
   // Implementation-defined member functions below,
   // not part of UVM Class reference / LRM
@@ -94,10 +100,7 @@ class uvm_domain : public uvm_phase
 
   static domains_mapT& m_domains();
 
-  explicit uvm_domain( const std::string& name );
-
-  void jump( const uvm_phase* phase );
-
+  uvm_phase* m_schedule;
 };
 
 } // namespace uvm

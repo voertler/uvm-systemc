@@ -54,7 +54,7 @@ class uvm_transaction : public uvm_object
 
   uvm_transaction();
 
-  explicit uvm_transaction( const std::string& name );
+  explicit uvm_transaction( uvm_object_name name );
 
   void set_transaction_id(int id);
 

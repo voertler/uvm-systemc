@@ -58,7 +58,7 @@ namespace uvm {
 
 bool uvm_component::global_timeout_spawned_ = false;
 
-bool uvm_component::print_config_matches = false;
+bool uvm_component::_print_config_matches = false;
 
 //----------------------------------------------------------------------------
 // Constructor
@@ -333,7 +333,7 @@ unsigned int uvm_component::get_depth() const
 void uvm_component::build_phase( uvm_phase& phase )
 {
   m_build_done = true;
-  apply_config_settings(print_config_matches);
+  apply_config_settings(_print_config_matches);
   if(m_phasing_active == 0)
     uvm_report_warning("BUILD", "The member function build_phase() has been called explicitly, outside of the phasing system. This may lead to unexpected behavior.");
 }
@@ -616,11 +616,11 @@ void uvm_component::phase_ended( uvm_phase& phase )
 //! override to augment or replace the domain definition of its base class.
 //--------------------------------------------------------------------
 
-void uvm_component::set_domain( uvm_domain* domain, int hier )
+void uvm_component::set_domain( uvm_domain& domain, int hier )
 {
-  // build and store the custom domain
-  m_domain = domain;
+  m_domain = &domain;
   define_domain(domain);
+
   if (hier)
     for ( m_children_mapcItT it = m_children.begin(); it != m_children.end(); it++ )
       (*it).second->set_domain(domain);
@@ -648,25 +648,24 @@ uvm_domain* uvm_component::get_domain() const
 //! this component belongs in a domain apart from the default 'uvm' domain.
 //--------------------------------------------------------------------
 
-void uvm_component::define_domain( uvm_domain* domain )
+void uvm_component::define_domain( uvm_domain& domain )
 {
-  uvm_phase* schedule;
-  //schedule = domain.find(uvm_domain::get_uvm_schedule());
+  m_schedule = domain.find_by_name("uvm_sched");
 
-  schedule = domain->find_by_name("uvm_sched");
-  if (schedule == NULL)
+  if (m_schedule == NULL)
   {
-    schedule = new uvm_phase("uvm_sched", UVM_PHASE_SCHEDULE);
-    m_schedule_list.push_back(schedule); // keep track of added schedules
+    m_schedule = new uvm_phase("uvm_sched", UVM_PHASE_SCHEDULE);
+    m_schedule_list.push_back(m_schedule); // TODO keep track of added schedules (to be deleted afterwards)
+    uvm_domain::add_uvm_phases(m_schedule);
+    domain.add(m_schedule);
 
-    uvm_domain::add_uvm_phases(schedule);
-    domain->add(schedule);
-
-    uvm_domain* common;
-    common = uvm_domain::get_common_domain();
-    if (common->find(domain,0) == NULL)
-      common->add(domain, uvm_run_phase::get());
+    m_common = uvm_domain::get_common_domain();
+    if (m_common->find(&domain, false) == NULL)
+      m_common->add(&domain, m_common->find(uvm_run_phase::get()) );
   }
+  else
+    uvm_report_warning("SETDOM", "User-specified domain '" + domain.get_name() + "' already exists for component '"
+      + get_name() + "' and will be ignored", UVM_DEBUG);
 }
 
 
@@ -729,20 +728,6 @@ bool uvm_component::resume()
     return false;
 }
 
-//--------------------------------------------------------------------
-// member function: resolve_bindings
-//
-//! Processes all port, export, and imp connections. Checks whether each port's
-//! min and max connection requirements are met.
-//! It is called just before the end_of_elaboration phase.
-//!
-//! An application shall not call this member function directly.
-//--------------------------------------------------------------------
-
-void uvm_component::resolve_bindings()
-{
-  return;
-}
 
 //----------------------------------------------------------------------------
 // Configuration interface
@@ -826,6 +811,18 @@ void uvm_component::print_config( bool recurse, bool audit ) const
 void uvm_component::print_config_with_audit( bool recurse ) const
 {
   print_config(recurse, true);
+}
+
+//----------------------------------------------------------------------------
+// member function: print_config_matches
+//
+//! If enabled, all configuration getters will print info about
+//! matching configuration settings as they are being applied.
+//----------------------------------------------------------------------------
+
+void uvm_component::print_config_matches( bool enable )
+{
+  if (enable) _print_config_matches = true;
 }
 
 
