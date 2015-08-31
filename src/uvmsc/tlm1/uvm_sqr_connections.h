@@ -36,18 +36,20 @@
 
 namespace uvm {
 
-/* TODO move to macros/define dir or implement in pull port/export
 #define UVM_SEQ_ITEM_PULL_IMP(imp, REQ, RSP, req_arg, rsp_arg) \
+  void disable_auto_item_recording() { imp->disable_auto_item_recording(); } \
+  bool is_auto_item_recording_enabled() { return imp->is_auto_item_recording_enabled(); } \
   void get_next_item( REQ& req_arg ) { imp->get_next_item(req_arg); } \
-  void try_next_item( REQ& req_arg ) { imp->try_next_item(req_arg); } \
-  void item_done( const RSP& rsp_arg = NULL) { imp->item_done(rsp_arg); } \
+  bool try_next_item( REQ& req_arg ) { return imp->try_next_item(req_arg); } \
+  void item_done( const RSP& rsp_arg ) { imp->item_done(rsp_arg); } \
   void wait_for_sequences() { imp->wait_for_sequences(); } \
   bool has_do_available() { return imp->has_do_available(); } \
   void put_response( const RSP& rsp_arg ) { imp->put_response(rsp_arg); } \
-  void get( REQ& req_arg) { imp->get(req_arg); } \
-  void peek( REQ& req_arg) { imp->peek(req_arg); } \
-  void put( const RSP& rsp_arg) { imp->put(rsp_arg); }
- */
+  void get( REQ& req_arg ) { imp->get(req_arg); } \
+  REQ get() { return imp->get(); } \
+  void peek( REQ& req_arg ) { imp->peek(req_arg); } \
+  REQ peek() { return imp->peek(); } \
+  void put( const RSP& rsp_arg ) { imp->put(rsp_arg); }
 
 //-----------------------------------------------------------------------------
 // Class: uvm_seq_item_pull_port<REQ,RSP>
@@ -58,50 +60,23 @@ namespace uvm {
 //! unconnected.
 //-----------------------------------------------------------------------------
 
+
 template <typename REQ = int, typename RSP = REQ>
 class uvm_seq_item_pull_port : public uvm_port_base< uvm_sqr_if_base<REQ, RSP> >
 {
  public:
+  typedef uvm_port_base<uvm_sqr_if_base<REQ, RSP> > this_type;
+
   uvm_seq_item_pull_port() : uvm_port_base< uvm_sqr_if_base<REQ, RSP> >() {}
   uvm_seq_item_pull_port( const char *nm ) : uvm_port_base< uvm_sqr_if_base<REQ, RSP> >(nm) {}
+  virtual ~uvm_seq_item_pull_port(){}
 
   virtual const std::string get_type_name() const
   {
     return "uvm::uvm_seq_item_pull_port";
   }
 
-  virtual REQ peek( tlm::tlm_tag<REQ> *req = NULL )
-  {
-    const uvm_sqr_if_base<REQ, RSP>* mif = this->get_interface(0);
-    // FIXME: avoid const_cast! But this requires that peek becomes const as well
-    uvm_sqr_if_base<REQ, RSP>* mif2 = const_cast<uvm_sqr_if_base<REQ, RSP>* >(mif);
-    return mif2->peek(req);
-  }
-
-  virtual void peek( REQ &req ) { req = peek(); }
-
-  virtual void put( const RSP &rsp )
-  {
-    const uvm_sqr_if_base<REQ, RSP>* mif = this->get_interface(0);
-    // FIXME: avoid const_cast! But this requires that peek becomes const as well
-    uvm_sqr_if_base<REQ, RSP>* mif2 = const_cast<uvm_sqr_if_base<REQ, RSP>* >(mif);
-    mif2->put(rsp);
-  }
-
-  virtual REQ get( tlm::tlm_tag<REQ> *req = NULL )
-  {
-    const uvm_sqr_if_base<REQ, RSP>* mif = this->get_interface(0);
-    // FIXME: avoid const_cast! But this requires that peek becomes const as well
-    uvm_sqr_if_base<REQ, RSP>* mif2 = const_cast<uvm_sqr_if_base<REQ, RSP>* >(mif);
-    return mif2->get(req);
-  }
-
-  virtual void get( REQ& req )
-  {
-    req = get();
-  }
-
-  virtual ~uvm_seq_item_pull_port(){}
+  UVM_SEQ_ITEM_PULL_IMP(this->get_interface(0), REQ, RSP, req, rsp)
 };
 
 //-----------------------------------------------------------------------------
@@ -114,7 +89,17 @@ class uvm_seq_item_pull_port : public uvm_port_base< uvm_sqr_if_base<REQ, RSP> >
 template <typename REQ = int, typename RSP = REQ>
 class uvm_seq_item_pull_export : public uvm_port_base<uvm_sqr_if_base<REQ, RSP> >
 {
-  // TODO uvm_seq_item_pull_export
+  uvm_seq_item_pull_export() : uvm_port_base< uvm_sqr_if_base<REQ, RSP> >() {}
+  uvm_seq_item_pull_export( const char *nm ) : uvm_port_base< uvm_sqr_if_base<REQ, RSP> >(nm) {}
+  virtual ~uvm_seq_item_pull_export(){}
+
+  virtual const std::string get_type_name() const
+  {
+    return "uvm::uvm_seq_item_pull_export";
+  }
+
+  // TODO - check: an export shall not redirect interface methods, this is only for ports and imps
+  //UVM_SEQ_ITEM_PULL_IMP(this->get_interface(), REQ, RSP, req, rsp)
 };
 
 //-----------------------------------------------------------------------------
@@ -127,7 +112,18 @@ class uvm_seq_item_pull_export : public uvm_port_base<uvm_sqr_if_base<REQ, RSP> 
 template <typename REQ = int, typename RSP = REQ, typename IMP = int>
 class uvm_seq_item_pull_imp : public uvm_port_base<uvm_sqr_if_base<REQ, RSP> >
 {
-  // TODO uvm_seq_item_pull_imp
+ public:
+  uvm_seq_item_pull_imp() : uvm_port_base< uvm_sqr_if_base<REQ, RSP> >() {}
+  uvm_seq_item_pull_imp( const char *nm ) : uvm_port_base< uvm_sqr_if_base<REQ, RSP> >(nm) {}
+  virtual ~uvm_seq_item_pull_imp(){}
+
+  virtual const std::string get_type_name() const
+  {
+    return "uvm::uvm_seq_item_pull_imp";
+  }
+
+  UVM_SEQ_ITEM_PULL_IMP(IMP::get_interface(), REQ, RSP, req, rsp)
+
 };
 
 } // namespace uvm

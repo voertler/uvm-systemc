@@ -1395,17 +1395,19 @@ void uvm_reg::add_hdl_path_slice( const std::string& name,
 //! uses the default design abstraction specified for the parent block.
 //----------------------------------------------------------------------
 
-bool uvm_reg::has_hdl_path( std::string kind ) const
+bool uvm_reg::has_hdl_path( const std::string& kind ) const
 {
+  std::string kindl;
+
   if (kind.empty())
   {
     if (m_regfile_parent != NULL)
-      kind = m_regfile_parent->get_default_hdl_path();
+      kindl = m_regfile_parent->get_default_hdl_path();
     else
-      kind = m_parent->get_default_hdl_path();
+      kindl = m_parent->get_default_hdl_path();
   }
 
-  return m_hdl_paths_pool->exists(kind);
+  return m_hdl_paths_pool->exists(kindl);
 }
 
 //----------------------------------------------------------------------

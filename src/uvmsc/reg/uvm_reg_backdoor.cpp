@@ -288,25 +288,21 @@ void uvm_reg_backdoor::post_write( uvm_reg_item* rw )
 
 void uvm_reg_backdoor::start_update_thread( uvm_object* element )
 {
-   // if already exists, kill previous thread
-   if ( m_update_thread.find(element) != m_update_thread.end()) // if exists
-   {
-      UVM_WARNING("RegModel", "Existing backdoor update thread found. Previous one is being killed");
-      kill_update_thread(element);
-   }
+  uvm_reg* rg = NULL;
 
-   if (!dynamic_cast<uvm_reg*>(element))
-     return; // only regs supported at this time
+  // if already exists, kill previous thread
+  if ( m_update_thread.find(element) != m_update_thread.end()) // if exists
+  {
+     UVM_WARNING("RegModel", "Existing backdoor update thread found. Previous one is being killed");
+     kill_update_thread(element);
+  }
 
-   /* TODO use a process container?
-   `ifdef UVM_USE_PROCESS_CONTAINER
-     this.m_update_thread[element] = new(process::self());
-   `else
-     this.m_update_thread[element] = process::self();
-   `endif
-   */
-   m_update_thread[element] =
-     sc_core::sc_spawn(sc_bind(&uvm_reg_backdoor::start_update_thread_core, this, element));
+  rg = dynamic_cast<uvm_reg*>(element);
+  if (rg == NULL)
+    return; // only regs supported at this time
+
+  m_update_thread[element] =
+    sc_core::sc_spawn(sc_bind(&uvm_reg_backdoor::start_update_thread_core, this, element, rg));
 }
 
 //----------------------------------------------------------------------
@@ -315,12 +311,14 @@ void uvm_reg_backdoor::start_update_thread( uvm_object* element )
 // Implementation defined
 //----------------------------------------------------------------------
 
-void uvm_reg_backdoor::start_update_thread_core( uvm_object* element )
+void uvm_reg_backdoor::start_update_thread_core( uvm_object* element, uvm_reg* rg )
 {
-  uvm_reg* rg = NULL;
   std::vector<uvm_reg_field*> fields;
 
-  rg->get_fields(fields);
+  if (rg == NULL)
+    return; // only regs supported at this time
+  else
+    rg->get_fields(fields);
 
   while(true) // forever
   {
@@ -362,14 +360,9 @@ void uvm_reg_backdoor::kill_update_thread( uvm_object* element )
 {
    if (m_update_thread.find(element) != m_update_thread.end()) // exists
    {
-/*
-#ifdef UVM_USE_PROCESS_CONTAINER
-      this.m_update_thread[element].p.kill();
-#else
-      this.m_update_thread[element].kill();
-#endif
-*/
-     // TODO delete the actual object/element
+      m_update_thread[element].kill();
+
+      //  delete the actual object/element from the stack
       m_update_thread.erase(element);
    }
 }

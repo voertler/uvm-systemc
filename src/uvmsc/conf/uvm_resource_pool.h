@@ -51,7 +51,7 @@ class uvm_resource_pool
 
   static uvm_resource_pool* get();
 
-  bool spell_check( const std::string& s );
+  bool spell_check( const std::string& s ) const;
 
   //--------------------------------------------------------------------------
   // Group: Set
@@ -68,7 +68,7 @@ class uvm_resource_pool
                         const std::string& scope,
                         uvm_resource_base* rsrc);
 
-  void dump_get_records();
+  void dump_get_records() const;
 
   //--------------------------------------------------------------------------
   // Group: Lookup
@@ -77,9 +77,9 @@ class uvm_resource_pool
   uvm_resource_types::rsrc_q_t* lookup_name( const std::string& scope,
                                              const std::string& name,
                                              uvm_resource_base* type_handle,
-                                             bool rpterr = true );
+                                             bool rpterr = true ) const;
 
-  uvm_resource_base* get_highest_precedence( uvm_resource_types::rsrc_q_t* q );
+  uvm_resource_base* get_highest_precedence( uvm_resource_types::rsrc_q_t* q ) const;
 
   static void sort_by_precedence( uvm_resource_types::rsrc_q_t* q );
 
@@ -89,7 +89,7 @@ class uvm_resource_pool
                                   bool rpterr = true );
 
   uvm_resource_types::rsrc_q_t* lookup_type( const std::string& scope,
-                                             uvm_resource_base* type_handle );
+                                             uvm_resource_base* type_handle ) const;
 
   uvm_resource_base* get_by_type( const std::string& scope,
                                   uvm_resource_base* type_handle );
@@ -156,7 +156,7 @@ class uvm_resource_pool
   ttab_mapT ttab;
 
   typedef std::list<get_t*> get_record_listT;
-  typedef get_record_listT::iterator get_record_listItT;
+  typedef get_record_listT::const_iterator get_record_list_cItT;
   get_record_listT get_record;  // history (list) of gets
 
   std::vector<uvm_resource_types::rsrc_q_t* > rsrc_list;

@@ -73,7 +73,7 @@ public:
 
   virtual int user_priority_arbitration(std::vector<int> avail_sequences);
 
-  //virtual void execute_item( uvm_sequence_item* item);
+  virtual void execute_item( uvm_sequence_item* item );
 
   virtual void start_phase_sequence( uvm_phase& phase );
 

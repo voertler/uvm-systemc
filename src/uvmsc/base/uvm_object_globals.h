@@ -444,7 +444,24 @@ typedef enum {
   UVM_DEEP           = 0x400,
   UVM_SHALLOW        = 0x800,
   UVM_REFERENCE      = 0x1000
- } uvm_recursion_policy_enum;
+} uvm_recursion_policy_enum;
+
+//----------------------------------------------------------------------
+// Enum: uvm_field_enum
+//
+// Specifies the field attribute used for comparison
+//
+// UVM_PHYSICAL - Physical field
+// UVM_ABSTRACT - Abstract field
+//
+// NOTE: This enum does not exist in UVM-SV, and is introduced in UVM-SystemC
+// to replace uvm_comparer data members
+//----------------------------------------------------------------------
+
+typedef enum {
+  UVM_PHYSICAL,
+  UVM_ABSTRACT
+} uvm_field_enum;
 
 
 //----------------------------------------------------------------------
@@ -484,6 +501,13 @@ typedef sc_dt::sc_uint<64> uvm_integral_t;
 
 typedef std::ostream* UVM_FILE;
 
+//----------------------------------------------------------------------
+// typedef for UVM object names
+// in the future we will replace this with a class which tracks the object
+// instantiation tree
+//----------------------------------------------------------------------
+
+typedef const std::string& uvm_object_name;
 
 } /* namespace uvm */
 

@@ -36,25 +36,6 @@ namespace uvm {
 // Class implementation: uvm_printer
 //----------------------------------------------------------------------
 
-//----------------------------------------------------------------------
-// Constructor
-//----------------------------------------------------------------------
-
-
-uvm_printer::uvm_printer()
-{
-  m_scope = new uvm_scope_stack();
-}
-
-//----------------------------------------------------------------------
-// Destructor
-//----------------------------------------------------------------------
-
-
-uvm_printer::~uvm_printer()
-{
-  delete m_scope;
-}
 
 //----------------------------------------------------------------------
 // member function: print_field
@@ -84,8 +65,8 @@ void uvm_printer::print_field( const std::string& name,
 
   if(!name.empty())
   {
-    m_scope->set_arg(name);
-    //name = m_scope->get(); // not possible now to return name
+    m_scope.set_arg(name);
+    //name = m_scope.get(); // not possible now to return name
   }
 
   if(loc_type_name.empty())
@@ -111,8 +92,8 @@ void uvm_printer::print_field( const std::string& name,
   val_str = uvm_vector_to_string( value, size, radix,
                                   knobs.get_radix_str(radix));
 
-  row_info.level = m_scope->depth();
-  row_info.name = adjust_name(m_scope->get(), scope_separator);
+  row_info.level = m_scope.depth();
+  row_info.name = adjust_name(m_scope.get(), scope_separator);
   row_info.type_name = loc_type_name;
   row_info.size = sz_str;
   row_info.val = val_str;
@@ -148,8 +129,8 @@ void uvm_printer::print_field_int( const std::string& name,
 
   if(!name.empty())
   {
-    m_scope->set_arg(name);
-    //name = m_scope->get(); // not possible now to return name
+    m_scope.set_arg(name);
+    //name = m_scope.get(); // TODO - not possible now to return name
   }
 
   if(loc_type_name.empty())
@@ -175,8 +156,8 @@ void uvm_printer::print_field_int( const std::string& name,
   val_str = uvm_vector_to_string( value.to_int(), size, radix,
                                   knobs.get_radix_str(radix));
 
-  row_info.level = m_scope->depth();
-  row_info.name = adjust_name(m_scope->get(), scope_separator);
+  row_info.level = m_scope.depth();
+  row_info.name = adjust_name(m_scope.get(), scope_separator);
   row_info.type_name = loc_type_name;
   row_info.size = sz_str;
   row_info.val = val_str;
@@ -199,8 +180,8 @@ void uvm_printer::print_real( const std::string& name,
 
   if (!name.empty() && name != "...")
   {
-    m_scope->set_arg(name);
-    //name = m_scope->get(); // no need to return changed name
+    m_scope.set_arg(name);
+    //name = m_scope.get(); // no need to return changed name
   }
 
   std::ostringstream str_size;
@@ -209,8 +190,8 @@ void uvm_printer::print_real( const std::string& name,
   std::ostringstream str_val;
   str_val << value;
 
-  row_info.level = m_scope->depth();
-  row_info.name = adjust_name(m_scope->get(), scope_separator);
+  row_info.level = m_scope.depth();
+  row_info.name = adjust_name(m_scope.get(), scope_separator);
   row_info.type_name = "double";
   row_info.size = str_size.str();
   row_info.val = str_val.str();
@@ -233,8 +214,8 @@ void uvm_printer::print_real( const std::string& name,
 
   if (!name.empty() && name != "...")
   {
-    m_scope->set_arg(name);
-    //name = m_scope->get(); // no need to return changed name
+    m_scope.set_arg(name);
+    //name = m_scope.get(); // no need to return changed name
   }
 
   std::ostringstream str_size;
@@ -243,8 +224,8 @@ void uvm_printer::print_real( const std::string& name,
   std::ostringstream str_val;
   str_val << value;
 
-  row_info.level = m_scope->depth();
-  row_info.name = adjust_name(m_scope->get(), scope_separator);
+  row_info.level = m_scope.depth();
+  row_info.name = adjust_name(m_scope.get(), scope_separator);
   row_info.type_name = "float";
   row_info.size = str_size.str();
   row_info.val = str_val.str();
@@ -269,15 +250,15 @@ void uvm_printer::print_object( const std::string& name,
 
   print_object_header(name, obj, scope_separator);
 
-  if( (knobs.depth == -1 || (knobs.depth > m_scope->depth())) &&
+  if( (knobs.depth == -1 || (knobs.depth > m_scope.depth())) &&
         (objp->__m_uvm_status_container->cycle_check.find(objp) == objp->__m_uvm_status_container->cycle_check.end())
     )
   {
     objp->__m_uvm_status_container->cycle_check[objp] = true;
     if(name.empty() && objp != NULL)
-      m_scope->down(objp->get_name());
+      m_scope.down(objp->get_name());
     else
-      m_scope->down(name);
+      m_scope.down(name);
 
     // Handle children of the comp
     comp = dynamic_cast<const uvm_component*>(objp);
@@ -298,9 +279,9 @@ void uvm_printer::print_object( const std::string& name,
     objp->sprint(const_cast<uvm_printer*>(this));
 
     if( !name.empty() && name[0] == '[' )
-      m_scope->up("[");
+      m_scope.up("[");
     else
-      m_scope->up(".");
+      m_scope.up(".");
 
     objp->__m_uvm_status_container->cycle_check.erase( objp->__m_uvm_status_container->cycle_check.find(objp) );
   }
@@ -327,7 +308,7 @@ void uvm_printer::print_object_header( const std::string& name,
     if(objp != NULL )
     {
       comp = dynamic_cast<const uvm_component*>(objp);
-      if( (m_scope->depth() == 0) && (comp != NULL) )
+      if( (m_scope.depth() == 0) && (comp != NULL) )
         lname = comp->get_full_name();
       else
         lname = objp->get_name();
@@ -337,13 +318,13 @@ void uvm_printer::print_object_header( const std::string& name,
   if(lname.empty())
     lname = "<unnamed>";
 
-  m_scope->set_arg(lname);
-  row_info.level = m_scope->depth();
+  m_scope.set_arg(lname);
+  row_info.level = m_scope.depth();
 
   if(row_info.level == 0 && knobs.show_root == true)
     row_info.name = objp->get_full_name();
   else
-    row_info.name = adjust_name(m_scope->get(), scope_separator);
+    row_info.name = adjust_name(m_scope.get(), scope_separator);
 
   row_info.type_name = (objp != NULL) ?  objp->get_type_name() : "object";
   row_info.size = "-";
@@ -366,10 +347,10 @@ void uvm_printer::print_string( const std::string& name,
   std::string lname = name;
 
   if(!name.empty())
-    m_scope->set_arg(name);
+    m_scope.set_arg(name);
 
-  row_info.level = m_scope->depth();
-  row_info.name = adjust_name(m_scope->get(),scope_separator);
+  row_info.level = m_scope.depth();
+  row_info.name = adjust_name(m_scope.get(),scope_separator);
   row_info.type_name = "string";
 
   std::ostringstream str;
@@ -413,13 +394,13 @@ void uvm_printer::print_generic( const std::string& name,
 
   if (!name.empty() && name != "...")
   {
-    m_scope->set_arg(name);
-    lname = m_scope->get();
+    m_scope.set_arg(name);
+    lname = m_scope.get();
   }
 
   std::ostringstream str;
   str << size;
-  row_info.level = m_scope->depth();
+  row_info.level = m_scope.depth();
   row_info.name = adjust_name(lname, scope_separator);
   row_info.type_name = type_name;
   row_info.size = (size == -2 ? "..." : str.str());
@@ -485,7 +466,7 @@ std::string uvm_printer::format_footer()
 std::string uvm_printer::adjust_name( const std::string& id,
                                  const char* scope_separator ) const
 {
-  if ( (knobs.show_root && (m_scope->depth() == 0 )) || knobs.full_name || id == "...")
+  if ( (knobs.show_root && (m_scope.depth() == 0 )) || knobs.full_name || id == "...")
     return id;
   return uvm_leaf_scope(id, scope_separator);
 }
@@ -506,10 +487,10 @@ void uvm_printer::print_array_header( const std::string& name,
   uvm_printer_row_info row_info;
 
   if(!name.empty())
-    m_scope->set_arg(name);
+    m_scope.set_arg(name);
 
-  row_info.level = m_scope->depth();
-  row_info.name = adjust_name(m_scope->get(),scope_separator);
+  row_info.level = m_scope.depth();
+  row_info.name = adjust_name(m_scope.get(),scope_separator);
   row_info.type_name = arraytype;
 
   std::ostringstream str;
@@ -520,7 +501,7 @@ void uvm_printer::print_array_header( const std::string& name,
 
   m_rows.push_back(row_info);
 
-  m_scope->down(name);
+  m_scope.down(name);
   const_cast<uvm_printer *>(this)->m_array_stack.push_back(true);
 }
 
@@ -561,7 +542,7 @@ void uvm_printer::print_array_footer( int size ) const
 {
   if(m_array_stack.size())
   {
-    m_scope->up();
+    m_scope.up();
     const_cast<uvm_printer *>(this)->m_array_stack.pop_front();
   }
 }
@@ -570,6 +551,23 @@ void uvm_printer::print_array_footer( int size ) const
 ////////////////////////////////////////////////////////////////////////
 //////// Implementation-defined member functions start here ////////////
 ////////////////////////////////////////////////////////////////////////
+
+//----------------------------------------------------------------------
+// Constructor
+//----------------------------------------------------------------------
+
+uvm_printer::uvm_printer()
+{
+  uvm_scope_stack m_scope;
+}
+
+//----------------------------------------------------------------------
+// Destructor
+//----------------------------------------------------------------------
+
+uvm_printer::~uvm_printer()
+{
+}
 
 //----------------------------------------------------------------------
 // Utility methods - Implementation defined
@@ -582,7 +580,7 @@ void uvm_printer::print_array_footer( int size ) const
 
 bool uvm_printer::istop() const
 {
-  return (m_scope->depth() == 0);
+  return (m_scope.depth() == 0);
 }
 
 

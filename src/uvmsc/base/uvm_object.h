@@ -74,7 +74,7 @@ public:
   //--------------------------------------------------------------------------
 
   uvm_object();
-  explicit uvm_object( const std::string& name );
+  explicit uvm_object( uvm_object_name name );
   virtual ~uvm_object();
 
   //--------------------------------------------------------------------------
@@ -208,6 +208,8 @@ public:
   friend bool operator == ( const uvm_object& a, const uvm_object& b );
   friend bool operator != ( const uvm_object& a, const uvm_object& b );
   */
+
+  static uvm_packer* get_uvm_packer();
 
  private:
   void m_pack( uvm_packer*& packer );

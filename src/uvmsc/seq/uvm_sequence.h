@@ -40,7 +40,7 @@ template <typename REQ = uvm_sequence_item, typename RSP = REQ>
 class uvm_sequence : public uvm_sequence_base
 {
  public:
-  explicit uvm_sequence( const std::string& name_ );
+  explicit uvm_sequence( uvm_object_name name_ );
   virtual ~uvm_sequence();
 
   void send_request( uvm_sequence_item* request, bool rerandomize = false );
@@ -49,6 +49,20 @@ class uvm_sequence : public uvm_sequence_base
 
   virtual void get_response( RSP*& response, int transaction_id = -1 );
 
+  // Variable: req
+  //
+  // The sequence contains a field of the request type called req.  The user
+  // can use this field, if desired, or create another field to use.  The
+  // default ~do_print~ will print this field.
+  REQ req;
+
+  // Variable: rsp
+  //
+  // The sequence contains a field of the response type called rsp.  The user
+  // can use this field, if desired, or create another field to use.   The
+  // default ~do_print~ will print this field.
+  RSP rsp;
+
   /////////////////////////////////////////////////////
   // Implementation-defined member functions below,
   // not part of UVM Class reference / LRM
@@ -56,7 +70,7 @@ class uvm_sequence : public uvm_sequence_base
 
  private:
 
-  virtual void put_response( const uvm_sequence_item& response );
+  virtual void put_response( const uvm_sequence_item& response_item );
 
   void do_print( const uvm_printer& printer ) const;
 
@@ -184,14 +198,14 @@ void uvm_sequence<REQ,RSP>::get_response( RSP*& response, int transaction_id )
 //----------------------------------------------------------------------
 
 template <typename REQ, typename RSP>
-void uvm_sequence<REQ,RSP>::put_response( const uvm_sequence_item& response )
+void uvm_sequence<REQ,RSP>::put_response( const uvm_sequence_item& response_item )
 {
-  const RSP* rsp = dynamic_cast<const RSP*>(&response);
+  const RSP* rsp = dynamic_cast<const RSP*>(&response_item);
 
-  if (rsp == NULL) // old message "Failure to cast response in put_response"
-    uvm_report_fatal("PUTRSP", "Unable to cast response of type " + response.get_type_name() + " to type " + rsp->get_type_name(), UVM_NONE);
+  if (rsp == NULL)
+    uvm_report_fatal("PUTRSP", "Failure to cast response in put_response.", UVM_NONE);
 
-  put_base_response(response);
+  put_base_response(response_item);
 }
 
 //----------------------------------------------------------------------
@@ -203,10 +217,8 @@ template <typename REQ, typename RSP>
 void uvm_sequence<REQ,RSP>::do_print( const uvm_printer& printer ) const
 {
   uvm_sequence_base::do_print(printer);
-  //REQ* req;
-  //RSP* rsp;
-  //printer.print_object("req", req);
-  //printer.print_object("rsp", rsp);
+  printer.print_object("req", req);
+  printer.print_object("rsp", rsp);
 }
 
 } /* namespace uvm */

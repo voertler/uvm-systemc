@@ -362,7 +362,7 @@ void uvm_reg_file::set_default_hdl_path(std::string kind)
     if (m_rf != NULL)
       kind = m_rf->get_default_hdl_path();
     else
-      if (m_parent == NULL)
+      if (m_parent != NULL)
         kind = m_parent->get_default_hdl_path();
       else
       {

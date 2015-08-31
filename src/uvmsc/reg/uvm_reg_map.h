@@ -44,7 +44,6 @@ class uvm_reg_adapter;
 class uvm_vreg;
 class uvm_vreg_field;
 
-
 class uvm_reg_map_info
 {
  public:

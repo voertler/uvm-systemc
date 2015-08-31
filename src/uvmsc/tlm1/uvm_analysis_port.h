@@ -48,6 +48,8 @@ class uvm_analysis_port : public tlm::tlm_analysis_port<T> // TODO or should be 
     this->bind( _if );
   }
 
+  // the write method comes via tlm_analysis_port
+
   virtual ~uvm_analysis_port(){}
 
 }; // class uvm_analysis_port

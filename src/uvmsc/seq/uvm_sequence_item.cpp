@@ -49,7 +49,7 @@ uvm_sequence_item::uvm_sequence_item()
   m_depth = -1;
 }
 
-uvm_sequence_item::uvm_sequence_item( const std::string& name_ )
+uvm_sequence_item::uvm_sequence_item( uvm_object_name name_ )
   : uvm_transaction( name_ )
 {
   m_sequencer = NULL;

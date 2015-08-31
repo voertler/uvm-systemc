@@ -28,6 +28,7 @@
 #include "uvmsc/base/uvm_component.h"
 #include "uvmsc/base/uvm_component_name.h"
 #include "uvmsc/seq/uvm_sequencer_base.h"
+#include "uvmsc/seq/uvm_sequencer.h"
 #include "uvmsc/seq/uvm_sequence_base.h"
 #include "uvmsc/seq/uvm_sequence_item.h"
 #include "uvmsc/conf/uvm_config_db.h"
@@ -145,6 +146,27 @@ bool uvm_sequencer_base::is_child( uvm_sequence_base* parent,
 int uvm_sequencer_base::user_priority_arbitration( std::vector<int> avail_sequences )
 {
   return avail_sequences[0];
+}
+
+//----------------------------------------------------------------------
+// member function: execute_item (virtual)
+//
+//! Executes the given transaction item directly on this sequencer. A temporary
+//! parent sequence is automatically created for the item.  There is no capability to
+//! retrieve responses. If the driver returns responses, they will accumulate in the
+//! sequencer, eventually causing response overflow unless
+//! uvm_sequence_base::set_response_queue_error_report_disabled is called.
+//----------------------------------------------------------------------
+
+void uvm_sequencer_base::execute_item( uvm_sequence_item* item )
+{
+  uvm_sequence_base* seq = new uvm_sequence_base(sc_core::sc_gen_unique_name("parent_seq"));
+  item->set_sequencer(this);
+  item->set_parent_sequence(seq);
+  seq->set_sequencer(this);
+  seq->start_item(item);
+  seq->finish_item(item);
+  // TODO check if we need to add a conditional seq->get_response(rsp);
 }
 
 //----------------------------------------------------------------------

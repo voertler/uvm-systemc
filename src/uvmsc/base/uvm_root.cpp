@@ -72,8 +72,8 @@ bool uvm_root::m_uvm_timeout_overridable = true;
 uvm_root::uvm_root( uvm_component_name nm )
 : uvm_component(nm)
 {
-  enable_print_topology = false;
-  finish_on_completion = true;
+  m_enable_print_topology = false;
+  m_finish_on_completion = true;
   phase_timeout = UVM_DEFAULT_TIMEOUT;
   m_phase_all_done = false;
   m_current_phase = NULL;
@@ -156,7 +156,7 @@ void uvm_root::run_test( const std::string& test_name )
 
   // TODO: move post-run phases to here? Currently they are part of the simulation
 
-  if (finish_on_completion)
+  if (m_finish_on_completion)
     sc_core::sc_stop();
 }
 
@@ -215,6 +215,24 @@ void uvm_root::set_timeout( const sc_core::sc_time& timeout, bool overridable)
   phase_timeout = timeout;
 }
 
+//----------------------------------------------------------------------
+// member function: finish_on_completion
+//
+//! The member function finish_on_completion shall define how simulation
+//! is finalized. If enabled, it shall execute all end_of_simulation
+//! callbacks of the UVM components involved. If disabled, simulation is
+//! finalized without calling these end_of_simulation callbacks. By default,
+//! the end_of_simulation callbacks are not executed, unless enabled by the
+//! application by calling this member function.
+//! NOTE: An implementation may call the function sc_core::sc_stop as part
+//! of the finish_on_completion implementation to enforce finalization of
+//! the simulation following the SystemC execution semantics.
+//----------------------------------------------------------------------
+
+void uvm_root::finish_on_completion( bool enable  )
+{
+  m_finish_on_completion = enable;
+}
 
 //----------------------------------------------------------------------
 // Group: Topology
@@ -310,6 +328,27 @@ void uvm_root::print_topology( uvm_printer* printer )
   }
   std::cout << printer->emit() << std::endl;
 }
+
+//----------------------------------------------------------------------
+// member function: enable_print_topology
+//
+//! The member function enable_print_topology shall print the entire
+//! testbench topology just after completion of the end_of_elaboration
+//! phase, if enabled. By default, the testbench topology is not printed,
+//! unless enabled by the application by calling this member function.
+//----------------------------------------------------------------------
+
+void uvm_root::enable_print_topology( bool enable )
+{
+  m_enable_print_topology = enable;
+}
+
+
+////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+//////// Implementation-defined member functions start here ////////////
+////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
 
 
 //----------------------------------------------------------------------

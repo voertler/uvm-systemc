@@ -37,6 +37,7 @@
 #include "uvmsc/reg/uvm_reg_write_only_cbs.h"
 #include "uvmsc/seq/uvm_sequencer_base.h"
 #include "uvmsc/seq/uvm_sequence_base.h"
+#include "uvmsc/seq/uvm_sequence.h"
 
 namespace uvm {
 
@@ -1451,7 +1452,8 @@ void uvm_reg_map::do_write( uvm_reg_item* rw )
 
   if (rw->parent == NULL)
   {
-     rw->parent = new uvm_sequence_base("default_parent_seq");
+     uvm_sequence_base* seq = new uvm_sequence_base("default_parent_seq");
+     rw->parent = seq;
      tmp_parent_seq = rw->parent;
   }
 
@@ -1484,7 +1486,7 @@ void uvm_reg_map::do_read( uvm_reg_item* rw )
 
   if (adapter != NULL && adapter->parent_sequence != NULL)
   {
-    uvm_object* obj  = adapter->parent_sequence->clone();
+    uvm_object* obj = adapter->parent_sequence->clone();
     uvm_sequence_base* seq = dynamic_cast<uvm_sequence_base*>(obj);
     assert(seq);
 
@@ -1495,7 +1497,8 @@ void uvm_reg_map::do_read( uvm_reg_item* rw )
 
   if (rw->parent == NULL)
   {
-    rw->parent = new uvm_sequence_base("default_parent_seq"); // TODO check/delete afterwards
+    uvm_sequence_base* seq = new uvm_sequence_base("default_parent_seq");
+    rw->parent = seq; // TODO check/delete afterwards
     tmp_parent_seq = rw->parent;
   }
 

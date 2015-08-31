@@ -31,6 +31,8 @@
 #include "uvmsc/base/uvm_port_base.h"
 #include "uvmsc/seq/uvm_sequence_item.h"
 #include "uvmsc/seq/uvm_sequencer_ifs.h"
+#include "uvmsc/tlm1/uvm_analysis_port.h"
+#include "uvmsc/tlm1/uvm_sqr_connections.h"
 
 namespace uvm {
 
@@ -49,10 +51,11 @@ class uvm_driver : public uvm_component
 {
  public:
   // default available TLM port to sequencer
-  uvm_port_base<uvm_sqr_if_base<REQ, RSP> > seq_item_port;
+  uvm_seq_item_pull_port<REQ, RSP> seq_item_port;
+  uvm_analysis_port<RSP> rsp_port;
 
   explicit uvm_driver( uvm_component_name name_ )
-  : uvm_component( name_ ), seq_item_port("seq_item_port") {}
+  : uvm_component( name_ ), seq_item_port("seq_item_port"), rsp_port("rsp_port") {}
   	
   virtual const std::string get_type_name() const;
 
@@ -72,7 +75,7 @@ class uvm_driver : public uvm_component
 template <typename REQ, typename RSP>
 inline const std::string uvm_driver<REQ, RSP>::get_type_name() const
 {
-	return std::string(this->kind());
+  return std::string(this->kind());
 }
 
 //----------------------------------------------------------------------

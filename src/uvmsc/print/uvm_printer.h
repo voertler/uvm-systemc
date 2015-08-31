@@ -58,12 +58,8 @@ typedef struct {
 class uvm_printer
 {
  public:
+  friend class uvm_object;
 
-  // constructor
-  uvm_printer();
-
-  // destructor
-  virtual ~uvm_printer();
   //--------------------------------------------------------------------------
   // UVM Standard LRM API below
   //--------------------------------------------------------------------------
@@ -140,20 +136,6 @@ class uvm_printer
 
   void print_array_footer( int size = 0 ) const;
 
-
-  /////////////////////////////////////////////////////
-  // Implementation-defined member functions below,
-  // not part of UVM Class reference / LRM
-  /////////////////////////////////////////////////////
-
-  bool istop() const;
-
-  // member variables below
-
-  mutable uvm_scope_stack* m_scope;
-
-  std::string m_string;
-
   // member variable: knobs
   //
   //! The knob object provides access to the variety of knobs associated with a
@@ -161,7 +143,28 @@ class uvm_printer
 
   uvm_printer_knobs knobs;
 
+  /////////////////////////////////////////////////////
+  // Implementation-defined member functions below,
+  // not part of UVM Class reference / LRM
+  /////////////////////////////////////////////////////
+
+  // destructor
+  virtual ~uvm_printer();
+
+ private:
+
+  bool istop() const;
+
+  // member variables below
+
+  mutable uvm_scope_stack m_scope;
+
+  std::string m_string;
+
  protected:
+  // constructor disabled for application
+  uvm_printer();
+
   typedef std::vector<uvm_printer_row_info> m_row_vecT;
   typedef m_row_vecT::iterator m_row_vecItT;
   mutable m_row_vecT m_rows;

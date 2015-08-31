@@ -139,11 +139,11 @@ class uvm_phase : public uvm_object
                                 const std::string& description = "",
                                 int count = 1 );
 
-  void sync( uvm_domain* target,
+  void sync( uvm_domain& target,
              uvm_phase* phase = NULL,
              uvm_phase* with_phase = NULL );
 
-  void unsync( uvm_domain* target,
+  void unsync( uvm_domain& target,
                uvm_phase* phase = NULL,
                uvm_phase* with_phase = NULL );
 
@@ -230,6 +230,8 @@ class uvm_phase : public uvm_object
 
   static uvm_phase* m_phase_nodes(const std::string& name, uvm_phase* phase = NULL);
 
+  const std::string get_full_name_under() const;
+
   //--------------------------
   // data members below
   //--------------------------
@@ -291,6 +293,8 @@ class uvm_phase : public uvm_object
 
   // TBD add more useful debug
   //---------------------------------
+  // TODO remove public access
+ public:
   static bool m_phase_trace;
   bool m_use_ovm_run_semantic;
 

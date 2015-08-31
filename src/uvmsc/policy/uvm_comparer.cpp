@@ -56,7 +56,7 @@ uvm_comparer::uvm_comparer()
   sev = UVM_INFO;
   miscompares = "";
   physical = true;
-  abstract = true;
+  abstract = false;
   check_type = true;
   result = 0;
 }
@@ -388,6 +388,192 @@ void uvm_comparer::print_msg( const std::string& msg ) const
   miscompares = str.str();
 
 }
+
+//----------------------------------------------------------------------------
+// member function: set_policy
+//
+//! The member function set_policy shall set the comparison policy.
+//! The following arguments are valid: UVM_DEEP, UVM_REFERENCE,
+//! or UVM_SHALLOW. The default policy shall be set to UVM_DEFAULT_POLICY.
+//----------------------------------------------------------------------------
+
+void uvm_comparer::set_policy( uvm_recursion_policy_enum policy )
+{}
+
+//----------------------------------------------------------------------------
+// member function: get_policy
+//
+//! The member function get_policy shall return the comparison policy.
+//----------------------------------------------------------------------------
+
+uvm_recursion_policy_enum uvm_comparer::get_policy() const
+{
+  return policy;
+}
+
+//----------------------------------------------------------------------------
+// member function: set_max_messages
+//
+//! The member function set_max_messages sets the maximum number of messages
+//! to send to the printer for miscompares of an object. The default number
+//! of messages shall be set to one.
+//----------------------------------------------------------------------------
+
+void uvm_comparer::set_max_messages( unsigned int num )
+{
+  show_max = num;
+}
+
+//----------------------------------------------------------------------------
+// member function: get_max_messages
+//
+//! The member function get_max_messages shall return the maximum number of
+//! messages to send to the printer for miscompares of an object.
+//----------------------------------------------------------------------------
+
+unsigned int uvm_comparer::get_max_messages() const
+{
+  return show_max;
+}
+
+//----------------------------------------------------------------------------
+// member function: set_verbosity
+//
+//! The member function set_verbosity shall set the verbosity for printed
+//! messages. The verbosity setting is used by the messaging mechanism to
+//! determine whether messages should be suppressed or shown. The default
+//! verbosity shall be set to UVM_LOW.
+//----------------------------------------------------------------------------
+
+void uvm_comparer::set_verbosity( unsigned int _verbosity )
+{
+  verbosity = _verbosity;
+}
+
+//----------------------------------------------------------------------------
+// member function: get_verbosity
+//
+//! The member function get_verbosity shall return the verbosity for
+//! printed messages.
+//----------------------------------------------------------------------------
+
+unsigned int uvm_comparer::get_verbosity() const
+{
+  return verbosity;
+}
+
+//----------------------------------------------------------------------------
+// member function: set_severity
+//
+//! The member function set_severity shall set the severity for printed
+//! messages. The severity setting is used by the messaging mechanism for
+//! printing and filtering messages. The default severity shall be set to
+//! UVM_INFO.
+//----------------------------------------------------------------------------
+
+void uvm_comparer::set_severity( uvm_severity _sev )
+{
+  sev = _sev;
+}
+
+//----------------------------------------------------------------------------
+// member function: get_severity
+//
+//! The member function get_severity shall return the severity for printed
+//! messages.
+//----------------------------------------------------------------------------
+
+uvm_severity uvm_comparer::get_severity () const
+{
+  return sev;
+}
+
+//----------------------------------------------------------------------------
+// member function: set_miscompare_string
+//
+//! The member function set_miscompare_string shall set the miscompare string.
+//! This string is reset to an empty string when a comparison is started.
+//! The string holds the last set of miscompares that occurred during a
+//! comparison. The default miscompare string shall be empty.
+//----------------------------------------------------------------------------
+
+void uvm_comparer::set_miscompare_string( const std::string& _miscompares )
+{
+  miscompares = _miscompares;
+}
+
+//----------------------------------------------------------------------------
+// member function: get_miscompare_string
+//
+//! The member function get_miscompare_string shall return the last set
+//! of miscompares that occurred during a comparison.
+//----------------------------------------------------------------------------
+
+std::string uvm_comparer::get_miscompare_string() const
+{
+  return miscompares;
+}
+
+//----------------------------------------------------------------------------
+// member function: set_field_attribute
+//
+//! The member function set_field_attribute shall set the field attribute
+//! to UVM_PHYSICAL or UVM_ABSTRACT. The physical and abstract settings
+//! allow an object to distinguish between these two different classes of
+//! fields.
+//! NOTE An application can use the callback uvm_object::do_compare to
+//! check the field attribute if it wants to use it as a filter.
+//----------------------------------------------------------------------------
+
+void uvm_comparer::set_field_attribute( uvm_field_enum attr )
+{
+  if (attr == UVM_PHYSICAL) { physical = true; abstract = false; }
+  if (attr == UVM_ABSTRACT) { abstract = true; physical = false; }
+}
+
+//----------------------------------------------------------------------------
+// member function: get_field_attribute
+//
+//! The member function get_field_attribute shall return the field attribute
+//! being UVM_PHYSICAL or UVM_ABSTRACT.
+//----------------------------------------------------------------------------
+
+uvm_field_enum uvm_comparer::get_field_attribute() const
+{
+  if (physical) return UVM_PHYSICAL;
+  else return UVM_ABSTRACT;
+}
+
+//----------------------------------------------------------------------------
+// member function: compare_type
+//
+//! The member function compare_type shall determine whether the type, given
+//! by uvm_object::get_type_name, is used to verify that the types of two
+//! objects are the same. If enabled, the member function compare_object
+//! is called. By default, type checking shall be enabled.
+//! NOTE: In some cases an application may disable type checking, when the
+//! two operands are related by inheritance but are of different types.
+//----------------------------------------------------------------------------
+
+void uvm_comparer::compare_type( bool enable )
+{
+  if (enable) check_type = true;
+  else check_type = false;
+}
+
+//----------------------------------------------------------------------------
+// member function: get_result
+//
+//! The member function get_result shall return the number of miscompares
+//! for a given compare operation. An application can use the result to
+//! determine the number of miscompares that were found.
+//----------------------------------------------------------------------------
+
+unsigned int uvm_comparer::get_result() const
+{
+  return result;
+}
+
 
 
 ////////////////////////////////////////////////////////////////////////
