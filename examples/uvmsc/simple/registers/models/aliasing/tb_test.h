@@ -32,37 +32,40 @@
 class tb_test : public uvm::uvm_test
 {
  public:
+  tb_env* env;
+  uvm::uvm_reg_sequence<>* seq;
 
-  tb_test( uvm::uvm_component_name name = "tb_test") : uvm::uvm_test(name)
-  {}
+  tb_test( uvm::uvm_component_name name = "tb_test")
+  : uvm::uvm_test(name), env(NULL), seq(NULL) {}
 
-  virtual void run_phase(uvm::uvm_phase& phase)
+  UVM_COMPONENT_UTILS(tb_test);
+
+  void build_phase(uvm::uvm_phase& phase)
   {
-    tb_env* env;
+    uvm::uvm_test::build_phase(phase);
+
+    env = tb_env::type_id::create("tb_env");
+    seq = uvm::uvm_reg_bit_bash_seq::type_id::create("seq");
+  }
+
+  void run_phase(uvm::uvm_phase& phase)
+  {
     uvm::uvm_status_e status;
     uvm::uvm_reg_data_t data;
 
     phase.raise_objection(this);
 
-    env = dynamic_cast<tb_env*>(uvm::uvm_root::get()->find("env"));
-
-    if ( env == NULL )
-      UVM_FATAL("test", "Cannot find tb_env");
-
     env->regmodel->reset();
-
-    uvm::uvm_reg_sequence<>* seq;
-
-    seq = uvm::uvm_reg_bit_bash_seq::type_id::create("seq");
     seq->model = env->regmodel;
     seq->start(env->bus->sqr);
-    seq->wait_for_sequence_state(uvm::FINISHED);
+    seq->wait_for_sequence_state(uvm::UVM_FINISHED);
 
+ /* TODO
     UVM_INFO("Test", "Verifying aliasing...", uvm::UVM_NONE);
 
     env->regmodel->Ra->write(status, 0xDEADBEEF, uvm::UVM_DEFAULT_PATH, NULL, seq);
     env->regmodel->mirror(status, uvm::UVM_CHECK, uvm::UVM_DEFAULT_PATH, seq);
-/*
+
     env->regmodel->Rb->write(status, 0x87654320, uvm::UVM_DEFAULT_PATH, NULL, seq);
     env->regmodel->mirror(status, uvm::UVM_CHECK, uvm::UVM_DEFAULT_PATH, seq);
 

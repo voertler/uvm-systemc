@@ -40,7 +40,7 @@ namespace uvm {
 //----------------------------------------------------------------------
 
 uvm_sequence_base::uvm_sequence_base( uvm_object_name name_ )
- : uvm_sequence_item( name_ ), m_sequence_state(CREATED)
+ : uvm_sequence_item( name_ ), m_sequence_state(UVM_CREATED)
 {
   m_wait_for_grant_semaphore = 0;
   m_next_transaction_id = 1;
@@ -124,7 +124,7 @@ void uvm_sequence_base::start(
 {
   set_item_context(parent_sequence, sequencer);
 
-  if ( !( (m_sequence_state==CREATED) || (m_sequence_state==STOPPED) || (m_sequence_state==FINISHED) ) )
+  if ( !( (m_sequence_state == UVM_CREATED) || (m_sequence_state == UVM_STOPPED) || (m_sequence_state == UVM_FINISHED) ) )
   {
     std::ostringstream str;
     str << "Sequence " << get_full_name() << " already started.";
@@ -176,7 +176,7 @@ void uvm_sequence_base::start(
 
   // Change the state to PRE_START, do this before the fork so that
   // the "if (!(m_sequence_state inside {...}" works
-  m_sequence_state = PRE_START;
+  m_sequence_state = UVM_PRE_START;
   m_sequence_state_ev.notify();
 
   SC_FORK
@@ -188,7 +188,7 @@ void uvm_sequence_base::start(
 
   // Clean up any sequencer queues after exiting; if we
   // were forcibly stopped, this step has already taken place
-  if (m_sequence_state != STOPPED)
+  if (m_sequence_state != UVM_STOPPED)
     if (get_sequencer() != NULL)
       get_sequencer()->m_sequence_exiting(this);
 
@@ -874,7 +874,7 @@ void uvm_sequence_base::m_start_core( uvm_sequence_base* parent_sequence,
     pre_start();
 
     if (call_pre_post == 1) {
-      m_sequence_state = PRE_BODY;
+      m_sequence_state = UVM_PRE_BODY;
       m_sequence_state_ev.notify();
       sc_core::wait(SC_ZERO_TIME);
       pre_body();
@@ -886,12 +886,12 @@ void uvm_sequence_base::m_start_core( uvm_sequence_base* parent_sequence,
       parent_sequence->mid_do(this);
     }
 
-    m_sequence_state = BODY;
+    m_sequence_state = UVM_BODY;
     m_sequence_state_ev.notify();
     sc_core::wait(SC_ZERO_TIME);
     body();
 
-    m_sequence_state = ENDED;
+    m_sequence_state = UVM_ENDED;
     m_sequence_state_ev.notify();
     sc_core::wait(SC_ZERO_TIME);
 
@@ -899,18 +899,18 @@ void uvm_sequence_base::m_start_core( uvm_sequence_base* parent_sequence,
       parent_sequence->post_do(this);
 
     if (call_pre_post == 1) {
-      m_sequence_state = POST_BODY;
+      m_sequence_state = UVM_POST_BODY;
       m_sequence_state_ev.notify();
       sc_core::wait(SC_ZERO_TIME);
       post_body();
     }
 
-    m_sequence_state = POST_START;
+    m_sequence_state = UVM_POST_START;
     m_sequence_state_ev.notify();
     sc_core::wait(SC_ZERO_TIME);
     post_start();
 
-    m_sequence_state = FINISHED;
+    m_sequence_state = UVM_FINISHED;
     m_sequence_state_ev.notify();
     sc_core::wait(SC_ZERO_TIME);
 }
@@ -1047,7 +1047,7 @@ void uvm_sequence_base::m_kill()
     m_sequence_process.kill(SC_INCLUDE_DESCENDANTS); // TODO check
     //m_sequence_process = null;
   }
-  m_sequence_state = STOPPED;
+  m_sequence_state = UVM_STOPPED;
 
   if ((m_parent_sequence != NULL) && (m_parent_sequence->children_array.find(this)!= m_parent_sequence->children_array.end()))
     m_parent_sequence->children_array.erase(this); // TODO also delete pointer here?

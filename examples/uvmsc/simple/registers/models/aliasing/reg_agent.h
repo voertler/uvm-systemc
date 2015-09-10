@@ -19,6 +19,7 @@
 //   permissions and limitations under the License.
 //----------------------------------------------------------------------
 
+
 #ifndef REG_AGENT_H_
 #define REG_AGENT_H_
 
@@ -35,7 +36,9 @@ class reg_rw : public uvm::uvm_sequence_item
   sc_dt::sc_lv<4>  byte_en;
 
   reg_rw ( std::string name = "reg_rw" ) : uvm::uvm_sequence_item(name)
-  {}
+  {
+    std::cout << "constructor called" << std::endl;
+  }
 
   UVM_OBJECT_UTILS(reg_rw);
 
@@ -114,10 +117,10 @@ class reg_driver: public uvm::uvm_component
       seqr_port.peek(rw_req);     // get_next_item
       DO::rw(rw_req);             // rw to dut
       mon->ap.write(rw_req);      // also pass value to the monitor
-//      rw_rsp.set_id_info(rw_req); // pass id to response
-//      rw_rsp = rw_req;            // pass modified request to response
+      rw_rsp.set_id_info(rw_req); // pass id to response
+      rw_rsp = rw_req;            // pass modified request to response
       seqr_port.get(rw_req);         // item_done
-//      seqr_port.put(rw_rsp);      // put response to sequencer
+      seqr_port.put(rw_rsp);      // put response to sequencer
     }
   }
 
@@ -167,7 +170,7 @@ class reg2rw_adapter : public uvm::uvm_reg_adapter
   reg2rw_adapter( std::string name = "reg2rw_adapter" ) : uvm::uvm_reg_adapter(name)
   {
     supports_byte_enable = true;
-  //  provides_responses = true;
+    provides_responses = true;
   }
 
   virtual uvm::uvm_sequence_item* reg2bus( const uvm::uvm_reg_bus_op& rw )
