@@ -392,7 +392,7 @@ void uvm_sequence_base::wait_for_relevant() const
   if (is_rel_default != wait_rel_default)
     uvm_report_fatal("RELMSM",
       "is_relevant() was implemented without defining wait_for_relevant()", UVM_NONE);
-  wait(_forever);  // this is intended to never return
+  sc_core::wait(_forever);  // this is intended to never return
 }
 
 
