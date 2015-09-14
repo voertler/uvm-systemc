@@ -45,7 +45,7 @@ class uvm_sequence : public uvm_sequence_base
 
   void send_request( uvm_sequence_item* request, bool rerandomize = false );
 
-  REQ get_current_item();
+  REQ get_current_item() const;
 
   virtual void get_response( RSP*& response, int transaction_id = -1 );
 
@@ -142,7 +142,7 @@ void uvm_sequence<REQ,RSP>::send_request(uvm_sequence_item* request, bool rerand
 //----------------------------------------------------------------------
 
 template <typename REQ, typename RSP>
-REQ uvm_sequence<REQ,RSP>::get_current_item()
+REQ uvm_sequence<REQ,RSP>::get_current_item() const
 {
   param_sequencer = dynamic_cast< uvm_sequencer_param_base<REQ,RSP>* >(m_sequencer);
 

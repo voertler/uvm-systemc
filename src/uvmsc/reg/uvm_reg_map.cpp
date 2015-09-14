@@ -1214,6 +1214,7 @@ void uvm_reg_map::do_bus_write( uvm_reg_item* rw,
         rw->parent->mid_do(rw);
 
       rw->parent->finish_item(bus_req);
+
       bus_req->end_event.wait_on();
 
       if (adapter->provides_responses)
@@ -1224,11 +1225,9 @@ void uvm_reg_map::do_bus_write( uvm_reg_item* rw,
         adapter->bus2reg(bus_rsp, rw_access);
       }
       else
-      {
         adapter->bus2reg(bus_req, rw_access);
-      }
 
-      if (rw->parent != NULL && i == addrs.size()-1)
+       if (rw->parent != NULL && i == addrs.size()-1)
         rw->parent->post_do(rw);
 
       rw->status = rw_access.status;

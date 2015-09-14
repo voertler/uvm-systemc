@@ -181,6 +181,7 @@ void uvm_reg_predictor<BUSTYPE>::write( const BUSTYPE& tr )
   // In case they forget to set byte_en
   rw.byte_en = -1;
   adapter->bus2reg(&tr, rw);
+
   rg = map->get_reg_by_offset(rw.addr, (rw.kind == UVM_READ));
 
   // UVM_SV TODO: Add memory look-up and call uvm_mem::m_sample()

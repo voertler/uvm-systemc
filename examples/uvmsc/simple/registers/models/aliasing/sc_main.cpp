@@ -23,7 +23,6 @@
 #include <systemc>
 #include <uvm>
 
-#include "tb_env.h"
 #include "tb_test.h"
 
 //----------------------------------------------------------------------
@@ -37,16 +36,10 @@
 
 int sc_main(int, char*[]) 
 {  
-  tb_env* env;
-  tb_test* test;
-
-  env = new tb_env("env");
-  test = new tb_test("test");
-
   uvm::uvm_root::get()->set_report_verbosity_level(uvm::UVM_FULL);
   uvm::uvm_report_server::get_server()->set_max_quit_count(10);
 
-  uvm::run_test();
+  uvm::run_test("tb_test");
 
   return 0;
 }

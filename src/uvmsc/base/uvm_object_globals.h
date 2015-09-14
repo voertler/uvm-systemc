@@ -86,15 +86,15 @@ typedef enum { UVM_PASSIVE = 0, UVM_ACTIVE = 1 } uvm_active_passive_enum;
 
 typedef enum
 {
-  CREATED   = 1,
-  PRE_START = 2,
-  PRE_BODY  = 4,
-  BODY      = 8,
-  POST_BODY = 16,
-  POST_START= 32,
-  ENDED     = 64,
-  STOPPED   = 128,
-  FINISHED  = 256
+  UVM_CREATED   = 1,
+  UVM_PRE_START = 2,
+  UVM_PRE_BODY  = 4,
+  UVM_BODY      = 8,
+  UVM_POST_BODY = 16,
+  UVM_POST_START= 32,
+  UVM_ENDED     = 64,
+  UVM_STOPPED   = 128,
+  UVM_FINISHED  = 256
 } uvm_sequence_state_enum;
 
 //----------------------------------------------------------------------

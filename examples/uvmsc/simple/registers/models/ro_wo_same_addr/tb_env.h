@@ -92,8 +92,6 @@ class tb_env : public uvm::uvm_env
 
     bus = reg_agent<dut>::type_id::create("bus", this);
     predict = uvm::uvm_reg_predictor<reg_rw>::type_id::create("predict", this);
-
-    set_report_verbosity_level_hier(uvm::UVM_HIGH);
   }
 
   virtual void connect_phase(uvm::uvm_phase& phase)

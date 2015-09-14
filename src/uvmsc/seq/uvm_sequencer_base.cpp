@@ -740,7 +740,7 @@ void uvm_sequencer_base::remove_sequence_from_queues(uvm_sequence_base* sequence
       if ((arb_sequence_q[i]->sequence_id == seq_id) ||
           (is_child(sequence_ptr, arb_sequence_q[i]->sequence_ptr)))
       {
-        if (sequence_ptr->get_sequence_state() == FINISHED)
+        if (sequence_ptr->get_sequence_state() == UVM_FINISHED)
         {
           std::ostringstream str;
           str << "Parent sequence '" << sequence_ptr->get_full_name()
@@ -770,7 +770,7 @@ void uvm_sequencer_base::remove_sequence_from_queues(uvm_sequence_base* sequence
       if ((lock_list[i]->get_inst_id() == sequence_ptr->get_inst_id()) ||
           (is_child(sequence_ptr, lock_list[i])))
       {
-        if (sequence_ptr->get_sequence_state() == FINISHED)
+        if (sequence_ptr->get_sequence_state() == UVM_FINISHED)
         {
           std::ostringstream str;
           str << "Parent sequence '"
