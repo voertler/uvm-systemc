@@ -227,37 +227,6 @@ class uvm_report_catcher : public uvm_callback
 
   UVM_REGISTER_CB(uvm_report_object,uvm_report_catcher)
 
-  static uvm_severity m_modified_severity;
-  static int m_modified_verbosity;
-  static std::string m_modified_id;
-  static std::string m_modified_message;
-  static std::string m_file_name;
-  static int m_line_number;
-  static uvm_report_object* m_client;
-  static uvm_action m_modified_action;
-  static bool m_set_action_called;
-  static uvm_report_server* m_server;
-  static std::string m_name;
-
-  static int m_demoted_fatal;
-  static int m_demoted_error;
-  static int m_demoted_warning;
-  static int m_caught_fatal;
-  static int m_caught_error;
-  static int m_caught_warning;
-
-  const static int DO_NOT_CATCH  = 1;
-  const static int DO_NOT_MODIFY = 2;
-  static int m_debug_flags;
-
-  static uvm_severity m_orig_severity;
-  static uvm_action   m_orig_action;
-  static std::string  m_orig_id;
-  static int          m_orig_verbosity;
-  static std::string  m_orig_message;
-
-  static bool do_report;
-
 }; // class uvm_report_catcher
 
 } // namespace uvm
