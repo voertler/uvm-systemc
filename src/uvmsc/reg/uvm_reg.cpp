@@ -1117,6 +1117,7 @@ bool uvm_reg::predict( uvm_reg_data_t value,
 {
   uvm_reg_item* rw = new uvm_reg_item();
 
+  rw->value.resize(1);
   rw->value[0] = value;
   rw->path = path;
   rw->map = map;
