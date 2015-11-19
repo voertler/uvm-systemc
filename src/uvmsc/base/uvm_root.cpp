@@ -524,9 +524,6 @@ void uvm_root::m_uvm_header()
         << "            See NOTICE file for all Contributors"  << std::endl
         << "                    ALL RIGHTS RESERVED" << std::endl;
     std::cerr
-        << "                  http://www.verdi-fp7.eu/"
-        << std::endl;
-    std::cerr
         << "         Licensed under the Apache License, Version 2.0"
         << std::endl;
     std::cerr << std::endl << std::endl;
