@@ -7,39 +7,22 @@ SHALL NOT BE USED IN ANY PRODUCTION ENVIRONMENT.
 
 Contents:
 
-        1. Installation Notes for Linux and Mac OS X
+        1. Installation Notes for Linux
          
         2. Installation Notes for Windows
 
 
-1. Installation Notes for Linux and Mac OS X
+1. Installation Notes for Linux
 --------------------------------------------
 
 
 System Requirements
 ===================
 
-UVM-SystemC can be installed on the following Linux and Mac OS X platforms:
+UVM-SystemC was tested on the following Linux platform:
 
-    o 32-bit Linux (x86) (RedHat Enterprise Linux 4, 5, 6; Fedora 14, 15;
-      Debian 5.0; Ubuntu 10.04LTS, 12.04LTS) with GNU C++ compiler versions
-      gcc-3.3.2 through gcc-4.7.0
-    o 32-bit Linux (x86) (Debian, Ubuntu 12.04LTS) with Clang C++ compiler
-      version clang-2.9 through clang-3.1
-    o 64-bit Linux (x86_64) (RedHat Enterprise Linux 4, 5, 6; Fedora 17;
-      Debian 5.0; Ubuntu 10.04LTS, 12.04LTS) with GNU C++ compiler versions
-      gcc-3.4.5 through gcc-4.7.0
-    o 64-bit Linux (x86_64) (Ubuntu 12.04LTS) with Clang C++ compiler
-      version clang-3.1
-    o 64-bit Linux (x86_64) (Debian 5.0) with 32-bit GNU C++ compiler version
-      gcc-4.1.1 through gcc-4.7.0 (./configure --target=i686-linux-gnu)
-    o Sun Solaris 9 (sparc32) with GNU C++ compiler version gcc-3.3.3
-      through gcc-4.4.6
-    o 32-bit Mac OS X (ppc, i386) (10.5 Leopard, 10.6 Snow Leopard, 10.7 Lion)
-      with GNU C++ compiler versions gcc-3.1 through gcc-4.2.1
-    o 64-bit Mac OS X (x86_64) (10.6 Snow Leopard, 10.7 Lion) with
-      GNU C++ compiler version gcc-4.2.1
-    o 32-bit FreeBSD 7.4 with GNU C++ compiler version gcc-4.2.1
+    o 64-bit Linux (x86_64) (RedHat Enterprise Linux 6) with
+      GNU C++ compiler versions gcc-4.4.7
 
 An installation of UVM-SystemC on other, related platforms may be
 possible as well.
@@ -51,9 +34,7 @@ Sources for Compilers and Related Tools
 To build, install, and use UVM-SystemC on UNIX platforms, you need
 the following tools:
 
-  1. GNU C++ compiler, version 3.3.2 or later
-     or
-     Clang C++ compiler version clang-2.9 or later
+  1. GNU C++ compiler, version 4.4.7 (other versions as well as Clang are not tested)
 
   2. GNU Make (gmake)
 
@@ -97,10 +78,6 @@ To install UVM-SystemC on a Linux system, do the following steps:
   4. Set the following environment variable(s):
 
      For gcc compilers on Linux:
-
-        > setenv CXX g++
-
-     For gcc compilers on MacOS X:
 
         > setenv CXX g++
 
@@ -339,17 +316,13 @@ Use the `--help' option to print a list.
 System Requirements
 ===================
 
-UVM-SystemC can be installed on the following Windows platforms:
+UVM-SystemC was tested on the following Windows platforms:
 
     o Windows 7 SP1, Microsoft Visual C++ 2005 SP1 (8.0)
-    o Windows 7 SP1, Microsoft Visual C++ 2008 SP1 (9.0)
-    o Windows 7 SP1, Microsoft Visual C++ 2010     (10.0)
-    o Windows XP Prof. SP3, with Microsoft Visual C++ 2010 (10.0)
-    o Windows XP Prof. SP3 (Cygwin 1.5.25) with GNU C++ compiler
-      version gcc-4.3.2
-    o Windows XP Prof. SP3 (Msys 1.0.16) with MinGW32
-      GNU C++ compiler version gcc-4.5.2 through gcc-4.6.2
-
+    
+An installation of UVM-SystemC on other, related platforms may be
+possible as well.
+    
 
 Microsoft Visual C++ 2005 (compiler version 8.0) or later
 =========================================================
