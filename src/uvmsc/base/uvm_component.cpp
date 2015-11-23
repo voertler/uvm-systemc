@@ -72,28 +72,23 @@ uvm_component::uvm_component( uvm_component_name nm )
 
   set_name(std::string(nm));
 
-  if (top) return;
+  if (!top) {
 
-  if (!top)
     print_enabled = true;
-  else
-    print_enabled = false;
 
-  sc_object* sc_parent = this->get_parent_object();
-  uvm_component* uvm_parent = dynamic_cast<uvm_component*>(sc_parent);
+    sc_object* sc_parent = this->get_parent_object();
+    uvm_component* uvm_parent = dynamic_cast<uvm_component*>(sc_parent);
 
-  if ( uvm_parent == NULL && !top )
-  {
-    std::ostringstream str;
-    str << "The parent of UVM component '" << nm << "' is not a UVM component. uvm_top is used instead.";
-    uvm_report_info("NOPARENT", str.str(), UVM_HIGH);
-    m_comp_parent = uvm_root::get();
-  }
-  else
-    m_comp_parent = uvm_parent;
+    if ( uvm_parent == NULL)
+    {
+      std::ostringstream str;
+      str << "The parent of UVM component '" << nm << "' is not a UVM component. uvm_top is used instead.";
+      uvm_report_info("NOPARENT", str.str(), UVM_HIGH);
+      m_comp_parent = uvm_root::get();
+    }
+    else
+      m_comp_parent = uvm_parent;
 
-  if (!top)
-  {
     if (!m_comp_parent->m_add_child(this))
     {
       std::ostringstream str;
@@ -108,6 +103,13 @@ uvm_component::uvm_component( uvm_component_name nm )
       uvm_domain::get_common_domain();
       m_domain = uvm_domain::get_uvm_domain();
     }
+
+  }
+  else
+  {
+
+    print_enabled = false;
+
   }
 
   //!default settings
@@ -168,7 +170,7 @@ void uvm_component::get_children( std::vector<uvm_component*>& children ) const
 //----------------------------------------------------------------------------
 // member function: get_child
 //
-//! Member function to iterate through his component’s children, if any.
+//! Member function to iterate through his componentï¿½s children, if any.
 //----------------------------------------------------------------------------
 
 uvm_component* uvm_component::get_child( const std::string& name ) const
@@ -187,7 +189,7 @@ uvm_component* uvm_component::get_child( const std::string& name ) const
 //----------------------------------------------------------------------------
 // member function: get_next_child
 //
-//! Member function to iterate through his component’s children, if any.
+//! Member function to iterate through his componentï¿½s children, if any.
 //----------------------------------------------------------------------------
 
 int uvm_component::get_next_child( std::string& name ) const
@@ -212,7 +214,7 @@ int uvm_component::get_next_child( std::string& name ) const
 //----------------------------------------------------------------------------
 // member function: get_first_child
 //
-//! Member function to iterate through his component’s children, if any.
+//! Member function to iterate through his componentï¿½s children, if any.
 //----------------------------------------------------------------------------
 
 int uvm_component::get_first_child( std::string& name ) const
