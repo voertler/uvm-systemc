@@ -24,6 +24,17 @@
 
 namespace uvm {
 
+const char* uvm_seq_state_name[] = {
+    "UVM_CREATED",
+    "UVM_PRE_START",
+    "UVM_PRE_BODY",
+    "UVM_BODY",
+    "UVM_POST_BODY",
+    "UVM_POST_START",
+    "UVM_ENDED",
+    "UVM_STOPPED",
+    "UVM_FINISHED"
+};
 
 const char* uvm_phase_type_name[] = {
   "UVM_PHASE_IMP",

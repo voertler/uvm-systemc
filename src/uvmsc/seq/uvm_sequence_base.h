@@ -63,7 +63,7 @@ class uvm_sequence_base: public uvm_sequence_item
 
   uvm_sequence_state_enum get_sequence_state() const;
 
-  void wait_for_sequence_state( uvm_sequence_state_enum state_mask );
+  void wait_for_sequence_state( unsigned int state_mask );
 
   //--------------------------------------------------------------------------
   // Group: Sequence execution
