@@ -22,7 +22,7 @@ System Requirements
 UVM-SystemC was tested on the following Linux platform:
 
     o 64-bit Linux (x86_64) (RedHat Enterprise Linux 6) with
-      GNU C++ compiler versions gcc-4.4.7
+      GNU C++ compiler versions gcc-4.4.7 and gcc-4.8.1
 
 An installation of UVM-SystemC on other, related platforms may be
 possible as well.
@@ -318,7 +318,7 @@ System Requirements
 
 UVM-SystemC was tested on the following Windows platforms:
 
-    o Windows 7 SP1, Microsoft Visual C++ 2005 SP1 (8.0)
+    o Windows 7 SP1, Microsoft Visual C++ 2008 SP1 (9.0)
     
 An installation of UVM-SystemC on other, related platforms may be
 possible as well.
