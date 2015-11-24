@@ -16,11 +16,6 @@
 //   the License for the specific language governing
 //   permissions and limitations under the License.
 //----------------------------------------------------------------------
-//
-//   Original Author: Martin Barnasconi, NXP Semiconductors
-//   Created on: 2012-07-20
-//
-//----------------------------------------------------------------------
 
 #ifndef ENV_H_
 #define ENV_H_
