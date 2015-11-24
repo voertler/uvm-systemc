@@ -97,6 +97,8 @@ typedef enum
   UVM_FINISHED  = 256
 } uvm_sequence_state_enum;
 
+extern const char *uvm_seq_state_name[];
+
 //----------------------------------------------------------------------
 // Enum: uvm_verbosity_type
 //

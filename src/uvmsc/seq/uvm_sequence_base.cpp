@@ -100,14 +100,14 @@ uvm_sequence_state_enum uvm_sequence_base::get_sequence_state() const
 //! is already in this state, this method returns immediately.
 //----------------------------------------------------------------------
 
-void uvm_sequence_base::wait_for_sequence_state( uvm_sequence_state_enum state_mask )
+void uvm_sequence_base::wait_for_sequence_state( unsigned int state_mask )
 {
-  while (m_sequence_state != state_mask)
+  while (!(m_sequence_state & state_mask))
   {
-    std::cout << "wait_for_sequence_state is FINISHED. Current state:" << m_sequence_state << std::endl;
+//    std::cout << "wait_for_sequence_state... Current state:" << uvm_seq_state_name[m_sequence_state] << std::endl;
     sc_core::wait(m_sequence_state_ev);
   }
-  std::cout << "wait_for_sequence_state done" << std::endl;
+//  std::cout << "wait_for_sequence_state done" << std::endl;
 }
 
 //----------------------------------------------------------------------
