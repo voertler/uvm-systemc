@@ -16,11 +16,6 @@
 //   the License for the specific language governing
 //   permissions and limitations under the License.
 //----------------------------------------------------------------------
-//
-//   Original Author: Martin Barnasconi, NXP Semiconductors
-//   Created on: 2012-10-27
-//
-//----------------------------------------------------------------------
 
 #ifndef RCV_SUBSCRIBER_H_
 #define RCV_SUBSCRIBER_H_

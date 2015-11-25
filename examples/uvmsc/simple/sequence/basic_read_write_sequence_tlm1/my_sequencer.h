@@ -16,11 +16,6 @@
 //   the License for the specific language governing
 //   permissions and limitations under the License.
 //----------------------------------------------------------------------
-//
-//   Original Author: Martin Barnasconi, NXP Semiconductors
-//   Created on: 2012-07-20
-//
-//----------------------------------------------------------------------
 
 #ifndef MY_SEQUENCER_H_
 #define MY_SEQUENCER_H_
