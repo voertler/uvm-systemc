@@ -41,7 +41,7 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/vmg"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(ProjectDir)\..\..\..\..\..\..\src&quot;;&quot;$(ProjectDir)\..\..\..\..\..\..\..\systemc-2.3.1\src&quot;"
+				AdditionalIncludeDirectories="&quot;$(ProjectDir)\..\..\..\..\..\..\src&quot;;&quot;$(SYSTEMC)\..\src&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;_USE_MATH_DEFINES;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -114,7 +114,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/vmg"
-				AdditionalIncludeDirectories="&quot;$(ProjectDir)\..\..\..\..\..\..\src&quot;;&quot;$(ProjectDir)\..\..\..\..\..\..\..\systemc-2.3.1\src&quot;"
+				AdditionalIncludeDirectories="&quot;$(ProjectDir)\..\..\..\..\..\..\src&quot;;&quot;$(SYSTEMC)\..\src&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;_USE_MATH_DEFINES;"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
