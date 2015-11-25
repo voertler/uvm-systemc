@@ -64,7 +64,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="systemc.lib uvm-systemc.lib"
-				AdditionalLibraryDirectories="&quot;$(ProjectDir)\..\..\..\..\..\..\systemc-2.3.1\msvc80\SystemC\Debug&quot;;&quot;$(ProjectDir)\..\..\..\..\..\msvc80\uvmsc\Debug&quot;"
+				AdditionalLibraryDirectories="&quot;$(SYSTEMC)\SystemC\Debug&quot;;&quot;$(ProjectDir)\..\..\..\..\..\msvc80\uvmsc\Debug&quot;"
 				GenerateDebugInformation="true"
 			/>
 			<Tool
@@ -139,7 +139,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="systemc.lib uvm-systemc.lib"
-				AdditionalLibraryDirectories="&quot;$(ProjectDir)\..\..\..\..\..\..\systemc-2.3.1\msvc80\SystemC\Release&quot;;&quot;$(ProjectDir)\..\..\..\..\..\msvc80\uvmsc\Release&quot;"
+				AdditionalLibraryDirectories="&quot;$(SYSTEMC)\SystemC\Release&quot;;&quot;$(ProjectDir)\..\..\..\..\..\msvc80\uvmsc\Release&quot;"
 			/>
 			<Tool
 				Name="VCALinkTool"
