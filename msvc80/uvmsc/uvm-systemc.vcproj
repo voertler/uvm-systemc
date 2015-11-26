@@ -785,6 +785,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\uvmsc\report\uvm_report_catcher_data.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\uvmsc\report\uvm_report_handler.h"
 				>
 			</File>
