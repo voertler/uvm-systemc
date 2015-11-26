@@ -63,7 +63,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				AdditionalLibraryDirectories="&quot;$(ProjectDir)\..\..\..\systemc-2.3.1\msvc80\SystemC\Debug&quot;"
+				AdditionalLibraryDirectories="&quot;$(SYSTEMC)\SystemC\Debug&quot;"
 				IgnoreAllDefaultLibraries="false"
 			/>
 			<Tool
@@ -107,7 +107,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/vmg"
-				AdditionalIncludeDirectories="&quot;$(ProjectDir)\..\..\src&quot;;&quot;$(ProjectDir)\..\..\..\systemc-2.3.1\src&quot;"
+				AdditionalIncludeDirectories="&quot;$(ProjectDir)\..\..\src&quot;;&quot;$(SYSTEMC)\..\src&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;_USE_MATH_DEFINES;"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -131,7 +131,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				AdditionalLibraryDirectories="&quot;$(ProjectDir)\..\..\..\systemc-2.3.1\msvc80\SystemC\Release&quot;"
+				AdditionalLibraryDirectories="&quot;$(SYSTEMC)\SystemC\Release&quot;"
 			/>
 			<Tool
 				Name="VCALinkTool"
