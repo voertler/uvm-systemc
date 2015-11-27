@@ -327,6 +327,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\uvmsc\report\uvm_report_catcher_data.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\uvmsc\report\uvm_report_handler.cpp"
 				>
 			</File>
@@ -778,6 +782,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\uvmsc\report\uvm_report_catcher.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\uvmsc\report\uvm_report_catcher_data.h"
 				>
 			</File>
 			<File
