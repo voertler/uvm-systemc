@@ -518,7 +518,7 @@ void uvm_root::m_uvm_header()
     std::cerr << std::endl << std::endl;
     std::cerr << "   Universal Verification Methodology in SystemC (UVM-SystemC)"
         << std::endl
-        << "        Version: " << UVM_VERSION << "  Build: " << UVM_REVISION << "  Date: " << UVM_RELEASE_DATE << std::endl;
+        << "              Version: " << UVM_VERSION << "  Date: " << UVM_RELEASE_DATE << std::endl;
     std::cerr
         << "          Copyright (c) 2006 - 2015 by all Contributors" << std::endl
         << "            See NOTICE file for all Contributors"  << std::endl

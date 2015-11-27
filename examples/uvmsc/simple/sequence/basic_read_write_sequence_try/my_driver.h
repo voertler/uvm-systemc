@@ -16,11 +16,6 @@
 //   the License for the specific language governing
 //   permissions and limitations under the License.
 //----------------------------------------------------------------------
-//
-//   Original Author: Martin Barnasconi, NXP Semiconductors
-//   Created on: 2013-05-27
-//
-//----------------------------------------------------------------------
 
 #ifndef MY_DRIVER_H_
 #define MY_DRIVER_H_
