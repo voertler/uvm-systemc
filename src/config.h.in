@@ -74,7 +74,4 @@
 #undef UVM_RELEASE_DATE
 
 /* UVM SystemC Version */
-#undef UVM_REVISION
-
-/* UVM SystemC Version */
 #undef UVM_VERSION
