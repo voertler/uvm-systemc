@@ -211,18 +211,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_mem.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_mem_mam.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_mem_region.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\uvmsc\misc\uvm_misc.cpp"
 				>
 			</File>
@@ -260,66 +248,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\uvmsc\policy\uvm_recorder.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_reg.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_reg_adapter.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_reg_backdoor.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_reg_block.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_reg_field.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_reg_fifo.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_reg_file.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_reg_indirect_data.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_reg_indirect_ftdr_seq.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_reg_item.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_reg_map.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_reg_model.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_reg_read_only_cbs.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_reg_tlm_adapter.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_reg_write_only_cbs.cpp"
 				>
 			</File>
 			<File
@@ -404,18 +332,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\uvmsc\base\uvm_version.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_vreg.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_vreg_field.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_vreg_field_cbs.cpp"
 				>
 			</File>
 		</Filter>
@@ -561,10 +477,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_hdl_path_concat.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\uvmsc\tlm1\uvm_imps.h"
 				>
 			</File>
@@ -574,26 +486,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\uvmsc\macros\uvm_macros.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_mem.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_mem_mam.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_mem_mam_cfg.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_mem_mam_policy.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_mem_region.h"
 				>
 			</File>
 			<File
@@ -686,94 +578,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\uvmsc\policy\uvm_recorder.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_reg.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_reg_adapter.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_reg_backdoor.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_reg_block.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_reg_bus_op.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_reg_cbs.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_reg_cbs_types.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_reg_field.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_reg_fifo.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_reg_file.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_reg_frontdoor.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_reg_indirect_data.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_reg_indirect_ftdr_seq.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_reg_item.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_reg_layer.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_reg_map.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_reg_model.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_reg_predictor.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_reg_read_only_cbs.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_reg_sequence.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_reg_tlm_adapter.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_reg_write_only_cbs.h"
 				>
 			</File>
 			<File
@@ -942,22 +746,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\uvmsc\base\uvm_void.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_vreg.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_vreg_cbs.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_vreg_field.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\uvmsc\reg\uvm_vreg_field_cbs.h"
 				>
 			</File>
 		</Filter>

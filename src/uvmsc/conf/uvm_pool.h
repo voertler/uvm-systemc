@@ -52,9 +52,6 @@ template <typename KEY = int, typename T = uvm_void >
 class uvm_pool : public uvm_object
 {
  public:
-  friend class uvm_mem;
-  friend class uvm_reg_block;
-
   typedef uvm_pool<KEY,T> this_type;
 
   //--------------------------------------------------------------------------

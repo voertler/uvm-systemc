@@ -30,13 +30,6 @@
 ##   Created on: 2014-03-10
 ##
 ## --------------------------------------------------------------------------
-##
-##   SVN Version       :  $Revision: 510 $
-##   SVN last checkin  :  $Date: 2015-01-08 19:31:34 +0100 (Thu, 08 Jan 2015) $
-##   SVN checkin by    :  $Author: barnasconi $
-##   SVN Id            :  $Id: configure.ac 510 2015-01-08 18:31:34Z barnasconi $
-##
-## --------------------------------------------------------------------------
 
 AC_PREREQ(2.61)
 
@@ -553,8 +546,6 @@ AC_OUTPUT( Makefile
            src/uvmsc/phasing/Makefile
            src/uvmsc/policy/Makefile
            src/uvmsc/print/Makefile
-           src/uvmsc/reg/Makefile
-           src/uvmsc/reg/sequences/Makefile
            src/uvmsc/report/Makefile
            src/uvmsc/seq/Makefile
            src/uvmsc/tlm1/Makefile

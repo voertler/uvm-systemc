@@ -39,6 +39,7 @@
 #include "uvmsc/report/uvm_root_report_handler.h"
 #include "uvmsc/report/uvm_report_server.h"
 #include "uvmsc/report/uvm_report_catcher.h"
+#include "uvmsc/conf/uvm_resource_pool.h"
 
 using namespace sc_core;
 
