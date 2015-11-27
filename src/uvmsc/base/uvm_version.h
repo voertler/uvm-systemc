@@ -28,12 +28,7 @@ namespace uvm {
 
 /* UVM SystemC Release Date */
 #ifndef UVM_RELEASE_DATE
-#define UVM_RELEASE_DATE "2015-01-05"
-#endif
-
-/* UVM SystemC Version */
-#ifndef UVM_REVISION
-#define UVM_REVISION "509"
+#define UVM_RELEASE_DATE "2015-12-04"
 #endif
 
 /* UVM SystemC Version */
