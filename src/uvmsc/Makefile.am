@@ -12,7 +12,6 @@ SUBDIRS = \
 	phasing \
 	policy \
 	print \
-	reg \
 	report \
 	seq \
 	tlm1 
@@ -34,7 +33,6 @@ libuvm_systemc_la_LIBADD = \
 	phasing/libphasing.la \
 	policy/libpolicy.la \
 	print/libprint.la \
-	reg/libreg.la \
 	report/libreport.la \
 	seq/libseq.la
 

@@ -34,10 +34,6 @@
 #include "uvmsc/cb/uvm_callback.h"
 #include "uvmsc/macros/uvm_callback_defines.h"
 
-#include "uvmsc/reg/uvm_reg_cbs.h"
-#include "uvmsc/reg/uvm_vreg_cbs.h"
-#include "uvmsc/reg/uvm_vreg_field_cbs.h"
-
 namespace uvm {
 
 
