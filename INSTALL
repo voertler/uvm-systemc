@@ -23,6 +23,14 @@ UVM-SystemC was tested on the following Linux platform:
 
     o 64-bit Linux (x86_64) (RedHat Enterprise Linux 6) with
       GNU C++ compiler versions gcc-4.4.7 and gcc-4.8.1
+    o 64-bit Linux (x86_64) (CentOS 6.7) with
+      GNU C++ compiler version gcc-4.4.7
+    o 64-bit Linux (x86_64) (Ubuntu 14.04) with
+      GNU C++ compiler version gcc-4.8.4
+    o 64-bit Linux (x86_64) (Ubuntu 15.04) with
+      GNU C++ compiler version gcc-4.9.2
+    o 64-bit Linux (x86_64) (Ubuntu 15.10) with
+      GNU C++ compiler version gcc-5.2.1
 
 An installation of UVM-SystemC on other, related platforms may be
 possible as well.
