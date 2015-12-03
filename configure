@@ -17173,7 +17173,7 @@ fi
 
 
 
-ac_config_files="$ac_config_files Makefile src/Makefile src/uvmsc/Makefile src/uvmsc/uvm-systemc.pc src/uvmsc/base/Makefile src/uvmsc/cb/Makefile src/uvmsc/comps/Makefile src/uvmsc/conf/Makefile src/uvmsc/dpi/Makefile src/uvmsc/factory/Makefile src/uvmsc/macros/Makefile src/uvmsc/misc/Makefile src/uvmsc/phasing/Makefile src/uvmsc/policy/Makefile src/uvmsc/print/Makefile src/uvmsc/reg/Makefile src/uvmsc/reg/sequences/Makefile src/uvmsc/report/Makefile src/uvmsc/seq/Makefile src/uvmsc/tlm1/Makefile examples/Makefile examples/uvmsc/Makefile docs/Makefile docs/uvmsc/doxygen/Doxyfile"
+ac_config_files="$ac_config_files Makefile src/Makefile src/uvmsc/Makefile src/uvmsc/uvm-systemc.pc src/uvmsc/base/Makefile src/uvmsc/cb/Makefile src/uvmsc/comps/Makefile src/uvmsc/conf/Makefile src/uvmsc/dpi/Makefile src/uvmsc/factory/Makefile src/uvmsc/macros/Makefile src/uvmsc/misc/Makefile src/uvmsc/phasing/Makefile src/uvmsc/policy/Makefile src/uvmsc/print/Makefile src/uvmsc/report/Makefile src/uvmsc/seq/Makefile src/uvmsc/tlm1/Makefile examples/Makefile examples/uvmsc/Makefile docs/Makefile docs/uvmsc/doxygen/Doxyfile"
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -18206,8 +18206,6 @@ do
     "src/uvmsc/phasing/Makefile") CONFIG_FILES="$CONFIG_FILES src/uvmsc/phasing/Makefile" ;;
     "src/uvmsc/policy/Makefile") CONFIG_FILES="$CONFIG_FILES src/uvmsc/policy/Makefile" ;;
     "src/uvmsc/print/Makefile") CONFIG_FILES="$CONFIG_FILES src/uvmsc/print/Makefile" ;;
-    "src/uvmsc/reg/Makefile") CONFIG_FILES="$CONFIG_FILES src/uvmsc/reg/Makefile" ;;
-    "src/uvmsc/reg/sequences/Makefile") CONFIG_FILES="$CONFIG_FILES src/uvmsc/reg/sequences/Makefile" ;;
     "src/uvmsc/report/Makefile") CONFIG_FILES="$CONFIG_FILES src/uvmsc/report/Makefile" ;;
     "src/uvmsc/seq/Makefile") CONFIG_FILES="$CONFIG_FILES src/uvmsc/seq/Makefile" ;;
     "src/uvmsc/tlm1/Makefile") CONFIG_FILES="$CONFIG_FILES src/uvmsc/tlm1/Makefile" ;;
