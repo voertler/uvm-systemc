@@ -332,13 +332,21 @@ UVM-SystemC was tested on the following Windows platforms:
 An installation of UVM-SystemC on other, related platforms may be
 possible as well.
     
+Set the following environment variable(s) under Windows:
+
+     Variable: SYSTEMC
+     Value   : c:\my\path\to\systemc-2.3.1\msvc80
+     
+     Variable: UVMSYSTEMC
+     Value   : c:\my\path\to\uvm-systemc-1.0-alpha1\msvc80
+
 
 Microsoft Visual C++ 2005 (compiler version 8.0) or later
 =========================================================
 
 The root directory contains two subdirectories: 'msvc80' and
 'examples'.
-
+     
 The 'msvc80' subdirectory 'uvmsc' contains the project and workspace files to
 compile the 'uvm-systemc.lib' library. Double-click on the 'uvm-systemc.sln'
 file to launch Visual C++ 2005 with the workspace file. The workspace file
