@@ -53,5 +53,6 @@
 #include "uvmsc/reg/uvm_hdl_path_concat.h"
 
 #include "uvmsc/reg/sequences/uvm_reg_bit_bash_seq.h"
+#include "uvmsc/reg/sequences/uvm_reg_mem_hdl_paths_seq.h"
 
 #endif /* UVM_REG_LAYER_H_ */

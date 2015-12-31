@@ -36,6 +36,7 @@
 
 #include "uvmsc/base/uvm_object_globals.h"
 #include "uvmsc/base/uvm_object.h"
+#include "uvmsc/base/uvm_root.h"
 
 using namespace sc_core;
 
@@ -181,7 +182,7 @@ const char* uvm_apprepend_name[] = {
 };
 
 //----------------------------------------------------------------------
-// Global function: uvm_separator
+// Global function: uvm_flatten_name
 //
 // Implementation defined
 //----------------------------------------------------------------------
@@ -385,5 +386,17 @@ std::string uvm_sformatf(const char* format, ...)
   va_end(argptr);
   return std::string(s);
 }
+
+//----------------------------------------------------------------------
+// Global function: enable_hdl_access
+//
+//! Implementation defined
+//----------------------------------------------------------------------
+
+void enable_hdl_access(sc_core::sc_object* dut)
+{
+  uvm_root::get()->m_hdl_obj = dut;
+}
+
 
 } /* namespace uvm */

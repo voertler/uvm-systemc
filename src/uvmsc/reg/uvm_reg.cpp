@@ -37,6 +37,7 @@
 #include "uvmsc/reg/uvm_reg_frontdoor.h"
 #include "uvmsc/reg/uvm_reg_cbs.h"
 #include "uvmsc/conf/uvm_object_string_pool.h"
+#include "uvmsc/macros/uvm_message_defines.h"
 
 namespace uvm {
 
@@ -70,7 +71,8 @@ unsigned int uvm_reg::m_max_size = 0;
 
 uvm_reg::uvm_reg( const std::string& name,
                   unsigned int n_bits,
-                  int has_coverage) : uvm_object(name)
+                  int has_coverage)
+: uvm_object(name)
 {
   m_locked = false;
   m_parent = NULL;
@@ -104,7 +106,8 @@ uvm_reg::uvm_reg( const std::string& name,
   m_is_locked_by_field = false;
   m_backdoor = NULL;
 
-  m_hdl_paths_pool = new uvm_object_string_pool< uvm_queue<uvm_hdl_path_concat>* >("hdl_paths");
+  //m_hdl_paths_pool = new uvm_object_string_pool< uvm_queue<uvm_hdl_path_concat*>* >("hdl_paths");
+  m_hdl_paths_pool.clear();
 
   m_update_in_progress = false;
 }
@@ -551,7 +554,8 @@ void uvm_reg::set( uvm_reg_data_t value,
   m_lineno = lineno;
 
   for( unsigned int i = 0; i < m_fields.size(); i++ )
-  { uvm_reg_data_t val = (value >> m_fields[i]->get_lsb_pos()) &
+  {
+    uvm_reg_data_t val = (value >> m_fields[i]->get_lsb_pos()) &
       ((1 << m_fields[i]->get_n_bits()) - 1);
     m_fields[i]->set(val);
   }
@@ -1294,28 +1298,30 @@ uvm_reg_backdoor* uvm_reg::get_backdoor( bool inherited ) const
 //! for the specified design abstraction.
 //----------------------------------------------------------------------
 
-void uvm_reg::clear_hdl_path( std::string kind )
+void uvm_reg::clear_hdl_path( const std::string& kind )
 {
-  if (kind == "ALL")
+  std::string lkind = kind;
+
+  if (lkind == "ALL")
   {
-    m_hdl_paths_pool = new uvm_object_string_pool<uvm_queue<uvm_hdl_path_concat>* >("hdl_paths");
+    m_hdl_paths_pool.clear();
     return;
   }
 
-  if (kind.empty()) {
+  if (lkind.empty()) {
     if (m_regfile_parent != NULL)
-      kind = m_regfile_parent->get_default_hdl_path();
+      lkind = m_regfile_parent->get_default_hdl_path();
     else
-      kind = m_parent->get_default_hdl_path();
+      lkind = m_parent->get_default_hdl_path();
   }
 
-  if (!m_hdl_paths_pool->exists(kind))
+  if (m_hdl_paths_pool.find(lkind) == m_hdl_paths_pool.end())
   {
-    UVM_WARNING("RegModel", "Unknown HDL Abstraction '" + kind + "'");
+    UVM_WARNING("RegModel", "Unknown HDL Abstraction '" + lkind + "'");
     return;
   }
 
-  m_hdl_paths_pool->do_delete(kind);
+  m_hdl_paths_pool.erase(lkind);
 }
 
 //----------------------------------------------------------------------
@@ -1350,12 +1356,16 @@ void uvm_reg::clear_hdl_path( std::string kind )
 void uvm_reg::add_hdl_path( std::vector<uvm_hdl_path_slice> slices,
                             const std::string& kind )
 {
-  /* TODO concat hdl path
-    uvm_queue<uvm_hdl_path_concat>* paths = m_hdl_paths_pool->get(kind);
-    uvm_hdl_path_concat* concat = new uvm_hdl_path_concat();
-    concat->set(slices);
-    paths->push_back(concat);
-    */
+  std::vector<uvm_hdl_path_concat> paths;
+
+  if (m_hdl_paths_pool.find(kind) != m_hdl_paths_pool.end())
+    paths = m_hdl_paths_pool.find(kind)->second;
+
+  uvm_hdl_path_concat concat;
+  concat.set(slices);
+  paths.push_back(concat);
+
+  m_hdl_paths_pool[kind] = paths;
 }
 
 //----------------------------------------------------------------------
@@ -1373,20 +1383,25 @@ void uvm_reg::add_hdl_path_slice( const std::string& name,
                                   bool first,
                                   const std::string& kind )
 {
-  /* TODO add concat HDL
-  uvm_queue<uvm_hdl_path_concat>* paths = m_hdl_paths_pool->get(kind);
+  std::vector<uvm_hdl_path_concat> paths;
+
+  if (m_hdl_paths_pool.find(kind) != m_hdl_paths_pool.end())
+    paths = m_hdl_paths_pool.find(kind)->second;
+
   uvm_hdl_path_concat concat;
 
   if (first || paths.size() == 0)
   {
-      concat = new();
-  paths.push_back(concat);
+    concat.add_path(name, offset, size);
+    paths.push_back(concat);
   }
   else
-    concat = paths.get(paths.size()-1);
-
-  concat.add_path(name, offset, size);
-  */
+  {
+    concat = paths[paths.size()-1];
+    concat.add_path(name, offset, size);
+    paths[paths.size()-1] = concat;
+  }
+  m_hdl_paths_pool[kind] = paths;
 }
 
 //----------------------------------------------------------------------
@@ -1401,7 +1416,7 @@ void uvm_reg::add_hdl_path_slice( const std::string& name,
 
 bool uvm_reg::has_hdl_path( const std::string& kind ) const
 {
-  std::string kindl;
+  std::string kindl = kind;
 
   if (kind.empty())
   {
@@ -1411,7 +1426,7 @@ bool uvm_reg::has_hdl_path( const std::string& kind ) const
       kindl = m_parent->get_default_hdl_path();
   }
 
-  return m_hdl_paths_pool->exists(kindl);
+  return (m_hdl_paths_pool.find(kindl) != m_hdl_paths_pool.end() ); // exists
 }
 
 //----------------------------------------------------------------------
@@ -1430,28 +1445,28 @@ bool uvm_reg::has_hdl_path( const std::string& kind ) const
 
 void uvm_reg::get_hdl_path( std::vector<uvm_hdl_path_concat>& paths,
                             const std::string& kind ) const
-{/*TODO:unsave code - uvm_queue needs a pointer type for <T>, otherwise convert2string can't be called in umv_queue.h(400+409)
-  uvm_queue<uvm_hdl_path_concat>* hdl_paths;
+{
+  std::vector<uvm_hdl_path_concat> hdl_paths;
+
+  std::string lkind = kind;
 
   if (kind.empty())
   {
      if (m_regfile_parent != NULL)
-        kind = m_regfile_parent->get_default_hdl_path();
+        lkind = m_regfile_parent->get_default_hdl_path();
      else
-        kind = m_parent->get_default_hdl_path();
+        lkind = m_parent->get_default_hdl_path();
   }
 
-  if (!has_hdl_path(kind))
+  if (!has_hdl_path(lkind))
   {
     UVM_ERROR("RegModel",
-       "Register does not have hdl path defined for abstraction '" + kind + "'");
+       "Register does not have HDL path defined for abstraction '" + lkind + "'");
     return;
   }
 
-  hdl_paths = m_hdl_paths_pool->get(kind);
-
-  for (int i=0; i<hdl_paths->size(); i++)
-     paths.push_back(hdl_paths->get(i));*/
+  if (m_hdl_paths_pool.find(lkind) != m_hdl_paths_pool.end())
+    paths = m_hdl_paths_pool.find(lkind)->second;
 }
 
 //----------------------------------------------------------------------
@@ -1465,11 +1480,14 @@ void uvm_reg::get_hdl_path_kinds( std::vector<std::string>& kinds ) const
   std::string kind;
   kinds.clear(); // delete all elements
 
-  if (!m_hdl_paths_pool->first(kind))
+  if (m_hdl_paths_pool.size() == 0)
     return;
-  do
+
+  for ( m_hdl_paths_pool_itT it = m_hdl_paths_pool.begin(); it != m_hdl_paths_pool.end(); it++)
+  {
+    kind = it->first;
     kinds.push_back(kind);
-  while (m_hdl_paths_pool->next(kind));
+  }
 }
 
 //----------------------------------------------------------------------
@@ -1492,55 +1510,56 @@ void uvm_reg::get_full_hdl_path( std::vector<uvm_hdl_path_concat>& paths,
                                  const std::string& kind,
                                  const std::string& separator ) const
 {
-  /* TODO hdl path support
+  std::string lkind = kind;
 
   if (kind.empty())
   {
     if (m_regfile_parent != NULL)
-      kind = m_regfile_parent->get_default_hdl_path();
+      lkind = m_regfile_parent->get_default_hdl_path();
     else
-      kind = m_parent->get_default_hdl_path();
+      lkind = m_parent->get_default_hdl_path();
   }
 
-  if (!has_hdl_path(kind))
+  if (!has_hdl_path(lkind))
   {
     UVM_ERROR("RegModel",
        "Register " + get_full_name() +
-       " does not have hdl path defined for abstraction '"  + kind + "'");
+       " does not have HDL path defined for abstraction '"  + lkind + "'");
     return;
   }
 
-  uvm_queue<uvm_hdl_path_concat>* hdl_paths = m_hdl_paths_pool->get(kind);
+  std::vector<uvm_hdl_path_concat> hdl_paths;
+
+  if (m_hdl_paths_pool.find(lkind) != m_hdl_paths_pool.end())
+    hdl_paths = m_hdl_paths_pool.find(lkind)->second;
+
   std::vector<std::string> parent_paths;
 
   if (m_regfile_parent != NULL)
-    m_regfile_parent->get_full_hdl_path(parent_paths, kind, separator);
+    m_regfile_parent->get_full_hdl_path(parent_paths, lkind, separator);
   else
-    m_parent->get_full_hdl_path(parent_paths, kind, separator);
+    m_parent->get_full_hdl_path(parent_paths, lkind, separator);
 
-  for(int i = 0; i < hdl_paths->size(); i++)
+  for(unsigned int i = 0; i < hdl_paths.size(); i++)
   {
-    uvm_hdl_path_concat* hdl_concat = hdl_paths->get(i);
+    uvm_hdl_path_concat hdl_concat = hdl_paths[i];
 
-    for( unsigned int j =0; j < parent_paths.size(); j++ )
+    for( unsigned int j = 0; j < parent_paths.size(); j++ )
     {
+      uvm_hdl_path_concat t;
 
-      uvm_hdl_path_concat t = new;
-
-      foreach (hdl_concat.slices[k])
+      for( unsigned int k = 0; k < hdl_concat.slices.size(); k++)
       {
         if (hdl_concat.slices[k].path.empty())
           t.add_path(parent_paths[j]);
         else
-          t.add_path({ parent_paths[j], separator, hdl_concat.slices[k].path },
+          t.add_path( parent_paths[j] + separator + hdl_concat.slices[k].path,
               hdl_concat.slices[k].offset,
               hdl_concat.slices[k].size);
       }
       paths.push_back(t);
-
     }
   }
-  */
 }
 
 //----------------------------------------------------------------------

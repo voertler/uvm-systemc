@@ -1,7 +1,8 @@
 include $(top_srcdir)/config/Make-rules
 
 H_FILES = \
-	uvm_reg_bit_bash_seq.h
+	uvm_reg_bit_bash_seq.h \
+	uvm_reg_mem_hdl_paths_seq.h
 
 NO_H_FILES = 
 

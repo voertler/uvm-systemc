@@ -95,9 +95,9 @@ std::string uvm_hdl_concat2string( uvm_hdl_path_concat concat )
       concat.slices[0].size == -1)
     return concat.slices[0].path;
 
-  for( int i = 0; concat.slices.size(); i++ )
+  for( unsigned int i = 0; i < concat.slices.size(); i++ )
   {
-    uvm_hdl_path_slice slice=concat.slices[i];
+    uvm_hdl_path_slice slice = concat.slices[i];
 
     image << ((i == 0) ? "" : ", ")
           << slice.path;

@@ -45,7 +45,7 @@ uvm_reg_file::uvm_reg_file( const std::string& name ) : uvm_object(name)
   m_parent = NULL;
   m_rf = NULL;
   m_default_hdl_path = "RTL";
-  m_hdl_paths_pool = new uvm_object_string_pool<uvm_queue<std::string>* >("hdl_paths");
+  m_hdl_paths_pool.clear();
 }
 
 //----------------------------------------------------------------------
@@ -162,30 +162,31 @@ uvm_reg_file* uvm_reg_file::get_regfile() const
 //! for the specified design abstraction.
 //----------------------------------------------------------------------
 
-void uvm_reg_file::clear_hdl_path( std::string kind )
+void uvm_reg_file::clear_hdl_path( const std::string& kind )
 {
-  if (kind == "ALL")
+  std::string lkind = kind;
+
+  if (lkind == "ALL")
   {
-    delete m_hdl_paths_pool;
-    m_hdl_paths_pool = new uvm_object_string_pool<uvm_queue<std::string>* >("hdl_paths");
+    m_hdl_paths_pool.clear();
     return;
   }
 
-  if (kind.empty())
+  if (lkind.empty())
   {
     if (m_rf != NULL)
-      kind = m_rf->get_default_hdl_path();
+      lkind = m_rf->get_default_hdl_path();
     else
-      kind = m_parent->get_default_hdl_path();
+      lkind = m_parent->get_default_hdl_path();
   }
 
-  if (!m_hdl_paths_pool->exists(kind))
+  if (m_hdl_paths_pool.find(lkind) == m_hdl_paths_pool.end())
   {
-    UVM_WARNING("RegModel", "Unknown HDL Abstraction '" + kind + "'");
+    UVM_WARNING("RegModel", "Unknown HDL Abstraction '" + lkind + "'");
     return;
   }
 
-  m_hdl_paths_pool->do_delete(kind);
+  m_hdl_paths_pool.erase(lkind);
 }
 
 //----------------------------------------------------------------------
@@ -201,13 +202,13 @@ void uvm_reg_file::clear_hdl_path( std::string kind )
 
 void uvm_reg_file::add_hdl_path( const std::string& path, const std::string& kind )
 {
-/*TODO:unsave code - uvm_queue needs a pointer type for <T>, otherwise convert2string can't be called in umv_queue.h(400+409)
-  uvm_queue<std::string>* paths;
+  std::vector<std::string> paths;
 
-  paths = m_hdl_paths_pool->get(kind);
+  if (m_hdl_paths_pool.find(kind) != m_hdl_paths_pool.end())
+    paths = m_hdl_paths_pool.find(kind)->second;
 
-  paths->push_back(path);
-  */
+  paths.push_back(path);
+  m_hdl_paths_pool[kind] = paths;
 }
 
 //----------------------------------------------------------------------
@@ -224,17 +225,19 @@ void uvm_reg_file::add_hdl_path( const std::string& path, const std::string& kin
 //! for this register file is used.
 //----------------------------------------------------------------------
 
-bool uvm_reg_file::has_hdl_path( std::string kind ) const
+bool uvm_reg_file::has_hdl_path( const std::string& kind ) const
 {
-  if (kind.empty())
+  std::string lkind = kind;
+
+  if (lkind.empty())
   {
-     if (m_rf != NULL)
-        kind = m_rf->get_default_hdl_path();
-     else
-        kind = m_parent->get_default_hdl_path();
+    if (m_rf != NULL)
+      lkind = m_rf->get_default_hdl_path();
+    else
+      lkind = m_parent->get_default_hdl_path();
   }
 
-  return m_hdl_paths_pool->exists(kind);
+  return (m_hdl_paths_pool.find(lkind) != m_hdl_paths_pool.end() );
 }
 
 //----------------------------------------------------------------------
@@ -255,28 +258,25 @@ bool uvm_reg_file::has_hdl_path( std::string kind ) const
 
 void uvm_reg_file::get_hdl_path( std::vector<std::string>& paths, const std::string& kind ) const
 {
-	/*TODO:unsave code - uvm_queue needs a pointer type for <T>, otherwise convert2string can't be called in umv_queue.h(400+409)
-  uvm_queue<std::string>* hdl_paths;
+  std::string lkind = kind;
 
-  if (kind.empty())
+  if (lkind.empty())
   {
-     if (m_rf != NULL)
-        kind = m_rf->get_default_hdl_path();
-     else
-        kind = m_parent->get_default_hdl_path();
+    if (m_rf != NULL)
+       lkind = m_rf->get_default_hdl_path();
+    else
+       lkind = m_parent->get_default_hdl_path();
   }
 
-  if (!has_hdl_path(kind))
+  if (!has_hdl_path(lkind))
   {
-    UVM_ERROR("RegModel","Register does not have hdl path defined for abstraction '"  + kind + "'");
+    UVM_ERROR("RegModel",
+      "Register does not have HDL path defined for abstraction '" + lkind + "'");
     return;
   }
 
-  hdl_paths = m_hdl_paths_pool->get(kind);
-
-  for (int i = 0; i < hdl_paths->size(); i++ )
-    paths.push_back(hdl_paths->get(i));
-    */
+  if ( m_hdl_paths_pool.find(lkind) != m_hdl_paths_pool.end())
+    paths = m_hdl_paths_pool.find(lkind)->second;
 }
 
 //----------------------------------------------------------------------
@@ -312,10 +312,11 @@ void uvm_reg_file::get_full_hdl_path( std::vector<std::string>& paths,
     return;
   }
 
-  paths.clear(); // delete all entries
+  std::vector<std::string> hdl_paths;
 
-  /*TODO:unsave code - uvm_queue needs a pointer type for <T>, otherwise convert2string can't be called in umv_queue.h(400+409)
-  uvm_queue<std::string>* hdl_paths = m_hdl_paths_pool->get(kind);
+  if (m_hdl_paths_pool.find(kind) != m_hdl_paths_pool.end())
+    hdl_paths = m_hdl_paths_pool.find(kind)->second;
+
   std::vector<std::string> parent_paths;
 
   if (m_rf != NULL)
@@ -324,15 +325,14 @@ void uvm_reg_file::get_full_hdl_path( std::vector<std::string>& paths,
     if (m_parent != NULL)
       m_parent->get_full_hdl_path(parent_paths, kind, separator);
 
-  for ( int i = 0; i < hdl_paths->size(); i++ )
+  for ( unsigned int i = 0; i < hdl_paths.size(); i++ )
   {
-    std::string hdl_path = hdl_paths->get(i);
+    std::string hdl_path = hdl_paths[i];
 
     if (parent_paths.size() == 0)
     {
       if (!hdl_path.empty())
         paths.push_back(hdl_path);
-
       continue;
     }
 
@@ -344,7 +344,6 @@ void uvm_reg_file::get_full_hdl_path( std::vector<std::string>& paths,
         paths.push_back( parent_paths[j] + separator + hdl_path );
     }
   }
-  */
 }
 
 //----------------------------------------------------------------------
@@ -413,8 +412,7 @@ std::string uvm_reg_file::get_default_hdl_path() const
 
 uvm_reg_file::~uvm_reg_file()
 {
-  if (m_hdl_paths_pool)
-    delete m_hdl_paths_pool;
+  m_hdl_paths_pool.clear();
 }
 
 //----------------------------------------------------------------------

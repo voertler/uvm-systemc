@@ -97,7 +97,7 @@ uvm_mem::uvm_mem( const std::string& name,
   m_lineno = 0;
   m_vregs.clear();
 
-  m_hdl_paths_pool = new uvm_object_string_pool< uvm_queue<uvm_hdl_path_concat>* >("hdl_paths");
+  m_hdl_paths_pool.clear();
 }
 
 //----------------------------------------------------------------------
@@ -1134,24 +1134,26 @@ uvm_reg_backdoor* uvm_mem::get_backdoor( bool inherited )
 //! for the specified design abstraction.
 //----------------------------------------------------------------------
 
-void uvm_mem::clear_hdl_path( std::string kind )
+void uvm_mem::clear_hdl_path( const std::string& kind )
 {
-  if (kind == "ALL")
+  std::string lkind;
+
+  if (lkind == "ALL")
   {
-    m_hdl_paths_pool = new uvm_object_string_pool<uvm_queue<uvm_hdl_path_concat>* >("hdl_paths");
+    m_hdl_paths_pool.clear();
     return;
   }
 
-  if (kind.empty())
-    kind = m_parent->get_default_hdl_path();
+  if (lkind.empty())
+    lkind = m_parent->get_default_hdl_path();
 
-  if (!m_hdl_paths_pool->exists(kind))
+  if (m_hdl_paths_pool.find(lkind) == m_hdl_paths_pool.end())
   {
-    UVM_WARNING("RegModel","Unknown HDL Abstraction '" + kind + "'");
+    UVM_WARNING("RegModel", "Unknown HDL Abstraction '" + lkind + "'");
     return;
   }
 
-  m_hdl_paths_pool->do_delete(kind);
+  m_hdl_paths_pool.erase(lkind);
 }
 
 //----------------------------------------------------------------------
@@ -1167,13 +1169,17 @@ void uvm_mem::clear_hdl_path( std::string kind )
 
 void uvm_mem::add_hdl_path( std::vector<uvm_hdl_path_slice> slices, const std::string& kind )
 {
-  /* TODO concat slices...
-  uvm_queue<uvm_hdl_path_concat> paths = m_hdl_paths_pool->get(kind);
-  uvm_hdl_path_concat concat;
+  std::vector<uvm_hdl_path_concat> paths;
 
+  if (m_hdl_paths_pool.find(kind) != m_hdl_paths_pool.end())
+    paths = m_hdl_paths_pool.find(kind)->second;
+
+  uvm_hdl_path_concat concat;
   concat.set(slices);
   paths.push_back(concat);
-  */
+
+  m_hdl_paths_pool[kind] = paths;
+
 }
 
 //----------------------------------------------------------------------
@@ -1191,19 +1197,25 @@ void uvm_mem::add_hdl_path_slice( const std::string& name,
                                   bool first,
                                   const std::string& kind )
 {
-  /* TODO add concat HDL
-  uvm_queue<uvm_hdl_path_concat>* paths = m_hdl_paths_pool->get(kind);
+  std::vector<uvm_hdl_path_concat> paths;
+
+  if (m_hdl_paths_pool.find(kind) != m_hdl_paths_pool.end())
+    paths = m_hdl_paths_pool.find(kind)->second;
+
   uvm_hdl_path_concat concat;
 
   if (first || paths.size() == 0)
   {
+    concat.add_path(name, offset, size);
     paths.push_back(concat);
   }
   else
-    concat = paths.get(paths.size()-1);
-
-  concat.add_path(name, offset, size);
-  */
+  {
+    concat = paths[paths.size()-1];
+    concat.add_path(name, offset, size);
+    paths[paths.size()-1] = concat;
+  }
+  m_hdl_paths_pool[kind] = paths;
 }
 
 //----------------------------------------------------------------------
@@ -1216,12 +1228,14 @@ void uvm_mem::add_hdl_path_slice( const std::string& name,
 //! uses the default design abstraction specified for the parent block.
 //----------------------------------------------------------------------
 
-bool uvm_mem::has_hdl_path( std::string kind ) const
+bool uvm_mem::has_hdl_path( const std::string& kind ) const
 {
-  if (kind.empty())
-    kind = m_parent->get_default_hdl_path();
+  std::string kindl = kind;
 
-  return m_hdl_paths_pool->exists(kind);
+  if (kindl.empty())
+    kindl = m_parent->get_default_hdl_path();
+
+  return (m_hdl_paths_pool.find(kindl) != m_hdl_paths_pool.end() ); // exists
 }
 
 //----------------------------------------------------------------------
@@ -1240,26 +1254,23 @@ bool uvm_mem::has_hdl_path( std::string kind ) const
 
 void uvm_mem::get_hdl_path( std::vector<uvm_hdl_path_concat>& paths,
                             const std::string& kind ) const
-{/*TODO:unsave code - uvm_queue needs a pointer type for <T>, otherwise convert2string can't be called in umv_queue.h(400+409)
-  uvm_queue<uvm_hdl_path_concat>* hdl_paths;
+{
+  std::vector<uvm_hdl_path_concat> hdl_paths;
 
-  if (kind.empty())
-     kind = m_parent->get_default_hdl_path();
+  std::string lkind = kind;
 
-  if (!has_hdl_path(kind))
+  if (lkind.empty())
+    lkind = m_parent->get_default_hdl_path();
+
+  if (!has_hdl_path(lkind))
   {
     UVM_ERROR("RegModel",
-      "Memory does not have hdl path defined for abstraction '" + kind + "'");
+       "Memory does not have HDL path defined for abstraction '" + lkind + "'");
     return;
   }
 
-  hdl_paths = m_hdl_paths_pool->get(kind);
-
-  for (int i = 0; i < hdl_paths->size(); i++)
-  {
-     uvm_hdl_path_concat t = hdl_paths->get(i);
-     paths.push_back(t);
-  }*/
+  if (m_hdl_paths_pool.find(lkind) != m_hdl_paths_pool.end())
+    paths = m_hdl_paths_pool.find(lkind)->second;
 }
 
 //----------------------------------------------------------------------
@@ -1282,44 +1293,48 @@ void uvm_mem::get_full_hdl_path( std::vector<uvm_hdl_path_concat>& paths,
                                  const std::string& kind,
                                  const std::string& separator ) const
 {
-  /* TODO hdl path support
-   if (kind.empty())
-      kind = m_parent->get_default_hdl_path();
+  std::string lkind = kind;
 
-   if (!has_hdl_path(kind))
-   {
-      UVM_ERROR("RegModel",
-         "Memory does not have hdl path defined for abstraction '" + kind + "'");
-      return;
-   }
+  if (lkind.empty())
+    lkind = m_parent->get_default_hdl_path();
 
-      uvm_queue<uvm_hdl_path_concat>* hdl_paths = m_hdl_paths_pool->get(kind);
-      std::vector<string> parent_paths;
+  if (!has_hdl_path(lkind))
+  {
+    UVM_ERROR("RegModel",
+       "Memory " + get_full_name() +
+       " does not have HDL path defined for abstraction '"  + lkind + "'");
+    return;
+  }
 
-      m_parent->get_full_hdl_path(parent_paths, kind, separator);
+  std::vector<uvm_hdl_path_concat> hdl_paths;
 
-      for( int i = 0; i < hdl_paths->size(); i++ )
+  if (m_hdl_paths_pool.find(lkind) != m_hdl_paths_pool.end())
+    hdl_paths = m_hdl_paths_pool.find(lkind)->second;
+
+  std::vector<std::string> parent_paths;
+
+  m_parent->get_full_hdl_path(parent_paths, lkind, separator);
+
+  for(unsigned int i = 0; i < hdl_paths.size(); i++)
+  {
+    uvm_hdl_path_concat hdl_concat = hdl_paths[i];
+
+    for( unsigned int j = 0; j < parent_paths.size(); j++ )
+    {
+      uvm_hdl_path_concat t;
+
+      for( unsigned int k = 0; k < hdl_concat.slices.size(); k++)
       {
-         uvm_hdl_path_concat* hdl_concat = hdl_paths->get(i);
-
-         for( unsigned int j = 0; j < parent_paths.size(); j++ )
-         {
-            uvm_hdl_path_concat* t =  new uvm_hdl_path_concat();
-
-            // TODO implement correct slices mechanism
-            for( unsigned int k = 0; k < hdl_concat->slices.size(); k++ )
-            {
-               if (hdl_concat->slices[k].path.empty())
-                  t->add_path(parent_paths[j]);
-               else
-                  t->add_path( parent_paths[j] + separator + hdl_concat->slices[k].path,
-                             hdl_concat->slices[k].offset,
-                             hdl_concat->slices[k].size);
-            }
-            paths.push_back(t);
-         }
+        if (hdl_concat.slices[k].path.empty())
+          t.add_path(parent_paths[j]);
+        else
+          t.add_path( parent_paths[j] + separator + hdl_concat.slices[k].path,
+              hdl_concat.slices[k].offset,
+              hdl_concat.slices[k].size);
       }
-      */
+      paths.push_back(t);
+    }
+  }
 }
 
 //----------------------------------------------------------------------
@@ -1331,15 +1346,16 @@ void uvm_mem::get_full_hdl_path( std::vector<uvm_hdl_path_concat>& paths,
 void uvm_mem::get_hdl_path_kinds( std::vector<std::string>& kinds ) const
 {
   std::string kind;
+  kinds.clear(); // delete all elements
 
-  kinds.clear(); // delete old entries first
-
-  if (!m_hdl_paths_pool->first(kind))
+  if (m_hdl_paths_pool.size() == 0)
     return;
 
-  do
+  for ( m_hdl_paths_pool_itT it = m_hdl_paths_pool.begin(); it != m_hdl_paths_pool.end(); it++)
+  {
+    kind = it->first;
     kinds.push_back(kind);
-  while (m_hdl_paths_pool->next(kind));
+  }
 }
 
 //----------------------------------------------------------------------

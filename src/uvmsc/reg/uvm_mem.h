@@ -233,7 +233,7 @@ class uvm_mem : public uvm_object
 
   uvm_reg_backdoor* get_backdoor( bool inherited = true );
 
-  void clear_hdl_path( std::string kind = "RTL" );
+  void clear_hdl_path( const std::string& kind = "RTL" );
 
   void add_hdl_path( std::vector<uvm_hdl_path_slice> slices,
                      const std::string& kind = "RTL" );
@@ -244,7 +244,7 @@ class uvm_mem : public uvm_object
                            bool first = false,
                            const std::string& kind = "RTL" );
 
-  bool has_hdl_path( std::string kind = "" ) const;
+  bool has_hdl_path( const std::string& kind = "" ) const;
 
   void get_hdl_path( std::vector<uvm_hdl_path_concat>& paths,
                      const std::string& kind = "" ) const;
@@ -391,7 +391,8 @@ class uvm_mem : public uvm_object
   typedef m_vregs_t::iterator m_vregs_itt;
   mutable m_vregs_t m_vregs;
 
-  uvm_object_string_pool <uvm_queue <uvm_hdl_path_concat>* >* m_hdl_paths_pool;
+  std::map<std::string, std::vector<uvm_hdl_path_concat> > m_hdl_paths_pool;
+  typedef std::map<std::string, std::vector<uvm_hdl_path_concat> >::const_iterator m_hdl_paths_pool_itT;
 
   static int unsigned  m_max_size;
 
