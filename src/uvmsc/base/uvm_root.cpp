@@ -125,7 +125,8 @@ uvm_root::~uvm_root()
 
 void uvm_root::run_test( const std::string& test_name )
 {
-  //disable SystemC messages
+  // disable SystemC messages
+  // TODO make switch available to enable SystemC messages
   sc_core::sc_report_handler::set_actions("/OSCI/SystemC", sc_core::SC_DO_NOTHING);
 
   // check and register test object
@@ -154,9 +155,9 @@ void uvm_root::run_test( const std::string& test_name )
     exit(1); // TODO exit program with error code?
   }
 
-  // TODO: move post-run phases to here? Currently they are part of the simulation
-
-  if (m_finish_on_completion)
+  // Stop simulation when phasing is completed and finish_on_completion is set
+  if ( m_finish_on_completion && (sc_core::sc_get_status() == sc_core::SC_RUNNING ||
+      sc_core::sc_get_status() == sc_core::SC_PAUSED) )
     sc_core::sc_stop();
 }
 

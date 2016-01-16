@@ -1872,6 +1872,10 @@ void uvm_phase::m_run_phases()
 
   uvm_report_server* rs = uvm_report_server::get_server();
   rs->summarize();
+
+  // soft stop (pause) simulation; return sc_start
+  if ( sc_core::sc_get_status() == sc_core::SC_RUNNING || sc_core::sc_get_status() == sc_core::SC_PAUSED )
+    sc_core::sc_pause();
 }
 
 //----------------------------------------------------------------------
