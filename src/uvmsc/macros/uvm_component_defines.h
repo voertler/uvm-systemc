@@ -69,10 +69,7 @@
 #define M_UVM_COMPONENT_GET_TYPE_NAME_FUNC_PARAM(...) \
   virtual const std::string get_type_name() const { \
     return #__VA_ARGS__; \
-  } \
-  virtual const char* kind() const { \
-    return #__VA_ARGS__; \
-  } \
+  }
 
 
 #endif /* UVM_COMPONENT_DEFINES_H_ */

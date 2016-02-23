@@ -245,13 +245,8 @@ void uvm_sequencer_base::start_phase_sequence( uvm_phase& phase )
   }
   */
 
-  //fork
-  //{
-    //reseed this process for random stability
-    //process proc = process::self();
-    //proc.srandom(uvm_create_random_seed(seq.get_type_name(), this.get_full_name()));
-    seq->start(this, NULL);
-  //}
+  // launch default sequence as new process
+  sc_core::sc_spawn(sc_bind(&uvm_sequencer_base::m_start_default_seq_proc, this, seq));
 
 }
 
@@ -1293,5 +1288,16 @@ void uvm_sequencer_base::m_unlock_req( uvm_sequence_base* sequence_ptr )
   uvm_report_warning("SQRUNL", str.str(), UVM_NONE);
 }
 
+//----------------------------------------------------------------------
+// member function: m_start_default_seq_proc
+//
+// Implementation defined
+// Start default sequence as forked process
+//----------------------------------------------------------------------
+
+void uvm_sequencer_base::m_start_default_seq_proc(uvm_sequence_base* seq)
+{
+  seq->start(this, NULL);
+}
 
 } /* namespace uvm */

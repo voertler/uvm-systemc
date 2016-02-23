@@ -138,6 +138,8 @@ public:
   void m_lock_req( uvm_sequence_base* sequence_ptr, bool lock );
   void m_unlock_req( uvm_sequence_base* sequence_ptr );
 
+  void m_start_default_seq_proc(uvm_sequence_base* seq);
+
   // member variables
 
   int m_wait_for_item_sequence_id;
