@@ -254,7 +254,7 @@ class uvm_reg_block : public uvm_object
   uvm_reg_backdoor* get_backdoor( bool inherited = true ) const;
 
   void set_backdoor( uvm_reg_backdoor* bkdr,
-		  const std::string& fname = "",
+                     const std::string& fname = "",
                      int lineno = 0);
 
   void clear_hdl_path( std::string kind = "RTL" );
@@ -366,7 +366,10 @@ class uvm_reg_block : public uvm_object
   std::string m_default_hdl_path; // default set to "RTL" in constructor
   uvm_reg_backdoor* m_backdoor;
 
-  uvm_object_string_pool<uvm_queue<std::string>* >* m_hdl_paths_pool;
+  //uvm_object_string_pool<uvm_queue<std::string>* >* m_hdl_paths_pool;
+
+  std::map<std::string, std::vector<std::string> > m_hdl_paths_pool;
+  typedef std::map<std::string, std::vector<std::string> > m_hdl_paths_pool_itT;
 
   std::map<std::string, std::string> m_root_hdl_paths;
 

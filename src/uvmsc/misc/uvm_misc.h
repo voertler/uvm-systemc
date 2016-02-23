@@ -21,6 +21,7 @@
 #define UVM_MISC_H_
 
 #include <cstdarg>
+#include <systemc>
 
 #include "uvmsc/misc/uvm_scope_stack.h"
 #include "uvmsc/misc/uvm_status_container.h"
@@ -70,6 +71,8 @@ sc_dt::sc_uint<32> uvm_realtobits( float val );
 float uvm_bitstoreal( const sc_dt::sc_uint<32>& val );
 
 std::string uvm_sformatf(const char* format, ...);
+
+void enable_hdl_access(sc_core::sc_object* dut);
 
 } // namespace uvm
 

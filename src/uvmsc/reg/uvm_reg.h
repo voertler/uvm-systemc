@@ -236,12 +236,12 @@ class uvm_reg : public uvm_object
   //--------------------------------------------------------------------------
 
   void set_backdoor( uvm_reg_backdoor* bkdr,
-		  	  	  	 const std::string& fname = "",
+                     const std::string& fname = "",
                      int lineno = 0 );
 
   uvm_reg_backdoor* get_backdoor( bool inherited = true ) const;
 
-  void clear_hdl_path( std::string kind = "RTL" );
+  void clear_hdl_path( const std::string& kind = "RTL" );
 
   void add_hdl_path( std::vector<uvm_hdl_path_slice> slices,
                      const std::string& kind = "RTL" );
@@ -446,7 +446,10 @@ class uvm_reg : public uvm_object
 
   static unsigned int m_max_size;
 
-  uvm_object_string_pool< uvm_queue<uvm_hdl_path_concat>* >* m_hdl_paths_pool;
+  //uvm_object_string_pool< uvm_queue<uvm_hdl_path_concat*> >* m_hdl_paths_pool;
+
+  std::map<std::string, std::vector<uvm_hdl_path_concat> > m_hdl_paths_pool;
+  typedef std::map<std::string, std::vector<uvm_hdl_path_concat> >::const_iterator m_hdl_paths_pool_itT;
 
  protected:
   bool m_update_in_progress;

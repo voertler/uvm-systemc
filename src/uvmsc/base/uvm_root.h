@@ -95,6 +95,8 @@ class uvm_root : public uvm_component
 
   ~uvm_root(); // destructor
 
+  sc_core::sc_object* m_hdl_obj; // TODO enable HDL access more elegant
+
  private:
 
   // other data members

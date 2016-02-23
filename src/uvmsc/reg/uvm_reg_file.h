@@ -86,17 +86,17 @@ class uvm_reg_file : public uvm_object
   // Group: Backdoor
   //--------------------------------------------------------------------
 
-  void clear_hdl_path( std::string kind = "RTL" );
+  void clear_hdl_path( const std::string& kind = "RTL" );
 
   void add_hdl_path( const std::string& path, const std::string& kind = "RTL" );
 
-  bool has_hdl_path( std::string kind = "" ) const;
+  bool has_hdl_path( const std::string& kind = "" ) const;
 
   void get_hdl_path( std::vector<std::string>& paths, const std::string& kind = "" ) const;
 
   void get_full_hdl_path( std::vector<std::string>& paths,
-		  	  	  	      std::string kind = "",
-		  	  	  	      const std::string& separator = "." ) const;
+                          std::string kind = "",
+                          const std::string& separator = "." ) const;
 
   void set_default_hdl_path( std::string kind );
 
@@ -137,7 +137,7 @@ class uvm_reg_file : public uvm_object
 
   std::string m_default_hdl_path; // default set to "RTL" in constructor
 
-  uvm_object_string_pool<uvm_queue<std::string>* >* m_hdl_paths_pool;
+  std::map<std::string, std::vector<std::string> > m_hdl_paths_pool;
 
 }; // class uvm_reg_file
 
