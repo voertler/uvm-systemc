@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2013-2014 NXP B.V.
+//   Copyright 2013-2016 NXP B.V.
 //   Copyright 2004-2009 Synopsys, Inc.
 //   Copyright 2010 Mentor Graphics Corporation
 //   Copyright 2010 Cadence Design Systems, Inc.
@@ -22,8 +22,6 @@
 
 #ifndef UVM_REG_CBS_H_
 #define UVM_REG_CBS_H_
-
-#include <valarray>
 
 #include "uvmsc/cb/uvm_callback.h"
 #include "uvmsc/reg/uvm_reg_model.h"
@@ -64,9 +62,9 @@ class uvm_reg_cbs : public uvm_callback
                              uvm_path_e     path,
                              uvm_reg_map*   map ) {}
 
-  virtual void encode( std::valarray<uvm_reg_data_t>& data ) {}
+  virtual void encode( std::vector<uvm_reg_data_t>& data ) {}
 
-  virtual void decode( std::valarray<uvm_reg_data_t>& data ) {}
+  virtual void decode( std::vector<uvm_reg_data_t>& data ) {}
 
 }; // class uvm_reg_cbs
 

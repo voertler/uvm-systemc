@@ -1,7 +1,7 @@
 //----------------------------------------------------------------------
+//   Copyright 2013-2016 NXP B.V.
 //   Copyright 2004-2009 Synopsys, Inc.
 //   Copyright 2010 Mentor Graphics Corporation
-//   Copyright 2013 NXP B.V.
 //   All Rights Reserved Worldwide
 //
 //   Licensed under the Apache License, Version 2.0 (the
@@ -24,7 +24,6 @@
 
 #include <systemc>
 #include <list>
-#include <valarray>
 
 #include "uvmsc/macros/uvm_object_defines.h"
 #include "uvmsc/seq/uvm_sequence_item.h"
@@ -65,7 +64,7 @@ class uvm_reg_item : public uvm_sequence_item
   // note: we cannot use the kind variable name, as this is used in SystemC to report the type name of the object
   /*rand*/ uvm_access_e access_kind;      // TODO support random
 
-  /*rand*/ std::valarray<uvm_reg_data_t> value; // TODO support random
+  /*rand*/ std::vector<uvm_reg_data_t> value; // TODO support random
 
   /*rand*/ uvm_reg_addr_t offset;
 

@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2013-2015 NXP B.V.
+//   Copyright 2013-2016 NXP B.V.
 //   Copyright 2004-2009 Synopsys, Inc.
 //   Copyright 2010-2011 Mentor Graphics Corporation
 //   Copyright 2010-2011 Cadence Design Systems, Inc.
@@ -455,7 +455,7 @@ uvm_reg_addr_t uvm_reg::get_offset( uvm_reg_map* map ) const
 
 uvm_reg_addr_t uvm_reg::get_address( const uvm_reg_map* map ) const
 {
-   std::valarray<uvm_reg_addr_t> addr ;
+   std::vector<uvm_reg_addr_t> addr ;
    uvm_reg_addr_t a;
    get_addresses(addr, map);
    if (addr.size() > 0) { a = addr[0]; }
@@ -483,7 +483,7 @@ uvm_reg_addr_t uvm_reg::get_address( const uvm_reg_map* map ) const
 //! address map, an error message is issued.
 //----------------------------------------------------------------------
 
-int uvm_reg::get_addresses( std::valarray<uvm_reg_addr_t>& addr, const uvm_reg_map* map ) const
+int uvm_reg::get_addresses( std::vector<uvm_reg_addr_t>& addr, const uvm_reg_map* map ) const
 {
   uvm_reg_map_info* map_info;
 

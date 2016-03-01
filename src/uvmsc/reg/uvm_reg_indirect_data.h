@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-//   Copyright 2013-2014 NXP B.V.
+//   Copyright 2013-2016 NXP B.V.
 //   Copyright 2010 Synopsys, Inc.
 //   Copyright 2010 Cadence Design Systems, Inc.
 //   Copyright 2011 Mentor Graphics Corporation
@@ -24,7 +24,6 @@
 #define UVM_REG_INDIRECT_DATA_H_
 
 #include <systemc>
-#include <valarray>
 
 #include "uvmsc/reg/uvm_reg.h"
 #include "uvmsc/reg/uvm_reg_model.h"
@@ -64,7 +63,7 @@ public:
                          int has_cover );
 
   void configure( uvm_reg* idx,
-		  	  	  std::valarray<uvm_reg*> reg_a,
+                  std::vector<uvm_reg*> reg_a,
                   uvm_reg_block* blk_parent,
                   uvm_reg_file* regfile_parent = NULL );
 
@@ -159,7 +158,7 @@ public:
 
 protected:
    uvm_reg* m_idx;
-   std::valarray<uvm_reg*> m_tbl;
+   std::vector<uvm_reg*> m_tbl;
 
 
 }; // class uvm_reg_indirect_data

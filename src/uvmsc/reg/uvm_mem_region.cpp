@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2013-2014 NXP B.V.
+//   Copyright 2013-2016 NXP B.V.
 //   Copyright 2004-2009 Synopsys, Inc.
 //   Copyright 2010-2011 Mentor Graphics Corporation
 //   Copyright 2010 Cadence Design Systems, Inc.
@@ -255,7 +255,7 @@ void uvm_mem_region::read( uvm_status_e& status, // output
 
 void uvm_mem_region::burst_write( uvm_status_e& status, // output
                                   uvm_reg_addr_t offset,
-                                  std::valarray<uvm_reg_data_t> value,
+                                  std::vector<uvm_reg_data_t> value,
                                   uvm_path_e path,
                                   uvm_reg_map* map,
                                   uvm_sequence_base* parent,
@@ -312,7 +312,7 @@ void uvm_mem_region::burst_write( uvm_status_e& status, // output
 
 void uvm_mem_region::burst_read( uvm_status_e& status, // output
                                  uvm_reg_addr_t offset,
-                                 std::valarray<uvm_reg_data_t>& value, //output
+                                 std::vector<uvm_reg_data_t>& value, //output
                                  uvm_path_e path,
                                  uvm_reg_map* map,
                                  uvm_sequence_base* parent,

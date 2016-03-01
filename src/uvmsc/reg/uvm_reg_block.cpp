@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2013-2015 NXP B.V.
+//   Copyright 2013-2016 NXP B.V.
 //   Copyright 2004-2011 Synopsys, Inc.
 //   Copyright 2010-2011 Mentor Graphics Corporation
 //   Copyright 2010-2011 Cadence Design Systems, Inc.
@@ -2009,8 +2009,8 @@ std::string uvm_reg_block::convert2string() const
 {
   /* TODO
   std::ostringstream image;
-  std::valarray<std::string> maps;
-  std::valarray<std::string> blk_maps;
+  std::vector<std::string> maps;
+  std::vector<std::string> blk_maps;
   bool single_map;
   uvm_endianness_e endian;
   std::string prefix = "  ";

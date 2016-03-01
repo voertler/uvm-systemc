@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2013-2015 NXP B.V.
+//   Copyright 2013-2016 NXP B.V.
 //   Copyright 2004-2009 Synopsys, Inc.
 //   Copyright 2010-2011 Mentor Graphics Corporation
 //   Copyright 2010-2011 Cadence Design Systems, Inc.
@@ -25,7 +25,6 @@
 
 #include <systemc>
 #include <vector>
-#include <valarray>
 #include <map>
 #include <iostream>
 
@@ -125,7 +124,7 @@ class uvm_reg : public uvm_object
   virtual uvm_reg_addr_t get_address( const uvm_reg_map* map = NULL ) const;
 
   // TODO arguments swapped in UVM-SystemC compared to UVM-SV to enable defaults
-  virtual int get_addresses( std::valarray<uvm_reg_addr_t>& addr,
+  virtual int get_addresses( std::vector<uvm_reg_addr_t>& addr,
                              const uvm_reg_map* map = NULL ) const;
 
   //--------------------------------------------------------------------------
