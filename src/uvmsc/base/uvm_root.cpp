@@ -217,22 +217,37 @@ void uvm_root::set_timeout( const sc_core::sc_time& timeout, bool overridable)
 }
 
 //----------------------------------------------------------------------
-// member function: finish_on_completion
+// member function: set_finish_on_completion
 //
-//! The member function finish_on_completion shall define how simulation
-//! is finalized. If enabled, it shall execute all end_of_simulation
-//! callbacks of the UVM components involved. If disabled, simulation is
-//! finalized without calling these end_of_simulation callbacks. By default,
-//! the end_of_simulation callbacks are not executed, unless enabled by the
-//! application by calling this member function.
+//! The member function set_finish_on_completion shall define how
+//! simulation is finalized. If the application did not call this member
+//! function or if the argument enable is set to true, it shall execute
+//! all end_of_simulation callbacks of the UVM components involved and
+//! finish the simulation. If the argument enable is set to false, the
+//! simulation shall be finalized without calling the end_of_simulation
+//! callbacks.
 //! NOTE: An implementation may call the function sc_core::sc_stop as part
 //! of the finish_on_completion implementation to enforce finalization of
 //! the simulation following the SystemC execution semantics.
 //----------------------------------------------------------------------
 
-void uvm_root::finish_on_completion( bool enable  )
+void uvm_root::set_finish_on_completion( bool enable )
 {
   m_finish_on_completion = enable;
+}
+
+//----------------------------------------------------------------------
+// member function: get_finish_on_completion
+//
+//! The member function get_finish_on_completion shall return true if the
+//! application has not called member function set_finish_on_completion
+//! or if the member function was called with the argument enable as true;
+//! otherwise it shall return false.
+//----------------------------------------------------------------------
+
+bool uvm_root::get_finish_on_completion()
+{
+  return m_finish_on_completion;
 }
 
 //----------------------------------------------------------------------

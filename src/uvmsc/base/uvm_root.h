@@ -67,7 +67,9 @@ class uvm_root : public uvm_component
 
   void set_timeout( const sc_core::sc_time& timeout, bool overridable = true );
 
-  void finish_on_completion( bool enable = true );
+  void set_finish_on_completion( bool enable );
+
+  bool get_finish_on_completion();
 
   //--------------------------------------------------------------------
   // Group: Topology
