@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2013-2015 NXP B.V.
+//   Copyright 2013-2016 NXP B.V.
 //   Copyright 2004-2009 Synopsys, Inc.
 //   Copyright 2010-2011 Mentor Graphics Corporation
 //   Copyright 2010-2011 Cadence Design Systems, Inc.
@@ -606,7 +606,7 @@ uvm_reg_addr_t uvm_mem::get_offset( uvm_reg_addr_t offset,
 uvm_reg_addr_t uvm_mem::get_address( uvm_reg_addr_t offset,
                                      const uvm_reg_map* map ) const
 {
-  std::valarray<uvm_reg_addr_t> addr;
+  std::vector<uvm_reg_addr_t> addr;
   get_addresses(addr, map, offset);
   return addr[0];
 }
@@ -631,7 +631,7 @@ uvm_reg_addr_t uvm_mem::get_address( uvm_reg_addr_t offset,
 //! address map, an error message is issued.
 //----------------------------------------------------------------------
 
-int uvm_mem::get_addresses( std::valarray<uvm_reg_addr_t>& addr,
+int uvm_mem::get_addresses( std::vector<uvm_reg_addr_t>& addr,
                             const uvm_reg_map* map,
                             uvm_reg_addr_t offset ) const
 {
@@ -778,7 +778,7 @@ void uvm_mem::read( uvm_status_e& status, // output
 
 void uvm_mem::burst_write( uvm_status_e& status,
                            uvm_reg_addr_t offset,
-                           std::valarray<uvm_reg_data_t> value,
+                           std::vector<uvm_reg_data_t> value,
                            uvm_path_e path,
                            uvm_reg_map* map,
                            uvm_sequence_base* parent,
@@ -824,7 +824,7 @@ void uvm_mem::burst_write( uvm_status_e& status,
 
 void uvm_mem::burst_read( uvm_status_e& status, // output
                           uvm_reg_addr_t offset,
-                          std::valarray<uvm_reg_data_t>& value, // output
+                          std::vector<uvm_reg_data_t>& value, // output
                           uvm_path_e path,
                           uvm_reg_map* map,
                           uvm_sequence_base* parent,

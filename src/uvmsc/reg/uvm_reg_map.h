@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2013-2015 NXP B.V.
+//   Copyright 2013-2016 NXP B.V.
 //   Copyright 2004-2011 Synopsys, Inc.
 //   Copyright 2010-2011 Mentor Graphics Corporation
 //   Copyright 2010-2011 Cadence Design Systems, Inc.
@@ -25,7 +25,6 @@
 
 #include <systemc>
 #include <vector>
-#include <valarray>
 #include <map>
 
 #include "uvmsc/reg/uvm_reg.h"
@@ -51,7 +50,7 @@ class uvm_reg_map_info
   uvm_reg_field_access_e default_rights;
   std::string rights;
   bool unmapped;
-  std::valarray<uvm_reg_addr_t> addr;
+  std::vector<uvm_reg_addr_t> addr;
   uvm_reg_frontdoor* frontdoor;
   uvm_reg_map_addr_range mem_range;
 
@@ -181,7 +180,7 @@ public:
   virtual int get_physical_addresses( uvm_reg_addr_t base_addr,
                                       uvm_reg_addr_t mem_offset,
                                       unsigned int n_bytes,
-                                      std::valarray<uvm_reg_addr_t>& addr ) const;
+                                      std::vector<uvm_reg_addr_t>& addr ) const;
 
   virtual uvm_reg* get_reg_by_offset( uvm_reg_addr_t offset,
                                       bool read = true ) const;

@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2013-2015 NXP B.V.
+//   Copyright 2013-2016 NXP B.V.
 //   Copyright 2004-2009 Synopsys, Inc.
 //   Copyright 2010-2011 Mentor Graphics Corporation
 //   Copyright 2010-2011 Cadence Design Systems, Inc.
@@ -25,7 +25,6 @@
 
 #include <map>
 #include <vector>
-#include <valarray>
 
 #include "uvmsc/base/uvm_object.h"
 #include "uvmsc/conf/uvm_object_string_pool.h"
@@ -139,7 +138,7 @@ class uvm_mem : public uvm_object
                                       const uvm_reg_map* map = NULL ) const;
 
   // note: different argument order as in UVM-SV to respect defaults
-  virtual int get_addresses( std::valarray<uvm_reg_addr_t>& addr,
+  virtual int get_addresses( std::vector<uvm_reg_addr_t>& addr,
                              const uvm_reg_map* map = NULL,
                              uvm_reg_addr_t offset = 0 ) const;
 
@@ -172,7 +171,7 @@ class uvm_mem : public uvm_object
 
   virtual void burst_write( uvm_status_e& status, // output
                             uvm_reg_addr_t offset,
-                            std::valarray<uvm_reg_data_t> value,
+                            std::vector<uvm_reg_data_t> value,
                             uvm_path_e path = UVM_DEFAULT_PATH,
                             uvm_reg_map* map = NULL,
                             uvm_sequence_base* parent = NULL,
@@ -183,7 +182,7 @@ class uvm_mem : public uvm_object
 
   virtual void burst_read( uvm_status_e& status, // output
                            uvm_reg_addr_t offset,
-                           std::valarray<uvm_reg_data_t>& value,
+                           std::vector<uvm_reg_data_t>& value,
                            uvm_path_e path = UVM_DEFAULT_PATH,
                            uvm_reg_map* map = NULL,
                            uvm_sequence_base* parent = NULL,

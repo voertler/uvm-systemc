@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2013-2015 NXP B.V.
+//   Copyright 2013-2016 NXP B.V.
 //   Copyright 2004-2011 Synopsys, Inc.
 //   Copyright 2010-2011 Mentor Graphics Corporation
 //   Copyright 2010-2011 Cadence Design Systems, Inc.
@@ -24,6 +24,7 @@
 //----------------------------------------------------------------------
 
 #include <systemc>
+#include <vector>
 
 #include "uvmsc/reg/uvm_reg_map.h"
 #include "uvmsc/reg/uvm_reg_block.h"
@@ -809,17 +810,17 @@ void uvm_reg_map::get_virtual_fields( std::vector<uvm_vreg_field*>& fields,
 int uvm_reg_map::get_physical_addresses( uvm_reg_addr_t base_addr,
                                          uvm_reg_addr_t mem_offset,
                                          unsigned int n_bytes,
-                                         std::valarray<uvm_reg_addr_t>& addr ) const
+                                         std::vector<uvm_reg_addr_t>& addr ) const
 {
   unsigned int bus_width = get_n_bytes(UVM_NO_HIER);
   uvm_reg_map* up_map = NULL;
-  std::valarray<uvm_reg_addr_t> local_addr;
+  std::vector<uvm_reg_addr_t> local_addr;
   int multiplier = m_byte_addressing ? bus_width : 1;
 
   // TODO usage of the address map
   //addr = new [0];
 
-  std::valarray<uvm_reg_addr_t> addr2;
+  std::vector<uvm_reg_addr_t> addr2;
 
   if (n_bytes <= 0)
   {
@@ -901,7 +902,7 @@ int uvm_reg_map::get_physical_addresses( uvm_reg_addr_t base_addr,
   }
   else
   {
-    std::valarray<uvm_reg_addr_t> sys_addr;
+    std::vector<uvm_reg_addr_t> sys_addr;
     unsigned int w = bus_width;
 
     // Scale the consecutive local address in the system's granularity
@@ -921,7 +922,7 @@ int uvm_reg_map::get_physical_addresses( uvm_reg_addr_t base_addr,
           sys_addr);
 
       //TODO check eq addr = new [n + sys_addr.size()] (addr);
-      std::valarray<uvm_reg_addr_t> tmp(addr);
+      std::vector<uvm_reg_addr_t> tmp(addr);
       addr.resize(n + sys_addr.size()); // resize, values lost, needs to be assigned again
       addr = tmp;
 
@@ -1628,7 +1629,7 @@ void uvm_reg_map::m_set_reg_offset( uvm_reg* rg,
   uvm_reg_map_info* info   = m_regs_info[rg];
   uvm_reg_block*   blk     = get_parent();
   uvm_reg_map*     top_map = get_root_map();
-  std::valarray<uvm_reg_addr_t> addrs;
+  std::vector<uvm_reg_addr_t> addrs;
 
   // if block is not locked, m_init_address_map will resolve map when block is locked
   if (blk->is_locked())
@@ -1768,7 +1769,7 @@ void uvm_reg_map::m_set_mem_offset( uvm_mem* mem,
   uvm_reg_map_info* info   = m_mems_info[mem];
   uvm_reg_block*    blk     = get_parent();
   uvm_reg_map*      top_map = get_root_map();
-  std::valarray<uvm_reg_addr_t> addrs;
+  std::vector<uvm_reg_addr_t> addrs;
 
   // if block is not locked, m_init_address_map will resolve map when block is locked
   if (blk->is_locked())
@@ -1789,8 +1790,8 @@ void uvm_reg_map::m_set_mem_offset( uvm_mem* mem,
     // if we are remapping...
     if (!unmapped)
     {
-      std::valarray<uvm_reg_addr_t> addrs;
-      std::valarray<uvm_reg_addr_t> addrs_max;
+      std::vector<uvm_reg_addr_t> addrs;
+      std::vector<uvm_reg_addr_t> addrs_max;
       uvm_reg_addr_t min, max, min2, max2;
       unsigned long stride;
 
@@ -2054,7 +2055,7 @@ void uvm_reg_map::m_get_bus_info( uvm_reg_item* rw,
 
 void uvm_reg_map::m_init_address_map()
 {
-  int unsigned bus_width = 0;
+  unsigned int bus_width = 0;
 
   uvm_reg_map* top_map = get_root_map();
 
@@ -2079,10 +2080,11 @@ void uvm_reg_map::m_init_address_map()
   {
     uvm_reg* rg = (*it).first;
     m_regs_info[rg]->is_initialized = true;
+
     if (!m_regs_info[rg]->unmapped)
     {
       std::string rg_acc = rg->m_get_fields_access(this);
-      std::valarray<uvm_reg_addr_t> addrs;
+      std::vector<uvm_reg_addr_t> addrs;
 
       bus_width = get_physical_addresses( m_regs_info[rg]->offset, 0, rg->get_n_bytes(), addrs);
 
@@ -2128,11 +2130,12 @@ void uvm_reg_map::m_init_address_map()
         else
           top_map->m_regs_by_offset[addr] = rg;
 
-        for( m_mems_by_offset_itt it = m_mems_by_offset.begin();
-             it != m_mems_by_offset.end();
-             it++ )
+        for( m_mems_by_offset_itt ita = m_mems_by_offset.begin();
+             ita != m_mems_by_offset.end();
+             ita++ )
         {
-          uvm_reg_map_addr_range* range = (*it).first;
+          uvm_reg_map_addr_range* range = (*ita).first;
+
           if (addr >= range->min && addr <= range->max)
           {
             std::ostringstream str;
@@ -2162,14 +2165,16 @@ void uvm_reg_map::m_init_address_map()
        it++ )
   {
     uvm_mem* mem = (*it).first;
+
     if (!m_mems_info[mem]->unmapped)
     {
-      std::valarray<uvm_reg_addr_t> addrs;
-      std::valarray<uvm_reg_addr_t> addrs_max;
+      std::vector<uvm_reg_addr_t> addrs;
+      std::vector<uvm_reg_addr_t> addrs_max;
       uvm_reg_addr_t min, max, min2, max2;
       unsigned long stride;
 
       bus_width = get_physical_addresses( m_mems_info[mem]->offset, 0, mem->get_n_bytes(), addrs);
+
       min = (addrs[0] < addrs[addrs.size()-1]) ? addrs[0] : addrs[addrs.size()-1];
       min2 = addrs[0];
 
@@ -2183,11 +2188,12 @@ void uvm_reg_map::m_init_address_map()
       // address interval between consecutive mem offsets
       stride = (max2 - min2)/(mem->get_size()-1);
 
-      for( m_regs_by_offset_itt it = top_map->m_regs_by_offset.begin();
-          it != top_map->m_regs_by_offset.end();
-          it++ )
+      for( m_regs_by_offset_itt ita = top_map->m_regs_by_offset.begin();
+          ita != top_map->m_regs_by_offset.end();
+          ita++ )
       {
-        uvm_reg_addr_t reg_addr = (*it).first;
+        uvm_reg_addr_t reg_addr = (*ita).first;
+
         if (reg_addr >= min && reg_addr <= max)
         {
           std::ostringstream str;
@@ -2203,11 +2209,11 @@ void uvm_reg_map::m_init_address_map()
         }
       }
 
-      for( m_mems_by_offset_itt it = m_mems_by_offset.begin();
-           it != m_mems_by_offset.end();
-           it++ )
+      for( m_mems_by_offset_itt itb = m_mems_by_offset.begin();
+           itb != m_mems_by_offset.end();
+           itb++ )
       {
-        uvm_reg_map_addr_range* range = (*it).first;
+        uvm_reg_map_addr_range* range = (*itb).first;
 
         if ( ( min <= range->max && max >= range->max ) ||
              ( min <= range->min && max >= range->min ) ||

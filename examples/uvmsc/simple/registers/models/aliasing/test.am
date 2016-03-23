@@ -1,6 +1,6 @@
 examples_TESTS += simple/registers/models/aliasing/test
 
-examples_XFAIL_TESTS += simple/registers/models/aliasing/test
+examples_XFAIL_TESTS +=
 
 examples_BUILD += \
 	$(simple_registers_models_aliasing_BUILD)
