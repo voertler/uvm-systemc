@@ -337,12 +337,13 @@ void uvm_callbacks<T,CB>::add( T* obj, uvm_callback* cb, uvm_apprepend ordering 
         "Callback object cannot be registered with object " +
         nm + " because " + nm + " is not derived from type uvm_object.", UVM_NONE);
     else
-      q = m_base_inst->m_pool->get(bobj);
+        if (m_base_inst->m_pool->find(bobj) != m_base_inst->m_pool->end())
+            q = m_base_inst->m_pool->at(bobj);
 
     if (q == NULL)
     {
       q = new uvm_queue<uvm_callback*>();
-      m_base_inst->m_pool->add(bobj,q);
+      m_base_inst->m_pool->insert(std::pair<uvm_object*, uvm_queue<uvm_callback*>* >(bobj,q));
     }
 
     if(q->size() == 0)
@@ -479,7 +480,8 @@ void uvm_callbacks<T,CB>::do_delete( T* obj, uvm_callback* cb )
 
     UVM_CB_TRACE_NOOBJ(cb, "Delete callback " + cb->get_name() + " from object %0s "
                    + obj->get_full_name() )
-    q = m_base_inst->m_pool->get(b_obj);
+    if (m_base_inst->m_pool->find(b_obj) != m_base_inst->m_pool->end())
+        q = m_base_inst->m_pool->at(b_obj);
     pos = uvm_typed_callbacks<T>::m_cb_find(q, cb);
     if(pos != -1)
     {
@@ -776,18 +778,18 @@ void uvm_callbacks<T,CB>::m_get_q( uvm_queue<uvm_callback*>*& q, T* obj )
   if (bobj == NULL)
     UVM_FATAL("CB/INTERNAL","Cannot retrieve callback queue.");
 
-  if(!m_base_inst->m_pool->exists(bobj)) //no instance specific
+  if(m_base_inst->m_pool->find(bobj) == m_base_inst->m_pool->end()) //no instance specific
   {
     q = ((bobj == NULL) ? uvm_typed_callbacks<T>::m_t_inst->m_tw_cb_q : uvm_typed_callbacks<T>::m_t_inst->m_get_tw_cb_q(bobj));
   }
   else
   {
-    q = m_base_inst->m_pool->get(bobj);
+    q = m_base_inst->m_pool->at(bobj);
 
     if(q == NULL)
     {
       q = new uvm_queue<uvm_callback*>();
-      m_base_inst->m_pool->add(bobj, q);
+      m_base_inst->m_pool->insert(std::pair<uvm_object*, uvm_queue<uvm_callback*>* >(bobj, q));
     }
   }
 }

@@ -25,7 +25,6 @@
 
 #include <vector>
 
-#include "uvmsc/conf/uvm_pool.h"
 #include "uvmsc/conf/uvm_queue.h"
 #include "uvmsc/misc/uvm_misc.h"
 #include "uvmsc/cb/uvm_typeid.h"
@@ -85,7 +84,7 @@ class uvm_callbacks_base : public uvm_object
   std::vector<uvm_typeid_base*> m_derived_types; // one to many relation
 
   static bool m_tracing;
-  static uvm_pool<uvm_object*, uvm_queue<uvm_callback*>* >* m_pool;
+  static std::map<uvm_object*, uvm_queue<uvm_callback*>* >* m_pool;
 
   static uvm_callbacks_base* m_b_inst;
 
