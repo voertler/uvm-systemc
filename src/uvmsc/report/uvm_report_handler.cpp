@@ -470,7 +470,7 @@ void uvm_report_handler::set_severity_action( uvm_severity severity,
 void uvm_report_handler::set_id_action( const std::string& id,
                                         uvm_action action )
 {
-  id_actions.insert(std::pair<std::string, uvm_action>(id, action));
+  id_actions[id] = action;
 }
 
 //----------------------------------------------------------------------------
@@ -487,7 +487,7 @@ void uvm_report_handler::set_severity_id_action( uvm_severity severity,
   //  severity_id_actions[severity] = new;
 
   // TODO check - no need to new item?
-  severity_id_actions[severity].insert(std::pair<std::string, uvm_action>(id,action));
+  severity_id_actions[severity][id] = action;
 }
 
 //----------------------------------------------------------------------------
@@ -499,7 +499,7 @@ void uvm_report_handler::set_severity_id_action( uvm_severity severity,
 void uvm_report_handler::set_id_verbosity( const std::string& id,
                                            int verbosity )
 {
-  id_verbosities.insert(std::pair<std::string, int>(id, verbosity));
+  id_verbosities[id] = verbosity;
 }
 
 //----------------------------------------------------------------------------
@@ -516,7 +516,7 @@ void uvm_report_handler::set_severity_id_verbosity( uvm_severity severity,
   //  severity_id_verbosities[severity] = new;
 
   // TODO check - no need to new item?
-  severity_id_verbosities[severity].insert(std::pair<std::string, int>(id, verbosity));
+  severity_id_verbosities[severity][id] = verbosity;
 }
 
 //----------------------------------------------------------------------------
@@ -551,7 +551,7 @@ void uvm_report_handler::set_severity_file( uvm_severity severity,
 void uvm_report_handler::set_id_file( const std::string& id,
                                       UVM_FILE file )
 {
-  id_file_handles.insert(std::pair<std::string, UVM_FILE>(id, file));
+  id_file_handles[id] = file;
 }
 
 //----------------------------------------------------------------------------
@@ -568,7 +568,7 @@ void uvm_report_handler::set_severity_id_file( uvm_severity severity,
 //    severity_id_file_handles[severity] = new;
 
   // TODO check - no need to new item?
-  severity_id_file_handles[severity].insert(std::pair<std::string, UVM_FILE>(id, file));
+  severity_id_file_handles[severity][id] = file;
 }
 
 //----------------------------------------------------------------------------
@@ -580,7 +580,7 @@ void uvm_report_handler::set_severity_id_file( uvm_severity severity,
 void uvm_report_handler::set_severity_override( uvm_severity cur_severity,
                                                 uvm_severity new_severity)
 {
-  sev_overrides.insert(std::pair<uvm_severity, uvm_severity>(cur_severity, new_severity));
+  sev_overrides[cur_severity] = new_severity;
 }
 
 //----------------------------------------------------------------------------
@@ -601,7 +601,7 @@ void uvm_report_handler::set_severity_id_override( uvm_severity cur_severity,
   //  sev_id_overrides[id] = new;
 
   // TODO check - no need to new item?
-  sev_id_overrides[id].insert(std::pair<uvm_severity, uvm_severity>(cur_severity, new_severity));
+  sev_id_overrides[id][cur_severity] = new_severity;
 }
 
 

@@ -248,7 +248,7 @@ void uvm_typed_callbacks<T>::m_add_tw_cbs( uvm_callback* cb, uvm_apprepend order
           if(q == NULL)
           {
               q = new uvm_queue<uvm_callback*>();
-              m_t_inst->m_pool->insert(std::pair<uvm_object*, uvm_queue<uvm_callback*>* >(obj,q));
+              (*m_t_inst->m_pool)[obj] = q;
           }
           if( m_cb_find(q, cb) == -1 )
           {
@@ -303,7 +303,7 @@ bool uvm_typed_callbacks<T>::m_delete_tw_cbs( uvm_callback* cb )
       if( q == NULL )
       {
           q = new uvm_queue<uvm_callback*>(); // TODO pass name as argument?
-          m_t_inst->m_pool->insert(std::pair<uvm_object*, uvm_queue<uvm_callback*>* >(obj,q));
+          (*m_t_inst->m_pool)[obj] = q;
       }
       pos = m_cb_find(q,cb);
       if(pos != -1)
@@ -403,7 +403,7 @@ void uvm_typed_callbacks<T>::display( T* obj )
                 if (q == NULL)
                 {
                     q = new uvm_queue<uvm_callback*>(); // TODO pass name as argument?
-                    m_t_inst->m_pool->insert(std::pair<uvm_object*, uvm_queue<uvm_callback*>* >(bobj,q));
+                    (*m_t_inst->m_pool)[bobj] = q;
                 }
                 for(int i = 0; i < q->size(); ++i)
                 {
@@ -438,7 +438,7 @@ void uvm_typed_callbacks<T>::display( T* obj )
       if(q == NULL)
       {
         q = new uvm_queue<uvm_callback*>(); // TODO pass name as argument?
-        m_t_inst->m_pool->insert(std::pair<uvm_object*, uvm_queue<uvm_callback*>* >(bobj,q));
+        (*m_t_inst->m_pool)[bobj] = q;
       }
 
       for( int i = 0; i < q->size(); ++i )

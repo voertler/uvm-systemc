@@ -250,7 +250,7 @@ void uvm_config_db<T>::set( uvm_component* cntxt,
       std::string key = loc_instname+field_name;
       m_rsc[cntxt] = pool;
       r = new uvm_resource<T>(field_name, loc_instname);
-      pool.insert(std::pair<std::string, uvm_resource<T>* >(key, r));
+      pool[key] = r;
     }
     else
     {

@@ -343,7 +343,7 @@ void uvm_callbacks<T,CB>::add( T* obj, uvm_callback* cb, uvm_apprepend ordering 
     if (q == NULL)
     {
       q = new uvm_queue<uvm_callback*>();
-      m_base_inst->m_pool->insert(std::pair<uvm_object*, uvm_queue<uvm_callback*>* >(bobj,q));
+      (*m_base_inst->m_pool)[bobj] = q;
     }
 
     if(q->size() == 0)
@@ -789,7 +789,7 @@ void uvm_callbacks<T,CB>::m_get_q( uvm_queue<uvm_callback*>*& q, T* obj )
     if(q == NULL)
     {
       q = new uvm_queue<uvm_callback*>();
-      m_base_inst->m_pool->insert(std::pair<uvm_object*, uvm_queue<uvm_callback*>* >(bobj, q));
+      (*m_base_inst->m_pool)[bobj] = q;
     }
   }
 }
