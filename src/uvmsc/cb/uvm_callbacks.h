@@ -337,8 +337,7 @@ void uvm_callbacks<T,CB>::add( T* obj, uvm_callback* cb, uvm_apprepend ordering 
         "Callback object cannot be registered with object " +
         nm + " because " + nm + " is not derived from type uvm_object.", UVM_NONE);
     else
-        if (m_base_inst->m_pool->find(bobj) != m_base_inst->m_pool->end())
-            q = m_base_inst->m_pool->at(bobj);
+        q = (*m_base_inst->m_pool)[bobj];
 
     if (q == NULL)
     {
@@ -480,8 +479,7 @@ void uvm_callbacks<T,CB>::do_delete( T* obj, uvm_callback* cb )
 
     UVM_CB_TRACE_NOOBJ(cb, "Delete callback " + cb->get_name() + " from object %0s "
                    + obj->get_full_name() )
-    if (m_base_inst->m_pool->find(b_obj) != m_base_inst->m_pool->end())
-        q = m_base_inst->m_pool->at(b_obj);
+    q = (*m_base_inst->m_pool)[b_obj];
     pos = uvm_typed_callbacks<T>::m_cb_find(q, cb);
     if(pos != -1)
     {
@@ -784,7 +782,7 @@ void uvm_callbacks<T,CB>::m_get_q( uvm_queue<uvm_callback*>*& q, T* obj )
   }
   else
   {
-    q = m_base_inst->m_pool->at(bobj);
+    q = (*m_base_inst->m_pool)[bobj];
 
     if(q == NULL)
     {

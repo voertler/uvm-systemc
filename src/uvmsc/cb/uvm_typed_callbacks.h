@@ -434,7 +434,7 @@ void uvm_typed_callbacks<T>::display( T* obj )
     }
     if(m_t_inst->m_pool->find(bobj) != m_t_inst->m_pool->end())
     {
-      q = m_t_inst->m_pool->at(bobj);
+      q = (*m_t_inst->m_pool)[bobj];
       if(q == NULL)
       {
         q = new uvm_queue<uvm_callback*>(); // TODO pass name as argument?

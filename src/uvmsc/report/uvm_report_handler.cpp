@@ -66,11 +66,11 @@ int uvm_report_handler::get_verbosity_level( uvm_severity severity,
   {
     array = severity_id_verbosities[severity];
     if(array.find(loc_id) != array.end())
-      return array.at(loc_id);
+      return array[loc_id];
   }
 
   if(id_verbosities.find(loc_id) != id_verbosities.end())
-    return id_verbosities.at(loc_id);
+    return id_verbosities[loc_id];
 
   return m_max_verbosity_level;
 }
@@ -96,11 +96,11 @@ uvm_action uvm_report_handler::get_action( uvm_severity severity,
   {
     array = severity_id_actions[severity];
     if(array.find(loc_id) != array.end())
-      return array.at(loc_id);
+      return array[loc_id];
   }
 
   if(id_actions.find(loc_id) != id_actions.end())
-    return id_actions.at(loc_id);
+    return id_actions[loc_id];
 
   return severity_actions[severity];
 }
@@ -128,7 +128,7 @@ UVM_FILE uvm_report_handler::get_file_handle( uvm_severity severity,
 
   if (id_file_handles.find(loc_id) != id_file_handles.end())
   {
-    file = id_file_handles.at(loc_id);
+    file = id_file_handles[loc_id];
     if (file != 0)
       return file;
   }
@@ -170,12 +170,12 @@ void uvm_report_handler::report( uvm_severity severity,
   if(sev_id_overrides.find(id) != sev_id_overrides.end()) //exists
   {
     if(sev_id_overrides.find(id)->second.find(severity) != sev_id_overrides.find(id)->second.end())
-      severity = sev_id_overrides.find(id)->second.at(severity);
+      severity = sev_id_overrides.find(id)->second[severity];
   }
   else
   {
     if(sev_overrides.find(severity) != sev_overrides.end())
-       severity = sev_overrides.at(severity);
+       severity = sev_overrides[severity];
   }
 
   srvr->report( severity, name, id, message, verbosity_level,
@@ -405,11 +405,11 @@ UVM_FILE uvm_report_handler::get_severity_id_file( uvm_severity severity,
   {
     array = severity_id_file_handles[severity];
     if(array.find(loc_id) != array.end())
-      return array.at(loc_id);
+      return array[loc_id];
   }
 
   if(id_file_handles.find(loc_id) != id_file_handles.end())
-    return id_file_handles.at(loc_id);
+    return id_file_handles[loc_id];
 
   if(severity_file_handles.find(severity) != severity_file_handles.end()) // exists
     return severity_file_handles[severity];
