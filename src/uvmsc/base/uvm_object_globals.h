@@ -473,7 +473,7 @@ typedef enum {
 //----------------------------------------------------------------------
 
 #ifndef UVM_MAX_STREAMBITS
-#define UVM_MAX_STREAMBITS 64 //FIXME: should be 4096, but that is not supported by SystemC
+#define UVM_MAX_STREAMBITS 4096
 #endif
 
 #define UVM_STREAMBITS UVM_MAX_STREAMBITS;
@@ -496,8 +496,23 @@ typedef enum {
 // These are implementation defined
 //----------------------------------------------------------------------
 
-typedef sc_dt::sc_uint<64> uvm_bitstream_t; // FIXME: should be 4096,
-                                           // but that is not supported by SystemC
+template<bool reg>
+struct uvm_bitstream_t_select;
+
+template<>
+struct uvm_bitstream_t_select<true> // registers always smaller than 64-bit
+{
+  typedef sc_dt::sc_uint<UVM_MAX_STREAMBITS> type;
+};
+
+template<>
+struct uvm_bitstream_t_select<false> // arbitrary sized registers
+{
+  typedef sc_dt::sc_biguint<UVM_MAX_STREAMBITS> type;
+};
+
+typedef uvm_bitstream_t_select<((UVM_MAX_STREAMBITS)<=64)>::type uvm_bitstream_t;
+
 
 typedef sc_dt::sc_uint<64> uvm_integral_t;
 
