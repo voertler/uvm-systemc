@@ -46,10 +46,28 @@ namespace uvm {
 // Typedef: uvm_reg_data_t
 //
 //! 2-state data value with <`UVM_REG_DATA_WIDTH> bits
+//!
+//! Depending on the size of UVM_REG_DATA_WIDTH, the appropriate
+//! SystemC data type is selected
 //----------------------------------------------------------------------
 
-//typedef sc_dt::sc_bv<UVM_REG_DATA_WIDTH> uvm_reg_data_t ;
-typedef sc_dt::sc_uint<UVM_REG_DATA_WIDTH> uvm_reg_data_t ;
+template<bool reg>
+struct uvm_reg_data_t_select;
+
+template<>
+struct uvm_reg_data_t_select<true> // registers always smaller than 64-bit
+{
+  typedef sc_dt::sc_uint<UVM_REG_DATA_WIDTH> type;
+};
+
+template<>
+struct uvm_reg_data_t_select<false> // arbitrary sized registers
+{
+  typedef sc_dt::sc_biguint<UVM_REG_DATA_WIDTH> type;
+};
+
+typedef uvm_reg_data_t_select<((UVM_REG_DATA_WIDTH)<=64)>::type uvm_reg_data_t ;
+
 
 //----------------------------------------------------------------------
 // Typedef: uvm_reg_data_logic_t
