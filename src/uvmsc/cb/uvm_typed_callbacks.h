@@ -31,7 +31,6 @@
 
 #include "uvmsc/macros/uvm_message_defines.h"
 #include "uvmsc/conf/uvm_queue.h"
-#include "uvmsc/conf/uvm_pool.h"
 #include "uvmsc/cb/uvm_callbacks_base.h"
 #include "uvmsc/cb/uvm_callback.h"
 
@@ -240,32 +239,28 @@ void uvm_typed_callbacks<T>::m_add_tw_cbs( uvm_callback* cb, uvm_apprepend order
      else
         m_t_inst->m_tw_cb_q->push_front(cb);
   }
-  if( m_t_inst->m_pool->first(obj) )
-  {
-    do
-    {
-      me = dynamic_cast<T*>(obj);
-      if( me != NULL )
-      {
-        q = m_t_inst->m_pool->get(obj);
-        if(q == NULL)
-        {
-          q = new uvm_queue<uvm_callback*>();
-          m_t_inst->m_pool->add(obj,q);
-        }
-        if( m_cb_find(q, cb) == -1 )
-        {
-          if (!warned)
-             m_cb_find_name(q, cb->get_name(), "object instance " + me->get_full_name());
 
-          if(ordering == UVM_APPEND)
-            q->push_back(cb);
-          else
-            q->push_front(cb);
-        }
+  for (std::map<uvm_object*, uvm_queue<uvm_callback*>* >::iterator it = m_t_inst->m_pool->begin(); it != m_t_inst->m_pool->end(); ++it) {
+      obj = it->first;
+      me = dynamic_cast<T*>(obj);
+      if( me != NULL ) {
+          q = it->second;
+          if(q == NULL)
+          {
+              q = new uvm_queue<uvm_callback*>();
+              (*m_t_inst->m_pool)[obj] = q;
+          }
+          if( m_cb_find(q, cb) == -1 )
+          {
+              if (!warned)
+                  m_cb_find_name(q, cb->get_name(), "object instance " + me->get_full_name());
+
+              if(ordering == UVM_APPEND)
+                  q->push_back(cb);
+              else
+                  q->push_front(cb);
+          }
       }
-    }
-    while( m_t_inst->m_pool->next(obj) );
   }
 
   for( unsigned int i = 0; i < m_derived_types.size(); i++)
@@ -302,24 +297,20 @@ bool uvm_typed_callbacks<T>::m_delete_tw_cbs( uvm_callback* cb )
     del_tw_cbs = true;
   }
 
-  if( m_t_inst->m_pool->first(obj) )
-  {
-    do
-    {
-      q = m_t_inst->m_pool->get(obj);
+  for (std::map<uvm_object*, uvm_queue<uvm_callback*>* >::iterator it = m_t_inst->m_pool->begin(); it != m_t_inst->m_pool->end(); ++it) {
+      obj = it->first;
+      q = it->second;
       if( q == NULL )
       {
-        q = new uvm_queue<uvm_callback*>(); // TODO pass name as argument?
-        m_t_inst->m_pool->add(obj,q);
+          q = new uvm_queue<uvm_callback*>(); // TODO pass name as argument?
+          (*m_t_inst->m_pool)[obj] = q;
       }
       pos = m_cb_find(q,cb);
       if(pos != -1)
       {
-        q->do_delete(pos);
-        del_tw_cbs = true;
+          q->do_delete(pos);
+          del_tw_cbs = true;
       }
-    }
-    while(m_t_inst->m_pool->next(obj));
   }
 
   for( unsigned int i = 0; i < m_derived_types.size(); i++ )
@@ -387,15 +378,12 @@ void uvm_typed_callbacks<T>::display( T* obj )
 
   if( obj == NULL )
   {
-    if(m_t_inst->m_pool->first(bobj))
-    {
-      do
-      {
-        me = dynamic_cast<T*>(bobj);
-        if(me != NULL) break;
+      std::map<uvm_object*, uvm_queue<uvm_callback*>* >::iterator it;
+      for (it = m_t_inst->m_pool->begin(); it != m_t_inst->m_pool->end(); ++it) {
+          bobj = it->first;
+          me = dynamic_cast<T*>(bobj);
+          if(me != NULL) break;
       }
-      while(m_t_inst->m_pool->next(bobj));
-    }
 
     if(me != NULL || m_t_inst->m_tw_cb_q->size())
     {
@@ -405,52 +393,52 @@ void uvm_typed_callbacks<T>::display( T* obj )
 
     if( me != NULL )
     {
-      do
-      {
-        me = dynamic_cast<T*>(bobj);
-        if(me != NULL)
-        {
-          q = m_t_inst->m_pool->get(bobj);
-          if (q == NULL)
-          {
-            q = new uvm_queue<uvm_callback*>(); // TODO pass name as argument?
-            m_t_inst->m_pool->add(bobj,q);
-          }
-          for(int i = 0; i < q->size(); ++i)
-          {
-            cb = q->get(i);
-            cbq.push_back(cb->get_name());
-            inst_q.push_back(bobj->get_full_name());
-            if(cb->is_enabled()) mode_q.push_back("ON");
-            else mode_q.push_back("OFF");
+        /* continue from previous iterator position */
+        for (; it != m_t_inst->m_pool->end(); ++it) {
+            bobj = it->first;
+            me = dynamic_cast<T*>(bobj);
+            if(me != NULL)
+            {
+                q = it->second;
+                if (q == NULL)
+                {
+                    q = new uvm_queue<uvm_callback*>(); // TODO pass name as argument?
+                    (*m_t_inst->m_pool)[bobj] = q;
+                }
+                for(int i = 0; i < q->size(); ++i)
+                {
+                    cb = q->get(i);
+                    cbq.push_back(cb->get_name());
+                    inst_q.push_back(bobj->get_full_name());
+                    if(cb->is_enabled()) mode_q.push_back("ON");
+                    else mode_q.push_back("OFF");
 
-            str = cb->get_name();
-            max_cb_name = max_cb_name > str.length() ? max_cb_name : str.length();
-            str = bobj->get_full_name();
-            max_inst_name = max_inst_name > str.length() ? max_inst_name : str.length();
-          }
+                    str = cb->get_name();
+                    max_cb_name = max_cb_name > str.length() ? max_cb_name : str.length();
+                    str = bobj->get_full_name();
+                    max_inst_name = max_inst_name > str.length() ? max_inst_name : str.length();
+                }
+            }
         }
-      }
-      while (m_t_inst->m_pool->next(bobj));
     }
     else
       std::cout << "No callbacks registered for any instances of type " << tname << "." << std::endl;
   }
   else
   {
-    if(m_t_inst->m_pool->exists(bobj) || m_t_inst->m_tw_cb_q->size())
+    if(m_t_inst->m_pool->find(bobj) != m_t_inst->m_pool->end() || m_t_inst->m_tw_cb_q->size())
     {
       std::cout << "Registered callbacks for instance " << obj->get_full_name()
                 << " of " << tname << std::endl;
       std::cout << "---------------------------------------------------------------" << std::endl;
     }
-    if(m_t_inst->m_pool->exists(bobj))
+    if(m_t_inst->m_pool->find(bobj) != m_t_inst->m_pool->end())
     {
-      q = m_t_inst->m_pool->get(bobj);
+      q = (*m_t_inst->m_pool)[bobj];
       if(q == NULL)
       {
         q = new uvm_queue<uvm_callback*>(); // TODO pass name as argument?
-        m_t_inst->m_pool->add(bobj,q);
+        (*m_t_inst->m_pool)[bobj] = q;
       }
 
       for( int i = 0; i < q->size(); ++i )

@@ -31,7 +31,6 @@
 
 #include "uvmsc/conf/uvm_resource.h"
 #include "uvmsc/conf/uvm_queue.h"
-#include "uvmsc/conf/uvm_pool.h"
 #include "uvmsc/conf/uvm_resource_db.h"
 #include "uvmsc/conf/uvm_config_db_options.h"
 #include "uvmsc/base/uvm_globals.h"
@@ -93,7 +92,7 @@ class uvm_config_db : public uvm_resource_db<T>
 {
  public:
 
-  typedef std::map< uvm_component*, uvm_pool< std::string, uvm_resource<T>* > > rsc_t;
+  typedef std::map< uvm_component*, std::map< std::string, uvm_resource<T>* > > rsc_t;
 
   uvm_config_db();
   virtual ~uvm_config_db();
@@ -194,7 +193,7 @@ typedef uvm_config_db<uvm_object_wrapper*> uvm_config_wrapper;
 //----------------------------------------------------------------------
 
 template <typename T>
-std::map< uvm_component*, uvm_pool< std::string, uvm_resource<T>* > >
+std::map< uvm_component*, std::map< std::string, uvm_resource<T>* > >
   uvm_config_db<T>::m_rsc = uvm_config_db<T>::init();
 
 template <typename T>
@@ -247,11 +246,11 @@ void uvm_config_db<T>::set( uvm_component* cntxt,
 
     if(r == NULL)
     {
-      uvm_pool< std::string, uvm_resource<T>* > pool;
+      std::map< std::string, uvm_resource<T>* > pool;
       std::string key = loc_instname+field_name;
       m_rsc[cntxt] = pool;
       r = new uvm_resource<T>(field_name, loc_instname);
-      pool.add(key, r);
+      pool[key] = r;
     }
     else
     {
@@ -457,7 +456,7 @@ uvm_resource<T>* uvm_config_db<T>::m_get_resource_match( uvm_component* cntxt,
                                                          const std::string& field_name,
                                                          const std::string& inst_name)
 {
-  uvm_pool< std::string, uvm_resource<T>* > pool;
+  std::map< std::string, uvm_resource<T>* > pool;
   std::string lookup;
 
   if( m_rsc.find(cntxt) == m_rsc.end() )
@@ -466,9 +465,9 @@ uvm_resource<T>* uvm_config_db<T>::m_get_resource_match( uvm_component* cntxt,
   lookup = inst_name+field_name;
   pool = m_rsc[cntxt];
 
-  if(!pool.exists(lookup)) return NULL;
+  if(pool.find(lookup) == pool.end()) return NULL;
 
-  return pool.get(lookup);
+  return (pool.find(lookup))->second;
 }
 
 } // namespace uvm

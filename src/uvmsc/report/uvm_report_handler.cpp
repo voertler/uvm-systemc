@@ -65,12 +65,12 @@ int uvm_report_handler::get_verbosity_level( uvm_severity severity,
   if( severity_id_verbosities.find(severity) != severity_id_verbosities.end() ) //exists
   {
     array = severity_id_verbosities[severity];
-    if(array.exists(loc_id))
-      return array.get(loc_id);
+    if(array.find(loc_id) != array.end())
+      return array[loc_id];
   }
 
-  if(id_verbosities.exists(loc_id))
-    return id_verbosities.get(loc_id);
+  if(id_verbosities.find(loc_id) != id_verbosities.end())
+    return id_verbosities[loc_id];
 
   return m_max_verbosity_level;
 }
@@ -95,12 +95,12 @@ uvm_action uvm_report_handler::get_action( uvm_severity severity,
   if(severity_id_actions.find(severity) != severity_id_actions.end())
   {
     array = severity_id_actions[severity];
-    if(array.exists(loc_id))
-      return array.get(loc_id);
+    if(array.find(loc_id) != array.end())
+      return array[loc_id];
   }
 
-  if(id_actions.exists(loc_id))
-    return id_actions.get(loc_id);
+  if(id_actions.find(loc_id) != id_actions.end())
+    return id_actions[loc_id];
 
   return severity_actions[severity];
 }
@@ -126,9 +126,9 @@ UVM_FILE uvm_report_handler::get_file_handle( uvm_severity severity,
   if (file != 0)
     return file;
 
-  if (id_file_handles.exists(loc_id))
+  if (id_file_handles.find(loc_id) != id_file_handles.end())
   {
-    file = id_file_handles.get(loc_id);
+    file = id_file_handles[loc_id];
     if (file != 0)
       return file;
   }
@@ -169,13 +169,13 @@ void uvm_report_handler::report( uvm_severity severity,
   // An id specific override has precedence over a generic severity override.
   if(sev_id_overrides.find(id) != sev_id_overrides.end()) //exists
   {
-    if(sev_id_overrides.find(id)->second.exists(severity))
-      severity = sev_id_overrides.find(id)->second.get(severity);
+    if(sev_id_overrides.find(id)->second.find(severity) != sev_id_overrides.find(id)->second.end())
+      severity = sev_id_overrides.find(id)->second[severity];
   }
   else
   {
-    if(sev_overrides.exists(severity))
-       severity = sev_overrides.get(severity);
+    if(sev_overrides.find(severity) != sev_overrides.end())
+       severity = sev_overrides[severity];
   }
 
   srvr->report( severity, name, id, message, verbosity_level,
@@ -404,12 +404,12 @@ UVM_FILE uvm_report_handler::get_severity_id_file( uvm_severity severity,
   if(severity_id_file_handles.find(severity) != severity_id_file_handles.end() ) // exists
   {
     array = severity_id_file_handles[severity];
-    if(array.exists(loc_id))
-      return array.get(loc_id);
+    if(array.find(loc_id) != array.end())
+      return array[loc_id];
   }
 
-  if(id_file_handles.exists(loc_id))
-    return id_file_handles.get(loc_id);
+  if(id_file_handles.find(loc_id) != id_file_handles.end())
+    return id_file_handles[loc_id];
 
   if(severity_file_handles.find(severity) != severity_file_handles.end()) // exists
     return severity_file_handles[severity];
@@ -470,7 +470,7 @@ void uvm_report_handler::set_severity_action( uvm_severity severity,
 void uvm_report_handler::set_id_action( const std::string& id,
                                         uvm_action action )
 {
-  id_actions.add(id, action);
+  id_actions[id] = action;
 }
 
 //----------------------------------------------------------------------------
@@ -487,7 +487,7 @@ void uvm_report_handler::set_severity_id_action( uvm_severity severity,
   //  severity_id_actions[severity] = new;
 
   // TODO check - no need to new item?
-  severity_id_actions[severity].add(id,action);
+  severity_id_actions[severity][id] = action;
 }
 
 //----------------------------------------------------------------------------
@@ -499,7 +499,7 @@ void uvm_report_handler::set_severity_id_action( uvm_severity severity,
 void uvm_report_handler::set_id_verbosity( const std::string& id,
                                            int verbosity )
 {
-  id_verbosities.add(id, verbosity);
+  id_verbosities[id] = verbosity;
 }
 
 //----------------------------------------------------------------------------
@@ -516,7 +516,7 @@ void uvm_report_handler::set_severity_id_verbosity( uvm_severity severity,
   //  severity_id_verbosities[severity] = new;
 
   // TODO check - no need to new item?
-  severity_id_verbosities[severity].add(id, verbosity);
+  severity_id_verbosities[severity][id] = verbosity;
 }
 
 //----------------------------------------------------------------------------
@@ -551,7 +551,7 @@ void uvm_report_handler::set_severity_file( uvm_severity severity,
 void uvm_report_handler::set_id_file( const std::string& id,
                                       UVM_FILE file )
 {
-  id_file_handles.add(id, file);
+  id_file_handles[id] = file;
 }
 
 //----------------------------------------------------------------------------
@@ -568,7 +568,7 @@ void uvm_report_handler::set_severity_id_file( uvm_severity severity,
 //    severity_id_file_handles[severity] = new;
 
   // TODO check - no need to new item?
-  severity_id_file_handles[severity].add(id, file);
+  severity_id_file_handles[severity][id] = file;
 }
 
 //----------------------------------------------------------------------------
@@ -580,7 +580,7 @@ void uvm_report_handler::set_severity_id_file( uvm_severity severity,
 void uvm_report_handler::set_severity_override( uvm_severity cur_severity,
                                                 uvm_severity new_severity)
 {
-  sev_overrides.add(cur_severity, new_severity);
+  sev_overrides[cur_severity] = new_severity;
 }
 
 //----------------------------------------------------------------------------
@@ -601,7 +601,7 @@ void uvm_report_handler::set_severity_id_override( uvm_severity cur_severity,
   //  sev_id_overrides[id] = new;
 
   // TODO check - no need to new item?
-  sev_id_overrides[id].add(cur_severity, new_severity);
+  sev_id_overrides[id][cur_severity] = new_severity;
 }
 
 
@@ -614,7 +614,6 @@ void uvm_report_handler::set_severity_id_override( uvm_severity cur_severity,
 void uvm_report_handler::dump_state()
 {
   std::string s;
-  std::string idx;
   UVM_FILE file;
   uvm_report_server* srvr;
 
@@ -644,18 +643,15 @@ void uvm_report_handler::dump_state()
 
   srvr->f_display(0, "*** verbosities by id");
 
-  if(id_verbosities.first(idx))
-  do
-  {
-    uvm_verbosity v = (uvm_verbosity)id_verbosities.get(idx);
-    std::ostringstream s;
-    s << "["
-      << idx
-      << "] --> "
-      << uvm_verbosity_name[v/100]; //TODO check
-    srvr->f_display(0, s.str());
+  for (std::map<std::string, int>::iterator it = id_verbosities.begin(); it != id_verbosities.end(); ++it) {
+      uvm_verbosity v = (uvm_verbosity) it->second;
+      std::ostringstream s;
+      s << "["
+          << it->first
+          << "] --> "
+          << uvm_verbosity_name[v/100]; //TODO check
+      srvr->f_display(0, s.str());
   }
-  while(id_verbosities.next(idx));
 
   // verbosities by id
 
@@ -663,24 +659,21 @@ void uvm_report_handler::dump_state()
   srvr->f_display(0, "*** verbosities by id and severity");
 
   for ( severity_id_verbosities_mapitt it = severity_id_verbosities.begin();
-        it != severity_id_verbosities.end();
-        it++)
+          it != severity_id_verbosities.end();
+          it++)
   {
-    uvm_severity sev = it->first; //severity;
-    id_v_ary = it->second; // severity_id_verbosities[severity];
-    if(id_v_ary.first(idx))
-    do
-    {
-      uvm_verbosity v = (uvm_verbosity)id_v_ary.get(idx);
-      std::ostringstream s;
-      s << uvm_severity_name[sev]
-        << ":"
-        << idx
-        << " --> "
-        << uvm_verbosity_name[v/100]; // TODO check
-      srvr->f_display(0, s.str());
-    }
-    while(id_v_ary.next(idx));
+      uvm_severity sev = it->first; //severity;
+      id_v_ary = it->second; // severity_id_verbosities[severity];
+      for (std::map<std::string, int>::iterator idit = id_v_ary.begin(); idit != id_v_ary.end(); ++it) {
+          uvm_verbosity v = (uvm_verbosity) idit->second;
+          std::ostringstream s;
+          s << uvm_severity_name[sev]
+              << ":"
+              << idit->first
+              << " --> "
+              << uvm_verbosity_name[v/100]; // TODO check
+          srvr->f_display(0, s.str());
+      }
   }
 
   // actions
@@ -708,17 +701,14 @@ void uvm_report_handler::dump_state()
   srvr->f_display(0, "");
   srvr->f_display(0, "*** actions by id");
 
-  if(id_actions.first(idx))
-  do
-  {
-    std::ostringstream s;
-    s << "["
-      << idx
-      << "] --> "
-      << format_action(id_actions.get(idx));
-    srvr->f_display(0, s.str());
+  for (std::map<std::string, uvm_action>::iterator it = id_actions.begin(); it != id_actions.end(); ++it) {
+      std::ostringstream s;
+      s << "["
+          << it->first
+          << "] --> "
+          << format_action(it->second);
+      srvr->f_display(0, s.str());
   }
-  while(id_actions.next(idx));
 
   // actions by id
 
@@ -729,20 +719,17 @@ void uvm_report_handler::dump_state()
         it != severity_id_actions.end();
         it++)
   {
-    uvm_severity sev = it->first; // = severity;
-    id_a_ary = it->second; // = severity_id_actions[severity];
-    if(id_a_ary.first(idx))
-    do
-    {
-      std::ostringstream s;
-      s << uvm_severity_name[sev]
-        << ":"
-        << idx
-        << " --> "
-        << format_action(id_a_ary.get(idx));
-      srvr->f_display(0, s.str());
-    }
-    while(id_a_ary.next(idx));
+      uvm_severity sev = it->first; // = severity;
+      id_a_ary = it->second; // = severity_id_actions[severity];
+      for (std::map<std::string, uvm_action>::iterator ait = id_a_ary.begin(); ait != id_a_ary.end(); ++ait) {
+          std::ostringstream s;
+          s << uvm_severity_name[sev]
+              << ":"
+              << ait->first
+              << " --> "
+              << format_action(ait->second);
+          srvr->f_display(0, s.str());
+      }
   }
 
   // Files
@@ -777,18 +764,15 @@ void uvm_report_handler::dump_state()
   srvr->f_display(0, "");
   srvr->f_display(0, "*** files by id");
 
-  if(id_file_handles.first(idx))
-  do
-  {
-    file = id_file_handles.get(idx);
-    std::ostringstream s;
-    s << "id "
-      << idx
-      << " --> "
-      << file;
-    srvr->f_display(0, s.str());
+  for (std::map<std::string, UVM_FILE>::iterator it = id_file_handles.begin(); it != id_file_handles.end(); ++it) {
+      file = it->second;
+      std::ostringstream s;
+      s << "id "
+          << it->first
+          << " --> "
+          << file;
+      srvr->f_display(0, s.str());
   }
-  while (id_file_handles.next(idx));
 
   srvr->f_display(0, "");
   srvr->f_display(0, "*** files by id and severity");
@@ -797,20 +781,17 @@ void uvm_report_handler::dump_state()
         it != severity_id_file_handles.end();
         it++)
   {
-    uvm_severity sev = it->first; // = severity;
-    id_f_ary = it->second; // = severity_id_file_handles[severity];
-    if(id_f_ary.first(idx))
-    do
-    {
-      std::ostringstream s;
-      s << uvm_severity_name[sev]
-        << ":"
-        << idx
-        << " --> "
-        << id_f_ary.get(idx);
-      srvr->f_display(0, s.str());
-    }
-    while(id_f_ary.next(idx));
+      uvm_severity sev = it->first; // = severity;
+      id_f_ary = it->second; // = severity_id_file_handles[severity];
+      for (std::map<std::string, UVM_FILE>::iterator fit = id_f_ary.begin(); fit != id_f_ary.end(); ++fit) {
+          std::ostringstream s;
+          s << uvm_severity_name[sev]
+              << ":"
+              << fit->first
+              << " --> "
+              << fit->second;
+          srvr->f_display(0, s.str());
+      }
   }
 
   srvr->dump_server_state();
