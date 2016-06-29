@@ -26,8 +26,8 @@
 #include <string>
 #include <map>
 
-#include "uvmsc/conf/uvm_pool.h"
 #include "uvmsc/base/uvm_object_globals.h"
+#include "uvmsc/base/uvm_root.h"
 
 namespace uvm {
 
@@ -54,10 +54,10 @@ class uvm_report_server;
 //! to one.
 //------------------------------------------------------------------------------
 
-typedef uvm_pool<std::string, uvm_action> uvm_id_actions_array;
-typedef uvm_pool<std::string, UVM_FILE> uvm_id_file_array;
-typedef uvm_pool<std::string, int> uvm_id_verbosities_array;
-typedef uvm_pool<uvm_severity, uvm_severity> uvm_sev_override_array;
+typedef std::map<std::string, uvm_action> uvm_id_actions_array;
+typedef std::map<std::string, UVM_FILE> uvm_id_file_array;
+typedef std::map<std::string, int> uvm_id_verbosities_array;
+typedef std::map<uvm_severity, uvm_severity> uvm_sev_override_array;
 
 class uvm_report_handler
 {

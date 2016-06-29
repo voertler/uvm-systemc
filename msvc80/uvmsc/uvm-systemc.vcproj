@@ -653,10 +653,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\uvmsc\conf\uvm_pool.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\uvmsc\print\uvm_print.h"
 				>
 			</File>

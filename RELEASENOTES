@@ -126,7 +126,6 @@ Configuration, resource and container classes
     uvm_resource_options      T
     uvm_resource_pool         T
     uvm_resource_types        T
-    uvm_pool                  T
     uvm_queue                 T
     
 Component classes

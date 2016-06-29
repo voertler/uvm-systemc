@@ -29,7 +29,7 @@ namespace uvm {
 // static data member initialization
 //------------------------------------------------------------------------------
 
-uvm_pool<uvm_object*, uvm_queue<uvm_callback*>* >* uvm_callbacks_base::m_pool = NULL;
+std::map<uvm_object*, uvm_queue<uvm_callback*>* >* uvm_callbacks_base::m_pool = NULL;
 uvm_callbacks_base* uvm_callbacks_base::m_b_inst = m_initialize();
 bool uvm_callbacks_base::m_tracing = true;
 
@@ -50,7 +50,7 @@ uvm_callbacks_base* uvm_callbacks_base::m_initialize()
   if(m_b_inst == NULL)
   {
     m_b_inst = new uvm_callbacks_base();
-    m_pool = new uvm_pool< uvm_object*, uvm_queue<uvm_callback*>* >();
+    m_pool = new std::map< uvm_object*, uvm_queue<uvm_callback*>* >();
   }
   return m_b_inst;
 }
