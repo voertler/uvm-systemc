@@ -151,12 +151,12 @@ std::string uvm_vector_to_string( uvm_bitstream_t value,
     }
     case UVM_UNSIGNED: // format "%0s%0d"
     {
-      rstr << radix_str << std::dec << value; // TODO check signed sc_int to unsigned?
+      rstr << radix_str << std::dec << value.to_uint();
       return rstr.str();
     }
     case UVM_STRING:  // format "%0s%0s"
     {
-      rstr << radix_str << (char)value;
+      rstr << radix_str << (char)value.to_int();
       return rstr.str();
     }
     case UVM_TIME:    // format "%0s%0t" ??
