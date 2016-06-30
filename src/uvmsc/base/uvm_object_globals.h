@@ -496,17 +496,17 @@ typedef enum {
 // These are implementation defined
 //----------------------------------------------------------------------
 
-template<bool reg>
+template<bool isSmallStream>
 struct uvm_bitstream_t_select;
 
 template<>
-struct uvm_bitstream_t_select<true> // registers always smaller than 64-bit
+struct uvm_bitstream_t_select<true> // bitstream size always smaller than 64-bit
 {
   typedef sc_dt::sc_uint<UVM_MAX_STREAMBITS> type;
 };
 
 template<>
-struct uvm_bitstream_t_select<false> // arbitrary sized registers
+struct uvm_bitstream_t_select<false> // arbitrary sized bitstreams
 {
   typedef sc_dt::sc_biguint<UVM_MAX_STREAMBITS> type;
 };
