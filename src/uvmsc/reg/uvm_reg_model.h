@@ -51,7 +51,7 @@ namespace uvm {
 //! SystemC data type is selected
 //----------------------------------------------------------------------
 
-template<bool reg>
+template<bool isSmallReg>
 struct uvm_reg_data_t_select;
 
 template<>
