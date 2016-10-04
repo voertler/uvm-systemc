@@ -181,6 +181,10 @@ int uvm_re_match( const std::string& re,  const std::string& str);
 
 int uvm_re_match_char(const char * re, const char *str);
 
+int uvm_extract_path_index(const std::string& path, std::string& objname, int& begin, int& end );
+
+std::vector<std::string> uvm_re_match2(const std::string& expr, const std::string& str);
+
 } // namespace uvm
 
 #endif /* UVM_GLOBALS_H_ */
