@@ -1092,14 +1092,24 @@ void uvm_phase::execute_phase( bool proc )
   if (m_phase_type != UVM_PHASE_NODE)
   {
     m_state = UVM_PHASE_STARTED;
-    m_state_ev.notify();
+
     if (proc)
+    {
+      m_state_ev.notify();
       sc_core::wait(SC_ZERO_TIME);
+    }
+    else
+      m_state_ev.notify(SC_ZERO_TIME);
 
     m_state = UVM_PHASE_EXECUTING;
-    m_state_ev.notify();
     if (proc)
+    {
+      m_state_ev.notify();
       sc_core::wait(SC_ZERO_TIME);
+    }
+    else
+      m_state_ev.notify(SC_ZERO_TIME);
+
   }
   else // start phase node
   {
@@ -1107,7 +1117,12 @@ void uvm_phase::execute_phase( bool proc )
     // STARTED:
     //---------
     m_state = UVM_PHASE_STARTED;
-    m_state_ev.notify();
+
+    if (proc)
+      m_state_ev.notify();
+    else
+      m_state_ev.notify(SC_ZERO_TIME);
+
     m_imp->traverse(top, this, UVM_PHASE_STARTED); // start at the top
     m_ready_to_end_count = 0 ; // reset the ready_to_end count when phase starts
 
@@ -1120,7 +1135,7 @@ void uvm_phase::execute_phase( bool proc )
       // EXECUTING: (function phases)
       //-----------
       m_state = UVM_PHASE_EXECUTING;
-      m_state_ev.notify();
+      m_state_ev.notify(SC_ZERO_TIME);
       // cannot add wait to untimed phase
       // sc_core::wait(SC_ZERO_TIME); // LET ANY WAITERS WAKE UP
       m_imp->traverse(top, this, UVM_PHASE_EXECUTING);
@@ -1217,7 +1232,10 @@ void uvm_phase::execute_phase( bool proc )
         UVM_PH_TRACE("PH_END","Jumping out of phase", this, UVM_HIGH);
 
       m_state = UVM_PHASE_ENDED;
-      m_state_ev.notify();
+      if (proc)
+        m_state_ev.notify();
+      else
+        m_state_ev.notify(SC_ZERO_TIME);
 
       if (m_imp != NULL)
          m_imp->traverse(top, this, UVM_PHASE_ENDED);
@@ -1226,7 +1244,10 @@ void uvm_phase::execute_phase( bool proc )
         sc_core::wait(SC_ZERO_TIME); // LET ANY WAITERS WAKE UP
 
       m_state = UVM_PHASE_JUMPING;
-      m_state_ev.notify();
+      if (proc)
+        m_state_ev.notify();
+      else
+        m_state_ev.notify(SC_ZERO_TIME);
 
 #if SYSTEMC_VERSION >= 20120701 // SystemC 2.3
       if (proc && m_phase_proc.valid())
@@ -1270,7 +1291,12 @@ void uvm_phase::execute_phase( bool proc )
       UVM_PH_TRACE("PH_END","ENDING PHASE", this, UVM_HIGH);
 
     m_state = UVM_PHASE_ENDED;
-    m_state_ev.notify();
+
+    if(proc)
+      m_state_ev.notify();
+    else
+      m_state_ev.notify(SC_ZERO_TIME);
+
     if (m_imp != NULL)
     m_imp->traverse(top,this,UVM_PHASE_ENDED);
 
@@ -1282,7 +1308,11 @@ void uvm_phase::execute_phase( bool proc )
     //---------
     // kill this phase's threads
     m_state = UVM_PHASE_CLEANUP;
-    m_state_ev.notify();
+
+    if (proc)
+      m_state_ev.notify();
+    else
+      m_state_ev.notify(SC_ZERO_TIME);
 
 #if SYSTEMC_VERSION >= 20120701 // SystemC 2.3
     if (proc && m_phase_proc.valid())
@@ -1310,10 +1340,15 @@ void uvm_phase::execute_phase( bool proc )
   if (m_phase_trace)
     UVM_PH_TRACE("PH/TRC/DONE","Completed phase", this, UVM_LOW);
   m_state = UVM_PHASE_DONE;
-  m_state_ev.notify();
+
 
   if (proc)
+  {
+    m_state_ev.notify();
     sc_core::wait(SC_ZERO_TIME); // LET ANY WAITERS WAKE UP
+  }
+  else
+    m_state_ev.notify(SC_ZERO_TIME);
 
   //-----------
   // SCHEDULED:
@@ -1334,9 +1369,14 @@ void uvm_phase::execute_phase( bool proc )
       if( it->first->m_state < UVM_PHASE_SCHEDULED)
       {
         it->first->m_state = UVM_PHASE_SCHEDULED;
-        it->first->m_state_ev.notify();
+
         if (proc)
+        {
+          it->first->m_state_ev.notify();
           sc_core::wait(SC_ZERO_TIME); // LET ANY WAITERS WAKE UP
+        }
+        else
+          it->first->m_state_ev.notify(SC_ZERO_TIME);
 
         m_phase_hopper->try_put(it->first);
         if (m_phase_trace)
@@ -1939,7 +1979,7 @@ void uvm_phase::wait_for_self_and_siblings_to_drop()
 //! for internal graph maintenance after a forward jump
 //----------------------------------------------------------------------
 
-void uvm_phase::clear( uvm_phase_state state )
+void uvm_phase::clear_phase( uvm_phase_state state )
 {
   m_state = state;
   m_state_ev.notify();
@@ -1962,7 +2002,7 @@ void uvm_phase::clear_successors( uvm_phase_state state,
 {
   if(this == end_state)
     return;
-  clear(state);
+  clear_phase(state);
   for( m_schedulemapItT it = m_successors.begin();
        it != m_successors.end();
        it++)

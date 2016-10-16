@@ -533,7 +533,7 @@ void uvm_objection::m_objection_init()
   m_top_all_dropped = false;
 
   m_objections().push_back(this);
-  m_objections_ev().notify();
+  //m_objections_ev().notify();
 }
 
 //----------------------------------------------------------------------
