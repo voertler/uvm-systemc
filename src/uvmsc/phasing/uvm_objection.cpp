@@ -533,7 +533,6 @@ void uvm_objection::m_objection_init()
   m_top_all_dropped = false;
 
   m_objections().push_back(this);
-  //m_objections_ev().notify();
 }
 
 //----------------------------------------------------------------------
@@ -546,18 +545,6 @@ uvm_objection::m_objections_list& uvm_objection::m_objections()
 {
   static m_objections_list list;
   return list;
-}
-
-//----------------------------------------------------------------------
-// member function: m_objections_ev
-//
-// Implementation-defined member function
-//----------------------------------------------------------------------
-
-uvm_objection::m_event& uvm_objection::m_objections_ev()
-{
-  static sc_event handle;
-  return handle;
 }
 
 //----------------------------------------------------------------------
