@@ -25,6 +25,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include <sstream>
 
 #include "uvmsc/base/uvm_object_globals.h"
 #include "uvmsc/base/uvm_component.h"

@@ -22,6 +22,8 @@
 //   permissions and limitations under the License.
 //----------------------------------------------------------------------
 
+#include <sstream>
+
 #include "uvmsc/base/uvm_component.h"
 #include "uvmsc/base/uvm_object.h"
 #include "uvmsc/print/uvm_printer.h"

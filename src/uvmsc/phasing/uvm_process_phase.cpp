@@ -22,6 +22,8 @@
 //   permissions and limitations under the License.
 //----------------------------------------------------------------------
 
+#include <sstream>
+
 #include "uvmsc/base/uvm_object_globals.h"
 #include "uvmsc/base/uvm_globals.h"
 #include "uvmsc/seq/uvm_sequencer_base.h"

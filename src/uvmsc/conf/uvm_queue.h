@@ -26,6 +26,7 @@
 #define UVM_QUEUE_H_
 
 #include <string>
+#include <sstream>
 
 #include "uvmsc/base/uvm_object.h"
 #include "uvmsc/base/uvm_globals.h"

@@ -22,6 +22,7 @@
 //   permissions and limitations under the License.
 //----------------------------------------------------------------------
 
+#include <sstream>
 #include <systemc>
 #include "sysc/kernel/sc_dynamic_processes.h"
 

@@ -27,6 +27,7 @@
 
 #include <systemc>
 #include <string>
+#include <sstream>
 
 #include "uvmsc/base/uvm_component.h"
 #include "uvmsc/report/uvm_report_object.h"

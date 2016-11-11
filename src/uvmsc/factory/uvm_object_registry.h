@@ -26,6 +26,7 @@
 #define UVM_OBJECT_REGISTRY_H_
 
 #include <string>
+#include <sstream>
 #include <systemc>
 
 #include "uvmsc/base/uvm_component.h"
