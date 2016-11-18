@@ -31,6 +31,7 @@
 #include <string>
 #include <functional>
 #include <iomanip>
+#include <sstream>
 
 #include <systemc>
 

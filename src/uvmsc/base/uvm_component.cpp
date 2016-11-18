@@ -24,6 +24,7 @@
 
 #include <iostream>
 #include <string>
+#include <cstring>
 #include <algorithm>
 
 #ifndef SC_INCLUDE_DYNAMIC_PROCESSES

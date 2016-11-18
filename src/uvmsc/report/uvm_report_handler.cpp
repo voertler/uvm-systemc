@@ -20,6 +20,8 @@
 //   permissions and limitations under the License.
 //----------------------------------------------------------------------------
 
+#include <sstream>
+
 #include "uvmsc/report/uvm_report_handler.h"
 #include "uvmsc/report/uvm_report_server.h"
 #include "uvmsc/base/uvm_version.h"
