@@ -284,7 +284,7 @@ void uvm_config_db<T>::set( uvm_component* cntxt,
       {
         w = m_waiters[field_name]->get(i);
         if( uvm_re_match( uvm_glob_to_re(inst_name), w->inst_name ) )
-          w->trigger.notify();
+          w->trigger.notify(sc_core::SC_ZERO_TIME);
       }
     }
 
