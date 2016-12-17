@@ -34,7 +34,7 @@
 
 #include "uvmsc/base/uvm_globals.h"
 
-#include "../contrib/sc_reg/sc_reg.h"
+#include "uvmsc/reg/uvm_sc_reg.h"
 
 namespace uvm {
 
@@ -85,7 +85,7 @@ bool uvm_hdl_deposit( const std::string& path, const T& value )
     return false;
   }
 
-  sc_reg<T>* reg = dynamic_cast<sc_reg<T>* > (obj);
+  uvm_sc_reg<T>* reg = dynamic_cast<uvm_sc_reg<T>* > (obj);
   if (reg != NULL)
   {
     reg->write(value, idx_start, idx_stop);
@@ -115,7 +115,7 @@ bool uvm_hdl_deposit( const std::string& path, const T& value )
     return true;
   }
 
-  uvm_report_error("HDL_DEPOSIT", "Object " + objname + " found is not of type sc_reg oe sc_signal.");
+  uvm_report_error("HDL_DEPOSIT", "Object " + objname + " found is not of type uvm_sc_reg or sc_signal.");
   return false;
 }
 
@@ -191,7 +191,7 @@ bool uvm_hdl_read( const std::string& path, T& value )
     return false;
   }
 
-  sc_reg<T>* reg = dynamic_cast<sc_reg<T>*> (obj);
+  uvm_sc_reg<T>* reg = dynamic_cast<uvm_sc_reg<T>*> (obj);
   if (reg != NULL)
   {
     value = reg->read(idx_start, idx_stop);
@@ -221,7 +221,7 @@ bool uvm_hdl_read( const std::string& path, T& value )
     return true;
   }
 
-  uvm_report_error("HDL_READ", "Object " + objname + " found is not of type sc_reg or sc_signal.");
+  uvm_report_error("HDL_READ", "Object " + objname + " found is not of type uvm_sc_reg or sc_signal.");
   return false;
 }
 

@@ -19,31 +19,31 @@
 
 // simple dummy register class for demonstration of uvm-backdoor purpose only
 
-#ifndef SC_REG_H_
-#define SC_REG_H_
+#ifndef UVM_SC_REG_H_
+#define UVM_SC_REG_H_
 
 #include <systemc>
 
-class sc_reg_base : public sc_core::sc_object
+class uvm_sc_reg_base : public sc_core::sc_object
 {
  public:
 
-  sc_reg_base(const char* name)
+  uvm_sc_reg_base(const char* name)
   : sc_core::sc_object(name)
   {}
 };
 
 
 template <typename T>
-class sc_reg : public sc_reg_base
+class uvm_sc_reg : public sc_reg_base
 {
  public:
-  sc_reg(const char* name)
-  : sc_reg_base(name)
+  uvm_sc_reg(const char* name)
+  : uvm_sc_reg(name)
   {}
 
-  sc_reg()
-  : sc_reg_base(sc_core::sc_gen_unique_name("sc_reg"))
+  uvm_sc_reg()
+  : uvm_sc_reg_base(sc_core::sc_gen_unique_name("sc_reg"))
   {}
 
   sc_reg& operator=(const T& value)
@@ -122,4 +122,4 @@ class sc_reg : public sc_reg_base
   sc_core::sc_event ev;
 };
 
-#endif // SC_REG_H_
+#endif // UVM_SC_REG_H_
