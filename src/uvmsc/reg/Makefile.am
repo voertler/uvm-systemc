@@ -32,6 +32,7 @@ H_FILES = \
 	uvm_reg_sequence.h \
 	uvm_reg_tlm_adapter.h \
 	uvm_reg_write_only_cbs.h \
+	uvm_sc_reg.h \
 	uvm_vreg.h \
 	uvm_vreg_cbs.h \
 	uvm_vreg_field.h \
