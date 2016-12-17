@@ -161,60 +161,59 @@ Sequence classes
     uvm_sequencer_param_base  T
 
 TLM-1 classes
-    uvm_analysis_export           I
-    uvm_analysis_imp              I
-    uvm_analysis_port             I
-    uvm_sqr_connections           I
-    uvm_ports                     I
-    uvm_blocking_put_port         I
-    uvm_blocking_get_port         I
-    uvm_blocking_peek_port        I
-    uvm_blocking_get_peek_port    I
-    uvm_nonblocking_put_port      X
-    uvm_nonblocking_get_port      X
-    uvm_nonblocking_peek_port     X
-    uvm_nonblocking_get_peek_port X
-    uvm_analysis_port             T
     uvm_analysis_export           T
     uvm_analysis_imp              T
+    uvm_analysis_port             T
+    uvm_sqr_connections           T
+    uvm_blocking_put_port         T
+    uvm_blocking_get_port         T
+    uvm_blocking_peek_port        T
+    uvm_blocking_get_peek_port    T
+    uvm_nonblocking_put_port      T
+    uvm_nonblocking_get_port      T
+    uvm_nonblocking_peek_port     T
+    uvm_nonblocking_get_peek_port T
+    uvm_put_port                  T
+    uvm_get_port                  T
+    uvm_peek_port                 T
+    uvm_get_peek_port             T
     uvm_tlm_req_rsp_channel       T
     uvm_tlm_transport_channel     X
 
 TLM-2.0 classes                   X
 
 Register abstraction classes
-    uvm_hdl_path_concat       I
-    uvm_mem                   I
-    uvm_mem_mam               I
-    uvm_mem_mam_cfg           I
-    uvm_mem_mam_policy        I
-    uvm_mem_region            I
-    uvm_reg                   I
-    uvm_reg_adapter           I
-    uvm_reg_backdoor          I
-    uvm_reg_block             I
-    uvm_reg_bus_op            I
-    uvm_reg_cbs               I
-    uvm_reg_cbs_types         I
-    uvm_reg_field             I
-    uvm_reg_fifo              I
-    uvm_reg_file              I
-    uvm_reg_frontdoor         I
-    uvm_reg_indirect_data     I
-    uvm_reg_indirect_ftdr_seq I
-    uvm_reg_item              I
-    uvm_reg_layer             I
-    uvm_reg_map               I
-    uvm_reg_model             I
-    uvm_reg_predictor         I
-    uvm_reg_read_only_cbs     I
-    uvm_reg_sequence          I
-    uvm_reg_tlm_adapter       I
-    uvm_reg_write_only_cbs    I
-    uvm_vreg                  I
-    uvm_vreg_cbs              I
-    uvm_vreg_field            I
-    uvm_vreg_field_cbs        I
+    uvm_hdl_path_concat       T
+    uvm_mem                   T
+    uvm_mem_mam               T
+    uvm_mem_mam_cfg           T
+    uvm_mem_mam_policy        T
+    uvm_mem_region            T
+    uvm_reg                   T
+    uvm_reg_adapter           T
+    uvm_reg_backdoor          T
+    uvm_reg_block             T
+    uvm_reg_bus_op            T
+    uvm_reg_cbs               T
+    uvm_reg_cbs_types         T
+    uvm_reg_field             T
+    uvm_reg_fifo              T
+    uvm_reg_file              T
+    uvm_reg_frontdoor         T
+    uvm_reg_indirect_data     T
+    uvm_reg_indirect_ftdr_seq T
+    uvm_reg_item              T
+    uvm_reg_map               T
+    uvm_reg_model             T
+    uvm_reg_predictor         T
+    uvm_reg_read_only_cbs     T
+    uvm_reg_sequence          T
+    uvm_reg_tlm_adapter       T
+    uvm_reg_write_only_cbs    T
+    uvm_vreg                  T
+    uvm_vreg_cbs              T
+    uvm_vreg_field            T
+    uvm_vreg_field_cbs        T
     
 Miscellaneous classes
     uvm_scope_stack           T
@@ -226,7 +225,7 @@ Macros
     uvm_component_defines     T
     uvm_message_defines       T
     uvm_object_defines        T
-    uvm_reg_defines           I
+    uvm_reg_defines           T
     uvm_sequence_defines      T
 
 Command line interface 
