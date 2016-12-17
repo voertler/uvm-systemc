@@ -39,7 +39,7 @@ class uvm_sc_reg : public uvm_sc_reg_base
 {
  public:
   uvm_sc_reg(const char* name)
-  : uvm_sc_reg(name)
+  : uvm_sc_reg_base(name)
   {}
 
   uvm_sc_reg()
