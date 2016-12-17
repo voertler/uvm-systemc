@@ -35,7 +35,7 @@ class uvm_sc_reg_base : public sc_core::sc_object
 
 
 template <typename T>
-class uvm_sc_reg : public sc_reg_base
+class uvm_sc_reg : public uvm_sc_reg_base
 {
  public:
   uvm_sc_reg(const char* name)
@@ -46,13 +46,13 @@ class uvm_sc_reg : public sc_reg_base
   : uvm_sc_reg_base(sc_core::sc_gen_unique_name("sc_reg"))
   {}
 
-  sc_reg& operator=(const T& value)
+  uvm_sc_reg& operator=(const T& value)
   {
     write(value, -1, -1);
     return *this;
   }
 
-  sc_reg& operator=(const sc_reg& reg)
+  uvm_sc_reg& operator=(const uvm_sc_reg& reg)
   {
     write(reg.read(), -1, -1);
     return *this;
