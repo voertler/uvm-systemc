@@ -348,8 +348,8 @@ void uvm_typed_callbacks<T>::display( T* obj )
 
   std::string tname, str;
 
-  int max_cb_name = 0;
-  int max_inst_name = 0;
+  unsigned int max_cb_name = 0;
+  unsigned int max_inst_name = 0;
 
   m_tracing = false; // don't allow tracing during display
 

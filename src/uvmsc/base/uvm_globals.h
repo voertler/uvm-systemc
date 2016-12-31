@@ -26,9 +26,7 @@
 #define UVM_POUND_ZERO_COUNT 1 // used for NBA wait
 
 #include <systemc>
-
-#include "uvmsc/base/uvm_root.h"
-#include "uvmsc/factory/uvm_factory.h"
+#include "uvmsc/base/uvm_object_globals.h"
 
 //////////////
 
@@ -36,6 +34,9 @@ namespace uvm {
 
 //forward declarations
 //class uvm_root;
+class uvm_object;
+class uvm_component;
+class uvm_printer;
 
 //------------------------------------------------------------------------------
 //
@@ -137,31 +138,46 @@ bool uvm_report_enabled( const int& verbosity,
                          const uvm_severity& severity = UVM_INFO,
                          const std::string& id = "" );
 
-// Function: uvm_report_info
+void uvm_report( uvm_severity severity,
+                 const std::string& id,
+                 const std::string& message,
+                 int verbosity = -1, // TODO check default
+                 const std::string& filename = "",
+                 int line = 0,
+                 const std::string& context_name = "",
+                 bool report_enabled_checked = false );
 
 void uvm_report_info( const std::string& id,
                       const std::string& message,
                       int verbosity = UVM_NONE,
-                      const std::string& fname = "",
-                      int line = 0 );
+                      const std::string& filename = "",
+                      int line = 0,
+                      const std::string& context_name = "",
+                      bool report_enabled_checked = false );
 
 void uvm_report_warning( const std::string& id,
                          const std::string& message,
                          int verbosity = UVM_NONE,
-                         const std::string& fname = "",
-                         int line = 0 );
+                         const std::string& filename = "",
+                         int line = 0,
+                         const std::string&  context_name = "",
+                         bool report_enabled_checked = false );
 
 void uvm_report_error( const std::string& id,
                        const std::string& message,
                        int verbosity = UVM_NONE,
-                       const std::string& fname = "",
-                       int line = 0 );
+                       const std::string& filename = "",
+                       int line = 0,
+                       const std::string&  context_name = "",
+                       bool report_enabled_checked = false );
 
 void uvm_report_fatal( const std::string& id,
                        const std::string& message,
                        int verbosity = UVM_NONE,
-                       const std::string& fname = "",
-                       int line = 0 );
+                       const std::string& filename = "",
+                       int line = 0,
+                       const std::string&  context_name = "",
+                       bool report_enabled_checked = false );
 
 //------------------------------------------------------------------------------
 // Other utilities

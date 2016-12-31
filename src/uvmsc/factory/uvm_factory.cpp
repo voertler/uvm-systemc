@@ -29,6 +29,7 @@
 #include <list>
 
 #include "uvmsc/base/uvm_globals.h"
+#include "uvmsc/base/uvm_component.h"
 #include "uvmsc/factory/uvm_factory.h"
 
 namespace uvm {
@@ -41,11 +42,31 @@ namespace uvm {
 // initialization static member variables
 //----------------------------------------------------------------------------
 
-uvm_factory* uvm_factory::m_inst = NULL;
 bool uvm_factory::m_debug_pass = false;
 
 //----------------------------------------------------------------------------
-// constructor
+// constructor uvm_factor_overridey
+//----------------------------------------------------------------------------
+
+uvm_factory_override::uvm_factory_override( const std::string& full_inst_path_,
+                                            std::string orig_type_name_,
+                                            uvm_object_wrapper* orig_type_,
+                                            uvm_object_wrapper* ovrd_type_ )
+{
+  if (ovrd_type_ == NULL)
+    uvm_report_fatal( "NULLWR",
+                      "Attempting to register a NULL override object with the factory",
+                      UVM_NONE);
+
+  full_inst_path = full_inst_path_;
+  orig_type_name = (orig_type_ == NULL) ? orig_type_name_ : (orig_type_->get_type_name() );
+  orig_type      = orig_type_;
+  ovrd_type_name = ovrd_type_->get_type_name();
+  ovrd_type      = ovrd_type_;
+}
+
+//----------------------------------------------------------------------------
+// constructor uvm_factory
 //----------------------------------------------------------------------------
 
 uvm_factory::uvm_factory()
@@ -67,12 +88,6 @@ uvm_factory::uvm_factory()
 
 uvm_factory::~uvm_factory()
 {
-  if (m_inst)
-  {
-    delete m_inst;
-    m_inst =  NULL;
-  }
-
   for( m_overrides_listItT
        it = m_type_overrides.begin();
        it != m_type_overrides.end();
@@ -143,11 +158,9 @@ uvm_factory::~uvm_factory()
 
 uvm_factory* uvm_factory::get()
 {
-  if (m_inst == NULL) {
-    m_inst = new uvm_factory();
-  }
-  return m_inst;
-
+  uvm_coreservice_t* s;
+  s = uvm_coreservice_t::get();
+  return s->get_factory();
 }
 
 //----------------------------------------------------------------------------
@@ -1392,21 +1405,6 @@ uvm_object_wrapper* uvm_factory::find_by_name( const std::string& type_name )
   return NULL;
 }
 
-//------------------------------------------------------------------------------
-// member function: find_by_name
-//
-//! Delete factory and free memory
-//------------------------------------------------------------------------------
-
-void uvm_factory::cleanup()
-{
-  if (m_inst)
-  {
-    delete m_inst;
-    m_inst =  NULL;
-  }
-}
-
 ////////////////////
 
 //------------------------------------------------------------------------------
@@ -1420,7 +1418,9 @@ void uvm_set_type_override(
   const std::string& override_type_name,
   bool replace )
 {
-  get_factory()->set_type_override_by_name(
+  uvm_coreservice_t* cs = uvm_coreservice_t::get();
+  uvm_factory* factory = cs->get_factory();
+  factory->set_type_override_by_name(
     original_type_name, override_type_name, replace );
 }
 
@@ -1429,7 +1429,9 @@ void uvm_set_inst_override(
   const std::string& override_type_name,
   const std::string& full_inst_path )
 {
-  get_factory()->set_inst_override_by_name(
+  uvm_coreservice_t* cs = uvm_coreservice_t::get();
+  uvm_factory* factory = cs->get_factory();
+  factory->set_inst_override_by_name(
     original_type_name, override_type_name, full_inst_path );
 }
 

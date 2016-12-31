@@ -50,7 +50,7 @@ class uvm_component;
 //! request to the appropriate proxy.
 //----------------------------------------------------------------------------
 
-class uvm_object_wrapper : public uvm_report_object
+class uvm_object_wrapper
 {
  public:
 
@@ -100,7 +100,7 @@ class uvm_object_wrapper : public uvm_report_object
   virtual ~uvm_object_wrapper() {}
 
  protected:
-   uvm_object_wrapper( const std::string& name = "") : uvm_report_object(name) {}
+   uvm_object_wrapper( const std::string& name = "" ) {}
 
 };
 

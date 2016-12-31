@@ -27,6 +27,7 @@
 
 #include <string>
 #include <sstream>
+#include <list>
 
 #include "uvmsc/base/uvm_object.h"
 #include "uvmsc/base/uvm_globals.h"

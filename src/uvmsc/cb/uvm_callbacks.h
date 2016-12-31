@@ -29,6 +29,8 @@
 
 #include "uvmsc/base/uvm_root.h"
 #include "uvmsc/base/uvm_object.h"
+#include "uvmsc/base/uvm_coreservice_t.h"
+#include "uvmsc/base/uvm_default_coreservice_t.h"
 #include "uvmsc/cb/uvm_typeid.h"
 #include "uvmsc/cb/uvm_typed_callbacks.h"
 #include "uvmsc/cb/uvm_callback.h"
@@ -401,11 +403,12 @@ void uvm_callbacks<T,CB>::add_by_name( const std::string& name,
 {
   std::vector<uvm_component*> cq;
   uvm_root* top = NULL;
+  uvm_coreservice_t* cs = NULL;
   T* t = NULL;
 
   get();
 
-  top = uvm_root::get();
+  top = cs->get_root();
 
   if(cb == NULL)
   {
@@ -519,11 +522,12 @@ void uvm_callbacks<T,CB>::delete_by_name( const std::string& name,
 {
   std::vector<uvm_component*> cq;
   uvm_root* top = NULL;
+  uvm_coreservice_t* cs = NULL;
   T* t = NULL;
 
   get();
 
-  top = uvm_root::get();
+  top = cs->get_root();
 
   UVM_CB_TRACE_NOOBJ(cb, "Delete callback " + cb->get_name() + " by name from object(s) "
                      + name )

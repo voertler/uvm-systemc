@@ -29,9 +29,12 @@
 #include <sstream>
 #include <systemc>
 
+#include "uvmsc/base/uvm_root.h"
 #include "uvmsc/base/uvm_component.h"
 #include "uvmsc/report/uvm_report_object.h"
 #include "uvmsc/factory/uvm_factory.h"
+
+#include "uvmsc/base/uvm_globals.h"
 
 namespace uvm {
 
@@ -148,13 +151,7 @@ uvm_object* uvm_object_registry<T>::create_object( const std::string& name )
     obj = new T(name);
 #else
 */
-/* TODO randomization
-  scv_name nm;
-  nm = name;
-  obj = new T( scv_name nn = name);
-  if (!name.empty())
-    obj->set_name(name);
-*/
+
   obj = new T(name); // TODO check: was new T();
 
 // do we still need this?
@@ -194,8 +191,9 @@ uvm_object_registry<T>* uvm_object_registry<T>::get()
 
   if (me == NULL)
   {
-    //std::cout << "start to register " << type_name << std::endl;
-    uvm_factory* f = uvm_factory::get();
+    uvm_coreservice_t* cs = uvm_coreservice_t::get();
+    uvm_factory* f = cs->get_factory();
+
     me = new uvm_object_registry<T>("objrgy_" + type_name);
     f->do_register(me);
   }
@@ -219,7 +217,10 @@ T* uvm_object_registry<T>::create( const std::string& name,
 {
   std::string l_contxt;
   uvm_object* obj = NULL;
-  uvm_factory* f = uvm_factory::get();
+
+  uvm_coreservice_t* cs = uvm_coreservice_t::get();
+  uvm_factory* f = cs->get_factory();
+
   if (contxt.empty() && parent != NULL)
     l_contxt = parent->get_full_name();
   obj = f->create_object_by_type( get(), l_contxt, name );
@@ -232,7 +233,8 @@ T* uvm_object_registry<T>::create( const std::string& name,
         << "' was returned instead. Name=" << name << " Parent="
         << ( (parent == NULL) ? "NULL" : parent->get_type_name() )
         << " contxt=" << l_contxt;
-    get_report_object()->uvm_report_fatal("FCTTYP", msg.str(), UVM_NONE);
+
+    uvm_report_fatal("FCTTYP", msg.str(), UVM_NONE);
   }
   return robj;
 }
@@ -251,7 +253,10 @@ void uvm_object_registry<T>::set_type_override(
   uvm_object_wrapper* override_type,
   bool replace  )
 {
-  get_factory()->set_type_override_by_type(get(),override_type,replace);
+  uvm_coreservice_t* cs = uvm_coreservice_t::get();
+  uvm_factory* factory = cs->get_factory();
+
+  factory->set_type_override_by_type(get(),override_type,replace);
 }
 
 //----------------------------------------------------------------------
@@ -283,7 +288,10 @@ void uvm_object_registry<T>::set_inst_override(
     else
       loc_inst_path << parent->get_full_name() << "." << inst_path;
   }
-  get_factory()->set_inst_override_by_type(get(), override_type, loc_inst_path.str());
+  uvm_coreservice_t* cs = uvm_coreservice_t::get();
+  uvm_factory* factory = cs->get_factory();
+
+  factory->set_inst_override_by_type(get(), override_type, loc_inst_path.str());
 }
 
 

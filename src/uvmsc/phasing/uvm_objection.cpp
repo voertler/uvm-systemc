@@ -520,7 +520,8 @@ void uvm_objection::m_objection_init()
   m_total_count.clear();
   m_drain_time.clear();
 
-  m_top = uvm_root::get();
+  uvm_coreservice_t* cs = uvm_coreservice_t::get();
+  m_top = cs->get_root();
 
   m_events.clear();
   m_cleared = false;

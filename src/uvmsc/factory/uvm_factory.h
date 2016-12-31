@@ -28,10 +28,13 @@
 #include <string>
 #include <iostream>
 
+#include "uvmsc/base/uvm_globals.h"
 #include "uvmsc/base/uvm_object.h"
+#include "uvmsc/base/uvm_component.h"
+#include "uvmsc/base/uvm_coreservice_t.h"
+#include "uvmsc/base/uvm_default_coreservice_t.h"
 #include "uvmsc/factory/uvm_object_wrapper.h"
 #include "uvmsc/report/uvm_report_object.h"
-
 
 //////////////////////
 
@@ -49,25 +52,14 @@ class uvm_component;
 // Internal class
 //----------------------------------------------------------------------------
 
-class uvm_factory_override: public uvm_report_object
+class uvm_factory_override
 {
  public:
   uvm_factory_override( const std::string& full_inst_path_ = "",
-		  std::string orig_type_name_ = "",
+                        std::string orig_type_name_ = "",
                         uvm_object_wrapper* orig_type_ = NULL,
-                        uvm_object_wrapper* ovrd_type_ = NULL )
-  {
-    if (ovrd_type_ == NULL)
-      uvm_report_fatal( "NULLWR",
-                        "Attempting to register a NULL override object with the factory",
-                        UVM_NONE);
+                        uvm_object_wrapper* ovrd_type_ = NULL );
 
-    full_inst_path = full_inst_path_;
-    orig_type_name = (orig_type_ == NULL) ? orig_type_name_ : (orig_type_->get_type_name() );
-    orig_type      = orig_type_;
-    ovrd_type_name = ovrd_type_->get_type_name();
-    ovrd_type      = ovrd_type_;
-  }
 
  public: //data members
   std::string full_inst_path;
@@ -102,7 +94,7 @@ class uvm_factory_override: public uvm_report_object
 //!   simulators when used with parameterized classes.
 //----------------------------------------------------------------------------
 
-class uvm_factory : public uvm_report_object
+class uvm_factory
 {
   friend class uvm_root;
   friend class uvm_object;
@@ -216,8 +208,6 @@ public:
 
   // data members
 
-  static uvm_factory* m_inst;
-
   typedef std::map<uvm_object_wrapper*, bool> m_types_mapT;
   typedef m_types_mapT::iterator m_types_mapItT;
 
@@ -257,17 +247,6 @@ public:
   static bool m_debug_pass;
 };
 
-//-----------------------------------------------------------------------------
-// singleton factory; it is statically initialized
-//
-// global entry point to get a handle to the factory
-//-----------------------------------------------------------------------------
-
-inline
-uvm_factory* get_factory()
-{
-  return uvm_factory::get();
-}
 
 } // namespace uvm
 
