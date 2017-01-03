@@ -31,6 +31,8 @@
 #include "uvmsc/base/uvm_component.h"
 #include "uvmsc/base/uvm_globals.h"
 #include "uvmsc/base/uvm_root.h"
+#include "uvmsc/base/uvm_coreservice_t.h"
+#include "uvmsc/base/uvm_default_coreservice_t.h"
 #include "uvmsc/seq/uvm_sequencer_base.h"
 #include "uvmsc/seq/uvm_sequence_base.h"
 #include "uvmsc/seq/uvm_sequence_item.h"
@@ -498,7 +500,8 @@ const sc_time uvm_objection::get_drain_time( uvm_object* obj ) const
 void uvm_objection::display_objections( uvm_object* obj,
                                         bool show_header ) const
 {
-  std::cout << m_display_objections(obj, show_header);
+  std::string s = m_display_objections(obj,show_header);
+  UVM_INFO("UVM/OBJ/DISPLAY", s, UVM_NONE);
 }
 
 

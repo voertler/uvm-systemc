@@ -27,6 +27,7 @@
 
 #include "uvmsc/base/uvm_component.h"
 #include "uvmsc/base/uvm_component_name.h"
+#include "uvmsc/factory/uvm_object_wrapper.h"
 #include "uvmsc/seq/uvm_sequencer_base.h"
 #include "uvmsc/seq/uvm_sequencer.h"
 #include "uvmsc/seq/uvm_sequence_base.h"

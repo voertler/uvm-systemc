@@ -30,6 +30,7 @@
 #include <iostream>
 
 #include "uvmsc/macros/uvm_message_defines.h"
+#include "uvmsc/macros/uvm_string_defines.h"
 #include "uvmsc/conf/uvm_queue.h"
 #include "uvmsc/cb/uvm_callbacks_base.h"
 #include "uvmsc/cb/uvm_callback.h"
@@ -339,6 +340,7 @@ void uvm_typed_callbacks<T>::display( T* obj )
   std::vector<std::string> cbq;
   std::vector<std::string> inst_q;
   std::vector<std::string> mode_q;
+  std::vector<std::string> qs;
 
   uvm_callback* cb = NULL;
   std::string blanks = "               ";
@@ -387,8 +389,8 @@ void uvm_typed_callbacks<T>::display( T* obj )
 
     if(me != NULL || m_t_inst->m_tw_cb_q->size())
     {
-      std::cout << "Registered callbacks for all instances of " <<  tname << std::endl;
-      std::cout << "---------------------------------------------------------------" << std::endl;
+      qs.push_back("Registered callbacks for all instances of " + tname + "\n");
+      qs.push_back("---------------------------------------------------------------\n");
     }
 
     if( me != NULL )
@@ -422,15 +424,15 @@ void uvm_typed_callbacks<T>::display( T* obj )
         }
     }
     else
-      std::cout << "No callbacks registered for any instances of type " << tname << "." << std::endl;
+      qs.push_back("No callbacks registered for any instances of type " + tname + ".\n" );
   }
   else
   {
     if(m_t_inst->m_pool->find(bobj) != m_t_inst->m_pool->end() || m_t_inst->m_tw_cb_q->size())
     {
-      std::cout << "Registered callbacks for instance " << obj->get_full_name()
-                << " of " << tname << std::endl;
-      std::cout << "---------------------------------------------------------------" << std::endl;
+      qs.push_back("Registered callbacks for instance " + obj->get_full_name()
+          + " of " + tname + "\n");
+      qs.push_back("---------------------------------------------------------------\n");
     }
     if(m_t_inst->m_pool->find(bobj) != m_t_inst->m_pool->end())
     {
@@ -461,22 +463,17 @@ void uvm_typed_callbacks<T>::display( T* obj )
   {
     if(obj == NULL) str = "*";
     else str = obj->get_full_name();
-    std::cout << "No callbacks registered for instance " << str << " of type " << tname << std::endl;
+    qs.push_back("No callbacks registered for instance " + str + " of type " + tname + "\n");
   }
 
   for( unsigned int i = 0; i < cbq.size(); i++)
   {
-    std::cout << cbq[i]
-              << "  "
-              << blanks.substr(0, max_cb_name-cbq[i].length()-1)
-              << " on "
-              << inst_q[i]
-              << "  "
-              << blanks.substr(0, max_inst_name - inst_q[i].length()-1)
-              << "  "
-              << mode_q[i] // TODO is this also displayed?
-              << std::endl;
+    qs.push_back( cbq[i] + "  " + blanks.substr(0, max_cb_name-cbq[i].length()-1) +
+      " on " + inst_q[i] + "  " + blanks.substr(0, max_inst_name - inst_q[i].length()-1) +
+      "  " + mode_q[i] + "\n" );
   }
+
+  UVM_INFO("UVM/CB/DISPLAY", UVM_STRING_QUEUE_STREAMING_PACK(qs), UVM_NONE);
 
   m_tracing = true; //allow tracing to be resumed
 }

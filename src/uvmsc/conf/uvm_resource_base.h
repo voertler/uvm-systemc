@@ -23,6 +23,7 @@
 #ifndef UVM_RESOURCE_BASE_H_
 #define UVM_RESOURCE_BASE_H_
 
+#include <systemc>
 #include <map>
 #include <string>
 

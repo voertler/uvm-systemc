@@ -31,8 +31,11 @@
 
 #include "uvmsc/base/uvm_root.h"
 #include "uvmsc/base/uvm_component.h"
+#include "uvmsc/base/uvm_coreservice_t.h"
+#include "uvmsc/base/uvm_default_coreservice_t.h"
 #include "uvmsc/report/uvm_report_object.h"
 #include "uvmsc/factory/uvm_factory.h"
+#include "uvmsc/factory/uvm_object_wrapper.h"
 
 
 namespace uvm {

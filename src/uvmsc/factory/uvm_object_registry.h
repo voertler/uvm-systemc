@@ -31,20 +31,20 @@
 
 #include "uvmsc/base/uvm_root.h"
 #include "uvmsc/base/uvm_component.h"
+#include "uvmsc/base/uvm_coreservice_t.h"
+#include "uvmsc/base/uvm_default_coreservice_t.h"
 #include "uvmsc/report/uvm_report_object.h"
 #include "uvmsc/factory/uvm_factory.h"
-
+#include "uvmsc/factory/uvm_object_wrapper.h"
 #include "uvmsc/base/uvm_globals.h"
 
 namespace uvm {
 
 // forward declarations of necessary classes
-class uvm_object_wrapper;
+//none
 
 //----------------------------------------------------------------------
-// Title: Factory Object Wrapper
-//
-// Topic: Intro
+// Factory Object Wrapper
 //
 // This section defines the proxy object class used by the
 // factory. To avoid the overhead of creating an instance of every component
@@ -53,8 +53,9 @@ class uvm_object_wrapper;
 // the proxy to create the object it represents. 
 //
 //----------------------------------------------------------------------
-//
-// CLASS: uvm_object_registry<T,Tname>
+
+//----------------------------------------------------------------------
+// Class: uvm_object_registry<T,Tname>
 //
 //! The #uvm_object_registry serves as a lightweight proxy for an #uvm_object of
 //! type T and type name Tname, a string. The proxy enables efficient

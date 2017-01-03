@@ -701,7 +701,7 @@ int uvm_report_catcher::process_report_catcher()
 //! It prints the statistics for the active catchers.
 //------------------------------------------------------------------------------
 
-void uvm_report_catcher::summarize( UVM_FILE file )
+void uvm_report_catcher::summarize()
 {
   std::ostringstream s;
   std::vector<std::string> q;

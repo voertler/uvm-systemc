@@ -23,12 +23,7 @@
 #ifndef UVM_OBJECT_WRAPPER_H_
 #define UVM_OBJECT_WRAPPER_H_
 
-#include <map>
-#include <list>
 #include <string>
-#include <iostream>
-
-#include "uvmsc/report/uvm_report_object.h"
 
 //////////////////////
 

@@ -30,6 +30,8 @@
 #include "uvmsc/seq/uvm_sequencer_base.h"
 #include "uvmsc/report/uvm_report_object.h"
 #include "uvmsc/base/uvm_object_globals.h"
+#include "uvmsc/base/uvm_coreservice_t.h"
+#include "uvmsc/base/uvm_default_coreservice_t.h"
 #include "uvmsc/factory/uvm_factory.h"
 
 using namespace sc_core;

@@ -200,7 +200,7 @@ class uvm_report_message_element_container : public uvm_object
   virtual void add_int( const std::string& name,
                         uvm_bitstream_t value,
                         int size, uvm_radix_enum radix,
-		        uvm_action action = (UVM_LOG | UVM_RM_RECORD) );
+                        uvm_action action = (UVM_LOG | UVM_RM_RECORD) );
 
   virtual void add_string( const std::string& name,
                            const std::string& value,

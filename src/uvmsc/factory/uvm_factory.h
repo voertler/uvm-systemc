@@ -28,28 +28,22 @@
 #include <string>
 #include <iostream>
 
-#include "uvmsc/base/uvm_globals.h"
-#include "uvmsc/base/uvm_object.h"
-#include "uvmsc/base/uvm_component.h"
-#include "uvmsc/base/uvm_coreservice_t.h"
-#include "uvmsc/base/uvm_default_coreservice_t.h"
-#include "uvmsc/factory/uvm_object_wrapper.h"
-#include "uvmsc/report/uvm_report_object.h"
 
 //////////////////////
 
 namespace uvm {
 
 
-// forward declarations
+// forward class declarations
 class uvm_object;
 class uvm_component;
+class uvm_object_wrapper;
 
 
 //----------------------------------------------------------------------------
-// CLASS: uvm_factory_override
+// Class: uvm_factory_override
 //
-// Internal class
+// Implementation defined class
 //----------------------------------------------------------------------------
 
 class uvm_factory_override
@@ -72,7 +66,7 @@ class uvm_factory_override
 
 
 //----------------------------------------------------------------------------
-// CLASS: uvm_factory
+// Class: uvm_factory
 //
 //! As the name implies, uvm_factory is used to manufacture (create) UVM objects
 //! and components. Only one instance of the factory is present in a given

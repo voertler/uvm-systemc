@@ -215,7 +215,7 @@ class uvm_report_catcher : public uvm_callback
   void issue();
 
  public:
-  static void summarize( UVM_FILE file = 0 );
+  static void summarize();
 
   /////////////////////////////////////////////////////
   /////////////////////////////////////////////////////

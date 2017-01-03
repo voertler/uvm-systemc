@@ -322,9 +322,7 @@ void uvm_root::print_topology( uvm_printer* printer )
   if (printer == NULL)
     uvm_report_error("NULLPRINTER", "uvm_default_printer is NULL");
 
-  uvm_report_info("UVMTOP", "UVM testbench topology:", UVM_LOW);
-
-  if (m_children.size()==0)
+  if (m_children.size() == 0)
   {
     uvm_report_warning("EMTCOMP", "print_topology - No UVM components to print.", UVM_NONE);
     return;
@@ -337,7 +335,8 @@ void uvm_root::print_topology( uvm_printer* printer )
     if(it->second->print_enabled)
       printer->print_object("", *(it->second));
   }
-  std::cout << printer->emit() << std::endl;
+
+  UVM_INFO("UVMTOP", "UVM testbench topology:\n" + printer->emit(), UVM_NONE);
 }
 
 //----------------------------------------------------------------------

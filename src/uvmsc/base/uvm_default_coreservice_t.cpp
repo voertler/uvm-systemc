@@ -36,7 +36,6 @@ namespace uvm {
 
 uvm_factory* uvm_default_coreservice_t::get_factory() const
 {
-  //std::cout << " uvm_default_coreservice_t::get_factory() called" << std::endl;
   if(factory == NULL)
   {
     // TODO change in uvm_default_factory
@@ -138,7 +137,6 @@ void uvm_default_coreservice_t::set_report_server( uvm_report_server* server )
 
 uvm_root* uvm_default_coreservice_t::get_root() const
 {
-  //std::cout << " uvm_default_coreservice_t::get_root() called" << std::endl;
   return uvm_root::m_uvm_get_root();
 }
 
