@@ -54,7 +54,7 @@ class uvm_default_coreservice_t;
 
 class uvm_coreservice_t
 {
-public:
+ public:
 
   virtual uvm_factory* get_factory() const = 0;
   virtual void set_factory( uvm_factory* f ) = 0;
@@ -72,6 +72,8 @@ public:
 
   static uvm_default_coreservice_t* get();
 
+ protected:
+  uvm_coreservice_t(){};
   virtual ~uvm_coreservice_t(){}
 
 }; // class uvm_coreservice_t
