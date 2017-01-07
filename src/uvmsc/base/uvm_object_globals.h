@@ -517,6 +517,7 @@ typedef uvm_bitstream_t_select<((UVM_MAX_STREAMBITS)<=64)>::type uvm_bitstream_t
 
 typedef sc_dt::sc_uint<64> uvm_integral_t;
 
+
 typedef std::ostream* UVM_FILE;
 
 //----------------------------------------------------------------------

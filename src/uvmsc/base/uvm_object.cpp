@@ -202,7 +202,7 @@ const uvm_object_wrapper* uvm_object::get_object_type() const
   uvm_coreservice_t* cs = uvm_coreservice_t::get();
   uvm_factory* factory = cs->get_factory();
 
-  return factory->find_by_name(get_type_name());
+  return factory->find_wrapper_by_name(get_type_name());
 }
 
 //----------------------------------------------------------------------------

@@ -184,7 +184,7 @@ uvm_queue<uvm_callback*>* uvm_typed_callbacks<T>::m_get_tw_cb_q( uvm_object* obj
 template <typename T>
 int uvm_typed_callbacks<T>::m_cb_find( uvm_queue<uvm_callback*>* q, uvm_callback* cb )
 {
-  for( int i = 0; i < q->size(); ++i )
+  for( int i = 0; i < q->size(); i++ )
     if( q->get(i) == cb )
       return i;
   return -1;
@@ -201,7 +201,7 @@ int uvm_typed_callbacks<T>::m_cb_find_name( uvm_queue<uvm_callback*>* q, const s
 {
   uvm_callback* cb = NULL;
 
-  for(int i = 0; i < q->size(); ++i)
+  for(int i = 0; i < q->size(); i++)
   {
     cb = q->get(i);
     if(cb->get_name() == name)
@@ -362,7 +362,7 @@ void uvm_typed_callbacks<T>::display( T* obj )
 
   q = m_t_inst->m_tw_cb_q;
 
-  for( int i = 0; i < q->size(); ++i )
+  for( int i = 0; i < q->size(); i++ )
   {
     cb = q->get(i);
     cbq.push_back(cb->get_name());
@@ -407,7 +407,7 @@ void uvm_typed_callbacks<T>::display( T* obj )
                     q = new uvm_queue<uvm_callback*>(); // TODO pass name as argument?
                     (*m_t_inst->m_pool)[bobj] = q;
                 }
-                for(int i = 0; i < q->size(); ++i)
+                for(int i = 0; i < q->size(); i++)
                 {
                     cb = q->get(i);
                     cbq.push_back(cb->get_name());
@@ -443,7 +443,7 @@ void uvm_typed_callbacks<T>::display( T* obj )
         (*m_t_inst->m_pool)[bobj] = q;
       }
 
-      for( int i = 0; i < q->size(); ++i )
+      for( int i = 0; i < q->size(); i++ )
       {
         cb = q->get(i);
         cbq.push_back(cb->get_name());

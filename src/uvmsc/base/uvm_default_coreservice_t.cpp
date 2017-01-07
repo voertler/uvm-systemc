@@ -21,6 +21,7 @@
 #include "uvmsc/base/uvm_root.h"
 #include "uvmsc/base/uvm_component.h"
 #include "uvmsc/factory/uvm_factory.h"
+#include "uvmsc/factory/uvm_default_factory.h"
 #include "uvmsc/base/uvm_default_coreservice_t.h"
 #include "uvmsc/report/uvm_report_server.h"
 #include "uvmsc/report/uvm_default_report_server.h"
@@ -38,10 +39,7 @@ uvm_factory* uvm_default_coreservice_t::get_factory() const
 {
   if(factory == NULL)
   {
-    // TODO change in uvm_default_factory
-    //uvm_default_factory* f = new uvm_factory();
-
-    uvm_factory* f = new uvm_factory();
+    uvm_default_factory* f = new uvm_default_factory();
     factory = f;
   }
   return factory;

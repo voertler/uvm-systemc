@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------------
-//   Copyright 2013-2016 NXP B.V.
+//   Copyright 2013-2017 NXP B.V.
 //   Copyright 2007-2010 Mentor Graphics Corporation
 //   Copyright 2007-2009 Cadence Design Systems, Inc.
 //   Copyright 2010 Synopsys, Inc.
@@ -86,8 +86,6 @@ struct sev_id_struct
 class uvm_report_catcher : public uvm_callback
 {
  public:
-  friend class uvm_report_server;
-  friend class uvm_root;
 
   typedef enum { UNKNOWN_ACTION, THROW, CAUGHT} action_e;
 

@@ -263,19 +263,22 @@ void uvm_callbacks<T,CB>::add( T* obj, uvm_callback* cb, uvm_apprepend ordering 
     if (!m_base_inst->m_typename.empty())
       tnm = m_base_inst->m_typename;
     else
+    {
       if (obj != NULL)
         tnm = obj->get_type_name();
       else
         tnm = "uvm_object";
+    }
 
     uvm_report_error("CBUNREG",
-        "Null callback object cannot be registered with object " +
+        "NULL callback object cannot be registered with object " +
         nm + " (" + tnm + ")", UVM_NONE);
     return;
   }
 
-  if (!m_base_inst->check_registration(obj,cb))
+  if (!m_base_inst->check_registration(obj, cb))
   {
+    std::cout << "not registered obj/cb" << std::endl;
     if (obj == NULL)
       nm = "(*)";
     else
@@ -284,10 +287,12 @@ void uvm_callbacks<T,CB>::add( T* obj, uvm_callback* cb, uvm_apprepend ordering 
     if (!m_base_inst->m_typename.empty())
       tnm = m_base_inst->m_typename;
     else
+    {
       if(obj != NULL)
         tnm = obj->get_type_name();
       else
         tnm = "uvm_object";
+    }
 
     uvm_report_warning("CBUNREG",
         "Callback " + cb->get_name() + " cannot be registered with object " +

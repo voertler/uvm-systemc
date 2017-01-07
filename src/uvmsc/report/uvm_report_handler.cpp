@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------------
-//   Copyright 2013-2016 NXP B.V.
+//   Copyright 2013-2017 NXP B.V.
 //   Copyright 2007-2011 Mentor Graphics Corporation
 //   Copyright 2007-2011 Cadence Design Systems, Inc. 
 //   Copyright 2010 Synopsys, Inc.
@@ -62,19 +62,18 @@ uvm_report_handler::uvm_report_handler( const std::string name )
 // of the current configuration. A snippet of example output is shown here:
 //----------------------------------------------------------------------------
 
-void uvm_report_handler::do_print( const uvm_printer& printer )
+void uvm_report_handler::do_print( const uvm_printer& printer ) const
 {
   uvm_severity l_severity;
   std::string idx;
   int l_int;
 
-  // max verb
-
-  if ( (m_max_verbosity_level == UVM_NONE) &&
-       (m_max_verbosity_level == UVM_LOW) &&
-       (m_max_verbosity_level == UVM_MEDIUM) &&
-       (m_max_verbosity_level == UVM_HIGH) &&
-       (m_max_verbosity_level == UVM_FULL) &&
+  // print max verbosity
+  if ( (m_max_verbosity_level == UVM_NONE) ||
+       (m_max_verbosity_level == UVM_LOW) ||
+       (m_max_verbosity_level == UVM_MEDIUM) ||
+       (m_max_verbosity_level == UVM_HIGH) ||
+       (m_max_verbosity_level == UVM_FULL) ||
        (m_max_verbosity_level == UVM_DEBUG) )
     printer.print_generic("max_verbosity_level", "uvm_verbosity", 32,
         uvm_verbosity_name[m_max_verbosity_level/100]);
@@ -82,19 +81,19 @@ void uvm_report_handler::do_print( const uvm_printer& printer )
     printer.print_field_int("max_verbosity_level", m_max_verbosity_level, 32, UVM_DEC,
         ".", "int");
 
-  // id verbs
-  if(id_verbosities.size()!= 0)
+  // print id verbosity
+  if(id_verbosities.size() != 0)
   {
     printer.print_array_header("id_verbosities", id_verbosities.size(), "uvm_pool");
-    for (id_verbosities_mapitt it = id_verbosities.begin(); it != id_verbosities.end(); ++it)
+    for (id_verbosities_mapcitt it = id_verbosities.begin(); it != id_verbosities.end(); ++it)
     {
       l_int = it->second;
       idx = it->first;
-      if ( (l_int == UVM_NONE) &&
-           (l_int == UVM_LOW) &&
-           (l_int == UVM_MEDIUM) &&
-           (l_int == UVM_HIGH) &&
-           (l_int == UVM_FULL) &&
+      if ( (l_int == UVM_NONE) ||
+           (l_int == UVM_LOW) ||
+           (l_int == UVM_MEDIUM) ||
+           (l_int == UVM_HIGH) ||
+           (l_int == UVM_FULL) ||
            (l_int == UVM_DEBUG) )
         printer.print_generic("[" + idx + "]", "uvm_verbosity", 32, uvm_verbosity_name[l_int/100]);
       else
@@ -107,26 +106,26 @@ void uvm_report_handler::do_print( const uvm_printer& printer )
     printer.print_array_footer();
   }
 
-  // sev and id verbs
+  // print sev and id verbosities
   if(severity_id_verbosities.size() != 0)
   {
     int _total_cnt = 0;
-    for( severity_id_verbosities_mapitt it = severity_id_verbosities.begin();
+    for( severity_id_verbosities_mapcitt it = severity_id_verbosities.begin();
          it != severity_id_verbosities.end(); ++it) // iterate over full map
     {
       l_severity = it->first;
-      _total_cnt += severity_id_verbosities[l_severity].size();
+      _total_cnt += severity_id_verbosities.find(l_severity)->second.size();
     }
 
     printer.print_array_header("severity_id_verbosities", _total_cnt, "array");
 
-    for( severity_id_verbosities_mapitt it = severity_id_verbosities.begin();
+    for( severity_id_verbosities_mapcitt it = severity_id_verbosities.begin();
         it != severity_id_verbosities.end(); ++it )
     {
       l_severity = it->first;
-      uvm_id_verbosities_array id_v_ary = severity_id_verbosities[l_severity];
+      uvm_id_verbosities_array id_v_ary = severity_id_verbosities.find(l_severity)->second;
 
-      for( id_verbosities_mapitt it2 = id_v_ary.begin();
+      for( id_verbosities_mapcitt it2 = id_v_ary.begin();
           it2 != id_v_ary.end(); ++it2 )
       {
         l_int = it2->second;
@@ -134,11 +133,11 @@ void uvm_report_handler::do_print( const uvm_printer& printer )
         std::ostringstream str;
         str << "[" << uvm_severity_name[l_severity] << ":" << idx << "]";
 
-        if ( (l_int == UVM_NONE) &&
-            (l_int == UVM_LOW) &&
-            (l_int == UVM_MEDIUM) &&
-            (l_int == UVM_HIGH) &&
-            (l_int == UVM_FULL) &&
+        if ( (l_int == UVM_NONE) ||
+            (l_int == UVM_LOW) ||
+            (l_int == UVM_MEDIUM) ||
+            (l_int == UVM_HIGH) ||
+            (l_int == UVM_FULL) ||
             (l_int == UVM_DEBUG) )
         {
           printer.print_generic(str.str(), "uvm_verbosity", 32, uvm_verbosity_name[l_int/100]);
@@ -155,12 +154,12 @@ void uvm_report_handler::do_print( const uvm_printer& printer )
     printer.print_array_footer();
   }
 
-  // id actions
+  // print id actions
   if(id_actions.size() != 0)
   {
     printer.print_array_header("id_actions", id_actions.size(), "uvm_pool");
 
-    for( id_actions_mapitt it = id_actions.begin();
+    for( id_actions_mapcitt it = id_actions.begin();
          it != id_actions.end(); ++it )
     {
       l_int = it->second;
@@ -171,45 +170,45 @@ void uvm_report_handler::do_print( const uvm_printer& printer )
     printer.print_array_footer();
   }
 
-  // severity actions
+  // print severity actions
   if(severity_actions.size() != 0)
   {
     printer.print_array_header("severity_actions", 4, "array");
 
-    for( severity_actions_mapitt it = severity_actions.begin();
+    for( severity_actions_mapcitt it = severity_actions.begin();
          it != severity_actions.end(); ++it)
     {
       l_severity = it->first;
       std::ostringstream str;
       str << "[" << uvm_severity_name[l_severity] << "]";
       printer.print_generic(str.str() , "uvm_action", 32,
-          format_action(severity_actions[l_severity]));
+          format_action(severity_actions.find(l_severity)->second));
     }
 
     printer.print_array_footer();
   }
 
-  // sev and id actions
+  // print sev and id actions
   if(severity_id_actions.size() != 0)
   {
     int _total_cnt = 0;
 
-    for( severity_id_actions_mapitt it = severity_id_actions.begin();
+    for( severity_id_actions_mapcitt it = severity_id_actions.begin();
          it != severity_id_actions.end(); ++it)
     {
       l_severity = it->first;
-      _total_cnt += severity_id_actions[l_severity].size();
+      _total_cnt += severity_id_actions.find(l_severity)->second.size();
     }
 
     printer.print_array_header("severity_id_actions", _total_cnt, "array");
 
-    for( severity_id_actions_mapitt it = severity_id_actions.begin();
+    for( severity_id_actions_mapcitt it = severity_id_actions.begin();
         it != severity_id_actions.end(); ++it)
     {
       l_severity = it->first;
-      uvm_id_actions_array id_a_ary = severity_id_actions[l_severity];
+      uvm_id_actions_array id_a_ary = severity_id_actions.find(l_severity)->second;
 
-      for( id_actions_mapitt it2 = id_a_ary.begin();
+      for( id_actions_mapcitt it2 = id_a_ary.begin();
           it2 != id_a_ary.end(); ++it2)
       {
         idx = it2->first;
@@ -223,47 +222,46 @@ void uvm_report_handler::do_print( const uvm_printer& printer )
     printer.print_array_footer();
   }
 
-  // sev overrides
+  // print sev overrides
   if(sev_overrides.size() != 0 )
   {
     printer.print_array_header("sev_overrides", sev_overrides.size(), "uvm_pool");
 
-    for( sev_overrides_mapitt it = sev_overrides.begin();
+    for( sev_overrides_mapcitt it = sev_overrides.begin();
       it != sev_overrides.end(); ++it)
     {
-      // TODO check first and second
       uvm_severity l_severity_first = it->first;
       uvm_severity l_severity_second = it->second;
       std::ostringstream str;
-      str << "[" << uvm_severity_name[l_severity_second] << "]";
+      str << "[" << uvm_severity_name[l_severity_first] << "]";
 
       printer.print_generic(str.str(),
-          "uvm_severity", 32, uvm_severity_name[l_severity_first]);
+          "uvm_severity", 32, uvm_severity_name[l_severity_second]);
     }
 
     printer.print_array_footer();
   }
 
-  // sev and id overrides
+  // print sev and id overrides
   if(sev_id_overrides.size() != 0)
   {
     int _total_cnt = 0;
-    for( sev_id_overrides_mapitt it = sev_id_overrides.begin();
+    for( sev_id_overrides_mapcitt it = sev_id_overrides.begin();
         it != sev_id_overrides.end(); ++it )
     {
       idx = it->first;
-      _total_cnt += sev_id_overrides[idx].size();
+      _total_cnt += sev_id_overrides.find(idx)->second.size();
     }
 
     printer.print_array_header("sev_id_overrides", _total_cnt, "array");
 
-    for( sev_id_overrides_mapitt it = sev_id_overrides.begin();
+    for( sev_id_overrides_mapcitt it = sev_id_overrides.begin();
         it != sev_id_overrides.end(); ++it)
     {
       idx = it->first;
-      uvm_sev_override_array sev_o_ary = sev_id_overrides[idx];
+      uvm_sev_override_array sev_o_ary = sev_id_overrides.find(idx)->second;
 
-      for( sev_overrides_mapitt it2 = sev_o_ary.begin();
+      for( sev_overrides_mapcitt it2 = sev_o_ary.begin();
           it2 != sev_o_ary.end(); ++it2)
       {
         uvm_severity sev_first = it2->first;
@@ -278,22 +276,22 @@ void uvm_report_handler::do_print( const uvm_printer& printer )
     printer.print_array_footer();
   }
 
-  // default file handle
-  // TODO check casting of UVM_FILE
-  printer.print_field_int("default_file_handle", (int)default_file_handle, 32, UVM_HEX,
+  // print default file handle
+  int def_file_handle = 0x1; // TODO no file handle when using ostream. Orig: default_file_handle;
+  printer.print_field_int("default_file_handle", def_file_handle, 32, UVM_HEX,
       ".", "int");
 
-  // id files
+  // print id files
   if(id_file_handles.size()!=0)
   {
     printer.print_array_header("id_file_handles", id_file_handles.size(),
         "uvm_pool");
 
-    for( id_file_handles_mapitt it = id_file_handles.begin();
+    for( id_file_handles_mapcitt it = id_file_handles.begin();
         it != id_file_handles.end(); ++it)
     {
       idx = it->first;
-      int file_handle = (int)id_file_handles[idx]; // TODO check cast from UVM_FILE to int
+      int file_handle = 0x1; // TODO no file handle when using ostream. Orig: id_file_handles[idx];
       printer.print_field_int("[" + idx + "]", file_handle, 32,
           UVM_HEX, ".", "UVM_FILE");
     }
@@ -301,51 +299,52 @@ void uvm_report_handler::do_print( const uvm_printer& printer )
     printer.print_array_footer();
   }
 
-  // severity files
-  if(severity_file_handles.size()!=0)
+  // print severity files
+  if(severity_file_handles.size() != 0)
   {
     printer.print_array_header("severity_file_handles", 4, "array");
 
-    for( severity_file_handles_mapitt it = severity_file_handles.begin();
+    for( severity_file_handles_mapcitt it = severity_file_handles.begin();
         it != severity_file_handles.end(); ++it)
     {
       l_severity = it->first;
       std::ostringstream str;
       str << "[" << uvm_severity_name[l_severity] << "]";
-      printer.print_field_int(str.str(),
-          (int)severity_file_handles[l_severity], 32, UVM_HEX, ".", "UVM_FILE");
+      int file_handle = 0x1; // TODO no file handle when using ostream. Orig: severity_file_handles[l_severity];
+      printer.print_field_int(str.str(), file_handle, 32, UVM_HEX, ".", "UVM_FILE");
     }
 
     printer.print_array_footer();
   }
 
-  // sev and id files
+  // print sev and id files
   if(severity_id_file_handles.size() != 0)
   {
     int _total_cnt = 0;
-    for( severity_id_file_handles_mapitt it = severity_id_file_handles.begin();
+    for( severity_id_file_handles_mapcitt it = severity_id_file_handles.begin();
         it != severity_id_file_handles.end(); ++it)
     {
       l_severity = it->first;
-      _total_cnt += severity_id_file_handles[l_severity].size();
+      _total_cnt += severity_id_file_handles.find(l_severity)->second.size();
     }
     printer.print_array_header("severity_id_file_handles", _total_cnt, "array");
 
 
-    for( severity_id_file_handles_mapitt it = severity_id_file_handles.begin();
+    for( severity_id_file_handles_mapcitt it = severity_id_file_handles.begin();
         it != severity_id_file_handles.end(); ++it)
     {
       l_severity = it->first;
-      uvm_id_file_array id_f_ary = severity_id_file_handles[l_severity];
+      uvm_id_file_array id_f_ary = severity_id_file_handles.find(l_severity)->second;
 
-      for( id_file_handles_mapitt it2 = id_f_ary.begin();
+      for( id_file_handles_mapcitt it2 = id_f_ary.begin();
           it2 != id_f_ary.end(); ++it2)
       {
         idx = it2->first;
         std::ostringstream str;
         str << "[" << uvm_severity_name[l_severity] << ":" << idx << "]";
+        int file_handle = 0x1; // TODO no file handle when using ostream. Orig: id_f_ary[idx];
         printer.print_field_int(str.str(),
-            (int)id_f_ary[idx], 32, UVM_HEX, ".", "UVM_FILE"); // check cast UVM_FILE
+            file_handle, 32, UVM_HEX, ".", "UVM_FILE"); // check cast UVM_FILE
       }
     }
     printer.print_array_footer();
@@ -533,7 +532,7 @@ void uvm_report_handler::report( uvm_severity severity,
 //! Returns a string representation of the \p action, e.g., "DISPLAY".
 //----------------------------------------------------------------------------
 
-std::string uvm_report_handler::format_action( uvm_action action )
+std::string uvm_report_handler::format_action( uvm_action action ) const
 {
   std::string s;
 
@@ -544,9 +543,10 @@ std::string uvm_report_handler::format_action( uvm_action action )
     s.clear(); s = "";
     if(action & UVM_DISPLAY)   s = s + "DISPLAY ";
     if(action & UVM_LOG)       s = s + "LOG ";
+    if(action & UVM_RM_RECORD) s = s + "RM_RECORD ";
     if(action & UVM_COUNT)     s = s + "COUNT ";
-    if(action & UVM_EXIT)      s = s + "EXIT ";
     if(action & UVM_CALL_HOOK) s = s + "CALL_HOOK ";
+    if(action & UVM_EXIT)      s = s + "EXIT ";
     if(action & UVM_STOP)      s = s + "STOP ";
   }
 
@@ -780,12 +780,6 @@ void uvm_report_handler::set_severity_id_override( uvm_severity cur_severity,
 {
   // has precedence over set_severity_override
   // silently override previous setting
-  uvm_sev_override_array arr;
-
-  //if(!sev_id_overrides.exists(id))
-  //  sev_id_overrides[id] = new;
-
-  // TODO check - no need to new item?
   sev_id_overrides[id][cur_severity] = new_severity;
 }
 
@@ -843,7 +837,7 @@ void uvm_report_handler::dump_state()
 
   q.push_back("*** verbosities by id and severity\n");
 
-  for( severity_id_verbosities_mapitt it = severity_id_verbosities.begin();
+  for( severity_id_verbosities_mapcitt it = severity_id_verbosities.begin();
        it != severity_id_verbosities.end();
        it++)
   {
@@ -872,7 +866,7 @@ void uvm_report_handler::dump_state()
 
   q.push_back("*** actions by severity\n");
 
-  for ( severity_actions_mapitt it = severity_actions.begin();
+  for ( severity_actions_mapcitt it = severity_actions.begin();
         it != severity_actions.end();
         it++)
   {
@@ -903,7 +897,7 @@ void uvm_report_handler::dump_state()
 
   q.push_back("\n*** actions by id and severity\n");
 
-  for ( severity_id_verbosities_mapitt it = severity_id_actions.begin();
+  for ( severity_id_verbosities_mapcitt it = severity_id_actions.begin();
         it != severity_id_actions.end();
         it++)
   {
@@ -937,7 +931,7 @@ void uvm_report_handler::dump_state()
 
   q.push_back("*** files by severity\n");
 
-  for( severity_file_handles_mapitt it = severity_file_handles.begin();
+  for( severity_file_handles_mapcitt it = severity_file_handles.begin();
        it != severity_file_handles.end();
        it++)
   {
@@ -968,7 +962,7 @@ void uvm_report_handler::dump_state()
 
   q.push_back("\n*** files by id and severity\n");
 
-  for( severity_id_file_handles_mapitt it = severity_id_file_handles.begin();
+  for( severity_id_file_handles_mapcitt it = severity_id_file_handles.begin();
        it != severity_id_file_handles.end();
        it++)
   {

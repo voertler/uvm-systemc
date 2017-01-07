@@ -26,6 +26,10 @@
 #define UVM_POUND_ZERO_COUNT 1 // used for NBA wait
 
 #include <systemc>
+
+#include <string>
+#include <ostream>
+
 #include "uvmsc/base/uvm_object_globals.h"
 
 //////////////

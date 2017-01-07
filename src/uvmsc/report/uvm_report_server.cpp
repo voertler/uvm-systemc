@@ -1,11 +1,11 @@
 //----------------------------------------------------------------------------
+//   Copyright 2016-2017 NXP B.V.
 //   Copyright 2014 Fraunhofer-Gesellschaft zur Foerderung
 //					der angewandten Forschung e.V.
 //   Copyright 2007-2010 Mentor Graphics Corporation
 //   Copyright 2007-2011 Cadence Design Systems, Inc. 
 //   Copyright 2010 Synopsys, Inc.
 //   Copyright 2014 NVIDIA Corporation
-//   Copyright 2016 NXP B.V.
 //   All Rights Reserved Worldwide
 //
 //   Licensed under the Apache License, Version 2.0 (the
@@ -54,7 +54,7 @@ void uvm_report_server::do_copy( const uvm_object& rhs )
   const uvm_report_server* rhs_ = dynamic_cast<const uvm_report_server*>(&rhs);
 
   if(rhs_ == NULL)
-    UVM_ERROR("UVM/REPORT/SERVER/RPTCOPY", "cannot copy to report_server from the given datatype");
+    UVM_ERROR("UVM/REPORT/SERVER/RPTCOPY", "Cannot copy to report_server from the given datatype.");
     //TODO should be FATAL?
 
   {

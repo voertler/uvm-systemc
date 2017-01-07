@@ -78,7 +78,7 @@ class uvm_report_handler : public uvm_object
 
   uvm_report_handler( const std::string name = "uvm_report_handler");
 
-  void do_print( const uvm_printer& printer );
+  void do_print( const uvm_printer& printer ) const;
 
   //--------------------------------------------------------------------
   // Group: Message processing
@@ -90,7 +90,7 @@ class uvm_report_handler : public uvm_object
   // Group: Convenience methods
   //--------------------------------------------------------------------
 
-  std::string format_action( uvm_action action );
+  std::string format_action( uvm_action action ) const;
 
   /////////////////////////////////////////////////////
   // Implementation-defined member functions below,
@@ -168,43 +168,43 @@ class uvm_report_handler : public uvm_object
 
   typedef std::map<uvm_severity, uvm_action> severity_actions_mapt;
   severity_actions_mapt severity_actions;
-  typedef severity_actions_mapt::iterator severity_actions_mapitt;
+  typedef severity_actions_mapt::const_iterator severity_actions_mapcitt;
 
   uvm_id_actions_array id_actions;
-  typedef uvm_id_actions_array::iterator id_actions_mapitt;
+  typedef uvm_id_actions_array::const_iterator id_actions_mapcitt;
 
   typedef std::map<uvm_severity, uvm_id_actions_array> severity_id_actions_mapt;
-  typedef severity_id_actions_mapt::iterator severity_id_actions_mapitt;
+  typedef severity_id_actions_mapt::const_iterator severity_id_actions_mapcitt;
   severity_id_actions_mapt severity_id_actions;
 
   // id verbosity settings : default and severity
   uvm_id_verbosities_array id_verbosities;
-  typedef uvm_id_verbosities_array::iterator id_verbosities_mapitt;
+  typedef uvm_id_verbosities_array::const_iterator id_verbosities_mapcitt;
 
   typedef std::map<uvm_severity, uvm_id_verbosities_array> severity_id_verbosities_mapt;
-  typedef severity_id_verbosities_mapt::iterator severity_id_verbosities_mapitt;
+  typedef severity_id_verbosities_mapt::const_iterator severity_id_verbosities_mapcitt;
   severity_id_verbosities_mapt severity_id_verbosities;
 
   // severity overrides
   uvm_sev_override_array sev_overrides;
-  typedef uvm_sev_override_array::iterator sev_overrides_mapitt;
+  typedef uvm_sev_override_array::const_iterator sev_overrides_mapcitt;
 
   typedef std::map<std::string, uvm_sev_override_array> sev_id_overrides_mapt;
-  typedef sev_id_overrides_mapt::iterator sev_id_overrides_mapitt;
+  typedef sev_id_overrides_mapt::const_iterator sev_id_overrides_mapcitt;
   sev_id_overrides_mapt sev_id_overrides;
 
   // file handles : default, severity, action, (severity,id)
   UVM_FILE default_file_handle;
 
   typedef std::map<uvm_severity, UVM_FILE> severity_file_handles_mapt;
-  typedef severity_file_handles_mapt::iterator severity_file_handles_mapitt;
+  typedef severity_file_handles_mapt::const_iterator severity_file_handles_mapcitt;
   severity_file_handles_mapt severity_file_handles;
 
   uvm_id_file_array id_file_handles;
-  typedef uvm_id_file_array::iterator id_file_handles_mapitt;
+  typedef uvm_id_file_array::const_iterator id_file_handles_mapcitt;
 
   typedef std::map<uvm_severity, uvm_id_file_array> severity_id_file_handles_mapt;
-  typedef severity_id_file_handles_mapt::iterator severity_id_file_handles_mapitt;
+  typedef severity_id_file_handles_mapt::const_iterator severity_id_file_handles_mapcitt;
   severity_id_file_handles_mapt severity_id_file_handles;
 
 }; // class uvm_report_handler
