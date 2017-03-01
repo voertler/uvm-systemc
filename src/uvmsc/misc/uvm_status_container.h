@@ -49,7 +49,7 @@ class uvm_status_container
 {
  public:
 
-  uvm_status_container() {}
+  uvm_status_container():scope(new uvm_scope_stack()) {}
 
   // Used for checking cycles. When a data function is entered, if the depth is
   // non-zero, then then the existeance of the object in the map means that a
