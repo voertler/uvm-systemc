@@ -150,7 +150,7 @@ class uvm_factory
 
   virtual uvm_object_wrapper* find_wrapper_by_name( const std::string& type_name ) = 0;
 
-  virtual void print( int all_types = 1 );
+  virtual void print( int all_types = 1 ) = 0;
 
  protected:
   uvm_factory(){};
