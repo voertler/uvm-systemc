@@ -456,7 +456,7 @@ void uvm_object::do_copy( const uvm_object& rhs )
 bool uvm_object::compare( const uvm_object& rhs,
                           const uvm_comparer* comparer ) const
 {
-  return do_compare(rhs);
+  return do_compare(rhs, (comparer==NULL)?::uvm::uvm_default_comparer:comparer);
 }
 
 

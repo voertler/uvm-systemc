@@ -41,6 +41,7 @@ namespace uvm {
 extern int g_inst_count;
 
 extern uvm_packer* uvm_default_packer;
+extern uvm_comparer* uvm_default_comparer;
 
 // forward declaration of uvm_packer used in uvm_object
 class uvm_packer;
