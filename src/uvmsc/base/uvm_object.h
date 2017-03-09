@@ -50,6 +50,7 @@ class uvm_comparer;
 extern int g_inst_count;
 
 extern uvm_packer* uvm_default_packer;
+extern uvm_comparer* uvm_default_comparer;
 
 
 // TODO typesdefs for intstream, bytestream, etc.
