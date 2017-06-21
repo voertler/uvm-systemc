@@ -25,6 +25,9 @@
 
 #include <cstdio>
 #include <cstring>
+#include <iostream>
+#include <string>
+#include <cstdlib>
 
 #include <systemc>
 #include "sysc/kernel/sc_module.h"
@@ -520,6 +523,150 @@ int uvm_re_match_char(const char *re, const char *str)
   return err;
 }
 #endif // HAVE_CXX11_REGEX
+
+//--------------------------------------------------------------------
+// uvm_extract_path_index
+//
+// Extract object name and indexes for bitfield writes. Used for
+// the backdoor mechanism
+//--------------------------------------------------------------------
+
+int uvm_extract_path_index(const std::string& path, std::string& objname,
+    int& begin, int& end )
+{
+  std::string regex_str;
+  std::size_t found;
+  std::string str = path;
+  std::string root_str= "$root.";
+
+  // first, remove $root, if used
+  found = str.find(root_str);
+  if (found!=std::string::npos)
+    str.replace(str.find(root_str),root_str.length(),"");
+
+  // check for notation: bla.bla.range(1,2)
+  found = str.find(".range(");
+  if (found!=std::string::npos)
+    regex_str = "(.*).range\\(([0-9]+)\\,([0-9]+)\\)$";
+  else
+  {
+    // check for notation: bla.bla(1,2)
+    if(*str.rbegin() == ')')
+      regex_str = "(.*)\\(([0-9]+)\\,([0-9]+)\\)$";
+
+    // check for notation: bla.bla[1:2]
+    if(*str.rbegin() == ']')
+      regex_str = "(.*)\\[([0-9]+):?([0-9]+)?\\]$";
+    else // all other notations
+      regex_str = "(.*)";
+  }
+
+  std::vector<std::string> str_vector = uvm_re_match2(regex_str, str);
+
+  if (str_vector.size()<3)
+  {
+    objname = str;
+    begin = -1;
+    end = -1;
+  }
+
+  if (str_vector.size()==3)
+  {
+    objname = str_vector[1];
+    begin = std::atoi(str_vector[2].c_str());
+    end = begin;
+  }
+
+  if (str_vector.size()==4)
+  {
+    objname = str_vector[1];
+    begin = std::atoi(str_vector[2].c_str());
+    end = std::atoi(str_vector[3].c_str());
+  }
+
+  return 1;
+}
+
+// improved regex matching
+std::vector<std::string> uvm_re_match2(const std::string& expr, const std::string& path)
+{
+  std::vector<std::string> str;
+
+#if defined(HAVE_CXX11_REGEX)
+
+#if defined(_MSC_VER) && (_MSC_VER >= 1500) && (_MSC_VER < 1700)
+  // MSVC 2008 and 2010: regex is in nested namespace std::tr1
+  using namespace std::tr1::regex;
+  using namespace std::tr1::smatch;
+  using namespace std::tr1::regex_match
+#else
+  using namespace std::regex;
+  using namespace std::smatch;
+  using namespace std::regex_match
+#endif
+  regex expression(expr);
+  smatch result;
+
+  if (!regex_match(path, result, expression))
+  {
+    UVM_ERROR("REGEXERR", "No regex match.");
+    return str;
+  };
+
+  for (int i = 0; i < result.size(); i++)
+  {
+    //std::cout << "result " << i << ": " << result.str(i) << std::endl;
+    if (!result(i).empty())
+      str.push_back(result(i));
+  }
+
+#else // fallback to POSIX regex
+
+  size_t maxGroups = 4;
+  regex_t regexCompiled;
+  regmatch_t groupArray[maxGroups];
+  const char * cursor;
+
+  if (regcomp(&regexCompiled, expr.c_str(), REG_EXTENDED))
+  {
+    std::cout << "Could not compile regular expression." << std::endl;
+    return str;
+  };
+
+  cursor = path.c_str();
+
+  if (regexec(&regexCompiled, cursor, maxGroups, groupArray, 0))
+  {
+    UVM_ERROR("REGEXERR", "No regex match.");
+    return str;
+  };
+
+  unsigned int g = 0;
+  for (g = 0; g < maxGroups; g++)
+  {
+    if (groupArray[g].rm_so == (size_t)-1)
+      break;  // No more groups
+
+    char cursorCopy[strlen(cursor) + 1];
+    strcpy(cursorCopy, cursor);
+    cursorCopy[groupArray[g].rm_eo] = 0;
+
+    /*
+    std::cout << "Group " << g << ": ["
+        << groupArray[g].rm_so << "-" << groupArray[g].rm_eo
+        << "]: " << cursorCopy + groupArray[g].rm_so
+        << std::endl;
+    */
+
+    str.push_back(std::string(cursorCopy + groupArray[g].rm_so));
+  }
+
+  regfree(&regexCompiled);
+
+#endif // HAVE_CXX11_REGEX
+
+  return str;
+}
 
 
 } // namespace uvm
