@@ -34,7 +34,7 @@
 AC_PREREQ(2.61)
 
 AC_INIT([UVM-SystemC],
-        [1.0-alpha1],
+        [1.1-alpha1],
         [uvm-systemc-feedback@lists.accellera.org],
         [uvm-systemc],
         [Download-URL],
@@ -267,16 +267,16 @@ AM_CONDITIONAL([WANT_DEBUG], [test "$enable_debug" = "yes"])
 
 
 AC_MSG_CHECKING(whether to enable compiler optimizations)
-AC_ARG_ENABLE([optimized],
-  AS_HELP_STRING([--disable-optimized],
+AC_ARG_ENABLE([optimize],
+  AS_HELP_STRING([--disable-optimize],
                  [disable compiler optimizations]),
   [case "$enableval" in
-    "no" | "yes")  enable_optimized=$enableval;;
-    *)             AC_MSG_ERROR(bad value "$enableval" for --enable-optimized);;
+    "no" | "yes")  enable_optimize=$enableval;;
+    *)             AC_MSG_ERROR(bad value "$enableval" for --enable-optimize);;
   esac],
-  [enable_optimized="yes"])
-AC_MSG_RESULT($enable_optimized)
-AM_CONDITIONAL([WANT_OPTIMIZED], [test "$enable_optimized" = "yes"])
+  [enable_optimize="yes"])
+AC_MSG_RESULT($enable_optimize)
+AM_CONDITIONAL([WANT_OPTIMIZE], [test "$enable_optimize" = "yes"])
 
 AC_SUBST(EXTRA_CXXFLAGS)
 AC_SUBST(DEBUG_CXXFLAGS)
@@ -591,7 +591,7 @@ Configuration summary of $PACKAGE_STRING for $target
    SystemC CFLAGS:      ${SYSTEMC_CFLAGS}
    SystemC LIBS:        ${SYSTEMC_LIBS}
    Additional LIBS:     ${LIBS}
-   Enable compiler optimizations:   $enable_optimized
+   Enable compiler optimizations:   $enable_optimize
    Include debug symbols:           $enable_debug
    Generate instrumentation calls:  $enable_profiling
    Regular expression library:      $want_regex

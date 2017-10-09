@@ -25,11 +25,14 @@
 
 #include <iostream>
 #include <iomanip>
+#include <sstream>
 
 #include "uvmsc/base/uvm_object_globals.h"
 #include "uvmsc/base/uvm_component.h"
 #include "uvmsc/base/uvm_globals.h"
 #include "uvmsc/base/uvm_root.h"
+#include "uvmsc/base/uvm_coreservice_t.h"
+#include "uvmsc/base/uvm_default_coreservice_t.h"
 #include "uvmsc/seq/uvm_sequencer_base.h"
 #include "uvmsc/seq/uvm_sequence_base.h"
 #include "uvmsc/seq/uvm_sequence_item.h"
@@ -497,7 +500,8 @@ const sc_time uvm_objection::get_drain_time( uvm_object* obj ) const
 void uvm_objection::display_objections( uvm_object* obj,
                                         bool show_header ) const
 {
-  std::cout << m_display_objections(obj, show_header);
+  std::string s = m_display_objections(obj,show_header);
+  UVM_INFO("UVM/OBJ/DISPLAY", s, UVM_NONE);
 }
 
 
@@ -519,7 +523,8 @@ void uvm_objection::m_objection_init()
   m_total_count.clear();
   m_drain_time.clear();
 
-  m_top = uvm_root::get();
+  uvm_coreservice_t* cs = uvm_coreservice_t::get();
+  m_top = cs->get_root();
 
   m_events.clear();
   m_cleared = false;
@@ -533,7 +538,6 @@ void uvm_objection::m_objection_init()
   m_top_all_dropped = false;
 
   m_objections().push_back(this);
-  m_objections_ev().notify();
 }
 
 //----------------------------------------------------------------------
@@ -546,18 +550,6 @@ uvm_objection::m_objections_list& uvm_objection::m_objections()
 {
   static m_objections_list list;
   return list;
-}
-
-//----------------------------------------------------------------------
-// member function: m_objections_ev
-//
-// Implementation-defined member function
-//----------------------------------------------------------------------
-
-uvm_objection::m_event& uvm_objection::m_objections_ev()
-{
-  static sc_event handle;
-  return handle;
 }
 
 //----------------------------------------------------------------------
