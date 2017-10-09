@@ -41,9 +41,9 @@ DIST_COMMON = $(noinst_HEADERS) $(srcdir)/Makefile.am \
 @WANT_DEBUG_TRUE@am__append_1 = $(DEBUG_CXXFLAGS)
 @WANT_DEBUG_TRUE@am__append_2 = $(DEBUG_CXXFLAGS)
 @WANT_DEBUG_TRUE@am__append_3 = $(DEBUG_CXXFLAGS)
-@WANT_OPTIMIZED_TRUE@am__append_4 = $(OPT_CXXFLAGS)
-@WANT_OPTIMIZED_TRUE@am__append_5 = $(OPT_CXXFLAGS)
-@WANT_OPTIMIZED_TRUE@am__append_6 = $(OPT_CXXFLAGS)
+@WANT_OPTIMIZE_TRUE@am__append_4 = $(OPT_CXXFLAGS)
+@WANT_OPTIMIZE_TRUE@am__append_5 = $(OPT_CXXFLAGS)
+@WANT_OPTIMIZE_TRUE@am__append_6 = $(OPT_CXXFLAGS)
 subdir = src/uvmsc/phasing
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps =  \
@@ -52,7 +52,8 @@ am__aclocal_m4_deps =  \
 	$(top_srcdir)/config/ltoptions.m4 \
 	$(top_srcdir)/config/ltsugar.m4 \
 	$(top_srcdir)/config/ltversion.m4 \
-	$(top_srcdir)/config/lt~obsolete.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/config/lt~obsolete.m4 \
+	$(top_srcdir)/config/pkg.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
@@ -191,6 +192,8 @@ PATH_SEPARATOR = @PATH_SEPARATOR@
 PCRE_CFLAGS = @PCRE_CFLAGS@
 PCRE_LIBS = @PCRE_LIBS@
 PKG_CONFIG = @PKG_CONFIG@
+PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
 RANLIB = @RANLIB@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
