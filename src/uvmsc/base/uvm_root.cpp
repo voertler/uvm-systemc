@@ -1,6 +1,6 @@
 //----------------------------------------------------------------------
 //   Copyright 2012-2016 NXP B.V.
-//   Copyright 2014 Fraunhofer-Gesellschaft zur Foerderung
+//   Copyright 2014-2017 Fraunhofer-Gesellschaft zur Foerderung
 //					der angewandten Forschung e.V.
 //   Copyright 2007-2011 Mentor Graphics Corporation
 //   Copyright 2007-2011 Cadence Design Systems, Inc.
@@ -548,7 +548,7 @@ void uvm_root::m_uvm_header()
         << std::endl
         << "              Version: " << UVM_VERSION << "  Date: " << UVM_RELEASE_DATE << std::endl;
     std::cerr
-        << "          Copyright (c) 2006 - 2015 by all Contributors" << std::endl
+        << "          Copyright (c) 2006 - 2017 by all Contributors" << std::endl
         << "            See NOTICE file for all Contributors"  << std::endl
         << "                    ALL RIGHTS RESERVED" << std::endl;
     std::cerr
