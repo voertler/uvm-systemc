@@ -2,7 +2,7 @@
 ## --------------------------------------------------------------------------
 ##
 ##   Copyright 2014 Université Pierre et Marie Curie, Paris
-##   Copyright 2014 Fraunhofer-Gesellschaft zur Foerderung
+##   Copyright 2014-2017 Fraunhofer-Gesellschaft zur Foerderung
 ##                  der angewandten Forschung e.V.
 ##   Copyright 2007-2011 Mentor Graphics Corporation
 ##   Copyright 2007-2011 Cadence Design Systems, Inc.
@@ -56,7 +56,7 @@ AC_DEFINE_UNQUOTED(CONFIGURE_DATE, "`sh -c date`", [Date of configure])
 AC_SUBST(CONFIGURE_DATE)
 
 AC_DEFINE_UNQUOTED(UVM_VERSION, "${PACKAGE_VERSION}", [UVM SystemC Version])
-AC_DEFINE_UNQUOTED(UVM_RELEASE_DATE, "2015-12-04", [UVM SystemC Release Date])
+AC_DEFINE_UNQUOTED(UVM_RELEASE_DATE, "2017-11-30", [UVM SystemC Release Date])
 AC_SUBST(UVM_VERSION)
 AC_SUBST(UVM_RELEASE_DATE)
 
