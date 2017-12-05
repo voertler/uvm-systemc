@@ -108,11 +108,14 @@ void uvm_objection::clear( uvm_object* obj )
     {
       m_scheduled_list()[idx]->clear();
       m_context_pool.push_back(m_scheduled_list()[idx]);
-      m_scheduled_list().erase(idx_it);
+      idx_it = m_scheduled_list().erase(idx_it);
       m_scheduled_list_changed().notify();
     }
     else
-      idx++; idx_it++;
+    {
+      idx++;
+      idx_it++;
+    }
   }
 
   // Scheduled contexts and m_forked_lists have duplicate
