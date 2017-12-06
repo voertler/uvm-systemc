@@ -789,6 +789,7 @@ uvm_object_wrapper* uvm_default_factory::find_override_by_name( const std::strin
         qc = m_inst_override_queues[rtype];
     }
     if (qc != NULL)
+    {
       for( m_overrides_listItT
            qit = qc->queue.begin();
            qit != qc->queue.end();
@@ -816,6 +817,7 @@ uvm_object_wrapper* uvm_default_factory::find_override_by_name( const std::strin
           }
         }
       }
+    }
   }
 
   if( rtype != NULL &&
@@ -893,6 +895,7 @@ uvm_object_wrapper* uvm_default_factory::find_override_by_type( uvm_object_wrapp
 
   // inst override; return first match; takes precedence over type overrides
   if ( !full_inst_path.empty() && qc != NULL )
+  {
     for( m_overrides_listItT
          it = qc->queue.begin();
          it != qc->queue.end();
@@ -921,6 +924,7 @@ uvm_object_wrapper* uvm_default_factory::find_override_by_type( uvm_object_wrapp
         }
       }
     }
+  }
 
   // type override - exact match
   for( m_overrides_listItT
