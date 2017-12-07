@@ -542,7 +542,7 @@ int uvm_extract_path_index(const std::string& path, std::string& objname,
   // first, remove $root, if used
   found = str.find(root_str);
   if (found!=std::string::npos)
-    str.replace(str.find(root_str),root_str.length(),"");
+    str.replace(found,root_str.length(),"");
 
   // check for notation: bla.bla.range(1,2)
   found = str.find(".range(");
@@ -624,18 +624,18 @@ std::vector<std::string> uvm_re_match2(const std::string& expr, const std::strin
 
   size_t maxGroups = 4;
   regex_t regexCompiled;
-  regmatch_t groupArray[maxGroups];
+  std::vector<regmatch_t> groupArray( maxGroups );
   const char * cursor;
 
   if (regcomp(&regexCompiled, expr.c_str(), REG_EXTENDED))
   {
-    std::cout << "Could not compile regular expression." << std::endl;
+    UVM_ERROR("REGEXERR", "Could not compile regular expression.");
     return str;
   };
 
   cursor = path.c_str();
 
-  if (regexec(&regexCompiled, cursor, maxGroups, groupArray, 0))
+  if (regexec(&regexCompiled, cursor, maxGroups, &groupArray[0], 0))
   {
     UVM_ERROR("REGEXERR", "No regex match.");
     return str;
@@ -644,21 +644,20 @@ std::vector<std::string> uvm_re_match2(const std::string& expr, const std::strin
   unsigned int g = 0;
   for (g = 0; g < maxGroups; g++)
   {
-    if (groupArray[g].rm_so == (size_t)-1)
+    if (groupArray[g].rm_so == -1)
       break;  // No more groups
 
-    char cursorCopy[strlen(cursor) + 1];
-    strcpy(cursorCopy, cursor);
-    cursorCopy[groupArray[g].rm_eo] = 0;
+    std::string cursorCopy(cursor + groupArray[g].rm_so,
+                           cursor + groupArray[g].rm_eo );
 
     /*
     std::cout << "Group " << g << ": ["
         << groupArray[g].rm_so << "-" << groupArray[g].rm_eo
-        << "]: " << cursorCopy + groupArray[g].rm_so
+        << "]: " << cursorCopy
         << std::endl;
     */
 
-    str.push_back(std::string(cursorCopy + groupArray[g].rm_so));
+    str.push_back(cursorCopy);
   }
 
   regfree(&regexCompiled);
