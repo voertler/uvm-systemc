@@ -21,14 +21,14 @@ System Requirements
 
 UVM-SystemC was tested on the following Linux 64-bit platforms:
 
-               Host-     | GCC   | GCC   | GCC   | GCC   | GCC   | GCC   
- Distribution  Compiler  | 4.4.7 | 4.8.2 | 4.9.2 | 4.9.3 | 5.3.1 | 6.3.0 
- ------------------------------------------------------------------------
- RedHat 6      GCC 4.4.7 |   y   |       |       |   y   |       |  y*  
- RedHat 7      GCC 4.8.2 |       |   y   |       |   y   |       |  y*  
- Debian 8      GCC 4.9.2 |       |       |   ?   |       |       |       
- Debian 9      GCC 6.3.0 |       |       |       |       |       |  y*  
- Ubuntu 16.04  GCC 5.3.1 |       |       |       |       |   y   |       
+               Host-     | GCC   | GCC   | GCC   | GCC   | GCC   
+ Distribution  Compiler  | 4.4.7 | 4.8.2 | 4.9.2 | 5.3.1 | 6.3.0 
+ ----------------------------------------------------------------
+ RedHat 6      GCC 4.4.7 |   y   |       |       |       |  y*  
+ RedHat 7      GCC 4.8.2 |       |   y   |       |       |  y*  
+ Debian 8      GCC 4.9.2 |       |       |   y   |       |       
+ Debian 9      GCC 6.3.0 |       |       |       |       |  y*  
+ Ubuntu 16.04  GCC 5.3.1 |       |       |       |   y   |       
 
  Remarks: * only SystemC 2.3.2 tested as GCC 6.3.* is not compatible with
             previous SystemC versions.
@@ -334,11 +334,10 @@ UVM-SystemC was tested on the following Windows platforms:
  Windows 7  |   y   |       |       |
  Windows 10 |       |   y   |       |
  Cygwin     |       |       |       |
- MinGW-w64  |       |       |  y**  |  y*
+ MinGW-w64  |       |       |  y    |  y*
 
  Remarks: *  only SystemC 2.3.2 tested as GCC 6.3.* is not compatible with
              previous SystemC versions.
-		  ** only SystemC 2.3.1 tested
   
 An installation of UVM-SystemC on other, related platforms may be
 possible as well.
