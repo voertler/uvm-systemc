@@ -1,5 +1,5 @@
-DISCLAIMER - THIS SOFTWARE IS IN BETA PHASE AND IS HIGHLY EXPERIMENTAL; USE 
-AT YOUR OWN RISK. THIS SOFTWARE SHALL BE SOLELY USED FOR STUDY PURPOSES AND 
+DISCLAIMER - THIS SOFTWARE IS IN BETA PHASE AND IS HIGHLY EXPERIMENTAL; USE
+AT YOUR OWN RISK. THIS SOFTWARE SHALL BE SOLELY USED FOR STUDY PURPOSES AND
 SHALL NOT BE USED IN ANY PRODUCTION ENVIRONMENT.
 
 
@@ -8,7 +8,7 @@ SHALL NOT BE USED IN ANY PRODUCTION ENVIRONMENT.
 Contents:
 
         1. Installation Notes for Linux
-         
+
         2. Installation Notes for Windows
 
 
@@ -21,18 +21,18 @@ System Requirements
 
 UVM-SystemC was tested on the following Linux 64-bit platforms:
 
-               Host-     | GCC   | GCC   | GCC   | GCC   | GCC   
- Distribution  Compiler  | 4.4.7 | 4.8.2 | 4.9.2 | 5.3.1 | 6.3.0 
+               Host-     | GCC   | GCC   | GCC   | GCC   | GCC
+ Distribution  Compiler  | 4.4.7 | 4.8.2 | 4.9.2 | 5.3.1 | 6.3.0
  ----------------------------------------------------------------
- RedHat 6      GCC 4.4.7 |   y   |       |       |       |  y*  
- RedHat 7      GCC 4.8.2 |       |   y   |       |       |  y*  
- Debian 8      GCC 4.9.2 |       |       |   y   |       |       
- Debian 9      GCC 6.3.0 |       |       |       |       |  y*  
- Ubuntu 16.04  GCC 5.3.1 |       |       |       |   y   |       
+ RedHat 6      GCC 4.4.7 |   y   |       |       |       |  y*
+ RedHat 7      GCC 4.8.2 |       |   y   |       |       |  y*
+ Debian 8      GCC 4.9.2 |       |       |   y   |       |
+ Debian 9      GCC 6.3.0 |       |       |       |       |  y*
+ Ubuntu 16.04  GCC 5.3.1 |       |       |       |   y   |
 
  Remarks: * only SystemC 2.3.2 tested as GCC 6.3.* is not compatible with
             previous SystemC versions.
- 
+
 An installation of UVM-SystemC on other, related platforms may be
 possible as well.
 
@@ -50,7 +50,7 @@ the following tools:
 
   3. Accellera Systems Initiative SystemC reference implementation
      version 2.3.0 or later (formerly known as OSCI reference implementation)
-  
+
 GCC, Clang, and gmake are free software that you can
 obtain from the following sources:
 
@@ -64,10 +64,10 @@ The SystemC reference implementations are available under Apache License
 Version 2.0 and can be obtained from the following location:
 
   SystemC 2.3.0a or later   http://www.accellera.org/downloads/standards/systemc
-  
+
 Note: Various EDA vendors natively support SystemC. Please consult your EDA vendors
       to make use of the build-in SystemC capabilities of their simulation
-      framework.  
+      framework.
 
 
 Basic UVM-SystemC Installation
@@ -98,19 +98,19 @@ To install UVM-SystemC on a Linux system, do the following steps:
 
         > ../configure
 
-     While the 'configure' script is running, which takes a few moments, 
+     While the 'configure' script is running, which takes a few moments,
      it prints messages to inform you of the features it is checking.
      It also detects the platform.
 
-     As UVM-SystemC relies on the availability of a SystemC installation 
-     directory, the configure script will automatically check this. In case 
-     the configure script cannot find SystemC, it will stop. You can specify 
+     As UVM-SystemC relies on the availability of a SystemC installation
+     directory, the configure script will automatically check this. In case
+     the configure script cannot find SystemC, it will stop. You can specify
      the path to the SystemC installation directory as follows:
 
         > ../configure --with-systemc=/path/to/your/systemc
 
-     Note for System V users: 
-     If you are using `csh' on an older version of System V, you might 
+     Note for System V users:
+     If you are using `csh' on an older version of System V, you might
      need to use the `sh ../configure' command instead of '../configure'.
      Otherwise, `csh' will attempt to `configure' itself.
 
@@ -141,8 +141,8 @@ To install UVM-SystemC on a Linux system, do the following steps:
   7. Install the package.
 
         > gmake install
-  
-  8. At this point you may wish to verify the installation by 
+
+  8. At this point you may wish to verify the installation by
      testing the example suite.
 
         > gmake check
@@ -160,7 +160,7 @@ To install UVM-SystemC on a Linux system, do the following steps:
 
      a) Experiment with the examples.
 
-     b) Later uninstall the package. To clean up the temporary 
+     b) Later uninstall the package. To clean up the temporary
         directory, enter:
 
             > gmake clean
@@ -174,18 +174,18 @@ Running the Examples
 ====================
 
 The UVM-SystemC examples reside in the directory 'examples', within
-the temporary directory which was used for the installation 
-(e.g. objdir). 
+the temporary directory which was used for the installation
+(e.g. objdir).
 
-Use the makefiles provided in the 'examples' directory as templates 
+Use the makefiles provided in the 'examples' directory as templates
 for makefiles you need for compiling your own examples. In order to
-run these example, the environment variable SYSTEMC_HOME should be 
-set beforehand. The examples can be executed by using 'make check'. 
+run these example, the environment variable SYSTEMC_HOME should be
+set beforehand. The examples can be executed by using 'make check'.
 
-     
+
 Using the Configure Script
 ==========================
- 
+
 The `configure' shell script tries to determine the correct values for
 various system-dependent variables used during compilation. It uses
 these values to create a `Makefile' in each directory of the package.
@@ -198,21 +198,21 @@ definitions if needed. Then, it creates the following files:
   config.cache          A file in which the configure test results are
                         saved to speed up reconfiguration.
 
-                        Data is appended to the config.cache file. 
+                        Data is appended to the config.cache file.
                         You can remove unwanted data.
 
   config.log            A file in which compiler output is saved.
                         This is used to debug the configure script.
 
 If you need to use other commands to successfully compile the package
-on your system, please try to determine if the configure script can be used 
+on your system, please try to determine if the configure script can be used
 for these commands. Then, send either a diff file or instructions about
 the commands you used to the email address provided in the README file.
 This information will be used to improve the installation process in
 the next release.
 
 The `configure.in' file is provided in case you want to change or regenerate
-the `configure' script, for example to use a newer version of `autoconf'. 
+the `configure' script, for example to use a newer version of `autoconf'.
 The `configure.in' file is used by the `autoconf' program to create the
 `configure' script.
 
@@ -252,8 +252,8 @@ Specifying the System Type
 
 Some features cannot be automatically determined by `configure' unless
 it can detect the host type on which the package will run.
-If it prints a message that it cannot determine the host type, 
-use the `--host=TYPE' option to define it. TYPE can either be a 
+If it prints a message that it cannot determine the host type,
+use the `--host=TYPE' option to define it. TYPE can either be a
 short system name, such as `sun4', or a canonical name with three fields:
 
      CPU-COMPANY-SYSTEM
@@ -274,7 +274,7 @@ Sharing Defaults
 You can set the default values that `configure' scripts share by
 creating a site shell script called `config.site'. This file contains the
 default values for variables like `CC', `cache_file', and `prefix'.
-The `configure' script looks for the `config.site' file in the following 
+The `configure' script looks for the `config.site' file in the following
 search precedence:
 
   1. PREFIX/share/config.site
@@ -328,8 +328,8 @@ System Requirements
 
 UVM-SystemC was tested on the following Windows platforms:
 
-            | VS    | VS    | GCC   | GCC   
- Platform   | 2008  | 2010  | 4.9.3 | 6.3.0 
+            | VS    | VS    | GCC   | GCC
+ Platform   | 2008  | 2010  | 4.9.3 | 6.3.0
  -------------------------------------------
  Windows 7  |   y   |       |       |
  Windows 10 |       |   y   |       |
@@ -338,15 +338,15 @@ UVM-SystemC was tested on the following Windows platforms:
 
  Remarks: *  only SystemC 2.3.2 tested as GCC 6.3.* is not compatible with
              previous SystemC versions.
-  
+
 An installation of UVM-SystemC on other, related platforms may be
 possible as well.
-    
+
 Set the following environment variable(s) under Windows:
 
      Variable: SYSTEMC
      Value   : c:\my\path\to\systemc\msvc80
-     
+
      Variable: UVMSYSTEMC
      Value   : c:\my\path\to\uvm-systemc\msvc80
 
@@ -356,7 +356,7 @@ Microsoft Visual C++ 2005 (compiler version 8.0) or later
 
 The root directory contains two subdirectories: 'msvc80' and
 'examples'.
-     
+
 The 'msvc80' subdirectory 'uvmsc' contains the project and workspace files to
 compile the 'uvm-systemc.lib' library. Double-click on the 'uvm-systemc.sln'
 file to launch Visual C++ 2005 with the workspace file. The workspace file
@@ -368,37 +368,37 @@ Select 'Build uvm-systemc' under the Build menu or press F7 to build
 Running the Examples in Microsoft Visual C++
 ============================================
 
-The UVM-SystemC examples reside in the directory 'examples' at the 
-highest level of the installation. 
+The UVM-SystemC examples reside in the directory 'examples' at the
+highest level of the installation.
 
-Each examples contain the project and workspace files in the subdirectory 
-'msvc80'. Go to one of these examples subdirectories and double-click on 
-the .vcproj file to launch Visual C++ with the workspace file. The 
-workspace file will have the proper switches set to compile for Visual 
-C++ 2005. Select 'Build <example>.exe' under the Build menu or press F7 
+Each examples contain the project and workspace files in the subdirectory
+'msvc80'. Go to one of these examples subdirectories and double-click on
+the .vcproj file to launch Visual C++ with the workspace file. The
+workspace file will have the proper switches set to compile for Visual
+C++ 2005. Select 'Build <example>.exe' under the Build menu or press F7
 to build the example executable.
 
 
 Creating UVM-Systemc Applications in Microsoft Visual C++
 =========================================================
 
-1. Start Visual Studio. From the Start Page select New Project and Win32 
-   Console Project. Type the project name and select a suitable location 
+1. Start Visual Studio. From the Start Page select New Project and Win32
+   Console Project. Type the project name and select a suitable location
    then click OK.
 
-2. Select the Application Settings page of the Win32 Application Wizard 
-   and make sure the 'Empty project' box is ticked. Click 'Finish' to 
+2. Select the Application Settings page of the Win32 Application Wizard
+   and make sure the 'Empty project' box is ticked. Click 'Finish' to
    complete the wizard.
-   
+
 3. Add new/existing C++ files to the project and edit code.
 
-4. Display the project Property Pages by selecting 'Properties...' from 
-   the Project menu. 
-   
-5. From the C/C++ tab, select the General properties and set 
+4. Display the project Property Pages by selecting 'Properties...' from
+   the Project menu.
+
+5. From the C/C++ tab, select the General properties and set
    'Detect 64-bit Portability Issues' to No
 
-6. From the C/C++ tab, select the Language properties and set 
+6. From the C/C++ tab, select the Language properties and set
    'Enable Run-Time Type Info' to Yes
 
 7. From the C/C++ tab, select the Command Line properties and add /vmg
@@ -410,19 +410,19 @@ Creating UVM-Systemc Applications in Microsoft Visual C++
 9. Click OK
 
 
-Also make sure that the compiler and linker can find the SystemC and 
-UVM-SystemC header and library files respectively. There are two ways 
+Also make sure that the compiler and linker can find the SystemC and
+UVM-SystemC header and library files respectively. There are two ways
 to do this:
 
 To update the include file and library directory search paths for all
 projects:
 
 1. Select Tools -> Options... and the Projects -> VC++ Directories tab
-   
+
 2. Select show directories for: Library files
 
-3. Select the 'New' icon and select the following: 
-   
+3. Select the 'New' icon and select the following:
+
    c:\my\path\to\systemc\msvc80\SystemC\Debug (or Release)
    c:\my\path\to\uvm-systemc\msvc80\uvmsc\Debug (or Release)
 
@@ -437,19 +437,19 @@ projects:
 To add the include file and library directory search paths for the current
 project only:
 
-1. Display the project Property Pages by selecting 'Properties...' from 
-   the Project menu. 
-  
-2. From the C/C++ tab, select the General properties and type the path to the 
+1. Display the project Property Pages by selecting 'Properties...' from
+   the Project menu.
+
+2. From the C/C++ tab, select the General properties and type the path to the
    SystemC 'src' and UVM-SystemC 'src' directories in the text entry field labeled
   'Additional include directories' (e.g. the examples use '..\..\..\src').
 
-3. From the Linker tab, select the General properties and type the path to 
+3. From the Linker tab, select the General properties and type the path to
    the SystemC and UVM-SystemC libraries:
-   
+
    c:\my\path\to\systemc\msvc80\SystemC\Debug (or Release)
    c:\my\path\to\uvm-systemc\msvc80\uvmsc\Debug (or Release)
-   
+
    in the 'Additional Library Directories:' box.
 
 9. Click OK
