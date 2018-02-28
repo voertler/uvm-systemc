@@ -596,13 +596,9 @@ std::vector<std::string> uvm_re_match2(const std::string& expr, const std::strin
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1500) && (_MSC_VER < 1700)
   // MSVC 2008 and 2010: regex is in nested namespace std::tr1
-  using namespace std::tr1::regex;
-  using namespace std::tr1::smatch;
-  using namespace std::tr1::regex_match
+  using namespace std::tr1
 #else
-  using namespace std::regex;
-  using namespace std::smatch;
-  using namespace std::regex_match
+  using namespace std;
 #endif
   regex expression(expr);
   smatch result;
@@ -613,11 +609,13 @@ std::vector<std::string> uvm_re_match2(const std::string& expr, const std::strin
     return str;
   };
 
-  for (int i = 0; i < result.size(); i++)
+  for (unsigned i = 0; i < result.size(); i++)
   {
     //std::cout << "result " << i << ": " << result.str(i) << std::endl;
-    if (!result(i).empty())
-      str.push_back(result(i));
+    //if (!result[i].empty())
+
+      // result contains all matches
+      str.push_back(result[i]);
   }
 
 #else // fallback to POSIX regex

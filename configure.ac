@@ -458,8 +458,8 @@ case "$want_regex" in
     AC_TRY_RUN([#include<regex>
       int main()
       {
-        std::regex rx("xabcy", std::regex::extended);
-        if( !std::regex_match("abc", rx) ) exit(1);
+        std::regex rx("[(ab)]+", std::regex::extended);
+        if( !std::regex_match("abababab", rx) ) exit(1);
         exit(0);
         return 0;
       }],
