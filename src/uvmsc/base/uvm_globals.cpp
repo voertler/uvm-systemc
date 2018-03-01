@@ -596,7 +596,7 @@ std::vector<std::string> uvm_re_match2(const std::string& expr, const std::strin
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1500) && (_MSC_VER < 1700)
   // MSVC 2008 and 2010: regex is in nested namespace std::tr1
-  using namespace std::tr1
+  using namespace std::tr1;
 #else
   using namespace std;
 #endif
