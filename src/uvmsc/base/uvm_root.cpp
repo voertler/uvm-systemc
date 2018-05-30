@@ -529,7 +529,9 @@ void uvm_root::m_register_test( const std::string& test_name )
 void uvm_root::m_uvm_header()
 {
   static bool lnp = false;
-  if (!lnp)
+  if (lnp  || (getenv("UVM_SYSTEMC_DISABLE_COPYRIGHT_MESSAGE") != 0 )) {
+	  lnp = true;
+  } else
   {
 #ifdef REVISION
     std::string revision(REVISION);
