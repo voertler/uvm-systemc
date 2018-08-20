@@ -47,9 +47,9 @@ bool uvm::uvm_mutex::trylock() {
 
 void uvm::uvm_mutex::unlock() {
 #if defined (__MINGW32__) || (__cplusplus < 201103L)
-	m_mutex->trtrylock();
+	m_mutex->unlock()
 #else
-	m_mutex->try_lock();
+	m_mutex->unlock();
 #endif
 }
 
