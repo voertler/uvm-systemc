@@ -19,7 +19,11 @@
 // Defines a mutex with C++11 support, falls back to SytemC sc_host_mutex for older versions
 // Removes dependency from windows.h in user code
 
+#ifndef UVM_UVM_MUTEX_H_
+#define UVM_UVM_MUTEX_H_
+
 #if defined (__MINGW32__) || (__cplusplus < 201103L)
+// forward declaration of sc_host_mutex to avoid inclusion of windows.h
 namespace sc_core {
 	class sc_host_mutex;
 }
@@ -27,10 +31,6 @@ namespace sc_core {
 #include <mutex>
 #include <memory>
 #endif
-
-#ifndef UVM_UVM_MUTEX_H_
-#define UVM_UVM_MUTEX_H_
-// forward declaration of sc_host_mutex to avoid inclusion of windows.h
 
 namespace uvm {
 
@@ -59,5 +59,5 @@ private:
 };
 
 }
-#endif /* SRC_UVMSC_BASE_UVM_MUTEX_H_ */
+#endif /* UVM_UVM_MUTEX_H_ */
 
