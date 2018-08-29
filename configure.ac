@@ -1,7 +1,7 @@
 ##                            -*- Autoconf -*-
 ## --------------------------------------------------------------------------
 ##
-##   Copyright 2014 Université Pierre et Marie Curie, Paris
+##   Copyright 2014 Universitï¿½ Pierre et Marie Curie, Paris
 ##   Copyright 2014-2017 Fraunhofer-Gesellschaft zur Foerderung
 ##                  der angewandten Forschung e.V.
 ##   Copyright 2007-2011 Mentor Graphics Corporation
@@ -41,7 +41,7 @@
 AC_PREREQ(2.61)
 
 AC_INIT([UVM-SystemC],
-        [1.0-beta1],
+        [1.0-beta2],
         [uvm-systemc-feedback@lists.accellera.org],
         [uvm-systemc],
         [Download-URL],
@@ -56,7 +56,7 @@ AC_DEFINE_UNQUOTED(CONFIGURE_DATE, "`sh -c date`", [Date of configure])
 AC_SUBST(CONFIGURE_DATE)
 
 AC_DEFINE_UNQUOTED(UVM_VERSION, "${PACKAGE_VERSION}", [UVM SystemC Version])
-AC_DEFINE_UNQUOTED(UVM_RELEASE_DATE, "2017-12-07", [UVM SystemC Release Date])
+AC_DEFINE_UNQUOTED(UVM_RELEASE_DATE, "2018-08-29", [UVM SystemC Release Date])
 AC_SUBST(UVM_VERSION)
 AC_SUBST(UVM_RELEASE_DATE)
 
