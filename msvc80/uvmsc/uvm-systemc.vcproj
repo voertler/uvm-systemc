@@ -211,6 +211,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\uvmsc\base\uvm_mutex.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\uvmsc\base\uvm_default_coreservice_t.cpp"
 				>
 			</File>
@@ -690,6 +694,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\uvmsc\base\uvm_coreservice_t.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\uvmsc\base\uvm_mutex.h"
 				>
 			</File>
 			<File
