@@ -19,8 +19,9 @@
 
 #include "uvm_mutex.h"
 
+#if defined (__MINGW32__) || (__cplusplus < 201103L)
 #include "sysc/communication/sc_host_mutex.h"
-
+#endif
 uvm::uvm_mutex::uvm_mutex() {
 #if defined (__MINGW32__) || (__cplusplus < 201103L)
 	m_mutex = new sc_core::sc_host_mutex;
