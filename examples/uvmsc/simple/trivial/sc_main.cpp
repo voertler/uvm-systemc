@@ -31,5 +31,8 @@ int sc_main(int, char*[])
 
   uvm::run_test();
 
+  // TODO necessary to delete?
+  /* delete component; */
+
   return 0;
 }
