@@ -42,7 +42,8 @@ class sequenceA : public uvm::uvm_sequence<REQ,RSP>
   void body()
   {
     std::string prstring;
-    int  ret_data;
+    // unused
+    /* int  ret_data; */
     REQ* req;
     RSP* rsp;
     rsp = new RSP();
