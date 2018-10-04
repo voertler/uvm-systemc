@@ -82,6 +82,7 @@ class sequenceA : public uvm::uvm_sequence<REQ,RSP>
   }
 
  private:
+  // TODO: check types with UVM/SV original
   static unsigned int g_my_id;
   unsigned int my_id;
 };

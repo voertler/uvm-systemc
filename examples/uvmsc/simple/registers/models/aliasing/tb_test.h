@@ -53,8 +53,6 @@ class tb_test : public uvm::uvm_test
  /* TODO
     uvm::uvm_status_e status;
  */
-    // unused
-    /* uvm::uvm_reg_data_t data; */
 
     phase.raise_objection(this);
 

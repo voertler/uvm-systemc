@@ -149,7 +149,7 @@ private:
   std::vector<uvm_event_callback*> callbacks;
   typedef std::vector<uvm_event_callback*>::iterator callbacks_itt;
 
-  // unused
+  // TODO: unused
   /* int m_cnt; */
   static int g_cnt;
 }; // class uvm_event
