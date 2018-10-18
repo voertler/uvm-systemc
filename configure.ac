@@ -7,6 +7,7 @@
 ##   Copyright 2007-2011 Mentor Graphics Corporation
 ##   Copyright 2007-2011 Cadence Design Systems, Inc.
 ##   Copyright 2010-2011 Synopsys, Inc.
+##   Copyright 2018 Robert Bosch GmbH
 ##   All Rights Reserved Worldwide
 ##
 ##   Licensed under the Apache License, Version 2.0 (the "License");
@@ -56,7 +57,7 @@ AC_DEFINE_UNQUOTED(CONFIGURE_DATE, "`sh -c date`", [Date of configure])
 AC_SUBST(CONFIGURE_DATE)
 
 AC_DEFINE_UNQUOTED(UVM_VERSION, "${PACKAGE_VERSION}", [UVM SystemC Version])
-AC_DEFINE_UNQUOTED(UVM_RELEASE_DATE, "2018-08-29", [UVM SystemC Release Date])
+AC_DEFINE_UNQUOTED(UVM_RELEASE_DATE, "2018-10-24", [UVM SystemC Release Date])
 AC_SUBST(UVM_VERSION)
 AC_SUBST(UVM_RELEASE_DATE)
 
