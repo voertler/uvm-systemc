@@ -21,17 +21,18 @@ System Requirements
 
 UVM-SystemC was tested on the following Linux 64-bit platforms:
 
-               Host-     | GCC   | GCC   | GCC   | GCC   | GCC
- Distribution  Compiler  | 4.4.7 | 4.8.2 | 4.9.2 | 5.3.1 | 6.3.0
- ----------------------------------------------------------------
- RedHat 6      GCC 4.4.7 |   y   |       |       |       |  y*
- RedHat 7      GCC 4.8.2 |       |   y   |       |       |  y*
- Debian 8      GCC 4.9.2 |       |       |   y   |       |
- Debian 9      GCC 6.3.0 |       |       |       |       |  y*
- Ubuntu 16.04  GCC 5.3.1 |       |       |       |   y   |
+                  Host-     | GCC   | GCC   | GCC   | GCC   | GCC   | GCC   | GCC
+ Distribution     Compiler  | 4.3.4 | 4.4.7 | 4.8.2 | 4.9.2 | 5.4.0 | 6.3.0 | 7.3.0
+ -----------------------------------------------------------------------------------
+ RHEL 6           GCC 4.4.7 |       |   y   |       |       |       |   y   |
+ RHEL 7           GCC 4.8.2 |       |       |   y   |       |       |   y   |
+ Debian 8         GCC 4.9.2 |       |       |       |   y   |       |       |
+ Debian 9         GCC 6.3.0 |       |       |       |       |       |   y   |
+ SLES 11          GCC 4.3.4 |   y   |       |       |       |       |       |
+ Ubuntu 16.04.02  GCC 5.4.0 |       |       |       |       |   y   |       |
+ Ubuntu 18.04.01  GCC 7.3.0 |       |       |       |       |       |       |   y
 
- Remarks: * only SystemC 2.3.2 tested as GCC 6.3.* is not compatible with
-            previous SystemC versions.
+ Remarks: SystemC 2.3.2 or later is required for GCC 6.* or later
 
 An installation of UVM-SystemC on other, related platforms may be
 possible as well.
@@ -43,7 +44,7 @@ Sources for Compilers and Related Tools
 To build, install, and use UVM-SystemC on UNIX platforms, you need
 the following tools:
 
-  1. GNU C++ compiler, version 4.4.7 (other versions may work as well, Clang is
+  1. GNU C++ compiler, version 4.3.4 (other versions may work as well, Clang is
      not tested yet)
 
   2. GNU Make (gmake)
