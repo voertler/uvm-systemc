@@ -22,7 +22,7 @@ System Requirements
 UVM-SystemC was tested on the following Linux 64-bit platforms:
 
              | RHEL  | Debian | SLES | Ubuntu LTS
-			 | 6 | 7 | 8 | 9  | 11   | 16 | 18
+             | 6 | 7 | 8 | 9  | 11   | 16 | 18
  ------------+-------+--------+------+------------
  GCC 4.3.4   |       |        |  X   |
  GCC 4.4.7   | X     |        |      |
