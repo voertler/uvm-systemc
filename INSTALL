@@ -21,21 +21,27 @@ System Requirements
 
 UVM-SystemC was tested on the following Linux 64-bit platforms:
 
-                  Host-     | GCC   | GCC   | GCC   | GCC   | GCC   | GCC   | GCC   | GCC
- Distribution     Compiler  | 4.3.4 | 4.4.7 | 4.8.2 | 4.9.2 | 5.4.0 | 6.3.0 | 7.3.0 | 8.2.0
- -------------------------------------------------------------------------------------------
- RHEL 6           GCC 4.4.7 |       |   y   |   y   |   y   |   y   |   y   |   y   |   y
- RHEL 7           GCC 4.8.2 |       |       |   y   |       |       |   y   |       |
- Debian 8         GCC 4.9.2 |       |       |       |   y   |       |       |       |
- Debian 9         GCC 6.3.0 |       |       |   y   |   y   |   y   |   y   |   y   |   y
- SLES 11          GCC 4.3.4 |   y   |       |   y   |   y   |   y   |   y   |   y   |   y
- Ubuntu 16.04.02  GCC 5.4.0 |       |       |   y   |       |   y   |   y   |   y   |   y
- Ubuntu 18.04.01  GCC 7.3.0 |       |       |       |       |       |       |   y   |   y
+             | RHEL  | Debian | SLES | Ubuntu LTS
+			 | 6 | 7 | 8 | 9  | 11   | 16 | 18
+ ------------+-------+--------+------+------------
+ GCC 4.3.4   |       |        |  X   |
+ GCC 4.4.7   | X     |        |      |
+ GCC 4.8.2   | x   X |     x  |  x   | x
+ GCC 4.9.2   | x     | X   x  |  x   | x
+ GCC 5.4.0   | x     |     x  |  x   | X
+ GCC 6.3.0   | x   x |     X  |  x   | x
+ GCC 7.3.0   | x     |     x  |  x   | x    X
+ GCC 8.2.0   | x     |     x  |  x   | x    x
+ ------------+-------+--------+------+------------
+ Clang 3.9.0 | x     |        |      |
+ Clang 6.0.1 |       |     x  |      |
 
- Remarks: SystemC 2.3.2 or later is required for GCC 6.* or later
-
-An installation of UVM-SystemC on other, related platforms may be
-possible as well.
+ x = successfully ran "make check" and regression tests
+ X = same as 'x' but denotes that this is the default system compiler
+ 
+SystemC 2.3.2 or later is required for GCC 6.* or later releases.
+An installation of UVM-SystemC on other, related platforms and not explictly
+tested compiler combinations may be possible.
 
 
 Sources for Compilers and Related Tools
