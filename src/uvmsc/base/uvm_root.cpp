@@ -5,6 +5,7 @@
 //   Copyright 2007-2011 Mentor Graphics Corporation
 //   Copyright 2007-2011 Cadence Design Systems, Inc.
 //   Copyright 2010-2011 Synopsys, Inc.
+//   Copyright 2018 Robert Bosch GmbH
 //   All Rights Reserved Worldwide
 //
 //   Licensed under the Apache License, Version 2.0 (the
@@ -546,11 +547,11 @@ void uvm_root::m_uvm_header()
       revision = revision.substr(br + 4);
 
     std::cerr << std::endl << std::endl;
-    std::cerr << "   Universal Verification Methodology in SystemC (UVM-SystemC)"
+    std::cerr << "   Universal Verification Methodology for SystemC (UVM-SystemC)"
         << std::endl
         << "              Version: " << UVM_VERSION << "  Date: " << UVM_RELEASE_DATE << std::endl;
     std::cerr
-        << "          Copyright (c) 2006 - 2017 by all Contributors" << std::endl
+        << "          Copyright (c) 2006 - 2018 by all Contributors" << std::endl
         << "            See NOTICE file for all Contributors"  << std::endl
         << "                    ALL RIGHTS RESERVED" << std::endl;
     std::cerr

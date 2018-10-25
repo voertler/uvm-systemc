@@ -1,7 +1,7 @@
 UVM-SystemC Release Notes
 =========================
 
-October 4, 2018
+October 24, 2018
 
 License
 -------
@@ -53,7 +53,7 @@ What's new in this release?
 ===========================
 
 Compared to the 1.0-beta1 release, this release has the following new items and bug fixes:
-  - SystemC 2.3.2 support
+  - SystemC 2.3.3 support
   - Compiler support updated
   - General clean-up
   - Minor improvements
