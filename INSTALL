@@ -21,20 +21,27 @@ System Requirements
 
 UVM-SystemC was tested on the following Linux 64-bit platforms:
 
-               Host-     | GCC   | GCC   | GCC   | GCC   | GCC
- Distribution  Compiler  | 4.4.7 | 4.8.2 | 4.9.2 | 5.3.1 | 6.3.0
- ----------------------------------------------------------------
- RedHat 6      GCC 4.4.7 |   y   |       |       |       |  y*
- RedHat 7      GCC 4.8.2 |       |   y   |       |       |  y*
- Debian 8      GCC 4.9.2 |       |       |   y   |       |
- Debian 9      GCC 6.3.0 |       |       |       |       |  y*
- Ubuntu 16.04  GCC 5.3.1 |       |       |       |   y   |
+             | RHEL  | Debian | SLES | Ubuntu LTS
+             | 6 | 7 | 8 | 9  | 11   | 16 | 18
+ ------------+-------+--------+------+------------
+ GCC 4.3.4   |       |        |  X   |
+ GCC 4.4.7   | X     |        |      |
+ GCC 4.8.2   | x   X |     x  |  x   | x
+ GCC 4.9.2   | x     | X   x  |  x   | x
+ GCC 5.4.0   | x     |     x  |  x   | X
+ GCC 6.3.0   | x   x |     X  |  x   | x
+ GCC 7.3.0   | x     |     x  |  x   | x    X
+ GCC 8.2.0   | x     |     x  |  x   | x    x
+ ------------+-------+--------+------+------------
+ Clang 3.9.0 | x     |        |      |
+ Clang 6.0.1 |       |     x  |      |
 
- Remarks: * only SystemC 2.3.2 tested as GCC 6.3.* is not compatible with
-            previous SystemC versions.
-
-An installation of UVM-SystemC on other, related platforms may be
-possible as well.
+ x = successfully ran "make check" and regression tests
+ X = same as 'x' but denotes that this is the default system compiler
+ 
+SystemC 2.3.2 or later is required for GCC 6.* or later releases.
+An installation of UVM-SystemC on other, related platforms and not explictly
+tested compiler combinations may be possible.
 
 
 Sources for Compilers and Related Tools
@@ -43,8 +50,8 @@ Sources for Compilers and Related Tools
 To build, install, and use UVM-SystemC on UNIX platforms, you need
 the following tools:
 
-  1. GNU C++ compiler, version 4.4.7 (other versions may work as well, Clang is
-     not tested yet)
+  1. GNU C++ compiler, version 4.3.4 (other versions may work as well as documented
+     above, Clang is not tested yet)
 
   2. GNU Make (gmake)
 
