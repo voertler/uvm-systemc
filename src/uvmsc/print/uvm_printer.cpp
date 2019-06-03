@@ -155,7 +155,7 @@ void uvm_printer::print_field_int( const std::string& name,
   if(radix == UVM_NORADIX)
     radix = knobs.default_radix;
 
-  val_str = uvm_vector_to_string( value.to_int(), size, radix,
+  val_str = uvm_vector_to_string( value, size, radix,
                                   knobs.get_radix_str(radix));
 
   row_info.level = m_scope.depth();

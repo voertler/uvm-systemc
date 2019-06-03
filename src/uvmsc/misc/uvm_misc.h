@@ -40,12 +40,12 @@ typedef enum {
 
 extern const char *uvm_apprepend_name[];
 
-std::string uvm_vector_to_string ( int value,
-                                   int size,
-                                   uvm_radix_enum radix = UVM_NORADIX,
-                                   const std::string& radix_str = "" );
+std::string uvm_vector_to_string ( const uvm_integral_t& val,
+								   int size,
+		                           uvm_radix_enum radix,
+								   const std::string& radix_str);
 
-std::string uvm_vector_to_string ( uvm_bitstream_t value,
+std::string uvm_vector_to_string ( const uvm_bitstream_t& value,
                                    int size,
                                    uvm_radix_enum radix = UVM_NORADIX,
                                    const std::string& radix_str = "" );
