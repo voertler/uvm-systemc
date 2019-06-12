@@ -40,6 +40,7 @@ include $(srcdir)/simple/tlm1/bidir/test.am
 include $(srcdir)/simple/tlm1/hierarchy/test.am
 include $(srcdir)/simple/tlm1/producer_consumer/test.am
 include $(srcdir)/simple/trivial/test.am
+include $(srcdir)/integrated/ubus/test.am
 
 
 CLEANFILES += $(examples_CLEAN)
