@@ -223,7 +223,7 @@ void ubus_bus_monitor::collect_address_phase()
   }
 
   // initialize data
-  for (unsigned int i = 0; i < trans_collected.size; i++);
+  for (unsigned int i = 0; i < trans_collected.size; i++)
     trans_collected.data.push_back(0);
 
   sc_dt::sc_logic read_state = vif->sig_read.read();

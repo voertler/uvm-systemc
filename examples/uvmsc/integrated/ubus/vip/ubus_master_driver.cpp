@@ -125,7 +125,7 @@ void ubus_master_driver::drive_transfer(ubus_transfer trans)
 {
   std::cout << sc_core::sc_time_stamp() << ": drive_transfer" << std::endl;
   if (trans.transmit_delay > 0)
-    for (unsigned int i; i < trans.transmit_delay; i++)
+    for (unsigned i = 0; i < trans.transmit_delay; i++)
       sc_core::wait(vif->sig_clock.posedge_event());
 
   arbitrate_for_bus();
