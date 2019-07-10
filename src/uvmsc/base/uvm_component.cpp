@@ -1691,8 +1691,8 @@ void uvm_component::m_extract_name( const std::string& name,
     return;
   }
 
-  leaf = name.substr( 0 , i - 1 );
-  remainder = name.substr( i + 1 , len - 1 );
+  leaf = name.substr( 0 , i );
+  remainder = name.substr( i + 1 , len - i );
 
   return;
 }
