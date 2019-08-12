@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2016 NXP B.V.
+//   Copyright 2016-2019 NXP B.V.
 //   Copyright 2007-2011 Mentor Graphics Corporation
 //   Copyright 2007-2010 Cadence Design Systems, Inc.
 //   Copyright 2010 Synopsys, Inc.
@@ -26,6 +26,8 @@
 #include <systemc>
 #include <uvm>
 
+#include <map>
+
 #include "ubus.h"
 
 //------------------------------------------------------------------------------
@@ -36,7 +38,7 @@
 
 class simple_response_seq : public uvm::uvm_sequence<ubus_transfer>
 {
-public:
+ public:
   ubus_slave_sequencer* p_sequencer;
    
   simple_response_seq( const std::string& name = "simple_response_seq")
@@ -45,8 +47,6 @@ public:
   
   UVM_OBJECT_UTILS(simple_response_seq);
   
-  ubus_transfer util_transfer;
-
   virtual void body()
   {
     p_sequencer = dynamic_cast<ubus_slave_sequencer*>(m_sequencer);
@@ -70,13 +70,16 @@ public:
       req->size       = util_transfer.size;
       req->error_pos  = 1000;
 
-      start_item(req);
-      finish_item(req);
+      this->start_item(req);
+      this->finish_item(req);
 
       if (starting_phase != NULL)
         starting_phase->raise_objection(this);
     }
   }
+
+ private:
+  ubus_transfer util_transfer;
 
 }; // class simple_response_seq
 
@@ -89,7 +92,7 @@ public:
 
 class slave_memory_seq : public uvm::uvm_sequence<ubus_transfer>
 {
-public:
+ public:
 
   slave_memory_seq( const std::string& name = "slave_memory_seq" )
   : uvm::uvm_sequence<ubus_transfer>(name)
@@ -99,44 +102,39 @@ public:
 
   UVM_DECLARE_P_SEQUENCER(ubus_slave_sequencer);
 
-  ubus_transfer util_transfer;
-
   virtual void pre_do(bool is_item)
   {
+    //req = dynamic_cast<ubus_transfer*>(create_item(ubus_transfer::get_type(), p_sequencer, "req");
 
-    //req1 = dynamic_cast<ubus_transfer*>(create_item(ubus_transfer::get_type(), p_sequencer, "req"));
     p_sequencer->addr_ph_port.peek(util_transfer);
 
     // Update the properties that are relevant to both read and write
-    req.size       = util_transfer.size;
-    req.addr       = util_transfer.addr;
-    req.read_write = util_transfer.read_write;
-    req.error_pos  = 1000;
-    req.transmit_delay = 0;
+    req->size       = util_transfer.size;
+    req->addr       = util_transfer.addr;
+    req->read_write = util_transfer.read_write;
+    req->error_pos  = 1000;
+    req->transmit_delay = 0;
 
-    // initialize size of data and wait_state
     for(unsigned int i = 0; i < util_transfer.size; i++)
     {
-      req.data.push_back(0);
-      req.wait_state.push_back(0);
-    }
+      req->wait_state[i] = 2;
 
-    for(unsigned int i = 0 ; i < util_transfer.size; i ++)
-    {
-      req.wait_state[i] = 2;
-
-      std::cout << "req.wait_state[i]: " << req.wait_state[i] << std::endl;
+      std::cout << "req->wait_state[i]: " << req->wait_state[i] << std::endl;
 
       // For reads, populate req with the random "readback" data of the size
       // requested in util_transfer
-      if( req.read_write == READ )
+      if( req->read_write == READ )
       {
         if (m_mem.find(util_transfer.addr + i) == m_mem.end()) // not exists
           m_mem[util_transfer.addr + i] = std::rand();
 
-        req.data[i] = m_mem[util_transfer.addr + i];
+        req->data[i] = m_mem[util_transfer.addr + i];
       }
     }
+
+    //DEBUG
+    UVM_INFO(get_full_name(), "ubus_transfer contents:\n" +
+      req->sprint(), uvm::UVM_NONE);
   }
 
   void post_do(uvm_sequence_item this_item)
@@ -144,8 +142,8 @@ public:
     // For writes, update the m_mem associative array
     if( util_transfer.read_write == WRITE )
     {
-      for(int unsigned i = 0 ; i < req.size ; i++)
-        m_mem[req.addr + i] = req.data[i];
+      for(int unsigned i = 0 ; i < req->size ; i++)
+        m_mem[req->addr + i] = req->data[i];
     }
   }
 
@@ -154,19 +152,23 @@ public:
     UVM_INFO(get_type_name(), get_sequence_path() +
       " starting...", uvm::UVM_MEDIUM);
 
+    req = dynamic_cast<ubus_transfer*>(create_item(ubus_transfer::get_type(), p_sequencer, "req"));
+
     while(true) // forever
     {
       // Need to raise/drop objection before each item because we don't want
       // to be stopped in the middle of a transfer.
       starting_phase->raise_objection(this);
-      start_item(&req);
-      finish_item(&req);
+      this->start_item(req);
+      this->finish_item(req);
       starting_phase->drop_objection(this);
     }
   }
 
-private:
+ private:
   std::map<unsigned int, unsigned int> m_mem;
+  ubus_transfer* req;
+  ubus_transfer util_transfer;
 
 }; // class slave_memory_seq
 

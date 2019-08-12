@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2016 NXP B.V
+//   Copyright 2016-2019 NXP B.V
 //   Copyright 2007-2010 Mentor Graphics Corporation
 //   Copyright 2007-2011 Cadence Design Systems, Inc.
 //   Copyright 2010 Synopsys, Inc.
@@ -177,8 +177,6 @@ void ubus_bus_monitor::collect_arbitration_phase()
           (vif->sig_grant[14].read() == sc_dt::SC_LOGIC_1) ||
           (vif->sig_grant[15].read() == sc_dt::SC_LOGIC_1) ) );
 
-  std::cout << "falltrough? " << std::endl;
-
   status.bus_state = ARBI;
   state_port.write(status);
 
@@ -211,8 +209,6 @@ void ubus_bus_monitor::collect_address_phase()
 
   trans_collected.addr = vif->sig_addr;
 
-  std::cout << "size: " << vif->sig_size.read() << std::endl;
-
   switch (vif->sig_size.read().to_uint())
   {
     case 0b00 : trans_collected.size = 1; break;
@@ -221,10 +217,6 @@ void ubus_bus_monitor::collect_address_phase()
     case 0b11 : trans_collected.size = 8; break;
     default: break;
   }
-
-  // initialize data
-  for (unsigned int i = 0; i < trans_collected.size; i++)
-    trans_collected.data.push_back(0);
 
   sc_dt::sc_logic read_state = vif->sig_read.read();
   sc_dt::sc_logic write_state = vif->sig_write.read();
@@ -361,8 +353,9 @@ void ubus_bus_monitor::check_transfer_size()
 
 void ubus_bus_monitor::check_transfer_data_size()
 {
-  if (trans_collected.size != trans_collected.data.size())
-    UVM_ERROR(get_type_name(), "Transfer size field / data size mismatch.");
+  //TODO monitor size data array
+  //if (trans_collected.size != trans_collected.data.size())
+  //  UVM_ERROR(get_type_name(), "Transfer size field / data size mismatch.");
 }
 
 //----------------------------------------------------------------------

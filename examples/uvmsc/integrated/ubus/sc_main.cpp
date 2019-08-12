@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2016 NXP B.V.
+//   Copyright 2016-2019 NXP B.V.
 //   Copyright 2007-2010 Mentor Graphics Corporation
 //   Copyright 2007-2011 Cadence Design Systems, Inc.
 //   Copyright 2010 Synopsys, Inc.
@@ -76,6 +76,7 @@ int sc_main(int, char*[])
 {
   // TODO temp
   uvm::uvm_root::get()->set_timeout(sc_core::sc_time(300.0, sc_core::SC_US), false);
+  uvm::uvm_set_verbosity_level(uvm::UVM_FULL);
 
   // Interface instantiation
   ubus_if* vif = new ubus_if("vif");

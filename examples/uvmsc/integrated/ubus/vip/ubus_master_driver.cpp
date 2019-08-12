@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2016 NXP B.V.
+//   Copyright 2016-2019 NXP B.V.
 //   Copyright 2007-2010 Mentor Graphics Corporation
 //   Copyright 2007-2011 Cadence Design Systems, Inc.
 //   Copyright 2010 Synopsys, Inc.
@@ -80,8 +80,8 @@ void ubus_master_driver::get_and_drive()
 
     this->seq_item_port.get_next_item(req);
 
-    UVM_INFO(get_type_name(), "Transfer req received : " +
-      req.sprint(), uvm::UVM_NONE);
+    //UVM_INFO(get_full_name(), "ubus_transfer from sequencer: \n" +
+    //  req.sprint(), uvm::UVM_NONE);
 
     // TODO check
     //rsp = dynamic_cast<ubus_transfer*>(req.clone());
@@ -191,12 +191,23 @@ void ubus_master_driver::drive_data_phase(ubus_transfer trans)
     else
       vif->sig_bip = sc_dt::SC_LOGIC_1;
 
+    unsigned int data = trans.data[i].to_uint();
+    std::cout << "data before rw: " << data << std::endl;
+
+    sc_dt::sc_uint<8> data_element = data;
+
     switch (trans.read_write)
     {
-      case READ    : read_byte(trans.data[i], err); break;
-      case WRITE   : write_byte(trans.data[i], err); break;
+      case READ    : read_byte(data_element, err); break;
+      case WRITE   : write_byte(data_element, err); break;
       default: break;
     }
+
+    data = data_element;
+    std::cout << "data after rw: " << data << std::endl;
+    trans.data[i] = data;
+
+
   } //for loop
 
   vif->sig_data_out = "zzzzzzzz";
@@ -221,7 +232,9 @@ void ubus_master_driver::read_byte(sc_dt::sc_uint<8>& data, bool& error)
 
   std::cout << sc_core::sc_time_stamp() << "[" << this->get_name() << "]: read " << vif->sig_data.read() << " from vif->sig_data" << std::endl;
 
-  data = vif->sig_data.read().to_uint();
+  //data = vif->sig_data.read().to_uint();
+  sc_dt::sc_lv<8> lv2 = vif->sig_data.read();
+  data = lv2;
 }
 
 //------------------------------------------------------------------------------

@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2016 NXP B.V.
+//   Copyright 2016-2019 NXP B.V.
 //   Copyright 2007-2010 Mentor Graphics Corporation
 //   Copyright 2007-2010 Cadence Design Systems, Inc.
 //   Copyright 2010 Synopsys, Inc.
@@ -26,6 +26,9 @@
 #include <systemc>
 #include <uvm>
 
+// TODO maximum size for arrays used.
+// Replace by dynamic solution
+#define MAXSIZE 64
 
 //----------------------------------------------------------------------
 // ubus transfer enums, parameters, and events
@@ -50,8 +53,8 @@ public:
   /* rand */ sc_dt::sc_uint<16> addr;
   /* rand */ ubus_read_write_enum read_write;
   /* rand */ unsigned int size;
-  /* rand */ std::vector<sc_dt::sc_uint<8> > data;
-  /* rand */ std::vector<sc_dt::sc_uint<4> > wait_state;
+  /* rand */ sc_dt::sc_uint<8> data[MAXSIZE];
+  /* rand */ sc_dt::sc_uint<4> wait_state[MAXSIZE];
   /* rand */ unsigned int error_pos;
   /* rand */ unsigned int transmit_delay;
 

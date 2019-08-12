@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2016 NXP B.V.
+//   Copyright 2016-2019 NXP B.V.
 //   Copyright 2007-2010 Mentor Graphics Corporation
 //   Copyright 2007-2011 Cadence Design Systems, Inc.
 //   Copyright 2010 Synopsys, Inc.
@@ -187,8 +187,8 @@ void ubus_slave_monitor::collect_address_phase()
   if(size == 2) trans_collected.size = 4;
   if(size == 3) trans_collected.size = 8;
 
-  for (unsigned int i = 0; i < trans_collected.size; i++)
-    trans_collected.data.push_back(0); // reserve data fields
+  //TODO define dynamic data size
+  //trans_collected.data = new[trans_collected.size];
 
   sc_dt::sc_logic read = vif->sig_read.read();
   sc_dt::sc_logic write = vif->sig_write.read();

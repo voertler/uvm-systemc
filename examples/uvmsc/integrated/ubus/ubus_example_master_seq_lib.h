@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2016 NXP B.V.
+//   Copyright 2016-2019 NXP B.V.
 //   Copyright 2007-2010 Mentor Graphics Corporation
 //   Copyright 2007-2011 Cadence Design Systems, Inc.
 //   Copyright 2010 Synopsys, Inc.
@@ -172,7 +172,7 @@ class r8_w8_r4_w4_seq : public ubus_base_sequence
 {
  public:
   r8_w8_r4_w4_seq(const std::string& name = "r8_w8_r4_w4_seq")
-  :ubus_base_sequence(name)
+  : ubus_base_sequence(name)
   {}
 
   UVM_OBJECT_UTILS(r8_w8_r4_w4_seq);
@@ -326,7 +326,7 @@ class loop_read_modify_write_seq : public ubus_base_sequence
 
     for(int i = 0; i < itr; i++)
     {
-      UVM_DO(rmw_seq)
+      UVM_DO(rmw_seq);
     }
   }
 }; // class loop_read_modify_write_seq

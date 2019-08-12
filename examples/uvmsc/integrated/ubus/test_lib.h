@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2016 NXP B.V.
+//   Copyright 2016-2019 NXP-2019 B.V.
 //   Copyright 2007-2011 Mentor Graphics Corporation
 //   Copyright 2007-2011 Cadence Design Systems, Inc.
 //   Copyright 2010 Synopsys, Inc.
@@ -167,8 +167,7 @@ public:
 
   virtual void build_phase(uvm::uvm_phase& phase)
   {
-    loop_read_modify_write_seq* lrmw_seq_1;
-    loop_read_modify_write_seq* lrmw_seq_2;
+    loop_read_modify_write_seq* lrmw_seq;
 
     // Overides to the ubus_example_tb build_phase()
     // Set the topology to 2 masters, 4 slaves
@@ -179,21 +178,22 @@ public:
      
     // Control the number of read-modified-write loops
     uvm::uvm_config_db<int>::set(this,
-      "ubus_example_tb0.ubus0.masters[0].sequencer.loop_read_modify_write_seq_1", "itr", 6);
+      "ubus_example_tb0.ubus0.masters[0].sequencer.loop_read_modify_write_seq", "itr", 6);
     uvm::uvm_config_db<int>::set(this,
-      "ubus_example_tb0.ubus0.masters[1].sequencer.loop_read_modify_write_seq_2", "itr", 8);
+      "ubus_example_tb0.ubus0.masters[1].sequencer.loop_read_modify_write_seq", "itr", 8);
 
     // Define the sequences to run in the run phase
-    lrmw_seq_1 = loop_read_modify_write_seq::type_id::create("loop_read_modify_write_seq_1");
-    lrmw_seq_2 = loop_read_modify_write_seq::type_id::create("loop_read_modify_write_seq_2");
+    uvm::uvm_config_db<uvm::uvm_object_wrapper*>::set(this,
+      "*.ubus0.masters[0].sequencer.main_phase",
+      "default_sequence",
+      loop_read_modify_write_seq::type_id::get() );
+
+    lrmw_seq = loop_read_modify_write_seq::type_id::create();
 
     uvm::uvm_config_db<uvm::uvm_sequence_base*>::set(this,
-       "ubus_example_tb0.ubus0.masters[0].sequencer.main_phase",
-       "default_sequence", lrmw_seq_1);
-
-    uvm::uvm_config_db<uvm::uvm_sequence_base*>::set(this,
-       "ubus_example_tb0.ubus0.masters[1].sequencer.main_phase",
-       "default_sequence", lrmw_seq_2);
+      "ubus_example_tb0.ubus0.masters[1].sequencer.main_phase",
+      "default_sequence",
+      lrmw_seq );
 
     for(int i = 0; i < 4; i++)
     {

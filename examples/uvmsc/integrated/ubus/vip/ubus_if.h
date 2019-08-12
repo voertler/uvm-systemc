@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2016 NXP B.V.
+//   Copyright 2016-2019 NXP B.V.
 //   Copyright 2007-2010 Mentor Graphics Corporation
 //   Copyright 2007-2010 Cadence Design Systems, Inc.
 //   Copyright 2010 Synopsys, Inc.
@@ -33,18 +33,18 @@ typedef sc_core::sc_signal< sc_dt::sc_logic > logic;
 typedef sc_core::sc_signal< sc_dt::sc_logic, sc_core::SC_UNCHECKED_WRITERS > logic_nchk;
 typedef sc_core::sc_signal< sc_dt::sc_logic, sc_core::SC_MANY_WRITERS> logic_md;
 
-typedef sc_core::sc_signal_resolved logic_res;
+typedef sc_core::sc_signal< sc_dt::sc_uint<2> > uint2;
+typedef sc_core::sc_signal< sc_dt::sc_uint<8> > uint8;
 typedef sc_core::sc_signal< sc_dt::sc_uint<16> > uint16;
+
 typedef sc_core::sc_signal< sc_dt::sc_lv<2> > logic2;
 typedef sc_core::sc_signal< sc_dt::sc_lv<8> > logic8;
+typedef sc_core::sc_signal< sc_dt::sc_lv<16> > logic16;
 
+typedef sc_core::sc_signal_resolved logic_res;
 typedef sc_core::sc_signal_rv<2> logic2_res;
 typedef sc_core::sc_signal_rv<8> logic8_res;
 typedef sc_core::sc_signal_rv<16> logic16_res;
-typedef sc_core::sc_signal< sc_dt::sc_lv<16> > logic16;
-typedef sc_core::sc_signal< sc_dt::sc_uint<2> > uint2;
-typedef sc_core::sc_signal< sc_dt::sc_uint<8> > uint8;
-
 
 
 //----------------------------------------------------------------------
