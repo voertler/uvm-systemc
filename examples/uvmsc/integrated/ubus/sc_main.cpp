@@ -62,7 +62,6 @@ class stim : public sc_core::sc_module
     {
       m_clk = ~m_clk;
       clock.write(m_clk);
-      //std::cout << sc_core::sc_time_stamp() << ": clk: " << m_clk << std::endl;
       sc_core::wait(5.0, sc_core::SC_NS);
     }
   }
@@ -74,9 +73,7 @@ class stim : public sc_core::sc_module
 
 int sc_main(int, char*[])
 {
-  // TODO temp
-  uvm::uvm_root::get()->set_timeout(sc_core::sc_time(300.0, sc_core::SC_US), false);
-  uvm::uvm_set_verbosity_level(uvm::UVM_FULL);
+  //uvm::uvm_set_verbosity_level(uvm::UVM_FULL);
 
   // Interface instantiation
   ubus_if* vif = new ubus_if("vif");

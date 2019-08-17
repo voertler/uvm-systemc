@@ -652,7 +652,6 @@ void uvm_sequence_base::start_item( uvm_sequence_item* item,
   // TODO transaction recording
   //sequencer->begin_child_tr(item, m_tr_handle, item->get_root_sequence_name()));
 #endif
-
   pre_do(true);
 }
 
@@ -678,6 +677,9 @@ void uvm_sequence_base::finish_item( uvm_sequence_item* item,
   mid_do(item);
   sequencer->send_request(this, item);
   sequencer->wait_for_item_done(this, -1);
+
+  //FIXME: // UVM-SV workaround: get updated request from sequencer without explicit response!
+  item = sequencer->m_current_sequence;
 
 #ifndef UVM_DISABLE_AUTO_ITEM_RECORDING
   sequencer->end_tr(*item);

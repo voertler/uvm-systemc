@@ -105,7 +105,6 @@ void ubus_bus_monitor::check_reset_on_posedge()
 {
   while(true) // forever
   {
-    std::cout << "check_reset_on_posedge()..." << std::endl;
     sc_core::wait(vif->sig_reset.posedge_event());
     status.bus_state = RST_START;
     state_port.write(status);
@@ -120,7 +119,6 @@ void ubus_bus_monitor::check_reset_on_negedge()
 {
   while(true) // forever
   {
-    std::cout << "ubus_bus_monitor::check_reset_on_negedge()..." << std::endl;
     sc_core::wait(vif->sig_reset.negedge_event());
     status.bus_state = RST_STOP;
     state_port.write(status);
@@ -139,7 +137,7 @@ void ubus_bus_monitor::collect_transactions()
     collect_address_phase();
     collect_data_phase();
 
-    UVM_INFO(get_type_name(), "Transfer collected : " +
+    UVM_INFO(get_type_name(), "Transfer collected :\n" +
       trans_collected.sprint(), uvm::UVM_HIGH);
 
     if (checks_enable) perform_transfer_checks();
@@ -155,27 +153,12 @@ void ubus_bus_monitor::collect_transactions()
 
 void ubus_bus_monitor::collect_arbitration_phase()
 {
-  // TODO check: @(posedge vif->sig_clock iff (vif->sig_grant != 0));
+  // @(posedge vif->sig_clock iff (vif->sig_grant != 0));
   do
   {
     sc_core::wait(vif->sig_clock.posedge_event());
   }
-  while(!((vif->sig_grant[0].read() == sc_dt::SC_LOGIC_1) ||
-          (vif->sig_grant[1].read() == sc_dt::SC_LOGIC_1) ||
-          (vif->sig_grant[2].read() == sc_dt::SC_LOGIC_1) ||
-          (vif->sig_grant[3].read() == sc_dt::SC_LOGIC_1) ||
-          (vif->sig_grant[4].read() == sc_dt::SC_LOGIC_1) ||
-          (vif->sig_grant[5].read() == sc_dt::SC_LOGIC_1) ||
-          (vif->sig_grant[6].read() == sc_dt::SC_LOGIC_1) ||
-          (vif->sig_grant[7].read() == sc_dt::SC_LOGIC_1) ||
-          (vif->sig_grant[8].read() == sc_dt::SC_LOGIC_1) ||
-          (vif->sig_grant[9].read() == sc_dt::SC_LOGIC_1) ||
-          (vif->sig_grant[10].read() == sc_dt::SC_LOGIC_1) ||
-          (vif->sig_grant[11].read() == sc_dt::SC_LOGIC_1) ||
-          (vif->sig_grant[12].read() == sc_dt::SC_LOGIC_1) ||
-          (vif->sig_grant[13].read() == sc_dt::SC_LOGIC_1) ||
-          (vif->sig_grant[14].read() == sc_dt::SC_LOGIC_1) ||
-          (vif->sig_grant[15].read() == sc_dt::SC_LOGIC_1) ) );
+  while(!((vif->sig_grant[0] != sc_dt::SC_LOGIC_0) || (vif->sig_grant[1] != sc_dt::SC_LOGIC_0)));
 
   status.bus_state = ARBI;
   state_port.write(status);
@@ -184,10 +167,8 @@ void ubus_bus_monitor::collect_arbitration_phase()
 
   // Check which grant is asserted to determine which master is performing
   // the transfer on the bus.
-  for (int j = 0; j <= 15; j++)
+  for (int j = 0; j < 2; j++) // note: only 2 grant signals connected
   {
-    std::cout << "sig_grant[ " << j << "]" << vif->sig_grant[j] << std::endl;
-
     if (vif->sig_grant[j] == sc_dt::SC_LOGIC_1)
     {
       std::ostringstream tmpstr;
@@ -288,7 +269,6 @@ void ubus_bus_monitor::collect_data_phase()
 
 void ubus_bus_monitor::check_which_slave()
 {
-  std::cout << "ubus_bus_monitor::check_which_slave" << std::endl;
   std::string slave_name;
   bool slave_found = false;
 

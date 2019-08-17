@@ -26,26 +26,7 @@
 #include <systemc>
 #include <uvm>
 
-// TODO check multiple writers...
-
-
-typedef sc_core::sc_signal< sc_dt::sc_logic > logic;
-typedef sc_core::sc_signal< sc_dt::sc_logic, sc_core::SC_UNCHECKED_WRITERS > logic_nchk;
-typedef sc_core::sc_signal< sc_dt::sc_logic, sc_core::SC_MANY_WRITERS> logic_md;
-
-typedef sc_core::sc_signal< sc_dt::sc_uint<2> > uint2;
-typedef sc_core::sc_signal< sc_dt::sc_uint<8> > uint8;
-typedef sc_core::sc_signal< sc_dt::sc_uint<16> > uint16;
-
-typedef sc_core::sc_signal< sc_dt::sc_lv<2> > logic2;
-typedef sc_core::sc_signal< sc_dt::sc_lv<8> > logic8;
-typedef sc_core::sc_signal< sc_dt::sc_lv<16> > logic16;
-
-typedef sc_core::sc_signal_resolved logic_res;
-typedef sc_core::sc_signal_rv<2> logic2_res;
-typedef sc_core::sc_signal_rv<8> logic8_res;
-typedef sc_core::sc_signal_rv<16> logic16_res;
-
+#include "ubus_defines.h"
 
 //----------------------------------------------------------------------
 //  Class: ubus_if
@@ -61,6 +42,8 @@ class ubus_if : sc_core::sc_module
   : sc_core::sc_module(name),
     sig_clock("sig_clock"),
     sig_reset("sig_reset"),
+    sig_request("sig_request",2),
+    sig_grant("sig_grant",2),
     sig_addr("sig_addr"),
     sig_size("sig_size"),
     sig_read("sig_read"),
@@ -76,53 +59,70 @@ class ubus_if : sc_core::sc_module
     has_coverage(true)
     {
       SC_THREAD(proc);
+
+      SC_THREAD(sync);
+      sensitive << sig_clock.default_event()
+                << sig_reset.default_event()
+                << sig_request[0].default_event() << sig_request[1].default_event()
+                << sig_grant[0].default_event() << sig_grant[1].default_event()
+                << sig_addr.default_event()
+                << sig_size.default_event()
+                << sig_read.default_event()
+                << sig_write.default_event()
+                << sig_start.default_event()
+                << sig_bip.default_event()
+                << sig_data.default_event()
+                << sig_data_out.default_event()
+                << sig_wait.default_event()
+                << sig_error.default_event()
+                << rw.default_event();
     }
   
   // Actual Signals
-  logic sig_clock;
-  logic sig_reset;
+  s_logic sig_clock;
+  s_logic sig_reset;
   
-  logic_md sig_request[16]; // [15:0]
-  logic sig_grant[16];   // [15:0]
+  vs_logic_md sig_request;
+  vs_logic sig_grant;
 
-  logic16_res sig_addr;
-  logic2_res sig_size;
+  s_logic16_res sig_addr; // TODO: check: requires resolution as multiple master drivers write to this signal at the same time
+  s_logic2_res sig_size; // TODO: check: requires resolution as multiple master drivers write to this signal at the same time
 
-  logic_res sig_read;
-  logic_res sig_write;
-  logic sig_start;
-  logic_res sig_bip;
+  s_logic_res sig_read; // TODO: check: requires resolution as multiple master drivers write to this signal at the same time
+  s_logic_res sig_write; // TODO: check: requires resolution as multiple master drivers write to this signal at the same time
+  s_logic sig_start;
+  s_logic_res sig_bip;
 
-  logic8_res sig_data;
-  logic8_res sig_data_out;
+  s_logic8 sig_data;
+  s_logic8_res sig_data_out; // TODO: check: requires resolution as multiple master drivers write to this signal at the same time
 
-  logic_res sig_wait;
-  logic_res sig_error;
+  s_logic_res sig_wait; // TODO: check: requires resolution as multiple slave drivers write to this signal at the same time
+  s_logic_res sig_error; // TODO: check: requires resolution as multiple slave drivers write to this signal at the same time
 
-  logic_res rw;
+  s_logic_res rw; // TODO: check: requires resolution as multiple slave drivers write to this signal at the same time
 
   // Control flags
   bool has_checks;
   bool has_coverage;
 
+  //assign sig_data = rw ? sig_data_out : 8'bz;
   void proc()
   {
     while(true) // forever
     {
-      sc_core::wait(sig_data_out.default_event());
-      if ((rw == sc_dt::SC_LOGIC_1) || (rw == sc_dt::SC_LOGIC_X))
-      {
+      sc_core::wait(rw.default_event());
+
+      if ((rw == sc_dt::SC_LOGIC_1) || (rw == sc_dt::SC_LOGIC_X)) // 1 or X
         sig_data = sig_data_out;
-        sc_core::wait(sc_core::SC_ZERO_TIME);
-        std::cout << sc_core::sc_time_stamp() << ": [vif] sig_data = " << sig_data << " sig_data_out = " << sig_data_out << std::endl;
-      }
-      else // Z or 0
-      {
+      else
+        if(rw == sc_dt::SC_LOGIC_0) // 0
         sig_data = "zzzzzzzz";
-        sc_core::wait(sc_core::SC_ZERO_TIME);
-        std::cout << sc_core::sc_time_stamp() << ": [vif] sig_data overloaded with 'zzzzzzzz'" << std::endl;
-      }
     }
+  }
+
+  void sync()
+  {
+    sc_core::wait(sc_core::SC_ZERO_TIME);
   }
 
 /* Coverage and assertions to be implemented here.

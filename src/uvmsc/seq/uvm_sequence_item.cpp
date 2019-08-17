@@ -69,7 +69,6 @@ uvm_sequence_item::uvm_sequence_item( uvm_object_name name_ )
 uvm_sequence_item::~uvm_sequence_item()
 {
   // TODO - cleanup
-  //std::cout << "destructor of uvm_sequence_item: " << get_full_name() << std::endl;
 }
 
 //----------------------------------------------------------------------

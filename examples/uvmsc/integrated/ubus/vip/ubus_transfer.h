@@ -26,9 +26,7 @@
 #include <systemc>
 #include <uvm>
 
-// TODO maximum size for arrays used.
-// Replace by dynamic solution
-#define MAXSIZE 64
+#include "ubus_defines.h"
 
 //----------------------------------------------------------------------
 // ubus transfer enums, parameters, and events

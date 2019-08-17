@@ -155,7 +155,7 @@ public:
 }; // class test_r8_w8_r4_w4
 
 
-// 2 Master, 4 Slave test
+// 2 Masters, 4 Slaves test
 class test_2m_4s : public ubus_example_base_test
 {
 public:

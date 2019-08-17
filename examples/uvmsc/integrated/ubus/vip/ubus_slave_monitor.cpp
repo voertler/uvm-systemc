@@ -23,6 +23,9 @@
 #include <systemc>
 #include <uvm>
 
+#include <cstring>
+
+#include "ubus_defines.h"
 #include "ubus_slave_monitor.h"
 
 //----------------------------------------------------------------------
@@ -128,8 +131,6 @@ void ubus_slave_monitor::collect_transactions()
   {
     trans_collected.slave = get_parent()->get_name();
 
-    std::cout << "trans_collected.slave = " << trans_collected.slave << std::endl;
-
     collect_address_phase();
     range_check = check_addr_range();
 
@@ -171,7 +172,7 @@ bool ubus_slave_monitor::check_addr_range()
 
 void ubus_slave_monitor::collect_address_phase()
 {
-  // @(posedge vif.sig_clock iff ( (vif.sig_read === 1) || (vif.sig_write === 1) ) );
+   // @(posedge vif.sig_clock iff ( (vif.sig_read === 1) || (vif.sig_write === 1) ) );
   do
   {
     sc_core::wait(vif->sig_clock.posedge_event());
@@ -187,8 +188,8 @@ void ubus_slave_monitor::collect_address_phase()
   if(size == 2) trans_collected.size = 4;
   if(size == 3) trans_collected.size = 8;
 
-  //TODO define dynamic data size
-  //trans_collected.data = new[trans_collected.size];
+  // clear data array
+  CLEAR_ARRAY(trans_collected.data, MAXSIZE);
 
   sc_dt::sc_logic read = vif->sig_read.read();
   sc_dt::sc_logic write = vif->sig_write.read();
@@ -282,15 +283,8 @@ void ubus_slave_monitor::perform_transfer_coverage()
 // member function: peek
 //----------------------------------------------------------------------
 
-// TODO check peek method
-//void ubus_slave_monitor::peek(ubus_transfer& trans)
 ubus_transfer ubus_slave_monitor::peek()
 {
   sc_core::wait(address_phase_grabbed);
-
-  //TODO temp
-  UVM_INFO(get_type_name(), "Transfer peek: " +
-      trans_collected.sprint(), uvm::UVM_NONE);
-
   return trans_collected;
 }

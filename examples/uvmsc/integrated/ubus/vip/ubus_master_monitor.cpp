@@ -23,6 +23,9 @@
 #include <systemc>
 #include <uvm>
 
+#include <cstring>
+
+#include "ubus_defines.h"
 #include "ubus_master_monitor.h"
 
 //----------------------------------------------------------------------
@@ -141,8 +144,8 @@ void ubus_master_monitor::collect_address_phase()
     default:  break;
   }
 
-  //TODO define dynamic data size
-  //trans_collected.data = new[trans_collected.size];
+  // clear data array
+  CLEAR_ARRAY(trans_collected.data, MAXSIZE);
 
   sc_dt::sc_logic read = vif->sig_read.read();
   sc_dt::sc_logic write = vif->sig_write.read();

@@ -2,7 +2,7 @@
 //   Copyright 2007-2011 Mentor Graphics Corporation
 //   Copyright 2007-2011 Cadence Design Systems, Inc.
 //   Copyright 2010 Synopsys, Inc.
-//   Copyright 2012-2015 NXP B.V.
+//   Copyright 2012-2019 NXP B.V.
 //   Copyright 2013 Fraunhofer-Gesellschaft zur Foerderung
 //					der angewandten Forschung e.V.
 //   All Rights Reserved Worldwide
@@ -75,7 +75,8 @@ class uvm_sequencer : public uvm_sequencer_param_base<REQ,RSP>,
   // Group: Sequencer interface
   //--------------------------------------------------------------------------
 
-  virtual REQ get_next_item( tlm::tlm_tag<REQ>* req = NULL );
+  //virtual REQ get_next_item( tlm::tlm_tag<REQ>* req = NULL );
+  virtual REQ get_next_item( REQ* req = NULL );
   virtual void get_next_item( REQ& req );
 
   virtual bool try_next_item( REQ& req );
@@ -87,10 +88,12 @@ class uvm_sequencer : public uvm_sequencer_param_base<REQ,RSP>,
   virtual void put_response( const RSP& rsp ); // TODO not in standard anymore? remove?
 
   virtual void get( REQ& req );
-  virtual REQ get( tlm::tlm_tag<REQ>* req = NULL );
+  virtual REQ get( REQ* req = NULL );
+  //virtual REQ get( tlm::tlm_tag<REQ>* req = NULL );
 
   virtual void peek( REQ& req );
-  virtual REQ peek( tlm::tlm_tag<REQ>* req = NULL ); // FIXME: should be const in line with SystemC TLM API?
+  virtual REQ peek( REQ* req = NULL );
+  //virtual REQ peek( tlm::tlm_tag<REQ>* req = NULL ); // FIXME: should be const in line with SystemC TLM API?
 
   virtual void stop_sequences();
 
@@ -163,7 +166,7 @@ const char* uvm_sequencer<REQ,RSP>::kind() const
 template <typename REQ, typename RSP>
 const std::string uvm_sequencer<REQ,RSP>::get_type_name() const
 {
-	return std::string(this->kind());
+  return std::string(this->kind());
 }
 
 //----------------------------------------------------------------------
@@ -226,16 +229,19 @@ void uvm_sequencer<REQ,RSP>::item_done(const RSP& item, bool use_item)
 //----------------------------------------------------------------------
 
 template <typename REQ, typename RSP>
-REQ uvm_sequencer<REQ,RSP>::get(tlm::tlm_tag<REQ>* req)
+REQ uvm_sequencer<REQ,RSP>::get(REQ* req)
 {
   REQ r;
 
   if (!sequence_item_requested)
     this->m_select_sequence();
 
+  if (req!=NULL)
+    this->m_current_sequence = req;
+
   sequence_item_requested = true;
 
-  r = this->m_req_fifo.peek(req); //note: we peek here, as we do the get in the item_done() call
+  r = this->m_req_fifo.peek((tlm::tlm_tag<REQ>*)(req)); //note: we peek here, as we do the get in the item_done() call
   item_done();
   return r;
 }
@@ -243,6 +249,7 @@ REQ uvm_sequencer<REQ,RSP>::get(tlm::tlm_tag<REQ>* req)
 template <typename REQ, typename RSP>
 void uvm_sequencer<REQ,RSP>::get( REQ& req )
 {
+  this->m_current_sequence = &req;
   req = get();
 }
 
@@ -254,7 +261,7 @@ void uvm_sequencer<REQ,RSP>::get( REQ& req )
 //----------------------------------------------------------------------
 
 template <typename REQ, typename RSP>
-REQ uvm_sequencer<REQ,RSP>::peek(tlm::tlm_tag<REQ>* req)
+REQ uvm_sequencer<REQ,RSP>::peek(REQ* req)
 {
   REQ r;
 
@@ -265,7 +272,7 @@ REQ uvm_sequencer<REQ,RSP>::peek(tlm::tlm_tag<REQ>* req)
   // item_done() or get() is called between requests
   sequence_item_requested = true;
 
-  r = this->m_req_fifo.peek(req);
+  r = this->m_req_fifo.peek((tlm::tlm_tag<REQ>*)req);
   return r;
 }
 
@@ -284,13 +291,16 @@ void uvm_sequencer<REQ,RSP>::peek( REQ& req )
 //----------------------------------------------------------------------
 
 template <typename REQ, typename RSP>
-REQ uvm_sequencer<REQ,RSP>::get_next_item(tlm::tlm_tag<REQ>* req)
+REQ uvm_sequencer<REQ,RSP>::get_next_item(REQ* req)
 {
   // If a sequence_item has already been requested, then get_next_item()
   // should not be called again until item_done() has been called.
   if (get_next_item_called)
     uvm_report_error(this->get_full_name(),
       "get_next_item() called twice without item_done or get in between", UVM_NONE);
+
+  if (req != NULL)
+    this->m_current_sequence = req;
 
   if (!sequence_item_requested)
     this->m_select_sequence();
@@ -300,12 +310,13 @@ REQ uvm_sequencer<REQ,RSP>::get_next_item(tlm::tlm_tag<REQ>* req)
   sequence_item_requested = true;
   get_next_item_called = true;
 
-  return this->m_req_fifo.peek(req);
+  return this->m_req_fifo.peek((tlm::tlm_tag<REQ>*)req);
 }
 
 template <typename REQ, typename RSP>
 void uvm_sequencer<REQ,RSP>::get_next_item( REQ& req )
 {
+  this->m_current_sequence = &req;
   req = get_next_item();
 }
 
@@ -329,6 +340,8 @@ bool uvm_sequencer<REQ,RSP>::try_next_item( REQ& req )
     uvm_report_error(this->get_full_name(), "get_next_item/try_next_item called twice without item_done or get in between", UVM_NONE);
     return false;
   }
+
+  this->m_current_sequence = &req;
 
   // allow state from last transaction to settle such that sequences'
   // relevancy can be determined with up-to-date information

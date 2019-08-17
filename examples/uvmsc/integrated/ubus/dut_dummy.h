@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2016 NXP B.V.
+//   Copyright 2016-2019 NXP B.V.
 //   Copyright 2007-2010 Mentor Graphics Corporation
 //   Copyright 2007-2010 Cadence Design Systems, Inc.
 //   All Rights Reserved Worldwide
@@ -158,6 +158,7 @@ class dut_dummy : public sc_core::sc_module
         }
       }
     }
+
   }
 
   void proc2()
@@ -174,8 +175,8 @@ class dut_dummy : public sc_core::sc_module
       else
       {
         if( (ubus_start.read() == sc_dt::SC_LOGIC_1) &&
-            (ubus_gnt_master_0.read() == sc_dt::SC_LOGIC_0) &&
-            (ubus_gnt_master_1.read() == sc_dt::SC_LOGIC_0))
+            !(ubus_gnt_master_0.read() == sc_dt::SC_LOGIC_1) &&
+            !(ubus_gnt_master_1.read() == sc_dt::SC_LOGIC_1))
         {
           ubus_read = sc_dt::SC_LOGIC_0;
           ubus_write = sc_dt::SC_LOGIC_0;
@@ -186,6 +187,7 @@ class dut_dummy : public sc_core::sc_module
           ubus_write = sc_dt::SC_LOGIC_Z;
         }
       }
+
     }
   }
 

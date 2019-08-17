@@ -60,8 +60,8 @@ class simple_response_seq : public uvm::uvm_sequence<ubus_transfer>
       // Need to raise/drop objection before each item because we don't want
       // to be stopped in the middle of a transfer.
 
-      if (starting_phase != NULL)
-        starting_phase->raise_objection(this);
+      if (this->starting_phase != NULL)
+        this->starting_phase->raise_objection(this);
 
       ubus_transfer* req = new ubus_transfer();
 
@@ -73,8 +73,8 @@ class simple_response_seq : public uvm::uvm_sequence<ubus_transfer>
       this->start_item(req);
       this->finish_item(req);
 
-      if (starting_phase != NULL)
-        starting_phase->raise_objection(this);
+      if (this->starting_phase != NULL)
+        this->starting_phase->drop_objection(this);
     }
   }
 
@@ -104,10 +104,6 @@ class slave_memory_seq : public uvm::uvm_sequence<ubus_transfer>
 
   virtual void pre_do(bool is_item)
   {
-    //req = dynamic_cast<ubus_transfer*>(create_item(ubus_transfer::get_type(), p_sequencer, "req");
-
-    p_sequencer->addr_ph_port.peek(util_transfer);
-
     // Update the properties that are relevant to both read and write
     req->size       = util_transfer.size;
     req->addr       = util_transfer.addr;
@@ -115,11 +111,13 @@ class slave_memory_seq : public uvm::uvm_sequence<ubus_transfer>
     req->error_pos  = 1000;
     req->transmit_delay = 0;
 
+    // clear arrays before use
+    CLEAR_ARRAY(req->data, MAXSIZE);
+    CLEAR_ARRAY(req->wait_state, MAXSIZE);
+
     for(unsigned int i = 0; i < util_transfer.size; i++)
     {
       req->wait_state[i] = 2;
-
-      std::cout << "req->wait_state[i]: " << req->wait_state[i] << std::endl;
 
       // For reads, populate req with the random "readback" data of the size
       // requested in util_transfer
@@ -131,19 +129,20 @@ class slave_memory_seq : public uvm::uvm_sequence<ubus_transfer>
         req->data[i] = m_mem[util_transfer.addr + i];
       }
     }
-
-    //DEBUG
-    UVM_INFO(get_full_name(), "ubus_transfer contents:\n" +
-      req->sprint(), uvm::UVM_NONE);
   }
 
-  void post_do(uvm_sequence_item this_item)
+  void post_do(uvm_sequence_item* item)
   {
+    ubus_transfer* trans = dynamic_cast<ubus_transfer*>(item);
+
+    if (trans == NULL)
+      UVM_ERROR(get_type_name(), "No valid transaction. Skipped.");
+
     // For writes, update the m_mem associative array
-    if( util_transfer.read_write == WRITE )
+    if( ( util_transfer.read_write == WRITE ) && (trans != NULL))
     {
-      for(int unsigned i = 0 ; i < req->size ; i++)
-        m_mem[req->addr + i] = req->data[i];
+      for(int unsigned i = 0 ; i < trans->size ; i++)
+        m_mem[req->addr + i] = trans->data[i];
     }
   }
 
@@ -153,15 +152,18 @@ class slave_memory_seq : public uvm::uvm_sequence<ubus_transfer>
       " starting...", uvm::UVM_MEDIUM);
 
     req = dynamic_cast<ubus_transfer*>(create_item(ubus_transfer::get_type(), p_sequencer, "req"));
+    //p = this->get_starting_phase();
 
     while(true) // forever
     {
+      p_sequencer->addr_ph_port.peek(util_transfer);
+
       // Need to raise/drop objection before each item because we don't want
       // to be stopped in the middle of a transfer.
-      starting_phase->raise_objection(this);
+      this->starting_phase->raise_objection(this);
       this->start_item(req);
       this->finish_item(req);
-      starting_phase->drop_objection(this);
+      this->starting_phase->drop_objection(this);
     }
   }
 
