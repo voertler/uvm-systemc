@@ -5,6 +5,7 @@ SUBDIRS = \
 	cb \
 	comps \
 	conf \
+	dap \
 	dpi \
 	factory \
 	macros \

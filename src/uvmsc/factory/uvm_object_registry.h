@@ -195,8 +195,8 @@ uvm_object_registry<T>* uvm_object_registry<T>::get()
 
 template <typename T>
 T* uvm_object_registry<T>::create( const std::string& name,
-                  uvm_component* parent,
-                  const std::string& contxt )
+                                   uvm_component* parent,
+                                   const std::string& contxt )
 {
   std::string l_contxt;
   uvm_object* obj = NULL;
@@ -315,6 +315,8 @@ uvm_object_registry<T>::~uvm_object_registry()
   while(!m_obj_t_list.empty())
     delete m_obj_t_list.back(), m_obj_t_list.pop_back();
 }
+
+
 
 //////////////
 

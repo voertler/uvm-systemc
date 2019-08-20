@@ -4,7 +4,7 @@
 //   Copyright 2007-2011 Mentor Graphics Corporation
 //   Copyright 2007-2011 Cadence Design Systems, Inc.
 //   Copyright 2010-2011 Synopsys, Inc.
-//   Copyright 2012-2015 NXP B.V.
+//   Copyright 2012-2019 NXP B.V.
 //   All Rights Reserved Worldwide
 //
 //   Licensed under the Apache License, Version 2.0 (the
@@ -48,7 +48,7 @@ uvm_sequence_base::uvm_sequence_base( uvm_object_name name_ )
   m_wait_for_grant_semaphore = 0;
   m_next_transaction_id = 1;
 
-  starting_phase = NULL;
+  //starting_phase = NULL;
   m_sqr_seq_ids.clear();
 
   m_priority = -1;
@@ -61,6 +61,10 @@ uvm_sequence_base::uvm_sequence_base( uvm_object_name name_ )
 
   is_rel_default = true;
   wait_rel_default = false;
+
+  m_automatic_phase_objection_dap = NULL;
+  m_starting_phase_dap = NULL;
+  m_init_phase_daps(true);
 }
 
 //----------------------------------------------------------------------
@@ -105,12 +109,11 @@ uvm_sequence_state_enum uvm_sequence_base::get_sequence_state() const
 
 void uvm_sequence_base::wait_for_sequence_state( unsigned int state_mask )
 {
+  // TODO check: first boolean expression and then wait, or first wait and then check?
   while (!(m_sequence_state & state_mask))
   {
-//    std::cout << "wait_for_sequence_state... Current state:" << uvm_seq_state_name[m_sequence_state] << std::endl;
     sc_core::wait(m_sequence_state_ev);
   }
-//  std::cout << "wait_for_sequence_state done" << std::endl;
 }
 
 //----------------------------------------------------------------------
@@ -200,6 +203,10 @@ void uvm_sequence_base::start(
 
   if ((m_parent_sequence != NULL) && (m_parent_sequence->children_array.find(this)!= m_parent_sequence->children_array.end()))
     m_parent_sequence->children_array.erase(this); // TODO also delete pointer here?
+
+  old_automatic_phase_objection = get_automatic_phase_objection();
+  m_init_phase_daps(true);
+  set_automatic_phase_objection(old_automatic_phase_objection);
 }
 
 //----------------------------------------------------------------------
@@ -313,6 +320,82 @@ void uvm_sequence_base::post_body()
 void uvm_sequence_base::post_start()
 {
   return;
+}
+
+//----------------------------------------------------------------------
+// member function get_starting_phase
+// Returns the 'starting phase'.
+//
+//! If non-NULL, the starting phase specifies the phase in which this
+//! sequence was started.  The starting phase is set automatically when
+//! this sequence is started as the default sequence on a sequencer.
+//----------------------------------------------------------------------
+
+uvm_phase* uvm_sequence_base::get_starting_phase() const
+{
+  return m_starting_phase_dap->get();
+}
+
+//----------------------------------------------------------------------
+// member function: set_starting_phase
+// Sets the 'starting phase'.
+//
+// NOTE: Internally, the uvm_sequence_base uses a uvm_get_to_lock_dap to
+// protect the starting phase value from being modified
+// after the reference has been read.  Once the sequence has ended
+// its execution (either via natural termination, or being killed),
+// then the starting phase value can be modified again.
+//----------------------------------------------------------------------
+
+void uvm_sequence_base::set_starting_phase( uvm_phase* phase )
+{
+  m_starting_phase_dap->set(phase);
+}
+
+//----------------------------------------------------------------------
+// member function: set_automatic_phase_objection
+// Sets the 'automatically object to starting phase' bit.
+//
+// The most common interaction with the starting phase
+// within a sequence is to simply ~raise~ the phase's objection
+// prior to executing the sequence, and ~drop~ the objection
+// after ending the sequence (either naturally, or
+// via a call to kill). In order to
+// simplify this interaction for the user, the UVM
+// provides the ability to perform this functionality
+// automatically.
+//
+// NOTE 1: Internally, the uvm_sequence_base uses a uvm_get_to_lock_dap to
+// protect the ~automatic_phase_objection~ value from being modified
+// after the reference has been read.  Once the sequence has ended
+// its execution (either via natural termination, or being killed),
+// then the ~automatic_phase_objection~ value can be modified again.
+//
+// NOTE 2: NEVER set the automatic phase objection bit to true if your sequence
+// runs with a forever loop inside of the body, as the objection will
+// never get dropped!
+//----------------------------------------------------------------------
+
+void uvm_sequence_base::set_automatic_phase_objection( bool value )
+{
+  m_automatic_phase_objection_dap->set(value);
+}
+
+
+//----------------------------------------------------------------------
+// member function: get_automatic_phase_objection
+// Returns (and locks) the value of the 'automatically object to
+// starting phase' bit.
+//
+// If 1, then the sequence will automatically raise an objection
+// to the starting phase (if the starting phase is not ~null~) immediately
+// prior to <pre_start> being called.  The objection will be dropped
+// after <post_start> has executed, or <kill> has been called.
+//----------------------------------------------------------------------
+
+bool uvm_sequence_base::get_automatic_phase_objection() const
+{
+  return m_automatic_phase_objection_dap->get();
 }
 
 //----------------------------------------------------------------------
@@ -539,11 +622,20 @@ void uvm_sequence_base::kill()
     if (m_sequencer == NULL)
     {
       m_kill();
+
+      // We need to drop the objection if we raised it...
+      if (get_automatic_phase_objection())
+         m_safe_drop_starting_phase("automatic phase objection");
+
       return;
     }
     // If we are attached to a sequencer, then the sequencer
     // will clear out queues, and then kill this sequence
     m_sequencer->m_kill_sequence(this);
+
+    // We need to drop the objection if we raised it...
+    if (get_automatic_phase_objection())
+       m_safe_drop_starting_phase("automatic phase objection");
     return;
   }
 }
@@ -678,8 +770,11 @@ void uvm_sequence_base::finish_item( uvm_sequence_item* item,
   sequencer->send_request(this, item);
   sequencer->wait_for_item_done(this, -1);
 
-  //FIXME: // UVM-SV workaround: get updated request from sequencer without explicit response!
+  // FIXME: dirty workaround to comply to UVM-SV semantics which are non-TLM conform!
+  // Get the current request item from the sequencer, which might be changed 'in flight'
+  // without asking for explicit response message using get_response(rsp)
   item = sequencer->m_current_sequence;
+
 
 #ifndef UVM_DISABLE_AUTO_ITEM_RECORDING
   sequencer->end_tr(*item);
@@ -877,49 +972,59 @@ void uvm_sequence_base::clear_response_queue()
 void uvm_sequence_base::m_start_core( uvm_sequence_base* parent_sequence,
                                       bool call_pre_post )
 {
-    // NO WAIT HERE! - It seems the SC_FORK already implements a SC_ZERO_WAIT?
-    pre_start();
+  // NO WAIT HERE! - It seems the SC_FORK already implements a SC_ZERO_WAIT?
 
-    if (call_pre_post == 1) {
-      m_sequence_state = UVM_PRE_BODY;
-      m_sequence_state_ev.notify();
-      sc_core::wait(SC_ZERO_TIME);
-      pre_body();
-    }
+  // Raise the objection if enabled
+  // (This will lock the uvm_get_to_lock_dap)
+  if( get_automatic_phase_objection() )
+     m_safe_raise_starting_phase("automatic phase objection");
 
-    if (parent_sequence != NULL)
-    {
-      parent_sequence->pre_do(0);
-      parent_sequence->mid_do(this);
-    }
+  pre_start();
 
-    m_sequence_state = UVM_BODY;
+  if (call_pre_post == true) {
+    m_sequence_state = UVM_PRE_BODY;
     m_sequence_state_ev.notify();
     sc_core::wait(SC_ZERO_TIME);
-    body();
+    pre_body();
+  }
 
-    m_sequence_state = UVM_ENDED;
+  if (parent_sequence != NULL)
+  {
+    parent_sequence->pre_do(0);
+    parent_sequence->mid_do(this);
+  }
+
+  m_sequence_state = UVM_BODY;
+  m_sequence_state_ev.notify();
+  sc_core::wait(SC_ZERO_TIME);
+  body();
+
+  m_sequence_state = UVM_ENDED;
+  m_sequence_state_ev.notify();
+  sc_core::wait(SC_ZERO_TIME);
+
+  if (parent_sequence != NULL)
+    parent_sequence->post_do(this);
+
+  if (call_pre_post == true) {
+    m_sequence_state = UVM_POST_BODY;
     m_sequence_state_ev.notify();
     sc_core::wait(SC_ZERO_TIME);
+    post_body();
+  }
 
-    if (parent_sequence != NULL)
-      parent_sequence->post_do(this);
+  m_sequence_state = UVM_POST_START;
+  m_sequence_state_ev.notify();
+  sc_core::wait(SC_ZERO_TIME);
+  post_start();
 
-    if (call_pre_post == 1) {
-      m_sequence_state = UVM_POST_BODY;
-      m_sequence_state_ev.notify();
-      sc_core::wait(SC_ZERO_TIME);
-      post_body();
-    }
+  // Drop the objection if enabled
+  if( get_automatic_phase_objection() )
+     m_safe_drop_starting_phase("automatic phase objection");
 
-    m_sequence_state = UVM_POST_START;
-    m_sequence_state_ev.notify();
-    sc_core::wait(SC_ZERO_TIME);
-    post_start();
-
-    m_sequence_state = UVM_FINISHED;
-    m_sequence_state_ev.notify();
-    sc_core::wait(SC_ZERO_TIME);
+  m_sequence_state = UVM_FINISHED;
+  m_sequence_state_ev.notify();
+  sc_core::wait(SC_ZERO_TIME);
 }
 
 //----------------------------------------------------------------------
@@ -958,7 +1063,7 @@ void uvm_sequence_base::get_base_response( const uvm_sequence_item*& response_it
     return;
   }
 
-  for(;;)
+  for(;;) // forever
   {
     for (response_queue_listT::iterator
         it = response_queue.begin();
@@ -1063,6 +1168,7 @@ void uvm_sequence_base::m_kill()
 //----------------------------------------------------------------------
 // member function: m_clear
 //
+// Clean-up and release memory
 //! Implementation-defined member function
 //----------------------------------------------------------------------
 
@@ -1073,7 +1179,10 @@ void uvm_sequence_base::m_clear()
        it != response_queue.end();
        it++)
     delete *it;
+
+  m_clear_phase_daps();
 }
+
 /*
 void uvm_sequence_base::m_copy( const uvm_sequence_base& obj )
 {
@@ -1110,5 +1219,82 @@ uvm_sequence_base& uvm_sequence_base::operator= ( const uvm_sequence_base& obj )
   return *this;
 }
 */
+
+//----------------------------------------------------------------------
+// member function: m_safe_raise_starting_phase
+//
+// Implementation defined
+//----------------------------------------------------------------------
+
+void uvm_sequence_base::m_safe_raise_starting_phase( std::string description,
+                                                     int count )
+{
+  uvm_phase* starting_phase = get_starting_phase();
+  if (starting_phase != NULL)
+    starting_phase->raise_objection(this, description, count);
+
+}
+
+//----------------------------------------------------------------------
+// member function: m_safe_drop_starting_phase
+//
+// Implementation defined
+//----------------------------------------------------------------------
+
+void uvm_sequence_base::m_safe_drop_starting_phase( std::string description,
+                                                    int count )
+{
+  uvm_phase* starting_phase = get_starting_phase();
+  if (starting_phase != NULL)
+    starting_phase->drop_objection(this, description, count);
+}
+
+//----------------------------------------------------------------------
+// member function: m_init_phase_daps
+//
+// Either creates or renames DAPS
+// Implementation defined
+//----------------------------------------------------------------------
+
+void uvm_sequence_base::m_init_phase_daps( bool create )
+{
+  std::string apo_name = get_full_name() + ".automatic_phase_objection";
+  std::string sp_name = get_full_name() + ".starting_phase";
+
+  // clean-up  old instances if they exist
+  if (m_automatic_phase_objection_dap != NULL)
+    delete m_automatic_phase_objection_dap;
+
+  if (m_starting_phase_dap != NULL)
+    delete m_starting_phase_dap;
+
+  if(create)
+  {
+    // TODO no urgency to use the UVM factory here, so instantiting in the normal way..
+    m_automatic_phase_objection_dap = new uvm_get_to_lock_dap<bool>(apo_name);
+    m_starting_phase_dap = new uvm_get_to_lock_dap<uvm_phase*>(sp_name);
+  }
+  else
+  {
+    m_automatic_phase_objection_dap->set_name(apo_name);
+    m_starting_phase_dap->set_name(sp_name);
+  }
+}
+
+//----------------------------------------------------------------------
+// member function: m_clean_phase_daps
+//
+// Cleanup and remove DAPs
+// Implementation defined
+//----------------------------------------------------------------------
+
+void uvm_sequence_base::m_clear_phase_daps()
+{
+  if (m_automatic_phase_objection_dap != NULL) delete m_automatic_phase_objection_dap;
+  if (m_starting_phase_dap != NULL) delete m_starting_phase_dap;
+  m_automatic_phase_objection_dap = NULL;
+  m_starting_phase_dap = NULL;
+}
+
 
 } // namespace uvm

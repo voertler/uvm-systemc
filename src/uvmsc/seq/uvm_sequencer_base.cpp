@@ -235,7 +235,8 @@ void uvm_sequencer_base::start_phase_sequence( uvm_phase& phase )
   seq->print_sequence_info = true;
   seq->set_sequencer(this);
   //seq.reseed();
-  seq->starting_phase = &phase;
+  //seq->starting_phase = &phase; //OLD!
+  seq->set_starting_phase(&phase); //NEW!
 
   /* TODO randomize
   if (!seq->do_not_randomize && !seq->randomize())

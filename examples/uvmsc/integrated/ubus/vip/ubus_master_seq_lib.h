@@ -44,14 +44,16 @@ public:
 
   ubus_base_sequence( const std::string& name = "ubus_base_seq")
   : uvm::uvm_sequence<ubus_transfer>(name)
-  {}
+  {
+    set_automatic_phase_objection(true);
+  }
 
   UVM_OBJECT_UTILS(ubus_base_sequence);
 
   // Raise in pre_body so the objection is only raised for root sequences.
   // There is no need to raise for sub-sequences since the root sequence
   // will encapsulate the sub-sequence. 
-
+/*
   void pre_body()
   {
     if (this->starting_phase != NULL)
@@ -78,7 +80,7 @@ public:
     this->starting_phase->drop_objection(this);
     }
   }
-  
+  */
 }; // class ubus_base_sequence
 
 //------------------------------------------------------------------------------

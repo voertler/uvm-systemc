@@ -239,7 +239,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\vip\ubus_version.h"
+				RelativePath="..\ubus_version.h"
+				>
+			</File>
+			<File
+				RelativePath="..\vip\uvm_defines.h"
 				>
 			</File>
 			<File

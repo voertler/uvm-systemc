@@ -60,8 +60,9 @@ class simple_response_seq : public uvm::uvm_sequence<ubus_transfer>
       // Need to raise/drop objection before each item because we don't want
       // to be stopped in the middle of a transfer.
 
-      if (this->starting_phase != NULL)
-        this->starting_phase->raise_objection(this);
+      uvm::uvm_phase* p = this->get_starting_phase();
+
+      p->raise_objection(this);
 
       ubus_transfer* req = new ubus_transfer();
 
@@ -73,8 +74,7 @@ class simple_response_seq : public uvm::uvm_sequence<ubus_transfer>
       this->start_item(req);
       this->finish_item(req);
 
-      if (this->starting_phase != NULL)
-        this->starting_phase->drop_objection(this);
+      p->drop_objection(this);
     }
   }
 
@@ -152,7 +152,7 @@ class slave_memory_seq : public uvm::uvm_sequence<ubus_transfer>
       " starting...", uvm::UVM_MEDIUM);
 
     req = dynamic_cast<ubus_transfer*>(create_item(ubus_transfer::get_type(), p_sequencer, "req"));
-    //p = this->get_starting_phase();
+    uvm::uvm_phase* p = this->get_starting_phase();
 
     while(true) // forever
     {
@@ -160,10 +160,10 @@ class slave_memory_seq : public uvm::uvm_sequence<ubus_transfer>
 
       // Need to raise/drop objection before each item because we don't want
       // to be stopped in the middle of a transfer.
-      this->starting_phase->raise_objection(this);
+      p->raise_objection(this);
       this->start_item(req);
       this->finish_item(req);
-      this->starting_phase->drop_objection(this);
+      p->drop_objection(this);
     }
   }
 

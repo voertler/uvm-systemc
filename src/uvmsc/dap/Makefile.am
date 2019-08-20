@@ -1,15 +1,11 @@
 include $(top_srcdir)/config/Make-rules
 
 H_FILES = \
-	uvm_callback_defines.h\
-	uvm_component_defines.h \
-	uvm_defines.h \
-	uvm_macros.h \
-	uvm_message_defines.h \
-	uvm_object_defines.h \
-	uvm_reg_defines.h \
-	uvm_sequence_defines.h \
-	uvm_string_defines.h
+	uvm_dap.h \
+	uvm_get_to_lock_dap.h \
+	uvm_set_before_get_dap.h \
+	uvm_set_get_dap_base.h \
+	uvm_simple_lock_dap.h
 
 NO_H_FILES = 
 
@@ -19,11 +15,11 @@ CXX_FILES =
 
 NO_CXX_FILES =
 
-noinst_LTLIBRARIES = libmacros.la
+noinst_LTLIBRARIES = libdap.la
 
-libmacros_la_SOURCES = $(H_FILES) $(NO_H_FILES) $(CXX_FILES)
+libdap_la_SOURCES = $(H_FILES) $(NO_H_FILES) $(CXX_FILES)
 
-INCLUDE_DIR = $(prefix)/include/uvmsc/macros
+INCLUDE_DIR = $(prefix)/include/uvmsc/dap
 
 install-data-local:
 	@$(NORMAL_INSTALL)

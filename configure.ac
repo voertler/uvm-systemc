@@ -547,6 +547,7 @@ AC_OUTPUT( Makefile
            src/uvmsc/cb/Makefile
            src/uvmsc/comps/Makefile
            src/uvmsc/conf/Makefile
+           src/uvmsc/dap/Makefile
            src/uvmsc/dpi/Makefile
            src/uvmsc/factory/Makefile
            src/uvmsc/macros/Makefile
