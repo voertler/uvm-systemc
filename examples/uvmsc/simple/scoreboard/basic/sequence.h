@@ -28,7 +28,7 @@ template <typename REQ = uvm::uvm_sequence_item, typename RSP = REQ>
 class sequence : public uvm::uvm_sequence<REQ,RSP>
 {
  public:
-  sequence( const std::string& name ) : uvm::uvm_sequence<REQ,RSP>( name )
+  sequence( const std::string& name = "seq" ) : uvm::uvm_sequence<REQ,RSP>( name )
   {
     std::cout << sc_core::sc_time_stamp() << ": constructor " << name << std::endl;
   }
