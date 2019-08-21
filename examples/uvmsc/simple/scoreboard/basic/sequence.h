@@ -38,8 +38,8 @@ class sequence : public uvm::uvm_sequence<REQ,RSP>
   void pre_body()
   {
     // raise objection if started as a root sequence
-    if(this->starting_phase != NULL)
-      this->starting_phase->raise_objection(this);
+    if(this->get_starting_phase() != NULL)
+      this->get_starting_phase()->raise_objection(this);
   }
 
   void body()
@@ -68,8 +68,8 @@ class sequence : public uvm::uvm_sequence<REQ,RSP>
   void post_body()
   {
     // drop objection if started as a root sequence
-    if(this->starting_phase != NULL)
-      this->starting_phase->drop_objection(this);
+    if(this->get_starting_phase() != NULL)
+      this->get_starting_phase()->drop_objection(this);
   }
 
 };
