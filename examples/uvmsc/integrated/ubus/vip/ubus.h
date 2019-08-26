@@ -23,8 +23,8 @@
 #ifndef UBUS_H_
 #define UBUS_H_
 
+#include "ubus_version.h"
 #include "ubus_defines.h"
-
 #include "ubus_transfer.h"
 
 #include "ubus_master_monitor.h"
