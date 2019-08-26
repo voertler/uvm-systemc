@@ -62,7 +62,8 @@ class simple_response_seq : public uvm::uvm_sequence<ubus_transfer>
 
       uvm::uvm_phase* p = this->get_starting_phase();
 
-      p->raise_objection(this);
+      if (p != NULL)
+          p->raise_objection(this);
 
       ubus_transfer* req = new ubus_transfer();
 
@@ -74,7 +75,8 @@ class simple_response_seq : public uvm::uvm_sequence<ubus_transfer>
       this->start_item(req);
       this->finish_item(req);
 
-      p->drop_objection(this);
+      if (p != NULL)
+          p->drop_objection(this);
     }
   }
 
@@ -160,10 +162,12 @@ class slave_memory_seq : public uvm::uvm_sequence<ubus_transfer>
 
       // Need to raise/drop objection before each item because we don't want
       // to be stopped in the middle of a transfer.
-      p->raise_objection(this);
+      if (p != NULL)
+          p->raise_objection(this);
       this->start_item(req);
       this->finish_item(req);
-      p->drop_objection(this);
+      if (p != NULL)
+          p->drop_objection(this);
     }
   }
 
