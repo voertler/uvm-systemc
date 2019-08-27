@@ -543,13 +543,6 @@ AC_PROG_LIBTOOL
 # * restore CXXFLAGS
 CXXFLAGS="${stored_CXXFLAGS}"
 
-
-AC_CHECK_PROGS([DOXYGEN], [doxygen])
-if test -z "$DOXYGEN"; then
-  AC_MSG_WARN(Doxygen not found - Doxygen documentation will not be built.);
-fi
-AM_CONDITIONAL([HAVE_DOXYGEN], [test -n "$DOXYGEN"])
-
 AC_SUBST(LIB_ARCH_SUFFIX)
 
 AC_OUTPUT( Makefile
