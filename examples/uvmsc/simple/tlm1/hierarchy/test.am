@@ -27,7 +27,4 @@ simple_tlm1_hierarchy_BUILD =
 
 simple_tlm1_hierarchy_EXTRA = 
 
-simple_tlm1_hierarchy_test_LDADD = $(top_builddir)/src/uvmsc/libuvm-systemc.la
-
-
 ## Taf!

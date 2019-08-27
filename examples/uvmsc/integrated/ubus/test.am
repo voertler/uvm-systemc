@@ -59,7 +59,4 @@ integrated_ubus_BUILD =
 
 integrated_ubus_EXTRA = 
 
-integrated_ubus_test_LDADD = $(top_builddir)/src/uvmsc/libuvm-systemc.la
-
-
 ## Taf!

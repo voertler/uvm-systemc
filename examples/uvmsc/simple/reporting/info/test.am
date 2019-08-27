@@ -26,7 +26,4 @@ simple_reporting_info_BUILD =
 
 simple_reporting_info_EXTRA = 
 
-simple_reporting_info_test_LDADD = $(top_builddir)/src/uvmsc/libuvm-systemc.la
-
-
 ## Taf!

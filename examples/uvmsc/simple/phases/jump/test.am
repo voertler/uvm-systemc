@@ -26,7 +26,4 @@ simple_phases_jump_BUILD =
 
 simple_phases_jump_EXTRA = 
 
-simple_phases_jump_test_LDADD = $(top_builddir)/src/uvmsc/libuvm-systemc.la
-
-
 ## Taf!

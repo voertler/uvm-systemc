@@ -34,7 +34,4 @@ simple_sequence_sequence_lock_grab_BUILD =
 
 simple_sequence_sequence_lock_grab_EXTRA = 
 
-simple_sequence_sequence_lock_grab_test_LDADD = $(top_builddir)/src/uvmsc/libuvm-systemc.la
-
-
 ## Taf!

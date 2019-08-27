@@ -31,7 +31,4 @@ simple_configuration_manual_BUILD =
 
 simple_configuration_manual_EXTRA = 
 
-simple_configuration_manual_test_LDADD = $(top_builddir)/src/uvmsc/libuvm-systemc.la
-
-
 ## Taf!

@@ -32,7 +32,4 @@ simple_producer_consumer_override_BUILD =
 
 simple_producer_consumer_override_EXTRA = 
 
-simple_producer_consumer_override_test_LDADD = $(top_builddir)/src/uvmsc/libuvm-systemc.la
-
-
 ## Taf!

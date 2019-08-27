@@ -27,7 +27,4 @@ simple_tlm1_bidir_BUILD =
 
 simple_tlm1_bidir_EXTRA = 
 
-simple_tlm1_bidir_test_LDADD = $(top_builddir)/src/uvmsc/libuvm-systemc.la
-
-
 ## Taf!

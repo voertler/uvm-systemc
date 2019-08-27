@@ -27,7 +27,4 @@ simple_tlm1_producer_consumer_BUILD =
 
 simple_tlm1_producer_consumer_EXTRA = 
 
-simple_tlm1_producer_consumer_test_LDADD = $(top_builddir)/src/uvmsc/libuvm-systemc.la
-
-
 ## Taf!
