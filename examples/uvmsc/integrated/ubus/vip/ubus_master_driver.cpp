@@ -239,10 +239,10 @@ void ubus_master_driver::drive_size(unsigned int size)
 {
   switch(size)
   {
-    case 1: vif->sig_size = 0b00; break;
-    case 2: vif->sig_size = 0b01; break;
-    case 4: vif->sig_size = 0b10; break;
-    case 8: vif->sig_size = 0b11; break;
+    case 1: vif->sig_size = 0; break; /* 0b00 */
+    case 2: vif->sig_size = 1; break; /* 0b01 */
+    case 4: vif->sig_size = 2; break; /* 0b10 */
+    case 8: vif->sig_size = 3; break; /* 0b11 */
     default: /* do nothing */ break;
   }
 }

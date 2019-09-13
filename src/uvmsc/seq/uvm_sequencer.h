@@ -237,7 +237,7 @@ REQ uvm_sequencer<REQ,RSP>::get(REQ* req)
     this->m_select_sequence();
 
   if (req!=NULL)
-    this->m_current_sequence = req;
+    this->m_current_sequence_item = req;
 
   sequence_item_requested = true;
 
@@ -249,7 +249,7 @@ REQ uvm_sequencer<REQ,RSP>::get(REQ* req)
 template <typename REQ, typename RSP>
 void uvm_sequencer<REQ,RSP>::get( REQ& req )
 {
-  this->m_current_sequence = &req;
+  this->m_current_sequence_item = &req;
   req = get();
 }
 
@@ -268,6 +268,9 @@ REQ uvm_sequencer<REQ,RSP>::peek(REQ* req)
   if (!sequence_item_requested )
     this->m_select_sequence();
 
+  if (req!=NULL)
+    this->m_current_sequence_item = req;
+
   // Set flag indicating that the item has been requested to ensure that
   // item_done() or get() is called between requests
   sequence_item_requested = true;
@@ -281,6 +284,7 @@ template <typename REQ, typename RSP>
 void uvm_sequencer<REQ,RSP>::peek( REQ& req )
 {
   req = peek();
+  this->m_current_sequence_item = &req;
 }
 
 //----------------------------------------------------------------------
@@ -299,8 +303,8 @@ REQ uvm_sequencer<REQ,RSP>::get_next_item(REQ* req)
     uvm_report_error(this->get_full_name(),
       "get_next_item() called twice without item_done or get in between", UVM_NONE);
 
-  if (req != NULL)
-    this->m_current_sequence = req;
+  if (req!=NULL)
+    this->m_current_sequence_item = req;
 
   if (!sequence_item_requested)
     this->m_select_sequence();
@@ -316,7 +320,7 @@ REQ uvm_sequencer<REQ,RSP>::get_next_item(REQ* req)
 template <typename REQ, typename RSP>
 void uvm_sequencer<REQ,RSP>::get_next_item( REQ& req )
 {
-  this->m_current_sequence = &req;
+  this->m_current_sequence_item = &req;
   req = get_next_item();
 }
 
@@ -340,8 +344,6 @@ bool uvm_sequencer<REQ,RSP>::try_next_item( REQ& req )
     uvm_report_error(this->get_full_name(), "get_next_item/try_next_item called twice without item_done or get in between", UVM_NONE);
     return false;
   }
-
-  this->m_current_sequence = &req;
 
   // allow state from last transaction to settle such that sequences'
   // relevancy can be determined with up-to-date information

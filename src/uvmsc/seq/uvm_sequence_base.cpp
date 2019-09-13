@@ -771,15 +771,15 @@ void uvm_sequence_base::finish_item( uvm_sequence_item* item,
   sequencer->wait_for_item_done(this, -1);
 
   // FIXME: dirty workaround to comply to UVM-SV semantics which are non-TLM conform!
-  // Get the current request item from the sequencer, which might be changed 'in flight'
+  // Copy the current values of a request_item from the sequencer, which might be changed 'in flight'
   // without asking for explicit response message using get_response(rsp)
-  item = sequencer->m_current_sequence;
-
+  uvm_sequence_item* latest_item = sequencer->m_current_sequence_item;
 
 #ifndef UVM_DISABLE_AUTO_ITEM_RECORDING
   sequencer->end_tr(*item);
 #endif
-  post_do(item);
+
+  post_do(latest_item);
 }
 
 //----------------------------------------------------------------------

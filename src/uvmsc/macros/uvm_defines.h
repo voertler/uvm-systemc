@@ -21,7 +21,10 @@
 #define UVM_DEFINES_H_
 
 #include <typeinfo>
+#include <type_traits>
 
 #define UVM_TYPENAME(T) typeid(T).name()
+
+#define uvm_typeof(x) std::remove_reference<decltype((x))>::type
 
 #endif // UVM_DEFINES_H_

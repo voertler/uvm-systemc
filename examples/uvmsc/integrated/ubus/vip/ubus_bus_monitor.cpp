@@ -192,10 +192,10 @@ void ubus_bus_monitor::collect_address_phase()
 
   switch (vif->sig_size.read().to_uint())
   {
-    case 0b00 : trans_collected.size = 1; break;
-    case 0b01 : trans_collected.size = 2; break;
-    case 0b10 : trans_collected.size = 4; break;
-    case 0b11 : trans_collected.size = 8; break;
+    case 0 /* 0b00 */ : trans_collected.size = 1; break;
+    case 1 /* 0b01 */ : trans_collected.size = 2; break;
+    case 2 /* 0b10 */ : trans_collected.size = 4; break;
+    case 3 /* 0b11 */ : trans_collected.size = 8; break;
     default: break;
   }
 
