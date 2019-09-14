@@ -58,6 +58,6 @@ CXX_FILES += \
 	reg/uvm_vreg_field.cpp \
 	reg/uvm_vreg_field_cbs.cpp
 
-INCDIRS += reg reg/sequences
+INCDIRS += reg/sequences reg
 
 ## Taf!
