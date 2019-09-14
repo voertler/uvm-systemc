@@ -7,6 +7,8 @@ examples_BUILD += \
 
 examples_CLEAN += 
 
+examples_DIRS += simple/trivial
+
 examples_FILES += \
 	$(simple_trivial_H_FILES) \
 	$(simple_trivial_CXX_FILES) \

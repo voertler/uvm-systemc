@@ -7,6 +7,8 @@ examples_BUILD += \
 
 examples_CLEAN += 
 
+examples_DIRS += simple/configuration/manual
+
 examples_FILES += \
 	$(simple_configuration_manual_H_FILES) \
 	$(simple_configuration_manual_CXX_FILES) \

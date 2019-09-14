@@ -7,6 +7,8 @@ examples_BUILD += \
 
 examples_CLEAN += 
 
+examples_DIRS += simple/callbacks/basic
+
 examples_FILES += \
 	$(simple_callbacks_basic_H_FILES) \
 	$(simple_callbacks_basic_CXX_FILES) \

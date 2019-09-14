@@ -7,6 +7,8 @@ examples_BUILD += \
 
 examples_CLEAN += 
 
+examples_DIRS += simple/producer_consumer/basic
+
 examples_FILES += \
 	$(simple_producer_consumer_basic_H_FILES) \
 	$(simple_producer_consumer_basic_CXX_FILES) \

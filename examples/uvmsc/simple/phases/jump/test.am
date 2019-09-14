@@ -7,6 +7,8 @@ examples_BUILD += \
 
 examples_CLEAN += 
 
+examples_DIRS += simple/phases/jump
+
 examples_FILES += \
 	$(simple_phases_jump_H_FILES) \
 	$(simple_phases_jump_CXX_FILES) \

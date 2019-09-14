@@ -7,6 +7,8 @@ examples_BUILD += \
 
 examples_CLEAN += 
 
+examples_DIRS += simple/sequence/sequence_lock_grab
+
 examples_FILES += \
 	$(simple_sequence_sequence_lock_grab_H_FILES) \
 	$(simple_sequence_sequence_lock_grab_CXX_FILES) \

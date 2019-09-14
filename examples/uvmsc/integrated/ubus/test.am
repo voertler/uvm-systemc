@@ -7,6 +7,9 @@ examples_BUILD += \
 
 examples_CLEAN += 
 
+examples_DIRS += integrated/ubus/vip \
+                 integrated/ubus
+
 examples_FILES += \
 	$(integrated_ubus_H_FILES) \
 	$(integrated_ubus_CXX_FILES) \

@@ -7,6 +7,8 @@ examples_BUILD += \
 
 examples_CLEAN += 
 
+examples_DIRS += simple/reporting/error
+
 examples_FILES += \
 	$(simple_reporting_error_H_FILES) \
 	$(simple_reporting_error_CXX_FILES) \

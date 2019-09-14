@@ -7,6 +7,8 @@ examples_BUILD += \
 
 examples_CLEAN += 
 
+examples_DIRS += simple/registers/models/aliasing
+
 examples_FILES += \
 	$(simple_registers_models_aliasing_H_FILES) \
 	$(simple_registers_models_aliasing_CXX_FILES) \

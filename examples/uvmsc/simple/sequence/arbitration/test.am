@@ -7,6 +7,8 @@ examples_BUILD += \
 
 examples_CLEAN += 
 
+examples_DIRS += simple/sequence/arbitration
+
 examples_FILES += \
 	$(simple_sequence_arbitration_H_FILES) \
 	$(simple_sequence_arbitration_CXX_FILES) \
