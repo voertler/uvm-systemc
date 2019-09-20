@@ -7,6 +7,9 @@ examples_BUILD += \
 
 examples_CLEAN += 
 
+examples_DIRS += integrated/ubus/vip \
+                 integrated/ubus
+
 examples_FILES += \
 	$(integrated_ubus_H_FILES) \
 	$(integrated_ubus_CXX_FILES) \
@@ -58,8 +61,5 @@ integrated_ubus_H_FILES = \
 integrated_ubus_BUILD = 
 
 integrated_ubus_EXTRA = 
-
-integrated_ubus_test_LDADD = $(top_builddir)/src/uvmsc/libuvm-systemc.la
-
 
 ## Taf!

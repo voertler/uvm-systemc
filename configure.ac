@@ -366,11 +366,23 @@ AC_ARG_WITH([arch-suffix],
   [ac_dummy=""]
 )
 AC_MSG_RESULT($have_arch_suffix (TARGET_ARCH=${TARGET_ARCH}))
-AC_SUBST(LIB_ARCH_SUFFIX)
 AC_SUBST(rootdocdir)
 AC_SUBST(examplesdir, [${rootdocdir}/examples])
-libdir="${libdir}${LIB_ARCH_SUFFIX}"
+AC_SUBST([libarchdir],  ['${libdir}${LIB_ARCH_SUFFIX}'] )
 
+AM_CONDITIONAL([SEPARATE_INSTALL_TREE],dnl
+  [ test "x${prefix}" != "x${abs_srcdir}" ])
+dnl Check for out-of-tree build
+AM_CONDITIONAL([SEPARATE_BUILD_TREE],dnl
+  [ test "x${abs_srcdir}" != "x${abs_builddir}" ])
+
+#AM_COND_IF([SEPARATE_BUILD_TREE],[
+if test -z "${SEPARATE_BUILD_TREE_TRUE}" ; then
+  if test "x${prefix}" = "x${abs_builddir}" ; then
+    AC_MSG_ERROR([Installation to build directory not supported.])
+  fi
+fi
+#])
 
 AC_ARG_WITH([systemc],
   [AS_HELP_STRING([--with-systemc=DIR],
@@ -531,34 +543,12 @@ AC_PROG_LIBTOOL
 # * restore CXXFLAGS
 CXXFLAGS="${stored_CXXFLAGS}"
 
-
-AC_CHECK_PROGS([DOXYGEN], [doxygen])
-if test -z "$DOXYGEN"; then
-  AC_MSG_WARN(Doxygen not found - Doxygen documentation will not be built.);
-fi
-AM_CONDITIONAL([HAVE_DOXYGEN], [test -n "$DOXYGEN"])
-
+AC_SUBST(LIB_ARCH_SUFFIX)
 
 AC_OUTPUT( Makefile
            src/Makefile
            src/uvmsc/Makefile
            src/uvmsc/uvm-systemc.pc
-           src/uvmsc/base/Makefile
-           src/uvmsc/cb/Makefile
-           src/uvmsc/comps/Makefile
-           src/uvmsc/conf/Makefile
-           src/uvmsc/dpi/Makefile
-           src/uvmsc/factory/Makefile
-           src/uvmsc/macros/Makefile
-           src/uvmsc/misc/Makefile
-           src/uvmsc/phasing/Makefile
-           src/uvmsc/policy/Makefile
-           src/uvmsc/print/Makefile
-           src/uvmsc/reg/Makefile
-           src/uvmsc/reg/sequences/Makefile
-           src/uvmsc/report/Makefile
-           src/uvmsc/seq/Makefile
-           src/uvmsc/tlm1/Makefile
            examples/Makefile
            examples/uvmsc/Makefile
            docs/Makefile
