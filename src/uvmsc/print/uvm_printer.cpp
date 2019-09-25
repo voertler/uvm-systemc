@@ -1,4 +1,5 @@
 //----------------------------------------------------------------------
+//   Copyright 2019 COSEDA Technokogies GmbH
 //   Copyright 2014 Fraunhofer-Gesellschaft zur Foerderung
 //					der angewandten Forschung e.V.
 //   Copyright 2012-2015 NXP B.V.
