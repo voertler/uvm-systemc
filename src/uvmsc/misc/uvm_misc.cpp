@@ -109,7 +109,7 @@ std::string uvm_vector_to_string(const uvm_integral_t& val,
 //! formatting based on radix
 //----------------------------------------------------------------------
 
-std::string uvm_vector_to_string( const uvm_bitstream_t& val
+std::string uvm_vector_to_string( const uvm_bitstream_t& val,
                              	  int size,
                              	  uvm_radix_enum radix,
                              	  const std::string& radix_str )
