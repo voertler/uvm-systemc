@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2019 COSEDA Technokogies GmbH
+//   Copyright 2019 COSEDA Technologies GmbH
 //   Copyright 2012-2016 NXP B.V.
 //   All Rights Reserved Worldwide
 //
