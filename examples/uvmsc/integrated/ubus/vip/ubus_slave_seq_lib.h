@@ -27,6 +27,7 @@
 #include <uvm>
 
 #include <map>
+#include <algorithm>
 
 #include "ubus.h"
 
@@ -114,8 +115,8 @@ class slave_memory_seq : public uvm::uvm_sequence<ubus_transfer>
     req->transmit_delay = 0;
 
     // clear arrays before use
-    CLEAR_ARRAY(req->data, MAXSIZE);
-    CLEAR_ARRAY(req->wait_state, MAXSIZE);
+    std::fill(req->data,req->data+MAXSIZE,0);
+    std::fill(req->wait_state,req->wait_state+MAXSIZE,0);
 
     for(unsigned int i = 0; i < util_transfer.size; i++)
     {

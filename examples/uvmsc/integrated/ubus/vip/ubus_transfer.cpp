@@ -23,6 +23,8 @@
 #include <systemc>
 #include <uvm>
 
+#include <algorithm>
+
 #include "ubus_transfer.h"
 
 const char* ubus_read_write_name[] = {
@@ -37,11 +39,9 @@ ubus_transfer::ubus_transfer( const std::string& name )
   addr = 0;
   read_write = NOP;
   size = 0;
-  for(int i = 0; i < MAXSIZE; i++)
-  {
-    data[i]=0;
-    wait_state[i]=0;
-  }
+
+  std::fill(data,data+MAXSIZE,0);
+  std::fill(wait_state,wait_state+MAXSIZE,0);
 
   error_pos = 0;
   transmit_delay = 0;

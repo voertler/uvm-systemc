@@ -24,6 +24,7 @@
 #include <uvm>
 
 #include <cstring>
+#include <algorithm>
 
 #include "ubus_defines.h"
 #include "ubus_master_monitor.h"
@@ -145,7 +146,7 @@ void ubus_master_monitor::collect_address_phase()
   }
 
   // clear data array
-  CLEAR_ARRAY(trans_collected.data, MAXSIZE);
+  std::fill(trans_collected.data,trans_collected.data+MAXSIZE,0);
 
   sc_dt::sc_logic read = vif->sig_read.read();
   sc_dt::sc_logic write = vif->sig_write.read();

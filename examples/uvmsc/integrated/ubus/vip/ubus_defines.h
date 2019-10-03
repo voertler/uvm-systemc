@@ -29,8 +29,6 @@
 // Replace by dynamic solution
 #define MAXSIZE 64
 
-#define CLEAR_ARRAY(arr, size) for( int x=0; x < size; x++ ) arr[x]=0;
-
 // typedefs
 
 //typedef uvm::uvm_config_db<ubus_if*> ubus_vif_config;

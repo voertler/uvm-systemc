@@ -24,6 +24,7 @@
 #include <uvm>
 
 #include <cstring>
+#include <algorithm>
 
 #include "ubus_defines.h"
 #include "ubus_slave_monitor.h"
@@ -189,7 +190,7 @@ void ubus_slave_monitor::collect_address_phase()
   if(size == 3) trans_collected.size = 8;
 
   // clear data array
-  CLEAR_ARRAY(trans_collected.data, MAXSIZE);
+  std::fill(trans_collected.data,trans_collected.data+MAXSIZE,0);
 
   sc_dt::sc_logic read = vif->sig_read.read();
   sc_dt::sc_logic write = vif->sig_write.read();
