@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2016 NXP B.V.
+//   Copyright 2016-2019 NXP B.V.
 //   Copyright 2007-2010 Mentor Graphics Corporation
 //   Copyright 2007-2011 Cadence Design Systems, Inc.
 //   Copyright 2010 Synopsys, Inc.
@@ -49,7 +49,7 @@ protected:
 
   virtual void get_and_drive();
   virtual void reset_signals();
-  virtual void respond_to_transfer(ubus_transfer resp);
+  virtual void respond_to_transfer(ubus_transfer& resp);
 
 private:
   // The virtual interface used to drive and view HDL signals.

@@ -99,6 +99,11 @@ void uvm_process_phase::m_traverse( uvm_component* comp,
         comp->m_current_phase = phase;
         comp->m_apply_verbosity_settings(phase);
         comp->phase_started(*phase);
+
+        uvm_sequencer_base* seqr = dynamic_cast<uvm_sequencer_base*>(comp);
+        if (seqr != NULL)
+          seqr->start_phase_sequence(*phase); // TODO make phase a ref?
+
         break;
       }
       case UVM_PHASE_EXECUTING:
@@ -223,19 +228,11 @@ void uvm_process_phase::exec_proc( uvm_component* comp,
 {
   phase->m_num_procs_not_yet_returned++;
 
-  uvm_sequencer_base* seqr;
-
   // TODO
   // reseed this process for random stability
   //process proc;
   //proc = process::self();
   //proc.srandom(uvm_create_random_seed(phase.get_type_name(), comp.get_full_name()));
-
-  seqr = dynamic_cast<uvm_sequencer_base*>(comp);
-  if (seqr != NULL)
-  {
-    seqr->start_phase_sequence(*phase); // TODO make phase a ref?
-  }
 
   exec_process(comp,phase);
 

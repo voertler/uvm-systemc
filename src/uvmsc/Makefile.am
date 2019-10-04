@@ -12,6 +12,7 @@ include base/files.am
 include cb/files.am
 include comps/files.am
 include conf/files.am
+include dap/files.am
 include dpi/files.am
 include factory/files.am
 include macros/files.am

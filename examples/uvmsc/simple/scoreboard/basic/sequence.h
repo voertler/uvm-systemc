@@ -28,7 +28,7 @@ template <typename REQ = uvm::uvm_sequence_item, typename RSP = REQ>
 class sequence : public uvm::uvm_sequence<REQ,RSP>
 {
  public:
-  sequence( const std::string& name ) : uvm::uvm_sequence<REQ,RSP>( name )
+  sequence( const std::string& name = "seq" ) : uvm::uvm_sequence<REQ,RSP>( name )
   {
     std::cout << sc_core::sc_time_stamp() << ": constructor " << name << std::endl;
   }
@@ -38,8 +38,8 @@ class sequence : public uvm::uvm_sequence<REQ,RSP>
   void pre_body()
   {
     // raise objection if started as a root sequence
-    if(this->starting_phase != NULL)
-      this->starting_phase->raise_objection(this);
+    if(this->get_starting_phase() != NULL)
+      this->get_starting_phase()->raise_objection(this);
   }
 
   void body()
@@ -68,8 +68,8 @@ class sequence : public uvm::uvm_sequence<REQ,RSP>
   void post_body()
   {
     // drop objection if started as a root sequence
-    if(this->starting_phase != NULL)
-      this->starting_phase->drop_objection(this);
+    if(this->get_starting_phase() != NULL)
+      this->get_starting_phase()->drop_objection(this);
   }
 
 };

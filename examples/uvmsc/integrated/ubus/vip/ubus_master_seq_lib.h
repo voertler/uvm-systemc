@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2016 NXP B.V.
+//   Copyright 2016-2019 NXP B.V.
 //   Copyright 2007-2010 Mentor Graphics Corporation
 //   Copyright 2007-2010 Cadence Design Systems, Inc.
 //   Copyright 2010 Synopsys, Inc.
@@ -44,41 +44,43 @@ public:
 
   ubus_base_sequence( const std::string& name = "ubus_base_seq")
   : uvm::uvm_sequence<ubus_transfer>(name)
-  {}
+  {
+    set_automatic_phase_objection(true);
+  }
 
   UVM_OBJECT_UTILS(ubus_base_sequence);
 
   // Raise in pre_body so the objection is only raised for root sequences.
   // There is no need to raise for sub-sequences since the root sequence
   // will encapsulate the sub-sequence. 
-
-  virtual void pre_body()
+/*
+  void pre_body()
   {
-    if (starting_phase != NULL)
+    if (this->starting_phase != NULL)
     {
       UVM_INFO(get_type_name(), get_sequence_path() +
         " pre_body() raising " + starting_phase->get_name() +
         " objection.", uvm::UVM_MEDIUM);
 
-      starting_phase->raise_objection(this);
+      this->starting_phase->raise_objection(this);
     }
   }
 
   // Drop the objection in the post_body so the objection is removed when
   // the root sequence is complete. 
 
-  virtual void post_body()
+  void post_body()
   {
-    if (starting_phase != NULL)
+    if (this->starting_phase != NULL)
     {
       UVM_INFO(get_type_name(), get_sequence_path() +
         " post_body() dropping " + starting_phase->get_name() +
         " objection.", uvm::UVM_MEDIUM);
 
-    starting_phase->drop_objection(this);
+    this->starting_phase->drop_objection(this);
     }
   }
-  
+  */
 }; // class ubus_base_sequence
 
 //------------------------------------------------------------------------------
@@ -97,9 +99,13 @@ public:
   // TODO constraints
   //constraint transmit_del_ct { (transmit_del <= 10); }
 
+  ubus_transfer* req;
+  ubus_transfer* rsp;
+
   read_byte_seq( const std::string& name = "read_byte_seq")
   : ubus_base_sequence(name), start_addr(0), transmit_del(0)
-  {}
+  {
+  }
 
   UVM_OBJECT_UTILS(read_byte_seq);
 
@@ -115,8 +121,8 @@ public:
     get_response(rsp);
     */
 
-    ubus_transfer* req = new ubus_transfer();
-    ubus_transfer* rsp = new ubus_transfer();
+    req = new ubus_transfer();
+    rsp = new ubus_transfer();
 
     // TODO no constraints yet, so we assign the values directly
     req->addr = start_addr;
@@ -137,7 +143,6 @@ public:
         << std::hex << rsp->data[0];
     UVM_INFO(get_type_name(), msg.str(), uvm::UVM_HIGH);
   }
-  
 }; // class read_byte_seq
 
 
@@ -190,7 +195,6 @@ public:
     finish_item(req);
     get_response(rsp);
 
-    std::cout << "************************************bla" << std::endl;
     std::ostringstream msg;
     msg << get_sequence_path()
         << " read : addr = 0x"
@@ -366,6 +370,8 @@ public:
   // TODO constraints
   //constraint transmit_del_ct { (transmit_del <= 10); }
 
+  ubus_transfer* req, rsp;
+
   write_byte_seq( const std::string& name = "write_byte_seq")
   : ubus_base_sequence(name), start_addr(0), data0(0), transmit_del(0)
   {}
@@ -384,15 +390,18 @@ public:
         req.transmit_delay == transmit_del; } )
     */
 
-    ubus_transfer* req = new ubus_transfer();
+    req = new ubus_transfer();
 
     // TODO no constraints yet, so we assign the values directly
     req->addr = start_addr;
     req->read_write = WRITE;
     req->size = 1;
-    req->data.push_back(data0);
+    req->data[0] = data0;
     req->error_pos = 1000;
     req->transmit_delay = transmit_del;
+
+    start_item(req);
+    finish_item(req);
 
     std::ostringstream msg;
     msg << get_sequence_path()
@@ -402,7 +411,6 @@ public:
         << std::hex << req->data[0];
     UVM_INFO(get_type_name(), msg.str(), uvm::UVM_HIGH);
   }
-
 }; // class write_byte_seq
 
 
@@ -453,6 +461,9 @@ public:
     req->data[1] = data1;
     req->error_pos = 1000;
     req->transmit_delay = transmit_del;
+
+    start_item(req);
+    finish_item(req);
 
     std::ostringstream msg;
     msg << get_sequence_path()
@@ -522,6 +533,9 @@ public:
     req->data[3] = data3;
     req->error_pos = 1000;
     req->transmit_delay = transmit_del;
+
+    start_item(req);
+    finish_item(req);
 
     std::ostringstream msg;
     msg << get_sequence_path()
@@ -605,6 +619,9 @@ public:
     req->data[7] = data7;
     req->error_pos = 1000;
     req->transmit_delay = transmit_del;
+
+    start_item(req);
+    finish_item(req);
 
     std::ostringstream msg;
     msg << get_sequence_path()

@@ -1,6 +1,6 @@
 //----------------------------------------------------------------------
-//   Copyright 2012-2016 NXP B.V.
-//   All Rights Reserved
+//   Copyright 2013-2019 NXP B.V.
+//   All Rights Reserved Worldwide
 //
 //   Licensed under the Apache License, Version 2.0 (the
 //   "License"); you may not use this file except in
@@ -17,15 +17,14 @@
 //   permissions and limitations under the License.
 //----------------------------------------------------------------------
 
-#ifndef UVM_MACROS_H_
-#define UVM_MACROS_H_
+#ifndef UVM_DEFINES_H_
+#define UVM_DEFINES_H_
 
-#include "uvmsc/macros/uvm_defines.h"
-#include "uvmsc/macros/uvm_object_defines.h"
-#include "uvmsc/macros/uvm_component_defines.h"
-#include "uvmsc/macros/uvm_sequence_defines.h"
-#include "uvmsc/macros/uvm_message_defines.h"
-#include "uvmsc/macros/uvm_callback_defines.h"
-#include "uvmsc/macros/uvm_string_defines.h"
+#include <typeinfo>
+#include <type_traits>
 
-#endif /* UVM_MACROS_H_ */
+#define UVM_TYPENAME(T) typeid(T).name()
+
+#define uvm_typeof(x) std::remove_reference<decltype((x))>::type
+
+#endif // UVM_DEFINES_H_

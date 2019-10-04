@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2016 NXP B.V.
+//   Copyright 2016-2019 NXP B.V.
 //   Copyright 2007-2010 Mentor Graphics Corporation
 //   Copyright 2007-2011 Cadence Design Systems, Inc.
 //   Copyright 2010 Synopsys, Inc.
@@ -80,9 +80,6 @@ void ubus_master_driver::get_and_drive()
 
     this->seq_item_port.get_next_item(req);
 
-    UVM_INFO(get_type_name(), "Transfer req received : " +
-      req.sprint(), uvm::UVM_NONE);
-
     // TODO check
     //rsp = dynamic_cast<ubus_transfer*>(req.clone());
     rsp = req;
@@ -113,7 +110,6 @@ void ubus_master_driver::reset_signals()
     vif->sig_read        = sc_dt::SC_LOGIC_Z;
     vif->sig_write       = sc_dt::SC_LOGIC_Z;
     vif->sig_bip         = sc_dt::SC_LOGIC_Z;
-    sc_core::wait(sc_core::SC_ZERO_TIME);
   }
 }
 
@@ -121,9 +117,8 @@ void ubus_master_driver::reset_signals()
 // member function: drive_transfer
 //------------------------------------------------------------------------------
 
-void ubus_master_driver::drive_transfer(ubus_transfer trans)
+void ubus_master_driver::drive_transfer(ubus_transfer& trans)
 {
-  std::cout << sc_core::sc_time_stamp() << ": drive_transfer" << std::endl;
   if (trans.transmit_delay > 0)
     for (unsigned i = 0; i < trans.transmit_delay; i++)
       sc_core::wait(vif->sig_clock.posedge_event());
@@ -131,10 +126,6 @@ void ubus_master_driver::drive_transfer(ubus_transfer trans)
   arbitrate_for_bus();
   drive_address_phase(trans);
   drive_data_phase(trans);
-
-  //TODO temporary
-  UVM_INFO(get_type_name(), "Transfer send : " +
-    trans.sprint(), uvm::UVM_NONE);
 }
 
 //------------------------------------------------------------------------------
@@ -143,8 +134,7 @@ void ubus_master_driver::drive_transfer(ubus_transfer trans)
 
 void ubus_master_driver::arbitrate_for_bus()
 {
-  std::cout << sc_core::sc_time_stamp() << ": arbitrate_for_bus" << std::endl;
-  vif->sig_request[master_id] = sc_dt::SC_LOGIC_1;
+  vif->sig_request[master_id].write(sc_dt::SC_LOGIC_1);
 
   // @(posedge vif.sig_clock iff vif.sig_grant[master_id] === 1);
   do
@@ -160,9 +150,8 @@ void ubus_master_driver::arbitrate_for_bus()
 // member function: drive_address_phase
 //------------------------------------------------------------------------------
 
-void ubus_master_driver::drive_address_phase(ubus_transfer trans)
+void ubus_master_driver::drive_address_phase(const ubus_transfer& trans)
 {
-  std::cout << sc_core::sc_time_stamp() << ": drive_address_phase" << std::endl;
   vif->sig_addr = trans.addr;
   drive_size(trans.size);
   drive_read_write(trans.read_write);
@@ -179,9 +168,8 @@ void ubus_master_driver::drive_address_phase(ubus_transfer trans)
 // member function: drive_data_phase
 //------------------------------------------------------------------------------
 
-void ubus_master_driver::drive_data_phase(ubus_transfer trans)
+void ubus_master_driver::drive_data_phase(ubus_transfer& trans)
 {
-  std::cout << sc_core::sc_time_stamp() << ": drive_data_phase" << std::endl;
   bool err;
 
   for(unsigned int i = 0; i <= trans.size - 1; i++)
@@ -200,7 +188,7 @@ void ubus_master_driver::drive_data_phase(ubus_transfer trans)
   } //for loop
 
   vif->sig_data_out = "zzzzzzzz";
-  vif->sig_bip = sc_dt::SC_LOGIC_1;
+  vif->sig_bip = sc_dt::SC_LOGIC_Z;
 }
 
 //------------------------------------------------------------------------------
@@ -209,9 +197,6 @@ void ubus_master_driver::drive_data_phase(ubus_transfer trans)
 
 void ubus_master_driver::read_byte(sc_dt::sc_uint<8>& data, bool& error)
 {
-  std::cout << sc_core::sc_time_stamp() << ": read_byte" << std::endl;
-  vif->rw = sc_dt::SC_LOGIC_0;
-
   // @(posedge vif.sig_clock iff vif.sig_wait === 0);
   do
   {
@@ -219,9 +204,10 @@ void ubus_master_driver::read_byte(sc_dt::sc_uint<8>& data, bool& error)
   }
   while (!(vif->sig_wait == sc_dt::SC_LOGIC_0));
 
-  std::cout << sc_core::sc_time_stamp() << "[" << this->get_name() << "]: read " << vif->sig_data.read() << " from vif->sig_data" << std::endl;
-
+  vif->rw = sc_dt::SC_LOGIC_0;
   data = vif->sig_data.read().to_uint();
+
+  vif->rw = sc_dt::SC_LOGIC_Z; //release
 }
 
 //------------------------------------------------------------------------------
@@ -230,9 +216,6 @@ void ubus_master_driver::read_byte(sc_dt::sc_uint<8>& data, bool& error)
 
 void ubus_master_driver::write_byte(sc_dt::sc_uint<8> data, bool& error)
 {
-  std::cout << sc_core::sc_time_stamp() << ": write_byte" << std::endl;
-
-  std::cout << sc_core::sc_time_stamp() << "[" << this->get_name() << "]: write " << data << " to vif->sig_data_out " << std::endl;
   vif->rw = sc_dt::SC_LOGIC_1;
   vif->sig_data_out = data.to_uint();
 
@@ -243,7 +226,9 @@ void ubus_master_driver::write_byte(sc_dt::sc_uint<8> data, bool& error)
   }
   while (!(vif->sig_wait == sc_dt::SC_LOGIC_0));
 
-  vif->rw = sc_dt::SC_LOGIC_0;
+  // release to allow others to write
+  vif->rw = sc_dt::SC_LOGIC_Z;
+  vif->sig_data_out = "zzzzzzzz";
 }
 
 //------------------------------------------------------------------------------
@@ -252,14 +237,12 @@ void ubus_master_driver::write_byte(sc_dt::sc_uint<8> data, bool& error)
 
 void ubus_master_driver::drive_size(unsigned int size)
 {
-  std::cout << sc_core::sc_time_stamp() << ": drive_size : " << size << std::endl;
-
   switch(size)
   {
-    case 1: vif->sig_size = 0b00; break;
-    case 2: vif->sig_size = 0b01; break;
-    case 4: vif->sig_size = 0b10; break;
-    case 8: vif->sig_size = 0b11; break;
+    case 1: vif->sig_size = 0; break; /* 0b00 */
+    case 2: vif->sig_size = 1; break; /* 0b01 */
+    case 4: vif->sig_size = 2; break; /* 0b10 */
+    case 8: vif->sig_size = 3; break; /* 0b11 */
     default: /* do nothing */ break;
   }
 }
@@ -270,7 +253,6 @@ void ubus_master_driver::drive_size(unsigned int size)
 
 void ubus_master_driver::drive_read_write(ubus_read_write_enum rw)
 {
-  std::cout << sc_core::sc_time_stamp() << ": drive_read_write :" << rw << std::endl;
   switch(rw)
   {
     case NOP   : vif->sig_read = sc_dt::SC_LOGIC_0; vif->sig_write = sc_dt::SC_LOGIC_0; break;
