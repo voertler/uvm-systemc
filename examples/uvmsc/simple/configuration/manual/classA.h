@@ -1,4 +1,5 @@
 //----------------------------------------------------------------------
+//   Copyright 2019 COSEDA Technologies GmbH
 //   Copyright 2012-2014 NXP B.V.
 //   Copyright 2009 Cadence Design Systems, Inc.
 //   All Rights Reserved Worldwide
@@ -25,13 +26,13 @@
 
 class A : public uvm::uvm_component
 {
-  int debug;
-  C* u1;
-  C* u2;
+  int debug = 0;
+  C* u1 = nullptr;
+  C* u2 = nullptr;
 
  public:
 
-  A(uvm::uvm_component_name name) : uvm::uvm_component(name), debug(0)
+  A(uvm::uvm_component_name name) : uvm::uvm_component(name)
   {}
 
   void build_phase(uvm::uvm_phase& phase)

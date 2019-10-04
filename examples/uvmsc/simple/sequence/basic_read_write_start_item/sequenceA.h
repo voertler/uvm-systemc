@@ -1,4 +1,5 @@
 //----------------------------------------------------------------------
+//   Copyright 2019 COSEDA Technologies GmbH
 //   Copyright 2012-2014 NXP B.V.
 //   All Rights Reserved Worldwide
 //
@@ -84,7 +85,7 @@ class sequenceA : public uvm::uvm_sequence<REQ,RSP>
  private:
   // TODO: check types with UVM/SV original
   static unsigned int g_my_id;
-  unsigned int my_id;
+  unsigned int my_id = 0;
 };
 
 // TODO: check types with UVM/SV original

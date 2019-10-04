@@ -1,4 +1,5 @@
 //----------------------------------------------------------------------
+//   Copyright 2019 COSEDA Technologies GmbH
 //   Copyright 2012-2014 NXP B.V.
 //   All Rights Reserved Worldwide
 //
@@ -73,7 +74,7 @@ class vip_packet : public uvm::uvm_sequence_item
   }
 
  public:
-  int data;
+  int data = 0;
 };
 
 #endif /* VIP_PACKET_H_ */

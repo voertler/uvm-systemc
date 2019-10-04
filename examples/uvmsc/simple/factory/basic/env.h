@@ -1,4 +1,5 @@
 //----------------------------------------------------------------------
+//   Copyright 2019 COSEDA Technologies GmbH
 //   Copyright 2012-2014 NXP B.V.
 //   Copyright 2009 Cadence Design Systems, Inc.
 //   All Rights Reserved Worldwide
@@ -44,9 +45,8 @@ class env : public uvm::uvm_env
   void run_phase(uvm::uvm_phase& phase)
   {
     phase.raise_objection(this);
-    int i;
     packet* p;
-    for(i=0; i<5; i++)
+    for(int i=0; i<5; i++)
     {
       sc_core::wait(15, sc_core::SC_NS);
       p = gen1->get_packet();

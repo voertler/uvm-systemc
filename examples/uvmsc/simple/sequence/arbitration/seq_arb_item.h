@@ -1,6 +1,7 @@
 //------------------------------------------------------------------------------
 //   Copyright 2010 Mentor Graphics Corporation
 //   Copyright 2013-2014 NXP B.V.
+//   Copyright 2019 COSEDA Technologies GmbH
 //   All Rights Reserved Worldwide
 //
 //   Licensed under the Apache License, Version 2.0 (the
@@ -31,7 +32,7 @@ class seq_arb_item : public uvm::uvm_sequence_item
 {
  public:
 
-  int seq_no;
+  int seq_no = 0;
 
   UVM_OBJECT_UTILS(seq_arb_item);
 

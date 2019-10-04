@@ -1,4 +1,5 @@
 //----------------------------------------------------------------------
+//   Copyright 2019 COSEDA Technologies GmbH
 //   Copyright 2012-2014 NXP B.V.
 //   All Rights Reserved Worldwide
 //
@@ -35,8 +36,7 @@ class dut : public sc_core::sc_module
 
   void func()
   {
-    int val;
-    val = in.read();
+    int val = in.read();
     std::cout << sc_core::sc_time_stamp() << ": " << name() << " received value " << val << std::endl;
     std::cout << sc_core::sc_time_stamp() << ": " << name() << " send value " << val+1 << std::endl;
     out.write(val+1);
