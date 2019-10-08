@@ -8,6 +8,7 @@
 ##   Copyright 2007-2011 Cadence Design Systems, Inc.
 ##   Copyright 2010-2011 Synopsys, Inc.
 ##   Copyright 2018 Robert Bosch GmbH
+##   Copyright 2019 COSEDA Technologies GmbH
 ##   All Rights Reserved Worldwide
 ##
 ##   Licensed under the Apache License, Version 2.0 (the "License");
@@ -542,6 +543,22 @@ CXXFLAGS="${EXTRA_CXXFLAGS} ${CXXFLAGS}"
 AC_PROG_LIBTOOL
 # * restore CXXFLAGS
 CXXFLAGS="${stored_CXXFLAGS}"
+
+#check SystemC Version by building an example program
+stored_CXXFLAGS="${CXXFLAGS}"
+stored_LIBS="${LIBS}"
+CXXFLAGS="${SYSTEMC_CFLAGS} ${CXXFLAGS}"
+LIBS="${LIBS} ${SYSTEMC_LIBS}"
+AC_MSG_CHECKING( SystemC Version IEEE compliant)
+AC_RUN_IFELSE( [AC_LANG_PROGRAM([[#include <systemc>]],[[#if (IEEE_1666_SYSTEMC >= 201101L)
+	return 0;
+#endif
+	return 1;]])],  
+	[AC_MSG_RESULT([IEEE 1666 compatible SystemC version found ])],
+	[AC_MSG_FAILURE([Non IEEE 1666 compatible SystemC version found, make sure that SystemC can be found and you build with the same compile options as building SystemC])]
+	)
+CXXFLAGS="${stored_CXXFLAGS}"
+LIBS="${stored_LIBS}"
 
 AC_SUBST(LIB_ARCH_SUFFIX)
 

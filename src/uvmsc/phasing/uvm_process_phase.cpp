@@ -1,4 +1,5 @@
 //----------------------------------------------------------------------
+//   Copyright 2019 COSEDA Technologies GmbH
 //   Copyright 2014 Fraunhofer-Gesellschaft zur Foerderung
 //					der angewandten Forschung e.V.
 //   Copyright 2012-2014 NXP B.V.
@@ -143,8 +144,6 @@ void uvm_process_phase::m_traverse( uvm_component* comp,
 void uvm_process_phase::kill( uvm_component* comp,
                               uvm_phase* phase )
 {
-#if SYSTEMC_VERSION >= 20120701 // SystemC 2.3
-
   if (m_proc_handle.find(comp) != m_proc_handle.end() ) // exists
   {
     if (!m_proc_handle[comp].terminated())
@@ -179,7 +178,6 @@ void uvm_process_phase::kill( uvm_component* comp,
     UVM_INFO("PH_NOKILL", str.str(), UVM_DEBUG);
   }
 
-#endif
 }
 
 
