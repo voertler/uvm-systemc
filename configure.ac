@@ -550,10 +550,16 @@ stored_LIBS="${LIBS}"
 CXXFLAGS="${SYSTEMC_CFLAGS} ${CXXFLAGS}"
 LIBS="${LIBS} ${SYSTEMC_LIBS}"
 AC_MSG_CHECKING( SystemC Version IEEE compliant)
-AC_RUN_IFELSE( [AC_LANG_PROGRAM([[#include <systemc>]],[[#if (IEEE_1666_SYSTEMC >= 201101L)
+AC_RUN_IFELSE( 
+	[AC_LANG_SOURCE([[#include <systemc>
+	int sc_main(int argc, char* argv[]) {
+	#if (IEEE_1666_SYSTEMC >= 201101L)
 	return 0;
-#endif
-	return 1;]])],  
+	#endif
+	return 1;
+	}
+	]])]
+	,  
 	[AC_MSG_RESULT([IEEE 1666 compatible SystemC version found ])],
 	[AC_MSG_FAILURE([Non IEEE 1666 compatible SystemC version found, make sure that SystemC can be found and you build with the same compile options as building SystemC])]
 	)
