@@ -98,7 +98,7 @@ public:
   // Group: Initialization
   //----------------------------------------------------------------------------
 
-  explicit uvm_reg_map( const std::string& name = "uvm_reg_map ");
+  explicit uvm_reg_map( const std::string& name = "uvm_reg_map" );
 
   void configure( uvm_reg_block* parent,
                   uvm_reg_addr_t base_addr,

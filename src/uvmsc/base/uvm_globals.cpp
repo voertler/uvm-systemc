@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2018 COSEDA Technologies GmbH
+//   Copyright 2018-2019 COSEDA Technologies GmbH
 //   Copyright 2014 Universit� Pierre et Marie Curie, Paris
 //   Copyright 2014 Fraunhofer-Gesellschaft zur Foerderung
 //					der angewandten Forschung e.V.
@@ -383,11 +383,6 @@ const char* uvm_glob_to_re_char(const char *glob)
       case '[':
         uvm_re[len++] = '\\';
         uvm_re[len++] = '[';
-        break;
-
-      case ']':
-        uvm_re[len++] = '\\';
-        uvm_re[len++] = ']';
         break;
 
       case '(':

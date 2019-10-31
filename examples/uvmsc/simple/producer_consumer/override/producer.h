@@ -1,6 +1,7 @@
 //----------------------------------------------------------------------
 //   Copyright 2009 Cadence Design Systems, Inc.
 //   Copyright 2012-2014 NXP B.V.
+//   Copyright 2019 COSEDA Technologies GmbH
 //   All Rights Reserved Worldwide
 //
 //   Licensed under the Apache License, Version 2.0 (the
@@ -58,7 +59,7 @@ class producer : public uvm::uvm_component
   {
     phase.raise_objection(this);
 
-    int val;
+    int val = 0;
     // generate data from file
     for (int i = 0; i < 7; i++)
     {

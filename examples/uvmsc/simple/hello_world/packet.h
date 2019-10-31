@@ -1,4 +1,5 @@
 //----------------------------------------------------------------------
+//   Copyright 2019 COSEDA Technologies GmbH
 //   Copyright 2014 NXP B.V.
 //   Copyright 2007-2010 Mentor Graphics Corporation
 //   Copyright 2007-2010 Cadence Design Systems, Inc.
@@ -28,7 +29,7 @@
 class packet : public uvm::uvm_transaction
 {
  public:
-  int addr;
+  int addr = 0;
 
   UVM_OBJECT_UTILS(packet);
 

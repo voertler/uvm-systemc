@@ -45,8 +45,7 @@ class seq_arb_sequencer : public uvm_sequencer<seq_arb_item>
 
   int user_priority_arbitration(std::vector<int> avail_sequences)
   {
-    int end_index;
-    end_index = avail_sequences.size() - 1;
+    int end_index = avail_sequences.size() - 1;
     return (avail_sequences[end_index]);
   } // user_priority_arbitration
 
