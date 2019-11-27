@@ -141,7 +141,7 @@ uvm_object* uvm_object_registry<T>::create_object( const std::string& name )
   T* obj = NULL;
 
   if (name.empty())
-    obj = new T();
+    obj = new T(sc_core::sc_gen_unique_name("object"));
   else
     obj = new T(name);
 
