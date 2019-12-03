@@ -24,6 +24,7 @@
 #define UVM_FACTORY_H_
 
 #include <string>
+#include <map>
 
 #include "uvmsc/base/uvm_coreservice_t.h"
 #include "uvmsc/base/uvm_default_coreservice_t.h"
@@ -152,9 +153,18 @@ class uvm_factory
 
   virtual void print( int all_types = 1 ) = 0;
 
+  // implementation defined methods
+
+  virtual bool m_delete_object( int obj_id ) = 0;
+  virtual void m_delete_all_objects() = 0;
+
  protected:
   uvm_factory(){};
   virtual ~uvm_factory(){};
+
+  typedef std::map<int,uvm_object* > m_obj_t_mapT;
+  typedef m_obj_t_mapT::iterator m_obj_t_mapItT;
+  m_obj_t_mapT m_obj_t_map;
 
 }; // class uvm_factory
 

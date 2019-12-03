@@ -171,6 +171,8 @@ void uvm_sequencer_base::execute_item( uvm_sequence_item* item )
   seq->start_item(item);
   seq->finish_item(item);
   // TODO check if we need to add a conditional seq->get_response(rsp);
+
+  delete seq;
 }
 
 //----------------------------------------------------------------------
@@ -253,7 +255,6 @@ void uvm_sequencer_base::start_phase_sequence( uvm_phase& phase )
 
   // launch default sequence as new process
   sc_core::sc_spawn(sc_bind(&uvm_sequencer_base::m_start_default_seq_proc, this, seq));
-
 }
 
 //----------------------------------------------------------------------
@@ -795,6 +796,7 @@ void uvm_sequencer_base::remove_sequence_from_queues(uvm_sequence_base* sequence
 
   // Unregister the sequence_id, so that any returning data is dropped
   m_unregister_sequence(sequence_ptr->m_get_sqr_sequence_id(m_sequencer_id, true));
+
 }
 
 //----------------------------------------------------------------------
@@ -805,7 +807,6 @@ void uvm_sequencer_base::remove_sequence_from_queues(uvm_sequence_base* sequence
 
 void uvm_sequencer_base::m_unregister_sequence(int sequence_id)
 {
-
   if (reg_sequences.find(sequence_id) == reg_sequences.end()) // not exists
     return;
 
@@ -1293,6 +1294,11 @@ void uvm_sequencer_base::m_unlock_req( uvm_sequence_base* sequence_ptr )
 void uvm_sequencer_base::m_start_default_seq_proc(uvm_sequence_base* seq)
 {
   seq->start(this, NULL);
+
+  // sequence processing done, we can delete it from the registry and memory
+  uvm_coreservice_t* cs = uvm_coreservice_t::get();
+  uvm_factory* f = cs->get_factory();
+  f->m_delete_object(seq->get_inst_id());
 }
 
 } /* namespace uvm */

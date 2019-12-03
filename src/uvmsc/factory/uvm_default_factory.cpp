@@ -575,7 +575,11 @@ uvm_object* uvm_default_factory::create_object_by_type( uvm_object_wrapper* requ
 
   requested_type = find_override_by_type(requested_type, full_inst_path);
 
-  return requested_type->create_object(name);
+  uvm_object* obj = requested_type->create_object(name);
+  std::cout << "new object '" << obj->get_name() << "' created with id: " << obj->get_inst_id() << std::endl;
+  m_obj_t_map[obj->get_inst_id()] = obj;
+
+  return obj;
 }
 
 //----------------------------------------------------------------------------
@@ -639,7 +643,11 @@ uvm_object* uvm_default_factory::create_object_by_name( const std::string& reque
     wrapper = m_type_names[requested_type_name];
   }
 
-  return wrapper->create_object(name);
+  uvm_object* obj = wrapper->create_object(name);
+  std::cout << "new object '" << obj->get_name() << "' created with id: " << obj->get_inst_id() << std::endl;
+  m_obj_t_map[obj->get_inst_id()] = obj;
+
+  return obj;
 }
 
 //----------------------------------------------------------------------------
@@ -1403,6 +1411,51 @@ void uvm_default_factory::m_debug_display( const std::string& requested_type_nam
   UVM_INFO("UVM/FACTORY/DUMP", UVM_STRING_QUEUE_STREAMING_PACK(qs), UVM_NONE);
 }
 
+//----------------------------------------------------------------------------
+// member function: m_delete_object
+//
+//! Implementation-defined member function
+//----------------------------------------------------------------------------
+
+bool uvm_default_factory::m_delete_object( int obj_id )
+{
+  if (obj_id == 0)
+  {
+    uvm_report_error("OBJREGY", "Object to be cleared from memory has invalid id", UVM_NONE);
+    return false;
+  }
+
+  m_obj_t_mapItT it = m_obj_t_map.find(obj_id);
+
+  if ( it != m_obj_t_map.end() )
+  {
+    std::cout << "object found with id " << it->first << "\n";
+  }
+  else
+  {
+    std::cout << "object with id " << it->first << " not found\n";
+    return false;
+  }
+
+  delete it->second; // delete object registered in map
+  m_obj_t_map.erase(obj_id); // clear map entry
+
+  return true;
+}
+
+//----------------------------------------------------------------------------
+// member function: m_delete_object
+//
+//! Implementation-defined member function
+//----------------------------------------------------------------------------
+void uvm_default_factory::m_delete_all_objects()
+{
+  for( m_obj_t_mapItT it = m_obj_t_map.begin();
+     it!=m_obj_t_map.end(); ++it)
+  delete it->second;
+
+  m_obj_t_map.clear(); // empty whole list
+}
 
 ////////////////////
 

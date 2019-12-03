@@ -27,6 +27,7 @@
 
 #include <string>
 #include <sstream>
+#include <map>
 #include <systemc>
 
 #include "uvmsc/base/uvm_root.h"
@@ -89,6 +90,7 @@ class uvm_object_registry : public uvm_object_wrapper
                                  const std::string& inst_path,
                                  uvm_component* parent = NULL );
 
+
   /////////////////////////////////////////////////////
   // Implementation-defined member functions below,
   // not part of UVM Class reference / LRM
@@ -103,8 +105,6 @@ class uvm_object_registry : public uvm_object_wrapper
 
   // data members
   static uvm_object_registry<T>* me;
-
-  std::vector<T* > m_obj_t_list;
 
 }; // class uvm_object_registry
 
@@ -141,12 +141,11 @@ uvm_object* uvm_object_registry<T>::create_object( const std::string& name )
   T* obj = NULL;
 
   if (name.empty())
-    obj = new T(sc_core::sc_gen_unique_name("object"));
+    obj = new T();
   else
     obj = new T(name);
 
-  m_obj_t_list.push_back(obj); // remember object to delete it later
-  return obj;
+  return obj; // note creation of newed object is tracked in factory
 }
 
 //----------------------------------------------------------------------
@@ -312,10 +311,10 @@ uvm_object_registry<T>::~uvm_object_registry()
     me = NULL;
   }
 
-  while(!m_obj_t_list.empty())
-    delete m_obj_t_list.back(), m_obj_t_list.pop_back();
+  uvm_coreservice_t* cs = uvm_coreservice_t::get();
+  uvm_factory* f = cs->get_factory();
+  f->m_delete_all_objects();
 }
-
 
 
 //////////////
