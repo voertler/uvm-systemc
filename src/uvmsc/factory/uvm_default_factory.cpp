@@ -551,10 +551,6 @@ void uvm_default_factory::set_inst_override_by_name( const std::string& original
 //----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
-// member function: create_object_by_name
-//----------------------------------------------------------------------------
-
-//----------------------------------------------------------------------------
 // member function: create_object_by_type
 //----------------------------------------------------------------------------
 
@@ -576,8 +572,7 @@ uvm_object* uvm_default_factory::create_object_by_type( uvm_object_wrapper* requ
   requested_type = find_override_by_type(requested_type, full_inst_path);
 
   uvm_object* obj = requested_type->create_object(name);
-  std::cout << "new object '" << obj->get_name() << "' created with id: " << obj->get_inst_id() << std::endl;
-  m_obj_t_map[obj->get_inst_id()] = obj;
+  m_obj_t_map[obj->get_inst_id()] = obj; // register object so we can delete after use
 
   return obj;
 }
@@ -644,8 +639,7 @@ uvm_object* uvm_default_factory::create_object_by_name( const std::string& reque
   }
 
   uvm_object* obj = wrapper->create_object(name);
-  std::cout << "new object '" << obj->get_name() << "' created with id: " << obj->get_inst_id() << std::endl;
-  m_obj_t_map[obj->get_inst_id()] = obj;
+  m_obj_t_map[obj->get_inst_id()] = obj; // register object so we can delete after use
 
   return obj;
 }
@@ -1420,22 +1414,12 @@ void uvm_default_factory::m_debug_display( const std::string& requested_type_nam
 bool uvm_default_factory::m_delete_object( int obj_id )
 {
   if (obj_id == 0)
-  {
-    uvm_report_error("OBJREGY", "Object to be cleared from memory has invalid id", UVM_NONE);
-    return false;
-  }
+    return false; // no id, so nothing to delete
 
   m_obj_t_mapItT it = m_obj_t_map.find(obj_id);
 
-  if ( it != m_obj_t_map.end() )
-  {
-    std::cout << "object found with id " << it->first << "\n";
-  }
-  else
-  {
-    std::cout << "object with id " << it->first << " not found\n";
-    return false;
-  }
+  if ( it == m_obj_t_map.end() )
+    return false; // id not found, so nothing to delete
 
   delete it->second; // delete object registered in map
   m_obj_t_map.erase(obj_id); // clear map entry

@@ -115,6 +115,8 @@ public:
 
   virtual const std::string get_type_name() const;
 
+  void delete_sequence(uvm_sequence_base* seq);
+
  private:
 
   int m_register_sequence(uvm_sequence_base* sequence_ptr);
@@ -138,6 +140,7 @@ public:
   void m_unlock_req( uvm_sequence_base* sequence_ptr );
 
   void m_start_default_seq_proc(uvm_sequence_base* seq);
+
 
   // member variables
 

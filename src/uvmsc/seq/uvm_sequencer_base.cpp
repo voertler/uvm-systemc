@@ -1294,7 +1294,18 @@ void uvm_sequencer_base::m_unlock_req( uvm_sequence_base* sequence_ptr )
 void uvm_sequencer_base::m_start_default_seq_proc(uvm_sequence_base* seq)
 {
   seq->start(this, NULL);
+  delete_sequence(seq);
+}
 
+//----------------------------------------------------------------------
+// member function: delete_sequence
+//
+// Implementation defined
+// Delete sequence from factory registry and memory
+//----------------------------------------------------------------------
+
+void uvm_sequencer_base::delete_sequence(uvm_sequence_base* seq)
+{
   // sequence processing done, we can delete it from the registry and memory
   uvm_coreservice_t* cs = uvm_coreservice_t::get();
   uvm_factory* f = cs->get_factory();
