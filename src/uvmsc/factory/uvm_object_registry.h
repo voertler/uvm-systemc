@@ -90,7 +90,6 @@ class uvm_object_registry : public uvm_object_wrapper
                                  const std::string& inst_path,
                                  uvm_component* parent = NULL );
 
-
   /////////////////////////////////////////////////////
   // Implementation-defined member functions below,
   // not part of UVM Class reference / LRM
@@ -141,7 +140,7 @@ uvm_object* uvm_object_registry<T>::create_object( const std::string& name )
   T* obj = NULL;
 
   if (name.empty())
-    obj = new T();
+    obj = new T(sc_core::sc_gen_unique_name("object"));
   else
     obj = new T(name);
 

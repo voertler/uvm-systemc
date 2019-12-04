@@ -796,7 +796,6 @@ void uvm_sequencer_base::remove_sequence_from_queues(uvm_sequence_base* sequence
 
   // Unregister the sequence_id, so that any returning data is dropped
   m_unregister_sequence(sequence_ptr->m_get_sqr_sequence_id(m_sequencer_id, true));
-
 }
 
 //----------------------------------------------------------------------
