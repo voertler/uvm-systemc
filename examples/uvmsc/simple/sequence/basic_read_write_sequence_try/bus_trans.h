@@ -116,7 +116,7 @@ class bus_req : public bus_trans
 class bus_rsp : public bus_trans
 {
  public:
-  bus_rsp( const std::string& name = "bus_rsp_seq_item" ) : bus_trans(name) {}
+  bus_rsp( const std::string& name = "bus_rsp_seq_item" ) : bus_trans(name), status(STATUS_NOT_OK) {}
 
   ~bus_rsp() {}
 
@@ -134,7 +134,7 @@ class bus_rsp : public bus_trans
 
   std::string convert2string() const
   {
-    std::string statusstr;
+    std::string statusstr("STATUS_NOT_OK");
 
     if (status == STATUS_OK)
       statusstr = "STATUS_OK";
