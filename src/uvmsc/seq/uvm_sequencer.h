@@ -209,8 +209,8 @@ void uvm_sequencer<REQ,RSP>::item_done(const RSP& item, bool use_item)
   else
   {
     this->m_wait_for_item_sequence_id = req.get_sequence_id();
-    this->m_wait_for_item_sequence_ev.notify();
     this->m_wait_for_item_transaction_id = req.get_transaction_id();
+    this->m_wait_for_item_sequence_ev.notify();
   }
 
   if (use_item)
@@ -409,6 +409,8 @@ void uvm_sequencer<REQ,RSP>::put( const RSP& rsp )
 template <typename REQ, typename RSP>
 void uvm_sequencer<REQ,RSP>::put_response( const RSP& rsp )
 {
+  std::cout << "LOCALDEBUG rsp type in: " << rsp.get_type_name() << std::endl;
+
   this->put_response_base(rsp);
   sc_core::wait(sc_core::SC_ZERO_TIME);  // TODO do we really need this?
 }

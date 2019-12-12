@@ -200,6 +200,8 @@ void uvm_sequence<REQ,RSP>::get_response( RSP*& response, int transaction_id )
 template <typename REQ, typename RSP>
 void uvm_sequence<REQ,RSP>::put_response( const uvm_sequence_item& response_item )
 {
+  std::cout << "LOCALDEBUG: response_item type: " << response_item.get_type_name() <<std::endl;
+
   const RSP* rsp = dynamic_cast<const RSP*>(&response_item);
 
   if (rsp == NULL)
