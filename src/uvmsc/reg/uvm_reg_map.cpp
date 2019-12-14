@@ -1220,9 +1220,9 @@ void uvm_reg_map::do_bus_write( uvm_reg_item* rw,
 
       if (adapter->provides_responses)
       {
-        const uvm_sequence_item* bus_rsp;
+        uvm_sequence_item* bus_rsp;
         // TODO: need to test for right trans type, if not put back in q
-        rw->parent->get_base_response(bus_rsp);
+        bus_rsp = rw->parent->get_base_response();
         adapter->bus2reg(bus_rsp, rw_access);
       }
       else
@@ -1373,9 +1373,9 @@ void uvm_reg_map::do_bus_read( uvm_reg_item* rw,
 
       if (adapter->provides_responses)
       {
-        const uvm_sequence_item* bus_rsp;
+        uvm_sequence_item* bus_rsp;
         // TODO: need to test for right trans type, if not put back in q
-        rw->parent->get_base_response(bus_rsp);
+        bus_rsp = rw->parent->get_base_response();
         adapter->bus2reg(bus_rsp, rw_access);
       }
       else

@@ -409,8 +409,6 @@ void uvm_sequencer<REQ,RSP>::put( const RSP& rsp )
 template <typename REQ, typename RSP>
 void uvm_sequencer<REQ,RSP>::put_response( const RSP& rsp )
 {
-  std::cout << "LOCALDEBUG rsp type in: " << rsp.get_type_name() << std::endl;
-
   this->put_response_base(rsp);
   sc_core::wait(sc_core::SC_ZERO_TIME);  // TODO do we really need this?
 }
