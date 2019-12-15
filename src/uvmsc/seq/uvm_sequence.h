@@ -181,6 +181,7 @@ void uvm_sequence<REQ,RSP>::get_response( RSP* response, int transaction_id )
   uvm_sequence_item* item = get_base_response( transaction_id );
   rsp = dynamic_cast<RSP*>(item);
   *response = *rsp; // copy of the transaction
+  del_base_response( item ); // flush response from memory
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -199,12 +200,15 @@ void uvm_sequence<REQ,RSP>::get_response( RSP* response, int transaction_id )
 template <typename REQ, typename RSP>
 void uvm_sequence<REQ,RSP>::put_response( const uvm_sequence_item& response_item )
 {
-  const RSP* rsp = dynamic_cast<const RSP*>(&response_item);
+  const RSP* crsp = dynamic_cast<const RSP*>(&response_item);
+  RSP* rsp = const_cast<RSP*>(crsp); // TODO avoid const_cast!
 
   if (rsp == NULL)
     uvm_report_fatal("PUTRSP", "Failure to cast response in put_response.", UVM_NONE);
 
-  put_base_response(response_item);
+  RSP* item = new RSP(response_item.get_name()+"_q");
+  *item = *rsp; // copy response in temporary item for queue
+  put_base_response(*item);
 }
 
 //----------------------------------------------------------------------

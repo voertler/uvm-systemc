@@ -23,6 +23,7 @@
 //----------------------------------------------------------------------
 
 #include <sstream>
+#include <algorithm>
 #include <systemc>
 #include "sysc/kernel/sc_dynamic_processes.h"
 
@@ -1056,7 +1057,7 @@ uvm_sequence_item* uvm_sequence_base::get_base_response( int transaction_id )
   if (transaction_id == -1)
   {
     uvm_sequence_item* item = response_queue.front(); // read first element
-    response_queue.pop_front(); // and remove first element afterwards
+    //response_queue.pop_front(); // and remove first element afterwards
     return item;
   }
 
@@ -1070,7 +1071,7 @@ uvm_sequence_item* uvm_sequence_base::get_base_response( int transaction_id )
       if ((*it)->get_transaction_id() == transaction_id)
       {
         uvm_sequence_item* item = (*it);
-        response_queue.erase(it);
+        //response_queue.erase(it);
         return item; // immediate exit loop as size has changed
       }
     }
@@ -1099,6 +1100,27 @@ void uvm_sequence_base::put_base_response( const uvm_sequence_item& response )
 
   if (!response_queue_error_report_disabled)
     uvm_report_error(get_full_name(), "Response queue overflow, response was dropped", UVM_NONE);
+}
+
+//----------------------------------------------------------------------
+// member function: del_base_response
+//
+//! Implementation-defined member function
+//----------------------------------------------------------------------
+
+void uvm_sequence_base::del_base_response( uvm_sequence_item* response )
+{
+  if (response_queue.size() == 0) return; // no items, nothing to delete
+
+  response_queue_listT::iterator it = std::find(response_queue.begin(),
+                                     response_queue.end(), response);
+
+  if ( it == response_queue.end() ) return; // not found, nothing to delete
+  else
+  {
+    delete (*it);
+    response_queue.erase(it);
+  }
 }
 
 //----------------------------------------------------------------------
@@ -1171,6 +1193,12 @@ void uvm_sequence_base::m_kill()
 
 void uvm_sequence_base::m_clear()
 {
+  for( response_queue_listT::iterator
+       it = response_queue.begin();
+       it != response_queue.end();
+       it++)
+    delete *it;
+
   m_clear_phase_daps();
 }
 
