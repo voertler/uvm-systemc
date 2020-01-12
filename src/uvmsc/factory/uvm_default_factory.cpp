@@ -1418,9 +1418,6 @@ void uvm_default_factory::m_debug_display( const std::string& requested_type_nam
 
 bool uvm_default_factory::m_delete_object( int obj_id )
 {
-  if (obj_id == 0)
-    return false; // no id, so nothing to delete
-
   m_obj_t_mapItT it = m_obj_t_map.find(obj_id);
 
   if ( it == m_obj_t_map.end() )
@@ -1454,9 +1451,6 @@ void uvm_default_factory::m_delete_all_objects()
 
 bool uvm_default_factory::m_delete_component( int comp_id )
 {
-  if (comp_id == 0)
-    return false; // no id, so nothing to delete
-
   m_comp_t_mapItT it = m_comp_t_map.find(comp_id);
 
   if ( it == m_comp_t_map.end() )

@@ -597,14 +597,13 @@ void uvm_root::m_unregister_test( const std::string& test_name )
 
     if (comp_list.size() != 0)
     {
+      uvm_coreservice_t* cs = uvm_coreservice_t::get();
+      uvm_factory* factory = cs->get_factory();
       for(std::vector<uvm_component*>::iterator 
           it = comp_list.begin(); 
           it != comp_list.end(); 
-          ++it){
-        uvm_coreservice_t* cs = uvm_coreservice_t::get();
-        uvm_factory* factory = cs->get_factory();
+          ++it)
         factory->m_delete_component((*it)->get_inst_id());
-      }
     }
   }
 }
