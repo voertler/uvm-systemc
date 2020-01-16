@@ -426,7 +426,7 @@ REQ* uvm_sequencer_param_base<REQ,RSP>::last_req(unsigned int n)
     return NULL;
   }
 
-  if(n == m_last_req_buffer.size()) 
+  if(n >= m_last_req_buffer.size()) 
   {
     return NULL;
   }
@@ -493,7 +493,7 @@ RSP* uvm_sequencer_param_base<REQ,RSP>::last_rsp(unsigned int n)
     return NULL;
   }
 
-  if(n == m_last_rsp_buffer.size()) 
+  if(n >= m_last_rsp_buffer.size()) 
   {
     return NULL;
   }
