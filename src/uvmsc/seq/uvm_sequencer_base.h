@@ -168,6 +168,7 @@ public:
   static int g_sequence_id;
   static int g_request_id;
 
+  uvm_sequence_item* m_current_sequence_item;
 };
 
 //------------------------------------------------------------------------------

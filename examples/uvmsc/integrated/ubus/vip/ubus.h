@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2016 NXP B.V.
+//   Copyright 2016-2019 NXP B.V.
 //   Copyright 2007-2010 Mentor Graphics Corporation
 //   Copyright 2007-2010 Cadence Design Systems, Inc.
 //   Copyright 2010 Synopsys, Inc.
@@ -23,10 +23,8 @@
 #ifndef UBUS_H_
 #define UBUS_H_
 
-// TODO typedefs?
-//typedef uvm_config_db<ubus_if*> ubus_vif_config;
-//typedef ubus_if* ubus_vif;
-
+#include "ubus_version.h"
+#include "ubus_defines.h"
 #include "ubus_transfer.h"
 
 #include "ubus_master_monitor.h"

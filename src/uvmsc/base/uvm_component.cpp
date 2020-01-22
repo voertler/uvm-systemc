@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//!  Copyright 2012-2015 NXP B.V.
+//!  Copyright 2012-2019 NXP B.V.
 //!  Copyright 2013-2014 Fraunhofer-Gesellschaft zur Foerderung
 //					der angewandten Forschung e.V.
 //!  Copyright 2007-2011 Mentor Graphics Corporation
@@ -96,6 +96,8 @@ uvm_component::uvm_component( uvm_component_name nm )
     }
     else
       m_comp_parent = uvm_parent;
+
+    set_report_verbosity_level(m_comp_parent->get_report_verbosity_level());
 
     if (!m_comp_parent->m_add_child(this))
     {

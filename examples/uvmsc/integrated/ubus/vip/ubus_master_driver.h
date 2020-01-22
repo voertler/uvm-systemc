@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2016 NXP B.V.
+//   Copyright 2016-2019 NXP B.V.
 //   Copyright 2007-2010 Mentor Graphics Corporation
 //   Copyright 2007-2011 Cadence Design Systems, Inc.
 //   Copyright 2010 Synopsys, Inc.
@@ -50,11 +50,11 @@ protected:
 
   virtual void get_and_drive();
   virtual void reset_signals();
-  virtual void drive_transfer(ubus_transfer trans);
+  virtual void drive_transfer(ubus_transfer& trans);
   virtual void arbitrate_for_bus();
-  virtual void drive_address_phase (ubus_transfer trans);
+  virtual void drive_address_phase(const ubus_transfer& trans);
 
-  virtual void drive_data_phase(ubus_transfer trans);
+  virtual void drive_data_phase(ubus_transfer& trans);
   virtual void read_byte(sc_dt::sc_uint<8>& data, bool& error);
   virtual void write_byte(sc_dt::sc_uint<8> data, bool& error);
   virtual void drive_size (unsigned int size);

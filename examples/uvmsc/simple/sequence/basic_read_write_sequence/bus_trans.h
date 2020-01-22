@@ -1,4 +1,5 @@
 //----------------------------------------------------------------------
+//   Copyright 2019 COSEDA Technologies GmbH
 //   Copyright 2012-2014 NXP B.V.
 //   All Rights Reserved Worldwide
 //
@@ -89,9 +90,9 @@ class bus_trans : public uvm::uvm_sequence_item
   // data members
  public:
   // TODO: check types with UVM/SV original
-  unsigned int addr;
-  unsigned int data;
-  bus_op_t op;
+  unsigned addr = 0;
+  unsigned data = 0;
+  bus_op_t op = BUS_READ;
 };
 
 //--------------------------------------------------------------------
@@ -115,7 +116,7 @@ class bus_req : public bus_trans
 class bus_rsp : public bus_trans
 {
  public:
-  bus_rsp( const std::string& name = "bus_rsp_seq_item" ) : bus_trans(name) {}
+  bus_rsp( const std::string& name = "bus_rsp_seq_item" ) : bus_trans(name), status(STATUS_NOT_OK) {}
 
   ~bus_rsp() {}
 

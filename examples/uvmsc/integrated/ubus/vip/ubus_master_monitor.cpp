@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2016 NXP B.V.
+//   Copyright 2016-2019 NXP B.V.
 //   Copyright 2007-2010 Mentor Graphics Corporation
 //   Copyright 2007-2011 Cadence Design Systems, Inc.
 //   Copyright 2010 Synopsys, Inc.
@@ -23,6 +23,10 @@
 #include <systemc>
 #include <uvm>
 
+#include <cstring>
+#include <algorithm>
+
+#include "ubus_defines.h"
 #include "ubus_master_monitor.h"
 
 //----------------------------------------------------------------------
@@ -134,15 +138,15 @@ void ubus_master_monitor::collect_address_phase()
 
   switch (size)
   {
-    case 0b00 : trans_collected.size = 1; break;
-    case 0b01 : trans_collected.size = 2; break;
-    case 0b10 : trans_collected.size = 4; break;
-    case 0b11 : trans_collected.size = 8; break;
+    case 0 /* 0b00 */ : trans_collected.size = 1; break;
+    case 1 /* 0b01 */ : trans_collected.size = 2; break;
+    case 2 /* 0b10 */ : trans_collected.size = 4; break;
+    case 3 /* 0b11 */ : trans_collected.size = 8; break;
     default:  break;
   }
 
-  for (unsigned int i = 0; i < trans_collected.size; i++)
-    trans_collected.data.push_back(0); // reserve data fields
+  // clear data array
+  std::fill(trans_collected.data,trans_collected.data+MAXSIZE,0);
 
   sc_dt::sc_logic read = vif->sig_read.read();
   sc_dt::sc_logic write = vif->sig_write.read();
@@ -194,7 +198,8 @@ void ubus_master_monitor::perform_transfer_checks()
 void ubus_master_monitor::check_transfer_size()
 {
   if (trans_collected.size == 1 ||
-      trans_collected.size == 2 || trans_collected.size == 4 || 
+      trans_collected.size == 2 ||
+      trans_collected.size == 4 ||
       trans_collected.size == 8) return;
 
   UVM_ERROR(get_type_name(), "Invalid transfer size!");
@@ -206,9 +211,10 @@ void ubus_master_monitor::check_transfer_size()
 
 void ubus_master_monitor::check_transfer_data_size()
 {
-  if (trans_collected.size != trans_collected.data.size())
-    UVM_ERROR(get_type_name(),
-        "Transfer size field / data size mismatch.");
+  //TODO check size
+  //if (trans_collected.size != trans_collected.data.size())
+  //  UVM_ERROR(get_type_name(),
+  //      "Transfer size field / data size mismatch.");
 }
 
 //----------------------------------------------------------------------

@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2016 NXP B.V.
+//   Copyright 2016-2019 NXP B.V.
 //   Copyright 2007-2010 Mentor Graphics Corporation
 //   Copyright 2007-2011 Cadence Design Systems, Inc.
 //   Copyright 2010 Synopsys, Inc.
@@ -172,7 +172,7 @@ class r8_w8_r4_w4_seq : public ubus_base_sequence
 {
  public:
   r8_w8_r4_w4_seq(const std::string& name = "r8_w8_r4_w4_seq")
-  :ubus_base_sequence(name)
+  : ubus_base_sequence(name)
   {}
 
   UVM_OBJECT_UTILS(r8_w8_r4_w4_seq);
@@ -258,26 +258,31 @@ class read_modify_write_seq : public ubus_base_sequence
       { read_byte_seq0.start_addr == addr_check; } )
 */
     read_byte_seq0 = new read_byte_seq();
-    write_byte_seq0 = new write_byte_seq();
 
     read_byte_seq0->start_addr = 0x1111;
-    read_byte_seq0->transmit_del = 5;
+    read_byte_seq0->transmit_del = 0;
 
     read_byte_seq0->start(m_sequencer);
 
-    addr_check = read_byte_seq0->rsp.addr;
-    m_data0_check = read_byte_seq0->rsp.data[0] + 1;
+    addr_check = read_byte_seq0->rsp->addr;
+    m_data0_check = read_byte_seq0->rsp->data[0] + 1;
+
+    write_byte_seq0 = new write_byte_seq();
 
     write_byte_seq0->start_addr = addr_check;
     write_byte_seq0->data0 = m_data0_check;
 
     write_byte_seq0->start(m_sequencer);
 
+    // review read sequence
+    delete read_byte_seq0;
+    read_byte_seq0 = new read_byte_seq();
+
     read_byte_seq0->start_addr = addr_check;
 
     read_byte_seq0->start(m_sequencer);
 
-    if(m_data0_check != read_byte_seq0->rsp.data[0])
+    if(m_data0_check != read_byte_seq0->rsp->data[0])
     {
       std::ostringstream str;
       str << get_sequence_path()
@@ -285,7 +290,7 @@ class read_modify_write_seq : public ubus_base_sequence
           << std::endl
           << "ADDR: " << addr_check
           << " EXP: " << m_data0_check
-          << " ACT: " << read_byte_seq0->rsp.data[0];
+          << " ACT: " << read_byte_seq0->rsp->data[0];
       UVM_ERROR(get_type_name(), str.str());
     }
 
@@ -326,7 +331,7 @@ class loop_read_modify_write_seq : public ubus_base_sequence
 
     for(int i = 0; i < itr; i++)
     {
-      UVM_DO(rmw_seq)
+      UVM_DO(rmw_seq);
     }
   }
 }; // class loop_read_modify_write_seq

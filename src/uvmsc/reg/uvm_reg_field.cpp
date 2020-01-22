@@ -1184,6 +1184,7 @@ bool uvm_reg_field::predict( uvm_reg_data_t value,
   rw->map = map;
   rw->fname = fname;
   rw->lineno = lineno;
+  rw->status = UVM_NOT_OK;
 
   do_predict(rw, kind, be);
 

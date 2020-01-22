@@ -1,6 +1,7 @@
 H_FILES += \
 	macros/uvm_callback_defines.h\
 	macros/uvm_component_defines.h \
+	macros/uvm_defines.h \
 	macros/uvm_macros.h \
 	macros/uvm_message_defines.h \
 	macros/uvm_object_defines.h \

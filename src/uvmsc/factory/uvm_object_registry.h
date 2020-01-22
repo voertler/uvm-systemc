@@ -1,7 +1,7 @@
 //----------------------------------------------------------------------
 //   Copyright 2014 Fraunhofer-Gesellschaft zur Foerderung
 //					der angewandten Forschung e.V.
-//   Copyright 2012-2014 NXP B.V.
+//   Copyright 2012-2019 NXP B.V.
 //   Copyright 2007-2010 Mentor Graphics Corporation
 //   Copyright 2007-2010 Cadence Design Systems, Inc.
 //   Copyright 2010 Synopsys, Inc.
@@ -139,21 +139,11 @@ template <typename T>
 uvm_object* uvm_object_registry<T>::create_object( const std::string& name )
 {
   T* obj = NULL;
-/*
-#ifdef UVM_OBJECT_MUST_HAVE_CONSTRUCTOR
+
   if (name.empty())
-    obj = new T();
+    obj = new T(sc_core::sc_gen_unique_name("object"));
   else
     obj = new T(name);
-#else
-*/
-
-  obj = new T(name); // TODO check: was new T();
-
-// do we still need this?
-//  if (!name.empty())
-//    obj->set_name(name);
-//#endif // UVM_OBJECT_MUST_HAVE_CONSTRUCTOR
 
   m_obj_t_list.push_back(obj); // remember object to delete it later
   return obj;
@@ -205,8 +195,8 @@ uvm_object_registry<T>* uvm_object_registry<T>::get()
 
 template <typename T>
 T* uvm_object_registry<T>::create( const std::string& name,
-                  uvm_component* parent,
-                  const std::string& contxt )
+                                   uvm_component* parent,
+                                   const std::string& contxt )
 {
   std::string l_contxt;
   uvm_object* obj = NULL;
@@ -325,6 +315,8 @@ uvm_object_registry<T>::~uvm_object_registry()
   while(!m_obj_t_list.empty())
     delete m_obj_t_list.back(), m_obj_t_list.pop_back();
 }
+
+
 
 //////////////
 

@@ -1,4 +1,5 @@
 //----------------------------------------------------------------------
+//   Copyright 2019 COSEDA Technologies GmbH
 //   Copyright 2014 NXP B.V.
 //   Copyright 2007-2010 Mentor Graphics Corporation
 //   Copyright 2007-2011 Cadence Design Systems, Inc.
@@ -58,7 +59,7 @@ class producer : public uvm::uvm_component
 
   void run_phase( uvm::uvm_phase& phase )
   {
-    int randval;
+    int randval = 0;
 
     for( int i = 0; i < 10; i++ )
     {
@@ -89,7 +90,7 @@ class consumer : public uvm::uvm_component
 
   void run_phase( uvm::uvm_phase& phase )
   {
-    int val;
+    int val = 0;
 
     while(true) // forever
     {

@@ -8,6 +8,7 @@
 ##   Copyright 2007-2011 Cadence Design Systems, Inc.
 ##   Copyright 2010-2011 Synopsys, Inc.
 ##   Copyright 2018 Robert Bosch GmbH
+##   Copyright 2019 COSEDA Technologies GmbH
 ##   All Rights Reserved Worldwide
 ##
 ##   Licensed under the Apache License, Version 2.0 (the "License");
@@ -42,7 +43,7 @@
 AC_PREREQ(2.61)
 
 AC_INIT([UVM-SystemC],
-        [1.0-beta2],
+        [1.0-beta3],
         [uvm-systemc-feedback@lists.accellera.org],
         [uvm-systemc],
         [Download-URL],
@@ -57,7 +58,7 @@ AC_DEFINE_UNQUOTED(CONFIGURE_DATE, "`sh -c date`", [Date of configure])
 AC_SUBST(CONFIGURE_DATE)
 
 AC_DEFINE_UNQUOTED(UVM_VERSION, "${PACKAGE_VERSION}", [UVM SystemC Version])
-AC_DEFINE_UNQUOTED(UVM_RELEASE_DATE, "2018-10-24", [UVM SystemC Release Date])
+AC_DEFINE_UNQUOTED(UVM_RELEASE_DATE, "2019-10-30", [UVM SystemC Release Date])
 AC_SUBST(UVM_VERSION)
 AC_SUBST(UVM_RELEASE_DATE)
 
@@ -542,6 +543,28 @@ CXXFLAGS="${EXTRA_CXXFLAGS} ${CXXFLAGS}"
 AC_PROG_LIBTOOL
 # * restore CXXFLAGS
 CXXFLAGS="${stored_CXXFLAGS}"
+
+#check SystemC Version by building an example program
+stored_CXXFLAGS="${CXXFLAGS}"
+stored_LIBS="${LIBS}"
+CXXFLAGS="${SYSTEMC_CFLAGS} ${CXXFLAGS}"
+LIBS="${LIBS} ${SYSTEMC_LIBS}"
+AC_MSG_CHECKING( SystemC Version IEEE compliant)
+AC_RUN_IFELSE( 
+	[AC_LANG_SOURCE([[#include <systemc>
+	int sc_main(int argc, char* argv[]) {
+	#if (IEEE_1666_SYSTEMC >= 201101L)
+	return 0;
+	#endif
+	return 1;
+	}
+	]])]
+	,  
+	[AC_MSG_RESULT([IEEE 1666 compatible SystemC version found ])],
+	[AC_MSG_FAILURE([Non IEEE 1666 compatible SystemC version found, make sure that SystemC can be found and you build with the same compile options as building SystemC])]
+	)
+CXXFLAGS="${stored_CXXFLAGS}"
+LIBS="${stored_LIBS}"
 
 AC_SUBST(LIB_ARCH_SUFFIX)
 
