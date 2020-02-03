@@ -499,6 +499,7 @@ void uvm_report_object::reset_report_handler()
 void uvm_report_object::start_report_handler(const std::string& name)
 {
   m_rh = uvm_report_handler::type_id::create(name);
+  m_rh_list.push_back(m_rh);
 }
 
 
@@ -517,6 +518,13 @@ void uvm_report_object::start_report_handler(const std::string& name)
 
 uvm_report_object::~uvm_report_object()
 {
+  for (std::vector<uvm_report_handler*>::iterator
+       it = m_rh_list.begin();
+       it != m_rh_list.end();
+       it ++)
+    uvm_report_handler::type_id::destroy(*it);
+  
+  m_rh_list.clear();
 }
 
 

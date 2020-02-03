@@ -286,6 +286,8 @@ class uvm_reg_bit_bash_seq
     model->reset();
 
     do_block(model);
+    
+    uvm_reg_single_bit_bash_seq::type_id::destroy(reg_seq);
   }
 
  protected:

@@ -1770,6 +1770,10 @@ bool uvm_reg_block::is_hdl_path_root( std::string kind ) const
 
 uvm_reg_block::~uvm_reg_block()
 {
+  for( m_maps_citt it = m_maps.begin(); it != m_maps.end(); it++)
+    uvm_reg_map::type_id::destroy((*it).first);
+ 
+  m_maps.clear(); 
   m_hdl_paths_pool.clear();
   m_root_hdl_paths.clear();
 }

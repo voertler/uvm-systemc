@@ -66,6 +66,8 @@ void uvm_reg_fifo::build()
   m_value = uvm_reg_field::type_id::create("value");
   sc_bv<32> reset_value = 0x0;
   m_value->configure(this, get_n_bits(), 0, "RW", false, reset_value, true, false, true);
+  
+  m_value_list.push_back(m_value);
 }
 
 
@@ -316,5 +318,21 @@ void uvm_reg_fifo::post_randomize()
   m_set_cnt = 0;
 }
 
+//----------------------------------------------------------------------
+// Destructor
+//
+//! Clean up memory allocation
+//----------------------------------------------------------------------
+
+uvm_reg_fifo::~uvm_reg_fifo()
+{
+  for (std::vector<uvm_reg_field*>::iterator
+       it = m_value_list.begin();
+       it != m_value_list.end();
+       it ++)
+    uvm_reg_field::type_id::destroy(*it);
+
+  m_value_list.clear();
+}
 
 } // namespace uvm
