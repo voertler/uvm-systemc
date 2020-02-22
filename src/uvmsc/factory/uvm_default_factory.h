@@ -136,6 +136,9 @@ public:
   bool m_delete_object( int obj_id );
   void m_delete_all_objects();
 
+  bool m_delete_component( int comp_id );
+  void m_delete_all_components();
+
  protected:
   uvm_default_factory();
 
