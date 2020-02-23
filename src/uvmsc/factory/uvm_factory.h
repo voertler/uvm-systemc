@@ -158,8 +158,8 @@ class uvm_factory
   virtual bool m_delete_object( int obj_id ) = 0;
   virtual void m_delete_all_objects() = 0;
 
-  bool m_delete_component( int comp_id );
-  void m_delete_all_components();
+  virtual bool m_delete_component( int comp_id );
+  virtual void m_delete_all_components();
 
  protected:
   uvm_factory(){};
