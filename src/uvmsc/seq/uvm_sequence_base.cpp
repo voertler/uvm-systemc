@@ -23,7 +23,6 @@
 //----------------------------------------------------------------------
 
 #include <sstream>
-#include <algorithm>
 #include <systemc>
 #include "sysc/kernel/sc_dynamic_processes.h"
 

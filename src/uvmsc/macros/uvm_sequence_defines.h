@@ -116,8 +116,7 @@
   seq__ = dynamic_cast<uvm::uvm_sequence_base*>(SEQ_OR_ITEM); \
   if (seq__ == NULL) start_item(SEQ_OR_ITEM, PRIORITY); \
   if (seq__ == NULL) finish_item(SEQ_OR_ITEM, PRIORITY); \
-  else { seq__->start(SEQR, this, PRIORITY, 0); \
-   SEQR->delete_sequence(seq__); } \
+  else seq__->start(SEQR, this, PRIORITY, 0); \
   } \
 
 /* TODO randomization - when ready insert after start_item above

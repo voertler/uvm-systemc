@@ -206,9 +206,7 @@ void uvm_sequence<REQ,RSP>::put_response( const uvm_sequence_item& response_item
   if (rsp == NULL)
     uvm_report_fatal("PUTRSP", "Failure to cast response in put_response.", UVM_NONE);
 
-  RSP* item = new RSP(response_item.get_name()+"_q");
-  *item = *rsp; // copy response in temporary item for queue
-  put_base_response(*item);
+  put_base_response(response_item);
 }
 
 //----------------------------------------------------------------------

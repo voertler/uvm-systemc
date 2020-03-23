@@ -95,6 +95,8 @@ class uvm_object_registry : public uvm_object_wrapper
   // not part of UVM Class reference / LRM
   /////////////////////////////////////////////////////
 
+  static void destroy( T* obj );
+
  private:
   explicit uvm_object_registry( const std::string& name = "" );
 
@@ -295,6 +297,38 @@ const std::string uvm_object_registry<T>::m_type_name_prop()
 {
   return T::m_register_type_name();
 }
+
+//----------------------------------------------------------------------
+// member function: destroy (static)
+//
+//! Configures the factory to delete a object which is created using 
+//! 'create' method.
+//----------------------------------------------------------------------
+
+template <typename T>
+void uvm_object_registry<T>::destroy( T* obj ) 
+{
+  if (obj == NULL) 
+  {
+    return;
+  }
+  
+  uvm_coreservice_t* cs = uvm_coreservice_t::get();
+  uvm_factory* f = cs->get_factory();
+
+  if (!f->m_delete_object(obj))
+  {
+    std::ostringstream msg;
+    msg << "Could not destroy object of type '" << obj->get_type_name()
+        << "', name=" << obj->get_name()
+        << " from factory";
+    uvm_report_error("FCTTYP", msg.str(), UVM_NONE);
+    return;
+  }
+  
+  obj = NULL;
+}
+
 
 //----------------------------------------------------------------------
 // Destructor
