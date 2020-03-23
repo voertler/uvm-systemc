@@ -305,7 +305,7 @@ void uvm_default_factory::set_type_override_by_type( uvm_object_wrapper* origina
 //----------------------------------------------------------------------------
 // member function: set_type_override_by_name
 //
-//! Configures the factory to create an object of the override’s type whenever
+//! Configures the factory to create an object of the overrideÂ’s type whenever
 //! a request is made to create an object of the original type, provided no
 //! instance override applies. The original type is typically a super class of
 //! the override type.
@@ -602,6 +602,7 @@ uvm_component* uvm_default_factory::create_component_by_type( uvm_object_wrapper
   requested_type = find_override_by_type(requested_type, full_inst_path);
   
   uvm_component* comp = requested_type->create_component(name, parent);
+
   m_comp_list.push_back(comp); // register comp so we can delete after use
 
   return comp; 
@@ -644,6 +645,7 @@ uvm_object* uvm_default_factory::create_object_by_name( const std::string& reque
   }
 
   uvm_object* obj = wrapper->create_object(name);
+
   m_obj_list.push_back(obj); // register object so we can delete after use
 
   return obj;
@@ -687,6 +689,7 @@ uvm_component* uvm_default_factory::create_component_by_name( const std::string&
     wrapper = m_type_names[requested_type_name];
   }
   uvm_component* comp = wrapper->create_component(name, parent);
+
   m_comp_list.push_back(comp); // register comp so we can delete after use
 
   return comp;

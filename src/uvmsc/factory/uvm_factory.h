@@ -172,7 +172,6 @@ class uvm_factory
   typedef std::list<uvm_component* > m_comp_listT;
   typedef m_comp_listT::iterator m_comp_listItT;
   m_comp_listT m_comp_list;
-
 }; // class uvm_factory
 
 } // namespace uvm
