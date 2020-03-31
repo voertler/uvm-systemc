@@ -199,7 +199,6 @@ class uvm_report_object : public uvm_object
 
  protected:
   uvm_report_handler* m_rh;
-  std::vector<uvm_report_handler*> m_rh_list;
 };
 
 

@@ -121,13 +121,10 @@ class uvm_reg_fifo : public uvm_reg
     fifo.size() <= m_size;
   }
   */
-  virtual ~uvm_reg_fifo();
-
 
   // local data members
 private:
   uvm_reg_field* m_value;
-  std::vector<uvm_reg_field*> m_value_list;
   int m_set_cnt;
   unsigned int m_size;
 
