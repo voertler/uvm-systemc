@@ -309,6 +309,8 @@ void uvm_reg_indirect_data::write( uvm_status_e& status,
     status = rw->status;
 
     m_atomic_check_lock(false);
+    
+    uvm_reg_item::type_id::destroy(rw);
   }
 }
 
