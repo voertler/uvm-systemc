@@ -133,6 +133,13 @@ public:
   // not part of UVM Class reference / LRM
   /////////////////////////////////////////////////////
 
+
+  bool m_delete_object( uvm_object* obj );
+  void m_delete_all_objects();
+
+  bool m_delete_component( uvm_component* comp );
+  void m_delete_all_components();
+
  protected:
   uvm_default_factory();
 

@@ -790,6 +790,8 @@ void uvm_reg_field::write( uvm_status_e& status,
    do_write(rw);
 
    status = rw->status;
+
+   uvm_reg_item::type_id::destroy(rw);
 }
 
 //----------------------------------------------------------------------
@@ -851,6 +853,8 @@ void uvm_reg_field::read( uvm_status_e& status, // output
 
   value = rw->value[0];
   status = rw->status;
+  
+  uvm_reg_item::type_id::destroy(rw);
 }
 
 
