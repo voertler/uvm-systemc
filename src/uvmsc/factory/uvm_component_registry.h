@@ -313,7 +313,7 @@ void uvm_component_registry<T>::destroy( T* comp )
     msg << "Could not destroy component of type '" << comp->get_type_name()
         << "', name=" << comp->get_name()
         << " when all phases have not been finished";
-    uvm_report_error("FCTTYP", msg.str(), UVM_NONE);
+    uvm_report_warning("FCTTYP", msg.str(), UVM_NONE);
     return;
   }
 
@@ -323,7 +323,7 @@ void uvm_component_registry<T>::destroy( T* comp )
     msg << "Could not destroy component of type '" << comp->get_type_name()
         << "', name=" << comp->get_name()
         << " from factory";
-    uvm_report_error("FCTTYP", msg.str(), UVM_NONE);
+    uvm_report_warning("FCTTYP", msg.str(), UVM_NONE);
     return;
   }
 
