@@ -1,5 +1,4 @@
 //----------------------------------------------------------------------
-//   Copyright 2019 COSEDA Technologies GmbH
 //   Copyright 2012-2014 NXP B.V.
 //   All Rights Reserved Worldwide
 //
@@ -62,7 +61,7 @@ class bus_trans : public uvm::uvm_sequence_item
     op = rhs_->op;
   }
 
-  virtual bool do_compare( const uvm::uvm_object& rhs, const uvm::uvm_comparer* comparer ) const
+  virtual bool do_compare( const uvm::uvm_object& rhs, const uvm::uvm_comparer* comparer )
   {
     const bus_trans* rhs_ = dynamic_cast<const bus_trans*>(&rhs);
     if(rhs_ == NULL)
@@ -78,7 +77,7 @@ class bus_trans : public uvm::uvm_sequence_item
     printer.print_field_int("data", data);
   }
 
-  std::string convert2string() const
+  std::string convert2string()
   {
     std::ostringstream str;
     str << "op " << (op ? "BUS_WRITE":"BUS_READ");
@@ -89,10 +88,9 @@ class bus_trans : public uvm::uvm_sequence_item
 
   // data members
  public:
-  // TODO: check types with UVM/SV original
-  unsigned addr = 0;
-  unsigned data = 0;
-  bus_op_t op = BUS_READ;
+  int addr;
+  int data;
+  bus_op_t op;
 };
 
 //--------------------------------------------------------------------
@@ -116,7 +114,9 @@ class bus_req : public bus_trans
 class bus_rsp : public bus_trans
 {
  public:
-  bus_rsp( const std::string& name = "bus_rsp_seq_item" ) : bus_trans(name), status(STATUS_NOT_OK) {}
+  bus_rsp( const std::string& name = "bus_rsp_seq_item" ) : bus_trans(name) {
+    status = STATUS_NOT_OK;
+  }
 
   ~bus_rsp() {}
 
@@ -132,7 +132,7 @@ class bus_rsp : public bus_trans
     status = rhs_->status;
   }
 
-  std::string convert2string() const
+  std::string convert2string()
   {
     std::string statusstr;
 

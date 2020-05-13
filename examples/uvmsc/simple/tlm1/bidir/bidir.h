@@ -1,5 +1,4 @@
 //----------------------------------------------------------------------
-//   Copyright 2019 COSEDA Technologies GmbH
 //   Copyright 2014 NXP B.V.
 //   Copyright 2007-2010 Mentor Graphics Corporation
 //   Copyright 2007-2011 Cadence Design Systems, Inc.
@@ -84,7 +83,7 @@ class master : public uvm::uvm_component
    
   void response_process()
   {
-    int response = 0;
+    int response;
     std::string response_str;
   
     while (true) // forever
@@ -118,8 +117,7 @@ class slave : public uvm::uvm_component
 
   void run_phase( uvm::uvm_phase& phase )
   {
-    int request = 0;
-    int response = 0;
+    int request, response;
     std::string request_str, response_str;
   
     while (true) // forever

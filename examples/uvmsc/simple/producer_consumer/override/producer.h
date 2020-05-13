@@ -1,7 +1,6 @@
 //----------------------------------------------------------------------
 //   Copyright 2009 Cadence Design Systems, Inc.
 //   Copyright 2012-2014 NXP B.V.
-//   Copyright 2019 COSEDA Technologies GmbH
 //   All Rights Reserved Worldwide
 //
 //   Licensed under the Apache License, Version 2.0 (the
@@ -54,12 +53,15 @@ class producer : public uvm::uvm_component
   // factory registration
   UVM_COMPONENT_PARAM_UTILS(producer<T>);
 
+  void build_phase(uvm::uvm_phase& phase)
+  {}
+
   // produce tokens in the run task
   void run_phase(uvm::uvm_phase& phase)
   {
     phase.raise_objection(this);
 
-    int val = 0;
+    int val;
     // generate data from file
     for (int i = 0; i < 7; i++)
     {
@@ -92,6 +94,12 @@ class producer : public uvm::uvm_component
     sc_core::wait(100, sc_core::SC_NS);
 
     phase.drop_objection(this);
+  }
+
+  // destructor
+  virtual ~producer() 
+  {
+    delete in_file_strm;
   }
 
  protected:

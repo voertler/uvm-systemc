@@ -19,7 +19,6 @@
 //   permissions and limitations under the License.
 //----------------------------------------------------------------------
 
-
 #ifndef REG_AGENT_H_
 #define REG_AGENT_H_
 
@@ -36,9 +35,7 @@ class reg_rw : public uvm::uvm_sequence_item
   sc_dt::sc_lv<4>  byte_en;
 
   reg_rw ( std::string name = "reg_rw" ) : uvm::uvm_sequence_item(name)
-  {
-    std::cout << "constructor called" << std::endl;
-  }
+  {}
 
   UVM_OBJECT_UTILS(reg_rw);
 
@@ -51,7 +48,7 @@ class reg_rw : public uvm::uvm_sequence_item
    `uvm_object_utils_end
    */
 
-  std::string convert2string() const
+  std::string convert2string()
   {
     std::ostringstream str;
     str << "reg_rw: "

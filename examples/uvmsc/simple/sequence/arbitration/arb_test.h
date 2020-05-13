@@ -1,7 +1,6 @@
 //------------------------------------------------------------------------------
 //   Copyright 2010 Mentor Graphics Corporation
 //   Copyright 2013-2014 NXP B.V.
-//   Copyright 2019 COSEDA Technologies GmbH
 //   All Rights Reserved Worldwide
 //
 //   Licensed under the Apache License, Version 2.0 (the
@@ -57,7 +56,7 @@ class arb_test : public uvm::uvm_component
 
   void run_phase(uvm::uvm_phase& phase)
   {
-    int arb_type = 0;
+    int arb_type;
 
     phase.raise_objection(this, "Starting arbitration test");
 

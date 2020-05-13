@@ -31,14 +31,6 @@
 // seq_3 - Has priority 300 (medium) and generates new items after a delay of #3;
 // seq_4 - Has priority 200 (lowest) and generates new items after a delay of #4;
 //
-// To run the different examples then the following needs to typed at the vsim command line:
-//
-// vsim +ARB_TYPE=<arb_type> top -do "run -all"
-//
-// Where ARB_TYPE is one of SEQ_ARB_FIFO, SEQ_ARB_WEIGHTED, SEQ_ARB_RANDOM,
-//                          SEQ_ARB_STRICT_FIFO, SEQ_ARB_STRICT_RANDOM,
-//                          SEQ_ARB_USER
-//
 // The driver will display a log of how many sequence items have been received
 // from each sequence.
 //

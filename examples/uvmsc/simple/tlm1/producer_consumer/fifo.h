@@ -1,5 +1,4 @@
 //----------------------------------------------------------------------
-//   Copyright 2019 COSEDA Technologies GmbH
 //   Copyright 2014 NXP B.V.
 //   Copyright 2007-2010 Mentor Graphics Corporation
 //   Copyright 2007-2011 Cadence Design Systems, Inc.
@@ -41,7 +40,7 @@
 #include <systemc>
 #include <uvm>
 #include <tlm>
-
+#include "global.h"
 
 //----------------------------------------------------------------------
 // class producer
@@ -59,11 +58,11 @@ class producer : public uvm::uvm_component
 
   void run_phase( uvm::uvm_phase& phase )
   {
-    int randval = 0;
+    int randval;
 
     for( int i = 0; i < 10; i++ )
     {
-      randval = rand() % 100;
+      randval = pseudo_rand() % 100;
       sc_core::wait(10.0, sc_core::SC_US);
       std::ostringstream msg;
       msg << "sending   " << randval;
@@ -90,14 +89,14 @@ class consumer : public uvm::uvm_component
 
   void run_phase( uvm::uvm_phase& phase )
   {
-    int val = 0;
+    int val;
 
     while(true) // forever
     {
       get_port.get(val);
 
       std::ostringstream msg;
-      msg << "recieving " << val;
+      msg << "receiving " << val;
       UVM_INFO("consumer", msg.str(), uvm::UVM_MEDIUM);
     }
   }

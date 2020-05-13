@@ -46,7 +46,7 @@ class parent_component : public uvm::uvm_component
     uvm::uvm_component::build_phase(phase);
     
     // setup configurations
-    uvm::uvm_config_db<std::string>::set(this, "producer", "in_file", "stimulus.txt");
+    uvm::uvm_config_db<std::string>::set(this, "producer", "in_file", "./override/stimulus.txt");
 
     // use factory to create each component
     prod_p = producer<packet>::type_id::create("producer", this);

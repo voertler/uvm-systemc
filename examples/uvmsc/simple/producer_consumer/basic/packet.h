@@ -1,5 +1,4 @@
 //----------------------------------------------------------------------
-//   Copyright 2019 COSEDA Technologies GmbH
 //   Copyright 2009 Cadence Design Systems, Inc.
 //   Copyright 2012-2014 NXP B.V.
 //   All Rights Reserved Worldwide
@@ -27,12 +26,12 @@
 class packet
 {
  public:
-  int addr = 0;
+  int addr;
   std::string name_;
 
-  std::ostream& operator<<(std::ostream& x) { x << name_ ; return x; }
+  std::ostream& operator<<(std::ostream& x) { x << name_ ; return x; };
 };
 
-std::ostream& operator<<(std::ostream& s, const packet& x) { s << x.name_; return s; }
+std::ostream& operator<<(std::ostream& s, const packet& x) { s << x.name_; return s; };
 
 #endif /* PACKET_H_ */

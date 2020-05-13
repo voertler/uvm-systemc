@@ -1,5 +1,4 @@
 //----------------------------------------------------------------------
-//   Copyright 2019 COSEDA Technologies GmbH
 //   Copyright 2009 Cadence Design Systems, Inc.
 //   Copyright 2012-2014 NXP B.V.
 //   All Rights Reserved Worldwide
@@ -71,7 +70,7 @@ class packet : public uvm::uvm_object
     data = drhs->data;
   }
 
-  virtual bool do_compare(const uvm_object& rhs, const uvm::uvm_comparer*) const
+  virtual bool do_compare(const uvm_object& rhs) const
   {
     const packet* drhs = dynamic_cast<const packet*>(&rhs);
     if (!drhs)
@@ -84,7 +83,7 @@ class packet : public uvm::uvm_object
   }
 
  public:
-  int data = 0;
+  int data;
 };
 
 /////////////////

@@ -1,5 +1,4 @@
 //------------------------------------------------------------------------------
-//   Copyright 2019 COSEDA Technologies GmbH
 //   Copyright 2013-2014 NXP B.V.
 //   Copyright 2007-2010 Mentor Graphics Corporation
 //   Copyright 2007-2010 Cadence Design Systems, Inc. 
@@ -37,8 +36,8 @@
 class bus_tr : public uvm::uvm_transaction
 {
  public:
-  int addr = 0;
-  int data = 0;
+  int addr;
+  int data;
 
   bus_tr( std::string name = "bus_tr") {} // constructor
 

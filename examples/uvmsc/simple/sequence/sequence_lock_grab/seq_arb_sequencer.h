@@ -1,7 +1,6 @@
 //------------------------------------------------------------------------------
 //   Copyright 2010 Mentor Graphics Corporation
 //   Copyright 2013-2014 NXP B.V.
-//   Copyright 2019 COSEDA Technologies GmbH
 //   All Rights Reserved Worldwide
 //
 //   Licensed under the Apache License, Version 2.0 (the
@@ -44,7 +43,8 @@ class seq_arb_sequencer : public uvm::uvm_sequencer<seq_arb_item>
 
   int user_priority_arbitration(std::vector<int> avail_sequences)
   {
-    int end_index = avail_sequences.size() - 1;
+    int end_index;
+    end_index = avail_sequences.size() - 1;
     return (avail_sequences[end_index]);
   } // user_priority_arbitration
 

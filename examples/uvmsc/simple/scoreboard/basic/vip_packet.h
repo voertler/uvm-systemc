@@ -1,5 +1,4 @@
 //----------------------------------------------------------------------
-//   Copyright 2019 COSEDA Technologies GmbH
 //   Copyright 2012-2014 NXP B.V.
 //   All Rights Reserved Worldwide
 //
@@ -36,7 +35,7 @@ class vip_packet : public uvm::uvm_sequence_item
   vip_packet(int i) { data = i; }
   virtual ~vip_packet() { }
 
-  virtual void do_print(const uvm::uvm_printer& printer) const
+  virtual void do_print(const uvm::uvm_printer& printer)
   {
     printer.print_field_int("data", data);
   }
@@ -58,7 +57,7 @@ class vip_packet : public uvm::uvm_sequence_item
     data = drhs->data;
   }
 
-  virtual bool do_compare(const uvm_object& rhs, const uvm::uvm_comparer*) const
+  virtual bool do_compare(const uvm_object& rhs) const
   {
     const vip_packet* drhs = dynamic_cast<const vip_packet*>(&rhs);
     if (!drhs) { std::cerr << "ERROR in do_compare" << std::endl; return true; }
@@ -74,7 +73,7 @@ class vip_packet : public uvm::uvm_sequence_item
   }
 
  public:
-  int data = 0;
+  int data;
 };
 
 #endif /* VIP_PACKET_H_ */

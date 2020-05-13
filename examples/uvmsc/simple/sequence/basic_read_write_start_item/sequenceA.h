@@ -1,5 +1,4 @@
 //----------------------------------------------------------------------
-//   Copyright 2019 COSEDA Technologies GmbH
 //   Copyright 2012-2014 NXP B.V.
 //   All Rights Reserved Worldwide
 //
@@ -58,7 +57,9 @@ class sequenceA : public uvm::uvm_sequence<REQ,RSP>
 
       this->start_item(req);
       this->finish_item(req);
-      //this->get_response(rsp); // optional here
+      this->get_response(rsp);
+
+      delete req;
 
       req = new REQ();
       req->addr = (my_id * NUM_LOOPS) + i;
@@ -69,6 +70,8 @@ class sequenceA : public uvm::uvm_sequence<REQ,RSP>
       this->finish_item(req);
       this->get_response(rsp); // we need the response to check potential differences
 
+      delete req;
+
       if (rsp->data != my_id + i + 55 )
       {
         std::ostringstream str;
@@ -78,19 +81,18 @@ class sequenceA : public uvm::uvm_sequence<REQ,RSP>
         UVM_ERROR(this->get_name(), str.str());
       }
     }
+    delete rsp;
 
     UVM_INFO(this->get_name(), "Finishing sequence", uvm::UVM_MEDIUM);
   }
 
  private:
-  // TODO: check types with UVM/SV original
-  static unsigned int g_my_id;
-  unsigned int my_id = 0;
+  static int g_my_id;
+  int my_id;
 };
 
-// TODO: check types with UVM/SV original
 template <typename REQ, typename RSP>
-unsigned int sequenceA<REQ,RSP>::g_my_id = 1;
+int sequenceA<REQ,RSP>::g_my_id = 1;
 
 
 #endif /* SEQUENCEA_H_ */

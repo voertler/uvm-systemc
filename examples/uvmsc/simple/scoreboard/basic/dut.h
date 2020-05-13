@@ -1,5 +1,4 @@
 //----------------------------------------------------------------------
-//   Copyright 2019 COSEDA Technologies GmbH
 //   Copyright 2012-2014 NXP B.V.
 //   All Rights Reserved Worldwide
 //
@@ -17,11 +16,6 @@
 //   the License for the specific language governing
 //   permissions and limitations under the License.
 //----------------------------------------------------------------------
-//
-//   Original Author: Martin Barnasconi, NXP Semiconductors
-//   Created on: 2012-10-27
-//
-//----------------------------------------------------------------------
 
 #ifndef DUT_H_
 #define DUT_H_
@@ -36,7 +30,8 @@ class dut : public sc_core::sc_module
 
   void func()
   {
-    int val = in.read();
+    int val;
+    val = in.read();
     std::cout << sc_core::sc_time_stamp() << ": " << name() << " received value " << val << std::endl;
     std::cout << sc_core::sc_time_stamp() << ": " << name() << " send value " << val+1 << std::endl;
     out.write(val+1);

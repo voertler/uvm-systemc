@@ -49,12 +49,9 @@ class packet : public uvm::uvm_object
     data = drhs->data;
   }
 
-  bool do_compare(const uvm::uvm_object& rhs, const uvm::uvm_comparer* ) const
+  bool do_compare(const uvm::uvm_object& rhs) const
   {
     const packet* drhs = dynamic_cast<const packet*>(&rhs);
-
-    if (!drhs)
-      return false;
 
     if (!(addr == drhs->addr))
       return false;
