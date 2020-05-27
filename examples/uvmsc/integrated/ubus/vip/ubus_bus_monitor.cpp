@@ -52,15 +52,6 @@ ubus_bus_monitor::ubus_bus_monitor(uvm_component_name name)
    */
 }
 
-ubus_bus_monitor::~ubus_bus_monitor()
-{
-    for (slave_addr_map_it it = slave_addr_map.begin(); it != slave_addr_map.end(); ++it) {
-        if ((*it).second) {
-            delete (*it).second;
-        }
-    }
-}
-
 //----------------------------------------------------------------------
 // member function: set_slave_configs
 //----------------------------------------------------------------------

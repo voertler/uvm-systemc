@@ -84,7 +84,6 @@ public:
   */
 
   ubus_bus_monitor(uvm::uvm_component_name name);
-  ~ubus_bus_monitor();
   void set_slave_configs(std::string slave_name, unsigned int min_addr, unsigned int max_addr);
   void build_phase(uvm::uvm_phase& phase);
   void run_phase(uvm::uvm_phase& phase);

@@ -99,12 +99,14 @@ public:
   // TODO constraints
   //constraint transmit_del_ct { (transmit_del <= 10); }
 
-  ubus_transfer* req;
-  ubus_transfer* rsp;
+  ubus_transfer* req{nullptr};
+  ubus_transfer* rsp{nullptr};
 
   read_byte_seq( const std::string& name = "read_byte_seq")
   : ubus_base_sequence(name), start_addr(0), transmit_del(0)
   {
+      req = ubus_transfer::type_id::create();
+      rsp = ubus_transfer::type_id::create();
   }
 
   UVM_OBJECT_UTILS(read_byte_seq);
@@ -120,9 +122,6 @@ public:
         req.transmit_delay == transmit_del; } )
     get_response(rsp);
     */
-
-    req = new ubus_transfer();
-    rsp = new ubus_transfer();
 
     // TODO no constraints yet, so we assign the values directly
     req->addr = start_addr;
@@ -142,6 +141,14 @@ public:
         << ", data[0] = 0x"
         << std::hex << rsp->data[0];
     UVM_INFO(get_type_name(), msg.str(), uvm::UVM_HIGH);
+
+
+  }
+
+  ~read_byte_seq()
+  {
+	ubus_transfer::type_id::destroy(req);
+	ubus_transfer::type_id::destroy(rsp);
   }
 }; // class read_byte_seq
 
@@ -163,9 +170,15 @@ public:
   // TODO constraints
   //constraint transmit_del_ct { (transmit_del <= 10); }
 
+  ubus_transfer* req{nullptr};
+  ubus_transfer* rsp{nullptr};
+
   read_half_word_seq( const std::string& name = "read_half_word_seq")
   : ubus_base_sequence(name), start_addr(0), transmit_del(0)
-  {}
+  {
+      req = ubus_transfer::type_id::create();
+      rsp = ubus_transfer::type_id::create();
+  }
   
   UVM_OBJECT_UTILS(read_half_word_seq);
 
@@ -180,9 +193,6 @@ public:
         req.transmit_delay == transmit_del; } )
     get_response(rsp);
     */
-
-    ubus_transfer* req = new ubus_transfer();
-    ubus_transfer* rsp = new ubus_transfer();
 
     // TODO no constraints yet, so we assign the values directly
     req->addr = start_addr;
@@ -206,6 +216,12 @@ public:
     UVM_INFO(get_type_name(), msg.str(), uvm::UVM_HIGH);
   }
 
+  ~read_half_word_seq()
+  {
+	  ubus_transfer::type_id::destroy(req);
+	  ubus_transfer::type_id::destroy(rsp);
+  }
+
 }; // class read_half_word_seq
 
 
@@ -226,9 +242,15 @@ public:
   // TODO constraints
   //constraint transmit_del_ct { (transmit_del <= 10); }
 
+  ubus_transfer* req{nullptr};
+  ubus_transfer* rsp{nullptr};
+
   read_word_seq( const std::string& name = "read_word_seq")
   : ubus_base_sequence(name), start_addr(0), transmit_del(0)
-  {}
+  {
+      req = ubus_transfer::type_id::create();
+      rsp = ubus_transfer::type_id::create();
+  }
   
   UVM_OBJECT_UTILS(read_word_seq);
 
@@ -243,9 +265,6 @@ public:
         req.transmit_delay == transmit_del; } )
     get_response(rsp);
     */
-
-    ubus_transfer* req = new ubus_transfer();
-    ubus_transfer* rsp = new ubus_transfer();
 
     // TODO no constraints yet, so we assign the values directly
     req->addr = start_addr;
@@ -270,10 +289,14 @@ public:
         << std::hex << rsp->data[2]
         << ", data[3] = 0x"
         << std::hex << rsp->data[3];
-
     UVM_INFO(get_type_name(), msg.str(), uvm::UVM_HIGH);
   }
-  
+
+  ~read_word_seq()
+  {
+	  ubus_transfer::type_id::destroy(req);
+	  ubus_transfer::type_id::destroy(rsp);
+  }
 }; // class read_word_seq
 
 
@@ -294,9 +317,15 @@ public:
   // TODO constraints
   //constraint transmit_del_ct { (transmit_del <= 10); }
 
+  ubus_transfer* req{nullptr};
+  ubus_transfer* rsp{nullptr};
+
   read_double_word_seq( const std::string& name = "read_double_word_seq")
   : ubus_base_sequence(name), start_addr(0), transmit_del(0)
-  {}
+  {
+      req = ubus_transfer::type_id::create();
+      rsp = ubus_transfer::type_id::create();
+  }
   
   UVM_OBJECT_UTILS(read_double_word_seq);
 
@@ -311,8 +340,6 @@ public:
         req.transmit_delay == transmit_del; } )
     get_response(rsp);
     */
-    ubus_transfer* req = new ubus_transfer();
-    ubus_transfer* rsp = new ubus_transfer();
 
     // TODO no constraints yet, so we assign the values directly
     req->addr = start_addr;
@@ -345,10 +372,14 @@ public:
         << std::hex << rsp->data[6]
         << ", data[7] = 0x"
         << std::hex << rsp->data[7];
+    UVM_INFO(get_type_name(), msg.str(), uvm::UVM_HIGH);
+  }
 
-      UVM_INFO(get_type_name(), msg.str(), uvm::UVM_HIGH);
-    }
-  
+  ~read_double_word_seq()
+  {
+	  ubus_transfer::type_id::destroy(req);
+	  ubus_transfer::type_id::destroy(rsp);
+  }
 }; // class read_double_word_seq
 
 
@@ -370,11 +401,15 @@ public:
   // TODO constraints
   //constraint transmit_del_ct { (transmit_del <= 10); }
 
-  ubus_transfer* req, rsp;
+  ubus_transfer* req{nullptr};
+  ubus_transfer* rsp{nullptr};
 
   write_byte_seq( const std::string& name = "write_byte_seq")
   : ubus_base_sequence(name), start_addr(0), data0(0), transmit_del(0)
-  {}
+  {
+      req = ubus_transfer::type_id::create();
+      rsp = ubus_transfer::type_id::create();
+  }
 
   UVM_OBJECT_UTILS(write_byte_seq);
 
@@ -390,7 +425,6 @@ public:
         req.transmit_delay == transmit_del; } )
     */
 
-    req = new ubus_transfer();
 
     // TODO no constraints yet, so we assign the values directly
     req->addr = start_addr;
@@ -410,6 +444,12 @@ public:
         << ", data[0] = 0x"
         << std::hex << req->data[0];
     UVM_INFO(get_type_name(), msg.str(), uvm::UVM_HIGH);
+  }
+
+  ~write_byte_seq()
+  {
+	  ubus_transfer::type_id::destroy(req);
+	  ubus_transfer::type_id::destroy(rsp);
   }
 }; // class write_byte_seq
 
@@ -433,9 +473,13 @@ public:
   // TODO constraints
   // constraint transmit_del_ct { transmit_del <= 10; }
 
+  ubus_transfer* req{nullptr};
+
   write_half_word_seq( const std::string& name = "write_half_word_seq")
   : ubus_base_sequence(name), start_addr(0), data0(0), data1(0), transmit_del(0)
-  {}
+  {
+      req = ubus_transfer::type_id::create();
+  }
 
   UVM_OBJECT_UTILS(write_half_word_seq);
 
@@ -450,8 +494,6 @@ public:
         req.error_pos == 1000;
         req.transmit_delay == transmit_del; } )
     */
-
-    ubus_transfer* req = new ubus_transfer();
 
     // TODO no constraints yet, so we assign the values directly
     req->addr = start_addr;
@@ -474,6 +516,11 @@ public:
         << ", data[1] = 0x"
         << std::hex << req->data[1];
     UVM_INFO(get_type_name(), msg.str(), uvm::UVM_HIGH);
+  }
+
+  ~write_half_word_seq()
+  {
+	  ubus_transfer::type_id::destroy(req);
   }
 
 }; // class write_half_word_seq
@@ -500,10 +547,14 @@ public:
   // TODO constraints
   // constraint transmit_del_ct { (transmit_del <= 10); }
 
+  ubus_transfer* req{nullptr};
+
   write_word_seq( const std::string& name = "write_word_seq")
   : ubus_base_sequence(name), start_addr(0), data0(0),
     data1(0), data2(0), data3(0), transmit_del(0)
-  {}
+  {
+	  req = ubus_transfer::type_id::create();
+  }
 
   UVM_OBJECT_UTILS(write_word_seq);
 
@@ -520,8 +571,6 @@ public:
         req.error_pos == 1000;
         req.transmit_delay == transmit_del; } )
     */
-
-    ubus_transfer* req = new ubus_transfer();
 
     // TODO no constraints yet, so we assign the values directly
     req->addr = start_addr;
@@ -552,6 +601,10 @@ public:
     UVM_INFO(get_type_name(), msg.str(), uvm::UVM_HIGH);
   }
 
+  ~write_word_seq()
+  {
+	 ubus_transfer::type_id::destroy(req);
+  }
 }; // class write_word_seq
 
 
@@ -580,11 +633,15 @@ public:
   // TODO constraints
   //constraint transmit_del_ct { (transmit_del <= 10); }
 
+  ubus_transfer* req{nullptr};
+
   write_double_word_seq( const std::string& name = "write_word_seq")
   : ubus_base_sequence(name), start_addr(0), data0(0),
     data1(0), data2(0), data3(0), data4(0),
     data5(0), data6(0), data7(0), transmit_del(0)
-  {}
+  {
+      req = ubus_transfer::type_id::create();
+  }
 
   UVM_OBJECT_UTILS(write_double_word_seq);
 
@@ -602,8 +659,6 @@ public:
         req.error_pos == 1000;
         req.transmit_delay == transmit_del; } )
     */
-
-    ubus_transfer* req = new ubus_transfer();
 
     // TODO no constraints yet, so we assign the values directly
     req->addr = start_addr;
@@ -646,8 +701,11 @@ public:
     UVM_INFO(get_type_name(), msg.str(), uvm::UVM_HIGH);
   }
 
+  ~write_double_word_seq()
+  {
+	  ubus_transfer::type_id::destroy(req);
+  }
 }; // class write_double_word_seq
 
 
 #endif /* UBUS_MASTER_SEQ_LIB_H_ */
-

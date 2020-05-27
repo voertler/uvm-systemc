@@ -1,5 +1,8 @@
 //----------------------------------------------------------------------
-//   Copyright 2012-2014 NXP B.V.
+//   Copyright 2014 NXP B.V.
+//   Copyright 2007-2010 Mentor Graphics Corporation
+//   Copyright 2007-2011 Cadence Design Systems, Inc.
+//   Copyright 2010-2011 Synopsys, Inc.
 //   All Rights Reserved Worldwide
 //
 //   Licensed under the Apache License, Version 2.0 (the
@@ -17,23 +20,11 @@
 //   permissions and limitations under the License.
 //----------------------------------------------------------------------
 
-#ifndef MY_SEQUENCER_H_
-#define MY_SEQUENCER_H_
+int pseudo_rand() {
+    /* initial value */
+    static int randval = 42;
 
-#include <systemc>
-#include <tlm.h>
-#include <uvm>
+    randval *= 3;
 
-template <typename REQ = uvm::uvm_sequence_item, typename RSP = REQ>
-class my_sequencer : public uvm::uvm_sequencer<REQ,RSP>
-{
- public:
-  my_sequencer( uvm::uvm_component_name name ) : uvm::uvm_sequencer<REQ,RSP>( name )
-  {
-  }
-
-  UVM_COMPONENT_PARAM_UTILS(my_sequencer<REQ,RSP>);
-
-};
-
-#endif /* MY_SEQUENCER_H_ */
+    return (randval < 0)? -randval : randval;
+}

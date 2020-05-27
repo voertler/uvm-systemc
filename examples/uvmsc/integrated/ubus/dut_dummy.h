@@ -65,8 +65,7 @@ class dut_dummy : public sc_core::sc_module
     ubus_bip("ubus_bip"),
     ubus_data("ubus_data"),
     ubus_wait("ubus_wait"),
-    ubus_error("ubus_error"),
-    state(0)
+    ubus_error("ubus_error")
   {
     SC_THREAD(proc0); //@(posedge ubus_clock or posedge ubus_reset)
 

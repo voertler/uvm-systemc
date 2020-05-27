@@ -21,22 +21,10 @@ include $(srcdir)/simple/factory/basic/test.am
 include $(srcdir)/simple/hello_world/test.am
 include $(srcdir)/simple/objections/basic/test.am
 include $(srcdir)/simple/phases/basic/test.am
-include $(srcdir)/simple/phases/jump/test.am
-include $(srcdir)/simple/phases/runtime/test.am
 include $(srcdir)/simple/phases/timeout/test.am
-include $(srcdir)/simple/producer_consumer/basic/test.am
-include $(srcdir)/simple/producer_consumer/override/test.am
 include $(srcdir)/simple/registers/models/aliasing/test.am
 include $(srcdir)/simple/registers/models/ro_wo_same_addr/test.am
-include $(srcdir)/simple/reporting/error/test.am
-include $(srcdir)/simple/reporting/info/test.am
-include $(srcdir)/simple/reporting/warning/test.am
-include $(srcdir)/simple/scoreboard/basic/test.am
-include $(srcdir)/simple/sequence/arbitration/test.am
 include $(srcdir)/simple/sequence/basic_read_write_sequence/test.am
-include $(srcdir)/simple/sequence/basic_read_write_sequence_tlm1/test.am
-include $(srcdir)/simple/sequence/basic_read_write_sequence_try/test.am
-include $(srcdir)/simple/sequence/sequence_lock_grab/test.am
 include $(srcdir)/simple/tlm1/bidir/test.am
 include $(srcdir)/simple/tlm1/hierarchy/test.am
 include $(srcdir)/simple/tlm1/producer_consumer/test.am
@@ -49,11 +37,8 @@ examples_DIRS += \
 				 simple/factory \
 				 simple/objections \
 				 simple/phases \
-				 simple/producer_consumer \
 				 simple/registers/models \
 				 simple/registers \
-				 simple/reporting \
-				 simple/scoreboard \
 				 simple/sequence \
 				 simple/tlm1 \
 				 simple \
