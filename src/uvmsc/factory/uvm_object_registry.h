@@ -322,7 +322,7 @@ void uvm_object_registry<T>::destroy( T* obj )
     msg << "Could not destroy object of type '" << obj->get_type_name()
         << "', name=" << obj->get_name()
         << " from factory";
-    uvm_report_error("FCTTYP", msg.str(), UVM_NONE);
+    uvm_report_warning("FCTTYP", msg.str(), UVM_NONE);
     return;
   }
   
