@@ -790,6 +790,8 @@ void uvm_reg_field::write( uvm_status_e& status,
    do_write(rw);
 
    status = rw->status;
+
+   uvm_reg_item::type_id::destroy(rw);
 }
 
 //----------------------------------------------------------------------
@@ -851,6 +853,8 @@ void uvm_reg_field::read( uvm_status_e& status, // output
 
   value = rw->value[0];
   status = rw->status;
+  
+  uvm_reg_item::type_id::destroy(rw);
 }
 
 
@@ -1184,6 +1188,7 @@ bool uvm_reg_field::predict( uvm_reg_data_t value,
   rw->map = map;
   rw->fname = fname;
   rw->lineno = lineno;
+  rw->status = UVM_NOT_OK;
 
   do_predict(rw, kind, be);
 

@@ -1,7 +1,7 @@
 UVM-SystemC Release Notes
 =========================
 
-October 30, 2019
+May 28, 2020
 
 License
 -------
@@ -257,4 +257,3 @@ TLM-2.0 classes                   X
 
 Command line interface 
     uvm_cmdline_processor         X
-

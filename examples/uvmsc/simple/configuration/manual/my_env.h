@@ -1,5 +1,4 @@
 //----------------------------------------------------------------------
-//   Copyright 2019 COSEDA Technologies GmbH
 //   Copyright 2012-2014 NXP B.V.
 //   Copyright 2009 Cadence Design Systems, Inc.
 //   All Rights Reserved Worldwide
@@ -31,13 +30,13 @@ class my_env : public uvm::uvm_env
 {
  public:
 
-  int debug = 0;
-  A* inst1 = nullptr;
-  B* inst2 = nullptr;
+  int debug;
+  A* inst1;
+  B* inst2;
 
   UVM_COMPONENT_UTILS(my_env);
 
-  my_env(uvm::uvm_component_name name) : uvm::uvm_env(name)
+  my_env(uvm::uvm_component_name name) : uvm::uvm_env(name), debug(0)
   {}
 
   void build_phase(uvm::uvm_phase& phase)

@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2016-2019 NXP B.V.
+//   Copyright 2016-2020 NXP B.V.
 //   Copyright 2007-2010 Mentor Graphics Corporation
 //   Copyright 2007-2011 Cadence Design Systems, Inc.
 //   Copyright 2010 Synopsys, Inc.
@@ -226,12 +226,15 @@ class read_modify_write_seq : public ubus_base_sequence
  public:
   read_modify_write_seq(const std::string& name = "read_modify_write_seq")
   : ubus_base_sequence(name)
-  {}
+  {
+	  read_byte_seq0 = read_byte_seq::type_id::create();
+	  write_byte_seq0 = write_byte_seq::type_id::create();
+  }
 
   UVM_OBJECT_UTILS(read_modify_write_seq);
 
-  read_byte_seq*  read_byte_seq0;
-  write_byte_seq* write_byte_seq0;
+  read_byte_seq*  read_byte_seq0 {nullptr};
+  write_byte_seq* write_byte_seq0 {nullptr};
 
   /* rand */ sc_dt::sc_uint<16> addr_check;
   sc_dt::sc_uint<8> m_data0_check;
@@ -257,7 +260,6 @@ class read_modify_write_seq : public ubus_base_sequence
     UVM_DO_WITH(read_byte_seq0,
       { read_byte_seq0.start_addr == addr_check; } )
 */
-    read_byte_seq0 = new read_byte_seq();
 
     read_byte_seq0->start_addr = 0x1111;
     read_byte_seq0->transmit_del = 0;
@@ -267,7 +269,6 @@ class read_modify_write_seq : public ubus_base_sequence
     addr_check = read_byte_seq0->rsp->addr;
     m_data0_check = read_byte_seq0->rsp->data[0] + 1;
 
-    write_byte_seq0 = new write_byte_seq();
 
     write_byte_seq0->start_addr = addr_check;
     write_byte_seq0->data0 = m_data0_check;
@@ -275,8 +276,6 @@ class read_modify_write_seq : public ubus_base_sequence
     write_byte_seq0->start(m_sequencer);
 
     // review read sequence
-    delete read_byte_seq0;
-    read_byte_seq0 = new read_byte_seq();
 
     read_byte_seq0->start_addr = addr_check;
 
@@ -293,9 +292,10 @@ class read_modify_write_seq : public ubus_base_sequence
           << " ACT: " << read_byte_seq0->rsp->data[0];
       UVM_ERROR(get_type_name(), str.str());
     }
+    read_byte_seq::type_id::destroy(read_byte_seq0);
+    write_byte_seq::type_id::destroy(write_byte_seq0);
 
     UVM_INFO(get_type_name(), "sequence finished.", uvm::UVM_MEDIUM);
-
   }
 }; // class read_modify_write_seq
 

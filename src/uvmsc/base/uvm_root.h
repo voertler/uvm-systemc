@@ -95,6 +95,8 @@ class uvm_root : public uvm_component
   // Implementation-defined member functions below,
   // not part of UVM Class reference / LRM
   /////////////////////////////////////////////////////
+  
+  bool get_phase_all_done();
 
   ~uvm_root(); // destructor
 
@@ -126,6 +128,8 @@ class uvm_root : public uvm_component
                            uvm_component* comp = NULL );
 
   void m_register_test( const std::string& test_name );
+
+  void m_unregister_test( const std::string& test_name );
 
 
   // data members

@@ -28,8 +28,11 @@
 
 #include <map>
 #include <algorithm>
+#include <random>
 
 #include "ubus.h"
+
+#define SEED 12345
 
 //------------------------------------------------------------------------------
 //
@@ -41,10 +44,13 @@ class simple_response_seq : public uvm::uvm_sequence<ubus_transfer>
 {
  public:
   ubus_slave_sequencer* p_sequencer;
-   
+  ubus_transfer* req{nullptr};
+
   simple_response_seq( const std::string& name = "simple_response_seq")
   : uvm::uvm_sequence<ubus_transfer>(name)
-  {}
+  {
+      req = ubus_transfer::type_id::create();
+  }
   
   UVM_OBJECT_UTILS(simple_response_seq);
   
@@ -66,8 +72,6 @@ class simple_response_seq : public uvm::uvm_sequence<ubus_transfer>
       if (p != NULL)
           p->raise_objection(this);
 
-      ubus_transfer* req = new ubus_transfer();
-
       // TODO no constraints yet, so we assign the values directly
       req->read_write = util_transfer.read_write;
       req->size       = util_transfer.size;
@@ -79,6 +83,11 @@ class simple_response_seq : public uvm::uvm_sequence<ubus_transfer>
       if (p != NULL)
           p->drop_objection(this);
     }
+  }
+
+  ~simple_response_seq()
+  {
+	  ubus_transfer::type_id::destroy(req);
   }
 
  private:
@@ -98,8 +107,9 @@ class slave_memory_seq : public uvm::uvm_sequence<ubus_transfer>
  public:
 
   slave_memory_seq( const std::string& name = "slave_memory_seq" )
-  : uvm::uvm_sequence<ubus_transfer>(name)
-  {}
+  : uvm::uvm_sequence<ubus_transfer>(name), rng(SEED), dist(0, 255)
+  {
+  }
 
   UVM_OBJECT_UTILS(slave_memory_seq);
 
@@ -127,7 +137,7 @@ class slave_memory_seq : public uvm::uvm_sequence<ubus_transfer>
       if( req->read_write == READ )
       {
         if (m_mem.find(util_transfer.addr + i) == m_mem.end()) // not exists
-          m_mem[util_transfer.addr + i] = std::rand();
+          m_mem[util_transfer.addr + i] = dist(rng);
 
         req->data[i] = m_mem[util_transfer.addr + i];
       }
@@ -169,13 +179,23 @@ class slave_memory_seq : public uvm::uvm_sequence<ubus_transfer>
       this->finish_item(req);
       if (p != NULL)
           p->drop_objection(this);
+
+
     }
+  }
+
+  ~slave_memory_seq()
+  {
+    ubus_transfer::type_id::destroy(req); // delete sequence from memory
   }
 
  private:
   std::map<unsigned int, unsigned int> m_mem;
-  ubus_transfer* req;
+  ubus_transfer* req{nullptr};
   ubus_transfer util_transfer;
+
+  std::mt19937 rng;
+  std::uniform_int_distribution<int> dist;
 
 }; // class slave_memory_seq
 

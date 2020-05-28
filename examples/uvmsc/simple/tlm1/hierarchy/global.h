@@ -1,6 +1,8 @@
 //----------------------------------------------------------------------
-//   Copyright 2009 Cadence Design Systems, Inc.
-//   Copyright 2012-2014 NXP B.V.
+//   Copyright 2014 NXP B.V.
+//   Copyright 2007-2010 Mentor Graphics Corporation
+//   Copyright 2007-2011 Cadence Design Systems, Inc.
+//   Copyright 2010-2011 Synopsys, Inc.
 //   All Rights Reserved Worldwide
 //
 //   Licensed under the Apache License, Version 2.0 (the
@@ -18,15 +20,11 @@
 //   permissions and limitations under the License.
 //----------------------------------------------------------------------
 
-#include "top.h"
+int pseudo_rand() {
+    /* initial value */
+    static int randval = 42;
 
-int sc_main(int, char*[]) 
-{  
-  top* topenv = new top("topenv");
+    randval *= 3;
 
-  uvm::run_test();
-
-  delete topenv;
-
-  return 0;
+    return (randval < 0)? -randval : randval;
 }

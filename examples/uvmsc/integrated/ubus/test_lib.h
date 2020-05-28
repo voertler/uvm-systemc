@@ -38,8 +38,8 @@ public:
 
   UVM_COMPONENT_UTILS(ubus_example_base_test);
 
-  ubus_example_tb* ubus_example_tb0;
-  uvm::uvm_table_printer* printer;
+  ubus_example_tb* ubus_example_tb0 {nullptr};
+  uvm::uvm_table_printer* printer {nullptr};
   bool test_pass;
 
   ubus_example_base_test( uvm::uvm_component_name name = "ubus_example_base_test")
@@ -97,6 +97,11 @@ public:
     {
       UVM_ERROR(get_type_name(), "** UVM TEST FAIL **");
     }
+  }
+
+  void final_phase(uvm::uvm_phase& phase)
+  {
+    delete printer;
   }
 
 }; // class ubus_example_base_test
@@ -167,8 +172,6 @@ public:
 
   virtual void build_phase(uvm::uvm_phase& phase)
   {
-    loop_read_modify_write_seq* lrmw_seq;
-
     // Overides to the ubus_example_tb build_phase()
     // Set the topology to 2 masters, 4 slaves
     uvm::uvm_config_db<int>::set(this, "ubus_example_tb0.ubus0",
@@ -188,7 +191,7 @@ public:
       "default_sequence",
       loop_read_modify_write_seq::type_id::get() );
 
-    lrmw_seq = loop_read_modify_write_seq::type_id::create();
+    lrmw_seq = loop_read_modify_write_seq::type_id::create("loop_read_modify_write_seq");
 
     uvm::uvm_config_db<uvm::uvm_sequence_base*>::set(this,
       "ubus_example_tb0.ubus0.masters[1].sequencer.main_phase",
@@ -232,6 +235,14 @@ public:
 
     ubus_example_base_test::end_of_elaboration_phase(phase);
   }
+
+  virtual void final_phase(uvm::uvm_phase& phase)
+  {
+    loop_read_modify_write_seq::type_id::destroy(lrmw_seq); // clean-up
+  }
+
+ private:
+  loop_read_modify_write_seq* lrmw_seq{nullptr};
 
 }; // class test_2m_4s
 
