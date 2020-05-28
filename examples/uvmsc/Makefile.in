@@ -60,22 +60,10 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(srcdir)/simple/hello_world/test.am \
 	$(srcdir)/simple/objections/basic/test.am \
 	$(srcdir)/simple/phases/basic/test.am \
-	$(srcdir)/simple/phases/jump/test.am \
-	$(srcdir)/simple/phases/runtime/test.am \
 	$(srcdir)/simple/phases/timeout/test.am \
-	$(srcdir)/simple/producer_consumer/basic/test.am \
-	$(srcdir)/simple/producer_consumer/override/test.am \
 	$(srcdir)/simple/registers/models/aliasing/test.am \
 	$(srcdir)/simple/registers/models/ro_wo_same_addr/test.am \
-	$(srcdir)/simple/reporting/error/test.am \
-	$(srcdir)/simple/reporting/info/test.am \
-	$(srcdir)/simple/reporting/warning/test.am \
-	$(srcdir)/simple/scoreboard/basic/test.am \
-	$(srcdir)/simple/sequence/arbitration/test.am \
 	$(srcdir)/simple/sequence/basic_read_write_sequence/test.am \
-	$(srcdir)/simple/sequence/basic_read_write_sequence_tlm1/test.am \
-	$(srcdir)/simple/sequence/basic_read_write_sequence_try/test.am \
-	$(srcdir)/simple/sequence/sequence_lock_grab/test.am \
 	$(srcdir)/simple/tlm1/bidir/test.am \
 	$(srcdir)/simple/tlm1/hierarchy/test.am \
 	$(srcdir)/simple/tlm1/producer_consumer/test.am \
@@ -111,22 +99,10 @@ am__EXEEXT_1 = simple/callbacks/basic/test$(EXEEXT) \
 	simple/hello_world/test$(EXEEXT) \
 	simple/objections/basic/test$(EXEEXT) \
 	simple/phases/basic/test$(EXEEXT) \
-	simple/phases/jump/test$(EXEEXT) \
-	simple/phases/runtime/test$(EXEEXT) \
 	simple/phases/timeout/test$(EXEEXT) \
-	simple/producer_consumer/basic/test$(EXEEXT) \
-	simple/producer_consumer/override/test$(EXEEXT) \
 	simple/registers/models/aliasing/test$(EXEEXT) \
 	simple/registers/models/ro_wo_same_addr/test$(EXEEXT) \
-	simple/reporting/error/test$(EXEEXT) \
-	simple/reporting/info/test$(EXEEXT) \
-	simple/reporting/warning/test$(EXEEXT) \
-	simple/scoreboard/basic/test$(EXEEXT) \
-	simple/sequence/arbitration/test$(EXEEXT) \
 	simple/sequence/basic_read_write_sequence/test$(EXEEXT) \
-	simple/sequence/basic_read_write_sequence_tlm1/test$(EXEEXT) \
-	simple/sequence/basic_read_write_sequence_try/test$(EXEEXT) \
-	simple/sequence/sequence_lock_grab/test$(EXEEXT) \
 	simple/tlm1/bidir/test$(EXEEXT) \
 	simple/tlm1/hierarchy/test$(EXEEXT) \
 	simple/tlm1/producer_consumer/test$(EXEEXT) \
@@ -199,159 +175,64 @@ simple_phases_basic_test_OBJECTS =  \
 simple_phases_basic_test_LDADD = $(LDADD)
 simple_phases_basic_test_DEPENDENCIES =  \
 	$(top_builddir)/src/libuvm-systemc.la
-am__objects_9 = simple/phases/jump/test.$(OBJEXT)
-am_simple_phases_jump_test_OBJECTS = $(am__objects_1) $(am__objects_9)
-simple_phases_jump_test_OBJECTS =  \
-	$(am_simple_phases_jump_test_OBJECTS)
-simple_phases_jump_test_LDADD = $(LDADD)
-simple_phases_jump_test_DEPENDENCIES =  \
-	$(top_builddir)/src/libuvm-systemc.la
-am__objects_10 = simple/phases/runtime/test.$(OBJEXT)
-am_simple_phases_runtime_test_OBJECTS = $(am__objects_1) \
-	$(am__objects_10)
-simple_phases_runtime_test_OBJECTS =  \
-	$(am_simple_phases_runtime_test_OBJECTS)
-simple_phases_runtime_test_LDADD = $(LDADD)
-simple_phases_runtime_test_DEPENDENCIES =  \
-	$(top_builddir)/src/libuvm-systemc.la
-am__objects_11 = simple/phases/timeout/test.$(OBJEXT)
+am__objects_9 = simple/phases/timeout/test.$(OBJEXT)
 am_simple_phases_timeout_test_OBJECTS = $(am__objects_1) \
-	$(am__objects_11)
+	$(am__objects_9)
 simple_phases_timeout_test_OBJECTS =  \
 	$(am_simple_phases_timeout_test_OBJECTS)
 simple_phases_timeout_test_LDADD = $(LDADD)
 simple_phases_timeout_test_DEPENDENCIES =  \
 	$(top_builddir)/src/libuvm-systemc.la
-am__objects_12 = simple/producer_consumer/basic/sc_main.$(OBJEXT)
-am_simple_producer_consumer_basic_test_OBJECTS = $(am__objects_1) \
-	$(am__objects_12)
-simple_producer_consumer_basic_test_OBJECTS =  \
-	$(am_simple_producer_consumer_basic_test_OBJECTS)
-simple_producer_consumer_basic_test_LDADD = $(LDADD)
-simple_producer_consumer_basic_test_DEPENDENCIES =  \
-	$(top_builddir)/src/libuvm-systemc.la
-am__objects_13 = simple/producer_consumer/override/sc_main.$(OBJEXT)
-am_simple_producer_consumer_override_test_OBJECTS = $(am__objects_1) \
-	$(am__objects_13)
-simple_producer_consumer_override_test_OBJECTS =  \
-	$(am_simple_producer_consumer_override_test_OBJECTS)
-simple_producer_consumer_override_test_LDADD = $(LDADD)
-simple_producer_consumer_override_test_DEPENDENCIES =  \
-	$(top_builddir)/src/libuvm-systemc.la
-am__objects_14 = simple/registers/models/aliasing/sc_main.$(OBJEXT)
+am__objects_10 = simple/registers/models/aliasing/sc_main.$(OBJEXT)
 am_simple_registers_models_aliasing_test_OBJECTS = $(am__objects_1) \
-	$(am__objects_14)
+	$(am__objects_10)
 simple_registers_models_aliasing_test_OBJECTS =  \
 	$(am_simple_registers_models_aliasing_test_OBJECTS)
 simple_registers_models_aliasing_test_LDADD = $(LDADD)
 simple_registers_models_aliasing_test_DEPENDENCIES =  \
 	$(top_builddir)/src/libuvm-systemc.la
-am__objects_15 =  \
+am__objects_11 =  \
 	simple/registers/models/ro_wo_same_addr/sc_main.$(OBJEXT)
 am_simple_registers_models_ro_wo_same_addr_test_OBJECTS =  \
-	$(am__objects_1) $(am__objects_15)
+	$(am__objects_1) $(am__objects_11)
 simple_registers_models_ro_wo_same_addr_test_OBJECTS =  \
 	$(am_simple_registers_models_ro_wo_same_addr_test_OBJECTS)
 simple_registers_models_ro_wo_same_addr_test_LDADD = $(LDADD)
 simple_registers_models_ro_wo_same_addr_test_DEPENDENCIES =  \
 	$(top_builddir)/src/libuvm-systemc.la
-am__objects_16 = simple/reporting/error/sc_main.$(OBJEXT)
-am_simple_reporting_error_test_OBJECTS = $(am__objects_1) \
-	$(am__objects_16)
-simple_reporting_error_test_OBJECTS =  \
-	$(am_simple_reporting_error_test_OBJECTS)
-simple_reporting_error_test_LDADD = $(LDADD)
-simple_reporting_error_test_DEPENDENCIES =  \
-	$(top_builddir)/src/libuvm-systemc.la
-am__objects_17 = simple/reporting/info/sc_main.$(OBJEXT)
-am_simple_reporting_info_test_OBJECTS = $(am__objects_1) \
-	$(am__objects_17)
-simple_reporting_info_test_OBJECTS =  \
-	$(am_simple_reporting_info_test_OBJECTS)
-simple_reporting_info_test_LDADD = $(LDADD)
-simple_reporting_info_test_DEPENDENCIES =  \
-	$(top_builddir)/src/libuvm-systemc.la
-am__objects_18 = simple/reporting/warning/sc_main.$(OBJEXT)
-am_simple_reporting_warning_test_OBJECTS = $(am__objects_1) \
-	$(am__objects_18)
-simple_reporting_warning_test_OBJECTS =  \
-	$(am_simple_reporting_warning_test_OBJECTS)
-simple_reporting_warning_test_LDADD = $(LDADD)
-simple_reporting_warning_test_DEPENDENCIES =  \
-	$(top_builddir)/src/libuvm-systemc.la
-am__objects_19 = simple/scoreboard/basic/sc_main.$(OBJEXT) \
-	simple/scoreboard/basic/rcv_subscriber.$(OBJEXT) \
-	simple/scoreboard/basic/xmt_subscriber.$(OBJEXT)
-am_simple_scoreboard_basic_test_OBJECTS = $(am__objects_1) \
-	$(am__objects_19)
-simple_scoreboard_basic_test_OBJECTS =  \
-	$(am_simple_scoreboard_basic_test_OBJECTS)
-simple_scoreboard_basic_test_LDADD = $(LDADD)
-simple_scoreboard_basic_test_DEPENDENCIES =  \
-	$(top_builddir)/src/libuvm-systemc.la
-am__objects_20 = simple/sequence/arbitration/sc_main.$(OBJEXT)
-am_simple_sequence_arbitration_test_OBJECTS = $(am__objects_1) \
-	$(am__objects_20)
-simple_sequence_arbitration_test_OBJECTS =  \
-	$(am_simple_sequence_arbitration_test_OBJECTS)
-simple_sequence_arbitration_test_LDADD = $(LDADD)
-simple_sequence_arbitration_test_DEPENDENCIES =  \
-	$(top_builddir)/src/libuvm-systemc.la
-am__objects_21 =  \
+am__objects_12 =  \
 	simple/sequence/basic_read_write_sequence/sc_main.$(OBJEXT)
 am_simple_sequence_basic_read_write_sequence_test_OBJECTS =  \
-	$(am__objects_1) $(am__objects_21)
+	$(am__objects_1) $(am__objects_12)
 simple_sequence_basic_read_write_sequence_test_OBJECTS =  \
 	$(am_simple_sequence_basic_read_write_sequence_test_OBJECTS)
 simple_sequence_basic_read_write_sequence_test_LDADD = $(LDADD)
 simple_sequence_basic_read_write_sequence_test_DEPENDENCIES =  \
 	$(top_builddir)/src/libuvm-systemc.la
-am__objects_22 = simple/sequence/basic_read_write_sequence_tlm1/sc_main.$(OBJEXT)
-am_simple_sequence_basic_read_write_sequence_tlm1_test_OBJECTS =  \
-	$(am__objects_1) $(am__objects_22)
-simple_sequence_basic_read_write_sequence_tlm1_test_OBJECTS = $(am_simple_sequence_basic_read_write_sequence_tlm1_test_OBJECTS)
-simple_sequence_basic_read_write_sequence_tlm1_test_LDADD = $(LDADD)
-simple_sequence_basic_read_write_sequence_tlm1_test_DEPENDENCIES =  \
-	$(top_builddir)/src/libuvm-systemc.la
-am__objects_23 = simple/sequence/basic_read_write_sequence_try/sc_main.$(OBJEXT)
-am_simple_sequence_basic_read_write_sequence_try_test_OBJECTS =  \
-	$(am__objects_1) $(am__objects_23)
-simple_sequence_basic_read_write_sequence_try_test_OBJECTS = $(am_simple_sequence_basic_read_write_sequence_try_test_OBJECTS)
-simple_sequence_basic_read_write_sequence_try_test_LDADD = $(LDADD)
-simple_sequence_basic_read_write_sequence_try_test_DEPENDENCIES =  \
-	$(top_builddir)/src/libuvm-systemc.la
-am__objects_24 = simple/sequence/sequence_lock_grab/sc_main.$(OBJEXT)
-am_simple_sequence_sequence_lock_grab_test_OBJECTS = $(am__objects_1) \
-	$(am__objects_24)
-simple_sequence_sequence_lock_grab_test_OBJECTS =  \
-	$(am_simple_sequence_sequence_lock_grab_test_OBJECTS)
-simple_sequence_sequence_lock_grab_test_LDADD = $(LDADD)
-simple_sequence_sequence_lock_grab_test_DEPENDENCIES =  \
-	$(top_builddir)/src/libuvm-systemc.la
-am__objects_25 = simple/tlm1/bidir/sc_main.$(OBJEXT)
-am_simple_tlm1_bidir_test_OBJECTS = $(am__objects_1) $(am__objects_25)
+am__objects_13 = simple/tlm1/bidir/sc_main.$(OBJEXT)
+am_simple_tlm1_bidir_test_OBJECTS = $(am__objects_1) $(am__objects_13)
 simple_tlm1_bidir_test_OBJECTS = $(am_simple_tlm1_bidir_test_OBJECTS)
 simple_tlm1_bidir_test_LDADD = $(LDADD)
 simple_tlm1_bidir_test_DEPENDENCIES =  \
 	$(top_builddir)/src/libuvm-systemc.la
-am__objects_26 = simple/tlm1/hierarchy/sc_main.$(OBJEXT)
+am__objects_14 = simple/tlm1/hierarchy/sc_main.$(OBJEXT)
 am_simple_tlm1_hierarchy_test_OBJECTS = $(am__objects_1) \
-	$(am__objects_26)
+	$(am__objects_14)
 simple_tlm1_hierarchy_test_OBJECTS =  \
 	$(am_simple_tlm1_hierarchy_test_OBJECTS)
 simple_tlm1_hierarchy_test_LDADD = $(LDADD)
 simple_tlm1_hierarchy_test_DEPENDENCIES =  \
 	$(top_builddir)/src/libuvm-systemc.la
-am__objects_27 = simple/tlm1/producer_consumer/sc_main.$(OBJEXT)
+am__objects_15 = simple/tlm1/producer_consumer/sc_main.$(OBJEXT)
 am_simple_tlm1_producer_consumer_test_OBJECTS = $(am__objects_1) \
-	$(am__objects_27)
+	$(am__objects_15)
 simple_tlm1_producer_consumer_test_OBJECTS =  \
 	$(am_simple_tlm1_producer_consumer_test_OBJECTS)
 simple_tlm1_producer_consumer_test_LDADD = $(LDADD)
 simple_tlm1_producer_consumer_test_DEPENDENCIES =  \
 	$(top_builddir)/src/libuvm-systemc.la
-am__objects_28 = simple/trivial/sc_main.$(OBJEXT)
-am_simple_trivial_test_OBJECTS = $(am__objects_1) $(am__objects_28)
+am__objects_16 = simple/trivial/sc_main.$(OBJEXT)
+am_simple_trivial_test_OBJECTS = $(am__objects_1) $(am__objects_16)
 simple_trivial_test_OBJECTS = $(am_simple_trivial_test_OBJECTS)
 simple_trivial_test_LDADD = $(LDADD)
 simple_trivial_test_DEPENDENCIES =  \
@@ -405,22 +286,10 @@ SOURCES = $(integrated_ubus_test_SOURCES) \
 	$(simple_hello_world_test_SOURCES) \
 	$(simple_objections_basic_test_SOURCES) \
 	$(simple_phases_basic_test_SOURCES) \
-	$(simple_phases_jump_test_SOURCES) \
-	$(simple_phases_runtime_test_SOURCES) \
 	$(simple_phases_timeout_test_SOURCES) \
-	$(simple_producer_consumer_basic_test_SOURCES) \
-	$(simple_producer_consumer_override_test_SOURCES) \
 	$(simple_registers_models_aliasing_test_SOURCES) \
 	$(simple_registers_models_ro_wo_same_addr_test_SOURCES) \
-	$(simple_reporting_error_test_SOURCES) \
-	$(simple_reporting_info_test_SOURCES) \
-	$(simple_reporting_warning_test_SOURCES) \
-	$(simple_scoreboard_basic_test_SOURCES) \
-	$(simple_sequence_arbitration_test_SOURCES) \
 	$(simple_sequence_basic_read_write_sequence_test_SOURCES) \
-	$(simple_sequence_basic_read_write_sequence_tlm1_test_SOURCES) \
-	$(simple_sequence_basic_read_write_sequence_try_test_SOURCES) \
-	$(simple_sequence_sequence_lock_grab_test_SOURCES) \
 	$(simple_tlm1_bidir_test_SOURCES) \
 	$(simple_tlm1_hierarchy_test_SOURCES) \
 	$(simple_tlm1_producer_consumer_test_SOURCES) \
@@ -432,22 +301,10 @@ DIST_SOURCES = $(integrated_ubus_test_SOURCES) \
 	$(simple_hello_world_test_SOURCES) \
 	$(simple_objections_basic_test_SOURCES) \
 	$(simple_phases_basic_test_SOURCES) \
-	$(simple_phases_jump_test_SOURCES) \
-	$(simple_phases_runtime_test_SOURCES) \
 	$(simple_phases_timeout_test_SOURCES) \
-	$(simple_producer_consumer_basic_test_SOURCES) \
-	$(simple_producer_consumer_override_test_SOURCES) \
 	$(simple_registers_models_aliasing_test_SOURCES) \
 	$(simple_registers_models_ro_wo_same_addr_test_SOURCES) \
-	$(simple_reporting_error_test_SOURCES) \
-	$(simple_reporting_info_test_SOURCES) \
-	$(simple_reporting_warning_test_SOURCES) \
-	$(simple_scoreboard_basic_test_SOURCES) \
-	$(simple_sequence_arbitration_test_SOURCES) \
 	$(simple_sequence_basic_read_write_sequence_test_SOURCES) \
-	$(simple_sequence_basic_read_write_sequence_tlm1_test_SOURCES) \
-	$(simple_sequence_basic_read_write_sequence_try_test_SOURCES) \
-	$(simple_sequence_sequence_lock_grab_test_SOURCES) \
 	$(simple_tlm1_bidir_test_SOURCES) \
 	$(simple_tlm1_hierarchy_test_SOURCES) \
 	$(simple_tlm1_producer_consumer_test_SOURCES) \
@@ -656,20 +513,10 @@ examples_BUILD = $(simple_callbacks_basic_BUILD) \
 	$(simple_configuration_manual_BUILD) \
 	$(simple_factory_basic_BUILD) $(simple_hello_world_BUILD) \
 	$(simple_objections_basic_BUILD) $(simple_phases_basic_BUILD) \
-	$(simple_phases_jump_BUILD) $(simple_phases_runtime_BUILD) \
 	$(simple_phases_timeout_BUILD) \
-	$(simple_producer_consumer_basic_BUILD) \
-	$(simple_producer_consumer_override_BUILD) \
 	$(simple_registers_models_aliasing_BUILD) \
 	$(simple_registers_models_ro_wo_same_addr_BUILD) \
-	$(simple_reporting_error_BUILD) $(simple_reporting_info_BUILD) \
-	$(simple_reporting_warning_BUILD) \
-	$(simple_scoreboard_basic_BUILD) \
-	$(simple_sequence_arbitration_BUILD) \
 	$(simple_sequence_basic_read_write_sequence_BUILD) \
-	$(simple_sequence_basic_read_write_sequence_tlm1_BUILD) \
-	$(simple_sequence_basic_read_write_sequence_try_BUILD) \
-	$(simple_sequence_sequence_lock_grab_BUILD) \
 	$(simple_tlm1_bidir_BUILD) $(simple_tlm1_hierarchy_BUILD) \
 	$(simple_tlm1_producer_consumer_BUILD) $(simple_trivial_BUILD) \
 	$(integrated_ubus_BUILD)
@@ -678,25 +525,15 @@ examples_CLEAN =
 # include simple tests
 examples_DIRS = simple/callbacks/basic simple/configuration/manual \
 	simple/factory/basic simple/hello_world \
-	simple/objections/basic simple/phases/basic simple/phases/jump \
-	simple/phases/runtime simple/phases/timeout \
-	simple/producer_consumer/basic \
-	simple/producer_consumer/override \
-	simple/registers/models/aliasing \
-	simple/registers/models/ro_wo_same_addr simple/reporting/error \
-	simple/reporting/info simple/reporting/warning \
-	simple/scoreboard/basic simple/sequence/arbitration \
-	simple/sequence/basic_read_write_sequence \
-	simple/sequence/basic_read_write_sequence_tlm1 \
-	simple/sequence/basic_read_write_sequence_try \
-	simple/sequence/sequence_lock_grab simple/tlm1/bidir \
+	simple/objections/basic simple/phases/basic \
+	simple/phases/timeout simple/registers/models/aliasing \
+	simple/registers/models/ro_wo_same_addr \
+	simple/sequence/basic_read_write_sequence simple/tlm1/bidir \
 	simple/tlm1/hierarchy simple/tlm1/producer_consumer \
 	simple/trivial integrated/ubus/vip integrated/ubus \
 	simple/callbacks simple/configuration simple/factory \
-	simple/objections simple/phases simple/producer_consumer \
-	simple/registers/models simple/registers simple/reporting \
-	simple/scoreboard simple/sequence simple/tlm1 simple \
-	integrated
+	simple/objections simple/phases simple/registers/models \
+	simple/registers simple/sequence simple/tlm1 simple integrated
 examples_FILES = $(simple_callbacks_basic_H_FILES) \
 	$(simple_callbacks_basic_CXX_FILES) \
 	$(simple_callbacks_basic_BUILD) \
@@ -716,22 +553,9 @@ examples_FILES = $(simple_callbacks_basic_H_FILES) \
 	$(simple_objections_basic_EXTRA) \
 	$(simple_phases_basic_H_FILES) \
 	$(simple_phases_basic_CXX_FILES) $(simple_phases_basic_BUILD) \
-	$(simple_phases_basic_EXTRA) $(simple_phases_jump_H_FILES) \
-	$(simple_phases_jump_CXX_FILES) $(simple_phases_jump_BUILD) \
-	$(simple_phases_jump_EXTRA) $(simple_phases_runtime_H_FILES) \
-	$(simple_phases_runtime_CXX_FILES) \
-	$(simple_phases_runtime_BUILD) $(simple_phases_runtime_EXTRA) \
-	$(simple_phases_timeout_H_FILES) \
+	$(simple_phases_basic_EXTRA) $(simple_phases_timeout_H_FILES) \
 	$(simple_phases_timeout_CXX_FILES) \
 	$(simple_phases_timeout_BUILD) $(simple_phases_timeout_EXTRA) \
-	$(simple_producer_consumer_basic_H_FILES) \
-	$(simple_producer_consumer_basic_CXX_FILES) \
-	$(simple_producer_consumer_basic_BUILD) \
-	$(simple_producer_consumer_basic_EXTRA) \
-	$(simple_producer_consumer_override_H_FILES) \
-	$(simple_producer_consumer_override_CXX_FILES) \
-	$(simple_producer_consumer_override_BUILD) \
-	$(simple_producer_consumer_override_EXTRA) \
 	$(simple_registers_models_aliasing_H_FILES) \
 	$(simple_registers_models_aliasing_CXX_FILES) \
 	$(simple_registers_models_aliasing_BUILD) \
@@ -740,41 +564,10 @@ examples_FILES = $(simple_callbacks_basic_H_FILES) \
 	$(simple_registers_models_ro_wo_same_addr_CXX_FILES) \
 	$(simple_registers_models_ro_wo_same_addr_BUILD) \
 	$(simple_registers_models_ro_wo_same_addr_EXTRA) \
-	$(simple_reporting_error_H_FILES) \
-	$(simple_reporting_error_CXX_FILES) \
-	$(simple_reporting_error_BUILD) \
-	$(simple_reporting_error_EXTRA) \
-	$(simple_reporting_info_H_FILES) \
-	$(simple_reporting_info_CXX_FILES) \
-	$(simple_reporting_info_BUILD) $(simple_reporting_info_EXTRA) \
-	$(simple_reporting_warning_H_FILES) \
-	$(simple_reporting_warning_CXX_FILES) \
-	$(simple_reporting_warning_BUILD) \
-	$(simple_reporting_warning_EXTRA) \
-	$(simple_scoreboard_basic_H_FILES) \
-	$(simple_scoreboard_basic_CXX_FILES) \
-	$(simple_scoreboard_basic_BUILD) \
-	$(simple_scoreboard_basic_EXTRA) \
-	$(simple_sequence_arbitration_H_FILES) \
-	$(simple_sequence_arbitration_CXX_FILES) \
-	$(simple_sequence_arbitration_BUILD) \
-	$(simple_sequence_arbitration_EXTRA) \
 	$(simple_sequence_basic_read_write_sequence_H_FILES) \
 	$(simple_sequence_basic_read_write_sequence_CXX_FILES) \
 	$(simple_sequence_basic_read_write_sequence_BUILD) \
 	$(simple_sequence_basic_read_write_sequence_EXTRA) \
-	$(simple_sequence_basic_read_write_sequence_tlm1_H_FILES) \
-	$(simple_sequence_basic_read_write_sequence_tlm1_CXX_FILES) \
-	$(simple_sequence_basic_read_write_sequence_tlm1_BUILD) \
-	$(simple_sequence_basic_read_write_sequence_tlm1_EXTRA) \
-	$(simple_sequence_basic_read_write_sequence_try_H_FILES) \
-	$(simple_sequence_basic_read_write_sequence_try_CXX_FILES) \
-	$(simple_sequence_basic_read_write_sequence_try_BUILD) \
-	$(simple_sequence_basic_read_write_sequence_try_EXTRA) \
-	$(simple_sequence_sequence_lock_grab_H_FILES) \
-	$(simple_sequence_sequence_lock_grab_CXX_FILES) \
-	$(simple_sequence_sequence_lock_grab_BUILD) \
-	$(simple_sequence_sequence_lock_grab_EXTRA) \
 	$(simple_tlm1_bidir_H_FILES) $(simple_tlm1_bidir_CXX_FILES) \
 	$(simple_tlm1_bidir_BUILD) $(simple_tlm1_bidir_EXTRA) \
 	$(simple_tlm1_hierarchy_H_FILES) \
@@ -791,21 +584,13 @@ examples_FILES = $(simple_callbacks_basic_H_FILES) \
 examples_TESTS = simple/callbacks/basic/test \
 	simple/configuration/manual/test simple/factory/basic/test \
 	simple/hello_world/test simple/objections/basic/test \
-	simple/phases/basic/test simple/phases/jump/test \
-	simple/phases/runtime/test simple/phases/timeout/test \
-	simple/producer_consumer/basic/test \
-	simple/producer_consumer/override/test \
+	simple/phases/basic/test simple/phases/timeout/test \
 	simple/registers/models/aliasing/test \
 	simple/registers/models/ro_wo_same_addr/test \
-	simple/reporting/error/test simple/reporting/info/test \
-	simple/reporting/warning/test simple/scoreboard/basic/test \
-	simple/sequence/arbitration/test \
 	simple/sequence/basic_read_write_sequence/test \
-	simple/sequence/basic_read_write_sequence_tlm1/test \
-	simple/sequence/basic_read_write_sequence_try/test \
-	simple/sequence/sequence_lock_grab/test simple/tlm1/bidir/test \
-	simple/tlm1/hierarchy/test simple/tlm1/producer_consumer/test \
-	simple/trivial/test integrated/ubus/test
+	simple/tlm1/bidir/test simple/tlm1/hierarchy/test \
+	simple/tlm1/producer_consumer/test simple/trivial/test \
+	integrated/ubus/test
 examples_XFAIL_TESTS = simple/phases/timeout/test
 simple_callbacks_basic_test_SOURCES = \
 	$(simple_callbacks_basic_H_FILES) \
@@ -891,26 +676,6 @@ simple_phases_basic_CXX_FILES = \
 simple_phases_basic_H_FILES = 
 simple_phases_basic_BUILD = 
 simple_phases_basic_EXTRA = 
-simple_phases_jump_test_SOURCES = \
-	$(simple_phases_jump_H_FILES) \
-	$(simple_phases_jump_CXX_FILES)
-
-simple_phases_jump_CXX_FILES = \
-	simple/phases/jump/test.cpp
-
-simple_phases_jump_H_FILES = 
-simple_phases_jump_BUILD = 
-simple_phases_jump_EXTRA = 
-simple_phases_runtime_test_SOURCES = \
-	$(simple_phases_runtime_H_FILES) \
-	$(simple_phases_runtime_CXX_FILES)
-
-simple_phases_runtime_CXX_FILES = \
-	simple/phases/runtime/test.cpp
-
-simple_phases_runtime_H_FILES = 
-simple_phases_runtime_BUILD = 
-simple_phases_runtime_EXTRA = 
 simple_phases_timeout_test_SOURCES = \
 	$(simple_phases_timeout_H_FILES) \
 	$(simple_phases_timeout_CXX_FILES)
@@ -924,39 +689,6 @@ simple_phases_timeout_H_FILES = \
 
 simple_phases_timeout_BUILD = 
 simple_phases_timeout_EXTRA = 
-simple_producer_consumer_basic_test_SOURCES = \
-	$(simple_producer_consumer_basic_H_FILES) \
-	$(simple_producer_consumer_basic_CXX_FILES)
-
-simple_producer_consumer_basic_CXX_FILES = \
-	simple/producer_consumer/basic/sc_main.cpp
-
-simple_producer_consumer_basic_H_FILES = \
-	simple/producer_consumer/basic/config.h \
-	simple/producer_consumer/basic/consumer.h \
-	simple/producer_consumer/basic/packet.h \
-	simple/producer_consumer/basic/producer.h \
-	simple/producer_consumer/basic/top.h
-
-simple_producer_consumer_basic_BUILD = 
-simple_producer_consumer_basic_EXTRA = 
-simple_producer_consumer_override_test_SOURCES = \
-	$(simple_producer_consumer_override_H_FILES) \
-	$(simple_producer_consumer_override_CXX_FILES)
-
-simple_producer_consumer_override_CXX_FILES = \
-	simple/producer_consumer/override/sc_main.cpp
-
-simple_producer_consumer_override_H_FILES = \
-	simple/producer_consumer/override/consumer.h \
-	simple/producer_consumer/override/fifo_consumer.h \
-	simple/producer_consumer/override/packet.h \
-	simple/producer_consumer/override/producer.h \
-	simple/producer_consumer/override/parent_component.h \
-	simple/producer_consumer/override/top.h
-
-simple_producer_consumer_override_BUILD = 
-simple_producer_consumer_override_EXTRA = 
 simple_registers_models_aliasing_test_SOURCES = \
 	$(simple_registers_models_aliasing_H_FILES) \
 	$(simple_registers_models_aliasing_CXX_FILES)
@@ -987,78 +719,6 @@ simple_registers_models_ro_wo_same_addr_H_FILES = \
 
 simple_registers_models_ro_wo_same_addr_BUILD = 
 simple_registers_models_ro_wo_same_addr_EXTRA = 
-simple_reporting_error_test_SOURCES = \
-	$(simple_reporting_error_H_FILES) \
-	$(simple_reporting_error_CXX_FILES)
-
-simple_reporting_error_CXX_FILES = \
-	simple/reporting/error/sc_main.cpp
-
-simple_reporting_error_H_FILES = 
-simple_reporting_error_BUILD = 
-simple_reporting_error_EXTRA = 
-simple_reporting_info_test_SOURCES = \
-	$(simple_reporting_info_H_FILES) \
-	$(simple_reporting_info_CXX_FILES)
-
-simple_reporting_info_CXX_FILES = \
-	simple/reporting/info/sc_main.cpp
-
-simple_reporting_info_H_FILES = 
-simple_reporting_info_BUILD = 
-simple_reporting_info_EXTRA = 
-simple_reporting_warning_test_SOURCES = \
-	$(simple_reporting_warning_H_FILES) \
-	$(simple_reporting_warning_CXX_FILES)
-
-simple_reporting_warning_CXX_FILES = \
-	simple/reporting/warning/sc_main.cpp
-
-simple_reporting_warning_H_FILES = 
-simple_reporting_warning_BUILD = 
-simple_reporting_warning_EXTRA = 
-simple_scoreboard_basic_test_SOURCES = \
-	$(simple_scoreboard_basic_H_FILES) \
-	$(simple_scoreboard_basic_CXX_FILES)
-
-simple_scoreboard_basic_CXX_FILES = \
-	simple/scoreboard/basic/sc_main.cpp \
-	simple/scoreboard/basic/rcv_subscriber.cpp \
-	simple/scoreboard/basic/xmt_subscriber.cpp
-
-simple_scoreboard_basic_H_FILES = \
-	simple/scoreboard/basic/dut.h \
-	simple/scoreboard/basic/rcv_subscriber.h \
-	simple/scoreboard/basic/scoreboard.h \
-	simple/scoreboard/basic/sequence.h \
-	simple/scoreboard/basic/testbench.h \
-	simple/scoreboard/basic/xmt_subscriber.h \
-	simple/scoreboard/basic/vip_agent.h \
-	simple/scoreboard/basic/vip_driver.h \
-	simple/scoreboard/basic/vip_if.h \
-	simple/scoreboard/basic/vip_monitor.h \
-	simple/scoreboard/basic/vip_packet.h \
-	simple/scoreboard/basic/vip_sequencer.h
-
-simple_scoreboard_basic_BUILD = 
-simple_scoreboard_basic_EXTRA = 
-simple_sequence_arbitration_test_SOURCES = \
-	$(simple_sequence_arbitration_H_FILES) \
-	$(simple_sequence_arbitration_CXX_FILES)
-
-simple_sequence_arbitration_CXX_FILES = \
-	simple/sequence/arbitration/sc_main.cpp
-
-simple_sequence_arbitration_H_FILES = \
-	simple/sequence/arbitration/arb_example_seq.h \
-	simple/sequence/arbitration/arb_seq.h \
-	simple/sequence/arbitration/arb_test.h \
-	simple/sequence/arbitration/seq_arb_driver.h \
-	simple/sequence/arbitration/seq_arb_item.h \
-	simple/sequence/arbitration/seq_arb_sequencer.h
-
-simple_sequence_arbitration_BUILD = 
-simple_sequence_arbitration_EXTRA = 
 simple_sequence_basic_read_write_sequence_test_SOURCES = \
 	$(simple_sequence_basic_read_write_sequence_H_FILES) \
 	$(simple_sequence_basic_read_write_sequence_CXX_FILES)
@@ -1076,59 +736,6 @@ simple_sequence_basic_read_write_sequence_H_FILES = \
 
 simple_sequence_basic_read_write_sequence_BUILD = 
 simple_sequence_basic_read_write_sequence_EXTRA = 
-simple_sequence_basic_read_write_sequence_tlm1_test_SOURCES = \
-	$(simple_sequence_basic_read_write_sequence_tlm1_H_FILES) \
-	$(simple_sequence_basic_read_write_sequence_tlm1_CXX_FILES)
-
-simple_sequence_basic_read_write_sequence_tlm1_CXX_FILES = \
-	simple/sequence/basic_read_write_sequence_tlm1/sc_main.cpp
-
-simple_sequence_basic_read_write_sequence_tlm1_H_FILES = \
-	simple/sequence/basic_read_write_sequence_tlm1/bus_trans.h \
-	simple/sequence/basic_read_write_sequence_tlm1/constants.h \
-	simple/sequence/basic_read_write_sequence_tlm1/env.h \
-	simple/sequence/basic_read_write_sequence_tlm1/my_driver.h \
-	simple/sequence/basic_read_write_sequence_tlm1/my_sequencer.h \
-	simple/sequence/basic_read_write_sequence_tlm1/sequenceA.h
-
-simple_sequence_basic_read_write_sequence_tlm1_BUILD = 
-simple_sequence_basic_read_write_sequence_tlm1_EXTRA = 
-simple_sequence_basic_read_write_sequence_try_test_SOURCES = \
-	$(simple_sequence_basic_read_write_sequence_try_H_FILES) \
-	$(simple_sequence_basic_read_write_sequence_try_CXX_FILES)
-
-simple_sequence_basic_read_write_sequence_try_CXX_FILES = \
-	simple/sequence/basic_read_write_sequence_try/sc_main.cpp
-
-simple_sequence_basic_read_write_sequence_try_H_FILES = \
-	simple/sequence/basic_read_write_sequence_try/bus_trans.h \
-	simple/sequence/basic_read_write_sequence_try/constants.h \
-	simple/sequence/basic_read_write_sequence_try/env.h \
-	simple/sequence/basic_read_write_sequence_try/my_driver.h \
-	simple/sequence/basic_read_write_sequence_try/my_sequencer.h \
-	simple/sequence/basic_read_write_sequence_try/sequenceA.h
-
-simple_sequence_basic_read_write_sequence_try_BUILD = 
-simple_sequence_basic_read_write_sequence_try_EXTRA = 
-simple_sequence_sequence_lock_grab_test_SOURCES = \
-	$(simple_sequence_sequence_lock_grab_H_FILES) \
-	$(simple_sequence_sequence_lock_grab_CXX_FILES)
-
-simple_sequence_sequence_lock_grab_CXX_FILES = \
-	simple/sequence/sequence_lock_grab/sc_main.cpp
-
-simple_sequence_sequence_lock_grab_H_FILES = \
-	simple/sequence/sequence_lock_grab/arb_example_seq.h \
-	simple/sequence/sequence_lock_grab/arb_seq.h \
-	simple/sequence/sequence_lock_grab/arb_test.h \
-	simple/sequence/sequence_lock_grab/grab_seq.h \
-	simple/sequence/sequence_lock_grab/lock_seq.h \
-	simple/sequence/sequence_lock_grab/seq_arb_driver.h \
-	simple/sequence/sequence_lock_grab/seq_arb_item.h \
-	simple/sequence/sequence_lock_grab/seq_arb_sequencer.h
-
-simple_sequence_sequence_lock_grab_BUILD = 
-simple_sequence_sequence_lock_grab_EXTRA = 
 simple_tlm1_bidir_test_SOURCES = \
 	$(simple_tlm1_bidir_H_FILES) \
 	$(simple_tlm1_bidir_CXX_FILES)
@@ -1231,7 +838,7 @@ all: all-am
 
 .SUFFIXES:
 .SUFFIXES: .cpp .lo .o .obj
-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am $(top_srcdir)/config/Make-rules.examples $(top_srcdir)/config/Make-rules $(srcdir)/simple/callbacks/basic/test.am $(srcdir)/simple/configuration/manual/test.am $(srcdir)/simple/factory/basic/test.am $(srcdir)/simple/hello_world/test.am $(srcdir)/simple/objections/basic/test.am $(srcdir)/simple/phases/basic/test.am $(srcdir)/simple/phases/jump/test.am $(srcdir)/simple/phases/runtime/test.am $(srcdir)/simple/phases/timeout/test.am $(srcdir)/simple/producer_consumer/basic/test.am $(srcdir)/simple/producer_consumer/override/test.am $(srcdir)/simple/registers/models/aliasing/test.am $(srcdir)/simple/registers/models/ro_wo_same_addr/test.am $(srcdir)/simple/reporting/error/test.am $(srcdir)/simple/reporting/info/test.am $(srcdir)/simple/reporting/warning/test.am $(srcdir)/simple/scoreboard/basic/test.am $(srcdir)/simple/sequence/arbitration/test.am $(srcdir)/simple/sequence/basic_read_write_sequence/test.am $(srcdir)/simple/sequence/basic_read_write_sequence_tlm1/test.am $(srcdir)/simple/sequence/basic_read_write_sequence_try/test.am $(srcdir)/simple/sequence/sequence_lock_grab/test.am $(srcdir)/simple/tlm1/bidir/test.am $(srcdir)/simple/tlm1/hierarchy/test.am $(srcdir)/simple/tlm1/producer_consumer/test.am $(srcdir)/simple/trivial/test.am $(srcdir)/integrated/ubus/test.am $(am__configure_deps)
+$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am $(top_srcdir)/config/Make-rules.examples $(top_srcdir)/config/Make-rules $(srcdir)/simple/callbacks/basic/test.am $(srcdir)/simple/configuration/manual/test.am $(srcdir)/simple/factory/basic/test.am $(srcdir)/simple/hello_world/test.am $(srcdir)/simple/objections/basic/test.am $(srcdir)/simple/phases/basic/test.am $(srcdir)/simple/phases/timeout/test.am $(srcdir)/simple/registers/models/aliasing/test.am $(srcdir)/simple/registers/models/ro_wo_same_addr/test.am $(srcdir)/simple/sequence/basic_read_write_sequence/test.am $(srcdir)/simple/tlm1/bidir/test.am $(srcdir)/simple/tlm1/hierarchy/test.am $(srcdir)/simple/tlm1/producer_consumer/test.am $(srcdir)/simple/trivial/test.am $(srcdir)/integrated/ubus/test.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -1252,7 +859,7 @@ Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	    echo ' cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@ $(am__depfiles_maybe)'; \
 	    cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@ $(am__depfiles_maybe);; \
 	esac;
-$(top_srcdir)/config/Make-rules.examples $(top_srcdir)/config/Make-rules $(srcdir)/simple/callbacks/basic/test.am $(srcdir)/simple/configuration/manual/test.am $(srcdir)/simple/factory/basic/test.am $(srcdir)/simple/hello_world/test.am $(srcdir)/simple/objections/basic/test.am $(srcdir)/simple/phases/basic/test.am $(srcdir)/simple/phases/jump/test.am $(srcdir)/simple/phases/runtime/test.am $(srcdir)/simple/phases/timeout/test.am $(srcdir)/simple/producer_consumer/basic/test.am $(srcdir)/simple/producer_consumer/override/test.am $(srcdir)/simple/registers/models/aliasing/test.am $(srcdir)/simple/registers/models/ro_wo_same_addr/test.am $(srcdir)/simple/reporting/error/test.am $(srcdir)/simple/reporting/info/test.am $(srcdir)/simple/reporting/warning/test.am $(srcdir)/simple/scoreboard/basic/test.am $(srcdir)/simple/sequence/arbitration/test.am $(srcdir)/simple/sequence/basic_read_write_sequence/test.am $(srcdir)/simple/sequence/basic_read_write_sequence_tlm1/test.am $(srcdir)/simple/sequence/basic_read_write_sequence_try/test.am $(srcdir)/simple/sequence/sequence_lock_grab/test.am $(srcdir)/simple/tlm1/bidir/test.am $(srcdir)/simple/tlm1/hierarchy/test.am $(srcdir)/simple/tlm1/producer_consumer/test.am $(srcdir)/simple/trivial/test.am $(srcdir)/integrated/ubus/test.am:
+$(top_srcdir)/config/Make-rules.examples $(top_srcdir)/config/Make-rules $(srcdir)/simple/callbacks/basic/test.am $(srcdir)/simple/configuration/manual/test.am $(srcdir)/simple/factory/basic/test.am $(srcdir)/simple/hello_world/test.am $(srcdir)/simple/objections/basic/test.am $(srcdir)/simple/phases/basic/test.am $(srcdir)/simple/phases/timeout/test.am $(srcdir)/simple/registers/models/aliasing/test.am $(srcdir)/simple/registers/models/ro_wo_same_addr/test.am $(srcdir)/simple/sequence/basic_read_write_sequence/test.am $(srcdir)/simple/tlm1/bidir/test.am $(srcdir)/simple/tlm1/hierarchy/test.am $(srcdir)/simple/tlm1/producer_consumer/test.am $(srcdir)/simple/trivial/test.am $(srcdir)/integrated/ubus/test.am:
 
 $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
@@ -1390,29 +997,6 @@ simple/phases/basic/test.$(OBJEXT):  \
 simple/phases/basic/test$(EXEEXT): $(simple_phases_basic_test_OBJECTS) $(simple_phases_basic_test_DEPENDENCIES) $(EXTRA_simple_phases_basic_test_DEPENDENCIES) simple/phases/basic/$(am__dirstamp)
 	@rm -f simple/phases/basic/test$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(simple_phases_basic_test_OBJECTS) $(simple_phases_basic_test_LDADD) $(LIBS)
-simple/phases/jump/$(am__dirstamp):
-	@$(MKDIR_P) simple/phases/jump
-	@: > simple/phases/jump/$(am__dirstamp)
-simple/phases/jump/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) simple/phases/jump/$(DEPDIR)
-	@: > simple/phases/jump/$(DEPDIR)/$(am__dirstamp)
-simple/phases/jump/test.$(OBJEXT): simple/phases/jump/$(am__dirstamp) \
-	simple/phases/jump/$(DEPDIR)/$(am__dirstamp)
-simple/phases/jump/test$(EXEEXT): $(simple_phases_jump_test_OBJECTS) $(simple_phases_jump_test_DEPENDENCIES) $(EXTRA_simple_phases_jump_test_DEPENDENCIES) simple/phases/jump/$(am__dirstamp)
-	@rm -f simple/phases/jump/test$(EXEEXT)
-	$(AM_V_CXXLD)$(CXXLINK) $(simple_phases_jump_test_OBJECTS) $(simple_phases_jump_test_LDADD) $(LIBS)
-simple/phases/runtime/$(am__dirstamp):
-	@$(MKDIR_P) simple/phases/runtime
-	@: > simple/phases/runtime/$(am__dirstamp)
-simple/phases/runtime/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) simple/phases/runtime/$(DEPDIR)
-	@: > simple/phases/runtime/$(DEPDIR)/$(am__dirstamp)
-simple/phases/runtime/test.$(OBJEXT):  \
-	simple/phases/runtime/$(am__dirstamp) \
-	simple/phases/runtime/$(DEPDIR)/$(am__dirstamp)
-simple/phases/runtime/test$(EXEEXT): $(simple_phases_runtime_test_OBJECTS) $(simple_phases_runtime_test_DEPENDENCIES) $(EXTRA_simple_phases_runtime_test_DEPENDENCIES) simple/phases/runtime/$(am__dirstamp)
-	@rm -f simple/phases/runtime/test$(EXEEXT)
-	$(AM_V_CXXLD)$(CXXLINK) $(simple_phases_runtime_test_OBJECTS) $(simple_phases_runtime_test_LDADD) $(LIBS)
 simple/phases/timeout/$(am__dirstamp):
 	@$(MKDIR_P) simple/phases/timeout
 	@: > simple/phases/timeout/$(am__dirstamp)
@@ -1425,30 +1009,6 @@ simple/phases/timeout/test.$(OBJEXT):  \
 simple/phases/timeout/test$(EXEEXT): $(simple_phases_timeout_test_OBJECTS) $(simple_phases_timeout_test_DEPENDENCIES) $(EXTRA_simple_phases_timeout_test_DEPENDENCIES) simple/phases/timeout/$(am__dirstamp)
 	@rm -f simple/phases/timeout/test$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(simple_phases_timeout_test_OBJECTS) $(simple_phases_timeout_test_LDADD) $(LIBS)
-simple/producer_consumer/basic/$(am__dirstamp):
-	@$(MKDIR_P) simple/producer_consumer/basic
-	@: > simple/producer_consumer/basic/$(am__dirstamp)
-simple/producer_consumer/basic/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) simple/producer_consumer/basic/$(DEPDIR)
-	@: > simple/producer_consumer/basic/$(DEPDIR)/$(am__dirstamp)
-simple/producer_consumer/basic/sc_main.$(OBJEXT):  \
-	simple/producer_consumer/basic/$(am__dirstamp) \
-	simple/producer_consumer/basic/$(DEPDIR)/$(am__dirstamp)
-simple/producer_consumer/basic/test$(EXEEXT): $(simple_producer_consumer_basic_test_OBJECTS) $(simple_producer_consumer_basic_test_DEPENDENCIES) $(EXTRA_simple_producer_consumer_basic_test_DEPENDENCIES) simple/producer_consumer/basic/$(am__dirstamp)
-	@rm -f simple/producer_consumer/basic/test$(EXEEXT)
-	$(AM_V_CXXLD)$(CXXLINK) $(simple_producer_consumer_basic_test_OBJECTS) $(simple_producer_consumer_basic_test_LDADD) $(LIBS)
-simple/producer_consumer/override/$(am__dirstamp):
-	@$(MKDIR_P) simple/producer_consumer/override
-	@: > simple/producer_consumer/override/$(am__dirstamp)
-simple/producer_consumer/override/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) simple/producer_consumer/override/$(DEPDIR)
-	@: > simple/producer_consumer/override/$(DEPDIR)/$(am__dirstamp)
-simple/producer_consumer/override/sc_main.$(OBJEXT):  \
-	simple/producer_consumer/override/$(am__dirstamp) \
-	simple/producer_consumer/override/$(DEPDIR)/$(am__dirstamp)
-simple/producer_consumer/override/test$(EXEEXT): $(simple_producer_consumer_override_test_OBJECTS) $(simple_producer_consumer_override_test_DEPENDENCIES) $(EXTRA_simple_producer_consumer_override_test_DEPENDENCIES) simple/producer_consumer/override/$(am__dirstamp)
-	@rm -f simple/producer_consumer/override/test$(EXEEXT)
-	$(AM_V_CXXLD)$(CXXLINK) $(simple_producer_consumer_override_test_OBJECTS) $(simple_producer_consumer_override_test_LDADD) $(LIBS)
 simple/registers/models/aliasing/$(am__dirstamp):
 	@$(MKDIR_P) simple/registers/models/aliasing
 	@: > simple/registers/models/aliasing/$(am__dirstamp)
@@ -1473,72 +1033,6 @@ simple/registers/models/ro_wo_same_addr/sc_main.$(OBJEXT):  \
 simple/registers/models/ro_wo_same_addr/test$(EXEEXT): $(simple_registers_models_ro_wo_same_addr_test_OBJECTS) $(simple_registers_models_ro_wo_same_addr_test_DEPENDENCIES) $(EXTRA_simple_registers_models_ro_wo_same_addr_test_DEPENDENCIES) simple/registers/models/ro_wo_same_addr/$(am__dirstamp)
 	@rm -f simple/registers/models/ro_wo_same_addr/test$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(simple_registers_models_ro_wo_same_addr_test_OBJECTS) $(simple_registers_models_ro_wo_same_addr_test_LDADD) $(LIBS)
-simple/reporting/error/$(am__dirstamp):
-	@$(MKDIR_P) simple/reporting/error
-	@: > simple/reporting/error/$(am__dirstamp)
-simple/reporting/error/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) simple/reporting/error/$(DEPDIR)
-	@: > simple/reporting/error/$(DEPDIR)/$(am__dirstamp)
-simple/reporting/error/sc_main.$(OBJEXT):  \
-	simple/reporting/error/$(am__dirstamp) \
-	simple/reporting/error/$(DEPDIR)/$(am__dirstamp)
-simple/reporting/error/test$(EXEEXT): $(simple_reporting_error_test_OBJECTS) $(simple_reporting_error_test_DEPENDENCIES) $(EXTRA_simple_reporting_error_test_DEPENDENCIES) simple/reporting/error/$(am__dirstamp)
-	@rm -f simple/reporting/error/test$(EXEEXT)
-	$(AM_V_CXXLD)$(CXXLINK) $(simple_reporting_error_test_OBJECTS) $(simple_reporting_error_test_LDADD) $(LIBS)
-simple/reporting/info/$(am__dirstamp):
-	@$(MKDIR_P) simple/reporting/info
-	@: > simple/reporting/info/$(am__dirstamp)
-simple/reporting/info/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) simple/reporting/info/$(DEPDIR)
-	@: > simple/reporting/info/$(DEPDIR)/$(am__dirstamp)
-simple/reporting/info/sc_main.$(OBJEXT):  \
-	simple/reporting/info/$(am__dirstamp) \
-	simple/reporting/info/$(DEPDIR)/$(am__dirstamp)
-simple/reporting/info/test$(EXEEXT): $(simple_reporting_info_test_OBJECTS) $(simple_reporting_info_test_DEPENDENCIES) $(EXTRA_simple_reporting_info_test_DEPENDENCIES) simple/reporting/info/$(am__dirstamp)
-	@rm -f simple/reporting/info/test$(EXEEXT)
-	$(AM_V_CXXLD)$(CXXLINK) $(simple_reporting_info_test_OBJECTS) $(simple_reporting_info_test_LDADD) $(LIBS)
-simple/reporting/warning/$(am__dirstamp):
-	@$(MKDIR_P) simple/reporting/warning
-	@: > simple/reporting/warning/$(am__dirstamp)
-simple/reporting/warning/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) simple/reporting/warning/$(DEPDIR)
-	@: > simple/reporting/warning/$(DEPDIR)/$(am__dirstamp)
-simple/reporting/warning/sc_main.$(OBJEXT):  \
-	simple/reporting/warning/$(am__dirstamp) \
-	simple/reporting/warning/$(DEPDIR)/$(am__dirstamp)
-simple/reporting/warning/test$(EXEEXT): $(simple_reporting_warning_test_OBJECTS) $(simple_reporting_warning_test_DEPENDENCIES) $(EXTRA_simple_reporting_warning_test_DEPENDENCIES) simple/reporting/warning/$(am__dirstamp)
-	@rm -f simple/reporting/warning/test$(EXEEXT)
-	$(AM_V_CXXLD)$(CXXLINK) $(simple_reporting_warning_test_OBJECTS) $(simple_reporting_warning_test_LDADD) $(LIBS)
-simple/scoreboard/basic/$(am__dirstamp):
-	@$(MKDIR_P) simple/scoreboard/basic
-	@: > simple/scoreboard/basic/$(am__dirstamp)
-simple/scoreboard/basic/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) simple/scoreboard/basic/$(DEPDIR)
-	@: > simple/scoreboard/basic/$(DEPDIR)/$(am__dirstamp)
-simple/scoreboard/basic/sc_main.$(OBJEXT):  \
-	simple/scoreboard/basic/$(am__dirstamp) \
-	simple/scoreboard/basic/$(DEPDIR)/$(am__dirstamp)
-simple/scoreboard/basic/rcv_subscriber.$(OBJEXT):  \
-	simple/scoreboard/basic/$(am__dirstamp) \
-	simple/scoreboard/basic/$(DEPDIR)/$(am__dirstamp)
-simple/scoreboard/basic/xmt_subscriber.$(OBJEXT):  \
-	simple/scoreboard/basic/$(am__dirstamp) \
-	simple/scoreboard/basic/$(DEPDIR)/$(am__dirstamp)
-simple/scoreboard/basic/test$(EXEEXT): $(simple_scoreboard_basic_test_OBJECTS) $(simple_scoreboard_basic_test_DEPENDENCIES) $(EXTRA_simple_scoreboard_basic_test_DEPENDENCIES) simple/scoreboard/basic/$(am__dirstamp)
-	@rm -f simple/scoreboard/basic/test$(EXEEXT)
-	$(AM_V_CXXLD)$(CXXLINK) $(simple_scoreboard_basic_test_OBJECTS) $(simple_scoreboard_basic_test_LDADD) $(LIBS)
-simple/sequence/arbitration/$(am__dirstamp):
-	@$(MKDIR_P) simple/sequence/arbitration
-	@: > simple/sequence/arbitration/$(am__dirstamp)
-simple/sequence/arbitration/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) simple/sequence/arbitration/$(DEPDIR)
-	@: > simple/sequence/arbitration/$(DEPDIR)/$(am__dirstamp)
-simple/sequence/arbitration/sc_main.$(OBJEXT):  \
-	simple/sequence/arbitration/$(am__dirstamp) \
-	simple/sequence/arbitration/$(DEPDIR)/$(am__dirstamp)
-simple/sequence/arbitration/test$(EXEEXT): $(simple_sequence_arbitration_test_OBJECTS) $(simple_sequence_arbitration_test_DEPENDENCIES) $(EXTRA_simple_sequence_arbitration_test_DEPENDENCIES) simple/sequence/arbitration/$(am__dirstamp)
-	@rm -f simple/sequence/arbitration/test$(EXEEXT)
-	$(AM_V_CXXLD)$(CXXLINK) $(simple_sequence_arbitration_test_OBJECTS) $(simple_sequence_arbitration_test_LDADD) $(LIBS)
 simple/sequence/basic_read_write_sequence/$(am__dirstamp):
 	@$(MKDIR_P) simple/sequence/basic_read_write_sequence
 	@: > simple/sequence/basic_read_write_sequence/$(am__dirstamp)
@@ -1551,41 +1045,6 @@ simple/sequence/basic_read_write_sequence/sc_main.$(OBJEXT):  \
 simple/sequence/basic_read_write_sequence/test$(EXEEXT): $(simple_sequence_basic_read_write_sequence_test_OBJECTS) $(simple_sequence_basic_read_write_sequence_test_DEPENDENCIES) $(EXTRA_simple_sequence_basic_read_write_sequence_test_DEPENDENCIES) simple/sequence/basic_read_write_sequence/$(am__dirstamp)
 	@rm -f simple/sequence/basic_read_write_sequence/test$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(simple_sequence_basic_read_write_sequence_test_OBJECTS) $(simple_sequence_basic_read_write_sequence_test_LDADD) $(LIBS)
-simple/sequence/basic_read_write_sequence_tlm1/$(am__dirstamp):
-	@$(MKDIR_P) simple/sequence/basic_read_write_sequence_tlm1
-	@: > simple/sequence/basic_read_write_sequence_tlm1/$(am__dirstamp)
-simple/sequence/basic_read_write_sequence_tlm1/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) simple/sequence/basic_read_write_sequence_tlm1/$(DEPDIR)
-	@: > simple/sequence/basic_read_write_sequence_tlm1/$(DEPDIR)/$(am__dirstamp)
-simple/sequence/basic_read_write_sequence_tlm1/sc_main.$(OBJEXT): simple/sequence/basic_read_write_sequence_tlm1/$(am__dirstamp) \
-	simple/sequence/basic_read_write_sequence_tlm1/$(DEPDIR)/$(am__dirstamp)
-simple/sequence/basic_read_write_sequence_tlm1/test$(EXEEXT): $(simple_sequence_basic_read_write_sequence_tlm1_test_OBJECTS) $(simple_sequence_basic_read_write_sequence_tlm1_test_DEPENDENCIES) $(EXTRA_simple_sequence_basic_read_write_sequence_tlm1_test_DEPENDENCIES) simple/sequence/basic_read_write_sequence_tlm1/$(am__dirstamp)
-	@rm -f simple/sequence/basic_read_write_sequence_tlm1/test$(EXEEXT)
-	$(AM_V_CXXLD)$(CXXLINK) $(simple_sequence_basic_read_write_sequence_tlm1_test_OBJECTS) $(simple_sequence_basic_read_write_sequence_tlm1_test_LDADD) $(LIBS)
-simple/sequence/basic_read_write_sequence_try/$(am__dirstamp):
-	@$(MKDIR_P) simple/sequence/basic_read_write_sequence_try
-	@: > simple/sequence/basic_read_write_sequence_try/$(am__dirstamp)
-simple/sequence/basic_read_write_sequence_try/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) simple/sequence/basic_read_write_sequence_try/$(DEPDIR)
-	@: > simple/sequence/basic_read_write_sequence_try/$(DEPDIR)/$(am__dirstamp)
-simple/sequence/basic_read_write_sequence_try/sc_main.$(OBJEXT):  \
-	simple/sequence/basic_read_write_sequence_try/$(am__dirstamp) \
-	simple/sequence/basic_read_write_sequence_try/$(DEPDIR)/$(am__dirstamp)
-simple/sequence/basic_read_write_sequence_try/test$(EXEEXT): $(simple_sequence_basic_read_write_sequence_try_test_OBJECTS) $(simple_sequence_basic_read_write_sequence_try_test_DEPENDENCIES) $(EXTRA_simple_sequence_basic_read_write_sequence_try_test_DEPENDENCIES) simple/sequence/basic_read_write_sequence_try/$(am__dirstamp)
-	@rm -f simple/sequence/basic_read_write_sequence_try/test$(EXEEXT)
-	$(AM_V_CXXLD)$(CXXLINK) $(simple_sequence_basic_read_write_sequence_try_test_OBJECTS) $(simple_sequence_basic_read_write_sequence_try_test_LDADD) $(LIBS)
-simple/sequence/sequence_lock_grab/$(am__dirstamp):
-	@$(MKDIR_P) simple/sequence/sequence_lock_grab
-	@: > simple/sequence/sequence_lock_grab/$(am__dirstamp)
-simple/sequence/sequence_lock_grab/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) simple/sequence/sequence_lock_grab/$(DEPDIR)
-	@: > simple/sequence/sequence_lock_grab/$(DEPDIR)/$(am__dirstamp)
-simple/sequence/sequence_lock_grab/sc_main.$(OBJEXT):  \
-	simple/sequence/sequence_lock_grab/$(am__dirstamp) \
-	simple/sequence/sequence_lock_grab/$(DEPDIR)/$(am__dirstamp)
-simple/sequence/sequence_lock_grab/test$(EXEEXT): $(simple_sequence_sequence_lock_grab_test_OBJECTS) $(simple_sequence_sequence_lock_grab_test_DEPENDENCIES) $(EXTRA_simple_sequence_sequence_lock_grab_test_DEPENDENCIES) simple/sequence/sequence_lock_grab/$(am__dirstamp)
-	@rm -f simple/sequence/sequence_lock_grab/test$(EXEEXT)
-	$(AM_V_CXXLD)$(CXXLINK) $(simple_sequence_sequence_lock_grab_test_OBJECTS) $(simple_sequence_sequence_lock_grab_test_LDADD) $(LIBS)
 simple/tlm1/bidir/$(am__dirstamp):
 	@$(MKDIR_P) simple/tlm1/bidir
 	@: > simple/tlm1/bidir/$(am__dirstamp)
@@ -1653,24 +1112,10 @@ mostlyclean-compile:
 	-rm -f simple/hello_world/hello_world.$(OBJEXT)
 	-rm -f simple/objections/basic/test.$(OBJEXT)
 	-rm -f simple/phases/basic/test.$(OBJEXT)
-	-rm -f simple/phases/jump/test.$(OBJEXT)
-	-rm -f simple/phases/runtime/test.$(OBJEXT)
 	-rm -f simple/phases/timeout/test.$(OBJEXT)
-	-rm -f simple/producer_consumer/basic/sc_main.$(OBJEXT)
-	-rm -f simple/producer_consumer/override/sc_main.$(OBJEXT)
 	-rm -f simple/registers/models/aliasing/sc_main.$(OBJEXT)
 	-rm -f simple/registers/models/ro_wo_same_addr/sc_main.$(OBJEXT)
-	-rm -f simple/reporting/error/sc_main.$(OBJEXT)
-	-rm -f simple/reporting/info/sc_main.$(OBJEXT)
-	-rm -f simple/reporting/warning/sc_main.$(OBJEXT)
-	-rm -f simple/scoreboard/basic/rcv_subscriber.$(OBJEXT)
-	-rm -f simple/scoreboard/basic/sc_main.$(OBJEXT)
-	-rm -f simple/scoreboard/basic/xmt_subscriber.$(OBJEXT)
-	-rm -f simple/sequence/arbitration/sc_main.$(OBJEXT)
 	-rm -f simple/sequence/basic_read_write_sequence/sc_main.$(OBJEXT)
-	-rm -f simple/sequence/basic_read_write_sequence_tlm1/sc_main.$(OBJEXT)
-	-rm -f simple/sequence/basic_read_write_sequence_try/sc_main.$(OBJEXT)
-	-rm -f simple/sequence/sequence_lock_grab/sc_main.$(OBJEXT)
 	-rm -f simple/tlm1/bidir/sc_main.$(OBJEXT)
 	-rm -f simple/tlm1/hierarchy/sc_main.$(OBJEXT)
 	-rm -f simple/tlm1/producer_consumer/sc_main.$(OBJEXT)
@@ -1696,24 +1141,10 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@simple/hello_world/$(DEPDIR)/hello_world.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@simple/objections/basic/$(DEPDIR)/test.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@simple/phases/basic/$(DEPDIR)/test.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@simple/phases/jump/$(DEPDIR)/test.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@simple/phases/runtime/$(DEPDIR)/test.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@simple/phases/timeout/$(DEPDIR)/test.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@simple/producer_consumer/basic/$(DEPDIR)/sc_main.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@simple/producer_consumer/override/$(DEPDIR)/sc_main.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@simple/registers/models/aliasing/$(DEPDIR)/sc_main.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@simple/registers/models/ro_wo_same_addr/$(DEPDIR)/sc_main.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@simple/reporting/error/$(DEPDIR)/sc_main.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@simple/reporting/info/$(DEPDIR)/sc_main.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@simple/reporting/warning/$(DEPDIR)/sc_main.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@simple/scoreboard/basic/$(DEPDIR)/rcv_subscriber.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@simple/scoreboard/basic/$(DEPDIR)/sc_main.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@simple/scoreboard/basic/$(DEPDIR)/xmt_subscriber.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@simple/sequence/arbitration/$(DEPDIR)/sc_main.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@simple/sequence/basic_read_write_sequence/$(DEPDIR)/sc_main.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@simple/sequence/basic_read_write_sequence_tlm1/$(DEPDIR)/sc_main.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@simple/sequence/basic_read_write_sequence_try/$(DEPDIR)/sc_main.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@simple/sequence/sequence_lock_grab/$(DEPDIR)/sc_main.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@simple/tlm1/bidir/$(DEPDIR)/sc_main.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@simple/tlm1/hierarchy/$(DEPDIR)/sc_main.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@simple/tlm1/producer_consumer/$(DEPDIR)/sc_main.Po@am__quote@
@@ -1755,22 +1186,10 @@ clean-libtool:
 	-rm -rf simple/hello_world/.libs simple/hello_world/_libs
 	-rm -rf simple/objections/basic/.libs simple/objections/basic/_libs
 	-rm -rf simple/phases/basic/.libs simple/phases/basic/_libs
-	-rm -rf simple/phases/jump/.libs simple/phases/jump/_libs
-	-rm -rf simple/phases/runtime/.libs simple/phases/runtime/_libs
 	-rm -rf simple/phases/timeout/.libs simple/phases/timeout/_libs
-	-rm -rf simple/producer_consumer/basic/.libs simple/producer_consumer/basic/_libs
-	-rm -rf simple/producer_consumer/override/.libs simple/producer_consumer/override/_libs
 	-rm -rf simple/registers/models/aliasing/.libs simple/registers/models/aliasing/_libs
 	-rm -rf simple/registers/models/ro_wo_same_addr/.libs simple/registers/models/ro_wo_same_addr/_libs
-	-rm -rf simple/reporting/error/.libs simple/reporting/error/_libs
-	-rm -rf simple/reporting/info/.libs simple/reporting/info/_libs
-	-rm -rf simple/reporting/warning/.libs simple/reporting/warning/_libs
-	-rm -rf simple/scoreboard/basic/.libs simple/scoreboard/basic/_libs
-	-rm -rf simple/sequence/arbitration/.libs simple/sequence/arbitration/_libs
 	-rm -rf simple/sequence/basic_read_write_sequence/.libs simple/sequence/basic_read_write_sequence/_libs
-	-rm -rf simple/sequence/basic_read_write_sequence_tlm1/.libs simple/sequence/basic_read_write_sequence_tlm1/_libs
-	-rm -rf simple/sequence/basic_read_write_sequence_try/.libs simple/sequence/basic_read_write_sequence_try/_libs
-	-rm -rf simple/sequence/sequence_lock_grab/.libs simple/sequence/sequence_lock_grab/_libs
 	-rm -rf simple/tlm1/bidir/.libs simple/tlm1/bidir/_libs
 	-rm -rf simple/tlm1/hierarchy/.libs simple/tlm1/hierarchy/_libs
 	-rm -rf simple/tlm1/producer_consumer/.libs simple/tlm1/producer_consumer/_libs
@@ -2027,38 +1446,14 @@ distclean-generic:
 	-rm -f simple/objections/basic/$(am__dirstamp)
 	-rm -f simple/phases/basic/$(DEPDIR)/$(am__dirstamp)
 	-rm -f simple/phases/basic/$(am__dirstamp)
-	-rm -f simple/phases/jump/$(DEPDIR)/$(am__dirstamp)
-	-rm -f simple/phases/jump/$(am__dirstamp)
-	-rm -f simple/phases/runtime/$(DEPDIR)/$(am__dirstamp)
-	-rm -f simple/phases/runtime/$(am__dirstamp)
 	-rm -f simple/phases/timeout/$(DEPDIR)/$(am__dirstamp)
 	-rm -f simple/phases/timeout/$(am__dirstamp)
-	-rm -f simple/producer_consumer/basic/$(DEPDIR)/$(am__dirstamp)
-	-rm -f simple/producer_consumer/basic/$(am__dirstamp)
-	-rm -f simple/producer_consumer/override/$(DEPDIR)/$(am__dirstamp)
-	-rm -f simple/producer_consumer/override/$(am__dirstamp)
 	-rm -f simple/registers/models/aliasing/$(DEPDIR)/$(am__dirstamp)
 	-rm -f simple/registers/models/aliasing/$(am__dirstamp)
 	-rm -f simple/registers/models/ro_wo_same_addr/$(DEPDIR)/$(am__dirstamp)
 	-rm -f simple/registers/models/ro_wo_same_addr/$(am__dirstamp)
-	-rm -f simple/reporting/error/$(DEPDIR)/$(am__dirstamp)
-	-rm -f simple/reporting/error/$(am__dirstamp)
-	-rm -f simple/reporting/info/$(DEPDIR)/$(am__dirstamp)
-	-rm -f simple/reporting/info/$(am__dirstamp)
-	-rm -f simple/reporting/warning/$(DEPDIR)/$(am__dirstamp)
-	-rm -f simple/reporting/warning/$(am__dirstamp)
-	-rm -f simple/scoreboard/basic/$(DEPDIR)/$(am__dirstamp)
-	-rm -f simple/scoreboard/basic/$(am__dirstamp)
-	-rm -f simple/sequence/arbitration/$(DEPDIR)/$(am__dirstamp)
-	-rm -f simple/sequence/arbitration/$(am__dirstamp)
 	-rm -f simple/sequence/basic_read_write_sequence/$(DEPDIR)/$(am__dirstamp)
 	-rm -f simple/sequence/basic_read_write_sequence/$(am__dirstamp)
-	-rm -f simple/sequence/basic_read_write_sequence_tlm1/$(DEPDIR)/$(am__dirstamp)
-	-rm -f simple/sequence/basic_read_write_sequence_tlm1/$(am__dirstamp)
-	-rm -f simple/sequence/basic_read_write_sequence_try/$(DEPDIR)/$(am__dirstamp)
-	-rm -f simple/sequence/basic_read_write_sequence_try/$(am__dirstamp)
-	-rm -f simple/sequence/sequence_lock_grab/$(DEPDIR)/$(am__dirstamp)
-	-rm -f simple/sequence/sequence_lock_grab/$(am__dirstamp)
 	-rm -f simple/tlm1/bidir/$(DEPDIR)/$(am__dirstamp)
 	-rm -f simple/tlm1/bidir/$(am__dirstamp)
 	-rm -f simple/tlm1/hierarchy/$(DEPDIR)/$(am__dirstamp)
@@ -2078,7 +1473,7 @@ clean-am: clean-checkPROGRAMS clean-generic clean-libtool \
 	mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf integrated/ubus/$(DEPDIR) integrated/ubus/vip/$(DEPDIR) simple/callbacks/basic/$(DEPDIR) simple/configuration/manual/$(DEPDIR) simple/factory/basic/$(DEPDIR) simple/hello_world/$(DEPDIR) simple/objections/basic/$(DEPDIR) simple/phases/basic/$(DEPDIR) simple/phases/jump/$(DEPDIR) simple/phases/runtime/$(DEPDIR) simple/phases/timeout/$(DEPDIR) simple/producer_consumer/basic/$(DEPDIR) simple/producer_consumer/override/$(DEPDIR) simple/registers/models/aliasing/$(DEPDIR) simple/registers/models/ro_wo_same_addr/$(DEPDIR) simple/reporting/error/$(DEPDIR) simple/reporting/info/$(DEPDIR) simple/reporting/warning/$(DEPDIR) simple/scoreboard/basic/$(DEPDIR) simple/sequence/arbitration/$(DEPDIR) simple/sequence/basic_read_write_sequence/$(DEPDIR) simple/sequence/basic_read_write_sequence_tlm1/$(DEPDIR) simple/sequence/basic_read_write_sequence_try/$(DEPDIR) simple/sequence/sequence_lock_grab/$(DEPDIR) simple/tlm1/bidir/$(DEPDIR) simple/tlm1/hierarchy/$(DEPDIR) simple/tlm1/producer_consumer/$(DEPDIR) simple/trivial/$(DEPDIR)
+	-rm -rf integrated/ubus/$(DEPDIR) integrated/ubus/vip/$(DEPDIR) simple/callbacks/basic/$(DEPDIR) simple/configuration/manual/$(DEPDIR) simple/factory/basic/$(DEPDIR) simple/hello_world/$(DEPDIR) simple/objections/basic/$(DEPDIR) simple/phases/basic/$(DEPDIR) simple/phases/timeout/$(DEPDIR) simple/registers/models/aliasing/$(DEPDIR) simple/registers/models/ro_wo_same_addr/$(DEPDIR) simple/sequence/basic_read_write_sequence/$(DEPDIR) simple/tlm1/bidir/$(DEPDIR) simple/tlm1/hierarchy/$(DEPDIR) simple/tlm1/producer_consumer/$(DEPDIR) simple/trivial/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -2124,7 +1519,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf integrated/ubus/$(DEPDIR) integrated/ubus/vip/$(DEPDIR) simple/callbacks/basic/$(DEPDIR) simple/configuration/manual/$(DEPDIR) simple/factory/basic/$(DEPDIR) simple/hello_world/$(DEPDIR) simple/objections/basic/$(DEPDIR) simple/phases/basic/$(DEPDIR) simple/phases/jump/$(DEPDIR) simple/phases/runtime/$(DEPDIR) simple/phases/timeout/$(DEPDIR) simple/producer_consumer/basic/$(DEPDIR) simple/producer_consumer/override/$(DEPDIR) simple/registers/models/aliasing/$(DEPDIR) simple/registers/models/ro_wo_same_addr/$(DEPDIR) simple/reporting/error/$(DEPDIR) simple/reporting/info/$(DEPDIR) simple/reporting/warning/$(DEPDIR) simple/scoreboard/basic/$(DEPDIR) simple/sequence/arbitration/$(DEPDIR) simple/sequence/basic_read_write_sequence/$(DEPDIR) simple/sequence/basic_read_write_sequence_tlm1/$(DEPDIR) simple/sequence/basic_read_write_sequence_try/$(DEPDIR) simple/sequence/sequence_lock_grab/$(DEPDIR) simple/tlm1/bidir/$(DEPDIR) simple/tlm1/hierarchy/$(DEPDIR) simple/tlm1/producer_consumer/$(DEPDIR) simple/trivial/$(DEPDIR)
+	-rm -rf integrated/ubus/$(DEPDIR) integrated/ubus/vip/$(DEPDIR) simple/callbacks/basic/$(DEPDIR) simple/configuration/manual/$(DEPDIR) simple/factory/basic/$(DEPDIR) simple/hello_world/$(DEPDIR) simple/objections/basic/$(DEPDIR) simple/phases/basic/$(DEPDIR) simple/phases/timeout/$(DEPDIR) simple/registers/models/aliasing/$(DEPDIR) simple/registers/models/ro_wo_same_addr/$(DEPDIR) simple/sequence/basic_read_write_sequence/$(DEPDIR) simple/tlm1/bidir/$(DEPDIR) simple/tlm1/hierarchy/$(DEPDIR) simple/tlm1/producer_consumer/$(DEPDIR) simple/trivial/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
