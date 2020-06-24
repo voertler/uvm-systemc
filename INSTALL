@@ -21,27 +21,31 @@ System Requirements
 
 UVM-SystemC was tested on the following Linux 64-bit platforms:
 
-             | RHEL  | Debian | SLES | Ubuntu LTS
-             | 6 | 7 | 8 | 9  | 11   | 16 | 18
- ------------+-------+--------+------+------------
- GCC 4.3.4   |       |        |  X   |
- GCC 4.4.7   | X     |        |      |
- GCC 4.8.2   | x   X |     x  |  x   | x
- GCC 4.9.2   | x     | X   x  |  x   | x
- GCC 5.4.0   | x     |     x  |  x   | X
- GCC 6.3.0   | x   x |     X  |  x   | x
- GCC 7.3.0   | x     |     x  |  x   | x    X
- GCC 8.2.0   | x     |     x  |  x   | x    x
- ------------+-------+--------+------+------------
- Clang 3.9.0 | x     |        |      |
- Clang 6.0.1 |       |     x  |      |
+             | RHEL  | CentOS    | Debian | Ubuntu LTS
+             | 6 | 7 | 6 | 7 | 8 | 9 | 10 | 16 | 18
+ ------------+-------+-----------+--------+------------
+ GCC 4.8.5   |     X |           |        |
+ GCC 4.9.4   | x     | x   x     |        |
+ GCC 5.4.0   |       |           |        |  X
+ GCC 6.3.0   | x   x |           | SG     |
+ GCC 7.4.0   |       |           |      x |
+ GCC 7.5.0   |       |           |        |       X
+ GCC 8.3.0   |       |           |      x |
+ GCC 8.3.1   |       |         X |      x |
+ GCC 9.1.0   | x   x |           |        |
+ ------------+-------+-----------+--------+------------
+ Clang 3.7.0 |     x |           |        |
+ Clang 4.0.1 |     x |           |        |
+ Clang 8.0.1 |       |         x |        |
 
  x = successfully ran "make check" and regression tests
  X = same as 'x' but denotes that this is the default system compiler
- 
+
 SystemC 2.3.2 or later is required for GCC 6.* or later releases.
 An installation of UVM-SystemC on other, related platforms and not explictly
-tested compiler combinations may be possible.
+tested compiler combinations may be possible. Please note that while the
+library still builds with non-C++11 compilers no further effort is spend to
+avoid C++11 constructs.
 
 
 Sources for Compilers and Related Tools
@@ -50,13 +54,13 @@ Sources for Compilers and Related Tools
 To build, install, and use UVM-SystemC on UNIX platforms, you need
 the following tools:
 
-  1. GNU C++ compiler, version 4.3.4 (other versions may work as well as documented
-     above, Clang is not tested yet)
+  1. GNU C++ compiler, version 4.8.5 (other versions may work as well as documented
+     above) or Clang compiler, version 3.7.0
 
   2. GNU Make (gmake)
 
   3. Accellera Systems Initiative SystemC reference implementation
-     version 2.3.0 or later (formerly known as OSCI reference implementation)
+     version 2.3.0a or later (formerly known as OSCI reference implementation)
 
 GCC, Clang, and gmake are free software that you can
 obtain from the following sources:
@@ -335,19 +339,16 @@ System Requirements
 
 UVM-SystemC was tested on the following Windows platforms:
 
-            | VS    | VS    | GCC   | GCC
- Platform   | 2008  | 2010  | 4.9.3 | 6.3.0
+            | VS    | GCC   | GCC   | GCC
+ Platform   | 2015  | 4.9.4 | 7.4.0 | 10.1
  -------------------------------------------
- Windows 7  |   y   |       |       |
- Windows 10 |       |   y   |       |
- Cygwin     |       |       |       |
- MinGW-w64  |       |       |  y    |  y*
+ Windows 10 |   x   |       |       |
+ Cygwin     |       |       |   x   |
+ MinGW-w64  |       |   x   |       |  x
 
- Remarks: *  only SystemC 2.3.2 tested as GCC 6.3.* is not compatible with
-             previous SystemC versions.
-
-An installation of UVM-SystemC on other, related platforms may be
-possible as well.
+SystemC 2.3.2 or later is required for GCC 6.* or later releases. An
+installation of UVM-SystemC on other, related platforms may be possible as
+well.
 
 Set the following environment variable(s) under Windows:
 
