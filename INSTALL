@@ -27,11 +27,11 @@ UVM-SystemC was tested on the following Linux 64-bit platforms:
  GCC 4.8.5   |     X |           |        |
  GCC 4.9.4   | x     | x   x     |        |
  GCC 5.4.0   |       |           |        |  X
- GCC 6.3.0   | x   x |           | SG     |
+ GCC 6.3.0   | x   x |           | X      |
  GCC 7.4.0   |       |           |      x |
  GCC 7.5.0   |       |           |        |       X
- GCC 8.3.0   |       |           |      x |
- GCC 8.3.1   |       |         X |      x |
+ GCC 8.3.0   |       |           |      X |
+ GCC 8.3.1   |       |         X |        |
  GCC 9.1.0   | x   x |           |        |
  ------------+-------+-----------+--------+------------
  Clang 3.7.0 |     x |           |        |
