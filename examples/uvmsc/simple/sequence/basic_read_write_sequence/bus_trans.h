@@ -1,5 +1,6 @@
 //----------------------------------------------------------------------
 //   Copyright 2012-2014 NXP B.V.
+//   Copyright 2018 Intel Corp.
 //   All Rights Reserved Worldwide
 //
 //   Licensed under the Apache License, Version 2.0 (the
