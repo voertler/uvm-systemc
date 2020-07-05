@@ -2,7 +2,7 @@
 //   Copyright 2013-2014 Fraunhofer-Gesellschaft zur Foerderung
 //					der angewandten Forschung e.V.
 //   Copyright 2012-2020 NXP B.V.
-//   Copyright 2019 Marvell Semiconductor
+//   Copyright 2019-2020 Marvell Semiconductor
 //   Copyright 2007-2011 Mentor Graphics Corporation
 //   Copyright 2007-2011 Cadence Design Systems, Inc.
 //   Copyright 2010-2011 Synopsys, Inc.
