@@ -1,6 +1,10 @@
 Universal Verification Methodology (UVM) for SystemC
 
-(C) Copyright 2012-2019 NXP B.V.
+(C) Copyright 2012-2020 NXP B.V.
+
+(C) Copyright 2018-2020 COSEDA Technologies GmbH
+
+(C) Copyright 2018-2020 Robert Bosch GmbH
 
 (C) Copyright 2013-2018 Fraunhofer-Gesellschaft zur Foerderung
                    der angewandten Forschung e.V.
@@ -14,10 +18,6 @@ Universal Verification Methodology (UVM) for SystemC
 (C) Copyright 2006-2012 Synopsys Inc.
 
 (C) Copyright 2012 Cypress Semiconductor Corp.
-
-(C) Copyright 2018 COSEDA Technologies GmbH
-
-(C) Copyright 2018 Robert Bosch GmbH
 
 (C) Copyright 2013-2014 NVIDIA Corporation
 
