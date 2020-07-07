@@ -2,7 +2,6 @@
 //    Copyright 2014-2020 NXP B.V.
 //    Copyright 2004-2008 Synopsys, Inc.
 //    Copyright 2010 Mentor Graphics Corporation
-//    Copyright 2020 Marvell Semiconductor
 //    All Rights Reserved Worldwide
 // 
 //    Licensed under the Apache License, Version 2.0 (the
