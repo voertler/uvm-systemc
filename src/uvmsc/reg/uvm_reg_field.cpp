@@ -7,7 +7,6 @@
 //					der angewandten Forschung e.V.
 //   Copyright 2014 Université Pierre et Marie Curie, Paris
 //   Copyright 2018 Intel Corp.
-//   Copyright 2020 Marvell Semiconductor
 //   All Rights Reserved Worldwide
 //
 //   Licensed under the Apache License, Version 2.0 (the
