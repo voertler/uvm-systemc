@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2013-2016 NXP B.V.
+//   Copyright 2013-2019 NXP B.V.
 //   Copyright 2004-2011 Synopsys, Inc.
 //   Copyright 2010-2011 Mentor Graphics Corporation
 //   Copyright 2010-2011 Cadence Design Systems, Inc.

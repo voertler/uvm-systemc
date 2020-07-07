@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//    Copyright 2014 NXP B.V.
+//    Copyright 2014-2020 NXP B.V.
 //    Copyright 2004-2008 Synopsys, Inc.
 //    Copyright 2010 Mentor Graphics Corporation
 //    All Rights Reserved Worldwide
