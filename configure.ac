@@ -545,26 +545,33 @@ AC_PROG_LIBTOOL
 CXXFLAGS="${stored_CXXFLAGS}"
 
 #check SystemC Version by building an example program
-stored_CXXFLAGS="${CXXFLAGS}"
-stored_LIBS="${LIBS}"
-CXXFLAGS="${SYSTEMC_CFLAGS} ${CXXFLAGS}"
-LIBS="${LIBS} ${SYSTEMC_LIBS}"
-AC_MSG_CHECKING( SystemC Version IEEE compliant)
-AC_RUN_IFELSE( 
-	[AC_LANG_SOURCE([[#include <systemc>
-	int sc_main(int argc, char* argv[]) {
-	#if (IEEE_1666_SYSTEMC >= 201101L)
-	return 0;
-	#endif
-	return 1;
-	}
-	]])]
-	,  
-	[AC_MSG_RESULT([IEEE 1666 compatible SystemC version found ])],
-	[AC_MSG_FAILURE([Non IEEE 1666 compatible SystemC version found, make sure that SystemC can be found and you build with the same compile options as building SystemC])]
-	)
-CXXFLAGS="${stored_CXXFLAGS}"
-LIBS="${stored_LIBS}"
+AC_ARG_ENABLE([systemc_version_check],
+    AS_HELP_STRING([--disable-systemc-version-check], [Disable SystemC version check during configure, it is assummed that your SystemC version is IEEE 1666 compliant]))
+
+AS_IF([test "x$enable_systemc_version_check" != "xno"], [
+  stored_CXXFLAGS="${CXXFLAGS}"
+  stored_LIBS="${LIBS}"
+  CXXFLAGS="${SYSTEMC_CFLAGS} ${CXXFLAGS}"
+  LIBS="${LIBS} ${SYSTEMC_LIBS}"
+  AC_MSG_CHECKING( SystemC Version IEEE compliant)
+  AC_COMPILE_IFELSE( 
+    [AC_LANG_SOURCE([[#include <systemc>
+    int sc_main(int argc, char* argv[]) {
+    #if (IEEE_1666_SYSTEMC >= 201101L)
+      return 0;
+    #else
+      #error "Non IEEE 1666 compatible SystemC version found"
+    #endif
+    return 1;
+    }
+    ]])]
+    ,  
+    [AC_MSG_RESULT([IEEE 1666 compatible SystemC version found ])],
+    [AC_MSG_FAILURE([Non IEEE 1666 compatible SystemC version found, make sure that SystemC can be found and you build with the same compile options as building SystemC])]
+    )
+  CXXFLAGS="${stored_CXXFLAGS}"
+  LIBS="${stored_LIBS}"
+])
 
 AC_SUBST(LIB_ARCH_SUFFIX)
 
