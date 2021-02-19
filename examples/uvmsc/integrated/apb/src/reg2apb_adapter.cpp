@@ -41,7 +41,7 @@ uvm::uvm_sequence_item* reg2apb_adapter::reg2bus(const uvm::uvm_reg_bus_op & rw)
 void reg2apb_adapter::bus2reg(const uvm::uvm_sequence_item * bus_item,uvm::uvm_reg_bus_op & rw)
 {
     const apb_rw* apb = dynamic_cast<const apb_rw*>(bus_item);
-    if (apb) {
+    if (!apb) {
         UVM_FATAL("NOT_APB_TYPE","Provided bus_item is not of the correct type");
     }
 
