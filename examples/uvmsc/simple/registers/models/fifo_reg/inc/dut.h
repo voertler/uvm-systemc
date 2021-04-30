@@ -54,7 +54,7 @@ class dut : public sc_core::sc_module
         SC_METHOD(prdata_method);
         sensitive << psel << penable << pwrite;
         SC_METHOD(main_method);
-        sensitive << pclk;
+        sensitive << pclk.pos();
     }
 
         SC_HAS_PROCESS(dut);
@@ -65,32 +65,30 @@ class dut : public sc_core::sc_module
         void prdata_method() { prdata = (psel == sc_dt::SC_LOGIC_1 && penable == sc_dt::SC_LOGIC_1 && pwrite == sc_dt::SC_LOGIC_0 && in_range) ? pr_data : sc_dt::sc_lv<32>(sc_dt::SC_LOGIC_Z); };
         void main_method()
         {
-            if (pclk == sc_dt::SC_LOGIC_1) {
-                if (rst == sc_dt::SC_LOGIC_1) {
-                    for (unsigned i = 0; i < 8; ++i) {
-                        fifo[i] = sc_dt::sc_lv<32>(sc_dt::SC_LOGIC_0);
-                    }
-                    w_idx = sc_dt::sc_lv<3>(sc_dt::SC_LOGIC_0);
-                    r_idx = sc_dt::sc_lv<3>(sc_dt::SC_LOGIC_0);
-                    used = sc_dt::sc_lv<3>(sc_dt::SC_LOGIC_0);
+            if (rst == sc_dt::SC_LOGIC_1) {
+                for (unsigned i = 0; i < 8; ++i) {
+                    fifo[i] = sc_dt::sc_lv<32>(sc_dt::SC_LOGIC_0);
                 }
-                else {
-                    if (psel == sc_dt::SC_LOGIC_1 && penable == pwrite && pr_addr == sc_dt::sc_lv<32>(sc_dt::SC_LOGIC_0)) {
-                        pr_data = sc_dt::sc_lv<32>(sc_dt::SC_LOGIC_0);
-                        if (pwrite == sc_dt::SC_LOGIC_1) {
-                            if (used != 8) {
-                                fifo[w_idx.to_uint()] = pwdata;
-                                w_idx = w_idx.to_uint() + 1;
-                                used = used.to_uint() + 1;
-                            }
+                w_idx = sc_dt::sc_lv<3>(sc_dt::SC_LOGIC_0);
+                r_idx = sc_dt::sc_lv<3>(sc_dt::SC_LOGIC_0);
+                used = sc_dt::sc_lv<3>(sc_dt::SC_LOGIC_0);
+            }
+            else {
+                if (psel == sc_dt::SC_LOGIC_1 && penable == pwrite && pr_addr == sc_dt::sc_lv<32>(sc_dt::SC_LOGIC_0)) {
+                    pr_data = sc_dt::sc_lv<32>(sc_dt::SC_LOGIC_0);
+                    if (pwrite == sc_dt::SC_LOGIC_1) {
+                        if (used != 8) {
+                            fifo[w_idx.to_uint()] = pwdata;
+                            w_idx = w_idx.to_uint() + 1;
+                            used = used.to_uint() + 1;
                         }
-                        else {
-                            if (used != 0) {
-                                pr_data = fifo[r_idx.to_uint()];
-                                fifo[r_idx.to_uint()] = sc_dt::sc_lv<32>(sc_dt::SC_LOGIC_0); // just for debug; not necessary
-                                r_idx = r_idx.to_uint() + 1;
-                                used = used.to_uint() - 1;
-                            }
+                    }
+                    else {
+                        if (used != 0) {
+                            pr_data = fifo[r_idx.to_uint()];
+                            fifo[r_idx.to_uint()] = sc_dt::sc_lv<32>(sc_dt::SC_LOGIC_0); // just for debug; not necessary
+                            r_idx = r_idx.to_uint() + 1;
+                            used = used.to_uint() - 1;
                         }
                     }
                 }
