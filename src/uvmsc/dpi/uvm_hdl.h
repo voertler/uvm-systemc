@@ -1,6 +1,6 @@
 //----------------------------------------------------------------------
 //   Copyright 2007-2010 Mentor Graphics Corporation
-//   Copyright 2013 NXP B.V.
+//   Copyright 2013-2021 NXP B.V.
 //   All Rights Reserved Worldwide
 //   
 //   Licensed under the Apache License, Version 2.0 (the
@@ -35,7 +35,7 @@
 
 #include "uvmsc/base/uvm_globals.h"
 
-#include "uvmsc/reg/uvm_sc_reg.h"
+#include "uvmsc/reg/uvm_sc_if.h"
 
 namespace uvm {
 
@@ -72,11 +72,15 @@ bool uvm_hdl_release_time( const std::string& path, sc_core::sc_time time );
 template <typename T>
 bool uvm_hdl_deposit( const std::string& path, const T& value )
 {
+  std::cout << " uvm_hdl_deposit to path " << path <<std::endl;
   std::string objname;
   int idx_start = -1;
   int idx_stop = -1;
 
   uvm_extract_path_index(path, objname, idx_start, idx_stop);
+
+  std::cout << " idx_start: " << idx_start <<std::endl;
+  std::cout << " idx_stop: " << idx_stop <<std::endl;
 
   sc_core::sc_object* obj = sc_core::sc_find_object(objname.c_str());
 
@@ -86,37 +90,59 @@ bool uvm_hdl_deposit( const std::string& path, const T& value )
     return false;
   }
 
-  uvm_sc_reg<T>* reg = dynamic_cast<uvm_sc_reg<T>* > (obj);
-  if (reg != NULL)
-  {
-    reg->write(value, idx_start, idx_stop);
-    std::ostringstream str;
-    str << "Value 0x" << std::hex << value << " written to register " << path << ".";
-    uvm_report_info("HDL_DEPOSIT", str.str(), uvm::UVM_FULL);
-    return true;
-  }
-
-  sc_core::sc_signal<T>* sig = dynamic_cast<sc_core::sc_signal<T>* > (obj);
-  if (sig != NULL)
-  {
-    sig->write(value);
-    std::ostringstream str;
-    str << "Value 0x" << std::hex << value << " written to signal " << path << ".";
-    uvm_report_info("HDL_DEPOSIT", str.str(), uvm::UVM_FULL);
-    return true;
-  }
-
+  // possibility 1: backdoor register represented by object of type sc_signal
   sc_core::sc_signal<T, sc_core::SC_MANY_WRITERS>* sig_md = dynamic_cast<sc_core::sc_signal<T, sc_core::SC_MANY_WRITERS>* > (obj);
   if (sig_md != NULL)
   {
     sig_md->write(value);
     std::ostringstream str;
-    str << "Value 0x" << std::hex << value << " written to signal " << path << ".";
+    str << "Value 0x" << std::hex << value << " written to " << path << ".";
     uvm_report_info("HDL_DEPOSIT", str.str(), uvm::UVM_FULL);
     return true;
   }
 
-  uvm_report_error("HDL_DEPOSIT", "Object " + objname + " found is not of type uvm_sc_reg or sc_signal.");
+  // possibility 2: backdoor register represented by object of type uvm_sc_if
+  uvm_sc_if<T>* interf = dynamic_cast<uvm_sc_if<T>* > (obj);
+  if (interf != NULL)
+  {
+    interf->write(value);
+    std::ostringstream str;
+    str << "Value 0x" << std::hex << value << " written to " << path << ".";
+    uvm_report_info("HDL_DEPOSIT", str.str(), uvm::UVM_FULL);
+    return true;
+  }
+
+  // // possibility 3: backdoor registers represented by sc_vector containing object of type uvm_sc_if or sc_signal
+  sc_core::sc_vector_base* vec = dynamic_cast<sc_core::sc_vector_base* > (obj);
+  if (vec != NULL)
+  {
+    std::vector<sc_core::sc_object*> vec_element = vec->get_elements();
+
+    for (int i = idx_start; i <= idx_stop; i++)
+    {
+      uvm_sc_if<T>* interf = dynamic_cast<uvm_sc_if<T>* > (vec_element[i]);
+      if (interf != NULL)
+      {
+        interf->write(value);
+        std::ostringstream str;
+        str << "Value 0x" << std::hex << value << " written to " << path << ".";
+        uvm_report_info("HDL_DEPOSIT", str.str(), uvm::UVM_FULL);
+        return true;
+      }
+
+      sc_core::sc_signal<T, sc_core::SC_MANY_WRITERS>* sig_md = dynamic_cast<sc_core::sc_signal<T, sc_core::SC_MANY_WRITERS>* > (vec_element[i]);
+      if (sig_md != NULL)
+      {
+        sig_md->write(value);
+        std::ostringstream str;
+        str << "Value 0x" << std::hex << value << " written to " << path << ".";
+        uvm_report_info("HDL_DEPOSIT", str.str(), uvm::UVM_FULL);
+        return true;
+      }
+    }
+  }
+
+  uvm_report_error("HDL_DEPOSIT", "Object " + objname + " is not of type uvm_sc_if or sc_signal.");
   return false;
 }
 
@@ -192,37 +218,59 @@ bool uvm_hdl_read( const std::string& path, T& value )
     return false;
   }
 
-  uvm_sc_reg<T>* reg = dynamic_cast<uvm_sc_reg<T>*> (obj);
-  if (reg != NULL)
-  {
-    value = reg->read(idx_start, idx_stop);
-    std::ostringstream str;
-    str << "Value 0x" << std::hex << value << " read from register " << path << ".";
-    uvm_report_info("HDL_READ", str.str(), uvm::UVM_FULL);
-    return true;
-  }
-
-  sc_core::sc_signal<T>* sig = dynamic_cast<sc_core::sc_signal<T>* > (obj);
-  if (sig != NULL)
-  {
-    value = sig->read();
-    std::ostringstream str;
-    str << "Value 0x" << std::hex << value << " read from signal " << path << ".";
-    uvm_report_info("HDL_READ", str.str(), uvm::UVM_FULL);
-    return true;
-  }
-
+  // possibility 1: backdoor register represented by object of type sc_signal
   sc_core::sc_signal<T, sc_core::SC_MANY_WRITERS>* sig_md = dynamic_cast<sc_core::sc_signal<T, sc_core::SC_MANY_WRITERS>* > (obj);
   if (sig_md != NULL)
   {
     value = sig_md->read();
     std::ostringstream str;
-    str << "Value 0x" << std::hex << value << " read from signal " << path << ".";
+    str << "Value 0x" << std::hex << value << " read from " << path << ".";
     uvm_report_info("HDL_READ", str.str(), uvm::UVM_FULL);
     return true;
   }
 
-  uvm_report_error("HDL_READ", "Object " + objname + " found is not of type uvm_sc_reg or sc_signal.");
+  // possibility 2: backdoor register represented by object of type uvm_sc_if
+  uvm_sc_if<T>* interf = dynamic_cast<uvm_sc_if<T>* > (obj);
+  if (interf != NULL)
+  {
+    value = interf->read();
+    std::ostringstream str;
+    str << "Value 0x" << std::hex << value << " read from " << path << ".";
+    uvm_report_info("HDL_READ", str.str(), uvm::UVM_FULL);
+    return true;
+  }
+
+  // // possibility 3: backdoor registers represented by sc_vector containing object of type uvm_sc_if or sc_signal
+  sc_core::sc_vector_base* vec = dynamic_cast<sc_core::sc_vector_base* > (obj);
+  if (vec != NULL)
+  {
+    std::vector<sc_core::sc_object*> vec_element = vec->get_elements();
+
+    for (int i = idx_start; i <= idx_stop; i++)
+    {
+      uvm_sc_if<T>* interf = dynamic_cast<uvm_sc_if<T>* > (vec_element[i]);
+      if (interf != NULL)
+      {
+        value = interf->read();
+        std::ostringstream str;
+        str << "Value 0x" << std::hex << value << " read from " << path << ".";
+        uvm_report_info("HDL_READ", str.str(), uvm::UVM_FULL);
+        return true;
+      }
+
+      sc_core::sc_signal<T, sc_core::SC_MANY_WRITERS>* sig_md = dynamic_cast<sc_core::sc_signal<T, sc_core::SC_MANY_WRITERS>* > (vec_element[i]);
+      if (sig_md != NULL)
+      {
+        value = sig_md->read();
+        std::ostringstream str;
+        str << "Value 0x" << std::hex << value << " read from " << path << ".";
+        uvm_report_info("HDL_READ", str.str(), uvm::UVM_FULL);
+        return true;
+      }
+    }
+  }
+
+  uvm_report_error("HDL_READ", "Object " + objname + " is not of type uvm_sc_if or sc_signal.");
   return false;
 }
 
