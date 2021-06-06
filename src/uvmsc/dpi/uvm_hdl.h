@@ -72,21 +72,32 @@ bool uvm_hdl_release_time( const std::string& path, sc_core::sc_time time );
 template <typename T>
 bool uvm_hdl_deposit( const std::string& path, const T& value )
 {
-  std::cout << " uvm_hdl_deposit to path " << path <<std::endl;
-  std::string objname;
+  std::string objname1, objname2;
   int idx_start = -1;
   int idx_stop = -1;
+  int vidx_start = -1;
+  int vidx_stop = -1;
 
-  uvm_extract_path_index(path, objname, idx_start, idx_stop);
+  uvm_extract_path_index(path, objname1, idx_start, idx_stop);
+  // check again, perhaps we've hit a vector
+  uvm_extract_path_index(objname1, objname2, vidx_start, vidx_stop);
 
-  std::cout << " idx_start: " << idx_start <<std::endl;
-  std::cout << " idx_stop: " << idx_stop <<std::endl;
+  /*
+  std::cout << " uvm_hdl_deposit to path " << path << std::endl;
+  std::cout << " objname1 " << objname1 << std::endl;
+  std::cout << " idx_start: " << idx_start << std::endl;
+  std::cout << " idx_stop: " << idx_stop << std::endl;
 
-  sc_core::sc_object* obj = sc_core::sc_find_object(objname.c_str());
+  std::cout << " objname2 " << objname2 << std::endl;
+  std::cout << " vidx_start: " << vidx_start << std::endl;
+  std::cout << " vidx_stop: " << vidx_stop << std::endl;
+  */
+
+  sc_core::sc_object* obj = sc_core::sc_find_object(objname2.c_str());
 
   if (obj == NULL)
   {
-    uvm_report_error("HDL_DEPOSIT", "Object " + objname + " not found in design hierarchy.");
+    uvm_report_error("HDL_DEPOSIT", "Object " + objname2 + " not found in design hierarchy.");
     return false;
   }
 
@@ -94,7 +105,14 @@ bool uvm_hdl_deposit( const std::string& path, const T& value )
   sc_core::sc_signal<T, sc_core::SC_MANY_WRITERS>* sig_md = dynamic_cast<sc_core::sc_signal<T, sc_core::SC_MANY_WRITERS>* > (obj);
   if (sig_md != NULL)
   {
-    sig_md->write(value);
+    if ((idx_start != -1) && (idx_stop != -1))
+    {
+      uvm_report_error("HDL_DEPOSIT", "Writing part-select on sc_signal<T> is not supported. ");
+      return false;
+    }
+
+    sig_md->write(value); // write all bits
+
     std::ostringstream str;
     str << "Value 0x" << std::hex << value << " written to " << path << ".";
     uvm_report_info("HDL_DEPOSIT", str.str(), uvm::UVM_FULL);
@@ -105,7 +123,14 @@ bool uvm_hdl_deposit( const std::string& path, const T& value )
   uvm_sc_if<T>* interf = dynamic_cast<uvm_sc_if<T>* > (obj);
   if (interf != NULL)
   {
-    interf->write(value);
+    if ( (idx_start > (value.length()-1)) || (idx_start < -1) ||
+         (idx_stop > (value.length()-1)) || (idx_stop < -1) )
+    {
+      uvm_report_error("HDL_DEPOSIT", "Specified index for bit select is out of range.");
+      return false;
+    }
+
+    interf->write(value, idx_start, idx_stop);
     std::ostringstream str;
     str << "Value 0x" << std::hex << value << " written to " << path << ".";
     uvm_report_info("HDL_DEPOSIT", str.str(), uvm::UVM_FULL);
@@ -116,33 +141,58 @@ bool uvm_hdl_deposit( const std::string& path, const T& value )
   sc_core::sc_vector_base* vec = dynamic_cast<sc_core::sc_vector_base* > (obj);
   if (vec != NULL)
   {
+    // vector found, but no index, meaning the first index was valid
+    if (vidx_start == -1)
+    {
+      vidx_start = idx_start;
+      idx_start = -1;
+      idx_stop = -1;
+    }
+
     std::vector<sc_core::sc_object*> vec_element = vec->get_elements();
 
-    for (int i = idx_start; i <= idx_stop; i++)
+    if ( (vidx_start > (((int)vec_element.size())-1)) || (vidx_start < 0) )
     {
-      uvm_sc_if<T>* interf = dynamic_cast<uvm_sc_if<T>* > (vec_element[i]);
-      if (interf != NULL)
+      uvm_report_error("HDL_DEPOSIT", "Specified index of sc_vector out of range.");
+      return false;
+    }
+
+    uvm_sc_if<T>* interf = dynamic_cast<uvm_sc_if<T>* > (vec_element[vidx_start]);
+    if (interf != NULL)
+    {
+
+      if ( (idx_start > (value.length()-1)) || (idx_start < -1) ||
+           (idx_stop > (value.length()-1)) || (idx_stop < -1) )
       {
-        interf->write(value);
-        std::ostringstream str;
-        str << "Value 0x" << std::hex << value << " written to " << path << ".";
-        uvm_report_info("HDL_DEPOSIT", str.str(), uvm::UVM_FULL);
-        return true;
+        uvm_report_error("HDL_DEPOSIT", "Specified index for bit select is out of range.");
+        return false;
       }
 
-      sc_core::sc_signal<T, sc_core::SC_MANY_WRITERS>* sig_md = dynamic_cast<sc_core::sc_signal<T, sc_core::SC_MANY_WRITERS>* > (vec_element[i]);
-      if (sig_md != NULL)
+      interf->write(value, idx_start, idx_stop);
+      std::ostringstream str;
+      str << "Value 0x" << std::hex << value << " written to " << path << ".";
+      uvm_report_info("HDL_DEPOSIT", str.str(), uvm::UVM_FULL);
+      return true;
+    }
+
+    sc_core::sc_signal<T, sc_core::SC_MANY_WRITERS>* sig_md = dynamic_cast<sc_core::sc_signal<T, sc_core::SC_MANY_WRITERS>* > (vec_element[vidx_start]);
+    if (sig_md != NULL)
+    {
+      if ((idx_start != -1) && (idx_stop != -1))
       {
-        sig_md->write(value);
-        std::ostringstream str;
-        str << "Value 0x" << std::hex << value << " written to " << path << ".";
-        uvm_report_info("HDL_DEPOSIT", str.str(), uvm::UVM_FULL);
-        return true;
+        uvm_report_error("HDL_DEPOSIT", "Writing part-select on sc_signal<T> is not supported. ");
+        return false;
       }
+
+      sig_md->write(value);
+      std::ostringstream str;
+      str << "Value 0x" << std::hex << value << " written to " << path << ".";
+      uvm_report_info("HDL_DEPOSIT", str.str(), uvm::UVM_FULL);
+      return true;
     }
   }
 
-  uvm_report_error("HDL_DEPOSIT", "Object " + objname + " is not of type uvm_sc_if or sc_signal.");
+  uvm_report_error("HDL_DEPOSIT", "Object " + objname2 + " is not of type uvm_sc_if or sc_signal.");
   return false;
 }
 
@@ -205,16 +255,31 @@ bool uvm_hdl_release_and_read( const std::string& path, T& value )
 template <typename T>
 bool uvm_hdl_read( const std::string& path, T& value )
 {
-  std::string objname;
+  std::string objname1, objname2;
   int idx_start = -1;
   int idx_stop = -1;
+  int vidx_start = -1;
+  int vidx_stop = -1;
 
-  uvm_extract_path_index(path, objname, idx_start, idx_stop);
-  sc_core::sc_object* obj = sc_core::sc_find_object(objname.c_str());
+  uvm_extract_path_index(path, objname1, idx_start, idx_stop);
+  // check again, perhaps we've hit a vector
+  uvm_extract_path_index(objname1, objname2, vidx_start, vidx_stop);
+
+  /*
+  std::cout << " uvm_hdl_read to path " << path << std::endl;
+  std::cout << " objname1 " << objname1 << std::endl;
+  std::cout << " idx_start: " << idx_start << std::endl;
+  std::cout << " idx_stop: " << idx_stop << std::endl;
+
+  std::cout << " objname2 " << objname2 << std::endl;
+  std::cout << " vidx_start: " << vidx_start << std::endl;
+  std::cout << " vidx_stop: " << vidx_stop << std::endl;
+  */
+  sc_core::sc_object* obj = sc_core::sc_find_object(objname2.c_str());
 
   if (obj == NULL)
   {
-    uvm_report_error("HDL_READ", "Object " + objname + " not found in design hierarchy.");
+    uvm_report_error("HDL_READ", "Object " + objname2 + " not found in design hierarchy.");
     return false;
   }
 
@@ -222,7 +287,14 @@ bool uvm_hdl_read( const std::string& path, T& value )
   sc_core::sc_signal<T, sc_core::SC_MANY_WRITERS>* sig_md = dynamic_cast<sc_core::sc_signal<T, sc_core::SC_MANY_WRITERS>* > (obj);
   if (sig_md != NULL)
   {
+    if ((idx_start != -1) && (idx_stop != -1))
+    {
+      uvm_report_error("HDL_DEPOSIT", "Reading part-select on sc_signal<T> is not supported. ");
+      return false;
+    }
+
     value = sig_md->read();
+
     std::ostringstream str;
     str << "Value 0x" << std::hex << value << " read from " << path << ".";
     uvm_report_info("HDL_READ", str.str(), uvm::UVM_FULL);
@@ -233,7 +305,14 @@ bool uvm_hdl_read( const std::string& path, T& value )
   uvm_sc_if<T>* interf = dynamic_cast<uvm_sc_if<T>* > (obj);
   if (interf != NULL)
   {
-    value = interf->read();
+    if ( (idx_start > (value.length()-1)) || (idx_start < -1) ||
+         (idx_stop > (value.length()-1)) || (idx_stop < -1) )
+    {
+      uvm_report_error("HDL_DEPOSIT", "Specified index for bit select is out of range.");
+      return false;
+    }
+
+    value = interf->read(idx_start, idx_stop);
     std::ostringstream str;
     str << "Value 0x" << std::hex << value << " read from " << path << ".";
     uvm_report_info("HDL_READ", str.str(), uvm::UVM_FULL);
@@ -244,33 +323,57 @@ bool uvm_hdl_read( const std::string& path, T& value )
   sc_core::sc_vector_base* vec = dynamic_cast<sc_core::sc_vector_base* > (obj);
   if (vec != NULL)
   {
+    // vector found, but no index, meaning the first index was valid
+    if (vidx_start == -1)
+    {
+      vidx_start = idx_start;
+      idx_start = -1;
+      idx_stop = -1;
+    }
+
     std::vector<sc_core::sc_object*> vec_element = vec->get_elements();
 
-    for (int i = idx_start; i <= idx_stop; i++)
+    if ( (vidx_start > (((int)vec_element.size())-1)) || (vidx_start < 0) )
     {
-      uvm_sc_if<T>* interf = dynamic_cast<uvm_sc_if<T>* > (vec_element[i]);
-      if (interf != NULL)
+      uvm_report_error("HDL_DEPOSIT", "Specified index of sc_vector out of range.");
+      return false;
+    }
+
+    uvm_sc_if<T>* interf = dynamic_cast<uvm_sc_if<T>* > (vec_element[vidx_start]);
+    if (interf != NULL)
+    {
+      if ( (idx_start > (value.length()-1)) || (idx_start < -1) ||
+           (idx_stop > (value.length()-1)) || (idx_stop < -1) )
       {
-        value = interf->read();
-        std::ostringstream str;
-        str << "Value 0x" << std::hex << value << " read from " << path << ".";
-        uvm_report_info("HDL_READ", str.str(), uvm::UVM_FULL);
-        return true;
+        uvm_report_error("HDL_DEPOSIT", "Specified index for bit select is out of range.");
+        return false;
       }
 
-      sc_core::sc_signal<T, sc_core::SC_MANY_WRITERS>* sig_md = dynamic_cast<sc_core::sc_signal<T, sc_core::SC_MANY_WRITERS>* > (vec_element[i]);
-      if (sig_md != NULL)
+      value = interf->read(idx_start, idx_stop);
+      std::ostringstream str;
+      str << "Value 0x" << std::hex << value << " read from " << path << ".";
+      uvm_report_info("HDL_READ", str.str(), uvm::UVM_FULL);
+      return true;
+    }
+
+    sc_core::sc_signal<T, sc_core::SC_MANY_WRITERS>* sig_md = dynamic_cast<sc_core::sc_signal<T, sc_core::SC_MANY_WRITERS>* > (vec_element[vidx_start]);
+    if (sig_md != NULL)
+    {
+      if ((idx_start != -1) && (idx_stop != -1))
       {
-        value = sig_md->read();
-        std::ostringstream str;
-        str << "Value 0x" << std::hex << value << " read from " << path << ".";
-        uvm_report_info("HDL_READ", str.str(), uvm::UVM_FULL);
-        return true;
+        uvm_report_error("HDL_DEPOSIT", "Reading part-select on sc_signal<T> is not supported. ");
+        return false;
       }
+
+      value = sig_md->read();
+      std::ostringstream str;
+      str << "Value 0x" << std::hex << value << " read from " << path << ".";
+      uvm_report_info("HDL_READ", str.str(), uvm::UVM_FULL);
+      return true;
     }
   }
 
-  uvm_report_error("HDL_READ", "Object " + objname + " is not of type uvm_sc_if or sc_signal.");
+  uvm_report_error("HDL_READ", "Object " + objname2 + " is not of type uvm_sc_if or sc_signal.");
   return false;
 }
 

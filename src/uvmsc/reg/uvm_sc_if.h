@@ -33,9 +33,9 @@ class uvm_sc_if
  public:
   uvm_sc_if(){}
 
-  virtual bool write(const T& value) = 0;
-  virtual T read() const = 0;
-  };
+  virtual bool write(const T& v, int start = -1, int stop = -1) = 0;
+  virtual T read(int start = -1, int stop = -1) const = 0;
+};
 
 
 } // namespace uvm
