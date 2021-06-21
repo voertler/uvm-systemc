@@ -21,27 +21,23 @@ System Requirements
 
 UVM-SystemC was tested on the following Linux 64-bit platforms:
 
-             | RHEL  | CentOS    | Debian | Ubuntu LTS
-             | 6 | 7 | 6 | 7 | 8 | 9 | 10 | 16 | 18
- ------------+-------+-----------+--------+------------
- GCC 4.8.5   |     X |           |        |
- GCC 4.9.4   | x     | x   x     |        |
- GCC 5.4.0   |       |           |        |  X
- GCC 6.3.0   | x   x |           | X      |
- GCC 7.4.0   |       |           |      x |
- GCC 7.5.0   |       |           |        |       X
- GCC 8.3.0   |       |           |      X |
- GCC 8.3.1   |       |         X |        |
- GCC 9.1.0   | x   x |           |        |
- ------------+-------+-----------+--------+------------
- Clang 3.7.0 |     x |           |        |
- Clang 4.0.1 |     x |           |        |
- Clang 8.0.1 |       |         x |        |
+              | RHEL  | CentOS | Ubuntu LTS
+              | 7 | 8 |  7 | 8 | 18 | 20
+ -------------+-------+--------+------------
+ GCC 4.8.5    | X     |  X     |
+ GCC 7.5.0    |       |        |  X
+ GCC 8.3.1    |     X |      X |
+ GCC 9.3.0    |       |        |       X
+ GCC 11.1     |       |        |
+ -------------+-------+--------+------------
+ Clang 12.0.0 |       |        |
 
  x = successfully ran "make check" and regression tests
  X = same as 'x' but denotes that this is the default system compiler
 
-SystemC 2.3.2 or later is required for GCC 6.* or later releases.
+SystemC 2.3.2 or later is required for GCC 6.* or later releases. Generally,
+GCC versions >= 6.3.0 are recommended!
+
 An installation of UVM-SystemC on other, related platforms and not explictly
 tested compiler combinations may be possible. Please note that while the
 library still builds with non-C++11 compilers no further effort is spend to
@@ -54,8 +50,7 @@ Sources for Compilers and Related Tools
 To build, install, and use UVM-SystemC on UNIX platforms, you need
 the following tools:
 
-  1. GNU C++ compiler, version 4.8.5 (other versions may work as well as documented
-     above) or Clang compiler, version 3.7.0
+  1. GNU C++ compiler or Clang compiler with C++11 support.
 
   2. GNU Make (gmake)
 
@@ -339,12 +334,10 @@ System Requirements
 
 UVM-SystemC was tested on the following Windows platforms:
 
-            | VS    | GCC   | GCC   | GCC
- Platform   | 2015  | 4.9.4 | 7.4.0 | 10.1
- -------------------------------------------
- Windows 10 |   x   |       |       |
- Cygwin     |       |       |   x   |
- MinGW-w64  |       |   x   |       |  x
+            | VS
+ Platform   | 2015
+ ------------------
+ Windows 10 |   x
 
 SystemC 2.3.2 or later is required for GCC 6.* or later releases. An
 installation of UVM-SystemC on other, related platforms may be possible as
