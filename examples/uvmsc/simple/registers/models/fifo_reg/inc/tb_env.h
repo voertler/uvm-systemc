@@ -29,6 +29,11 @@
 #include "dut_top.h"
 #include "dut_reset_seq.h"
 
+#include <algorithm>
+#include <random>
+
+#define SEED 12345
+
 class tb_env : public uvm::uvm_env
 {
     public:
@@ -46,4 +51,8 @@ class tb_env : public uvm::uvm_env
         virtual void build_phase(uvm::uvm_phase & phase);
         virtual void connect_phase(uvm::uvm_phase & phase);
         virtual void run_phase(uvm::uvm_phase & phase);
+
+    private:
+        std::mt19937 rng {SEED};
+        std::uniform_int_distribution<unsigned> dist {0x0, 0xFFFFFFFF};
 };

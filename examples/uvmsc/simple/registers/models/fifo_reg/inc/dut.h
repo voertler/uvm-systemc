@@ -49,8 +49,10 @@ class dut : public sc_core::sc_module
     {
         SC_METHOD(in_range_method);
         sensitive << paddr;
+        dont_initialize();
         SC_METHOD(pr_addr_method);
         sensitive << paddr;
+        dont_initialize();
         SC_METHOD(prdata_method);
         sensitive << psel << penable << pwrite;
         SC_METHOD(main_method);
@@ -67,40 +69,40 @@ class dut : public sc_core::sc_module
         {
             if (rst == sc_dt::SC_LOGIC_1) {
                 for (unsigned i = 0; i < 8; ++i) {
-                    fifo[i] = sc_dt::sc_lv<32>(sc_dt::SC_LOGIC_0);
+                    fifo[i] = 0;
                 }
-                w_idx = sc_dt::sc_lv<3>(sc_dt::SC_LOGIC_0);
-                r_idx = sc_dt::sc_lv<3>(sc_dt::SC_LOGIC_0);
-                used = sc_dt::sc_lv<3>(sc_dt::SC_LOGIC_0);
+                w_idx = 0;
+                r_idx = 0;
+                used = 0;
             }
             else {
-                if (psel == sc_dt::SC_LOGIC_1 && penable == pwrite && pr_addr == sc_dt::sc_lv<32>(sc_dt::SC_LOGIC_0)) {
-                    pr_data = sc_dt::sc_lv<32>(sc_dt::SC_LOGIC_0);
+                if (psel == sc_dt::SC_LOGIC_1 && penable == pwrite && pr_addr == 0) {
+                    pr_data = 0;
                     if (pwrite == sc_dt::SC_LOGIC_1) {
                         if (used != 8) {
-                            fifo[w_idx.to_uint()] = pwdata;
-                            w_idx = w_idx.to_uint() + 1;
-                            used = used.to_uint() + 1;
+                            fifo[w_idx] = pwdata.read().to_uint();
+                            w_idx++;
+                            used++;
                         }
                     }
                     else {
                         if (used != 0) {
-                            pr_data = fifo[r_idx.to_uint()];
-                            fifo[r_idx.to_uint()] = sc_dt::sc_lv<32>(sc_dt::SC_LOGIC_0); // just for debug; not necessary
-                            r_idx = r_idx.to_uint() + 1;
-                            used = used.to_uint() - 1;
+                            pr_data = fifo[r_idx];
+                            fifo[r_idx] = 0; // just for debug; not necessary
+                            r_idx++;
+                            used--;
                         }
                     }
                 }
             }
         }
 
-        sc_dt::sc_lv<32> fifo[8];
-        sc_dt::sc_lv<3> w_idx;
-        sc_dt::sc_lv<3> r_idx;
-        sc_dt::sc_lv<3> used;
-        sc_dt::sc_lv<32> pr_data;
-        sc_dt::sc_lv<32> pr_addr;
+        unsigned fifo[8];
+        unsigned w_idx;
+        unsigned r_idx;
+        unsigned used;
+        unsigned pr_data;
+        unsigned pr_addr;
 
         bool in_range;
 };

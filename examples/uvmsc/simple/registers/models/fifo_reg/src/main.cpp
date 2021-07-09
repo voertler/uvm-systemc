@@ -42,7 +42,19 @@ int sc_main(int argc, char* argv[])
 
     uvm::uvm_config_db<apb_if*>::set(NULL, "*apb*", "vif", my_dut_top->apb0);
 
+    sc_core::sc_trace_file* tracefile = sc_core::sc_create_vcd_trace_file("fifo_reg_traces");
+    sc_core::sc_trace(tracefile, my_dut_top->dut0->pclk, "pclk");
+    sc_core::sc_trace(tracefile, my_dut_top->dut0->paddr, "paddr");
+    sc_core::sc_trace(tracefile, my_dut_top->dut0->psel, "psel");
+    sc_core::sc_trace(tracefile, my_dut_top->dut0->penable, "penable");
+    sc_core::sc_trace(tracefile, my_dut_top->dut0->pwrite, "pwrite");
+    sc_core::sc_trace(tracefile, my_dut_top->dut0->prdata, "prdata");
+    sc_core::sc_trace(tracefile, my_dut_top->dut0->pwdata, "pwdata");
+    sc_core::sc_trace(tracefile, my_dut_top->dut0->rst, "rst");
+
     uvm::run_test();
+
+    sc_core::sc_close_vcd_trace_file(tracefile);
 
     delete svr;
     delete my_tb_env;

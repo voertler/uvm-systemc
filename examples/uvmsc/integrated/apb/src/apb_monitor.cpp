@@ -54,7 +54,7 @@ void apb_monitor::run_phase(uvm::uvm_phase & phase)
     while (1) {
         apb_rw* tr;
         do {
-            sc_core::wait(this->sigs->pclk.value_changed_event());
+            sc_core::wait(this->sigs->pclk.posedge_event());
         }
         while ( this->sigs->psel != sc_dt::SC_LOGIC_1 ||
                 this->sigs->penable != sc_dt::SC_LOGIC_0);
@@ -63,7 +63,7 @@ void apb_monitor::run_phase(uvm::uvm_phase & phase)
         tr->kind_e = (this->sigs->pwrite == sc_dt::SC_LOGIC_1) ? WRITE : READ;
         tr->addr = this->sigs->paddr;
 
-        sc_core::wait(this->sigs->pclk.value_changed_event());
+        sc_core::wait(this->sigs->pclk.posedge_event());
 
         if (this->sigs->penable != sc_dt::SC_LOGIC_1) {
             UVM_ERROR("APB", "APB protocol violation: SETUP cycle not followed by ENABLE cycle");

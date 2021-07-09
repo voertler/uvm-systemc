@@ -54,6 +54,7 @@ void tb_env::build_phase(uvm::uvm_phase & phase)
     }
 
     apb = apb_agent::type_id::create("apb", this);
+    uvm::uvm_config_db<int>::set(this, "apb", "is_active", uvm::UVM_ACTIVE);
     predict = uvm::uvm_reg_predictor<apb_rw>::type_id::create("predict", this);
 
 }
@@ -99,7 +100,7 @@ void tb_env::run_phase(uvm::uvm_phase & phase)
 
     // SET - preload regmodel; remodel now has full FIFO; DUT still empty
     for (unsigned i = 0; i < max; ++i) {
-        data = /*$urandom*/ 23*i;
+        data = dist(rng);
         expected[i] = data;
         FIFO->set(data);
     }
