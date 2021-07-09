@@ -156,13 +156,14 @@ void uvm_reg_fifo::set( uvm_reg_data_t value,
                         int            lineno )
 {
   // emulate write, with intention of update
-  value &= ((1 << get_n_bits())-1);
+  value &= uvm_mask_size(get_n_bits());
+
   if (fifo.size() == m_size)
     return;
 
-  this->set(value, fname, lineno);
+  uvm_reg::set(value, fname, lineno);
   m_set_cnt++;
-  fifo.push_back(m_value->m_value);
+  fifo.push_back(value);
 }
 
 //----------------------------------------------------------------------
