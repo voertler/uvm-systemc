@@ -181,7 +181,7 @@ bool uvm_get_to_lock_dap<T>::try_get( T& value )
 //----------------------------------------------------------------------------
 
 template <typename T>
-void uvm_get_to_lock_dap<T>::do_copy( const uvm_object& rhs ) const
+void uvm_get_to_lock_dap<T>::do_copy( const uvm_object& rhs )
 {
   UVM_ERROR("UVM/GET_TO_LOCK_DAP/CPY",
     "do_copy is not supported for uvm_get_to_lock_dap<T>");
