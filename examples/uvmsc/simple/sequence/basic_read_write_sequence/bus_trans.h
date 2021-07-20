@@ -133,7 +133,7 @@ class bus_rsp : public bus_trans
     status = rhs_->status;
   }
 
-  std::string convert2string()
+  std::string convert2string() const
   {
     std::string statusstr;
 
