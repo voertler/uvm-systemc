@@ -70,7 +70,7 @@ class uvm_get_to_lock_dap : public uvm_set_get_dap_base<T>
 
   // Group: Introspection
 
-  virtual void do_copy( const uvm_object& rhs ) const;
+  virtual void do_copy( const uvm_object& rhs );
   virtual void do_pack( uvm_packer& packer ) const;
   virtual void do_unpack( uvm_packer& packer );
 
