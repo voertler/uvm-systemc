@@ -54,7 +54,7 @@ the following tools:
   2. GNU Make (gmake)
 
   3. Accellera Systems Initiative SystemC reference implementation
-     version 2.3.1 or later (formerly known as OSCI reference implementation)
+     version 2.3.1 or later
 
 GCC, Clang, and gmake are free software that you can
 obtain from the following sources:
