@@ -160,7 +160,7 @@ void uvm_reg_fifo::set( uvm_reg_data_t value,
   if (fifo.size() == m_size)
     return;
 
-  this->set(value, fname, lineno);
+  uvm_reg::set(value, fname, lineno);
   m_set_cnt++;
   fifo.push_back(m_value->m_value);
 }
