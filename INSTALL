@@ -39,9 +39,8 @@ SystemC 2.3.2 or later is required for GCC 6.* or later releases. Generally,
 GCC versions >= 6.3.0 are recommended!
 
 An installation of UVM-SystemC on other, related platforms and not explictly
-tested compiler combinations may be possible. Please note that while the
-library still builds with non-C++11 compilers no further effort is spend to
-avoid C++11 constructs.
+tested compiler combinations may be possible. Please note that C++11
+compatibility is required to build UVM-SystemC.
 
 
 Sources for Compilers and Related Tools
@@ -55,7 +54,7 @@ the following tools:
   2. GNU Make (gmake)
 
   3. Accellera Systems Initiative SystemC reference implementation
-     version 2.3.0a or later (formerly known as OSCI reference implementation)
+     version 2.3.1 or later (formerly known as OSCI reference implementation)
 
 GCC, Clang, and gmake are free software that you can
 obtain from the following sources:
@@ -69,7 +68,7 @@ obtain from the following sources:
 The SystemC reference implementations are available under Apache License
 Version 2.0 and can be obtained from the following location:
 
-  SystemC 2.3.0a or later   http://www.accellera.org/downloads/standards/systemc
+  SystemC       https://www.accellera.org/downloads/standards/systemc
 
 Note: Various EDA vendors natively support SystemC. Please consult your EDA vendors
       to make use of the build-in SystemC capabilities of their simulation
