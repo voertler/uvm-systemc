@@ -30,7 +30,7 @@ UVM-SystemC was tested on the following Linux 64-bit platforms:
  GCC 9.3.0    |       |        |       X
  GCC 11.1     |       |        |       X
  -------------+-------+--------+------------
- Clang 12.0.0 |       |        |
+ Clang 12.0.0 |       |        |       X
 
  x = successfully ran "make check" and regression tests
  X = same as 'x' but denotes that this is the default system compiler
