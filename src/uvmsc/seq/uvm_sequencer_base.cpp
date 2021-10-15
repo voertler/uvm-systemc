@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2014 Université Pierre et Marie Curie, Paris
+//   Copyright 2014 Universitï¿½ Pierre et Marie Curie, Paris
 //   Copyright 2014 Fraunhofer-Gesellschaft zur Foerderung
 //					der angewandten Forschung e.V.
 //   Copyright 2007-2011 Mentor Graphics Corporation
@@ -606,6 +606,15 @@ void uvm_sequencer_base::send_request(uvm_sequence_base* sequence_ptr,
   // virtual member function, will be overloaded
 }
 
+//----------------------------------------------------------------------
+// member function: build_phase
+//----------------------------------------------------------------------
+
+void uvm_sequencer_base::build_phase(uvm_phase& phase)
+{
+  uvm_component::build_phase(phase);
+}
+
 
 ////////////////////////////////////////////////////////////////////////
 //////// Implementation-defined member functions start here ////////////
@@ -1203,6 +1212,18 @@ void uvm_sequencer_base::do_print( const uvm_printer& printer ) const
   printer.print_array_footer(lock_list.size());
 }
 
+
+//----------------------------------------------------------------------
+// member function: analysis_write
+//
+// Implementation defined.
+//----------------------------------------------------------------------
+
+void uvm_sequencer_base::analysis_write(uvm_sequence_item t)
+{
+  return;
+}
+
 //----------------------------------------------------------------------
 // member function: m_lock_req
 //
@@ -1293,5 +1314,6 @@ void uvm_sequencer_base::m_start_default_seq_proc(uvm_sequence_base* seq)
 {
   seq->start(this, NULL);
 }
+
 
 } /* namespace uvm */
