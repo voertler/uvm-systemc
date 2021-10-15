@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2012-2013 NXP B.V.
+//   Copyright 2012-2021 NXP B.V.
 //   All Rights Reserved Worldwide
 //
 //   Licensed under the Apache License, Version 2.0 (the
