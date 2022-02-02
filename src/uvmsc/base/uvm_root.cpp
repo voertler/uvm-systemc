@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2012-2020 NXP B.V.
+//   Copyright 2012-2022 NXP B.V.
 //   Copyright 2014-2017 Fraunhofer-Gesellschaft zur Foerderung
 //					der angewandten Forschung e.V.
 //   Copyright 2007-2011 Mentor Graphics Corporation

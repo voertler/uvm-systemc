@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2012-2014 NXP B.V.
+//   Copyright 2012-2022 NXP B.V.
 //   All Rights Reserved Worldwide
 //
 //   Licensed under the Apache License, Version 2.0 (the
@@ -28,7 +28,7 @@ namespace uvm {
 
 /* UVM SystemC Release Date */
 #ifndef UVM_RELEASE_DATE
-#define UVM_RELEASE_DATE "2020-07-08"
+#define UVM_RELEASE_DATE "2022-02-02"
 #endif
 
 /* UVM SystemC Version */
