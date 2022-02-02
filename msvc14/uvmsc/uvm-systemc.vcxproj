@@ -285,7 +285,7 @@
     <ClInclude Include="..\..\src\uvmsc\reg\uvm_reg_sequence.h" />
     <ClInclude Include="..\..\src\uvmsc\reg\uvm_reg_tlm_adapter.h" />
     <ClInclude Include="..\..\src\uvmsc\reg\uvm_reg_write_only_cbs.h" />
-    <ClInclude Include="..\..\src\uvmsc\reg\uvm_sc_reg.h" />
+    <ClInclude Include="..\..\src\uvmsc\reg\uvm_sc_if.h" />
     <ClInclude Include="..\..\src\uvmsc\reg\uvm_vreg.h" />
     <ClInclude Include="..\..\src\uvmsc\reg\uvm_vreg_cbs.h" />
     <ClInclude Include="..\..\src\uvmsc\reg\uvm_vreg_field.h" />

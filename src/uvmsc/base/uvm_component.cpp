@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2012-2019 NXP B.V.
+//   Copyright 2012-2021 NXP B.V.
 //   Copyright 2013-2014 Fraunhofer-Gesellschaft zur Foerderung
 //					der angewandten Forschung e.V.
 //   Copyright 2007-2011 Mentor Graphics Corporation
@@ -180,12 +180,12 @@ void uvm_component::get_children( std::vector<uvm_component*>& children ) const
 //----------------------------------------------------------------------------
 // member function: get_child
 //
-//! Member function to iterate through his component�s children, if any.
+//! Member function to iterate through his component's children, if any.
 //----------------------------------------------------------------------------
 
 uvm_component* uvm_component::get_child( const std::string& name ) const
 {
-  if (m_children.find(name) != m_children.end() ) //!exists
+  if (m_children.find(name) != m_children.end() ) // exists
     return m_children.find(name)->second;
 
   std::ostringstream str;
@@ -1602,7 +1602,7 @@ bool uvm_component::m_add_child( uvm_component* child, const std::string& name )
   if (name.empty())
     chname = child->get_name();
 
-  if ( ( m_children.find(chname) != m_children.end() ) //!if exists
+  if ( ( m_children.find(chname) != m_children.end() ) // if exists
     && m_children[chname] != child )
   {
     std::ostringstream str;
@@ -1613,7 +1613,7 @@ bool uvm_component::m_add_child( uvm_component* child, const std::string& name )
     return false;
   }
 
-  if (m_children_by_handle.find(child) != m_children_by_handle.end() )
+  if (m_children_by_handle.find(child) != m_children_by_handle.end() ) // exists
   {
     std::ostringstream str;
     str << "A child with the name '" << chname
