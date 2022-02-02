@@ -35,7 +35,7 @@ UVM-SystemC was tested on the following Linux 64-bit platforms:
  x = successfully ran "make check" and regression tests
  X = same as 'x' but denotes that this is the default system compiler
 
-SystemC 2.3.2 or later is required for GCC 6.* or later releases. Generally,
+SystemC 2.3.2 or 2.3.3 is required for GCC 6.* or later releases. Generally,
 GCC versions >= 6.3.0 are recommended!
 
 An installation of UVM-SystemC on other, related platforms and not explictly
@@ -54,7 +54,7 @@ the following tools:
   2. GNU Make (gmake)
 
   3. Accellera Systems Initiative SystemC reference implementation
-     version 2.3.1 or later
+     version 2.3.1, 2.3.2 or 2.3.3
 
 GCC, Clang, and gmake are free software that you can
 obtain from the following sources:
@@ -338,7 +338,7 @@ UVM-SystemC was tested on the following Windows platforms:
  ------------------
  Windows 10 |   x
 
-SystemC 2.3.2 or later is required for GCC 6.* or later releases. An
+SystemC 2.3.2 or 2.3.3 is required for GCC 6.* or later releases. An
 installation of UVM-SystemC on other, related platforms may be possible as
 well.
 
