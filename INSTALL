@@ -19,24 +19,21 @@ Contents:
 System Requirements
 ===================
 
-UVM-SystemC was tested on the following Linux 64-bit platforms:
+UVM-SystemC was tested on the following Linux 64-bit platforms against SystemC 2.3.3:
 
-              | RHEL  | CentOS | Ubuntu LTS
-              | 7 | 8 |  7 | 8 | 18 | 20
- -------------+-------+--------+------------
- GCC 4.8.5    | X     |  X     |
- GCC 7.5.0    |       |        |  X
- GCC 8.3.1    |     X |      X |
- GCC 9.3.0    |       |        |       X
- GCC 11.1     |       |        |       X
- -------------+-------+--------+------------
- Clang 12.0.0 |       |        |       X
+              | RHEL  | Ubuntu LTS
+              | 7 | 8 | 18 | 20
+ -------------+-------+------------
+ GCC 4.8.5    | X     |
+ GCC 7.5.0    |       |  X
+ GCC 8.3.5    |     X |
+ GCC 9.3.0    |       |       X
+ GCC 11.2     |     x |       x
+ -------------+-------+------------
+ Clang 12.0.0 |       |       x
 
  x = successfully ran "make check" and regression tests
  X = same as 'x' but denotes that this is the default system compiler
-
-SystemC 2.3.2 or 2.3.3 is required for GCC 6.* or later releases. Generally,
-GCC versions >= 6.3.0 are recommended!
 
 An installation of UVM-SystemC on other, related platforms and not explictly
 tested compiler combinations may be possible. Please note that C++11
@@ -331,16 +328,12 @@ Use the `--help' option to print a list.
 System Requirements
 ===================
 
-UVM-SystemC was tested on the following Windows platforms:
+UVM-SystemC was tested on the following Windows platforms against SystemC 2.3.3:
 
-            | VS
- Platform   | 2015
- ------------------
- Windows 10 |   x
-
-SystemC 2.3.2 or 2.3.3 is required for GCC 6.* or later releases. An
-installation of UVM-SystemC on other, related platforms may be possible as
-well.
+            | VS   | VS   | MinGW64
+ Platform   | 2015 | 2019 | GCC 8.4
+ -----------------------------------
+ Windows 10 |   x  |   ?  |    ?
 
 Set the following environment variable(s) under Windows:
 
@@ -414,7 +407,7 @@ Creating UVM-SystemC Applications in Microsoft Visual Studio C++
 10. From the C/C++ tab, select the Command Line properties and add /vmg
     to the 'Additional Options:' box.
 
-11. From the Linjer tab, select the General properties and add to 
+11. From the Linker tab, select the General properties and add to 
     'Additional Library Directories' the path 
     '$(SYSTEMC)\SystemC\Release;$(UVMSYSTEMC)\uvmsc\Release;'
     
