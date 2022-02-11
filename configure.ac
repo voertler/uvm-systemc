@@ -44,7 +44,7 @@
 AC_PREREQ(2.61)
 
 AC_INIT([UVM-SystemC],
-        [1.0-beta4-rc1],
+        [1.0-beta4-rc3],
         [uvm-systemc-feedback@lists.accellera.org],
         [uvm-systemc],
         [Download-URL],
@@ -59,7 +59,7 @@ AC_DEFINE_UNQUOTED(CONFIGURE_DATE, "`sh -c date`", [Date of configure])
 AC_SUBST(CONFIGURE_DATE)
 
 AC_DEFINE_UNQUOTED(UVM_VERSION, "${PACKAGE_VERSION}", [UVM SystemC Version])
-AC_DEFINE_UNQUOTED(UVM_RELEASE_DATE, "2022-02-02", [UVM SystemC Release Date])
+AC_DEFINE_UNQUOTED(UVM_RELEASE_DATE, "2022-02-11", [UVM SystemC Release Date])
 AC_SUBST(UVM_VERSION)
 AC_SUBST(UVM_RELEASE_DATE)
 
