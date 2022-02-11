@@ -44,7 +44,7 @@
 AC_PREREQ(2.61)
 
 AC_INIT([UVM-SystemC],
-        [1.0-beta4-rc1],
+        [1.0-beta4-rc3],
         [uvm-systemc-feedback@lists.accellera.org],
         [uvm-systemc],
         [Download-URL],
