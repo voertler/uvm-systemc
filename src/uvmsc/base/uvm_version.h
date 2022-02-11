@@ -33,12 +33,12 @@ namespace uvm {
 
 /* UVM SystemC Version */
 #ifndef UVM_VERSION
-#define UVM_VERSION "1.0-beta4-rc1"
+#define UVM_VERSION "1.0-beta4-rc3"
 #endif
 
 // compatible with UVM 1.1.d
 #ifndef UVM_VERSION_STRING
-#define UVM_VERSION_STRING "1.0-beta4-rc1"
+#define UVM_VERSION_STRING "1.0-beta4-rc3"
 #endif
 
 extern const std::string uvm_revision;
