@@ -65,7 +65,7 @@ Please report bugs and suggestions about this library to:
 Library status
 --------------
 
-This library is in alpha status, which means not all UVM functions are implemented
+This library is in beta status, which means not all UVM functions are implemented
 nor tested. The list below gives an overview of the UVM functionality and their 
 status (T=testing, X=missing, I=incomplete). 
 
