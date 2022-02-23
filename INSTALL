@@ -30,7 +30,7 @@ UVM-SystemC was tested on the following Linux 64-bit platforms against SystemC 2
  GCC 9.3.0    |       |       X
  GCC 11.2     |     x |       x
  -------------+-------+------------
- Clang 12.0.0 |       |       x
+ Clang 12.0.0 |     x |
 
  x = successfully ran "make check" and regression tests
  X = same as 'x' but denotes that this is the default system compiler
@@ -333,7 +333,7 @@ UVM-SystemC was tested on the following Windows platforms against SystemC 2.3.3:
             | VS   | VS   | MinGW64
  Platform   | 2015 | 2019 | GCC 8.4
  -----------------------------------
- Windows 10 |   x  |   ?  |    ?
+ Windows 10 |   x  |   ?  |    x
 
 Set the following environment variable(s) under Windows:
 
