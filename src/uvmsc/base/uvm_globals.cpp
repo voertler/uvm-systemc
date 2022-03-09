@@ -318,7 +318,7 @@ const char* uvm_glob_to_re_char(const char *glob)
   if(glob == NULL)
     return NULL;
 
-  len = std::strlen(glob);
+  len = (int)std::strlen(glob);
 
   if (len > 2040) {
     std::ostringstream msg;

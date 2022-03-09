@@ -243,7 +243,7 @@ uvm_reg_file* uvm_reg::get_regfile() const
 
 int uvm_reg::get_n_maps() const
 {
-  return m_maps.size();
+  return (int)m_maps.size();
 }
 
 //----------------------------------------------------------------------
@@ -2099,7 +2099,7 @@ void uvm_reg::add_field( uvm_reg_field* field )
   if (idx < 0)
   {
     m_fields.push_back(field);
-    idx = m_fields.size()-1;
+    idx = (int)m_fields.size()-1;
   }
 
   m_n_used_bits += field->get_n_bits();

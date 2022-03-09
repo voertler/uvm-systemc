@@ -420,7 +420,7 @@ int uvm_reg_block::find_blocks( std::string name,
     blks.push_back(blk->read(accessor));
   }
 
-  return blks.size();
+  return (int)blks.size();
 }
 
 //----------------------------------------------------------------------

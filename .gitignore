@@ -8,6 +8,11 @@
 *.Plo
 *.so
 
+# ignore tool configuration files
+.cproject
+.project
+.vscode
+
 # ignore autoconf files
 /aclocal.m4
 /autom4te.cache/

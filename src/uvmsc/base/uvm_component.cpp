@@ -251,7 +251,7 @@ int uvm_component::get_first_child( std::string& name ) const
 
 int uvm_component::get_num_children() const
 {
-  return m_children.size();
+  return (int)m_children.size();
 }
 
 
@@ -1678,9 +1678,9 @@ void uvm_component::m_extract_name( const std::string& name,
 {
   unsigned int i, len;
   std::string extract_str;
-  len = name.length();
+  len = (int)name.length();
 
-  for( i = 0; i < name.length(); i++ )
+  for( i = 0; i < len; i++ )
   {
     if( name[i] == '.' )
       break;
