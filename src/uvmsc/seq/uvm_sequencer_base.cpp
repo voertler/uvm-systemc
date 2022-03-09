@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2014 Universit� Pierre et Marie Curie, Paris
+//   Copyright 2014 Université Pierre et Marie Curie, Paris
 //   Copyright 2014 Fraunhofer-Gesellschaft zur Foerderung
 //					der angewandten Forschung e.V.
 //   Copyright 2007-2011 Mentor Graphics Corporation

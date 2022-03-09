@@ -199,7 +199,7 @@ uvm_component* uvm_component::get_child( const std::string& name ) const
 //----------------------------------------------------------------------------
 // member function: get_next_child
 //
-//! Member function to iterate through his component�s children, if any.
+//! Member function to iterate through his component's children, if any.
 //----------------------------------------------------------------------------
 
 int uvm_component::get_next_child( std::string& name ) const
@@ -224,7 +224,7 @@ int uvm_component::get_next_child( std::string& name ) const
 //----------------------------------------------------------------------------
 // member function: get_first_child
 //
-//! Member function to iterate through his component�s children, if any.
+//! Member function to iterate through his component's children, if any.
 //----------------------------------------------------------------------------
 
 int uvm_component::get_first_child( std::string& name ) const
