@@ -306,7 +306,7 @@ void uvm_default_factory::set_type_override_by_type( uvm_object_wrapper* origina
 //----------------------------------------------------------------------------
 // member function: set_type_override_by_name
 //
-//! Configures the factory to create an object of the overrides type whenever
+//! Configures the factory to create an object of the override's type whenever
 //! a request is made to create an object of the original type, provided no
 //! instance override applies. The original type is typically a super class of
 //! the override type.
