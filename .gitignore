@@ -55,3 +55,9 @@ Debug/
 # ignore Doxygen documentation
 /docs/*/doxygen/html/
 /docs/*/doxygen/*.tag
+
+# ignore tool-specific directories
+.project
+.cproject
+.vscode/
+.settings/
