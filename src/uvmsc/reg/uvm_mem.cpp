@@ -227,7 +227,7 @@ uvm_reg_block* uvm_mem::get_parent() const
 
 int uvm_mem::get_n_maps() const
 {
-   return m_maps.size();
+   return (int)m_maps.size();
 }
 
 //----------------------------------------------------------------------

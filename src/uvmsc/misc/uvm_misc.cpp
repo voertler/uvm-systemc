@@ -202,7 +202,7 @@ std::string uvm_leaf_scope( const std::string& full_name, const char* scope_sepa
   if( (bracket_match != '\0') && (bracket_match != full_name[full_name.length()-1]) )
     bracket_match = '\0';
 
-  for( pos = full_name.length()-1; pos != 0; --pos)
+  for( pos = (int)full_name.length()-1; pos != 0; --pos)
   {
     if( bracket_match == full_name[pos] )
       bmatches++;
