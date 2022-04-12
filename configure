@@ -2418,7 +2418,7 @@ _ACEOF
 
 
 cat >>confdefs.h <<_ACEOF
-#define UVM_RELEASE_DATE "2022-03-24"
+#define UVM_RELEASE_DATE "2022-04-12"
 _ACEOF
 
 
