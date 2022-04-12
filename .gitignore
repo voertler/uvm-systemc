@@ -8,6 +8,11 @@
 *.Plo
 *.so
 
+# ignore tool configuration files
+.cproject
+.project
+.vscode
+
 # ignore autoconf files
 /aclocal.m4
 /autom4te.cache/
@@ -53,3 +58,9 @@ Debug/
 # ignore Doxygen documentation
 /docs/*/doxygen/html/
 /docs/*/doxygen/*.tag
+
+# ignore tool-specific directories
+.project
+.cproject
+.vscode/
+.settings/
