@@ -121,7 +121,7 @@ void uvm_mem::configure( uvm_reg_block* parent,
   if (parent == NULL)
     UVM_FATAL("REG/NULL_PARENT", "configure: parent argument is null");
 
-    m_parent = parent;
+  m_parent = parent;
 
   if (m_access != "RW" && m_access != "RO")
   {
