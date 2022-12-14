@@ -5,7 +5,7 @@
 //   Copyright 2007-2011 Mentor Graphics Corporation
 //   Copyright 2007-2011 Cadence Design Systems, Inc.
 //   Copyright 2010-2020 Synopsys, Inc.
-//   Copyright 2012-2015 NXP B.V.
+//   Copyright 2012-2022 NXP B.V.
 //   Copyright 2018 Intel Corp.
 //   All Rights Reserved Worldwide
 //
