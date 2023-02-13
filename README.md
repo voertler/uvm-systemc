@@ -8,23 +8,23 @@ This version of UVM-SystemC is the reference implementation provided by the [Acc
 
 -------------------------------------------------------------------------------
 
-## Licensing and Copyright
+### Licensing and Copyright
 
 See the separate [LICENSE](LICENSE) and [NOTICE](NOTICE) files to determine your rights and responsiblities for using UVM-SystemC.
 
-## User Documentation
+### User Documentation
 
 The main documentation of UVM-SystemC can be found in the [docs](docs) directory. It contains the Language Reference Manual (LRM) and an introduction presentation.
 
-## Installation
+### Installation
 
 See the separate [INSTALL](INSTALL) file that provides system information and installation instructions.
 
-## Release Notes
+### Release Notes
 
 See the separate [RELEASENOTES](RELEASENOTES) file that provides up-to-date information about this release of SystemC.
 
-## SystemC Verification Community
+### SystemC Verification Community
 
   * SystemC community website  
     https://systemc.org
