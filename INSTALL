@@ -172,6 +172,11 @@ To install UVM-SystemC on a Linux system, do the following steps:
 
             > gmake uninstall
 
+ 10. Automake troubleshooting: In case automake gets called during gmake
+     please reset the timestamps of relevant files and rerun the whole process:
+     
+        > touch aclocal.m4 configure
+        > find . -name Makefile.in -exec touch \{} \;
 
 Running the Examples
 ====================
