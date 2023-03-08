@@ -182,7 +182,7 @@ timestamps of relevant files before step 5 of the basic installation steps
 above:
 
     > touch aclocal.m4 configure
-    > find . -name Makefile.in -exec touch \{} \;
+    > find . -name Makefile.in -exec touch {} \;
 
 
 Running the Examples
