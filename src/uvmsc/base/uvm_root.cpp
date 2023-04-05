@@ -408,7 +408,7 @@ void uvm_root::start_of_simulation()
 void uvm_root::end_of_simulation()
 {
   if (phases_registered)
-    uvm_report_info("FINISH", "UVM-SystemC phasing completed; simulation finished", UVM_NONE);
+    uvm_report_info("FINISH", "UVM-SystemC phasing completed; simulation finished", UVM_LOW);
 }
 
 //----------------------------------------------------------------------
