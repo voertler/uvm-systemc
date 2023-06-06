@@ -94,6 +94,14 @@ class uvm_sequence_item: public uvm_transaction
   //--------------------------------------------------------------------------
   // Reporting interface
   //--------------------------------------------------------------------------
+  
+  //
+  // Disable -Woverloaded-virtual warning causes by implementation of  M_UVM_REPORT_METHODS_REDIRECTION in UVM_OBJECT_UTILS macro from uvm_object_defines.h  
+  // This might be a gcc13 bug
+  //
+  #ifdef __GNUC__
+  #pragma GCC diagnostic ignored "-Woverloaded-virtual"
+  #endif
 
   virtual void uvm_report( uvm_severity severity,
                            const std::string& id,
@@ -137,6 +145,9 @@ class uvm_sequence_item: public uvm_transaction
                                  const std::string& context_name = "",
                                  bool report_enabled_checked = false ) const;
 
+  #ifdef __GNUC__
+  #pragma GCC diagnostic pop
+  #endif
   /////////////////////////////////////////////////////
   // Implementation-defined member functions below,
   // not part of UVM Class reference / LRM
