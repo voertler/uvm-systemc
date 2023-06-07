@@ -5,7 +5,7 @@
 //   Copyright 2010-2011 Cadence Design Systems, Inc.
 //   Copyright 2014 Fraunhofer-Gesellschaft zur Foerderung
 //					der angewandten Forschung e.V.
-//   Copyright 2014 Université Pierre et Marie Curie, Paris
+//   Copyright 2014 UniversitÃ© Pierre et Marie Curie, Paris
 //   Copyright 2018 Intel Corp.
 //   All Rights Reserved Worldwide
 //
@@ -707,7 +707,7 @@ bool uvm_reg_field::has_reset( const std::string& kind,
 void uvm_reg_field::set_reset( uvm_reg_data_t value,
                                const std::string& kind )
 {
-  m_reset[kind] = value & ((1<<m_size) - 1);
+  m_reset[kind] = value & ((1ul<<m_size) - 1);
 }
 
 //----------------------------------------------------------------------
