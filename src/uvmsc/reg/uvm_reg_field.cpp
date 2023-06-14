@@ -707,7 +707,7 @@ bool uvm_reg_field::has_reset( const std::string& kind,
 void uvm_reg_field::set_reset( uvm_reg_data_t value,
                                const std::string& kind )
 {
-  m_reset[kind] = value & ((1<<m_size) - 1);
+  m_reset[kind] = value & ((1ul<<m_size) - 1);
 }
 
 //----------------------------------------------------------------------
