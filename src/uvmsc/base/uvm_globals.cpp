@@ -40,6 +40,7 @@
 #include "uvmsc/base/uvm_coreservice_t.h"
 #include "uvmsc/base/uvm_default_coreservice_t.h"
 #include "uvmsc/conf/uvm_config_db.h"
+#include "uvmsc/base/uvm_simcontext.h"
 
 #if !defined(_MSC_VER)
 #include "config.h"
@@ -295,7 +296,6 @@ bool uvm_has_wildcard ( const std::string& arg )
 
 
 const char uvm_re_bracket_char = '/';
-static char uvm_re[2048];
 
 
 //--------------------------------------------------------------------
@@ -313,7 +313,7 @@ const char* uvm_glob_to_re_char(const char *glob)
 {
   const char *p;
   int len;
-
+  char* uvm_re = uvm_simcontext::get().uvm_globals_uvm_re;
   // safety check.  Glob should never be NULL
   if(glob == NULL)
     return NULL;
@@ -459,7 +459,7 @@ bool uvm_re_match( const std::string& re, const std::string& str )
 int uvm_re_match_char(const char *re, const char *str)
 {
   regex_t *rexp;
-  
+  char* uvm_re = uvm_simcontext::get().uvm_globals_uvm_re;
   int err;
   int len = std::strlen(re);
   char * rex = &uvm_re[0];

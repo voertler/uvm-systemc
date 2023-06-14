@@ -379,7 +379,7 @@ class uvm_component : public sc_core::sc_module,
   //-------------
   // data members
   //-------------
-  static bool global_timeout_spawned_;
+  //static bool global_timeout_spawned_; // unused
 
  public:
 
@@ -394,16 +394,6 @@ class uvm_component : public sc_core::sc_module,
 
   std::map< uvm_component*, uvm_component*> m_children_by_handle;
 
-  //--------------------------------------------------------------------------
-  // member variable: print_config_matches
-  //
-  // Setting this static variable causes get_config_* to print info about
-  // matching configuration settings as they are being applied.
-  //
-  // TODO: prefixed with underscore since we made this a method in UVM-SystemC
-  //--------------------------------------------------------------------------
-
-  static bool _print_config_matches;
 
   //--------------------------------------------------------------------------
   // member variable: print_enabled

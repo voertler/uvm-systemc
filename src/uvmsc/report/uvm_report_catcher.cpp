@@ -584,7 +584,7 @@ bool uvm_report_catcher::process_all_report_catchers( uvm_report_message* rm )
     return true;
 
   in_catcher = true;
-  uvm_callbacks_base::m_tracing = false;  //turn off cb tracing so catcher stuff doesn't print
+  uvm_simcontext::get().uvm_callback_base_m_tracing = false;  //turn off cb tracing so catcher stuff doesn't print
 
   orig_severity = rm->get_severity();
   rcd.m_modified_report_message = rm;
@@ -656,7 +656,7 @@ bool uvm_report_catcher::process_all_report_catchers( uvm_report_message* rm )
   }
 
   in_catcher = false;
-  uvm_callbacks_base::m_tracing = true;  // turn tracing stuff back on
+  uvm_simcontext::get().uvm_callback_base_m_tracing = true;  // turn tracing stuff back on
 
   return thrown;
 }

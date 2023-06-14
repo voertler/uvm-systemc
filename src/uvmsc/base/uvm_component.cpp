@@ -33,6 +33,8 @@
 #include <systemc>
 #include "sysc/kernel/sc_dynamic_processes.h"
 
+
+#include "uvmsc/base/uvm_simcontext.h"
 #include "uvmsc/base/uvm_root.h"
 #include "uvmsc/base/uvm_component.h"
 #include "uvmsc/base/uvm_component_name.h"
@@ -59,9 +61,8 @@ namespace uvm {
 // Initialization of data members
 //----------------------------------------------------------------------------
 
-bool uvm_component::global_timeout_spawned_ = false;
+//bool uvm_component::global_timeout_spawned_ = false;
 
-bool uvm_component::_print_config_matches = false;
 
 //----------------------------------------------------------------------------
 // Constructor
@@ -348,7 +349,7 @@ unsigned int uvm_component::get_depth() const
 void uvm_component::build_phase( uvm_phase& phase )
 {
   m_build_done = true;
-  apply_config_settings(_print_config_matches);
+  apply_config_settings(uvm_simcontext::get().uvm_component__print_config_matches);
   if(m_phasing_active == 0)
     uvm_report_warning("BUILD", "The member function build_phase() has been called explicitly, outside of the phasing system. This may lead to unexpected behavior.");
 }
@@ -837,7 +838,7 @@ void uvm_component::print_config_with_audit( bool recurse ) const
 
 void uvm_component::print_config_matches( bool enable )
 {
-  if (enable) _print_config_matches = true;
+  if (enable) uvm_simcontext::get().uvm_component__print_config_matches = true;
 }
 
 
@@ -1462,6 +1463,7 @@ void uvm_component::print_config_settings( const std::string& field,
 // Implementation defined
 //----------------------------------------------------------------------------
 
+const char separator[] = ".";
 void uvm_component::do_print( const uvm_printer& printer ) const
 {
   std::string v;
@@ -1471,7 +1473,6 @@ void uvm_component::do_print( const uvm_printer& printer ) const
   if(recording_detail != UVM_NONE)
   {
     int size = 0 ; // TODO get real size of recording_detail?
-    static char separator[] = ".";
     switch (recording_detail)
     {
       case UVM_LOW : printer.print_generic("recording_detail", "uvm_verbosity",

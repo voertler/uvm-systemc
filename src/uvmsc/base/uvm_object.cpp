@@ -37,6 +37,7 @@
 #include "uvmsc/policy/uvm_packer.h"
 #include "uvmsc/policy/uvm_recorder.h"
 #include "uvmsc/report/uvm_report_object.h"
+#include "uvmsc/base/uvm_simcontext.h"
 
 namespace uvm {
 
@@ -54,11 +55,6 @@ int g_inst_count = 0;
 
 uvm_status_container* uvm_object::__m_uvm_status_container = NULL;
 
-//----------------------------------------------------------------------------
-// initialization of external members
-//----------------------------------------------------------------------------
-
-uvm_packer* uvm_default_packer = uvm_object::get_uvm_packer();
 
 //----------------------------------------------------------------------------
 // Constructors
@@ -499,7 +495,7 @@ void uvm_object::m_pack( uvm_packer*& packer )
   if( packer != NULL)
     __m_uvm_status_container->packer = packer;
   else
-    __m_uvm_status_container->packer = uvm_default_packer;
+    __m_uvm_status_container->packer = get_uvm_packer();
 
   packer = __m_uvm_status_container->packer;
 
@@ -585,7 +581,7 @@ void uvm_object::m_unpack_pre( uvm_packer*& packer )
   if( packer != NULL)
     __m_uvm_status_container->packer = packer;
   else
-    __m_uvm_status_container->packer = uvm_default_packer;
+    __m_uvm_status_container->packer = get_uvm_packer();
 
   packer = __m_uvm_status_container->packer;
 
@@ -812,8 +808,11 @@ bool uvm_object::m_register_cb()
 
 uvm_packer* uvm_object::get_uvm_packer()
 {
-  static uvm_packer* p = new uvm_packer;
-  return p;
+  if (!uvm_simcontext::get().uvm_object_uvm_packer) {
+    uvm_simcontext::get().uvm_object_uvm_packer = std::unique_ptr<uvm_packer> (new uvm_packer);
+  }
+  
+  return uvm_simcontext::get().uvm_object_uvm_packer.get();
 }
 
 

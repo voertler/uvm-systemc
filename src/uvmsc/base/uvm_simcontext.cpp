@@ -1,6 +1,6 @@
 //----------------------------------------------------------------------
-//   Copyright 2013 Cadence Design Inc
-//   Copyright 2016 NXP B.V.
+//   Copyright 2023 COSEDA Technologies GmbH
+//   Copyright 2012-2022 NXP B.V.
 //   All Rights Reserved Worldwide
 //
 //   Licensed under the Apache License, Version 2.0 (the
@@ -17,26 +17,17 @@
 //   the License for the specific language governing
 //   permissions and limitations under the License.
 //----------------------------------------------------------------------
-
-#include "uvmsc/base/uvm_coreservice_t.h"
-#include "uvmsc/base/uvm_default_coreservice_t.h"
-#include "uvmsc/base/uvm_simcontext.h"
-
-//////////////
-
-namespace uvm {
-
-//----------------------------------------------------------------------
-// Static member function
-//----------------------------------------------------------------------
-
-uvm_default_coreservice_t* uvm_coreservice_t::get()
+#include "uvm_simcontext.h"
+using namespace uvm;
+uvm_simcontext &uvm_simcontext::get()
 {
-  if (!uvm::uvm_simcontext::get().uvm_default_coreservice_t_inst)
-    uvm::uvm_simcontext::get().uvm_default_coreservice_t_inst = std::unique_ptr<uvm::uvm_default_coreservice_t> (new uvm_default_coreservice_t);
-
-  return uvm::uvm_simcontext::get().uvm_default_coreservice_t_inst.get();
+    static uvm_simcontext instance;
+    // Return a reference to our instance.
+    return instance;
+  
 }
 
-} // namespace uvm
+uvm_simcontext::uvm_simcontext() 
+{
 
+}

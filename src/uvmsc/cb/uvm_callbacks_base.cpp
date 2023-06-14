@@ -31,7 +31,7 @@ namespace uvm {
 
 std::map<uvm_object*, uvm_queue<uvm_callback*>* >* uvm_callbacks_base::m_pool = NULL;
 uvm_callbacks_base* uvm_callbacks_base::m_b_inst = m_initialize();
-bool uvm_callbacks_base::m_tracing = true;
+
 
 //----------------------------------------------------------------------------
 // Constructor (protected)

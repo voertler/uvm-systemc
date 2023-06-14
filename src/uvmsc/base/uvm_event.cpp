@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2014 Université Pierre et Marie Curie, Paris
+//   Copyright 2014 Universitï¿½ Pierre et Marie Curie, Paris
 //   Copyright 2014 Fraunhofer-Gesellschaft zur Foerderung
 //					der angewandten Forschung e.V.
 //   Copyright 2013-2020 NXP B.V.
@@ -31,12 +31,6 @@ using namespace sc_core;
 
 namespace uvm {
 
-//----------------------------------------------------------------------------
-// initialization of static data members
-//----------------------------------------------------------------------------
-
-const std::string uvm_event::type_name = "uvm::uvm_event";
-int uvm_event::g_cnt = 0;
 
 //----------------------------------------------------------------------
 // Constructor

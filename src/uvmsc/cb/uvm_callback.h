@@ -65,7 +65,7 @@ class uvm_callback : public uvm_object
   // TODO reporter
   //static uvm_report_object reporter = new("cb_tracer");
 
-  static std::string type_name;
+  const std::string type_name {"uvm::uvm_callback"};
 
  protected:
   bool m_enabled; // default set to true

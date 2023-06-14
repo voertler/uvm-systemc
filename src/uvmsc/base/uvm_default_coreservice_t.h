@@ -62,9 +62,9 @@ class uvm_default_coreservice_t : public uvm_coreservice_t
 //  virtual void set_component_visitor( uvm_visitor<uvm_component> v );
 //  virtual uvm_visitor<uvm_component> get_component_visitor() const;
 
+  virtual ~uvm_default_coreservice_t(){};
  private:
   uvm_default_coreservice_t():factory(NULL),report_server(NULL){};
-  virtual ~uvm_default_coreservice_t(){};
 
   mutable uvm_factory* factory;
 //  mutable uvm_tr_database* tr_database;

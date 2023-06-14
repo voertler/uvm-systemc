@@ -43,6 +43,7 @@
 #include "uvmsc/report/uvm_report_handler.h"
 #include "uvmsc/report/uvm_report_server.h"
 #include "uvmsc/conf/uvm_resource_pool.h"
+#include "uvmsc/base/uvm_simcontext.h"
 
 using namespace sc_core;
 
@@ -63,13 +64,6 @@ namespace uvm {
 //----------------------------------------------------------------------
 
 //----------------------------------------------------------------------
-// Initialization static data members
-//----------------------------------------------------------------------
-
-
-bool uvm_root::m_uvm_timeout_overridable = true;
-
-//----------------------------------------------------------------------
 // Constructor
 //----------------------------------------------------------------------
 
@@ -81,8 +75,6 @@ uvm_root::uvm_root( uvm_component_name nm )
   phase_timeout = UVM_DEFAULT_TIMEOUT;
   m_phase_all_done = false;
   m_current_phase = NULL;
-
-  m_uvm_timeout_overridable = true;
 
   m_rh->set_name("reporter");
 
@@ -200,7 +192,7 @@ void uvm_root::die()
 
 void uvm_root::set_timeout( const sc_core::sc_time& timeout, bool overridable)
 {
-  if (!m_uvm_timeout_overridable)
+  if (!uvm_simcontext::get().uvm_root_m_uvm_timeout_overridable)
   {
     std::ostringstream str;
     str << "The global timeout setting of "
@@ -211,7 +203,7 @@ void uvm_root::set_timeout( const sc_core::sc_time& timeout, bool overridable)
     uvm_report_info("NOTIMOUTOVR", str.str(), UVM_NONE);
     return;
   }
-  m_uvm_timeout_overridable = overridable;
+  uvm_simcontext::get().uvm_root_m_uvm_timeout_overridable = overridable;
   phase_timeout = timeout;
 }
 
@@ -420,15 +412,15 @@ void uvm_root::end_of_simulation()
 
 uvm_root* uvm_root::m_uvm_get_root()
 {
-  static uvm_root* m_root = NULL;
+  auto& m_root = uvm_simcontext::get().uvm_object_uvm_root;
 
-  if (m_root == NULL)
+  if (!m_root)
   {
-    m_root = new uvm_root(sc_core::sc_module_name("uvm_top"));
+    m_root = std::unique_ptr<uvm_root>(new uvm_root(sc_core::sc_module_name("uvm_top")));
     m_root->m_domain = uvm_domain::get_uvm_domain();
   }
 
-  return m_root;
+  return m_root.get();
 }
 
 //----------------------------------------------------------------------
@@ -532,7 +524,7 @@ void uvm_root::m_register_test( const std::string& test_name )
 
 void uvm_root::m_uvm_header()
 {
-  static bool lnp = false;
+  bool& lnp = uvm_simcontext::get().uvm_root_m_uvm_header_lnp;
   if (lnp  || (getenv("UVM_SYSTEMC_DISABLE_COPYRIGHT_MESSAGE") != 0 )) {
 	  lnp = true;
   } else

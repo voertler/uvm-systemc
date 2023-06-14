@@ -72,9 +72,9 @@ class uvm_coreservice_t
 
   static uvm_default_coreservice_t* get();
 
+  virtual ~uvm_coreservice_t(){}
  protected:
   uvm_coreservice_t(){};
-  virtual ~uvm_coreservice_t(){}
 
 }; // class uvm_coreservice_t
 

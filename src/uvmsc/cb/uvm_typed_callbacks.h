@@ -34,6 +34,7 @@
 #include "uvmsc/conf/uvm_queue.h"
 #include "uvmsc/cb/uvm_callbacks_base.h"
 #include "uvmsc/cb/uvm_callback.h"
+#include "uvmsc/base/uvm_simcontext.h"
 
 namespace uvm {
 
@@ -353,7 +354,7 @@ void uvm_typed_callbacks<T>::display( T* obj )
   unsigned int max_cb_name = 0;
   unsigned int max_inst_name = 0;
 
-  m_tracing = false; // don't allow tracing during display
+  uvm_simcontext::get().uvm_callback_base_m_tracing = false; // don't allow tracing during display
 
   if(!m_typename.empty()) tname = m_typename;
   else
@@ -475,7 +476,7 @@ void uvm_typed_callbacks<T>::display( T* obj )
 
   UVM_INFO("UVM/CB/DISPLAY", UVM_STRING_QUEUE_STREAMING_PACK(qs), UVM_NONE);
 
-  m_tracing = true; //allow tracing to be resumed
+  uvm_simcontext::get().uvm_callback_base_m_tracing = true; //allow tracing to be resumed
 }
 
 } // namespace uvm

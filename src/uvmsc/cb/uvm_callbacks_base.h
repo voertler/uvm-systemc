@@ -85,7 +85,6 @@ class uvm_callbacks_base : public uvm_object
   uvm_typeid_base m_super_type;             // one to one relation
   std::vector<uvm_typeid_base*> m_derived_types; // one to many relation
 
-  static bool m_tracing;
   static std::map<uvm_object*, uvm_queue<uvm_callback*>* >* m_pool;
 
   static uvm_callbacks_base* m_b_inst;

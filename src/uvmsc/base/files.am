@@ -13,6 +13,7 @@ H_FILES += \
 	base/uvm_object_globals.h \
 	base/uvm_port_base.h \
 	base/uvm_root.h \
+	base/uvm_simcontext.h \
 	base/uvm_transaction.h \
 	base/uvm_void.h \
 	base/uvm_version.h
@@ -29,6 +30,7 @@ CXX_FILES += \
 	base/uvm_object.cpp \
 	base/uvm_object_globals.cpp \
 	base/uvm_root.cpp \
+	base/uvm_simcontext.cpp \
 	base/uvm_transaction.cpp \
 	base/uvm_version.cpp
 

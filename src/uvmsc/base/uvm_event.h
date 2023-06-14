@@ -132,7 +132,7 @@ private:
 
   // data members
 
-  const static std::string type_name;
+  const std::string type_name {"uvm::uvm_event"};
 
   bool               m_event_val;
   sc_core::sc_event* m_event;
@@ -150,9 +150,6 @@ private:
   std::vector<uvm_event_callback*> callbacks;
   typedef std::vector<uvm_event_callback*>::iterator callbacks_itt;
 
-  // TODO: unused
-  /* int m_cnt; */
-  static int g_cnt;
 }; // class uvm_event
 
 } // namespace uvm
