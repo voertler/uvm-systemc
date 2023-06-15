@@ -55,6 +55,11 @@ int g_inst_count = 0;
 
 uvm_status_container* uvm_object::__m_uvm_status_container = NULL;
 
+//----------------------------------------------------------------------------
+// initialization of external members
+//----------------------------------------------------------------------------
+
+uvm_packer* uvm_default_packer = uvm_object::get_uvm_packer();
 
 //----------------------------------------------------------------------------
 // Constructors
