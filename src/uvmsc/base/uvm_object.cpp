@@ -50,12 +50,6 @@ int g_inst_count = 0;
 //----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
-// initialization of static data members
-//----------------------------------------------------------------------------
-
-uvm_status_container* uvm_object::__m_uvm_status_container = NULL;
-
-//----------------------------------------------------------------------------
 // initialization of external members
 //----------------------------------------------------------------------------
 
@@ -72,8 +66,9 @@ uvm_object::uvm_object()
   m_inst_id = g_inst_count++;
 
   // make only one status container
-  if (uvm_object::__m_uvm_status_container == NULL)
-    __m_uvm_status_container = new uvm_status_container();
+  if (!uvm_simcontext::get().uvm_object___m_uvm_status_container) {
+    uvm_simcontext::get().uvm_object___m_uvm_status_container = std::unique_ptr<uvm_status_container> (new uvm_status_container);
+  }
 
   // register callbacks
   m_register_cb();
@@ -85,8 +80,9 @@ uvm_object::uvm_object( uvm_object_name name)
   m_inst_id = g_inst_count++;
 
   // make only one status container
-  if (uvm_object::__m_uvm_status_container == NULL)
-    __m_uvm_status_container = new uvm_status_container();
+  if (!uvm_simcontext::get().uvm_object___m_uvm_status_container) {
+    uvm_simcontext::get().uvm_object___m_uvm_status_container = std::unique_ptr<uvm_status_container> (new uvm_status_container);
+  }
 
   // register callbacks
   m_register_cb();
@@ -305,7 +301,7 @@ std::string uvm_object::sprint( uvm_printer* printer ) const
   // not at top-level, must be recursing into sub-object
   if(!printer->istop())
   {
-    __m_uvm_status_container->printer = printer;
+    uvm_simcontext::get().uvm_object___m_uvm_status_container->printer = printer;
     //__m_uvm_field_automation(null, UVM_PRINT, ""); // TODO do we need this?
     do_print( *printer );
     return "";
@@ -382,7 +378,7 @@ void uvm_object::record( uvm_recorder* recorder )
   if(!recorder->tr_handle)
     return;
 
-  __m_uvm_status_container->recorder = recorder;
+  uvm_simcontext::get().uvm_object___m_uvm_status_container->recorder = recorder;
 
   recorder->recording_depth++;
   //__m_uvm_field_automation(null, UVM_RECORD, ""); // TODO field automation
@@ -498,11 +494,11 @@ bool uvm_object::do_compare( const uvm_object& rhs,
 void uvm_object::m_pack( uvm_packer*& packer )
 {
   if( packer != NULL)
-    __m_uvm_status_container->packer = packer;
+    uvm_simcontext::get().uvm_object___m_uvm_status_container->packer = packer;
   else
-    __m_uvm_status_container->packer = get_uvm_packer();
+    uvm_simcontext::get().uvm_object___m_uvm_status_container->packer = get_uvm_packer();
 
-  packer = __m_uvm_status_container->packer;
+  packer = uvm_simcontext::get().uvm_object___m_uvm_status_container->packer;
 
   packer->reset();
   packer->scope.down(get_name());
@@ -584,11 +580,11 @@ void uvm_object::do_pack( uvm_packer& packer ) const
 void uvm_object::m_unpack_pre( uvm_packer*& packer )
 {
   if( packer != NULL)
-    __m_uvm_status_container->packer = packer;
+    uvm_simcontext::get().uvm_object___m_uvm_status_container->packer = packer;
   else
-    __m_uvm_status_container->packer = get_uvm_packer();
+    uvm_simcontext::get().uvm_object___m_uvm_status_container->packer = get_uvm_packer();
 
-  packer = __m_uvm_status_container->packer;
+  packer = uvm_simcontext::get().uvm_object___m_uvm_status_container->packer;
 
   packer->reset();
 }

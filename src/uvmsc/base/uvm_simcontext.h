@@ -24,6 +24,7 @@
 #include "uvmsc/base/uvm_default_coreservice_t.h"
 #include "uvmsc/policy/uvm_packer.h"
 #include "uvmsc/base/uvm_root.h"
+#include "uvmsc/misc/uvm_status_container.h"
 
 #include <memory>
 namespace uvm {
@@ -55,6 +56,8 @@ class uvm_simcontext {
   std::unique_ptr<uvm_packer> uvm_object_uvm_packer;
   
   std::unique_ptr<uvm_root> uvm_object_uvm_root;
+
+  std::unique_ptr<uvm_status_container> uvm_object___m_uvm_status_container;
 
   bool uvm_root_m_uvm_header_lnp {false};
 

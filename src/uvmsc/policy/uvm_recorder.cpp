@@ -27,6 +27,7 @@
 #include "uvmsc/policy/uvm_recorder.h"
 #include "uvmsc/base/uvm_object_globals.h"
 #include "uvmsc/misc/uvm_status_container.h"
+#include "uvmsc/base/uvm_simcontext.h"
 
 using namespace sc_core;
 using namespace sc_dt;
@@ -146,14 +147,14 @@ void uvm_recorder::record_object( const std::string& name, uvm_object* value )
   {
     if(value != NULL)
     {
-      if(value->__m_uvm_status_container->cycle_check.find(value) != value->__m_uvm_status_container->cycle_check.end()) // exists
+      if(uvm_simcontext::get().uvm_object___m_uvm_status_container->cycle_check.find(value) != uvm_simcontext::get().uvm_object___m_uvm_status_container->cycle_check.end()) // exists
         return;
 
-      value->__m_uvm_status_container->cycle_check[value] = 1;
+      uvm_simcontext::get().uvm_object___m_uvm_status_container->cycle_check[value] = 1;
       scope->down(name);
       value->record(this);
       scope->up();
-      value->__m_uvm_status_container->cycle_check.erase(value);
+      uvm_simcontext::get().uvm_object___m_uvm_status_container->cycle_check.erase(value);
     }
   }
 }

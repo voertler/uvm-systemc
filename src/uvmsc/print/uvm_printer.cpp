@@ -32,6 +32,7 @@
 #include "uvmsc/base/uvm_globals.h"
 #include "uvmsc/misc/uvm_misc.h"
 #include "uvmsc/misc/uvm_scope_stack.h"
+#include "uvmsc/base/uvm_simcontext.h"
 
 namespace uvm {
 
@@ -234,10 +235,10 @@ void uvm_printer::print_object( const std::string& name,
   print_object_header(name, obj, scope_separator);
 
   if( (knobs.depth == -1 || (knobs.depth > m_scope.depth())) &&
-        (objp->__m_uvm_status_container->cycle_check.find(objp) == objp->__m_uvm_status_container->cycle_check.end()) // not exists
+        (uvm_simcontext::get().uvm_object___m_uvm_status_container->cycle_check.find(objp) == uvm_simcontext::get().uvm_object___m_uvm_status_container->cycle_check.end()) // not exists
     )
   {
-    objp->__m_uvm_status_container->cycle_check[objp] = true;
+    uvm_simcontext::get().uvm_object___m_uvm_status_container->cycle_check[objp] = true;
     if(name.empty() && objp != NULL)
       m_scope.down(objp->get_name());
     else
@@ -266,7 +267,7 @@ void uvm_printer::print_object( const std::string& name,
     else
       m_scope.up(".");
 
-    objp->__m_uvm_status_container->cycle_check.erase( objp->__m_uvm_status_container->cycle_check.find(objp) );
+    uvm_simcontext::get().uvm_object___m_uvm_status_container->cycle_check.erase( uvm_simcontext::get().uvm_object___m_uvm_status_container->cycle_check.find(objp) );
   }
 }
 

@@ -225,9 +225,7 @@ public:
 
   // data members below
 
- public:
-  static uvm_status_container* __m_uvm_status_container;
-
+ 
  protected:
   std::string m_leaf_name;
   std::string m_full_name;

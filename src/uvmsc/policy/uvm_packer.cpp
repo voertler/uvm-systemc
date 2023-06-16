@@ -28,6 +28,7 @@
 #include "uvmsc/policy/uvm_packer.h"
 #include "uvmsc/misc/uvm_misc.h"
 #include "uvmsc/macros/uvm_message_defines.h"
+#include "uvmsc/base/uvm_simcontext.h"
 
 //using namespace sc_dt;
 
@@ -197,8 +198,8 @@ void uvm_packer::pack_object( const uvm_object& value )
 {
   const uvm_object* val = &value;
 
-  if( val->__m_uvm_status_container->cycle_check.find(val)
-      != val->__m_uvm_status_container->cycle_check.end()) //exists
+  if( uvm_simcontext::get().uvm_object___m_uvm_status_container->cycle_check.find(val)
+      != uvm_simcontext::get().uvm_object___m_uvm_status_container->cycle_check.end()) //exists
   {
     std::ostringstream str;
     str << "Cycle detected for object "
@@ -208,7 +209,7 @@ void uvm_packer::pack_object( const uvm_object& value )
     return;
   }
 
-  val->__m_uvm_status_container->cycle_check[val] = true;
+  uvm_simcontext::get().uvm_object___m_uvm_status_container->cycle_check[val] = true;
 
   if((policy != UVM_REFERENCE) && (val != NULL) )
   {
@@ -232,7 +233,7 @@ void uvm_packer::pack_object( const uvm_object& value )
       pack_index += 4;
     }
   }
-  val->__m_uvm_status_container->cycle_check.erase(val);
+  uvm_simcontext::get().uvm_object___m_uvm_status_container->cycle_check.erase(val);
 }
 
 //------------------------------------------------------------------------------
@@ -462,8 +463,8 @@ void uvm_packer::unpack_object( uvm_object& value )
   int is_non_null = 1;
   uvm_object* val = &value;
 
-  if( val->__m_uvm_status_container->cycle_check.find(val)
-      != val->__m_uvm_status_container->cycle_check.end()) //exists
+  if( uvm_simcontext::get().uvm_object___m_uvm_status_container->cycle_check.find(val)
+      != uvm_simcontext::get().uvm_object___m_uvm_status_container->cycle_check.end()) //exists
   {
     std::ostringstream str;
     str << "Cycle detected for object "
@@ -472,7 +473,7 @@ void uvm_packer::unpack_object( uvm_object& value )
     UVM_WARNING("CYCFND", str.str());
     return;
   }
-  val->__m_uvm_status_container->cycle_check[val] = true;
+  uvm_simcontext::get().uvm_object___m_uvm_status_container->cycle_check[val] = true;
 
   if(use_metadata)
   {
@@ -503,7 +504,7 @@ void uvm_packer::unpack_object( uvm_object& value )
     if ((is_non_null != 0) && (val == NULL))
       UVM_ERROR("UNPCKERR","Can not unpack into null object.");
 
-  val->__m_uvm_status_container->cycle_check.erase(val);
+  uvm_simcontext::get().uvm_object___m_uvm_status_container->cycle_check.erase(val);
 }
 
 
