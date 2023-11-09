@@ -93,6 +93,8 @@ class uvm_blocking_put_imp
 : public uvm_export_base< tlm::tlm_blocking_put_if<T> >,
   public virtual tlm::tlm_blocking_put_if<T>
 {
+  using uvm::uvm_export_base< tlm::tlm_blocking_put_if<T> >::connect;
+
  public:
   uvm_blocking_put_imp( IMP* imp ) :
     uvm_export_base< tlm::tlm_blocking_put_if<T> >(), m_imp(imp)
@@ -161,6 +163,8 @@ class uvm_blocking_peek_imp
 : public uvm_export_base< tlm::tlm_blocking_peek_if<T> >,
   public virtual tlm::tlm_blocking_peek_if<T>
 {
+  using uvm::uvm_export_base< tlm::tlm_blocking_peek_if<T> >::connect;
+
  public:
   uvm_blocking_peek_imp( IMP* imp ) :
     uvm_export_base< tlm::tlm_blocking_peek_if<T> >(), m_imp(imp)
