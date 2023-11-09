@@ -34,6 +34,12 @@ typedef enum {
 } apb_rw_enum;
 
 class apb_rw : public uvm::uvm_sequence_item {
+    using uvm_sequence_item::uvm_report;
+    using uvm_sequence_item::uvm_report_info;
+    using uvm_sequence_item::uvm_report_warning;
+    using uvm_sequence_item::uvm_report_error;
+    using uvm_sequence_item::uvm_report_fatal;
+
     public:
         sc_dt::sc_lv<32> addr;
         sc_dt::sc_lv<32> data;
