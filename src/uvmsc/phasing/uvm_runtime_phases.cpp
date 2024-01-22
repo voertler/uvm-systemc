@@ -43,14 +43,7 @@ uvm_pre_reset_phase::uvm_pre_reset_phase( const std::string& name )
 
 void uvm_pre_reset_phase::exec_process( uvm_component* comp, uvm_phase* phase )
 {
-#if IEEE_1666_SYSTEMC >= 202301L
-  sc_core::sc_hierarchy_scope scope(comp->get_hierarchy_scope());
   comp->pre_reset_phase(*phase);
-#else
-  comp->simcontext()->hierarchy_push( comp );
-  comp->pre_reset_phase(*phase);
-  comp->simcontext()->hierarchy_pop();
-#endif
 }
 
 uvm_pre_reset_phase* uvm_pre_reset_phase::get()
@@ -82,14 +75,7 @@ uvm_reset_phase::uvm_reset_phase( const std::string& name )
 
 void uvm_reset_phase::exec_process( uvm_component* comp, uvm_phase* phase )
 {
-#if IEEE_1666_SYSTEMC >= 202301L
-  sc_core::sc_hierarchy_scope scope(comp->get_hierarchy_scope());
   comp->reset_phase(*phase);
-#else
-  comp->simcontext()->hierarchy_push( comp );
-  comp->reset_phase(*phase);
-  comp->simcontext()->hierarchy_pop();
-#endif
 }
 
 uvm_reset_phase* uvm_reset_phase::get()
@@ -121,14 +107,7 @@ uvm_post_reset_phase::uvm_post_reset_phase( const std::string& name )
 
 void uvm_post_reset_phase::exec_process( uvm_component* comp, uvm_phase* phase )
 {
-#if IEEE_1666_SYSTEMC >= 202301L
-  sc_core::sc_hierarchy_scope scope(comp->get_hierarchy_scope());
   comp->post_reset_phase(*phase);
-#else
-  comp->simcontext()->hierarchy_push( comp );
-  comp->post_reset_phase(*phase);
-  comp->simcontext()->hierarchy_pop();
-#endif
 }
 
 uvm_post_reset_phase* uvm_post_reset_phase::get()
@@ -160,14 +139,7 @@ uvm_pre_configure_phase::uvm_pre_configure_phase( const std::string& name )
 
 void uvm_pre_configure_phase::exec_process( uvm_component* comp, uvm_phase* phase )
 {
-#if IEEE_1666_SYSTEMC >= 202301L
-  sc_core::sc_hierarchy_scope scope(comp->get_hierarchy_scope());
   comp->pre_configure_phase(*phase);
-#else
-  comp->simcontext()->hierarchy_push( comp );
-  comp->pre_configure_phase(*phase);
-  comp->simcontext()->hierarchy_pop();
-#endif
 }
 
 uvm_pre_configure_phase* uvm_pre_configure_phase::get()
@@ -199,14 +171,7 @@ uvm_configure_phase::uvm_configure_phase( const std::string& name )
 
 void uvm_configure_phase::exec_process( uvm_component* comp, uvm_phase* phase )
 {
-#if IEEE_1666_SYSTEMC >= 202301L
-  sc_core::sc_hierarchy_scope scope(comp->get_hierarchy_scope());
   comp->configure_phase(*phase);
-#else
-  comp->simcontext()->hierarchy_push( comp );
-  comp->configure_phase(*phase);
-  comp->simcontext()->hierarchy_pop();
-#endif
 }
 
 uvm_configure_phase* uvm_configure_phase::get()
@@ -238,14 +203,7 @@ uvm_post_configure_phase::uvm_post_configure_phase( const std::string& name )
 
 void uvm_post_configure_phase::exec_process( uvm_component* comp, uvm_phase* phase )
 {
-#if IEEE_1666_SYSTEMC >= 202301L
-  sc_core::sc_hierarchy_scope scope(comp->get_hierarchy_scope());
   comp->post_configure_phase(*phase);
-#else
-  comp->simcontext()->hierarchy_push( comp );
-  comp->post_configure_phase(*phase);
-  comp->simcontext()->hierarchy_pop();
-#endif
 }
 
 uvm_post_configure_phase* uvm_post_configure_phase::get()
@@ -277,14 +235,7 @@ uvm_pre_main_phase::uvm_pre_main_phase( const std::string& name )
 
 void uvm_pre_main_phase::exec_process( uvm_component* comp, uvm_phase* phase )
 {
-#if IEEE_1666_SYSTEMC >= 202301L
-  sc_core::sc_hierarchy_scope scope(comp->get_hierarchy_scope());
   comp->pre_main_phase(*phase);
-#else
-  comp->simcontext()->hierarchy_push( comp );
-  comp->pre_main_phase(*phase);
-  comp->simcontext()->hierarchy_pop();
-#endif
 }
 
 uvm_pre_main_phase* uvm_pre_main_phase::get()
@@ -316,14 +267,7 @@ uvm_main_phase::uvm_main_phase( const std::string& name )
 
 void uvm_main_phase::exec_process( uvm_component* comp, uvm_phase* phase )
 {
-#if IEEE_1666_SYSTEMC >= 202301L
-  sc_core::sc_hierarchy_scope scope(comp->get_hierarchy_scope());
   comp->main_phase(*phase);
-#else
-  comp->simcontext()->hierarchy_push( comp );
-  comp->main_phase(*phase);
-  comp->simcontext()->hierarchy_pop();
-#endif
 }
 
 uvm_main_phase* uvm_main_phase::get()
@@ -355,14 +299,7 @@ uvm_post_main_phase::uvm_post_main_phase( const std::string& name )
 
 void uvm_post_main_phase::exec_process( uvm_component* comp, uvm_phase* phase )
 {
-#if IEEE_1666_SYSTEMC >= 202301L
-  sc_core::sc_hierarchy_scope scope(comp->get_hierarchy_scope());
   comp->post_main_phase(*phase);
-#else
-  comp->simcontext()->hierarchy_push( comp );
-  comp->post_main_phase(*phase);
-  comp->simcontext()->hierarchy_pop();
-#endif
 }
 
 uvm_post_main_phase* uvm_post_main_phase::get()
@@ -394,14 +331,7 @@ uvm_pre_shutdown_phase::uvm_pre_shutdown_phase( const std::string& name )
 
 void uvm_pre_shutdown_phase::exec_process( uvm_component* comp, uvm_phase* phase )
 {
-#if IEEE_1666_SYSTEMC >= 202301L
-  sc_core::sc_hierarchy_scope scope(comp->get_hierarchy_scope());
   comp->pre_shutdown_phase(*phase);
-#else
-  comp->simcontext()->hierarchy_push( comp );
-  comp->pre_shutdown_phase(*phase);
-  comp->simcontext()->hierarchy_pop();
-#endif
 }
 
 uvm_pre_shutdown_phase* uvm_pre_shutdown_phase::get()
@@ -433,14 +363,7 @@ uvm_shutdown_phase::uvm_shutdown_phase( const std::string& name )
 
 void uvm_shutdown_phase::exec_process( uvm_component* comp, uvm_phase* phase )
 {
-#if IEEE_1666_SYSTEMC >= 202301L
-  sc_core::sc_hierarchy_scope scope(comp->get_hierarchy_scope());
   comp->shutdown_phase(*phase);
-#else
-  comp->simcontext()->hierarchy_push( comp );
-  comp->shutdown_phase(*phase);
-  comp->simcontext()->hierarchy_pop();
-#endif
 }
 
 uvm_shutdown_phase* uvm_shutdown_phase::get()
@@ -472,14 +395,7 @@ uvm_post_shutdown_phase::uvm_post_shutdown_phase( const std::string& name )
 
 void uvm_post_shutdown_phase::exec_process( uvm_component* comp, uvm_phase* phase )
 {
-#if IEEE_1666_SYSTEMC >= 202301L
-  sc_core::sc_hierarchy_scope scope(comp->get_hierarchy_scope());
   comp->post_shutdown_phase(*phase);
-#else
-  comp->simcontext()->hierarchy_push( comp );
-  comp->post_shutdown_phase(*phase);
-  comp->simcontext()->hierarchy_pop();
-#endif
 }
 
 uvm_post_shutdown_phase* uvm_post_shutdown_phase::get()
