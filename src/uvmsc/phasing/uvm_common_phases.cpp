@@ -39,14 +39,7 @@ uvm_build_phase::uvm_build_phase( const std::string& name )
 
 void uvm_build_phase::exec_func(uvm_component* comp, uvm_phase* phase)
 {
-#if IEEE_1666_SYSTEMC >= 202301L
-  sc_core::sc_hierarchy_scope scope(comp->get_hierarchy_scope());
   comp->build_phase(*phase);
-#else
-  comp->simcontext()->hierarchy_push( comp );
-  comp->build_phase(*phase);
-  comp->simcontext()->hierarchy_pop();
-#endif
 }
 
 uvm_build_phase* uvm_build_phase::get()
@@ -158,18 +151,7 @@ uvm_run_phase::uvm_run_phase( const std::string& name )
 
 void uvm_run_phase::exec_process(uvm_component* comp, uvm_phase* phase)
 {
-#if IEEE_1666_SYSTEMC >= 202301L
-  // TODO: it seems that at the end of the run_phase, our uvm_component
-  // hierarchy might be popped in a different order than it was pushed; see
-  // sc_hierarchy_scope::~sc_hierarchy_scope() in sc_object.cpp. This causes
-  // errors like "corrupted sc_hierarchy_scope unwinding: current scope: t1, expected scope: t1.a1.a.b1"
-  sc_core::sc_hierarchy_scope scope(comp->get_hierarchy_scope());
   comp->run_phase(*phase);
-#else
-  comp->simcontext()->hierarchy_push( comp );
-  comp->run_phase(*phase);
-  comp->simcontext()->hierarchy_pop();
-#endif
 }
 
 uvm_run_phase* uvm_run_phase::get()
