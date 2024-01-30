@@ -94,6 +94,7 @@ class uvm_blocking_put_imp
   public virtual tlm::tlm_blocking_put_if<T>
 {
   using uvm::uvm_export_base< tlm::tlm_blocking_put_if<T> >::connect;
+  using sc_core::sc_export< tlm::tlm_blocking_put_if<T> >::bind;
 
  public:
   uvm_blocking_put_imp( IMP* imp ) :
@@ -164,6 +165,7 @@ class uvm_blocking_peek_imp
   public virtual tlm::tlm_blocking_peek_if<T>
 {
   using uvm::uvm_export_base< tlm::tlm_blocking_peek_if<T> >::connect;
+  using sc_core::sc_export< tlm::tlm_blocking_peek_if<T> >::bind;
 
  public:
   uvm_blocking_peek_imp( IMP* imp ) :
