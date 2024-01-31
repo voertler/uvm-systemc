@@ -54,7 +54,7 @@ class apb_rw : public uvm::uvm_sequence_item {
         virtual void do_pack(uvm::uvm_packer& p) const;
         virtual void do_unpack(uvm::uvm_packer& p);
         virtual void do_copy(const uvm::uvm_object& rhs);
-        virtual bool do_compare(const uvm_object& rhs) const;
+        virtual bool do_compare(const uvm_object& rhs, const uvm::uvm_comparer* comparer = NULL) const;
         std::string convert2string() const;
 };
 
