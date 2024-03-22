@@ -373,7 +373,7 @@ class uvm_component : public sc_core::sc_module,
   //----------------------------------------------------------------------------
   // 'legacy' from SystemC - recommended not to use
   //----------------------------------------------------------------------------
-  using sc_core::sc_object::print;
+
   virtual void before_end_of_elaboration();
   virtual void end_of_elaboration();
   virtual void start_of_simulation();
