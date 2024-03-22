@@ -117,6 +117,12 @@ To install UVM-SystemC on a Linux system, do the following steps:
      need to use the `sh ../configure' command instead of '../configure'.
      Otherwise, `csh' will attempt to `configure' itself.
 
+     Note: As IEEE Std. 1666-2023 mandates C++17 as the baseline for SystemC
+           implementations, make sure you enable the compiler flag to
+           select C++17 for UVM-SystemC as well, e.g.:
+
+        > ../configure 'CXXFLAGS=-std=c++17'
+
      In case you want to install the package in another place than the
      top level directory, configure the package e.g. as
      follows:
