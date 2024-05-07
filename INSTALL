@@ -27,10 +27,19 @@ UVM-SystemC was tested on the following Linux 64-bit platforms against SystemC
 | RHEL 7.9            |    x86_64     |  gcc 9.3.0
 | RHEL 8.9            |    x86_64     |  gcc 11.2.0
 | RHEL 8.9            |    x86_64     |  gcc 13.2.0
+| Ubuntu 20.04        |    x86_64     |  gcc 9.4.0
+| Ubuntu 22.04        |    x86_64     |  gcc 11.4.0
+| Ubuntu 24.04        |    x86_64     |  gcc 13.2.0
+| Debian 10           |    x86_64     |  gcc 9.4.0
+| Ubuntu 22.04        |    x86_64     |  gcc 11.4.0
+| Ubuntu 24.04        |    x86_64     |  gcc 13.2.0
+| Debian 10           |    x86_64     |  gcc 9.4.0
+| Debian 12           |    x86_64     |  gcc 13.2.0 
+| Ubuntu 12           |    x86_64     |  gcc 13.2.0 (-std=c++20)
 
 An installation of UVM-SystemC on other, related platforms and not explictly
 tested compiler combinations may be possible. Please note that C++11
-compatibility is required to build UVM-SystemC.
+compatibility is required to build UVM-SystemC (C++17 for SystemC 3.0.0).
 
 
 Sources for Compilers and Related Tools
