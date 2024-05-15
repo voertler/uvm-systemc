@@ -36,7 +36,8 @@ UVM-SystemC was tested on the following Linux 64-bit platforms against SystemC
 
 An installation of UVM-SystemC on other, related platforms and not explictly
 tested compiler combinations may be possible. Please note that C++11
-compatibility is required to build UVM-SystemC.
+compatibility is required to build UVM-SystemC. C++17 compatibility is
+required to build against SystemC 3.0.0.
 
 
 Sources for Compilers and Related Tools
