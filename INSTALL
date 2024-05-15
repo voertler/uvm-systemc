@@ -20,7 +20,7 @@ System Requirements
 ===================
 
 UVM-SystemC was tested on the following Linux 64-bit platforms against SystemC
-2.3.4 and 3.0.0:
+2.3.3, 2.3.4 and 3.0.0:
 
 |      OS             |    Target     |    Compiler
 | ------------------- | ------------- |  --------------
@@ -51,7 +51,7 @@ the following tools:
   2. GNU Make (gmake)
 
   3. Accellera Systems Initiative SystemC reference implementation
-     version 2.3.4 or 3.0.0
+     version 2.3.3, 2.3.4 or 3.0.0
 
 GCC, Clang, and gmake are free software that you can
 obtain from the following sources:
