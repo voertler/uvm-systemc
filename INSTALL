@@ -31,8 +31,8 @@ UVM-SystemC was tested on the following Linux 64-bit platforms against SystemC
 | Ubuntu 20.04        |    x86_64     |  gcc 9.4.0
 | Ubuntu 22.04        |    x86_64     |  gcc 11.4.0
 | Ubuntu 24.04        |    x86_64     |  gcc 13.2.0
-| Debian 12           |    x86_64     |  gcc 9.4.0
-| Debian 12           |    x86_64     |  gcc 13.2.0
+| Debian 10           |    x86_64     |  gcc 9.4.0
+| Debian 10           |    x86_64     |  gcc 13.2.0
 
 An installation of UVM-SystemC on other, related platforms and not explictly
 tested compiler combinations may be possible. Please note that C++11
@@ -346,12 +346,15 @@ Use the `--help' option to print a list.
 System Requirements
 ===================
 
-UVM-SystemC was tested on the following Windows platforms against SystemC 2.3.3:
+UVM-SystemC was tested on the following Windows platforms against SystemC 2.3.3,
+2.3.4, 3.0.0:
 
-            | VS   | VS   | MinGW64
- Platform   | 2015 | 2019 | GCC 8.4
- -----------------------------------
- Windows 10 |   x  |   x  |    x
+            | VS   | VS   | MinGW64  | MinGW64
+ Platform   | 2015 | 2019 | GCC 13.1 | Clang 16
+ ----------------------------------------------
+ Windows 10 |   x  |   x  |    x     |    x
+
+Note: SystemC 3.0.0 requires at least VS2019 for C++17 support.
 
 Set the following environment variable(s) under Windows:
 
