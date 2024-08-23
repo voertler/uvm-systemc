@@ -26,8 +26,8 @@ class do_config
  public:
   do_config()
   {
-    uvm::uvm_config_db<int>::set(NULL, "topenv.p1","num_packets", 2);
-    uvm::uvm_config_db<int>::set(NULL, "topenv.p2","num_packets", 4);
+    uvm::uvm_config_db<int>::set(nullptr, "topenv.p1","num_packets", 2);
+    uvm::uvm_config_db<int>::set(nullptr, "topenv.p2","num_packets", 4);
   }
 };
 

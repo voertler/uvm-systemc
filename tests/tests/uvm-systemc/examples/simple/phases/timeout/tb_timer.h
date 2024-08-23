@@ -175,10 +175,10 @@ public:
 
   static void destroy()
   {
-    if(m_global != NULL) 
+    if(m_global != nullptr) 
     {
       delete m_global;
-      m_global = NULL;
+      m_global = nullptr;
     }
   }
 

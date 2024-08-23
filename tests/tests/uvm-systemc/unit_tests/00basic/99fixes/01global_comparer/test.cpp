@@ -21,7 +21,7 @@ public:
 		bool out = true;
 
 		const seq_item* rhs_ = dynamic_cast<const seq_item*>(&rhs);
-		if (rhs_ == NULL) {
+		if (rhs_ == nullptr) {
 			UVM_FATAL("do_compare", "cast failed, check type compatibility");
 		}
 

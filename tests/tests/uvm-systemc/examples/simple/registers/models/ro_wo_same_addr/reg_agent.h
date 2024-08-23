@@ -140,7 +140,7 @@ class reg_agent : public uvm::uvm_agent
 
   reg_agent( uvm::uvm_component_name name )
   : uvm::uvm_agent(name),
-    sqr(NULL), drv(NULL), mon(NULL)
+    sqr(nullptr), drv(nullptr), mon(nullptr)
   {}
 
   virtual void build_phase(uvm::uvm_phase& phase)
@@ -186,7 +186,7 @@ class reg2rw_adapter : public uvm::uvm_reg_adapter
     const reg_rw* bus;
     bus = dynamic_cast<const reg_rw*>(bus_item);
 
-    if (bus == NULL)
+    if (bus == nullptr)
     {
       UVM_FATAL("NOT_REG_TYPE", "Provided bus_item is not of the correct type.");
       return;

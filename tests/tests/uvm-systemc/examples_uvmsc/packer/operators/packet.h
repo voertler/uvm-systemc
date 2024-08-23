@@ -118,7 +118,7 @@ public:
   }
 
   virtual bool do_compare( const uvm::uvm_object& rhs,
-                           const uvm::uvm_comparer* comparer = NULL ) const
+                           const uvm::uvm_comparer* comparer = nullptr ) const
   {
     const packet* drhs = dynamic_cast<const packet*>(&rhs);
     if (!drhs)

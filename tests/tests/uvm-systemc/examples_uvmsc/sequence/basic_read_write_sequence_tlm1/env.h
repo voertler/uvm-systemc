@@ -86,7 +86,7 @@ class env: public uvm::uvm_env
 
   void start_sequence(int n)
   {
-    sequence_a[n]->start(sqr, NULL);
+    sequence_a[n]->start(sqr, nullptr);
   }
 
   virtual ~env()

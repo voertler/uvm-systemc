@@ -87,7 +87,7 @@ int sc_main(int, char*[])
   blk b;
   my_catcher c;
 
-  uvm_report_cb::add(NULL, &c);
+  uvm_report_cb::add(nullptr, &c);
 
   b.build();
   b.print();

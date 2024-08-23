@@ -67,7 +67,7 @@ public:
     }
 
     // add catcher
-    uvm_report_cb::add(NULL, &ctchr);
+    uvm_report_cb::add(nullptr, &ctchr);
 
     UVM_ERROR("Test", "Error 2...");
 
@@ -97,7 +97,7 @@ public:
     else pass = true;
 
     // remove catcher
-    uvm_report_cb::do_delete(NULL, &ctchr);
+    uvm_report_cb::do_delete(nullptr, &ctchr);
 
     UVM_ERROR("Test", "Error 3...");
 

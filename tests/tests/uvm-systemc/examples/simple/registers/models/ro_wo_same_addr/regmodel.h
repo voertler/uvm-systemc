@@ -121,11 +121,11 @@ class block_B : public uvm::uvm_reg_block
     default_map = create_map("", base_addr, n_bytes, uvm::UVM_BIG_ENDIAN);
 
     R = reg_RO::type_id::create("R");
-    R->configure(this, NULL, "RO_reg");
+    R->configure(this, nullptr, "RO_reg");
     R->build();
 
     W = reg_WO::type_id::create("W");
-    W->configure(this, NULL, "WO_reg");
+    W->configure(this, nullptr, "WO_reg");
     W->build();
 
     // on purpose, we add the R and W register using the same offset (0x100)

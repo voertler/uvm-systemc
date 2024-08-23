@@ -113,7 +113,7 @@ class test : public uvm_test
   {
     phase.raise_objection(this);
 
-    uvm_report_cb::add(NULL, &ctchr);
+    uvm_report_cb::add(nullptr, &ctchr);
 
     // Set severities to INFO and then do a couple of messages of each type
     set_all_severities(UVM_INFO);

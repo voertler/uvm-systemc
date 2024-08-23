@@ -42,16 +42,16 @@ class test : public uvm_test
 
   UVM_COMPONENT_UTILS(test);
 
-  test( uvm_component_name name) : uvm_test(name), ctchr(NULL)
+  test( uvm_component_name name) : uvm_test(name), ctchr(nullptr)
   {}
 
   virtual void run_phase( uvm_phase& phase )
   {
     phase.raise_objection(this);
 
-    std::cout << "UVM TEST - ERROR expected since registering a default catcher with NULL handle" << std::endl;
+    std::cout << "UVM TEST - ERROR expected since registering a default catcher with nullptr handle" << std::endl;
 
-    uvm_report_cb::add(NULL, ctchr); // this should generate an UVM error since the catcher object is not assigned
+    uvm_report_cb::add(nullptr, ctchr); // this should generate an UVM error since the catcher object is not assigned
 
     std::cout << "UVM TEST EXPECT 1 UVM_ERROR" << std::endl;
 

@@ -48,7 +48,7 @@ class b1_typ : public uvm_reg_block
   {
     r1 = r1_typ::type_id::create("r1");
     r1->build();
-    r1->configure(this, NULL, "r1");
+    r1->configure(this, nullptr, "r1");
   }
 
   UVM_OBJECT_UTILS(b1_typ);

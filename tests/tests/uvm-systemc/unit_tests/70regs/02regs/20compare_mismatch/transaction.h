@@ -35,7 +35,7 @@ public:
   virtual void do_copy( const uvm::uvm_object& rhs )
   {
     const transaction* rhs_ = dynamic_cast<const transaction*>(&rhs);
-    if(rhs_ == NULL)
+    if(rhs_ == nullptr)
       UVM_ERROR("do_copy", "dynamic_cast failed, check type compatability");
 
     uvm::uvm_sequence_item::do_copy(rhs);
@@ -48,7 +48,7 @@ public:
   virtual bool do_compare( const uvm::uvm_object& rhs, const uvm::uvm_comparer* comparer )
   {
     const transaction* rhs_ = dynamic_cast<const transaction*>(&rhs);
-    if(rhs_ == NULL)
+    if(rhs_ == nullptr)
       UVM_FATAL("do_compare", "dynamic_cast failed, check type compatibility");
 
     return ( (addr == rhs_->addr)

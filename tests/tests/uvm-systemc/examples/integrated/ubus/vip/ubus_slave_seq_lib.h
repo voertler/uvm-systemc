@@ -69,7 +69,7 @@ class simple_response_seq : public uvm::uvm_sequence<ubus_transfer>
 
       uvm::uvm_phase* p = this->get_starting_phase();
 
-      if (p != NULL)
+      if (p != nullptr)
           p->raise_objection(this);
 
       // TODO no constraints yet, so we assign the values directly
@@ -80,7 +80,7 @@ class simple_response_seq : public uvm::uvm_sequence<ubus_transfer>
       this->start_item(req);
       this->finish_item(req);
 
-      if (p != NULL)
+      if (p != nullptr)
           p->drop_objection(this);
     }
   }
@@ -148,11 +148,11 @@ class slave_memory_seq : public uvm::uvm_sequence<ubus_transfer>
   {
     ubus_transfer* trans = dynamic_cast<ubus_transfer*>(item);
 
-    if (trans == NULL)
+    if (trans == nullptr)
       UVM_ERROR(get_type_name(), "No valid transaction. Skipped.");
 
     // For writes, update the m_mem associative array
-    if( ( util_transfer.read_write == WRITE ) && (trans != NULL))
+    if( ( util_transfer.read_write == WRITE ) && (trans != nullptr))
     {
       for(int unsigned i = 0 ; i < trans->size ; i++)
         m_mem[req->addr + i] = trans->data[i];
@@ -173,11 +173,11 @@ class slave_memory_seq : public uvm::uvm_sequence<ubus_transfer>
 
       // Need to raise/drop objection before each item because we don't want
       // to be stopped in the middle of a transfer.
-      if (p != NULL)
+      if (p != nullptr)
           p->raise_objection(this);
       this->start_item(req);
       this->finish_item(req);
-      if (p != NULL)
+      if (p != nullptr)
           p->drop_objection(this);
 
 

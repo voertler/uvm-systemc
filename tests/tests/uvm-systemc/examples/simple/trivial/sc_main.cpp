@@ -30,7 +30,7 @@ int sc_main(int, char*[])
 
   // instantiate UVM component via the factory
   my_component* component;
-  component = my_component::type_id::create("Top", NULL);
+  component = my_component::type_id::create("Top", nullptr);
 
   uvm::run_test();
 

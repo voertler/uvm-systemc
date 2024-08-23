@@ -382,7 +382,7 @@ public:
 
 }; // class tbtest
 
-tbtest::top_* tbtest::top = NULL;
+tbtest::top_* tbtest::top = nullptr;
 
 
 int sc_main(int argc, char* argv[])

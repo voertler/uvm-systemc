@@ -1,7 +1,7 @@
 SystemC Simulation
 UVM_INFO @ 0 s: reporter [RNTST] Running test test...
-UVM TEST - ERROR expected since registering a default catcher with NULL handle
-UVM_ERROR @ 0 s: reporter [CBUNREG] NULL callback object cannot be registered with object (*) (uvm_object)
+UVM TEST - ERROR expected since registering a default catcher with nullptr handle
+UVM_ERROR @ 0 s: reporter [CBUNREG] nullptr callback object cannot be registered with object (*) (uvm_object)
 UVM TEST EXPECT 1 UVM_ERROR
 UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [UVM/REPORT/SERVER]
 --- UVM Report Summary ---

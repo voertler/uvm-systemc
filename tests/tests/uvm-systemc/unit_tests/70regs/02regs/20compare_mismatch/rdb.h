@@ -444,38 +444,38 @@ public:
   virtual void build()
   {
     // Now create all registers
-    ureg0 = ureg0_t::type_id::create("ureg0", NULL, get_full_name());
-    ureg1 = ureg1_t::type_id::create("ureg1", NULL, get_full_name());
-    ureg2 = ureg2_t::type_id::create("ureg2", NULL, get_full_name());
-    ureg3 = ureg3_t::type_id::create("ureg3", NULL, get_full_name());
-    ureg4 = ureg4_t::type_id::create("ureg4", NULL, get_full_name());
-    ureg5 = ureg5_t::type_id::create("ureg5", NULL, get_full_name());
-    ureg6 = ureg6_t::type_id::create("ureg6", NULL, get_full_name());
-    ureg7 = ureg7_t::type_id::create("ureg7", NULL, get_full_name());
-    ureg8 = ureg8_t::type_id::create("ureg8", NULL, get_full_name());
-    ureg9 = ureg9_t::type_id::create("ureg9", NULL, get_full_name());
+    ureg0 = ureg0_t::type_id::create("ureg0", nullptr, get_full_name());
+    ureg1 = ureg1_t::type_id::create("ureg1", nullptr, get_full_name());
+    ureg2 = ureg2_t::type_id::create("ureg2", nullptr, get_full_name());
+    ureg3 = ureg3_t::type_id::create("ureg3", nullptr, get_full_name());
+    ureg4 = ureg4_t::type_id::create("ureg4", nullptr, get_full_name());
+    ureg5 = ureg5_t::type_id::create("ureg5", nullptr, get_full_name());
+    ureg6 = ureg6_t::type_id::create("ureg6", nullptr, get_full_name());
+    ureg7 = ureg7_t::type_id::create("ureg7", nullptr, get_full_name());
+    ureg8 = ureg8_t::type_id::create("ureg8", nullptr, get_full_name());
+    ureg9 = ureg9_t::type_id::create("ureg9", nullptr, get_full_name());
 
     // Now build the registers. Set parent and hdl_paths
     ureg0->build();
-    ureg0->configure(this, NULL, "myreg[0]");
+    ureg0->configure(this, nullptr, "myreg[0]");
     ureg1->build();
-    ureg1->configure(this, NULL, "myreg[1]");
+    ureg1->configure(this, nullptr, "myreg[1]");
     ureg2->build();
-    ureg2->configure(this, NULL, "myreg[2]");
+    ureg2->configure(this, nullptr, "myreg[2]");
     ureg3->build();
-    ureg3->configure(this, NULL, "myreg[3]");
+    ureg3->configure(this, nullptr, "myreg[3]");
     ureg4->build();
-    ureg4->configure(this, NULL, "myreg[4]");
+    ureg4->configure(this, nullptr, "myreg[4]");
     ureg5->build();
-    ureg5->configure(this, NULL, "myreg[5]");
+    ureg5->configure(this, nullptr, "myreg[5]");
     ureg6->build();
-    ureg6->configure(this, NULL, "myreg[6]");
+    ureg6->configure(this, nullptr, "myreg[6]");
     ureg7->build();
-    ureg7->configure(this, NULL, "myreg[7]");
+    ureg7->configure(this, nullptr, "myreg[7]");
     ureg8->build();
-    ureg8->configure(this, NULL, "myreg[8]");
+    ureg8->configure(this, nullptr, "myreg[8]");
     ureg9->build();
-    ureg9->configure(this, NULL, "myreg[9]");
+    ureg9->configure(this, nullptr, "myreg[9]");
 
     // Now define address mappings
 
@@ -515,7 +515,7 @@ public:
   {
     // Now define address mappings
     default_map = create_map("default_map", 0, 4, uvm::UVM_LITTLE_ENDIAN);
-    rfile0 = rfile0_t::type_id::create("rfile0", NULL, get_full_name());
+    rfile0 = rfile0_t::type_id::create("rfile0", nullptr, get_full_name());
     rfile0->build();
     rfile0->configure(this, "dut");
     default_map->add_submap(rfile0->default_map, 0x0);

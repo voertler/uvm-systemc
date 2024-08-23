@@ -184,14 +184,14 @@ public:
       done = true;
     }
 
-    if (phase.is_before(NULL))
-      UVM_ERROR("EXP_NOT_BEFORE", "Expected " + phase.get_name() +".is_before(NULL) to be FALSE");
+    if (phase.is_before(nullptr))
+      UVM_ERROR("EXP_NOT_BEFORE", "Expected " + phase.get_name() +".is_before(nullptr) to be FALSE");
 
-    if (phase.is(NULL))
-      UVM_ERROR("EXP_NOT_IS", "Expected " + phase.get_name() + ".is(NULL) to be FALSE");
+    if (phase.is(nullptr))
+      UVM_ERROR("EXP_NOT_IS", "Expected " + phase.get_name() + ".is(nullptr) to be FALSE");
 
-    if (phase.is_after(NULL))
-      UVM_ERROR("EXP_NOT_AFTER", "Expected " + phase.get_name() + ".is_after(NULL) to be FALSE");
+    if (phase.is_after(nullptr))
+      UVM_ERROR("EXP_NOT_AFTER", "Expected " + phase.get_name() + ".is_after(nullptr) to be FALSE");
 
     use_imp = false;
     test_is_functions(phase, inst_index, use_imp);

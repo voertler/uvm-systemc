@@ -55,7 +55,7 @@ class test_seq : public uvm_reg_sequence<>
     // Call mirror() to update the mirror to reflect the DUT value of 0. But UVM_CHECK says
     // to check the current mirror against the DUT value before we make that update.
     // We expect a miscompare ('habcd != 0)
-    model->ureg0->mirror(status, UVM_CHECK, UVM_BACKDOOR, NULL, dynamic_cast<uvm_sequence_base*>(this));
+    model->ureg0->mirror(status, UVM_CHECK, UVM_BACKDOOR, nullptr, dynamic_cast<uvm_sequence_base*>(this));
   }
 
   UVM_OBJECT_UTILS(test_seq);
@@ -81,7 +81,7 @@ class reg2uvc_adapter : public uvm_reg_adapter
   virtual void bus2reg( const uvm_sequence_item* bus_item, uvm_reg_bus_op& rw)
   {
     const transaction* txn = dynamic_cast<const transaction*>(bus_item);
-    if (txn == NULL)
+    if (txn == nullptr)
     {
       UVM_FATAL("NOT_TXN_TYPE","Provided bus_item not correct type");
       return;
@@ -158,7 +158,7 @@ class test : public uvm_test
     seq->model = model->rfile0;
 
     // Procedurally start sequence
-    seq->start(NULL);
+    seq->start(nullptr);
 
     phase.drop_objection(this);
   }

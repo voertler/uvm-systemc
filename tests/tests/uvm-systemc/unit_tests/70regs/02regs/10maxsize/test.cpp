@@ -63,7 +63,7 @@ class blk : public uvm_reg_block
   virtual void build()
   {
     id = new reg_id("id");
-    id->configure(this, NULL, "");
+    id->configure(this, nullptr, "");
     id->build();
     lock_model();
   }
@@ -119,7 +119,7 @@ int sc_main(int, char*[])
   blk* b = new blk();
   my_catcher* c = new my_catcher();
 
-  uvm_report_cb::add(NULL, c);
+  uvm_report_cb::add(nullptr, c);
 
   b->build();
   b->print();

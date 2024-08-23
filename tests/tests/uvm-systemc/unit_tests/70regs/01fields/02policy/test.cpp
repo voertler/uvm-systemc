@@ -257,7 +257,7 @@ class test : public uvm_test
     uvm_reg_single_bit_bash_seq* seq;
     seq = new uvm_reg_single_bit_bash_seq();
     seq->rg = rg;
-    seq->start(NULL);
+    seq->start(nullptr);
     phase.drop_objection(this);
   }
 };

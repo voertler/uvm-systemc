@@ -21,7 +21,7 @@ UVM-1.2
       (Specify +UVM_NO_RELNOTES to turn off this notice)
 
 UVM_INFO @ 0: reporter [RNTST] Running test test...
-UVM TEST - ERROR expected since registering a default catcher with NULL handle
+UVM TEST - ERROR expected since registering a default catcher with nullptr handle
 UVM_ERROR @ 0: reporter [CBUNREG] Null callback object cannot be registered with object (*) (uvm_object)
 UVM TEST EXPECT 1 UVM_ERROR
 UVM_INFO <removed> @ 0: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase

@@ -82,7 +82,7 @@ class test : public uvm_test
 public:
   myseqr* seqr;
 
-  test( uvm_component_name name = "my_comp" ) : uvm_test(name), seqr(NULL)
+  test( uvm_component_name name = "my_comp" ) : uvm_test(name), seqr(nullptr)
   {}
 
   UVM_COMPONENT_UTILS(test);

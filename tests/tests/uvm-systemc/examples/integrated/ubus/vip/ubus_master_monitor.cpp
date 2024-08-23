@@ -89,7 +89,7 @@ void ubus_master_monitor::collect_transactions()
   {
     sc_core::wait(vif->sig_clock.posedge_event());
 
-    if (get_parent() != NULL)
+    if (get_parent() != nullptr)
       trans_collected.master = get_parent()->get_name();
 
     collect_arbitration_phase();

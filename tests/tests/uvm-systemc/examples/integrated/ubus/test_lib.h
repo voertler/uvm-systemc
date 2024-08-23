@@ -67,7 +67,7 @@ public:
   void end_of_elaboration_phase(uvm::uvm_phase& phase)
   {
     // Set verbosity for the bus monitor for this demo
-     if(ubus_example_tb0->ubus0->bus_monitor != NULL)
+     if(ubus_example_tb0->ubus0->bus_monitor != nullptr)
        ubus_example_tb0->ubus0->bus_monitor->set_report_verbosity_level(uvm::UVM_FULL);
 
     UVM_INFO(get_type_name(), "Printing the test topology :\n" +
