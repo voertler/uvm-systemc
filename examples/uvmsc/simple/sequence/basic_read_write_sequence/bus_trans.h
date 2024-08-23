@@ -58,7 +58,7 @@ class bus_trans : public uvm::uvm_sequence_item
   virtual void do_copy( const uvm::uvm_object& rhs )
   {
     const bus_trans* rhs_ = dynamic_cast<const bus_trans*>(&rhs);
-    if(rhs_ == NULL)
+    if(rhs_ == nullptr)
       UVM_ERROR("do_copy", "cast failed, check type compatability");
 
     uvm_sequence_item::do_copy(rhs);
@@ -71,7 +71,7 @@ class bus_trans : public uvm::uvm_sequence_item
   virtual bool do_compare( const uvm::uvm_object& rhs, const uvm::uvm_comparer* comparer ) const
   {
     const bus_trans* rhs_ = dynamic_cast<const bus_trans*>(&rhs);
-    if(rhs_ == NULL)
+    if(rhs_ == nullptr)
       UVM_FATAL("do_compare", "cast failed, check type compatibility");
 
     return ((op == rhs_->op) && (addr == rhs_->addr) && (data == rhs_->data));
@@ -144,7 +144,7 @@ class bus_rsp : public bus_trans
   virtual void do_copy( const uvm::uvm_object& rhs )
   {
     const bus_rsp* rhs_ = dynamic_cast<const bus_rsp*>(&rhs);
-    if(rhs_ == NULL)
+    if(rhs_ == nullptr)
       UVM_FATAL("do_copy", "cast failed, check type compatibility");
 
     bus_trans::do_copy(rhs);

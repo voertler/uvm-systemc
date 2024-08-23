@@ -75,8 +75,8 @@ class uvm_reg_frontdoor : public uvm_reg_sequence<uvm_sequence<uvm_sequence_item
   //------------------------------------------------------------------------
   explicit uvm_reg_frontdoor( const std::string& name = "" ) : uvm_reg_sequence<uvm_sequence<uvm_sequence_item> >(name)
   {
-    rw_info = NULL;
-    sequencer = NULL;
+    rw_info = nullptr;
+    sequencer = nullptr;
 
     m_fname = "";
     m_lineno = 0;

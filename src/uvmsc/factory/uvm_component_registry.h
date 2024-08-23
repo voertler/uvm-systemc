@@ -82,7 +82,7 @@ class uvm_component_registry : public uvm_object_wrapper
   static uvm_component_registry<T>* get();
 
   static T* create( const std::string& name = "",
-                    uvm_component* parent = NULL,
+                    uvm_component* parent = nullptr,
                     const std::string& contxt = "" );
 
   static void set_type_override( uvm_object_wrapper* override_type,
@@ -90,7 +90,7 @@ class uvm_component_registry : public uvm_object_wrapper
 
   static void set_inst_override( uvm_object_wrapper* override_type,
                                  const std::string& inst_path,
-                                 uvm_component* parent = NULL );
+                                 uvm_component* parent = nullptr );
 
   /////////////////////////////////////////////////////
   // Implementation-defined member functions below,
@@ -142,7 +142,7 @@ template <typename T>
 uvm_component* uvm_component_registry<T>::create_component( const std::string& name,
                                                             uvm_component* parent )
 {
-  T* comp = NULL;
+  T* comp = nullptr;
   comp = new T( name.c_str() );
   return comp;
 }
@@ -170,7 +170,7 @@ const std::string uvm_component_registry<T>::get_type_name() const
 template <typename T>
 uvm_component_registry<T>* uvm_component_registry<T>::get()
 {
-  if (me == NULL)
+  if (me == nullptr)
   {
     uvm_coreservice_t* cs = uvm_coreservice_t::get();
     uvm_factory* f = cs->get_factory();
@@ -196,22 +196,22 @@ T* uvm_component_registry<T>::create( const std::string& name,
                                       const std::string& contxt )
 {
   std::string l_contxt;
-  uvm_component* obj = NULL;
+  uvm_component* obj = nullptr;
   uvm_coreservice_t* cs = uvm_coreservice_t::get();
   uvm_factory* f = cs->get_factory();
 
-  if (l_contxt.empty() && parent != NULL)
+  if (l_contxt.empty() && parent != nullptr)
     l_contxt = parent->get_full_name();
   obj = f->create_component_by_type( get(), l_contxt, name, parent );
 
   T* robj = dynamic_cast<T*>(obj);
-  if (robj == NULL)
+  if (robj == nullptr)
   {
     std::ostringstream msg;
     msg << "Factory did not return a component of type '" << m_type_name_prop() << "'."
-        << " A component of type '" << ((obj == NULL) ? "NULL" : obj->get_type_name() )
+        << " A component of type '" << ((obj == nullptr) ? "nullptr" : obj->get_type_name() )
         << "' was returned instead. Name=" << name << " Parent="
-        << ((parent == NULL) ? "NULL" : parent->get_type_name()) << " contxt=" << l_contxt;
+        << ((parent == nullptr) ? "nullptr" : parent->get_type_name()) << " contxt=" << l_contxt;
 
     uvm_report_fatal("FCTTYP", msg.str(), UVM_NONE);
   }
@@ -258,7 +258,7 @@ void uvm_component_registry<T>::set_inst_override( uvm_object_wrapper* override_
                                                    uvm_component* parent )
 {
   std::ostringstream loc_inst_path;
-  if (parent != NULL)
+  if (parent != nullptr)
   {
     if (inst_path.empty())
       loc_inst_path << parent->get_full_name();
@@ -299,7 +299,7 @@ const std::string uvm_component_registry<T>::m_type_name_prop()
 template <typename T>
 void uvm_component_registry<T>::destroy( T* comp ) 
 {
-  if (comp == NULL) 
+  if (comp == nullptr) 
   {
     return;
   }
@@ -328,7 +328,7 @@ void uvm_component_registry<T>::destroy( T* comp )
     return;
   }
 
-  comp = NULL;
+  comp = nullptr;
 }
 
 //----------------------------------------------------------------------
@@ -339,10 +339,10 @@ template <typename T>
 uvm_component_registry<T>::~uvm_component_registry()
 {
   // clean memory
-  if (me != NULL)
+  if (me != nullptr)
   {
     delete me;
-    me = NULL;
+    me = nullptr;
   }
 
   uvm_coreservice_t* cs = uvm_coreservice_t::get();

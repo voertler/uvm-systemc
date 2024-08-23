@@ -102,7 +102,7 @@ void uvm_process_phase::m_traverse( uvm_component* comp,
         comp->phase_started(*phase);
 
         uvm_sequencer_base* seqr = dynamic_cast<uvm_sequencer_base*>(comp);
-        if (seqr != NULL)
+        if (seqr != nullptr)
           seqr->start_phase_sequence(*phase); // TODO make phase a ref?
 
         break;
@@ -125,7 +125,7 @@ void uvm_process_phase::m_traverse( uvm_component* comp,
         comp->phase_ended(*phase);
         uvm_phase* ph = this;
         ph->kill(comp, phase);
-        comp->m_current_phase = NULL;
+        comp->m_current_phase = nullptr;
         break;
       }
       default:

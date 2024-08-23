@@ -58,7 +58,7 @@ unsigned int uvm_reg_field::m_max_size = 0;
 
 uvm_reg_field::uvm_reg_field( const std::string& name ) : uvm_object(name)
 {
-  m_parent = NULL;
+  m_parent = nullptr;
   m_mirrored = 0;
   m_desired = 0;
   m_access = "";
@@ -775,7 +775,7 @@ void uvm_reg_field::write( uvm_status_e& status,
                            int lineno )
 {
    uvm_reg_item* rw;
-   rw = uvm_reg_item::type_id::create("field_write_item", NULL, get_full_name());
+   rw = uvm_reg_item::type_id::create("field_write_item", nullptr, get_full_name());
    rw->element      = this;
    rw->element_kind = UVM_FIELD;
    rw->access_kind  = UVM_WRITE;
@@ -837,7 +837,7 @@ void uvm_reg_field::read( uvm_status_e& status, // output
                           int lineno )
 {
   uvm_reg_item* rw;
-  rw = uvm_reg_item::type_id::create("field_read_item", NULL, get_full_name());
+  rw = uvm_reg_item::type_id::create("field_read_item", nullptr, get_full_name());
   rw->element      = this;
   rw->element_kind = UVM_FIELD;
   rw->access_kind  = UVM_READ;
@@ -1056,7 +1056,7 @@ bool uvm_reg_field::is_indv_accessible( uvm_path_e path,
 
   // Cannot access individual fields if the container register
   // has a user-defined front-door
-  if (m_parent->get_frontdoor(local_map) != NULL)
+  if (m_parent->get_frontdoor(local_map) != nullptr)
   {
     UVM_WARNING("RegModel",
         "Individual field access not available for field '" +
@@ -1447,7 +1447,7 @@ bool uvm_reg_field::m_check_access( uvm_reg_item* rw,
 
   if (rw->path == UVM_BACKDOOR)
   {
-    if (m_parent->get_backdoor() == NULL && !m_parent->has_hdl_path())
+    if (m_parent->get_backdoor() == nullptr && !m_parent->has_hdl_path())
     {
       UVM_WARNING("RegModel",
           "No backdoor access available for field '" + get_full_name() +
@@ -1462,7 +1462,7 @@ bool uvm_reg_field::m_check_access( uvm_reg_item* rw,
   {
     rw->local_map = m_parent->get_local_map(rw->map, caller);
 
-    if (rw->local_map == NULL)
+    if (rw->local_map == nullptr)
     {
       UVM_ERROR(get_type_name(),
           "No transactor available to physically access memory from map '" +
@@ -1473,7 +1473,7 @@ bool uvm_reg_field::m_check_access( uvm_reg_item* rw,
 
     map_info = rw->local_map->get_reg_map_info(m_parent);
 
-    if (map_info->frontdoor == NULL && map_info->unmapped)
+    if (map_info->frontdoor == nullptr && map_info->unmapped)
     {
       UVM_ERROR("RegModel",
           "Field '" + get_full_name() +
@@ -1484,7 +1484,7 @@ bool uvm_reg_field::m_check_access( uvm_reg_item* rw,
       return false;
     }
 
-    if (rw->map == NULL)
+    if (rw->map == nullptr)
       rw->map = rw->local_map;
   }
 
@@ -1591,7 +1591,7 @@ void uvm_reg_field::do_write( uvm_reg_item* rw )
     rw->status = UVM_IS_OK;
 
     pre_write(rw);
-    for( uvm_reg_cbs* cb = cbs->first(); cb != NULL; cb = cbs->next() )
+    for( uvm_reg_cbs* cb = cbs->first(); cb != nullptr; cb = cbs->next() )
       cb->pre_write(rw);
 
     if (rw->status != UVM_IS_OK)
@@ -1610,7 +1610,7 @@ void uvm_reg_field::do_write( uvm_reg_item* rw )
 
     post_write(rw);
 
-    for( uvm_reg_cbs* cb = cbs->first(); cb != NULL; cb = cbs->next())
+    for( uvm_reg_cbs* cb = cbs->first(); cb != nullptr; cb = cbs->next())
       cb->post_write(rw);
 
     m_parent->m_set_busy(false);
@@ -1669,7 +1669,7 @@ void uvm_reg_field::do_read( uvm_reg_item* rw )
     rw->status = UVM_IS_OK;
     pre_read(rw);
 
-    for( uvm_reg_cbs* cb = cbs->first(); cb != NULL; cb = cbs->next())
+    for( uvm_reg_cbs* cb = cbs->first(); cb != nullptr; cb = cbs->next())
       cb->pre_read(rw);
 
     if (rw->status != UVM_IS_OK)
@@ -1688,7 +1688,7 @@ void uvm_reg_field::do_read( uvm_reg_item* rw )
 
     post_read(rw);
 
-    for( uvm_reg_cbs* cb = cbs->first(); cb != NULL; cb = cbs->next() )
+    for( uvm_reg_cbs* cb = cbs->first(); cb != nullptr; cb = cbs->next() )
       cb->post_read(rw);
 
     m_parent->m_set_busy(0);
@@ -1764,7 +1764,7 @@ void uvm_reg_field::do_predict( uvm_reg_item* rw,
 
       m_written = 1;
 
-      for( uvm_reg_cbs* cb = cbs->first(); cb != NULL; cb = cbs->next())
+      for( uvm_reg_cbs* cb = cbs->first(); cb != nullptr; cb = cbs->next())
         cb->post_predict(this, m_mirrored, field_val,
             UVM_PREDICT_WRITE, rw->path, rw->map);
 
@@ -1804,7 +1804,7 @@ void uvm_reg_field::do_predict( uvm_reg_item* rw,
                 return;
         } // if
 
-      for( uvm_reg_cbs* cb = cbs->first(); cb != NULL; cb = cbs->next() )
+      for( uvm_reg_cbs* cb = cbs->first(); cb != nullptr; cb = cbs->next() )
         cb->post_predict(this, m_mirrored, field_val,
           UVM_PREDICT_READ, rw->path, rw->map);
 
@@ -1933,7 +1933,7 @@ std::string uvm_reg_field::convert2string() const
 uvm_object* uvm_reg_field::clone()
 {
   UVM_FATAL("RegModel","RegModel field cannot be cloned");
-  return NULL;
+  return nullptr;
 }
 
 //----------------------------------------------------------------------

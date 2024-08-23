@@ -515,7 +515,7 @@ void uvm_report_handler::report( uvm_severity severity,
   if (!uvm_report_enabled(verbosity_level, UVM_INFO, id))
     return;
 
-  if (client == NULL)
+  if (client == nullptr)
     client = cs->get_root();
 
   l_report_message = uvm_report_message::new_report_message();

@@ -44,7 +44,7 @@ namespace uvm {
 
 uvm_vreg_field::uvm_vreg_field( const std::string& name ) : uvm_object(name)
 {
-  m_parent = NULL;
+  m_parent = nullptr;
   m_lsb = 0;
   m_size = 0;
   m_fname = "";
@@ -179,7 +179,7 @@ unsigned int uvm_vreg_field::get_n_bits() const
 
 std::string uvm_vreg_field::get_access( uvm_reg_map* map ) const
 {
-  if (m_parent->get_memory() == NULL)
+  if (m_parent->get_memory() == nullptr)
   {
     UVM_ERROR("RegModel", "Cannot call uvm_vreg_field::get_rights() on unimplemented virtual field '" +
         get_full_name() + "'.");
@@ -234,7 +234,7 @@ void uvm_vreg_field::write( unsigned long idx,
 
   int flsb, fmsb, rmwbits;
   int segsiz, segn;
-  uvm_mem* mem = NULL;
+  uvm_mem* mem = nullptr;
   uvm_path_e rm_path;
 
   uvm_vreg_field_cb_iter* cbs = new uvm_vreg_field_cb_iter(this);
@@ -247,7 +247,7 @@ void uvm_vreg_field::write( unsigned long idx,
   m_write_in_progress = true;
   mem = m_parent->get_memory();
 
-  if (mem == NULL)
+  if (mem == nullptr)
   {
     UVM_ERROR("RegModel", "Cannot call uvm_vreg_field::write() on unimplemented virtual register '" +
         this->get_full_name() + "'.");
@@ -284,7 +284,7 @@ void uvm_vreg_field::write( unsigned long idx,
 
   pre_write(idx, value, path, map);
 
-  for( uvm_vreg_field_cbs* cb = cbs->first(); cb != NULL;
+  for( uvm_vreg_field_cbs* cb = cbs->first(); cb != nullptr;
       cb = cbs->next())
   {
     cb->m_fname = m_fname;
@@ -298,7 +298,7 @@ void uvm_vreg_field::write( unsigned long idx,
 
   // Favor backdoor read to frontdoor read for the RMW operation
   rm_path = UVM_DEFAULT_PATH;
-  if (mem->get_backdoor() != NULL)
+  if (mem->get_backdoor() != nullptr)
     rm_path = UVM_BACKDOOR;
 
   // Any bits on the LSB side we need to RMW?
@@ -373,7 +373,7 @@ void uvm_vreg_field::write( unsigned long idx,
 
   post_write(idx, value, path, map, status);
 
-  for( uvm_vreg_field_cbs* cb = cbs->first(); cb != NULL;
+  for( uvm_vreg_field_cbs* cb = cbs->first(); cb != nullptr;
       cb = cbs->next())
   {
     cb->m_fname = m_fname;
@@ -440,7 +440,7 @@ void uvm_vreg_field::read( unsigned long idx,
 
   int flsb, lsb;
   int segsiz, segn;
-  uvm_mem* mem = NULL;
+  uvm_mem* mem = nullptr;
 
   int prior = -1;
 
@@ -453,7 +453,7 @@ void uvm_vreg_field::read( unsigned long idx,
 
   mem = m_parent->get_memory();
 
-  if (mem == NULL)
+  if (mem == nullptr)
   {
     std::ostringstream str;
     str << "Cannot call uvm_vreg_field::read() on unimplemented virtual register '"
@@ -478,7 +478,7 @@ void uvm_vreg_field::read( unsigned long idx,
 
   pre_read(idx, path, map);
 
-  for( uvm_vreg_field_cbs* cb = cbs->first(); cb != NULL;
+  for( uvm_vreg_field_cbs* cb = cbs->first(); cb != nullptr;
       cb = cbs->next())
   {
     cb->m_fname = m_fname;
@@ -517,7 +517,7 @@ void uvm_vreg_field::read( unsigned long idx,
 
   post_read(idx, value, path, map, status);
 
-  for( uvm_vreg_field_cbs* cb = cbs->first(); cb != NULL;
+  for( uvm_vreg_field_cbs* cb = cbs->first(); cb != nullptr;
       cb = cbs->next())
   {
     cb->m_fname = m_fname;
@@ -577,14 +577,14 @@ void uvm_vreg_field::poke( unsigned long idx,
 
   int flsb, fmsb, rmwbits;
   int segsiz, segn;
-  uvm_mem* mem = NULL;
+  uvm_mem* mem = nullptr;
 
   m_fname = fname;
   m_lineno = lineno;
 
   mem = m_parent->get_memory();
 
-  if (mem == NULL)
+  if (mem == nullptr)
   {
     UVM_ERROR("RegModel",
         "Cannot call uvm_vreg_field::poke() on unimplemented virtual register '" +
@@ -738,13 +738,13 @@ void uvm_vreg_field::peek( unsigned long idx,
 
    int flsb, lsb;
    int segsiz, segn;
-   uvm_mem* mem = NULL;
+   uvm_mem* mem = nullptr;
    m_fname = fname;
    m_lineno = lineno;
 
    mem = m_parent->get_memory();
 
-   if (mem == NULL)
+   if (mem == nullptr)
    {
       UVM_ERROR("RegModel",
           "Cannot call uvm_vreg_field::peek() on unimplemented virtual register '" +
@@ -977,7 +977,7 @@ std::string uvm_vreg_field::convert2string() const
 uvm_object* uvm_vreg_field::clone()
 {
   UVM_FATAL("RegModel","RegModel virtual fields cannot be cloned");
-  return NULL;
+  return nullptr;
 }
 
 //----------------------------------------------------------------------

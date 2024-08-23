@@ -100,7 +100,7 @@ void uvm_reg_write_only_cbs::remove( uvm_reg* rg )
   cbs->first();
   while (cbs->get_cb() != get())
   {
-    if (cbs->get_cb() == NULL)
+    if (cbs->get_cb() == nullptr)
       return;
     cbs->next();
   }
@@ -119,7 +119,7 @@ void uvm_reg_write_only_cbs::remove( uvm_reg* rg )
 
 uvm_reg_write_only_cbs* uvm_reg_write_only_cbs::get()
 {
-  if (m_me == NULL)
+  if (m_me == nullptr)
     m_me = new uvm_reg_write_only_cbs();
   return m_me;
 }

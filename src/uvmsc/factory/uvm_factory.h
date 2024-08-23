@@ -116,7 +116,7 @@ class uvm_factory
   virtual uvm_component* create_component_by_type( uvm_object_wrapper* requested_type,
                                                    const std::string& parent_inst_path = "",
                                                    const std::string& name = "",
-                                                   uvm_component* parent = NULL ) = 0;
+                                                   uvm_component* parent = nullptr ) = 0;
 
   virtual uvm_object* create_object_by_name( const std::string& requested_type_name,
                                              const std::string& parent_inst_path = "",
@@ -125,7 +125,7 @@ class uvm_factory
   virtual uvm_component* create_component_by_name( const std::string& requested_type_name,
                                                    const std::string& parent_inst_path = "",
                                                    const std::string& name = "",
-                                                   uvm_component* parent = NULL ) = 0;
+                                                   uvm_component* parent = nullptr ) = 0;
 
   virtual bool is_type_name_registered( const std::string& type_name ) const = 0;
 

@@ -89,13 +89,13 @@ class uvm_vreg : public uvm_object
   explicit uvm_vreg( const std::string& name, unsigned int n_bits );
 
   void configure( uvm_reg_block* parent,
-                  uvm_mem* mem = NULL,
+                  uvm_mem* mem = nullptr,
                   unsigned long size   = 0,
                   uvm_reg_addr_t offset = 0,
                   unsigned int incr   = 0);
 
   virtual bool implement( unsigned long n,
-                          uvm_mem* mem = NULL,
+                          uvm_mem* mem = nullptr,
                           uvm_reg_addr_t offset = 0,
                           unsigned int incr = 0);
 
@@ -124,9 +124,9 @@ class uvm_vreg : public uvm_object
 
   virtual void get_maps( std::vector<uvm_reg_map*>& maps ) const;
 
-  virtual std::string get_rights( uvm_reg_map* map = NULL ) const;
+  virtual std::string get_rights( uvm_reg_map* map = nullptr ) const;
 
-  virtual std::string get_access( uvm_reg_map* map = NULL ) const;
+  virtual std::string get_access( uvm_reg_map* map = nullptr ) const;
 
   virtual unsigned int get_size() const;
 
@@ -143,7 +143,7 @@ class uvm_vreg : public uvm_object
   virtual uvm_reg_addr_t get_offset_in_memory( unsigned long idx ) const;
 
   virtual uvm_reg_addr_t get_address( unsigned long idx,
-                                      const uvm_reg_map* map = NULL ) const;
+                                      const uvm_reg_map* map = nullptr ) const;
 
   //--------------------------------------------------------------------
   // Group: HDL Access
@@ -153,9 +153,9 @@ class uvm_vreg : public uvm_object
                       uvm_status_e& status, //output
                       uvm_reg_data_t value,
                       uvm_path_e path = UVM_DEFAULT_PATH,
-                      uvm_reg_map* map = NULL,
-                      uvm_sequence_base* parent = NULL,
-                      uvm_object* extension = NULL,
+                      uvm_reg_map* map = nullptr,
+                      uvm_sequence_base* parent = nullptr,
+                      uvm_object* extension = nullptr,
                       const std::string& fname = "",
                       int lineno = 0 );
 
@@ -163,25 +163,25 @@ class uvm_vreg : public uvm_object
                      uvm_status_e& status,  // output
                      uvm_reg_data_t& value, // output
                      uvm_path_e path = UVM_DEFAULT_PATH,
-                     uvm_reg_map* map = NULL,
-                     uvm_sequence_base* parent = NULL,
-                     uvm_object* extension = NULL,
+                     uvm_reg_map* map = nullptr,
+                     uvm_sequence_base* parent = nullptr,
+                     uvm_object* extension = nullptr,
                      const std::string& fname = "",
                      int lineno = 0 );
 
   virtual void poke( unsigned long idx,
                      uvm_status_e& status, // output
                      uvm_reg_data_t value,
-                     uvm_sequence_base* parent = NULL,
-                     uvm_object* extension = NULL,
+                     uvm_sequence_base* parent = nullptr,
+                     uvm_object* extension = nullptr,
                      const std::string& fname = "",
                      int lineno = 0 );
 
   virtual void peek( unsigned long idx,
                      uvm_status_e& status, // output
                      uvm_reg_data_t& value, // output
-                     uvm_sequence_base* parent = NULL,
-                     uvm_object* extension = NULL,
+                     uvm_sequence_base* parent = nullptr,
+                     uvm_object* extension = nullptr,
                      const std::string& fname = "",
                      int lineno = 0 );
 
@@ -264,7 +264,7 @@ class uvm_vreg : public uvm_object
   unsigned long  m_size;    // number of vregs
   bool           m_is_static;
 
-  uvm_mem_region* m_region;    // Not NULL if implemented via MAM
+  uvm_mem_region* m_region;    // Not nullptr if implemented via MAM
   sc_core::sc_mutex m_atomic;  // Semaphore - Field RMW operations must be atomic
 
   std::string m_fname;

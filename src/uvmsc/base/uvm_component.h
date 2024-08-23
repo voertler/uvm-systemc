@@ -320,14 +320,14 @@ class uvm_component : public sc_core::sc_module,
                           int tr_handle );
 
   int record_error_tr( const std::string& stream_name = "main",
-                       uvm_object* info = NULL,
+                       uvm_object* info = nullptr,
                        const std::string& label = "error_tr",
                        const std::string& desc = "",
                        const sc_core::sc_time& error_time = sc_core::SC_ZERO_TIME,
                        bool keep_active = false );
 
   int record_event_tr( const std::string& stream_name = "main",
-                       uvm_object* info = NULL,
+                       uvm_object* info = nullptr,
                        const std::string& label = "event_tr",
                        const std::string& desc = "",
                        const sc_core::sc_time& event_time = sc_core::SC_ZERO_TIME,
@@ -357,7 +357,7 @@ class uvm_component : public sc_core::sc_module,
 #endif
 
   void print_config_settings( const std::string& field = "",
-                              uvm_component* comp = NULL,
+                              uvm_component* comp = nullptr,
                               bool recurse = false);
 
   virtual void set_name( const std::string& name );

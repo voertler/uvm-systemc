@@ -80,7 +80,7 @@ uvm_callback_iter<T,CB>::uvm_callback_iter( T* obj )
 {
   m_obj = obj;
   m_i = 0;
-  m_cb = NULL;
+  m_cb = nullptr;
 }
 
 //----------------------------------------------------------------------
@@ -88,7 +88,7 @@ uvm_callback_iter<T,CB>::uvm_callback_iter( T* obj )
 //
 //! Returns the first valid (enabled) callback of the callback type (or
 //! a derivative) that is in the queue of the context object. If the
-//! queue is empty then NULL is returned.
+//! queue is empty then nullptr is returned.
 //----------------------------------------------------------------------
 
 template < typename T, typename CB >
@@ -102,7 +102,7 @@ CB* uvm_callback_iter<T,CB>::first()
 //
 //! Returns the last valid (enabled) callback of the callback type (or
 //! a derivative) that is in the queue of the context object. If the
-//! queue is empty then NULL is returned.
+//! queue is empty then nullptr is returned.
 //----------------------------------------------------------------------
 
 template < typename T, typename CB >
@@ -116,7 +116,7 @@ CB* uvm_callback_iter<T,CB>::last()
 //
 //! Returns the next valid (enabled) callback of the callback type (or
 //! a derivative) that is in the queue of the context object. If there
-//! are no more valid callbacks in the queue, then NULL is returned.
+//! are no more valid callbacks in the queue, then nullptr is returned.
 //----------------------------------------------------------------------
 
 template < typename T, typename CB >
@@ -130,7 +130,7 @@ CB* uvm_callback_iter<T,CB>::next()
 //
 //! Returns the previous valid (enabled) callback of the callback type (or
 //! a derivative) that is in the queue of the context object. If there
-//! are no more valid callbacks in the queue, then NULL is returned.
+//! are no more valid callbacks in the queue, then nullptr is returned.
 //----------------------------------------------------------------------
 
 template < typename T, typename CB >

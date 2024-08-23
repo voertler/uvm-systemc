@@ -79,7 +79,7 @@ uvm_sequencer_base::uvm_sequencer_base( uvm_component_name name_ )
 
   srand(25); // TODO make global function to specify seed for RNG
 
-  m_current_sequence_item = NULL;
+  m_current_sequence_item = nullptr;
 }
 
 //----------------------------------------------------------------------
@@ -117,15 +117,15 @@ bool uvm_sequencer_base::is_child( uvm_sequence_base* parent,
 {
   uvm_sequence_base* child_parent;
 
-  if (child == NULL)
-    uvm_report_fatal("uvm_sequencer", "is_child passed NULL child", UVM_NONE);
+  if (child == nullptr)
+    uvm_report_fatal("uvm_sequencer", "is_child passed nullptr child", UVM_NONE);
 
-  if (parent == NULL)
-    uvm_report_fatal("uvm_sequencer", "is_child passed NULL parent", UVM_NONE);
+  if (parent == nullptr)
+    uvm_report_fatal("uvm_sequencer", "is_child passed nullptr parent", UVM_NONE);
 
   child_parent = child->get_parent_sequence();
 
-  while (child_parent != NULL) {
+  while (child_parent != nullptr) {
     if (child_parent->get_inst_id() == parent->get_inst_id())
       return true;
     child_parent = child_parent->get_parent_sequence();
@@ -188,25 +188,25 @@ void uvm_sequencer_base::execute_item( uvm_sequence_item* item )
 
 void uvm_sequencer_base::start_phase_sequence( uvm_phase& phase )
 {
-  uvm_object_wrapper* wrapper = NULL;
-  uvm_sequence_base* seq = NULL;
+  uvm_object_wrapper* wrapper = nullptr;
+  uvm_sequence_base* seq = nullptr;
 
   uvm_coreservice_t* cs = uvm_coreservice_t::get();
   uvm_factory* f = cs->get_factory();
 
   // default sequence instance?
   if (!uvm_config_db<uvm_sequence_base*>::get(
-    this, phase.get_name()+"_phase", "default_sequence", seq) || seq == NULL)
+    this, phase.get_name()+"_phase", "default_sequence", seq) || seq == nullptr)
   {
     // default sequence object wrapper?
 
     if (uvm_config_db<uvm_object_wrapper*>::get(
-          this, phase.get_name() + "_phase", "default_sequence", wrapper) && wrapper != NULL)
+          this, phase.get_name() + "_phase", "default_sequence", wrapper) && wrapper != nullptr)
     {
       // use wrapper is a sequence type
       seq =  dynamic_cast<uvm_sequence_base*>
         (f->create_object_by_type(wrapper, get_full_name(), wrapper->get_type_name() ) );
-      if(seq == NULL)
+      if(seq == nullptr)
       {
         std::ostringstream msg;
         msg << "Default sequence for phase '"
@@ -279,9 +279,9 @@ void uvm_sequencer_base::wait_for_grant(uvm_sequence_base* sequence_ptr,
   uvm_sequence_request* req_s;
   int my_seq_id;
 
-  if (sequence_ptr == NULL)
+  if (sequence_ptr == nullptr)
     uvm_report_fatal("uvm_sequencer_base",
-       "wait_for_grant passed NULL sequence_ptr", UVM_NONE);
+       "wait_for_grant passed nullptr sequence_ptr", UVM_NONE);
 
   my_seq_id = m_register_sequence(sequence_ptr);
 
@@ -374,9 +374,9 @@ void uvm_sequencer_base::wait_for_item_done( uvm_sequence_base* sequence_ptr,
 
 bool uvm_sequencer_base::is_blocked( const uvm_sequence_base* sequence_ptr ) const
 {
-  if (sequence_ptr == NULL)
+  if (sequence_ptr == nullptr)
     uvm_report_fatal("uvm_sequence_controller",
-                     "is_blocked passed NULL sequence_ptr", UVM_NONE);
+                     "is_blocked passed nullptr sequence_ptr", UVM_NONE);
 
   for (unsigned int i =0; i < lock_list.size(); i++)
   {
@@ -402,9 +402,9 @@ bool uvm_sequencer_base::is_blocked( const uvm_sequence_base* sequence_ptr ) con
 
 bool uvm_sequencer_base::has_lock( uvm_sequence_base* sequence_ptr )
 {
-  if (sequence_ptr == NULL)
+  if (sequence_ptr == nullptr)
     uvm_report_fatal("uvm_sequence_controller",
-                     "has_lock passed null sequence_ptr", UVM_NONE);
+                     "has_lock passed nullptr sequence_ptr", UVM_NONE);
 
   m_register_sequence(sequence_ptr);
 
@@ -487,7 +487,7 @@ void uvm_sequencer_base::stop_sequences()
   uvm_sequence_base* seq_ptr;
 
   seq_ptr = m_find_sequence(-1);
-  while (seq_ptr != NULL)
+  while (seq_ptr != nullptr)
   {
     m_kill_sequence(seq_ptr);
     seq_ptr = m_find_sequence(-1);
@@ -517,7 +517,7 @@ bool uvm_sequencer_base::is_grabbed() const
 uvm_sequence_base* uvm_sequencer_base::current_grabber() const
 {
   if (lock_list.size() == 0)
-    return NULL;
+    return nullptr;
 
   return lock_list[lock_list.size()-1];
 }
@@ -1157,7 +1157,7 @@ uvm_sequence_base* uvm_sequencer_base::m_find_sequence(int sequence_id)
   {
     if (reg_sequences.begin()->first) // when valid sequence_id
       return reg_sequences.begin()->second; // return uvm_sequence_base
-    else return NULL;
+    else return nullptr;
   }
 
   //in all other cases
@@ -1236,9 +1236,9 @@ void uvm_sequencer_base::m_lock_req( uvm_sequence_base* sequence_ptr, bool lock)
 {
   uvm_sequence_request* new_req;
 
-  if (sequence_ptr == NULL)
+  if (sequence_ptr == nullptr)
     uvm_report_fatal("uvm_sequence_controller",
-                     "lock_req passed null sequence_ptr", UVM_NONE);
+                     "lock_req passed nullptr sequence_ptr", UVM_NONE);
 
   m_register_sequence(sequence_ptr);
 
@@ -1280,10 +1280,10 @@ void uvm_sequencer_base::m_lock_req( uvm_sequence_base* sequence_ptr, bool lock)
 
 void uvm_sequencer_base::m_unlock_req( uvm_sequence_base* sequence_ptr )
 {
-  if (sequence_ptr == NULL)
+  if (sequence_ptr == nullptr)
   {
     uvm_report_fatal("uvm_sequencer",
-                     "m_unlock_req passed null sequence_ptr", UVM_NONE);
+                     "m_unlock_req passed nullptr sequence_ptr", UVM_NONE);
   }
 
   m_register_sequence(sequence_ptr);
@@ -1312,7 +1312,7 @@ void uvm_sequencer_base::m_unlock_req( uvm_sequence_base* sequence_ptr )
 
 void uvm_sequencer_base::m_start_default_seq_proc(uvm_sequence_base* seq)
 {
-  seq->start(this, NULL);
+  seq->start(this, nullptr);
 }
 
 

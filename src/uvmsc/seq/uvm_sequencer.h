@@ -75,25 +75,25 @@ class uvm_sequencer : public uvm_sequencer_param_base<REQ,RSP>,
   // Group: Sequencer interface
   //--------------------------------------------------------------------------
 
-  //virtual REQ get_next_item( tlm::tlm_tag<REQ>* req = NULL );
-  virtual REQ get_next_item( REQ* req = NULL );
+  //virtual REQ get_next_item( tlm::tlm_tag<REQ>* req = nullptr );
+  virtual REQ get_next_item( REQ* req = nullptr );
   virtual void get_next_item( REQ& req );
 
   virtual bool try_next_item( REQ& req );
 
   virtual void item_done( const RSP& item, bool use_item = true );
-  virtual void item_done(); // TODO - set default to NULL/NIL for template param, combine into one method?
+  virtual void item_done(); // TODO - set default to nullptr/NIL for template param, combine into one method?
 
   virtual void put( const RSP& rsp );
   virtual void put_response( const RSP& rsp ); // TODO not in standard anymore? remove?
 
   virtual void get( REQ& req );
-  virtual REQ get( REQ* req = NULL );
-  //virtual REQ get( tlm::tlm_tag<REQ>* req = NULL );
+  virtual REQ get( REQ* req = nullptr );
+  //virtual REQ get( tlm::tlm_tag<REQ>* req = nullptr );
 
   virtual void peek( REQ& req );
-  virtual REQ peek( REQ* req = NULL );
-  //virtual REQ peek( tlm::tlm_tag<REQ>* req = NULL ); // FIXME: should be const in line with SystemC TLM API?
+  virtual REQ peek( REQ* req = nullptr );
+  //virtual REQ peek( tlm::tlm_tag<REQ>* req = nullptr ); // FIXME: should be const in line with SystemC TLM API?
 
   virtual void stop_sequences();
 
@@ -235,7 +235,7 @@ REQ uvm_sequencer<REQ,RSP>::get(REQ* req)
   if (!sequence_item_requested)
     this->m_select_sequence();
 
-  if (req!=NULL)
+  if (req!=nullptr)
     this->m_current_sequence_item = req;
 
   sequence_item_requested = true;
@@ -267,7 +267,7 @@ REQ uvm_sequencer<REQ,RSP>::peek(REQ* req)
   if (!sequence_item_requested )
     this->m_select_sequence();
 
-  if (req!=NULL)
+  if (req!=nullptr)
     this->m_current_sequence_item = req;
 
   // Set flag indicating that the item has been requested to ensure that
@@ -302,7 +302,7 @@ REQ uvm_sequencer<REQ,RSP>::get_next_item(REQ* req)
     uvm_report_error(this->get_full_name(),
       "get_next_item() called twice without item_done or get in between", UVM_NONE);
 
-  if (req!=NULL)
+  if (req!=nullptr)
     this->m_current_sequence_item = req;
 
   if (!sequence_item_requested)
@@ -376,7 +376,7 @@ bool uvm_sequencer<REQ,RSP>::try_next_item( REQ& req )
         <<  seq->get_full_name()
         << "' did not produce an item within an NBA delay. "
         << "Sequences should not consume time between calls to start_item and finish_item. "
-        << "Returning NULL item.";
+        << "Returning nullptr item.";
     uvm_report_error("TRY_NEXT_BLOCKED", str.str(), UVM_NONE);
     return false;
   }

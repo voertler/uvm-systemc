@@ -322,7 +322,7 @@ class loop_read_modify_write_seq : public ubus_base_sequence
 
   virtual void body()
   {
-    uvm::uvm_config_db<int>::get(NULL, get_full_name(), "itr", itr);
+    uvm::uvm_config_db<int>::get(nullptr, get_full_name(), "itr", itr);
 
     std::ostringstream str;
     str << get_sequence_path()

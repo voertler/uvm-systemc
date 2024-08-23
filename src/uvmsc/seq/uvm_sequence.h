@@ -89,7 +89,7 @@ template <typename REQ, typename RSP>
 uvm_sequence<REQ,RSP>::uvm_sequence( const std::string& name_ )
   : uvm_sequence_base( name_ )
 {
-  param_sequencer = NULL;
+  param_sequencer = nullptr;
 }
 
 //----------------------------------------------------------------------
@@ -114,14 +114,14 @@ uvm_sequence<REQ,RSP>::~uvm_sequence()
 template <typename REQ, typename RSP>
 void uvm_sequence<REQ,RSP>::send_request(uvm_sequence_item* request, bool rerandomize)
 {
-  REQ* m_request = NULL;
+  REQ* m_request = nullptr;
 
-  if (get_sequencer() == NULL)
-    uvm_report_fatal("SSENDREQ", "Null m_sequencer reference", UVM_NONE);
+  if (get_sequencer() == nullptr)
+    uvm_report_fatal("SSENDREQ", "nullptr m_sequencer reference", UVM_NONE);
 
   m_request = dynamic_cast<REQ*>(request);
 
-  if (m_request == NULL)
+  if (m_request == nullptr)
     uvm_report_fatal("SSENDREQ", "Failure to cast uvm_sequence_item to request", UVM_NONE);
 
   m_sequencer->send_request(this, request, rerandomize);
@@ -132,7 +132,7 @@ void uvm_sequence<REQ,RSP>::send_request(uvm_sequence_item* request, bool rerand
 // member function: get_current_item
 //
 // Returns the request item currently being executed by the sequencer. If the
-// sequencer is not currently executing an item, this method will return null.
+// sequencer is not currently executing an item, this method will return nullptr.
 //
 // The sequencer is executing an item from the time that get_next_item or peek
 // is called until the time that get or item_done is called.
@@ -146,7 +146,7 @@ REQ uvm_sequence<REQ,RSP>::get_current_item() const
 {
   param_sequencer = dynamic_cast< uvm_sequencer_param_base<REQ,RSP>* >(m_sequencer);
 
-  if (param_sequencer == NULL)
+  if (param_sequencer == nullptr)
     uvm_report_fatal("SGTCURR",
                      "Failure to cast m_sequencer to the parameterized sequencer",
                      UVM_NONE );
@@ -203,7 +203,7 @@ void uvm_sequence<REQ,RSP>::put_response( const uvm_sequence_item& response_item
   const RSP* crsp = dynamic_cast<const RSP*>(&response_item);
   RSP* rsp = const_cast<RSP*>(crsp); // TODO avoid const_cast!
 
-  if (rsp == NULL)
+  if (rsp == nullptr)
     uvm_report_fatal("PUTRSP", "Failure to cast response in put_response.", UVM_NONE);
 
   put_base_response(response_item);

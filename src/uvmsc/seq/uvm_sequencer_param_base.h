@@ -202,8 +202,8 @@ void uvm_sequencer_param_base<REQ,RSP>::send_request( uvm_sequence_base* sequenc
   REQ* param_tp;
   REQ param_t;
 
-  if (sequence_ptr == NULL)
-    uvm_report_fatal("SNDREQ", "Send request sequence_ptr is null", UVM_NONE);
+  if (sequence_ptr == nullptr)
+    uvm_report_fatal("SNDREQ", "Send request sequence_ptr is nullptr", UVM_NONE);
 
   if (sequence_ptr->m_wait_for_grant_semaphore < 1)
     uvm_report_fatal("SNDREQ", "Send request called without wait_for_grant", UVM_NONE);
@@ -212,7 +212,7 @@ void uvm_sequencer_param_base<REQ,RSP>::send_request( uvm_sequence_base* sequenc
 
   param_tp = dynamic_cast<REQ*>(seq_item);
 
-  if (param_tp != NULL)
+  if (param_tp != nullptr)
   {
     param_t = *param_tp; // TODO workaround: dereference to get const REQ& for the TLM put. Alternative?
 
@@ -255,7 +255,7 @@ void uvm_sequencer_param_base<REQ,RSP>::send_request( uvm_sequence_base* sequenc
 // member function: get_current_item
 //
 //! Returns the request_item currently being executed by the sequencer. If the
-//! sequencer is not currently executing an item, this method will return NULL.
+//! sequencer is not currently executing an item, this method will return nullptr.
 //!
 //! The sequencer is executing an item from the time that get_next_item or peek
 //! is called until the time that get or item_done is called.
@@ -269,7 +269,7 @@ REQ uvm_sequencer_param_base<REQ,RSP>::get_current_item() const
 {
   REQ req;
   if (!m_req_fifo.nb_peek(req))
-    return NULL;
+    return nullptr;
   return req;
 }
 
@@ -331,7 +331,7 @@ unsigned int uvm_sequencer_param_base<REQ,RSP>::get_num_last_reqs() const
 //
 //! Returns the last request item by default.  If n is not 0, then it will get
 //! the n-th before last request item.  If n is greater than the last request
-//! buffer size, the member function will return NULL.
+//! buffer size, the member function will return nullptr.
 //----------------------------------------------------------------------
 
 template <typename REQ, typename RSP>
@@ -343,12 +343,12 @@ REQ* uvm_sequencer_param_base<REQ,RSP>::last_req(unsigned int n)
     msg << "Invalid last access " << n
         << ", the max history is " << m_num_last_reqs;
     uvm_report_warning("HSTOB", msg.str(), UVM_NONE);
-    return NULL;
+    return nullptr;
   }
 
   if(n >= m_last_req_buffer.size())
   {
-    return NULL;
+    return nullptr;
   }
 
   m_last_req_buffer_list_ItT it = m_last_req_buffer.begin();
@@ -415,7 +415,7 @@ unsigned int uvm_sequencer_param_base<REQ,RSP>::get_num_last_rsps() const
 //
 //! Returns the last response item by default.  If n is not 0, then it will
 //! get the nth-before-last response item.  If n is greater than the last
-//! response buffer size, the function will return NULL.
+//! response buffer size, the function will return nullptr.
 //----------------------------------------------------------------------
 
 template <typename REQ, typename RSP>
@@ -427,12 +427,12 @@ RSP* uvm_sequencer_param_base<REQ,RSP>::last_rsp(unsigned int n)
     msg << "Invalid last access " << n
         << ", the max history is " << m_num_last_rsps;
     uvm_report_warning("HSTOB", msg.str(), UVM_NONE);
-    return NULL;
+    return nullptr;
   }
 
   if(n >= m_last_rsp_buffer.size())
   {
-    return NULL;
+    return nullptr;
   }
 
   m_last_rsp_buffer_list_ItT it = m_last_rsp_buffer.begin();
@@ -464,7 +464,7 @@ void uvm_sequencer_param_base<REQ,RSP>::put_response_base(const RSP& rsp)
 
   sequence_ptr = m_find_sequence(rsp.get_sequence_id());
 
-  if (sequence_ptr != NULL)
+  if (sequence_ptr != nullptr)
   {
     // If the response_handler is enabled for this sequence,
     // then call the response handler

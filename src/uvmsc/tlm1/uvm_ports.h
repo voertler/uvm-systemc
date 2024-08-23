@@ -38,11 +38,11 @@ namespace uvm {
 #define UVM_PORT_COMMON(IF) \
   const IF* get_imp() const { \
     const IF* imp = dynamic_cast< const IF* >(this->get_interface()); \
-    if (imp == NULL) UVM_FATAL("TLM1BIND", "No interface bound to TLM port '" + this->get_full_name() + "'."); \
+    if (imp == nullptr) UVM_FATAL("TLM1BIND", "No interface bound to TLM port '" + this->get_full_name() + "'."); \
       return imp; } \
   IF* get_imp() { \
     IF* imp = dynamic_cast< IF* >(this->get_interface()); \
-    if (imp == NULL) UVM_FATAL("TLM1BIND", "No interface bound to TLM port '" + this->get_full_name() + "'."); \
+    if (imp == nullptr) UVM_FATAL("TLM1BIND", "No interface bound to TLM port '" + this->get_full_name() + "'."); \
       return imp; }
 
 #define UVM_BLOCKING_PUT_PORT_METHODS \

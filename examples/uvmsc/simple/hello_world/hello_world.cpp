@@ -29,9 +29,9 @@ using namespace uvm;
 
 int sc_main(int, char*[])
 {
-  uvm::uvm_config_db<int>::set(NULL, "top.producer1", "num_packets", 2);
-  uvm::uvm_config_db<int>::set(NULL, "top.producer2", "num_packets", 4);
-  uvm::uvm_config_db<int>::set(NULL, "*", "recording_detail", uvm::UVM_LOW);
+  uvm::uvm_config_db<int>::set(nullptr, "top.producer1", "num_packets", 2);
+  uvm::uvm_config_db<int>::set(nullptr, "top.producer2", "num_packets", 4);
+  uvm::uvm_config_db<int>::set(nullptr, "*", "recording_detail", uvm::UVM_LOW);
 
   top mytop("top");
 

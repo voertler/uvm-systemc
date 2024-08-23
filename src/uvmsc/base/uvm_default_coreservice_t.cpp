@@ -37,7 +37,7 @@ namespace uvm {
 
 uvm_factory* uvm_default_coreservice_t::get_factory() const
 {
-  if(factory == NULL)
+  if(factory == nullptr)
   {
     uvm_default_factory* f = new uvm_default_factory();
     factory = f;
@@ -70,13 +70,13 @@ void uvm_default_coreservice_t::set_factory( uvm_factory* f )
 /* TODO TR database
 uvm_tr_database* uvm_default_coreservice_t::get_default_tr_database() const
 {
-  if (tr_database == NULL)
+  if (tr_database == nullptr)
   {
     //   process p = process::self();
     uvm_text_tr_database* tx_db;
     std::string s;
 
-    //if(p != NULL)
+    //if(p != nullptr)
     //  s = p.get_randstate();
 
     tx_db = new uvm_tr_database("default_tr_database");
@@ -110,7 +110,7 @@ void uvm_default_coreservice_t::set_default_tr_database( uvm_tr_database* db )
 
 uvm_report_server* uvm_default_coreservice_t::get_report_server() const
 {
-  if(report_server == NULL)
+  if(report_server == nullptr)
   {
     uvm_default_report_server* f = new uvm_default_report_server();
     report_server = f;
@@ -163,7 +163,7 @@ void uvm_default_coreservice_t::set_component_visitor(uvm_visitor<uvm_component>
 /* TODO uvm_visitor
 uvm_visitor<uvm_component> uvm_default_coreservice_t::get_component_visitor() const
 {
-  if(m_visitor == NULL)
+  if(m_visitor == nullptr)
   {
     uvm_component_name_check_visitor* v = new uvm_component_name_check_visitor("name-check-visitor");
     m_visitor=v;

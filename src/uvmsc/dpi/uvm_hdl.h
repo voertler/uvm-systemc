@@ -95,7 +95,7 @@ bool uvm_hdl_deposit( const std::string& path, const T& value )
 
   sc_core::sc_object* obj = sc_core::sc_find_object(objname2.c_str());
 
-  if (obj == NULL)
+  if (obj == nullptr)
   {
     uvm_report_error("HDL_DEPOSIT", "Object " + objname2 + " not found in design hierarchy.");
     return false;
@@ -103,7 +103,7 @@ bool uvm_hdl_deposit( const std::string& path, const T& value )
 
   // possibility 1: backdoor register represented by object of type sc_signal
   sc_core::sc_signal<T, sc_core::SC_MANY_WRITERS>* sig_md = dynamic_cast<sc_core::sc_signal<T, sc_core::SC_MANY_WRITERS>* > (obj);
-  if (sig_md != NULL)
+  if (sig_md != nullptr)
   {
     if ((idx_start != -1) && (idx_stop != -1))
     {
@@ -121,7 +121,7 @@ bool uvm_hdl_deposit( const std::string& path, const T& value )
 
   // possibility 2: backdoor register represented by object of type uvm_sc_if
   uvm_sc_if<T>* interf = dynamic_cast<uvm_sc_if<T>* > (obj);
-  if (interf != NULL)
+  if (interf != nullptr)
   {
     if ( (idx_start > (value.length()-1)) || (idx_start < -1) ||
          (idx_stop > (value.length()-1)) || (idx_stop < -1) )
@@ -139,7 +139,7 @@ bool uvm_hdl_deposit( const std::string& path, const T& value )
 
   // // possibility 3: backdoor registers represented by sc_vector containing object of type uvm_sc_if or sc_signal
   sc_core::sc_vector_base* vec = dynamic_cast<sc_core::sc_vector_base* > (obj);
-  if (vec != NULL)
+  if (vec != nullptr)
   {
     // vector found, but no index, meaning the first index was valid
     if (vidx_start == -1)
@@ -158,7 +158,7 @@ bool uvm_hdl_deposit( const std::string& path, const T& value )
     }
 
     uvm_sc_if<T>* interf = dynamic_cast<uvm_sc_if<T>* > (vec_element[vidx_start]);
-    if (interf != NULL)
+    if (interf != nullptr)
     {
 
       if ( (idx_start > (value.length()-1)) || (idx_start < -1) ||
@@ -176,7 +176,7 @@ bool uvm_hdl_deposit( const std::string& path, const T& value )
     }
 
     sc_core::sc_signal<T, sc_core::SC_MANY_WRITERS>* sig_md = dynamic_cast<sc_core::sc_signal<T, sc_core::SC_MANY_WRITERS>* > (vec_element[vidx_start]);
-    if (sig_md != NULL)
+    if (sig_md != nullptr)
     {
       if ((idx_start != -1) && (idx_stop != -1))
       {
@@ -277,7 +277,7 @@ bool uvm_hdl_read( const std::string& path, T& value )
   */
   sc_core::sc_object* obj = sc_core::sc_find_object(objname2.c_str());
 
-  if (obj == NULL)
+  if (obj == nullptr)
   {
     uvm_report_error("HDL_READ", "Object " + objname2 + " not found in design hierarchy.");
     return false;
@@ -285,7 +285,7 @@ bool uvm_hdl_read( const std::string& path, T& value )
 
   // possibility 1: backdoor register represented by object of type sc_signal
   sc_core::sc_signal<T, sc_core::SC_MANY_WRITERS>* sig_md = dynamic_cast<sc_core::sc_signal<T, sc_core::SC_MANY_WRITERS>* > (obj);
-  if (sig_md != NULL)
+  if (sig_md != nullptr)
   {
     if ((idx_start != -1) && (idx_stop != -1))
     {
@@ -303,7 +303,7 @@ bool uvm_hdl_read( const std::string& path, T& value )
 
   // possibility 2: backdoor register represented by object of type uvm_sc_if
   uvm_sc_if<T>* interf = dynamic_cast<uvm_sc_if<T>* > (obj);
-  if (interf != NULL)
+  if (interf != nullptr)
   {
     if ( (idx_start > (value.length()-1)) || (idx_start < -1) ||
          (idx_stop > (value.length()-1)) || (idx_stop < -1) )
@@ -321,7 +321,7 @@ bool uvm_hdl_read( const std::string& path, T& value )
 
   // // possibility 3: backdoor registers represented by sc_vector containing object of type uvm_sc_if or sc_signal
   sc_core::sc_vector_base* vec = dynamic_cast<sc_core::sc_vector_base* > (obj);
-  if (vec != NULL)
+  if (vec != nullptr)
   {
     // vector found, but no index, meaning the first index was valid
     if (vidx_start == -1)
@@ -340,7 +340,7 @@ bool uvm_hdl_read( const std::string& path, T& value )
     }
 
     uvm_sc_if<T>* interf = dynamic_cast<uvm_sc_if<T>* > (vec_element[vidx_start]);
-    if (interf != NULL)
+    if (interf != nullptr)
     {
       if ( (idx_start > (value.length()-1)) || (idx_start < -1) ||
            (idx_stop > (value.length()-1)) || (idx_stop < -1) )
@@ -357,7 +357,7 @@ bool uvm_hdl_read( const std::string& path, T& value )
     }
 
     sc_core::sc_signal<T, sc_core::SC_MANY_WRITERS>* sig_md = dynamic_cast<sc_core::sc_signal<T, sc_core::SC_MANY_WRITERS>* > (vec_element[vidx_start]);
-    if (sig_md != NULL)
+    if (sig_md != nullptr)
     {
       if ((idx_start != -1) && (idx_stop != -1))
       {

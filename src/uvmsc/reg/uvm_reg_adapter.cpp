@@ -38,8 +38,8 @@ uvm_reg_adapter::uvm_reg_adapter( const std::string& name ) : uvm_object(name)
 {
   provides_responses = false;
   supports_byte_enable = false;
-  parent_sequence = NULL;
-  m_item = NULL;
+  parent_sequence = nullptr;
+  m_item = nullptr;
 }
 
 //----------------------------------------------------------------------
@@ -50,7 +50,7 @@ uvm_reg_adapter::uvm_reg_adapter( const std::string& name ) : uvm_object(name)
 //! transaction.
 //! This function returns a value reference only when called in the
 //! uvm_reg_adapter::reg2bus() method.
-//! It returns NULL at all other times.
+//! It returns nullptr at all other times.
 //! The content of the return #uvm_reg_item instance must not be modified
 //! and used strictly to obtain additional information about the operation.
 //----------------------------------------------------------------------

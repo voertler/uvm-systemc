@@ -45,8 +45,8 @@ class uvm_factory_override
  public:
   uvm_factory_override( const std::string& full_inst_path_ = "",
                         const std::string& orig_type_name_ = "",
-                        uvm_object_wrapper* orig_type_ = NULL,
-                        uvm_object_wrapper* ovrd_type_ = NULL );
+                        uvm_object_wrapper* orig_type_ = nullptr,
+                        uvm_object_wrapper* ovrd_type_ = nullptr );
 
  public: //data members
   std::string full_inst_path;

@@ -62,7 +62,7 @@ public:
 /*
   void pre_body()
   {
-    if (this->starting_phase != NULL)
+    if (this->starting_phase != nullptr)
     {
       UVM_INFO(get_type_name(), get_sequence_path() +
         " pre_body() raising " + starting_phase->get_name() +
@@ -77,7 +77,7 @@ public:
 
   void post_body()
   {
-    if (this->starting_phase != NULL)
+    if (this->starting_phase != nullptr)
     {
       UVM_INFO(get_type_name(), get_sequence_path() +
         " post_body() dropping " + starting_phase->get_name() +

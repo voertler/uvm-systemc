@@ -85,7 +85,7 @@ template <typename T>
 const std::string uvm_object_string_pool<T>::type_name = "uvm::uvm_obj_str_pool";
 
 template <typename T>
-uvm_object_string_pool<T>* uvm_object_string_pool<T>::m_global_pool = NULL;
+uvm_object_string_pool<T>* uvm_object_string_pool<T>::m_global_pool = nullptr;
 
 
 //-----------------------------------------------------------------------------
@@ -115,10 +115,10 @@ uvm_object_string_pool<T>::uvm_object_string_pool( const std::string& name )
 template <typename T>
 uvm_object_string_pool<T>::~uvm_object_string_pool()
 {
-  if( m_global_pool != NULL )
+  if( m_global_pool != nullptr )
   {
     delete m_global_pool;
-    m_global_pool = NULL;
+    m_global_pool = nullptr;
   }
 }
 
@@ -145,7 +145,7 @@ const std::string uvm_object_string_pool<T>::get_type_name() const
 template <typename T>
 uvm_object_string_pool<T>* uvm_object_string_pool<T>::get_global_pool()
 {
-  if (m_global_pool == NULL)
+  if (m_global_pool == nullptr)
     m_global_pool = new uvm_object_string_pool("global_object_string_pool");
   return m_global_pool;
 }

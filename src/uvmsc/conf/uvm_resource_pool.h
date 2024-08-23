@@ -97,7 +97,7 @@ class uvm_resource_pool
 
   uvm_resource_types::rsrc_q_t* lookup_regex_names( const std::string& scope,
                                                     const std::string& name,
-                                                    uvm_resource_base* type_handle = NULL );
+                                                    uvm_resource_base* type_handle = nullptr );
 
   uvm_resource_types::rsrc_q_t* lookup_regex( const std::string& re,
                                               const std::string& scope );

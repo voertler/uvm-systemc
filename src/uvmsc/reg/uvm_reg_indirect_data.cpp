@@ -46,7 +46,7 @@ uvm_reg_indirect_data::uvm_reg_indirect_data( const std::string& name,
                                               int has_cover)
   : uvm_reg( ((name.empty()) ? sc_core::sc_gen_unique_name("uvm_reg_indirect") : name), n_bits, has_cover)
 {
-  m_idx = NULL;
+  m_idx = nullptr;
 }
 
 //-----------------------------------------------------------------------------
@@ -128,10 +128,10 @@ void uvm_reg_indirect_data::add_frontdoors( uvm_reg_map* map )
   for( unsigned int i = 0; i < m_tbl.size(); i++)
   {
     uvm_reg_indirect_ftdr_seq* fd;
-    if (m_tbl[i] == NULL)
+    if (m_tbl[i] == nullptr)
     {
       std::ostringstream str;
-      str << "Indirect register "<< i << " is NULL";
+      str << "Indirect register "<< i << " is nullptr";
       UVM_ERROR(get_full_name(), str.str() );
       continue;
     }
@@ -292,7 +292,7 @@ void uvm_reg_indirect_data::write( uvm_status_e& status,
 
     m_atomic_check_lock(1);
 
-    rw = uvm_reg_item::type_id::create("write_item", NULL, get_full_name());
+    rw = uvm_reg_item::type_id::create("write_item", nullptr, get_full_name());
     rw->element      = this;
     rw->element_kind = UVM_REG;
     rw->access_kind  = UVM_WRITE;

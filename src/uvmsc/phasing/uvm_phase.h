@@ -69,7 +69,7 @@ class uvm_phase : public uvm_object
 
   explicit uvm_phase( const std::string& name,
                       uvm_phase_type phase_type = UVM_PHASE_SCHEDULE,
-                      uvm_phase* parent = NULL );
+                      uvm_phase* parent = nullptr );
 
   uvm_phase_type get_phase_type() const;
 
@@ -107,9 +107,9 @@ class uvm_phase : public uvm_object
   //----------------
 
   void add( uvm_phase* phase,
-            uvm_phase* with_phase = NULL,
-            uvm_phase* after_phase = NULL,
-            uvm_phase* before_phase = NULL );
+            uvm_phase* with_phase = nullptr,
+            uvm_phase* after_phase = nullptr,
+            uvm_phase* before_phase = nullptr );
 
   uvm_phase* get_parent() const;
 
@@ -140,12 +140,12 @@ class uvm_phase : public uvm_object
                                 int count = 1 );
 
   void sync( uvm_domain& target,
-             uvm_phase* phase = NULL,
-             uvm_phase* with_phase = NULL );
+             uvm_phase* phase = nullptr,
+             uvm_phase* with_phase = nullptr );
 
   void unsync( uvm_domain& target,
-               uvm_phase* phase = NULL,
-               uvm_phase* with_phase = NULL );
+               uvm_phase* phase = nullptr,
+               uvm_phase* with_phase = nullptr );
 
   void wait_for_state( uvm_phase_state state, uvm_wait_op op = UVM_EQ );
 
@@ -187,19 +187,19 @@ class uvm_phase : public uvm_object
 
   const uvm_phase* m_find_predecessor( const uvm_phase* phase,
                                        bool stay_in_scope = true,
-                                       const uvm_phase* orig_phase = NULL ) const;
+                                       const uvm_phase* orig_phase = nullptr ) const;
 
   const uvm_phase* m_find_predecessor_by_name( const std::string& name,
                                                bool stay_in_scope = true,
-                                               const uvm_phase* orig_phase = NULL ) const;
+                                               const uvm_phase* orig_phase = nullptr ) const;
 
   const uvm_phase* m_find_successor( const uvm_phase* phase,
                                      bool stay_in_scope = true,
-                                     const uvm_phase* orig_phase = NULL ) const;
+                                     const uvm_phase* orig_phase = nullptr ) const;
 
   const uvm_phase* m_find_successor_by_name( const std::string& name,
                                              bool stay_in_scope = true,
-                                             const uvm_phase* orig_phase = NULL ) const;
+                                             const uvm_phase* orig_phase = nullptr ) const;
 
   static void m_register_phases();
 
@@ -216,7 +216,7 @@ class uvm_phase : public uvm_object
   void clear_phase( uvm_phase_state state = UVM_PHASE_DORMANT );
 
   void clear_successors( uvm_phase_state state = UVM_PHASE_DORMANT,
-                         uvm_phase* end_state = NULL );
+                         uvm_phase* end_state = nullptr );
 
   void get_predecessors_for_successors( std::map<uvm_phase*, bool>& pred_of_succ );
 
@@ -228,7 +228,7 @@ class uvm_phase : public uvm_object
 
   static std::map<uvm_phase*, bool>& m_executing_phases();
 
-  static uvm_phase* m_phase_nodes(const std::string& name, uvm_phase* phase = NULL);
+  static uvm_phase* m_phase_nodes(const std::string& name, uvm_phase* phase = nullptr);
 
   const std::string get_full_name_under() const;
 

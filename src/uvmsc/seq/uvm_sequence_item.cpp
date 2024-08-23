@@ -43,9 +43,9 @@ namespace uvm {
 uvm_sequence_item::uvm_sequence_item()
   : uvm_transaction( sc_core::sc_gen_unique_name("sequence_item") )
 {
-  m_sequencer = NULL;
+  m_sequencer = nullptr;
   print_sequence_info = false;
-  m_parent_sequence = NULL;
+  m_parent_sequence = nullptr;
   m_use_sequence_info = true;
   m_sequence_id = -1;
   m_depth = -1;
@@ -54,9 +54,9 @@ uvm_sequence_item::uvm_sequence_item()
 uvm_sequence_item::uvm_sequence_item( uvm_object_name name_ )
   : uvm_transaction( name_ )
 {
-  m_sequencer = NULL;
+  m_sequencer = nullptr;
   print_sequence_info = false;
-  m_parent_sequence = NULL;
+  m_parent_sequence = nullptr;
   m_use_sequence_info = true;
   m_sequence_id = -1;
   m_depth = -1;
@@ -82,15 +82,15 @@ void uvm_sequence_item::set_item_context( uvm_sequence_base* parent_seq,
 {
   set_use_sequence_info(true);
 
-  if (parent_seq != NULL)
+  if (parent_seq != nullptr)
     set_parent_sequence(parent_seq);
 
-  if ((sequencer == NULL) && (m_parent_sequence != NULL))
+  if ((sequencer == nullptr) && (m_parent_sequence != nullptr))
     sequencer = m_parent_sequence->get_sequencer();
 
   set_sequencer(sequencer);
 
-  if (m_parent_sequence != NULL)
+  if (m_parent_sequence != nullptr)
     set_depth(m_parent_sequence->get_depth() + 1);
 
   //reseed(); // TODO reseed?
@@ -189,7 +189,7 @@ void uvm_sequence_item::set_parent_sequence( uvm_sequence_base* parent )
 // member function: get_parent_sequence
 //
 //! Returns a reference to the parent sequence of any sequence on which this
-//! method was called. If this is a parent sequence, the method returns NULL.
+//! method was called. If this is a parent sequence, the method returns nullptr.
 //----------------------------------------------------------------------
 
 uvm_sequence_base* uvm_sequence_item::get_parent_sequence() const
@@ -226,7 +226,7 @@ int uvm_sequence_item::get_depth() const
     return (m_depth);
 
   // Calculate the depth, store it, and return the value
-  if (m_parent_sequence == NULL)
+  if (m_parent_sequence == nullptr)
     m_depth = 1;
   else
     m_depth = m_parent_sequence->get_depth() + 1;
@@ -257,7 +257,7 @@ const std::string uvm_sequence_item::get_root_sequence_name() const
 {
   const uvm_sequence_base* root_seq;
   root_seq = get_root_sequence();
-  if (root_seq == NULL)
+  if (root_seq == nullptr)
     return "";
   else
     return root_seq->get_name();
@@ -272,12 +272,12 @@ const std::string uvm_sequence_item::get_root_sequence_name() const
 const uvm_sequence_base* uvm_sequence_item::get_root_sequence() const
 {
   const uvm_sequence_item* root_seq_base;
-  const uvm_sequence_base* root_seq = NULL;
+  const uvm_sequence_base* root_seq = nullptr;
   root_seq_base = this;
 
   while(true)
   {
-    if( root_seq_base->get_parent_sequence() != NULL )
+    if( root_seq_base->get_parent_sequence() != nullptr )
     {
       root_seq_base = root_seq_base->get_parent_sequence();
       root_seq = dynamic_cast< const uvm_sequence_base*>(root_seq_base);
@@ -287,7 +287,7 @@ const uvm_sequence_base* uvm_sequence_item::get_root_sequence() const
   }
 
   // TODO recursive loop - check if we always return a value
-  return NULL;
+  return nullptr;
 }
 
 //----------------------------------------------------------------------
@@ -307,7 +307,7 @@ const std::string uvm_sequence_item::get_sequence_path() const
 
   while(true)
   {
-    if(this_item->get_parent_sequence()!=NULL)
+    if(this_item->get_parent_sequence()!=nullptr)
     {
       this_item = this_item->get_parent_sequence();
       seq_path = this_item->get_name() + "." + seq_path;
@@ -447,7 +447,7 @@ void uvm_sequence_item::uvm_process_report_message( uvm_report_message* report_m
 
 const uvm_report_object* uvm_sequence_item::m_get_report_object() const
 {
-  if(m_sequencer == NULL)
+  if(m_sequencer == nullptr)
   {
     uvm_coreservice_t* cs = uvm_coreservice_t::get();
     return cs->get_root();
@@ -491,10 +491,10 @@ const std::string uvm_sequence_item::get_full_name() const
 {
   std::string s;
 
-  if(m_parent_sequence != NULL)
+  if(m_parent_sequence != nullptr)
     s = m_parent_sequence->get_full_name()+ ".";
   else
-    if(m_sequencer!=NULL)
+    if(m_sequencer!=nullptr)
       s = m_sequencer->get_full_name()+ ".";
 
   if(!get_name().empty())
@@ -584,7 +584,7 @@ void uvm_sequence_item::do_print( const uvm_printer& printer ) const
   if( print_sequence_info || m_use_sequence_info )
   {
     printer.print_field_int("depth", depth, sizeof(depth)*CHAR_BIT, UVM_DEC, ".", "int");
-    if(m_parent_sequence != NULL)
+    if(m_parent_sequence != nullptr)
     {
       temp_str0 = m_parent_sequence->get_name();
       temp_str1 = m_parent_sequence->get_full_name();
@@ -592,7 +592,7 @@ void uvm_sequence_item::do_print( const uvm_printer& printer ) const
       printer.print_string("parent sequence (full name)", temp_str1);
     }
     temp_str1 = "";
-    if(m_sequencer != NULL)
+    if(m_sequencer != nullptr)
     {
       temp_str1 = m_sequencer->get_full_name();
       printer.print_string("sequencer", temp_str1);

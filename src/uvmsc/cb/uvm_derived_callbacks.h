@@ -75,16 +75,16 @@ class uvm_derived_callbacks : public uvm_callbacks<T,CB>
 //------------------------------------------------------------------------------
 
 template <typename T, typename ST, typename CB>
-uvm_derived_callbacks<T,ST,CB>* uvm_derived_callbacks<T,ST,CB>::m_d_inst = NULL;
+uvm_derived_callbacks<T,ST,CB>* uvm_derived_callbacks<T,ST,CB>::m_d_inst = nullptr;
 
 template <typename T, typename ST, typename CB>
-uvm_callbacks<T>* uvm_derived_callbacks<T,ST,CB>::m_user_inst = NULL;
+uvm_callbacks<T>* uvm_derived_callbacks<T,ST,CB>::m_user_inst = nullptr;
 
 template <typename T, typename ST, typename CB>
-uvm_callbacks<ST>* uvm_derived_callbacks<T,ST,CB>::m_super_inst = NULL;
+uvm_callbacks<ST>* uvm_derived_callbacks<T,ST,CB>::m_super_inst = nullptr;
 
 template <typename T, typename ST, typename CB>
-uvm_typeid_base* uvm_derived_callbacks<T,ST,CB>::m_s_typeid = NULL;
+uvm_typeid_base* uvm_derived_callbacks<T,ST,CB>::m_s_typeid = nullptr;
 
 //----------------------------------------------------------------------------
 // member function: get (static)
@@ -99,7 +99,7 @@ uvm_derived_callbacks<T,ST,CB>* uvm_derived_callbacks<T,ST,CB>::get()
   m_super_inst = this_super_type::get();
   m_s_typeid = uvm_typeid<ST>::get();
 
-  if(m_d_inst == NULL)
+  if(m_d_inst == nullptr)
     m_d_inst = new uvm_derived_callbacks<T,ST,CB>();
 
   return m_d_inst;
@@ -116,14 +116,14 @@ bool uvm_derived_callbacks<T,ST,CB>::register_super_type( const std::string& tna
 {
   this_user_type* u_inst = this_user_type::get();
   this_type* inst = this_type::get();
-  uvm_callbacks_base* s_obj  = NULL;
+  uvm_callbacks_base* s_obj  = nullptr;
 
   this_user_type::m_t_inst->m_typename = tname;
 
   if(!sname.empty())
     m_s_typeid->type_name = sname;
 
-  if(u_inst->m_super_type != NULL)
+  if(u_inst->m_super_type != nullptr)
   {
     if(u_inst->m_super_type == m_s_typeid)
       return true;

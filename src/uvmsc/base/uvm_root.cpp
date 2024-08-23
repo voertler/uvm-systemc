@@ -80,7 +80,7 @@ uvm_root::uvm_root( uvm_component_name nm )
   m_finish_on_completion = true;
   phase_timeout = UVM_DEFAULT_TIMEOUT;
   m_phase_all_done = false;
-  m_current_phase = NULL;
+  m_current_phase = nullptr;
 
   m_uvm_timeout_overridable = true;
 
@@ -257,7 +257,7 @@ bool uvm_root::get_finish_on_completion()
 // member function: find
 //
 //! Returns the (first) component which name matches the string passed
-//! as argument. It will return NULL if no component has been found.
+//! as argument. It will return nullptr if no component has been found.
 //----------------------------------------------------------------------
 
 uvm_component* uvm_root::find( const std::string& comp_match )
@@ -280,7 +280,7 @@ uvm_component* uvm_root::find( const std::string& comp_match )
     uvm_report_warning("CMPNFD",
       "Component matching '" + comp_match +
        "' was not found in the list of uvm_components", UVM_NONE);
-    return NULL;
+    return nullptr;
   }
 
   return comp_list[0];
@@ -301,7 +301,7 @@ void uvm_root::find_all( const std::string& comp_match, std::vector<uvm_componen
 {
   uvm_component* c = comp;
 
-  if (c == NULL)
+  if (c == nullptr)
     c = this;
 
   m_find_all_recurse(comp_match, comps, c);
@@ -320,11 +320,11 @@ void uvm_root::print_topology( uvm_printer* printer )
 {
   std::string s;
 
-  if (printer == NULL)
+  if (printer == nullptr)
     printer = uvm_default_printer;
 
-  if (printer == NULL)
-    uvm_report_error("NULLPRINTER", "uvm_default_printer is NULL");
+  if (printer == nullptr)
+    uvm_report_error("NULLPRINTER", "uvm_default_printer is nullptr");
 
   if (m_children.size() == 0)
   {
@@ -420,9 +420,9 @@ void uvm_root::end_of_simulation()
 
 uvm_root* uvm_root::m_uvm_get_root()
 {
-  static uvm_root* m_root = NULL;
+  static uvm_root* m_root = nullptr;
 
-  if (m_root == NULL)
+  if (m_root == nullptr)
   {
     m_root = new uvm_root(sc_core::sc_module_name("uvm_top"));
     m_root->m_domain = uvm_domain::get_uvm_domain();
@@ -476,7 +476,7 @@ void uvm_root::m_find_all_recurse( const std::string& comp_match, std::vector<uv
 void uvm_root::m_register_test( const std::string& test_name )
 {
   std::vector<uvm_component*> comp_list;
-  uvm_component* uvm_test_top = NULL;
+  uvm_component* uvm_test_top = nullptr;
 
   if (test_name.size() != 0)
   {
@@ -497,9 +497,9 @@ void uvm_root::m_register_test( const std::string& test_name )
     uvm_factory* factory = cs->get_factory();
 
     uvm_test_top = factory->create_component_by_name(
-      test_name, "", test_name, NULL);
+      test_name, "", test_name, nullptr);
 
-    if (uvm_test_top == NULL)
+    if (uvm_test_top == nullptr)
     {
       std::ostringstream msg2;
       msg2 << "No UVM test available with name '" << test_name

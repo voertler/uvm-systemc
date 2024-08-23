@@ -40,7 +40,7 @@ ubus_env::ubus_env( uvm::uvm_component_name name)
   has_bus_monitor = true;
   num_masters = 0;
   num_slaves = 0;
-  vif = NULL;
+  vif = nullptr;
   intf_checks_enable = true;
   intf_coverage_enable = true;
 }
@@ -97,7 +97,7 @@ void ubus_env::set_slave_address_map(std::string slave_name, int min_addr, int m
 {
   ubus_slave_monitor* tmp_slave_monitor;
 
-  if( bus_monitor != NULL )
+  if( bus_monitor != nullptr )
   {
     // Set slave address map for bus monitor
     bus_monitor->set_slave_configs(slave_name, min_addr, max_addr);
@@ -106,7 +106,7 @@ void ubus_env::set_slave_address_map(std::string slave_name, int min_addr, int m
   // Set slave address map for slave monitor
   tmp_slave_monitor = dynamic_cast<ubus_slave_monitor*>(lookup(slave_name + ".monitor"));
 
-  if (tmp_slave_monitor==NULL)
+  if (tmp_slave_monitor==nullptr)
     UVM_FATAL("Address Map", "Cannot set slave address map for slave monitor '" + slave_name + ".monitor'.");
 
   tmp_slave_monitor->set_addr_range(min_addr, max_addr);

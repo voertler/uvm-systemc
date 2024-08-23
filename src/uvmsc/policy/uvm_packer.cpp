@@ -46,17 +46,17 @@ uvm_packer::uvm_packer()
   pack_index = 0;
   unpack_index = 0;
 
-  m_bits = NULL;
+  m_bits = nullptr;
   m_size = 0;
   m_max_size = 0;
 }
 
 uvm_packer::~uvm_packer()
 {
-  if (m_bits != NULL)
+  if (m_bits != nullptr)
   {
     delete m_bits;
-    m_bits = NULL;
+    m_bits = nullptr;
   }
 }
 
@@ -138,7 +138,7 @@ void uvm_packer::pack_string( const std::string& value )
   }
 
   if(use_metadata)
-    pack_char(0); // NULL character
+    pack_char(0); // nullptr character
 
   std::ostringstream str;
   str << "uvm_packer::pack_string '" << value << "'" << std::endl;
@@ -210,7 +210,7 @@ void uvm_packer::pack_object( const uvm_object& value )
 
   val->__m_uvm_status_container->cycle_check[val] = true;
 
-  if((policy != UVM_REFERENCE) && (val != NULL) )
+  if((policy != UVM_REFERENCE) && (val != nullptr) )
   {
     if(use_metadata)
     {
@@ -228,7 +228,7 @@ void uvm_packer::pack_object( const uvm_object& value )
     if(use_metadata)
     {
       m_check_size(4);
-      m_bits->range(pack_index+3, pack_index) = 0; // NULL object gets metadata 0
+      m_bits->range(pack_index+3, pack_index) = 0; // nullptr object gets metadata 0
       pack_index += 4;
     }
   }
@@ -483,7 +483,7 @@ void uvm_packer::unpack_object( uvm_object& value )
   // NOTE- policy is a ~pack~ policy, not unpack policy;
   //       and you can't pack an object by REFERENCE
 
-  if (val != NULL)
+  if (val != nullptr)
   {
     if (is_non_null > 0)
     {
@@ -500,8 +500,8 @@ void uvm_packer::unpack_object( uvm_object& value )
     }
   }
   else
-    if ((is_non_null != 0) && (val == NULL))
-      UVM_ERROR("UNPCKERR","Can not unpack into null object.");
+    if ((is_non_null != 0) && (val == nullptr))
+      UVM_ERROR("UNPCKERR","Can not unpack into nullptr object.");
 
   val->__m_uvm_status_container->cycle_check.erase(val);
 }

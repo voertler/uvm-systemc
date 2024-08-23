@@ -76,7 +76,7 @@ public:
     const slave_address_map_info* rhs_ =
       dynamic_cast<const slave_address_map_info*>(&rhs);
 
-    if(rhs_ == NULL)
+    if(rhs_ == nullptr)
       UVM_ERROR("do_copy", "cast failed, check type compatibility");
 
     min_addr = rhs_->min_addr;
@@ -89,7 +89,7 @@ public:
     const slave_address_map_info* rhs_ =
       dynamic_cast<const slave_address_map_info*>(&rhs);
 
-    if(rhs_ == NULL)
+    if(rhs_ == nullptr)
       UVM_FATAL("do_compare", "cast failed, check type compatibility");
 
     return ((min_addr == rhs_->min_addr)

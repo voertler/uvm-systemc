@@ -108,9 +108,9 @@ class uvm_mem : public uvm_object
 
   virtual void get_maps( std::vector<uvm_reg_map*>& maps ) const;
 
-  virtual std::string get_rights( const uvm_reg_map* map = NULL ) const;
+  virtual std::string get_rights( const uvm_reg_map* map = nullptr ) const;
 
-  virtual std::string get_access( const uvm_reg_map* map = NULL ) const;
+  virtual std::string get_access( const uvm_reg_map* map = nullptr ) const;
 
   unsigned long get_size() const;
 
@@ -129,17 +129,17 @@ class uvm_mem : public uvm_object
   virtual uvm_vreg_field* get_vfield_by_name( const std::string& name ) const;
 
   virtual uvm_vreg* get_vreg_by_offset( uvm_reg_addr_t offset,
-                                        const uvm_reg_map* map = NULL ) const;
+                                        const uvm_reg_map* map = nullptr ) const;
 
   virtual uvm_reg_addr_t get_offset( uvm_reg_addr_t offset = 0,
-                                     const uvm_reg_map* map = NULL ) const;
+                                     const uvm_reg_map* map = nullptr ) const;
 
   virtual uvm_reg_addr_t get_address( uvm_reg_addr_t offset = 0,
-                                      const uvm_reg_map* map = NULL ) const;
+                                      const uvm_reg_map* map = nullptr ) const;
 
   // note: different argument order as in UVM-SV to respect defaults
   virtual int get_addresses( std::vector<uvm_reg_addr_t>& addr,
-                             const uvm_reg_map* map = NULL,
+                             const uvm_reg_map* map = nullptr,
                              uvm_reg_addr_t offset = 0 ) const;
 
   //--------------------------------------------------------------------
@@ -150,10 +150,10 @@ class uvm_mem : public uvm_object
                       uvm_reg_addr_t offset,
                       uvm_reg_data_t value,
                       uvm_path_e path   = UVM_DEFAULT_PATH,
-                      uvm_reg_map* map = NULL,
-                      uvm_sequence_base* parent = NULL,
+                      uvm_reg_map* map = nullptr,
+                      uvm_sequence_base* parent = nullptr,
                       int prior = -1,
-                      uvm_object* extension = NULL,
+                      uvm_object* extension = nullptr,
                       const std::string& fname = "",
                       int lineno = 0 );
 
@@ -162,10 +162,10 @@ class uvm_mem : public uvm_object
                      uvm_reg_addr_t offset,
                      uvm_reg_data_t& value, // output
                      uvm_path_e path = UVM_DEFAULT_PATH,
-                     uvm_reg_map* map = NULL,
-                     uvm_sequence_base* parent = NULL,
+                     uvm_reg_map* map = nullptr,
+                     uvm_sequence_base* parent = nullptr,
                      int prior = -1,
-                     uvm_object* extension = NULL,
+                     uvm_object* extension = nullptr,
                      const std::string& fname = "",
                      int lineno = 0 );
 
@@ -173,10 +173,10 @@ class uvm_mem : public uvm_object
                             uvm_reg_addr_t offset,
                             std::vector<uvm_reg_data_t> value,
                             uvm_path_e path = UVM_DEFAULT_PATH,
-                            uvm_reg_map* map = NULL,
-                            uvm_sequence_base* parent = NULL,
+                            uvm_reg_map* map = nullptr,
+                            uvm_sequence_base* parent = nullptr,
                             int prior = -1,
-                            uvm_object* extension = NULL,
+                            uvm_object* extension = nullptr,
                             const std::string& fname = "",
                             int lineno = 0);
 
@@ -184,10 +184,10 @@ class uvm_mem : public uvm_object
                            uvm_reg_addr_t offset,
                            std::vector<uvm_reg_data_t>& value,
                            uvm_path_e path = UVM_DEFAULT_PATH,
-                           uvm_reg_map* map = NULL,
-                           uvm_sequence_base* parent = NULL,
+                           uvm_reg_map* map = nullptr,
+                           uvm_sequence_base* parent = nullptr,
                            int prior = -1,
-                           uvm_object* extension = NULL,
+                           uvm_object* extension = nullptr,
                            const std::string& fname = "",
                            int lineno = 0 );
 
@@ -195,8 +195,8 @@ class uvm_mem : public uvm_object
                      uvm_reg_addr_t offset,
                      uvm_reg_data_t value,
                      const std::string& kind = "",
-                     uvm_sequence_base* parent = NULL,
-                     uvm_object* extension = NULL,
+                     uvm_sequence_base* parent = nullptr,
+                     uvm_object* extension = nullptr,
                      const std::string& fname = "",
                      int lineno = 0 );
 
@@ -204,8 +204,8 @@ class uvm_mem : public uvm_object
                      uvm_reg_addr_t offset,
                      uvm_reg_data_t& value, // output
                      const std::string& kind = "",
-                     uvm_sequence_base* parent = NULL,
-                     uvm_object* extension = NULL,
+                     uvm_sequence_base* parent = nullptr,
+                     uvm_object* extension = nullptr,
                      const std::string& fname = "",
                      int lineno = 0 );
 
@@ -214,12 +214,12 @@ class uvm_mem : public uvm_object
   //--------------------------------------------------------------------
 
   void set_frontdoor( uvm_reg_frontdoor* ftdr,
-                      uvm_reg_map* map = NULL,
+                      uvm_reg_map* map = nullptr,
                       const std::string& fname = "",
                       int lineno = 0 );
 
 
-  uvm_reg_frontdoor* get_frontdoor( const uvm_reg_map* map = NULL ) const;
+  uvm_reg_frontdoor* get_frontdoor( const uvm_reg_map* map = nullptr ) const;
 
 
   //--------------------------------------------------------------------

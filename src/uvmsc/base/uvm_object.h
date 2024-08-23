@@ -123,9 +123,9 @@ public:
   // Group: Printing
   //--------------------------------------------------------------------------
 
-  void print( uvm_printer* printer = NULL ) const;
+  void print( uvm_printer* printer = nullptr ) const;
 
-  std::string sprint( uvm_printer* printer = NULL ) const;
+  std::string sprint( uvm_printer* printer = nullptr ) const;
 
   virtual void do_print( const uvm_printer& printer ) const;
 
@@ -135,7 +135,7 @@ public:
   // Group: Recording
   //--------------------------------------------------------------------------
 
-  void record( uvm_recorder* recorder = NULL );
+  void record( uvm_recorder* recorder = nullptr );
 
   virtual void do_record( const uvm_recorder& recorder );
 
@@ -151,20 +151,20 @@ public:
   // Group: Comparing
   //--------------------------------------------------------------------------
 
-  bool compare( const uvm_object& rhs, const uvm_comparer* comparer = NULL ) const;
+  bool compare( const uvm_object& rhs, const uvm_comparer* comparer = nullptr ) const;
 
   virtual bool do_compare( const uvm_object& rhs,
-                           const uvm_comparer* comparer = NULL ) const;
+                           const uvm_comparer* comparer = nullptr ) const;
 
   //--------------------------------------------------------------------------
   // Group: Packing
   //--------------------------------------------------------------------------
 
-  int pack( std::vector<bool>& bitstream, uvm_packer* packer = NULL );
+  int pack( std::vector<bool>& bitstream, uvm_packer* packer = nullptr );
 
-  int pack_bytes( std::vector<unsigned char>& bytestream, uvm_packer* packer = NULL );
+  int pack_bytes( std::vector<unsigned char>& bytestream, uvm_packer* packer = nullptr );
 
-  int pack_ints( std::vector<unsigned int>& intstream, uvm_packer* packer = NULL );
+  int pack_ints( std::vector<unsigned int>& intstream, uvm_packer* packer = nullptr );
 
   virtual void do_pack( uvm_packer& packer ) const;
 
@@ -172,11 +172,11 @@ public:
   // Group: Unpacking
   //--------------------------------------------------------------------------
 
-  int unpack( const std::vector<bool>& bitstream, uvm_packer* packer = NULL );
+  int unpack( const std::vector<bool>& bitstream, uvm_packer* packer = nullptr );
 
-  int unpack_bytes( const std::vector<unsigned char>& bytestream, uvm_packer* packer = NULL );
+  int unpack_bytes( const std::vector<unsigned char>& bytestream, uvm_packer* packer = nullptr );
 
-  int unpack_ints( const std::vector<unsigned int>& intstream, uvm_packer* packer = NULL );
+  int unpack_ints( const std::vector<unsigned int>& intstream, uvm_packer* packer = nullptr );
 
   virtual void do_unpack( uvm_packer& packer );
 

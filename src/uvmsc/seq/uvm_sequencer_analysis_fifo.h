@@ -42,8 +42,8 @@ public:
 
   void write(const RSP& t)
   {
-    if (sequencer_ptr == NULL)
-      uvm_report_fatal("SEQRNULL", "The sequencer pointer is NULL when attempting a write", UVM_NONE);
+    if (sequencer_ptr == nullptr)
+      uvm_report_fatal("SEQRNULL", "The sequencer pointer is nullptr when attempting a write", UVM_NONE);
 
     sequencer_ptr->analysis_write(t);
   }

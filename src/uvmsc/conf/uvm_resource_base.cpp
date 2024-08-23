@@ -208,7 +208,7 @@ void uvm_resource_base::record_read_access( uvm_object* accessor )
 
   if( uvm_resource_options::is_auditing() )
   {
-    if(accessor != NULL)
+    if(accessor != nullptr)
     {
       uvm_resource_types::access_t access_record;
       str = accessor->get_full_name();
@@ -238,7 +238,7 @@ void uvm_resource_base::record_write_access( uvm_object* accessor )
 
   if(uvm_resource_options::is_auditing())
   {
-    if(accessor != NULL)
+    if(accessor != nullptr)
     {
       uvm_resource_types::access_t access_record;
       std::string str;

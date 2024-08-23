@@ -76,7 +76,7 @@ class uvm_typed_callbacks: public uvm_callbacks_base
 
   virtual bool m_delete_tw_cbs( uvm_callback* cb );
 
-  static void display( T* obj = NULL);
+  static void display( T* obj = nullptr);
 
   // data members
 
@@ -102,10 +102,10 @@ template <typename T>
 std::string uvm_typed_callbacks<T>::m_typename = "";
 
 template <typename T>
-uvm_queue<uvm_callback*>* uvm_typed_callbacks<T>::m_tw_cb_q = NULL;
+uvm_queue<uvm_callback*>* uvm_typed_callbacks<T>::m_tw_cb_q = nullptr;
 
 template <typename T>
-uvm_typed_callbacks<T>* uvm_typed_callbacks<T>::m_t_inst = NULL;
+uvm_typed_callbacks<T>* uvm_typed_callbacks<T>::m_t_inst = nullptr;
 
 //----------------------------------------------------------------------------
 // member function: m_initialize (static)
@@ -116,7 +116,7 @@ uvm_typed_callbacks<T>* uvm_typed_callbacks<T>::m_t_inst = NULL;
 template <typename T>
 uvm_typed_callbacks<T>* uvm_typed_callbacks<T>::m_initialize()
 {
-  if(m_t_inst == NULL)
+  if(m_t_inst == nullptr)
   {
     uvm_callbacks_base::m_initialize();
     m_t_inst = new uvm_typed_callbacks<T>();
@@ -135,13 +135,13 @@ uvm_typed_callbacks<T>* uvm_typed_callbacks<T>::m_initialize()
 template <typename T>
 bool uvm_typed_callbacks<T>::m_am_i_a( uvm_object* obj )
 {
-  T* check_type = NULL;
+  T* check_type = nullptr;
 
-  if (obj == NULL)
+  if (obj == nullptr)
     return true;
   check_type = dynamic_cast<T*>(obj);
 
-  return (check_type != NULL);
+  return (check_type != nullptr);
 }
 
 //----------------------------------------------------------------------------
@@ -154,7 +154,7 @@ bool uvm_typed_callbacks<T>::m_am_i_a( uvm_object* obj )
 template <typename T>
 uvm_queue<uvm_callback*>* uvm_typed_callbacks<T>::m_get_tw_cb_q( uvm_object* obj )
 {
-  uvm_queue<uvm_callback*>* q = NULL;
+  uvm_queue<uvm_callback*>* q = nullptr;
 
   if( m_am_i_a(obj) )
   {
@@ -162,17 +162,17 @@ uvm_queue<uvm_callback*>* uvm_typed_callbacks<T>::m_get_tw_cb_q( uvm_object* obj
     {
       base_type* dt = uvm_typeid_base::get_cb(m_derived_types[i]);
 
-      if(dt != NULL && dt != this)
+      if(dt != nullptr && dt != this)
       {
         q = dt->m_get_tw_cb_q(obj);
-        if(q != NULL)
+        if(q != nullptr)
           return q;
       }
     }
     return m_t_inst->m_tw_cb_q;
   }
   else
-    return NULL;
+    return nullptr;
 }
 
 //----------------------------------------------------------------------------
@@ -199,7 +199,7 @@ int uvm_typed_callbacks<T>::m_cb_find( uvm_queue<uvm_callback*>* q, uvm_callback
 template <typename T>
 int uvm_typed_callbacks<T>::m_cb_find_name( uvm_queue<uvm_callback*>* q, const std::string& name, const std::string& where)
 {
-  uvm_callback* cb = NULL;
+  uvm_callback* cb = nullptr;
 
   for(int i = 0; i < q->size(); i++)
   {
@@ -225,12 +225,12 @@ int uvm_typed_callbacks<T>::m_cb_find_name( uvm_queue<uvm_callback*>* q, const s
 template <typename T>
 void uvm_typed_callbacks<T>::m_add_tw_cbs( uvm_callback* cb, uvm_apprepend ordering )
 {
-  base_type* cb_pair = NULL;
-  uvm_object* obj = NULL;
-  T* me = NULL;
+  base_type* cb_pair = nullptr;
+  uvm_object* obj = nullptr;
+  T* me = nullptr;
   bool warned = false;
 
-  uvm_queue<uvm_callback*>* q = NULL;
+  uvm_queue<uvm_callback*>* q = nullptr;
 
   if( m_cb_find(m_t_inst->m_tw_cb_q,cb) == -1)
   {
@@ -244,9 +244,9 @@ void uvm_typed_callbacks<T>::m_add_tw_cbs( uvm_callback* cb, uvm_apprepend order
   for (std::map<uvm_object*, uvm_queue<uvm_callback*>* >::iterator it = m_t_inst->m_pool->begin(); it != m_t_inst->m_pool->end(); ++it) {
       obj = it->first;
       me = dynamic_cast<T*>(obj);
-      if( me != NULL ) {
+      if( me != nullptr ) {
           q = it->second;
-          if(q == NULL)
+          if(q == nullptr)
           {
               q = new uvm_queue<uvm_callback*>();
               (*m_t_inst->m_pool)[obj] = q;
@@ -284,9 +284,9 @@ void uvm_typed_callbacks<T>::m_add_tw_cbs( uvm_callback* cb, uvm_apprepend order
 template <typename T>
 bool uvm_typed_callbacks<T>::m_delete_tw_cbs( uvm_callback* cb )
 {
-  base_type* cb_pair = NULL;
-  uvm_object* obj = NULL;
-  uvm_queue<uvm_callback*>* q = NULL;
+  base_type* cb_pair = nullptr;
+  uvm_object* obj = nullptr;
+  uvm_queue<uvm_callback*>* q = nullptr;
 
   bool del_tw_cbs = false;
 
@@ -301,7 +301,7 @@ bool uvm_typed_callbacks<T>::m_delete_tw_cbs( uvm_callback* cb )
   for (std::map<uvm_object*, uvm_queue<uvm_callback*>* >::iterator it = m_t_inst->m_pool->begin(); it != m_t_inst->m_pool->end(); ++it) {
       obj = it->first;
       q = it->second;
-      if( q == NULL )
+      if( q == nullptr )
       {
           q = new uvm_queue<uvm_callback*>(); // TODO pass name as argument?
           (*m_t_inst->m_pool)[obj] = q;
@@ -335,18 +335,18 @@ bool uvm_typed_callbacks<T>::m_delete_tw_cbs( uvm_callback* cb )
 template <typename T>
 void uvm_typed_callbacks<T>::display( T* obj )
 {
-  T* me = NULL;
+  T* me = nullptr;
   //base_type* ib = m_t_inst; // unused
   std::vector<std::string> cbq;
   std::vector<std::string> inst_q;
   std::vector<std::string> mode_q;
   std::vector<std::string> qs;
 
-  uvm_callback* cb = NULL;
+  uvm_callback* cb = nullptr;
   std::string blanks = "               ";
   uvm_object* bobj = obj;
 
-  uvm_queue<uvm_callback*>* q = NULL;
+  uvm_queue<uvm_callback*>* q = nullptr;
 
   std::string tname, str;
 
@@ -357,7 +357,7 @@ void uvm_typed_callbacks<T>::display( T* obj )
 
   if(!m_typename.empty()) tname = m_typename;
   else
-    if(obj != NULL) tname = obj->get_type_name();
+    if(obj != nullptr) tname = obj->get_type_name();
     else tname = "*";
 
   q = m_t_inst->m_tw_cb_q;
@@ -378,31 +378,31 @@ void uvm_typed_callbacks<T>::display( T* obj )
     max_inst_name = max_inst_name > str.length() ? max_inst_name : str.length();
   }
 
-  if( obj == NULL )
+  if( obj == nullptr )
   {
       std::map<uvm_object*, uvm_queue<uvm_callback*>* >::iterator it;
       for (it = m_t_inst->m_pool->begin(); it != m_t_inst->m_pool->end(); ++it) {
           bobj = it->first;
           me = dynamic_cast<T*>(bobj);
-          if(me != NULL) break;
+          if(me != nullptr) break;
       }
 
-    if(me != NULL || m_t_inst->m_tw_cb_q->size())
+    if(me != nullptr || m_t_inst->m_tw_cb_q->size())
     {
       qs.push_back("Registered callbacks for all instances of " + tname + "\n");
       qs.push_back("---------------------------------------------------------------\n");
     }
 
-    if( me != NULL )
+    if( me != nullptr )
     {
         /* continue from previous iterator position */
         for (; it != m_t_inst->m_pool->end(); ++it) {
             bobj = it->first;
             me = dynamic_cast<T*>(bobj);
-            if(me != NULL)
+            if(me != nullptr)
             {
                 q = it->second;
-                if (q == NULL)
+                if (q == nullptr)
                 {
                     q = new uvm_queue<uvm_callback*>(); // TODO pass name as argument?
                     (*m_t_inst->m_pool)[bobj] = q;
@@ -437,7 +437,7 @@ void uvm_typed_callbacks<T>::display( T* obj )
     if(m_t_inst->m_pool->find(bobj) != m_t_inst->m_pool->end())
     {
       q = (*m_t_inst->m_pool)[bobj];
-      if(q == NULL)
+      if(q == nullptr)
       {
         q = new uvm_queue<uvm_callback*>(); // TODO pass name as argument?
         (*m_t_inst->m_pool)[bobj] = q;
@@ -461,7 +461,7 @@ void uvm_typed_callbacks<T>::display( T* obj )
 
   if(!cbq.size())
   {
-    if(obj == NULL) str = "*";
+    if(obj == nullptr) str = "*";
     else str = obj->get_full_name();
     qs.push_back("No callbacks registered for instance " + str + " of type " + tname + "\n");
   }

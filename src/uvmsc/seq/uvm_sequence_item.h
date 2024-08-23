@@ -63,7 +63,7 @@ class uvm_sequence_item: public uvm_transaction
   //--------------------------------------------------------------------------
 
   void set_item_context( uvm_sequence_base* parent_seq,
-                         uvm_sequencer_base* sequencer = NULL);
+                         uvm_sequencer_base* sequencer = nullptr);
 
   void set_use_sequence_info(bool value);
 

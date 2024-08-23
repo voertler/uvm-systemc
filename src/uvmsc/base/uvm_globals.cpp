@@ -101,7 +101,7 @@ void print_topology( uvm_printer* printer )
 //------------------------------------------------------------------------------
 
 // TODO recommended not to use, therefore disabled
-//uvm_root* uvm_top = NULL;
+//uvm_root* uvm_top = nullptr;
 
 //------------------------------------------------------------------------------
 //
@@ -229,14 +229,14 @@ void uvm_set_config_int( const std::string& inst_name,
                          const std::string& field_name,
                          int value )
 {
-  uvm_config_int::set(NULL, inst_name, field_name, value);
+  uvm_config_int::set(nullptr, inst_name, field_name, value);
 }
 
 void uvm_set_config_string( const std::string& inst_name,
                             const std::string& field_name,
                             const std::string& value )
 {
-  uvm_config_string::set(NULL, inst_name, field_name, value);
+  uvm_config_string::set(nullptr, inst_name, field_name, value);
 }
 
 
@@ -314,9 +314,9 @@ const char* uvm_glob_to_re_char(const char *glob)
   const char *p;
   int len;
 
-  // safety check.  Glob should never be NULL
-  if(glob == NULL)
-    return NULL;
+  // safety check.  Glob should never be nullptr
+  if(glob == nullptr)
+    return nullptr;
 
   len = (int)std::strlen(glob);
 
@@ -466,9 +466,9 @@ int uvm_re_match_char(const char *re, const char *str)
 
   // safety check.  Args should never be null since this is called
   // from DPI.  But we'll check anyway.
-  if(re == NULL)
+  if(re == nullptr)
     return 1;
-  if(str == NULL)
+  if(str == nullptr)
     return 1;
 
   /*
@@ -493,7 +493,7 @@ int uvm_re_match_char(const char *re, const char *str)
 
   rexp = static_cast<regex_t*>(std::malloc(sizeof(regex_t)));
 
-  if (rexp == NULL) {
+  if (rexp == nullptr) {
     UVM_ERROR("REGEXERR", "Internal memory allocation error.");
     return 1;
   }
@@ -508,7 +508,7 @@ int uvm_re_match_char(const char *re, const char *str)
     return err;
   }
 
-  err = regexec(rexp, str, 0, NULL, 0);
+  err = regexec(rexp, str, 0, nullptr, 0);
 
   std::ostringstream info;
   info << "re = " << rex

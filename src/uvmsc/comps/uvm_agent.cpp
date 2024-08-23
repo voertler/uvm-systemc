@@ -64,7 +64,7 @@ void uvm_agent::build_phase( uvm_phase& phase )
   uvm_object* baseobj = dynamic_cast<uvm_object*>(this);
 
   rp = uvm_resource_pool::get();
-  rq = rp->lookup_name(get_full_name(), "is_active", NULL, 0);
+  rq = rp->lookup_name(get_full_name(), "is_active", nullptr, 0);
 
   uvm_resource_pool::sort_by_precedence(rq);
 
@@ -83,7 +83,7 @@ void uvm_agent::build_phase( uvm_phase& phase )
 
     rap = dynamic_cast<uvm_resource<uvm_active_passive_enum>* >(rsrc);
 
-    if ( rap != NULL )
+    if ( rap != nullptr )
     {
       is_active = rap->read(baseobj);
       break;
@@ -92,7 +92,7 @@ void uvm_agent::build_phase( uvm_phase& phase )
     {
       uvm_resource<uvm_integral_t>* rit;
       rit = dynamic_cast<uvm_resource<uvm_integral_t>* >(rsrc);
-      if (rit != NULL)
+      if (rit != nullptr)
       {
         is_active = (uvm_active_passive_enum)rit->read(baseobj).to_int();
         break;
@@ -101,7 +101,7 @@ void uvm_agent::build_phase( uvm_phase& phase )
       {
         uvm_resource<uvm_bitstream_t>* rbs;
         rbs = dynamic_cast<uvm_resource<uvm_bitstream_t>* >(rsrc);
-        if (rbs != NULL)
+        if (rbs != nullptr)
         {
           is_active = (uvm_active_passive_enum)rbs->read(baseobj).to_int();
           break;
@@ -110,7 +110,7 @@ void uvm_agent::build_phase( uvm_phase& phase )
         {
           uvm_resource<int>* ri;
           ri = dynamic_cast<uvm_resource<int>* >(rsrc);
-          if( ri != NULL )
+          if( ri != nullptr )
           {
             is_active = (uvm_active_passive_enum)ri->read(baseobj);
             break;
@@ -119,7 +119,7 @@ void uvm_agent::build_phase( uvm_phase& phase )
           {
             uvm_resource<unsigned int>* riu;
             riu = dynamic_cast<uvm_resource<unsigned int>* >(rsrc);
-            if (riu != NULL )
+            if (riu != nullptr )
             {
               is_active = (uvm_active_passive_enum)riu->read(baseobj);
               break;
@@ -128,18 +128,18 @@ void uvm_agent::build_phase( uvm_phase& phase )
             {
               uvm_resource<std::string>* rs;
               rs = dynamic_cast<uvm_resource<std::string>* >(rsrc);
-              if (rs != NULL )
+              if (rs != nullptr )
               {
                 rs->read(baseobj);
                 // TODO assign string to enum?
                 // void'(uvm_enum_wrapper#(uvm_active_passive_enum)::from_name(rs.read(this), is_active));
                 break;
               }
-            } // else: !if(riu != NULL )
-          } // else: !if( ri != NULL )
-        } // else: !if(rbs != NULL)
-      } // else: !if(rit != NULL)
-    } // else: !if ( rap != NULL )
+            } // else: !if(riu != nullptr )
+          } // else: !if( ri != nullptr )
+        } // else: !if(rbs != nullptr)
+      } // else: !if(rit != nullptr)
+    } // else: !if ( rap != nullptr )
   } // for
 }
 

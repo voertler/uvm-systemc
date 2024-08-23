@@ -44,7 +44,7 @@ class uvm_copy_map
   {
     if (m_map.find(key) != m_map.end())
        return m_map[key];
-    return NULL;
+    return nullptr;
   }
 
   void clear()

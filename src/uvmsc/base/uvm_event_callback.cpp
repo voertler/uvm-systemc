@@ -81,7 +81,7 @@ void uvm_event_callback::post_trigger( const uvm_event* e, const uvm_object* dat
 //------------------------------------------------------------------------------
 uvm_object* uvm_event_callback::create( const std::string& name )
 {
-  return NULL;
+  return nullptr;
 }
 
 ///////////////

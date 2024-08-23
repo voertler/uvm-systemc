@@ -40,7 +40,7 @@ int sc_main(int argc, char* argv[])
     svr = dynamic_cast<uvm::uvm_default_report_server*>(cs->get_report_server());
     svr->set_max_quit_count(10);
 
-    uvm::uvm_config_db<apb_if*>::set(NULL, "*apb*", "vif", my_dut_top->apb0);
+    uvm::uvm_config_db<apb_if*>::set(nullptr, "*apb*", "vif", my_dut_top->apb0);
 
     sc_core::sc_trace_file* tracefile = sc_core::sc_create_vcd_trace_file("fifo_reg_traces");
     sc_core::sc_trace(tracefile, my_dut_top->dut0->pclk, "pclk");

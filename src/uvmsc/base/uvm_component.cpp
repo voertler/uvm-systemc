@@ -71,7 +71,7 @@ uvm_component::uvm_component( uvm_component_name nm )
 : sc_module( nm.name() ), uvm_report_object((std::string)nm.name())
 {
   // prevent recursive registration of uvm_root module
-  bool top = ( strstr(nm, "uvm_top") != NULL );
+  bool top = ( strstr(nm, "uvm_top") != nullptr );
 
   set_name(std::string(nm));
 
@@ -84,7 +84,7 @@ uvm_component::uvm_component( uvm_component_name nm )
     sc_object* sc_parent = this->get_parent_object();
     uvm_component* uvm_parent = dynamic_cast<uvm_component*>(sc_parent);
 
-    if ( uvm_parent == NULL)
+    if ( uvm_parent == nullptr)
     {
       std::ostringstream str;
       str << "The parent of UVM component '" << nm << "' is not a UVM component. uvm_top is used instead.";
@@ -105,7 +105,7 @@ uvm_component::uvm_component( uvm_component_name nm )
       str << "Unable to add child '" << nm
           << "' to parent '" << m_comp_parent->get_name() << "'.";
       UVM_WARNING("NOPARENT", str.str());
-      m_comp_parent = NULL;
+      m_comp_parent = nullptr;
     }
     else
     {
@@ -126,7 +126,7 @@ uvm_component::uvm_component( uvm_component_name nm )
   m_build_done = false;
   m_phasing_active = 0;
   recording_detail = UVM_NONE;
-  m_current_phase = NULL;
+  m_current_phase = nullptr;
   m_children.clear();
 }
 
@@ -192,7 +192,7 @@ uvm_component* uvm_component::get_child( const std::string& name ) const
   str << "Component with name '" << name
       << "' is not a child of component '" << get_full_name() << "'.";
   uvm_report_warning("NOCHILD",str.str());
-  return NULL;
+  return nullptr;
 }
 
 
@@ -274,7 +274,7 @@ bool uvm_component::has_child( const std::string& name) const
 //! Looks for a component with the given hierarchical name relative to this
 //! component. If the given name is preceded with a '.' (dot), then the search
 //! begins relative to the top level (absolute lookup). The handle of the
-//! matching component is returned, else NULL. The name must not contain
+//! matching component is returned, else nullptr. The name must not contain
 //! wildcards.
 //----------------------------------------------------------------------------
 
@@ -301,7 +301,7 @@ uvm_component* uvm_component::lookup( const std::string& name ) const
   if (!comp->has_child(leaf))
   {
     UVM_WARNING("Lookup Error", "Cannot find child " + leaf);
-    return NULL;
+    return nullptr;
   }
 
   if(!remainder.empty())
@@ -667,7 +667,7 @@ void uvm_component::define_domain( uvm_domain& domain )
 {
   m_schedule = domain.find_by_name("uvm_sched");
 
-  if (m_schedule == NULL)
+  if (m_schedule == nullptr)
   {
     m_schedule = new uvm_phase("uvm_sched", UVM_PHASE_SCHEDULE);
     m_schedule_list.push_back(m_schedule); // TODO keep track of added schedules (to be deleted afterwards)
@@ -675,7 +675,7 @@ void uvm_component::define_domain( uvm_domain& domain )
     domain.add(m_schedule);
 
     m_common = uvm_domain::get_common_domain();
-    if (m_common->find(&domain, false) == NULL)
+    if (m_common->find(&domain, false) == nullptr)
       m_common->add(&domain, m_common->find(uvm_run_phase::get()) );
   }
   else

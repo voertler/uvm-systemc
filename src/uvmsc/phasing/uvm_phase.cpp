@@ -59,7 +59,7 @@ namespace uvm {
 //----------------------------------------------------------------------
 
 bool uvm_phase::m_phase_trace = false;
-uvm_phase_queue<uvm_phase*>* uvm_phase::m_phase_hopper = NULL;
+uvm_phase_queue<uvm_phase*>* uvm_phase::m_phase_hopper = nullptr;
 
 //----------------------------------------------------------------------
 // Group: Construction
@@ -84,12 +84,12 @@ uvm_phase::uvm_phase( const std::string& name,
     phase_done = new uvm_objection(name+"_objection");
 
   m_parent = parent;
-  m_imp = NULL;
+  m_imp = nullptr;
   m_nodes.clear();
 
   max_ready_to_end_iter = 20;
 
-  m_end_node = NULL;
+  m_end_node = nullptr;
   m_predecessors.clear();
   m_successors.clear();
   m_sync.clear();
@@ -114,7 +114,7 @@ uvm_phase::uvm_phase( const std::string& name,
   // TODO remove when command line interface is implemented
   m_use_ovm_run_semantic = false;
 
-  if (parent == NULL && (phase_type == UVM_PHASE_SCHEDULE ||
+  if (parent == nullptr && (phase_type == UVM_PHASE_SCHEDULE ||
                          phase_type == UVM_PHASE_DOMAIN ))
   {
     //m_parent = this; // was already commented in UVM-SV
@@ -125,7 +125,7 @@ uvm_phase::uvm_phase( const std::string& name,
 
   m_jump_fwd = false;
   m_jump_bkwd = false;
-  m_jump_phase = NULL;
+  m_jump_phase = nullptr;
 }
 
 //----------------------------------------------------------------------
@@ -193,7 +193,7 @@ uvm_phase* uvm_phase::find_by_name( const std::string& name,
   const uvm_phase* ph_name;
   ph_name = m_find_predecessor_by_name(name, stay_in_scope, this);
 
-  if (ph_name == NULL)
+  if (ph_name == nullptr)
     ph_name = m_find_successor_by_name(name, stay_in_scope, this);
 
   return const_cast<uvm_phase*>(ph_name); // TODO avoid const-cast!
@@ -233,7 +233,7 @@ uvm_phase* uvm_phase::find( const uvm_phase* phase,
 
   const uvm_phase* find_phase = m_find_predecessor( phase, stay_in_scope, this );
 
-  if (find_phase == NULL)
+  if (find_phase == nullptr)
     find_phase = m_find_successor( phase, stay_in_scope, this );
 
   return const_cast<uvm_phase*>(find_phase); // TODO avoid const-cast!
@@ -269,7 +269,7 @@ bool uvm_phase::is_before( const uvm_phase* phase ) const
 
   // TBD: add support for 'stay_in_scope=1' functionality - comment from UVM-SV
 
-  return (!is(phase) && m_find_successor(phase, 0, this) != NULL);
+  return (!is(phase) && m_find_successor(phase, 0, this) != nullptr);
 }
 
 //----------------------------------------------------------------------
@@ -284,7 +284,7 @@ bool uvm_phase::is_after( const uvm_phase* phase ) const
   //std::cout << "this=" << get_name() << " is after phase=" << phase.get_name() << "?" << std::endl;
   // TODO UVM_SV: add support for 'stay_in_scope=1' functionality
 
-  return (!is(phase) && m_find_predecessor(phase, 0, this) != NULL);
+  return (!is(phase) && m_find_predecessor(phase, 0, this) != nullptr);
 }
 
 
@@ -339,41 +339,41 @@ void uvm_phase::add( uvm_phase* phase,
                      uvm_phase* after_phase,
                      uvm_phase* before_phase )
 {
-  uvm_phase* new_node = NULL; // moved to data member to guarantee lifetime
-  uvm_phase* begin_node = NULL;
-  uvm_phase* end_node = NULL;
+  uvm_phase* new_node = nullptr; // moved to data member to guarantee lifetime
+  uvm_phase* begin_node = nullptr;
+  uvm_phase* end_node = nullptr;
 
-  if (phase == NULL)
-    UVM_FATAL("PH/NULL", "add: phase argument is NULL");
+  if (phase == nullptr)
+    UVM_FATAL("PH/NULL", "add: phase argument is nullptr");
 
-  if (with_phase != NULL && with_phase->get_phase_type() == UVM_PHASE_IMP)
+  if (with_phase != nullptr && with_phase->get_phase_type() == UVM_PHASE_IMP)
   {
     std::string nm = with_phase->get_name();
     uvm_phase* ph = find(with_phase);
-    if (ph == NULL)
+    if (ph == nullptr)
       UVM_FATAL("PH_BAD_ADD",
          "cannot find with_phase '" + nm + "' within node '" + get_name() + "'");
   }
 
-  if (before_phase != NULL && before_phase->get_phase_type() == UVM_PHASE_IMP)
+  if (before_phase != nullptr && before_phase->get_phase_type() == UVM_PHASE_IMP)
   {
     std::string nm = before_phase->get_name();
     uvm_phase* ph = find(before_phase);
-    if (ph == NULL)
+    if (ph == nullptr)
       UVM_FATAL("PH_BAD_ADD",
          "cannot find before_phase '" + nm + "' within node '" + get_name() + "'");
   }
 
-  if (after_phase != NULL && after_phase->get_phase_type() == UVM_PHASE_IMP)
+  if (after_phase != nullptr && after_phase->get_phase_type() == UVM_PHASE_IMP)
   {
     std::string nm = after_phase->get_name();
     uvm_phase* ph = find(after_phase);
-    if (ph == NULL)
+    if (ph == nullptr)
       UVM_FATAL("PH_BAD_ADD",
          "cannot find after_phase '" + nm + "' within node '" + get_name() + "'");
   }
 
-  if (with_phase != NULL && (after_phase != NULL || before_phase != NULL))
+  if (with_phase != nullptr && (after_phase != nullptr || before_phase != nullptr))
     UVM_FATAL("PH_BAD_ADD",
        "cannot specify both 'with' and 'before/after' phase relationships");
 
@@ -406,7 +406,7 @@ void uvm_phase::add( uvm_phase* phase,
   }
 
   // If no before/after/with specified, insert at end of this schedule
-  if (with_phase == NULL && after_phase == NULL && before_phase == NULL)
+  if (with_phase == nullptr && after_phase == nullptr && before_phase == nullptr)
     before_phase = m_end_node;
 
   if (m_phase_trace)
@@ -414,7 +414,7 @@ void uvm_phase::add( uvm_phase* phase,
     uvm_phase_type typ = phase->get_phase_type();
 
     std::ostringstream str1, str2;
-    if (new_node != NULL)
+    if (new_node != nullptr)
       str1 << new_node->get_name() << " (inst_id = " << new_node->get_inst_id() << ")";
     else str1 << "";
 
@@ -423,17 +423,17 @@ void uvm_phase::add( uvm_phase* phase,
          << " phase full name = " << phase->get_full_name() << std::endl
          << " phase name = " << phase->get_name() << " ("
          << uvm_phase_type_name[typ] << ", inst_id = " << phase->get_inst_id() << ")" << std::endl
-         << " with_phase = " << ((with_phase == NULL) ? "NULL" : with_phase->get_name()) << std::endl
-         << " after_phase = " <<  ((after_phase == NULL)  ? "NULL" : after_phase->get_name()) << std::endl
-         << " before_phase = " << ((before_phase == NULL) ? "NULL" : before_phase->get_name()) << std::endl
-         << " new_node = " << ((new_node == NULL) ? "NULL" : str1.str() ) << std::endl
-         << " begin_node = " << ((begin_node == NULL) ? "NULL" : begin_node->get_name()) << std::endl
-         << " end_node = " << ((end_node == NULL) ? "NULL" : end_node->get_name());
+         << " with_phase = " << ((with_phase == nullptr) ? "nullptr" : with_phase->get_name()) << std::endl
+         << " after_phase = " <<  ((after_phase == nullptr)  ? "nullptr" : after_phase->get_name()) << std::endl
+         << " before_phase = " << ((before_phase == nullptr) ? "nullptr" : before_phase->get_name()) << std::endl
+         << " new_node = " << ((new_node == nullptr) ? "nullptr" : str1.str() ) << std::endl
+         << " begin_node = " << ((begin_node == nullptr) ? "nullptr" : begin_node->get_name()) << std::endl
+         << " end_node = " << ((end_node == nullptr) ? "nullptr" : end_node->get_name());
     UVM_INFO("PH/TRC/ADD_PH", str2.str(), UVM_DEBUG);
   }
 
   // INSERT IN PARALLEL WITH 'WITH' PHASE
-  if( with_phase != NULL )
+  if( with_phase != nullptr )
   {
     begin_node->m_predecessors = with_phase->m_predecessors;
     end_node->m_successors = with_phase->m_successors;
@@ -450,7 +450,7 @@ void uvm_phase::add( uvm_phase* phase,
 
   // INSERT BEFORE PHASE
   else
-    if( before_phase != NULL && after_phase == NULL )
+    if( before_phase != nullptr && after_phase == nullptr )
     {
       begin_node->m_predecessors = before_phase->m_predecessors;
       end_node->m_successors[before_phase] = true;
@@ -468,7 +468,7 @@ void uvm_phase::add( uvm_phase* phase,
 
   // INSERT AFTER PHASE
   else
-    if( before_phase == NULL && after_phase != NULL )
+    if( before_phase == nullptr && after_phase != nullptr )
     {
       end_node->m_successors = after_phase->m_successors;
       begin_node->m_predecessors[after_phase] = true;
@@ -487,7 +487,7 @@ void uvm_phase::add( uvm_phase* phase,
 
   // IN BETWEEN 'BEFORE' and 'AFTER' PHASES
   else
-    if (before_phase != NULL && after_phase != NULL )
+    if (before_phase != nullptr && after_phase != nullptr )
     {
       if (!after_phase->is_before(before_phase))
       {
@@ -558,7 +558,7 @@ uvm_phase* uvm_phase::get_schedule( bool hier ) const
 {
   uvm_phase* sched = const_cast<uvm_phase*>(this);
   if (hier)
-    while (sched->m_parent != NULL &&
+    while (sched->m_parent != nullptr &&
           (sched->m_parent->get_phase_type() == UVM_PHASE_SCHEDULE))
       sched = sched->m_parent;
 
@@ -566,10 +566,10 @@ uvm_phase* uvm_phase::get_schedule( bool hier ) const
     return sched;
 
   if (sched->m_phase_type == UVM_PHASE_NODE)
-    if (m_parent != NULL && m_parent->m_phase_type != UVM_PHASE_DOMAIN)
+    if (m_parent != nullptr && m_parent->m_phase_type != UVM_PHASE_DOMAIN)
       return m_parent;
 
-  return NULL;
+  return nullptr;
 }
 
 //----------------------------------------------------------------------
@@ -582,14 +582,14 @@ uvm_domain* uvm_phase::get_domain() const
 {
   uvm_phase* phase = const_cast<uvm_phase*>(this);
 
-  while (phase != NULL && phase->m_phase_type != UVM_PHASE_DOMAIN)
+  while (phase != nullptr && phase->m_phase_type != UVM_PHASE_DOMAIN)
     phase = phase->m_parent;
-  if (phase == NULL) // no parent domain
-    return NULL;
+  if (phase == nullptr) // no parent domain
+    return nullptr;
 
   uvm_domain* domain = dynamic_cast<uvm_domain*>(phase);
 
-  if(domain == NULL)
+  if(domain == nullptr)
       UVM_FATAL("PH/INTERNAL", "get_domain: m_phase_type is DOMAIN but dynamic_cast to uvm_domain fails");
 
   return domain;
@@ -599,7 +599,7 @@ uvm_domain* uvm_phase::get_domain() const
 // member function: get_imp
 //
 //! Returns the phase implementation for this this node.
-//! Returns NULL if this phase type is not a UVM_PHASE_LEAF_NODE.
+//! Returns nullptr if this phase type is not a UVM_PHASE_LEAF_NODE.
 //----------------------------------------------------------------------
 
 uvm_phase* uvm_phase::get_imp() const
@@ -620,12 +620,12 @@ std::string uvm_phase::get_schedule_name( bool hier ) const
 
   sched = get_schedule(hier);
 
-  if (sched == NULL)
+  if (sched == nullptr)
     return "";
 
   s = sched->get_name();
 
-  while (sched->m_parent != NULL && sched->m_parent != sched &&
+  while (sched->m_parent != nullptr && sched->m_parent != sched &&
           (sched->m_parent->get_phase_type() == UVM_PHASE_SCHEDULE))
   {
     sched = sched->m_parent;
@@ -645,7 +645,7 @@ std::string uvm_phase::get_domain_name() const
 {
   uvm_domain* domain;
   domain = get_domain();
-  if (domain == NULL)
+  if (domain == nullptr)
     return "unknown";
 
   return domain->get_name();
@@ -718,11 +718,11 @@ void uvm_phase::sync( uvm_domain& target,
   {
     UVM_FATAL("PH_BADSYNC","sync() called with a non-domain phase schedule node as target");
   }
-  else if (phase == NULL && with_phase != NULL)
+  else if (phase == nullptr && with_phase != nullptr)
   {
-    UVM_FATAL("PH_BADSYNC","sync() called with null phase and non-null with phase");
+    UVM_FATAL("PH_BADSYNC","sync() called with nullptr phase and non-nullptr with phase");
   }
-  else if (phase == NULL)
+  else if (phase == nullptr)
   {
     // whole domain sync - traverse this domain schedule from begin to end node and sync each node
     std::map<uvm_phase*, int> visited;
@@ -734,7 +734,7 @@ void uvm_phase::sync( uvm_domain& target,
       uvm_phase* node;
       node = queue.front();       // pop_front
       queue.erase(queue.begin()); // pop_front
-      if (node->m_imp != NULL)
+      if (node->m_imp != nullptr)
         sync(target, node->m_imp);
 
       for( m_schedulemapItT it = node->m_successors.begin();
@@ -758,13 +758,13 @@ void uvm_phase::sync( uvm_domain& target,
     std::vector<int> found_to;
     std::vector<int> found_from;
 
-    if(with_phase == NULL)
+    if(with_phase == nullptr)
       with_phase = phase;
 
     from_node = find(phase);
     to_node = target.find(with_phase);
 
-    if(from_node == NULL || to_node == NULL)
+    if(from_node == nullptr || to_node == nullptr)
       return;
 
     for ( unsigned int i = 0; i < from_node->m_sync.size(); i++)
@@ -804,11 +804,11 @@ void uvm_phase::unsync( uvm_domain& target,
   {
     UVM_FATAL("PH_BADSYNC","unsync() called with a non-domain phase schedule node as target");
   }
-  else if (phase == NULL && with_phase != NULL)
+  else if (phase == nullptr && with_phase != nullptr)
   {
-    UVM_FATAL("PH_BADSYNC","unsync() called with null phase and non-null with phase");
+    UVM_FATAL("PH_BADSYNC","unsync() called with nullptr phase and non-nullptr with phase");
   }
-  else if (phase == NULL)
+  else if (phase == nullptr)
   {
     // whole domain unsync - traverse this domain schedule from begin to end node and unsync each node
     std::map<uvm_phase*, int> visited;
@@ -821,7 +821,7 @@ void uvm_phase::unsync( uvm_domain& target,
       node = queue.front();
       queue.erase(queue.begin());
 
-      if (node->m_imp != NULL)
+      if (node->m_imp != nullptr)
         unsync(target,node->m_imp);
 
       for( m_schedulemapItT it = node->m_successors.begin();
@@ -845,13 +845,13 @@ void uvm_phase::unsync( uvm_domain& target,
     std::vector<phase_listItT> found_to;
     std::vector<phase_listItT> found_from;
 
-    if (with_phase == NULL)
+    if (with_phase == nullptr)
       with_phase = phase;
 
     from_node = find(phase);
     to_node = target.find(with_phase);
 
-    if (from_node == NULL || to_node == NULL)
+    if (from_node == nullptr || to_node == nullptr)
       return;
 
     for ( phase_listItT it = from_node->m_sync.begin();
@@ -938,10 +938,10 @@ void uvm_phase::jump( const uvm_phase* phase )
   // make any sense.  And we don't have a valid phase to jump to.  So we're done.
 
   d = m_find_predecessor(phase, 0);
-  if (d == NULL)
+  if (d == nullptr)
   {
     d = m_find_successor(phase, 0);
-    if (d == NULL)
+    if (d == nullptr)
     {
       std::ostringstream str;
       str << "phase '" << phase->get_name()
@@ -1158,7 +1158,7 @@ void uvm_phase::execute_phase( bool proc )
         uvm_process_phase* process_phase =
           dynamic_cast<uvm_process_phase*>(m_imp);
 
-        if (process_phase == NULL)
+        if (process_phase == nullptr)
           UVM_FATAL("PHEXEC","Invalid process handle for runtime phase.");
 
         UVM_PH_TRACE("PH_SPAWN", "", this, UVM_DEBUG);
@@ -1239,7 +1239,7 @@ void uvm_phase::execute_phase( bool proc )
       else
         m_state_ev.notify(SC_ZERO_TIME);
 
-      if (m_imp != NULL)
+      if (m_imp != nullptr)
          m_imp->traverse(top, this, UVM_PHASE_ENDED);
 
       if (proc)
@@ -1273,7 +1273,7 @@ void uvm_phase::execute_phase( bool proc )
       m_jump_fwd = false;
       m_jump_bkwd = false;
       m_phase_hopper->try_put(m_jump_phase);
-      m_jump_phase = NULL;
+      m_jump_phase = nullptr;
       return;
 
     } // jump
@@ -1296,7 +1296,7 @@ void uvm_phase::execute_phase( bool proc )
     else
       m_state_ev.notify(SC_ZERO_TIME);
 
-    if (m_imp != NULL)
+    if (m_imp != nullptr)
     m_imp->traverse(top,this,UVM_PHASE_ENDED);
 
     if (proc)
@@ -1469,7 +1469,7 @@ void uvm_phase::m_wait_for_all_dropped()
     m_state = UVM_PHASE_READY_TO_END;
     m_state_ev.notify();
 
-    if (m_imp != NULL)
+    if (m_imp != nullptr)
       m_imp->traverse(top, this, UVM_PHASE_READY_TO_END);
 
     uvm_wait_for_nba_region(); // Give traverse targets a chance to object
@@ -1594,13 +1594,13 @@ const uvm_phase* uvm_phase::m_find_predecessor( const uvm_phase* phase,
          << ") - checking against " << get_name()
          << " (" << uvm_phase_type_name[m_phase_type]
          << " id = " << get_inst_id();
-    if (m_imp != NULL)
+    if (m_imp != nullptr)
        std::cout << m_imp->get_inst_id();
     std::cout << ")" << std::endl;
   }
 
-  if (phase == NULL)
-    return NULL;
+  if (phase == nullptr)
+    return nullptr;
 
   if (phase == m_imp || phase == this)
     return this;
@@ -1610,7 +1610,7 @@ const uvm_phase* uvm_phase::m_find_predecessor( const uvm_phase* phase,
         it++ )
   {
     const uvm_phase* orig;
-    orig = (orig_phase == NULL) ? this : orig_phase;
+    orig = (orig_phase == nullptr) ? this : orig_phase;
 
     if (!stay_in_scope ||
         (it->first->get_schedule() == orig->get_schedule()) ||
@@ -1619,11 +1619,11 @@ const uvm_phase* uvm_phase::m_find_predecessor( const uvm_phase* phase,
       const uvm_phase* found;
       found = it->first->m_find_predecessor( phase, stay_in_scope, orig );
 
-      if (found != NULL)
+      if (found != nullptr)
         return found;
     }
   }
-  return NULL;
+  return nullptr;
 }
 
 //----------------------------------------------------------------------
@@ -1642,7 +1642,7 @@ const uvm_phase* uvm_phase::m_find_predecessor_by_name( const std::string& name,
           << get_name() << " (" << uvm_phase_type_name[m_phase_type]
           << " id = " << get_inst_id();
 
-    if (m_imp != NULL)
+    if (m_imp != nullptr)
       std::cout << "/" << m_imp->get_inst_id();
     std::cout << ")" << std::endl;
   }
@@ -1655,7 +1655,7 @@ const uvm_phase* uvm_phase::m_find_predecessor_by_name( const std::string& name,
         it++ )
   {
     const uvm_phase* orig;
-    orig = (orig_phase==NULL) ? this : orig_phase;
+    orig = (orig_phase==nullptr) ? this : orig_phase;
 
     if (!stay_in_scope ||
         ( it->first->get_schedule() == orig->get_schedule()) ||
@@ -1664,11 +1664,11 @@ const uvm_phase* uvm_phase::m_find_predecessor_by_name( const std::string& name,
       const uvm_phase* found;
       found = it->first->m_find_predecessor_by_name( name, stay_in_scope, orig );
 
-      if (found != NULL)
+      if (found != nullptr)
         return found;
     }
   }
-  return NULL;
+  return nullptr;
 }
 
 //----------------------------------------------------------------------
@@ -1688,13 +1688,13 @@ const uvm_phase* uvm_phase::m_find_successor( const uvm_phase* phase,
          << ") - checking against " << get_name()
          << " (" << uvm_phase_type_name[m_phase_type]
          << " id = " << get_inst_id();
-    if (m_imp != NULL)
+    if (m_imp != nullptr)
       std::cout << "/" << m_imp->get_inst_id();
     std::cout << ")" << std::endl;
   }
 
-  if (phase == NULL)
-    return NULL;
+  if (phase == nullptr)
+    return nullptr;
 
   if (phase == m_imp || phase == this)
     return this;
@@ -1704,7 +1704,7 @@ const uvm_phase* uvm_phase::m_find_successor( const uvm_phase* phase,
        it++)
   {
     const uvm_phase* orig;
-    orig = (orig_phase == NULL) ? this : orig_phase;
+    orig = (orig_phase == nullptr) ? this : orig_phase;
 
     if (!stay_in_scope ||
         (it->first->get_schedule() == orig->get_schedule()) ||
@@ -1713,11 +1713,11 @@ const uvm_phase* uvm_phase::m_find_successor( const uvm_phase* phase,
       const uvm_phase* found;
       found = it->first->m_find_successor( phase, stay_in_scope, orig );
 
-      if (found != NULL)
+      if (found != nullptr)
         return found;
     }
   }
-  return NULL;
+  return nullptr;
 }
 
 
@@ -1736,7 +1736,7 @@ const uvm_phase* uvm_phase::m_find_successor_by_name( const std::string& name,
     std::cout << "  FIND SUCC node '" << name << "' - checking against "
          << get_name() << " (" << uvm_phase_type_name[m_phase_type]
          << " id=" << get_inst_id();
-    if (m_imp != NULL)
+    if (m_imp != nullptr)
       std::cout << "/" << m_imp->get_inst_id();
     std::cout << ")" << std::endl;
   }
@@ -1749,7 +1749,7 @@ const uvm_phase* uvm_phase::m_find_successor_by_name( const std::string& name,
        it++)
   {
     const uvm_phase* orig;
-    orig = (orig_phase == NULL) ? this : orig_phase;
+    orig = (orig_phase == nullptr) ? this : orig_phase;
 
     if (!stay_in_scope ||
         (it->first->get_schedule() == orig->get_schedule()) ||
@@ -1758,11 +1758,11 @@ const uvm_phase* uvm_phase::m_find_successor_by_name( const std::string& name,
       const uvm_phase* found;
       found = it->first->m_find_successor_by_name( name, stay_in_scope, orig );
 
-      if (found != NULL)
+      if (found != nullptr)
         return found;
     }
   }
-  return NULL;
+  return nullptr;
 }
 
 //----------------------------------------------------------------------
@@ -1776,7 +1776,7 @@ const uvm_phase* uvm_phase::m_find_successor_by_name( const std::string& name,
 void uvm_phase::m_register_phases()
 {
   uvm_phase* ph = uvm_domain::get_common_domain();
-  uvm_phase* ph_next = NULL;
+  uvm_phase* ph_next = nullptr;
 
   // register all phase nodes
   do
@@ -1792,7 +1792,7 @@ void uvm_phase::m_register_phases()
     }
     ph = ph_next;
   }
-  while (ph != NULL && ph->m_successors.size() != 0);
+  while (ph != nullptr && ph->m_successors.size() != 0);
 }
 
 
@@ -1821,7 +1821,7 @@ void uvm_phase::m_run_single_phase( const std::string& phase_name )
 {
   uvm_phase* ph = m_phase_nodes(phase_name);
 
-  if (ph == NULL)
+  if (ph == nullptr)
   {
     UVM_WARNING("PH/RUN", "Phase with name '" + phase_name + "' not found. Skipped.");
     return;
@@ -1875,7 +1875,7 @@ void uvm_phase::m_run_phases()
     uvm_process_phase* process_phase =
       dynamic_cast<uvm_process_phase*>(phase->m_imp);
 
-    bool valid_proc = ((process_phase != NULL) || (phase->m_phase_type != UVM_PHASE_NODE));
+    bool valid_proc = ((process_phase != nullptr) || (phase->m_phase_type != UVM_PHASE_NODE));
 
     //std::string s = "uvm_exec_phase_" + std::string(sc_core::sc_gen_unique_name( this->get_full_name_under().c_str() ));
 
@@ -1890,7 +1890,7 @@ void uvm_phase::m_run_phases()
        );
     }
   }
-  while (phase != NULL && phase->m_successors.size() != 0 );
+  while (phase != nullptr && phase->m_successors.size() != 0 );
 
   // Phasing done, so we can wrap-up and stop the simulation
 
@@ -1977,7 +1977,7 @@ void uvm_phase::clear_phase( uvm_phase_state state )
 {
   m_state = state;
   m_state_ev.notify();
-  //m_phase_proc = NULL;
+  //m_phase_proc = nullptr;
   phase_done->clear(this);
 }
 

@@ -209,7 +209,7 @@ std::map< std::string, uvm_queue<m_uvm_waiter*>* >
 //! Create a new or update an existing configuration setting for
 //! \p field_name in \p inst_name from \p cntxt.
 //! The setting is made at \p cntxt, with the full name of \p cntxt
-//! added to the inst_name. If \p cntxt is NULL then \p inst_name
+//! added to the inst_name. If \p cntxt is nullptr then \p inst_name
 //! provides the complete scope information of the setting.
 //! \p field_name is the target field. Both \p inst_name and \p field_name
 //! may be glob style or regular expression style expressions.
@@ -221,10 +221,10 @@ void uvm_config_db<T>::set( uvm_component* cntxt,
                             const std::string& field_name,
                             const T& value )
 {
-    uvm_root* top = NULL;
-    uvm_phase* curr_phase = NULL;
-    uvm_resource<T>* r = NULL;
-    uvm_coreservice_t* cs = NULL;
+    uvm_root* top = nullptr;
+    uvm_phase* curr_phase = nullptr;
+    uvm_resource<T>* r = nullptr;
+    uvm_coreservice_t* cs = nullptr;
 
     bool exists = false;
     std::string loc_instname = inst_name; // local instance name, input is const
@@ -240,7 +240,7 @@ void uvm_config_db<T>::set( uvm_component* cntxt,
 
     curr_phase = top->m_current_phase;
 
-    if( cntxt == NULL )
+    if( cntxt == nullptr )
       cntxt = top;
     if( inst_name.empty() )
       loc_instname = cntxt->get_full_name();
@@ -251,7 +251,7 @@ void uvm_config_db<T>::set( uvm_component* cntxt,
     }
     r = m_get_resource_match(cntxt, field_name, loc_instname);
 
-    if(r == NULL)
+    if(r == nullptr)
     {
       std::map< std::string, uvm_resource<T>* > pool;
       std::string key = loc_instname+field_name;
@@ -265,7 +265,7 @@ void uvm_config_db<T>::set( uvm_component* cntxt,
       setstr +=" (override)";
     }
 
-    if(curr_phase != NULL && curr_phase->get_name() == "build")
+    if(curr_phase != nullptr && curr_phase->get_name() == "build")
       r->precedence = uvm_resource_base::default_precedence - (cntxt->get_depth());
     else
       r->precedence = uvm_resource_base::default_precedence;
@@ -320,18 +320,18 @@ bool uvm_config_db<T>::get( uvm_component* cntxt,
                             T& value )
 
 {
-  uvm_resource<T>* r = NULL;
+  uvm_resource<T>* r = nullptr;
   uvm_resource_pool* rp = uvm_resource_pool::get();
-  uvm_resource_types::rsrc_q_t* rq = NULL;
-  uvm_root* top = NULL;
-  uvm_coreservice_t* cs = NULL;
+  uvm_resource_types::rsrc_q_t* rq = nullptr;
+  uvm_root* top = nullptr;
+  uvm_coreservice_t* cs = nullptr;
 
   std::string loc_instname = inst_name;  // local instance name, input is const
 
   cs = uvm_coreservice_t::get();
   top = cs->get_root();
 
-  if( cntxt == NULL )
+  if( cntxt == nullptr )
     cntxt = top;
   if( inst_name.empty() )
     loc_instname = cntxt->get_full_name();
@@ -342,7 +342,7 @@ bool uvm_config_db<T>::get( uvm_component* cntxt,
   rq = rp->lookup_regex_names(loc_instname, field_name, uvm_resource<T>::get_type() );
   r = uvm_resource<T>::get_highest_precedence(rq);
 
-  if(r == NULL)
+  if(r == nullptr)
   {
     /* TODO make part of debug
     std::ostringstream msg;
@@ -385,7 +385,7 @@ bool uvm_config_db<T>::exists( uvm_component* cntxt,
   uvm_coreservice_t* cs = uvm_coreservice_t::get();
 
   std::string loc_inst_name = inst_name;
-  if(cntxt == NULL)
+  if(cntxt == nullptr)
     cntxt = cs->get_root();
 
   if(inst_name.empty())
@@ -394,7 +394,7 @@ bool uvm_config_db<T>::exists( uvm_component* cntxt,
     if(!cntxt->get_full_name().empty())
       loc_inst_name = cntxt->get_full_name() + "." + inst_name;
 
-  return (uvm_resource_db<T>::get_by_name(loc_inst_name, field_name, spell_chk) != NULL);
+  return (uvm_resource_db<T>::get_by_name(loc_inst_name, field_name, spell_chk) != nullptr);
 }
 
 //----------------------------------------------------------------------
@@ -415,10 +415,10 @@ void uvm_config_db<T>::wait_modified( uvm_component* cntxt,
   //  string rstate = p.get_randstate();
   uvm_coreservice_t* cs = uvm_coreservice_t::get();
 
-  m_uvm_waiter* waiter = NULL;
+  m_uvm_waiter* waiter = nullptr;
   std::string loc_inst_name = inst_name;
 
-  if(cntxt == NULL)
+  if(cntxt == nullptr)
     cntxt = cs->get_root();
 
   if(cntxt != cs->get_root())
@@ -475,12 +475,12 @@ uvm_resource<T>* uvm_config_db<T>::m_get_resource_match( uvm_component* cntxt,
   std::string lookup;
 
   if( m_rsc.find(cntxt) == m_rsc.end() )
-    return NULL;
+    return nullptr;
 
   lookup = inst_name+field_name;
   pool = m_rsc[cntxt];
 
-  if(pool.find(lookup) == pool.end()) return NULL;
+  if(pool.find(lookup) == pool.end()) return nullptr;
 
   return (pool.find(lookup))->second;
 }

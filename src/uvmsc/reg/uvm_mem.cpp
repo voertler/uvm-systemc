@@ -87,8 +87,8 @@ uvm_mem::uvm_mem( const std::string& name,
     n_bits = 1;
   }
 
-  m_backdoor  = NULL;
-  m_parent = NULL;
+  m_backdoor  = nullptr;
+  m_parent = nullptr;
 
   m_is_powered_down = false;
   m_has_cover = has_coverage;
@@ -118,8 +118,8 @@ uvm_mem::uvm_mem( const std::string& name,
 void uvm_mem::configure( uvm_reg_block* parent,
                          const std::string& hdl_path )
 {
-  if (parent == NULL)
-    UVM_FATAL("REG/NULL_PARENT", "configure: parent argument is null");
+  if (parent == nullptr)
+    UVM_FATAL("REG/NULL_PARENT", "configure: parent argument is nullptr");
 
   m_parent = parent;
 
@@ -163,16 +163,16 @@ void uvm_mem::set_offset( uvm_reg_map* map,
                           uvm_reg_addr_t offset,
                           bool unmapped )
 {
-  if (m_maps.size() > 1 && map == NULL)
+  if (m_maps.size() > 1 && map == nullptr)
   {
-    UVM_ERROR("RegModel", "set_offset requires a non-null map when memory '" +
+    UVM_ERROR("RegModel", "set_offset requires a non-nullptr map when memory '" +
       get_full_name() +"' belongs to more than one map.");
     return;
   }
 
   map = get_local_map(map,"set_offset()");
 
-  if (map == NULL)
+  if (map == nullptr)
     return;
 
   map->m_set_mem_offset(this, offset, unmapped);
@@ -203,7 +203,7 @@ void uvm_mem::set_offset( uvm_reg_map* map,
 
 const std::string uvm_mem::get_full_name() const
 {
-  if (m_parent == NULL)
+  if (m_parent == nullptr)
     return get_name();
 
   return m_parent->get_full_name() + "." + get_name();
@@ -248,7 +248,7 @@ bool uvm_mem::is_in_map( uvm_reg_map* map ) const
      uvm_reg_map* local_map= (*it).first;
      uvm_reg_map* parent_map = local_map->get_parent_map();
 
-     while (parent_map != NULL)
+     while (parent_map != nullptr)
      {
        if (parent_map == map)
          return true;
@@ -301,7 +301,7 @@ std::string uvm_mem::get_rights( const uvm_reg_map* map ) const
 
    map = get_local_map(map, "get_rights()");
 
-   if (map == NULL)
+   if (map == nullptr)
      return "RW";
 
    info = map->get_mem_map_info(this);
@@ -333,7 +333,7 @@ std::string uvm_mem::get_access( const uvm_reg_map* map ) const
 
   map = get_local_map(map, "get_access()");
 
-  if (map == NULL)
+  if (map == nullptr)
     return _access;
 
   rights = get_rights(map);
@@ -477,7 +477,7 @@ void uvm_mem::get_virtual_fields( std::vector<uvm_vreg_field*>& fields ) const
 //! Finds a virtual register with the specified name
 //! implemented in this memory and returns
 //! its abstraction class instance.
-//! If no virtual register with the specified name is found, returns NULL.
+//! If no virtual register with the specified name is found, returns nullptr.
 //----------------------------------------------------------------------
 
 uvm_vreg* uvm_mem::get_vreg_by_name( const std::string& name ) const
@@ -491,7 +491,7 @@ uvm_vreg* uvm_mem::get_vreg_by_name( const std::string& name ) const
 
   UVM_WARNING("RegModel", "Unable to find virtual register '" + name +
     "' in memory '" + get_full_name() + "'");
-  return NULL;
+  return nullptr;
 }
 
 //----------------------------------------------------------------------
@@ -502,7 +502,7 @@ uvm_vreg* uvm_mem::get_vreg_by_name( const std::string& name ) const
 //! Finds a virtual field with the specified name
 //! implemented in this memory and returns
 //! its abstraction class instance.
-//! If no virtual field with the specified name is found, returns NULL.
+//! If no virtual field with the specified name is found, returns nullptr.
 //----------------------------------------------------------------------
 
 uvm_vreg_field* uvm_mem::get_vfield_by_name( const std::string& name ) const
@@ -519,7 +519,7 @@ uvm_vreg_field* uvm_mem::get_vfield_by_name( const std::string& name ) const
   UVM_WARNING("RegModel", "Unable to find virtual field '" + name +
     "' in memory '" + get_full_name() + "'");
 
-  return NULL;
+  return nullptr;
 }
 
 //----------------------------------------------------------------------
@@ -530,14 +530,14 @@ uvm_vreg_field* uvm_mem::get_vfield_by_name( const std::string& name ) const
 //! Finds the virtual register implemented in this memory
 //! at the specified \p offset in the specified address \p map
 //! and returns its abstraction class instance.
-//! If no virtual register at the offset is found, returns NULL.
+//! If no virtual register at the offset is found, returns nullptr.
 //----------------------------------------------------------------------
 
 uvm_vreg* uvm_mem::get_vreg_by_offset( uvm_reg_addr_t offset,
                                        const uvm_reg_map* map ) const
 {
   UVM_ERROR("RegModel", "uvm_mem::get_vreg_by_offset() not yet implemented");
-  return NULL;
+  return nullptr;
 }
 
 //----------------------------------------------------------------------
@@ -565,7 +565,7 @@ uvm_reg_addr_t uvm_mem::get_offset( uvm_reg_addr_t offset,
   uvm_reg_map* lmap = get_local_map(map, "get_offset()");
   uvm_reg_map* orig_map = lmap;
 
-  if (lmap == NULL)
+  if (lmap == nullptr)
     return -1; // FIXME: not good to return -1 for sc_uint!
 
   map_info = lmap->get_mem_map_info(this);
@@ -576,7 +576,7 @@ uvm_reg_addr_t uvm_mem::get_offset( uvm_reg_addr_t offset,
     str << "Memory '"
         << get_name()
         << "' is unmapped in map '"
-        << ((orig_map == NULL) ? lmap->get_full_name() : orig_map->get_full_name())
+        << ((orig_map == nullptr) ? lmap->get_full_name() : orig_map->get_full_name())
         << "'";
     UVM_WARNING("RegModel", str.str() );
     return -1; // TODO: not smart to return -1 for sc_uint!
@@ -635,11 +635,11 @@ int uvm_mem::get_addresses( std::vector<uvm_reg_addr_t>& addr,
                             const uvm_reg_map* map,
                             uvm_reg_addr_t offset ) const
 {
-  uvm_reg_map_info* map_info = NULL;
+  uvm_reg_map_info* map_info = nullptr;
   uvm_reg_map* lmap = get_local_map(map,"get_addresses()");
   uvm_reg_map* orig_map = lmap;
 
-  if (lmap == NULL)
+  if (lmap == nullptr)
     return 0;
 
   map_info = lmap->get_mem_map_info(this);
@@ -650,7 +650,7 @@ int uvm_mem::get_addresses( std::vector<uvm_reg_addr_t>& addr,
     str << "Memory '"
         << get_name()
         << "' is unmapped in map '"
-        << ((orig_map == NULL) ? lmap->get_full_name() : orig_map->get_full_name())
+        << ((orig_map == nullptr) ? lmap->get_full_name() : orig_map->get_full_name())
         << "'";
     UVM_WARNING("RegModel", str.str() );
     return 0;
@@ -696,7 +696,7 @@ void uvm_mem::write( uvm_status_e& status, // output
                      int lineno )
 {
   // create an abstract transaction for this operation
-  uvm_reg_item* rw = uvm_reg_item::type_id::create("mem_write", NULL, get_full_name() );
+  uvm_reg_item* rw = uvm_reg_item::type_id::create("mem_write", nullptr, get_full_name() );
 
   rw->element      = this;
   rw->element_kind = UVM_MEM;
@@ -744,7 +744,7 @@ void uvm_mem::read( uvm_status_e& status, // output
                     int lineno )
 {
   uvm_reg_item* rw;
-  rw = uvm_reg_item::type_id::create("mem_read", NULL, get_full_name());
+  rw = uvm_reg_item::type_id::create("mem_read", nullptr, get_full_name());
   rw->element      = this;
   rw->element_kind = UVM_MEM;
   rw->access_kind  = UVM_READ;
@@ -792,7 +792,7 @@ void uvm_mem::burst_write( uvm_status_e& status,
                            int lineno )
 {
   uvm_reg_item* rw;
-  rw = uvm_reg_item::type_id::create("mem_burst_write", NULL, get_full_name());
+  rw = uvm_reg_item::type_id::create("mem_burst_write", nullptr, get_full_name());
   rw->element      = this;
   rw->element_kind = UVM_MEM;
   rw->access_kind  = UVM_BURST_WRITE;
@@ -840,7 +840,7 @@ void uvm_mem::burst_read( uvm_status_e& status, // output
                           int lineno )
 {
   uvm_reg_item* rw;
-  rw = uvm_reg_item::type_id::create("mem_burst_read", NULL, get_full_name());
+  rw = uvm_reg_item::type_id::create("mem_burst_read", nullptr, get_full_name());
   rw->element      = this;
   rw->element_kind = UVM_MEM;
   rw->access_kind  = UVM_BURST_READ;
@@ -889,7 +889,7 @@ void uvm_mem::poke( uvm_status_e& status, // output
   m_fname = fname;
   m_lineno = lineno;
 
-  if (bkdr == NULL && !has_hdl_path(kind))
+  if (bkdr == nullptr && !has_hdl_path(kind))
   {
     UVM_ERROR("RegModel", "No backdoor access available in memory '" +
       get_full_name() + "'");
@@ -898,7 +898,7 @@ void uvm_mem::poke( uvm_status_e& status, // output
   }
 
   // create an abstract transaction for this operation
-  rw = uvm_reg_item::type_id::create("mem_poke_item", NULL, get_full_name());
+  rw = uvm_reg_item::type_id::create("mem_poke_item", nullptr, get_full_name());
   rw->element      = this;
   rw->path         = UVM_BACKDOOR;
   rw->element_kind = UVM_MEM;
@@ -911,7 +911,7 @@ void uvm_mem::poke( uvm_status_e& status, // output
   rw->fname        = fname;
   rw->lineno       = lineno;
 
-  if (bkdr != NULL)
+  if (bkdr != nullptr)
     bkdr->write(rw);
   else
     backdoor_write(rw);
@@ -959,7 +959,7 @@ void uvm_mem::peek( uvm_status_e& status, // output
   m_fname = fname;
   m_lineno = lineno;
 
-  if (bkdr == NULL && !has_hdl_path(kind))
+  if (bkdr == nullptr && !has_hdl_path(kind))
   {
     UVM_ERROR("RegModel", "No backdoor access available in memory '" +
       get_full_name() + "'");
@@ -968,7 +968,7 @@ void uvm_mem::peek( uvm_status_e& status, // output
   }
 
   // create an abstract transaction for this operation
-  rw = uvm_reg_item::type_id::create("mem_peek_item", NULL, get_full_name());
+  rw = uvm_reg_item::type_id::create("mem_peek_item", nullptr, get_full_name());
   rw->element      = this;
   rw->path         = UVM_BACKDOOR;
   rw->element_kind = UVM_MEM;
@@ -980,7 +980,7 @@ void uvm_mem::peek( uvm_status_e& status, // output
   rw->fname        = fname;
   rw->lineno       = lineno;
 
-  if (bkdr != NULL)
+  if (bkdr != nullptr)
     bkdr->read(rw);
   else
     backdoor_read(rw);
@@ -1033,7 +1033,7 @@ void uvm_mem::set_frontdoor( uvm_reg_frontdoor* ftdr,
 
   local_map = get_local_map(map, "set_frontdoor()");
 
-  if (local_map == NULL)
+  if (local_map == nullptr)
   {
     UVM_ERROR("RegModel", "Memory '" + get_full_name() +
       "' not found in map '" + map->get_full_name() + "'");
@@ -1049,7 +1049,7 @@ void uvm_mem::set_frontdoor( uvm_reg_frontdoor* ftdr,
 //
 //! Returns the user-defined frontdoor for this memory
 //!
-//! If NULL, no user-defined frontdoor has been defined.
+//! If nullptr, no user-defined frontdoor has been defined.
 //! A user-defined frontdoor is defined
 //! by using the uvm_mem::set_frontdoor() method.
 //!
@@ -1064,11 +1064,11 @@ uvm_reg_frontdoor* uvm_mem::get_frontdoor( const uvm_reg_map* map ) const
 
   local_map = get_local_map(map, "set_frontdoor()");
 
-  if (local_map == NULL)
+  if (local_map == nullptr)
   {
     UVM_ERROR("RegModel", "Memory '" + get_full_name() +
       "' not found in map '" + map->get_full_name() + "'");
-    return NULL;
+    return nullptr;
   }
 
   map_info = local_map->get_mem_map_info(this);
@@ -1108,7 +1108,7 @@ void uvm_mem::set_backdoor( uvm_reg_backdoor* bkdr,
 //
 //! Returns the user-defined backdoor for this memory
 //!
-//! If NULL, no user-defined backdoor has been defined.
+//! If nullptr, no user-defined backdoor has been defined.
 //! A user-defined backdoor is defined
 //! by using the uvm_reg::set_backdoor() method.
 //!
@@ -1118,15 +1118,15 @@ void uvm_mem::set_backdoor( uvm_reg_backdoor* bkdr,
 
 uvm_reg_backdoor* uvm_mem::get_backdoor( bool inherited )
 {
-  if (m_backdoor == NULL && inherited)
+  if (m_backdoor == nullptr && inherited)
   {
     uvm_reg_block* blk = get_parent();
     uvm_reg_backdoor* bkdr;
 
-    while (blk != NULL)
+    while (blk != nullptr)
     {
       bkdr = blk->get_backdoor();
-      if (bkdr != NULL)
+      if (bkdr != nullptr)
       {
         m_backdoor = bkdr;
         break;
@@ -1814,7 +1814,7 @@ uvm_reg_map* uvm_mem::get_local_map( const uvm_reg_map* map,
 {
   uvm_reg_map* lmap = const_cast<uvm_reg_map*>(map);
 
-  if (lmap == NULL)
+  if (lmap == nullptr)
     return get_default_map();
 
   if (m_maps.find(lmap) != m_maps.end() ) // exists
@@ -1827,7 +1827,7 @@ uvm_reg_map* uvm_mem::get_local_map( const uvm_reg_map* map,
     uvm_reg_map* local_map = (*it).first;
     uvm_reg_map* parent_map = local_map->get_parent_map();
 
-    while (parent_map != NULL)
+    while (parent_map != nullptr)
     {
       if (parent_map == lmap)
         return local_map;
@@ -1845,7 +1845,7 @@ uvm_reg_map* uvm_mem::get_local_map( const uvm_reg_map* map,
       << ".";
   UVM_WARNING("RegModel", str.str() );
 
-  return NULL;
+  return nullptr;
 }
 
 //----------------------------------------------------------------------
@@ -1868,7 +1868,7 @@ uvm_reg_map* uvm_mem::get_default_map( const std::string& caller ) const
         << ((caller.empty()) ? "" : (" (called from " + caller + ")"))
         << ".";
     UVM_WARNING("RegModel", str.str() );
-    return NULL;
+    return nullptr;
   }
 
   // if only one map, choose that
@@ -1885,10 +1885,10 @@ uvm_reg_map* uvm_mem::get_default_map( const std::string& caller ) const
     uvm_reg_block* blk = map->get_parent();
     uvm_reg_map* default_map = blk->get_default_map();
 
-    if (default_map != NULL)
+    if (default_map != nullptr)
     {
       uvm_reg_map* local_map = get_local_map(default_map);
-      if (local_map != NULL)
+      if (local_map != nullptr)
         return local_map;
     }
   }
@@ -1929,7 +1929,7 @@ bool uvm_mem::m_check_access( uvm_reg_item* rw,
 
   if (rw->path == UVM_BACKDOOR)
   {
-    if (get_backdoor() == NULL && !has_hdl_path())
+    if (get_backdoor() == nullptr && !has_hdl_path())
     {
       UVM_WARNING("RegModel",
         "No backdoor access available for memory '" + get_full_name() +
@@ -1944,7 +1944,7 @@ bool uvm_mem::m_check_access( uvm_reg_item* rw,
   {
     rw->local_map = get_local_map(rw->map, caller);
 
-    if (rw->local_map == NULL)
+    if (rw->local_map == nullptr)
     {
       UVM_ERROR(get_type_name(),
         "No transactor available to physically access memory from map '" +
@@ -1955,7 +1955,7 @@ bool uvm_mem::m_check_access( uvm_reg_item* rw,
 
     map_info = rw->local_map->get_mem_map_info(this);
 
-    if (map_info->frontdoor == NULL)
+    if (map_info->frontdoor == nullptr)
     {
       if (map_info->unmapped)
       {
@@ -1996,7 +1996,7 @@ bool uvm_mem::m_check_access( uvm_reg_item* rw,
       }
     }
 
-    if (rw->map == NULL)
+    if (rw->map == nullptr)
       rw->map = rw->local_map;
   }
   return true;
@@ -2027,7 +2027,7 @@ void uvm_mem::do_write( uvm_reg_item* rw )
   // PRE-WRITE CBS
   pre_write(rw);
 
-  for( uvm_reg_cbs* cb = cbs->first(); cb != NULL; cb = cbs->next())
+  for( uvm_reg_cbs* cb = cbs->first(); cb != nullptr; cb = cbs->next())
     cb->pre_write(rw);
 
   if (rw->status != UVM_IS_OK)
@@ -2043,11 +2043,11 @@ void uvm_mem::do_write( uvm_reg_item* rw )
   {
     uvm_reg_map* system_map = rw->local_map->get_root_map();
 
-    if (map_info->frontdoor != NULL)
+    if (map_info->frontdoor != nullptr)
     {
       uvm_reg_frontdoor* fd = map_info->frontdoor;
       fd->rw_info = rw;
-      if (fd->sequencer == NULL)
+      if (fd->sequencer == nullptr)
         fd->sequencer = system_map->get_sequencer();
       fd->start(fd->sequencer, rw->parent);
     }
@@ -2071,7 +2071,7 @@ void uvm_mem::do_write( uvm_reg_item* rw )
     if (get_access(rw->map) == "RW")
     {
       uvm_reg_backdoor* bkdr = get_backdoor();
-      if (bkdr != NULL)
+      if (bkdr != nullptr)
         bkdr->write(rw);
       else
         backdoor_write(rw);
@@ -2083,7 +2083,7 @@ void uvm_mem::do_write( uvm_reg_item* rw )
   // POST-WRITE CBS
   post_write(rw);
 
-  for( uvm_reg_cbs* cb = cbs->first(); cb != NULL; cb = cbs->next())
+  for( uvm_reg_cbs* cb = cbs->first(); cb != nullptr; cb = cbs->next())
     cb->post_write(rw);
 
   // REPORT
@@ -2091,10 +2091,10 @@ void uvm_mem::do_write( uvm_reg_item* rw )
   {
     std::ostringstream path_s, value_s, pre_s, range_s;
     if (rw->path == UVM_FRONTDOOR)
-      path_s << ((map_info->frontdoor != NULL) ? "user frontdoor" :
+      path_s << ((map_info->frontdoor != nullptr) ? "user frontdoor" :
           ("map " + rw->map->get_full_name()));
     else
-      path_s << ((get_backdoor() != NULL) ? "user backdoor" : "DPI backdoor");
+      path_s << ((get_backdoor() != nullptr) ? "user backdoor" : "DPI backdoor");
 
     if (rw->value.size() > 1)
     {
@@ -2144,7 +2144,7 @@ void uvm_mem::do_read( uvm_reg_item* rw )
   // PRE-READ CBS
   pre_read(rw);
 
-  for( uvm_reg_cbs* cb = cbs->first(); cb != NULL; cb = cbs->next() )
+  for( uvm_reg_cbs* cb = cbs->first(); cb != nullptr; cb = cbs->next() )
     cb->pre_read(rw);
 
   if (rw->status != UVM_IS_OK)
@@ -2160,11 +2160,11 @@ void uvm_mem::do_read( uvm_reg_item* rw )
   {
     uvm_reg_map* system_map = rw->local_map->get_root_map();
 
-    if (map_info->frontdoor != NULL)
+    if (map_info->frontdoor != nullptr)
     {
       uvm_reg_frontdoor* fd = map_info->frontdoor;
       fd->rw_info = rw;
-      if (fd->sequencer == NULL)
+      if (fd->sequencer == nullptr)
         fd->sequencer = system_map->get_sequencer();
       fd->start(fd->sequencer, rw->parent);
     }
@@ -2187,7 +2187,7 @@ void uvm_mem::do_read( uvm_reg_item* rw )
   else
   {
     uvm_reg_backdoor* bkdr = get_backdoor();
-    if (bkdr != NULL)
+    if (bkdr != nullptr)
       bkdr->read(rw);
     else
       backdoor_read(rw);
@@ -2196,7 +2196,7 @@ void uvm_mem::do_read( uvm_reg_item* rw )
   // POST-READ CBS
   post_read(rw);
 
-  for( uvm_reg_cbs* cb = cbs->first(); cb != NULL; cb = cbs->next())
+  for( uvm_reg_cbs* cb = cbs->first(); cb != nullptr; cb = cbs->next())
     cb->post_read(rw);
 
   // REPORT
@@ -2204,10 +2204,10 @@ void uvm_mem::do_read( uvm_reg_item* rw )
   {
     std::ostringstream path_s, value_s, pre_s, range_s;
     if (rw->path == UVM_FRONTDOOR)
-      path_s << ((map_info->frontdoor != NULL) ? "user frontdoor" :
+      path_s << ((map_info->frontdoor != nullptr) ? "user frontdoor" :
           ("map " + rw->map->get_full_name() ));
     else
-      path_s << ((get_backdoor() != NULL) ? "user backdoor" : "DPI backdoor");
+      path_s << ((get_backdoor() != nullptr) ? "user backdoor" : "DPI backdoor");
 
     if (rw->value.size() > 1)
     {
@@ -2284,14 +2284,14 @@ std::string uvm_mem::convert2string() const
     uvm_reg_map* parent_map = (*it).first;
     unsigned int offset;
 
-    while (parent_map != NULL)
+    while (parent_map != nullptr)
     {
       uvm_reg_map* this_map = parent_map;
       uvm_endianness_e endian_name;
       parent_map = this_map->get_parent_map();
       endian_name = this_map->get_endian();
 
-      offset = (parent_map == NULL) ? this_map->get_base_addr(UVM_NO_HIER) :
+      offset = (parent_map == nullptr) ? this_map->get_base_addr(UVM_NO_HIER) :
           parent_map->get_submap_offset(this_map);
       prefix = prefix + "  ";
       str2 << prefix
@@ -2356,7 +2356,7 @@ void uvm_mem::do_print( const uvm_printer& printer ) const
 uvm_object* uvm_mem::clone()
 {
   UVM_FATAL("RegModel","RegModel memories cannot be cloned");
-  return NULL;
+  return nullptr;
 }
 
 //----------------------------------------------------------------------

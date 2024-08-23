@@ -29,7 +29,7 @@ namespace uvm {
 // static data member initialization
 //------------------------------------------------------------------------------
 
-std::map<uvm_object*, uvm_queue<uvm_callback*>* >* uvm_callbacks_base::m_pool = NULL;
+std::map<uvm_object*, uvm_queue<uvm_callback*>* >* uvm_callbacks_base::m_pool = nullptr;
 uvm_callbacks_base* uvm_callbacks_base::m_b_inst = m_initialize();
 bool uvm_callbacks_base::m_tracing = true;
 
@@ -47,7 +47,7 @@ uvm_callbacks_base::uvm_callbacks_base()
 
 uvm_callbacks_base* uvm_callbacks_base::m_initialize()
 {
-  if(m_b_inst == NULL)
+  if(m_b_inst == nullptr)
   {
     m_b_inst = new uvm_callbacks_base();
     m_pool = new std::map< uvm_object*, uvm_queue<uvm_callback*>* >();
@@ -97,7 +97,7 @@ bool uvm_callbacks_base::m_is_registered( uvm_object* obj, uvm_callback* cb )
 
 uvm_queue<uvm_callback*>* uvm_callbacks_base::m_get_tw_cb_q( uvm_object* obj )
 {
-  return NULL;
+  return nullptr;
 }
 
 //----------------------------------------------------------------------------
@@ -131,7 +131,7 @@ bool uvm_callbacks_base::m_delete_tw_cbs( uvm_callback* cb )
 
 bool uvm_callbacks_base::check_registration( uvm_object* obj, uvm_callback* cb )
 {
-  uvm_callbacks_base* dt = NULL;
+  uvm_callbacks_base* dt = nullptr;
 
   if (m_is_registered(obj, cb))
     return true;
@@ -143,13 +143,13 @@ bool uvm_callbacks_base::check_registration( uvm_object* obj, uvm_callback* cb )
       return true;
   }
 
-  if(obj == NULL)
+  if(obj == nullptr)
   {
     for( unsigned int i = 0; i < m_derived_types.size(); i++ )
     {
       dt = uvm_typeid_base::get_cb(m_derived_types[i]);
 
-      if(dt != NULL && dt->check_registration(NULL, cb))
+      if(dt != nullptr && dt->check_registration(nullptr, cb))
         return true;
     }
   }

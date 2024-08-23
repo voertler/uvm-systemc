@@ -31,9 +31,9 @@ namespace uvm {
 
 uvm_default_coreservice_t* uvm_coreservice_t::get()
 {
-  static uvm_default_coreservice_t* inst = NULL;
+  static uvm_default_coreservice_t* inst = nullptr;
 
-  if (inst == NULL)
+  if (inst == nullptr)
     inst = new uvm_default_coreservice_t;
 
   return inst;

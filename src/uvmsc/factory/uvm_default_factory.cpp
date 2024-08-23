@@ -157,8 +157,8 @@ uvm_default_factory::~uvm_default_factory()
 
 void uvm_default_factory::do_register( uvm_object_wrapper* obj )
 {
-  if (obj == NULL)
-    uvm_report_fatal("NULLWR", "Attempting to register a NULL object with the factory", UVM_NONE);
+  if (obj == nullptr)
+    uvm_report_fatal("NULLWR", "Attempting to register a nullptr object with the factory", UVM_NONE);
 
   if (!obj->get_type_name().empty() && obj->get_type_name() != "<unknown>")
   {
@@ -325,8 +325,8 @@ void uvm_default_factory::set_type_override_by_name( const std::string& original
                                              bool replace )
 {
   bool replaced = false;
-  uvm_object_wrapper* original_type = NULL;
-  uvm_object_wrapper* override_type = NULL;
+  uvm_object_wrapper* original_type = nullptr;
+  uvm_object_wrapper* override_type = nullptr;
 
   if( m_type_names.find(original_type_name) != m_type_names.end() ) // if exists
     original_type = m_type_names[original_type_name];
@@ -335,7 +335,7 @@ void uvm_default_factory::set_type_override_by_name( const std::string& original
     override_type = m_type_names[override_type_name];
 
   // check that type is registered with the factory
-  if (override_type == NULL)
+  if (override_type == nullptr)
   {
     std::ostringstream msg;
     msg << "Cannot register override for original type '" <<  original_type_name
@@ -384,12 +384,12 @@ void uvm_default_factory::set_type_override_by_name( const std::string& original
     } // if
   } // for
 
-  if (original_type == NULL)
+  if (original_type == nullptr)
     m_lookup_strs[original_type_name] = true;
 
   if (!replaced)
   {
-    uvm_factory_override* override = NULL;
+    uvm_factory_override* override = nullptr;
     override = new uvm_factory_override( "*",
                                          original_type_name,
                                          original_type,
@@ -485,9 +485,9 @@ void uvm_default_factory::set_inst_override_by_name( const std::string& original
                                              const std::string& override_type_name,
                                              const std::string& full_inst_path )
 {
-  uvm_object_wrapper* original_type = NULL;
-  uvm_object_wrapper* override_type = NULL;
-  uvm_factory_override* override = NULL;
+  uvm_object_wrapper* original_type = nullptr;
+  uvm_object_wrapper* override_type = nullptr;
+  uvm_factory_override* override = nullptr;
 
   if( m_type_names.find(original_type_name) != m_type_names.end() ) // if exists
     original_type = m_type_names[original_type_name];
@@ -496,7 +496,7 @@ void uvm_default_factory::set_inst_override_by_name( const std::string& original
     override_type = m_type_names[override_type_name];
 
   // check that type is registered with the factory
-  if (override_type == NULL)
+  if (override_type == nullptr)
   {
     std::ostringstream msg;
     msg << "Cannot register instance override with type name '"
@@ -507,7 +507,7 @@ void uvm_default_factory::set_inst_override_by_name( const std::string& original
     return;
   }
 
-  if (original_type == NULL)
+  if (original_type == nullptr)
       m_lookup_strs[original_type_name] = true;
 
   override = new uvm_factory_override( full_inst_path,
@@ -515,7 +515,7 @@ void uvm_default_factory::set_inst_override_by_name( const std::string& original
                                        original_type,
                                        override_type);
 
-  if (original_type != NULL)
+  if (original_type != nullptr)
   {
     if ( check_inst_override_exists(original_type, override_type, full_inst_path))
       return;
@@ -632,7 +632,7 @@ uvm_object* uvm_default_factory::create_object_by_name( const std::string& reque
   wrapper = find_override_by_name(requested_type_name, inst_path);
 
   // if no override exists, try to use requested_type_name directly
-  if (wrapper == NULL)
+  if (wrapper == nullptr)
   {
     if(m_type_names.find(requested_type_name) == m_type_names.end())
     {
@@ -640,7 +640,7 @@ uvm_object* uvm_default_factory::create_object_by_name( const std::string& reque
       msg << "Cannot create an object of type '" << requested_type_name
           << "' because it is not registered with the factory.";
       uvm_report_warning("BDTYP", msg.str(), UVM_NONE);
-      return NULL;
+      return nullptr;
     }
     wrapper = m_type_names[requested_type_name];
   }
@@ -677,7 +677,7 @@ uvm_component* uvm_default_factory::create_component_by_name( const std::string&
   wrapper = find_override_by_name(requested_type_name, inst_path);
 
   // if no override exists, try to use requested_type_name directly
-  if (wrapper == NULL)
+  if (wrapper == nullptr)
   {
     if( m_type_names.find(requested_type_name) == m_type_names.end() ) // not exist
     {
@@ -685,7 +685,7 @@ uvm_component* uvm_default_factory::create_component_by_name( const std::string&
       msg << "Cannot create a component of type '" << requested_type_name
           << "' because it is not registered with the factory.";
       uvm_report_warning("BDTYP", msg.str(), UVM_NONE);
-      return NULL;
+      return nullptr;
     }
     wrapper = m_type_names[requested_type_name];
   }
@@ -759,7 +759,7 @@ void uvm_default_factory::debug_create_by_name( const std::string& requested_typ
                                         const std::string& parent_inst_path,
                                         const std::string& name )
 {
-  m_debug_create(requested_type_name, NULL, parent_inst_path, name);
+  m_debug_create(requested_type_name, nullptr, parent_inst_path, name);
 }
 
 //----------------------------------------------------------------------------
@@ -769,9 +769,9 @@ void uvm_default_factory::debug_create_by_name( const std::string& requested_typ
 uvm_object_wrapper* uvm_default_factory::find_override_by_name( const std::string& requested_type_name,
                                                         const std::string& full_inst_path)
 {
-  uvm_object_wrapper* rtype = NULL;
-  uvm_factory_queue_class* qc = NULL;
-  uvm_object_wrapper* override = NULL;
+  uvm_object_wrapper* rtype = nullptr;
+  uvm_factory_queue_class* qc = nullptr;
+  uvm_object_wrapper* override = nullptr;
 
   if ( m_type_names.find(requested_type_name) != m_type_names.end() )
     rtype = m_type_names[requested_type_name];
@@ -790,7 +790,7 @@ uvm_object_wrapper* uvm_default_factory::find_override_by_name( const std::strin
 
   if (!full_inst_path.empty())
   {
-    if(rtype == NULL)
+    if(rtype == nullptr)
     {
       if( m_inst_override_name_queues.find(requested_type_name) !=
           m_inst_override_name_queues.end() ) // if exists
@@ -801,7 +801,7 @@ uvm_object_wrapper* uvm_default_factory::find_override_by_name( const std::strin
       if( m_inst_override_queues.find(rtype) != m_inst_override_queues.end() ) // if exists
         qc = m_inst_override_queues[rtype];
     }
-    if (qc != NULL)
+    if (qc != nullptr)
     {
       for( m_overrides_listItT
            qit = qc->queue.begin();
@@ -815,7 +815,7 @@ uvm_object_wrapper* uvm_default_factory::find_override_by_name( const std::strin
 
           if (m_debug_pass)
           {
-            if (override == NULL)
+            if (override == nullptr)
             {
               override = (*qit)->ovrd_type;
               (*qit)->selected = true;
@@ -833,7 +833,7 @@ uvm_object_wrapper* uvm_default_factory::find_override_by_name( const std::strin
     }
   }
 
-  if( rtype != NULL &&
+  if( rtype != nullptr &&
       (m_inst_override_queues.find(rtype) == m_inst_override_queues.end()) &&
       m_wildcard_inst_overrides.size() )
   {
@@ -859,7 +859,7 @@ uvm_object_wrapper* uvm_default_factory::find_override_by_name( const std::strin
 
       if (m_debug_pass)
       {
-        if (override == NULL)
+        if (override == nullptr)
         {
           override = (*it)->ovrd_type;
           (*it)->selected = true;
@@ -869,11 +869,11 @@ uvm_object_wrapper* uvm_default_factory::find_override_by_name( const std::strin
         return find_override_by_type( (*it)->ovrd_type, full_inst_path);
     }
 
-  if ( m_debug_pass && override != NULL )
+  if ( m_debug_pass && override != nullptr )
     return find_override_by_type(override, full_inst_path);
 
   // No override found
-  return NULL;
+  return nullptr;
 }
 
 //----------------------------------------------------------------------------
@@ -883,8 +883,8 @@ uvm_object_wrapper* uvm_default_factory::find_override_by_name( const std::strin
 uvm_object_wrapper* uvm_default_factory::find_override_by_type( uvm_object_wrapper* requested_type,
                                                         const std::string& full_inst_path)
 {
-  uvm_object_wrapper* override = NULL;
-  uvm_factory_queue_class* qc = NULL;
+  uvm_object_wrapper* override = nullptr;
+  uvm_factory_queue_class* qc = nullptr;
 
   if ( m_inst_override_queues.find(requested_type) != m_inst_override_queues.end() )
     qc = m_inst_override_queues[requested_type];
@@ -907,7 +907,7 @@ uvm_object_wrapper* uvm_default_factory::find_override_by_type( uvm_object_wrapp
   }
 
   // inst override; return first match; takes precedence over type overrides
-  if ( !full_inst_path.empty() && qc != NULL )
+  if ( !full_inst_path.empty() && qc != nullptr )
   {
     for( m_overrides_listItT
          it = qc->queue.begin();
@@ -924,7 +924,7 @@ uvm_object_wrapper* uvm_default_factory::find_override_by_type( uvm_object_wrapp
         m_override_info.push_back(*it);
 
         if (m_debug_pass) {
-          if (override == NULL) {
+          if (override == nullptr) {
             override = (*it)->ovrd_type;
             (*it)->selected = true;
           }
@@ -948,13 +948,13 @@ uvm_object_wrapper* uvm_default_factory::find_override_by_type( uvm_object_wrapp
     if ( (*it)->orig_type == requested_type ||
       ( (*it)->orig_type_name != "<unknown>" &&
         !(*it)->orig_type_name.empty() &&
-        requested_type != NULL &&
+        requested_type != nullptr &&
         (*it)->orig_type_name == requested_type->get_type_name()) )
     {
       m_override_info.push_back(*it);
 
       if (m_debug_pass) {
-        if (override == NULL) {
+        if (override == nullptr) {
           override = (*it)->ovrd_type;
           (*it)->selected = true;
         }
@@ -976,7 +976,7 @@ uvm_object_wrapper* uvm_default_factory::find_override_by_type( uvm_object_wrapp
   //    return find_override_by_type(m_type_overrides[index],full_inst_path);
   //  end
 
-  if ( m_debug_pass && override != NULL )
+  if ( m_debug_pass && override != nullptr )
   {
     if (override == requested_type)
       return requested_type;
@@ -991,7 +991,7 @@ uvm_object_wrapper* uvm_default_factory::find_override_by_type( uvm_object_wrapp
 // member function: find_wrapper_by_name
 //
 //! This member function returns the uvm_object_wrapper associated with a given
-//! type_name. If not found, it returns NULL.
+//! type_name. If not found, it returns nullptr.
 //----------------------------------------------------------------------------
 
 uvm_object_wrapper* uvm_default_factory::find_wrapper_by_name( const std::string& type_name )
@@ -1001,7 +1001,7 @@ uvm_object_wrapper* uvm_default_factory::find_wrapper_by_name( const std::string
 
   uvm_report_warning("UnknownTypeName", "find_wrapper_by_name: Type name '" + type_name +
       "' not registered with the factory.", UVM_NONE);
-  return NULL;
+  return nullptr;
 }
 
 //----------------------------------------------------------------------------
@@ -1024,7 +1024,7 @@ void uvm_default_factory::print( int all_types )
   std::string tmp;
   std::vector<std::string> qs;
   int id=0;
-  uvm_object_wrapper* obj = NULL;
+  uvm_object_wrapper* obj = nullptr;
 
   //sort the override queues
   for ( std::map<uvm_object_wrapper*, uvm_factory_queue_class*>::iterator
@@ -1214,8 +1214,8 @@ bool uvm_default_factory::check_inst_override_exists( uvm_object_wrapper* origin
                                               uvm_object_wrapper* override_type,
                                               const std::string& full_inst_path )
 {
-  uvm_factory_override* override = NULL;
-  uvm_factory_queue_class* qc = NULL;
+  uvm_factory_override* override = nullptr;
+  uvm_factory_queue_class* qc = nullptr;
 
   // if exists
   if ( m_inst_override_queues.find(original_type) != m_inst_override_queues.end() )
@@ -1289,7 +1289,7 @@ void uvm_default_factory::m_debug_create( const std::string& requested_type_name
 
   m_override_info.clear();
 
-  if (requested_type == NULL)
+  if (requested_type == nullptr)
   {
     if (m_type_names.find(requested_type_name) == m_type_names.end() &&
         m_lookup_strs.find(requested_type_name) == m_lookup_strs.end())
@@ -1408,7 +1408,7 @@ void uvm_default_factory::m_debug_display( const std::string& requested_type_nam
 
   qs.push_back("Result:\n\n");
   qs.push_back("  The factory will produce an object of type '" +
-       ( result == NULL ? requested_type_name : result->get_type_name() ) +
+       ( result == nullptr ? requested_type_name : result->get_type_name() ) +
        "'\n");
 
   qs.push_back("\n(*) Types with no associated type name will be printed as <unknown>\n\n####\n\n");

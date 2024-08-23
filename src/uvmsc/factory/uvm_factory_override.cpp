@@ -39,13 +39,13 @@ uvm_factory_override::uvm_factory_override( const std::string& full_inst_path_,
                                             uvm_object_wrapper* orig_type_,
                                             uvm_object_wrapper* ovrd_type_ )
 {
-  if (ovrd_type_ == NULL)
+  if (ovrd_type_ == nullptr)
     uvm_report_fatal( "NULLWR",
-                      "Attempting to register a NULL override object with the factory",
+                      "Attempting to register a nullptr override object with the factory",
                       UVM_NONE);
 
   full_inst_path = full_inst_path_;
-  orig_type_name = (orig_type_ == NULL) ? orig_type_name_ : (orig_type_->get_type_name() );
+  orig_type_name = (orig_type_ == nullptr) ? orig_type_name_ : (orig_type_->get_type_name() );
   orig_type      = orig_type_;
   ovrd_type_name = ovrd_type_->get_type_name();
   ovrd_type      = ovrd_type_;

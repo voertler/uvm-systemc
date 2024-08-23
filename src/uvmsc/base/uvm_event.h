@@ -71,7 +71,7 @@ class uvm_event : public uvm_object
   // triggering
   //------------
 
-  virtual void trigger( uvm_object* data = NULL );
+  virtual void trigger( uvm_object* data = nullptr );
 
   virtual uvm_object* get_trigger_data();
 

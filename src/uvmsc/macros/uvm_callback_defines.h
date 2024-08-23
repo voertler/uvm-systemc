@@ -79,7 +79,7 @@
    { \
      ::uvm::uvm_callback_iter<T,CB>* iter = new ::uvm::uvm_callback_iter<T,CB>(OBJ); \
      CB* cb = iter->first(); \
-     while(cb != NULL) { \
+     while(cb != nullptr) { \
        /*UVM_CB_TRACE_NOOBJ(cb, "Executing callback method 'METHOD' for callback " + cb->get_name() + " (CB) from " + OBJ->get_full_name() + " (T)")*/ \
        UVM_CB_TRACE_NOOBJ(cb, "Test") \
        cb->METHOD; \
@@ -136,7 +136,7 @@
 { \
   ::uvm::uvm_callback_iter<T,CB>* iter = new ::uvm::uvm_callback_iter<T,CB>(OBJ); \
   CB* cb = iter->first(); \
-  while(cb != NULL) { \
+  while(cb != nullptr) { \
     if (cb->METHOD == true) { \
       UVM_CB_TRACE_NOOBJ(cb, "Executed callback method 'METHOD' for callback " + cb->get_name() + " (CB) from " + OBJ->get_full_name() + " (T) : returned value VAL (other callbacks will be ignored)") \
       return VAL; \
@@ -161,7 +161,7 @@
         << OBJ->get_inst_id() << ")" \
     str << OPER << ": callback " <<  CB->get_name() << " (" \
         << CB->get_type_name() << "@" << CB->get_inst_id() << ") : to object " \
-        << ( (OBJ == NULL) ? "NULL" : inf.str() ); \
+        << ( (OBJ == nullptr) ? "nullptr" : inf.str() ); \
     UVM_INFO("UVMCB_TRC", str.str(), UVM_NONE); \
   }
 
@@ -176,8 +176,8 @@
   }
 #else
 
-#define UVM_CB_TRACE_NOOBJ(CB,OPER) /* NULL */
-#define UVM_CB_TRACE(OBJ,CB,OPER) /* NULL */
+#define UVM_CB_TRACE_NOOBJ(CB,OPER) /* nullptr */
+#define UVM_CB_TRACE(OBJ,CB,OPER) /* nullptr */
 
 #endif // UVM_CB_TRACE_ON
 

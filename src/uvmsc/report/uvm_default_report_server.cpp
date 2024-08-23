@@ -354,7 +354,7 @@ void uvm_default_report_server::get_id_set( std::vector<std::string>& q ) const
 
 void uvm_default_report_server::f_display( UVM_FILE file, const std::string& str ) const
 {
-  if (file == 0) // NULL pointer
+  if (file == 0) // nullptr pointer
     std::cout << str << std::endl;
   else
     *file << str << std::endl;
@@ -427,7 +427,7 @@ void uvm_default_report_server::execute_report_message(
       stream = m_streams[ro.get_name()][rh.get_name()];
 
     // If no pre-existing stream (or for some reason pre-existing stream was ~null~)
-    if (stream == NULL)
+    if (stream == nullptr)
     {
       uvm_tr_database* db;
 
@@ -435,13 +435,13 @@ void uvm_default_report_server::execute_report_message(
       db = get_message_database();
 
       // If database is ~null~, use the default database
-      if (db == NULL)
+      if (db == nullptr)
       {
         uvm_coreservice_t* cs = uvm_coreservice_t::get();
         db = cs->get_default_tr_database();
       }
 
-      if (db != NULL)
+      if (db != nullptr)
       {
         // Open the stream.  Name=report object name, scope=report handler name, type=MESSAGES
         stream = db->open_stream(ro.get_name(), rh.get_name(), "MESSAGES");
@@ -450,10 +450,10 @@ void uvm_default_report_server::execute_report_message(
       }
     }
 
-    if (stream != NULL)
+    if (stream != nullptr)
     {
       uvm_recorder* recorder = stream->open_recorder(report_message->get_name(),,report_message->get_type_name());
-      if (recorder != NULL)
+      if (recorder != nullptr)
       {
         report_message->record(recorder);
         recorder->free();

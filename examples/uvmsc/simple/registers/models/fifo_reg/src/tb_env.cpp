@@ -86,7 +86,7 @@ void tb_env::run_phase(uvm::uvm_phase & phase)
     UVM_INFO("Test", "Resetting DUT and Register Model...", uvm::UVM_LOW);
     dut_reset_seq* rst_seq = dut_reset_seq::type_id::create("rst_seq", this);
     rst_seq->dt = dt;
-    rst_seq->start(NULL);
+    rst_seq->start(nullptr);
     regmodel->reset();
 
     FIFO = regmodel->FIFO;

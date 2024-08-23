@@ -54,7 +54,7 @@ namespace uvm {
 uvm_vreg::uvm_vreg( const std::string& name, unsigned int n_bits ) : uvm_object(name)
 {
   m_locked = false;
-  m_parent = NULL;
+  m_parent = nullptr;
 
   m_n_bits = n_bits;
 
@@ -80,13 +80,13 @@ uvm_vreg::uvm_vreg( const std::string& name, unsigned int n_bits ) : uvm_object(
   }
 
   m_fields.clear();
-  m_mem = NULL;
+  m_mem = nullptr;
 
   m_offset = 0;
   m_incr = 0;
   m_size = 0;
   m_is_static = false;
-  m_region = NULL;
+  m_region = nullptr;
   m_fname = "";
   m_lineno = 0;
   m_read_in_progress = false;
@@ -121,14 +121,14 @@ void uvm_vreg::configure( uvm_reg_block* parent,
 
   m_n_used_bits = 0;
 
-  if (mem != NULL)
+  if (mem != nullptr)
   {
     implement(size, mem, offset, incr);
     m_is_static = true;
   }
   else
   {
-    m_mem = NULL;
+    m_mem = nullptr;
     m_is_static = false;
   }
 
@@ -174,7 +174,7 @@ bool uvm_vreg::implement( unsigned long n,
                           uvm_reg_addr_t offset,
                           unsigned int incr )
 {
-  uvm_mem_region* region = NULL;
+  uvm_mem_region* region = nullptr;
 
   if(n < 1)
   {
@@ -184,11 +184,11 @@ bool uvm_vreg::implement( unsigned long n,
     return false;
   }
 
-  if(mem == NULL)
+  if(mem == nullptr)
   {
     UVM_ERROR("RegModel",
         "Attempting to implement virtual register '" + get_full_name() +
-        "' using a NULL uvm_mem reference");
+        "' using a nullptr uvm_mem reference");
     return false;
   }
 
@@ -246,7 +246,7 @@ bool uvm_vreg::implement( unsigned long n,
 
   region = mem->mam->reserve_region(offset, n*incr*mem->get_n_bytes());
 
-  if (m_region == NULL)
+  if (m_region == nullptr)
   {
     UVM_ERROR("RegModel",
         "Could not allocate a memory region for virtual register '" + get_full_name() +
@@ -254,7 +254,7 @@ bool uvm_vreg::implement( unsigned long n,
     return false;
   }
 
-  if (m_mem != NULL)
+  if (m_mem != nullptr)
   {
     std::ostringstream str;
     str << "Virtual register '"
@@ -299,7 +299,7 @@ bool uvm_vreg::implement( unsigned long n,
 //! Returns a reference to a #uvm_mem_region memory region descriptor
 //! if the memory allocation manager was able to allocate a region
 //! that can implement the virtual register array.
-//! Returns NULL otherwise.
+//! Returns nullptr otherwise.
 //!
 //! A region implementing a virtual register array
 //! must not be released using the uvm_mem_mam::release_region() method.
@@ -309,23 +309,23 @@ bool uvm_vreg::implement( unsigned long n,
 uvm_mem_region* uvm_vreg::allocate( unsigned long n,
                                     uvm_mem_mam* mam )
 {
-  uvm_mem* l_mem = NULL;
-  uvm_mem_region* region = NULL;
+  uvm_mem* l_mem = nullptr;
+  uvm_mem_region* region = nullptr;
 
   if(n < 1)
   {
     UVM_ERROR("RegModel",
         "Attempting to implement virtual register '" + get_full_name() +
         "' with a subscript less than one doesn't make sense" );
-    return NULL;
+    return nullptr;
   }
 
-  if(mam == NULL)
+  if(mam == nullptr)
   {
     UVM_ERROR("RegModel",
         "Attempting to implement virtual register '" + get_full_name() +
-        "' using a NULL uvm_mem_mam reference" );
-    return NULL;
+        "' using a nullptr uvm_mem_mam reference" );
+    return nullptr;
   }
 
   if(m_is_static)
@@ -333,7 +333,7 @@ uvm_mem_region* uvm_vreg::allocate( unsigned long n,
     UVM_ERROR("RegModel",
         "Virtual register '" + get_full_name() +
         "' is static and cannot be dynamically allocated" );
-    return NULL;
+    return nullptr;
   }
 
   l_mem = mam->get_memory();
@@ -344,7 +344,7 @@ uvm_mem_region* uvm_vreg::allocate( unsigned long n,
         "Attempting to allocate virtual register '" + get_full_name() +
         "' on memory '" + l_mem->get_full_name() +
         "' in a different block." );
-    return NULL;
+    return nullptr;
   }
 
   unsigned int min_incr = (get_n_bytes()-1) / l_mem->get_n_bytes() + 1;
@@ -362,20 +362,20 @@ uvm_mem_region* uvm_vreg::allocate( unsigned long n,
         << l_mem->get_full_name()
         << "'.";
     UVM_ERROR("RegModel", str.str() );
-    return NULL;
+    return nullptr;
   }
 
   // Need memory at least of size num_vregs*sizeof(vreg) in bytes.
   region = mam->request_region(n * m_incr * l_mem->get_n_bytes());
 
-  if (region == NULL)
+  if (region == nullptr)
   {
     UVM_ERROR("RegModel",
       "Could not allocate a memory region for virtual register '" + get_full_name() + "'" );
-    return NULL;
+    return nullptr;
   }
 
-  if (l_mem != NULL)
+  if (l_mem != nullptr)
   {
 
     std::ostringstream str;
@@ -414,7 +414,7 @@ uvm_mem_region* uvm_vreg::allocate( unsigned long n,
 //! Returns a reference to the #uvm_mem_region memory region descriptor
 //! that implements the virtual register array.
 //!
-//! Returns NULL if the virtual registers array
+//! Returns nullptr if the virtual registers array
 //! is not currently implemented.
 //! A region implementing a virtual register array
 //! must not be released using the uvm_mem_mam::release_region() method.
@@ -450,14 +450,14 @@ void uvm_vreg::release_region()
     return;
   }
 
-  if(m_mem != NULL)
+  if(m_mem != nullptr)
     m_mem->m_delete_vreg(this);
 
-  if(m_region != NULL)
+  if(m_region != nullptr)
     m_region->release_region();
 
-  m_region = NULL;
-  m_mem    = NULL;
+  m_region = nullptr;
+  m_mem    = nullptr;
   m_size   = 0;
   m_offset = 0;
 
@@ -489,17 +489,17 @@ void uvm_vreg::release_region()
 
 const std::string uvm_vreg::get_full_name() const
 {
-  uvm_reg_block* blk = NULL;
+  uvm_reg_block* blk = nullptr;
   std::string name;
 
   name = get_name();
 
   // Do not include top-level name in full name
   blk = get_block();
-  if (blk == NULL)
+  if (blk == nullptr)
     return name;
 
-  if (blk->get_parent() == NULL)
+  if (blk->get_parent() == nullptr)
     return name;
 
   return m_parent->get_full_name() + "." + name;
@@ -535,7 +535,7 @@ uvm_mem* uvm_vreg::get_memory() const
 
 int uvm_vreg::get_n_maps() const
 {
-  if (m_mem == NULL)
+  if (m_mem == nullptr)
   {
     UVM_ERROR("RegModel",
         "Cannot call uvm_vreg::get_n_maps() on unimplemented virtual register '" +
@@ -554,7 +554,7 @@ int uvm_vreg::get_n_maps() const
 
 bool uvm_vreg::is_in_map( uvm_reg_map* map ) const
 {
-  if (m_mem == NULL)
+  if (m_mem == nullptr)
   {
     UVM_ERROR("RegModel",
         "Cannot call uvm_vreg::is_in_map() on unimplemented virtual register '" +
@@ -573,7 +573,7 @@ bool uvm_vreg::is_in_map( uvm_reg_map* map ) const
 
 void uvm_vreg::get_maps( std::vector<uvm_reg_map*>& maps ) const
 {
-  if (m_mem == NULL)
+  if (m_mem == nullptr)
   {
     UVM_ERROR("RegModel",
       "Cannot call uvm_vreg::get_maps() on unimplemented virtual register '" +
@@ -607,7 +607,7 @@ void uvm_vreg::get_maps( std::vector<uvm_reg_map*>& maps ) const
 
 std::string uvm_vreg::get_rights( uvm_reg_map* map ) const
 {
-  if (m_mem == NULL)
+  if (m_mem == nullptr)
   {
     UVM_ERROR("RegModel",
       "Cannot call uvm_vreg::get_rights() on unimplemented virtual register '" +
@@ -637,7 +637,7 @@ std::string uvm_vreg::get_rights( uvm_reg_map* map ) const
 
 std::string uvm_vreg::get_access( uvm_reg_map* map ) const
 {
-  if (m_mem == NULL)
+  if (m_mem == nullptr)
   {
     UVM_ERROR("RegModel", "Cannot call uvm_vreg::get_rights() on unimplemented virtual register '" +
        get_full_name() + "'." );
@@ -692,7 +692,7 @@ unsigned int uvm_vreg::get_n_bytes() const
 
 unsigned int uvm_vreg::get_n_memlocs() const
 {
-  if (m_mem == NULL)
+  if (m_mem == nullptr)
   {
     UVM_ERROR("RegModel",
       "Cannot call uvm_vreg::get_n_memlocs() on unimplemented virtual register '" +
@@ -746,7 +746,7 @@ void uvm_vreg::get_fields( std::vector<uvm_vreg_field*>& fields ) const
 //!
 //! Finds a virtual field with the specified name in this virtual register
 //! and returns its abstraction class.
-//! If no fields are found, returns NULL.
+//! If no fields are found, returns nullptr.
 //----------------------------------------------------------------------
 
 uvm_vreg_field* uvm_vreg::get_field_by_name( const std::string& name ) const
@@ -758,7 +758,7 @@ uvm_vreg_field* uvm_vreg::get_field_by_name( const std::string& name ) const
    UVM_WARNING("RegModel",
      "Unable to locate field '" + name + "' in virtual register '" +
      get_full_name() + "'." );
-   return NULL;
+   return nullptr;
 }
 //----------------------------------------------------------------------
 // Member function: get_offset_in_memory
@@ -773,7 +773,7 @@ uvm_vreg_field* uvm_vreg::get_field_by_name( const std::string& name ) const
 
 uvm_reg_addr_t uvm_vreg::get_offset_in_memory( unsigned long idx ) const
 {
-  if (m_mem == NULL)
+  if (m_mem == nullptr)
   {
     UVM_ERROR("RegModel",
         "Cannot call uvm_vreg::get_offset_in_memory() on unimplemented virtual register '" +
@@ -806,7 +806,7 @@ uvm_reg_addr_t uvm_vreg::get_offset_in_memory( unsigned long idx ) const
 uvm_reg_addr_t uvm_vreg::get_address( unsigned long idx,
                                       const uvm_reg_map* map ) const
 {
-  if (m_mem == NULL)
+  if (m_mem == nullptr)
   {
     UVM_ERROR("RegModel",
       "Cannot get address of of unimplemented virtual register '" + get_full_name() + "'." );
@@ -860,7 +860,7 @@ void uvm_vreg::write( unsigned long idx,
   m_fname = fname;
   m_lineno = lineno;
 
-  if (m_mem == NULL)
+  if (m_mem == nullptr)
   {
     UVM_ERROR("RegModel",
         "Cannot write to unimplemented virtual register '" +
@@ -882,7 +882,7 @@ void uvm_vreg::write( unsigned long idx,
     tmp = (value & msk) >> lsb;
 
     f->pre_write(idx, tmp, path, map);
-    for (uvm_vreg_field_cbs* cb = cbsf->first(); cb != NULL;
+    for (uvm_vreg_field_cbs* cb = cbsf->first(); cb != nullptr;
       cb = cbsf->next())
     {
       cb->m_fname = m_fname;
@@ -897,7 +897,7 @@ void uvm_vreg::write( unsigned long idx,
 
   pre_write(idx, value, path, map);
 
-  for( uvm_vreg_cbs* cb = cbs->first(); cb != NULL;
+  for( uvm_vreg_cbs* cb = cbs->first(); cb != nullptr;
     cb = cbs->next())
   {
     cb->m_fname = m_fname;
@@ -922,7 +922,7 @@ void uvm_vreg::write( unsigned long idx,
     lsb += m_mem->get_n_bytes() * 8;
   }
 
-  for( uvm_vreg_cbs* cb = cbs->first(); cb != NULL;
+  for( uvm_vreg_cbs* cb = cbs->first(); cb != nullptr;
     cb = cbs->next())
   {
     cb->m_fname = m_fname;
@@ -941,7 +941,7 @@ void uvm_vreg::write( unsigned long idx,
     msk = uvm_mask_size(f->get_n_bits()) << lsb;
     tmp = (value & msk) >> lsb;
 
-    for (uvm_vreg_field_cbs* cb = cbsf->first(); cb != NULL;
+    for (uvm_vreg_field_cbs* cb = cbsf->first(); cb != nullptr;
         cb = cbsf->next())
     {
       cb->m_fname = m_fname;
@@ -1019,7 +1019,7 @@ void uvm_vreg::read( unsigned long idx,
   m_fname = fname;
   m_lineno = lineno;
 
-  if (m_mem == NULL)
+  if (m_mem == nullptr)
   {
     UVM_ERROR("RegModel",
         "Cannot read from unimplemented virtual register '" +
@@ -1038,7 +1038,7 @@ void uvm_vreg::read( unsigned long idx,
 
     f->pre_read(idx, path, map);
 
-    for( uvm_vreg_field_cbs* cb = cbsf->first(); cb != NULL;
+    for( uvm_vreg_field_cbs* cb = cbsf->first(); cb != nullptr;
       cb = cbsf->next() )
     {
       cb->m_fname = m_fname;
@@ -1051,7 +1051,7 @@ void uvm_vreg::read( unsigned long idx,
 
   pre_read(idx, path, map);
 
-  for( uvm_vreg_cbs* cb = cbs->first(); cb != NULL;
+  for( uvm_vreg_cbs* cb = cbs->first(); cb != nullptr;
     cb = cbs->next() )
   {
     cb->m_fname = m_fname;
@@ -1077,7 +1077,7 @@ void uvm_vreg::read( unsigned long idx,
     lsb += m_mem->get_n_bytes() * 8;
   }
 
-  for (uvm_vreg_cbs* cb = cbs->first(); cb != NULL;
+  for (uvm_vreg_cbs* cb = cbs->first(); cb != nullptr;
     cb = cbs->next())
   {
     cb->m_fname = m_fname;
@@ -1097,7 +1097,7 @@ void uvm_vreg::read( unsigned long idx,
     msk = uvm_mask_size(f->get_n_bits()) << lsb;
     tmp = (value & msk) >> lsb;
 
-    for (uvm_vreg_field_cbs* cb = cbsf->first(); cb != NULL;
+    for (uvm_vreg_field_cbs* cb = cbsf->first(); cb != nullptr;
       cb = cbsf->next())
     {
       cb->m_fname = m_fname;
@@ -1162,7 +1162,7 @@ void uvm_vreg::poke( unsigned long idx,
   m_fname = fname;
   m_lineno = lineno;
 
-  if (m_mem == NULL)
+  if (m_mem == nullptr)
   {
     UVM_ERROR("RegModel",
       "Cannot poke in unimplemented virtual register '" +
@@ -1237,7 +1237,7 @@ void uvm_vreg::peek( unsigned long idx,
   m_fname = fname;
   m_lineno = lineno;
 
-  if (m_mem == NULL)
+  if (m_mem == nullptr)
   {
     UVM_ERROR("RegModel",
       "Cannot peek in from unimplemented virtual register '" +
@@ -1448,8 +1448,8 @@ void uvm_vreg::add_field( uvm_vreg_field* field )
     return;
   }
 
-  if (field == NULL)
-    UVM_FATAL("RegModel", "Attempting to register NULL virtual field");
+  if (field == nullptr)
+    UVM_FATAL("RegModel", "Attempting to register nullptr virtual field");
 
   // Store fields in LSB to MSB order
   offset = field->get_lsb_pos_in_register();
@@ -1625,7 +1625,7 @@ std::string uvm_vreg::convert2string() const
 uvm_object* uvm_vreg::clone()
 {
   UVM_FATAL("RegModel","RegModel virtual register cannot be cloned");
-  return NULL;
+  return nullptr;
 }
 
 //----------------------------------------------------------------------

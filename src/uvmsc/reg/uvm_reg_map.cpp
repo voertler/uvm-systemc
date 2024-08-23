@@ -91,7 +91,7 @@ class reg_rw : public uvm_sequence_item
 // static data member initialization
 //------------------------------------------------------------------------------
 
-uvm_reg_map* uvm_reg_map::m_backdoor = NULL;
+uvm_reg_map* uvm_reg_map::m_backdoor = nullptr;
 
 //----------------------------------------------------------------------
 // Group: Initialization
@@ -106,10 +106,10 @@ uvm_reg_map* uvm_reg_map::m_backdoor = NULL;
 uvm_reg_map::uvm_reg_map( const std::string& name )
   : uvm_object( (name.empty()) ? "default_map" : name )
 {
-  m_parent = NULL;
-  m_adapter = NULL;
-  m_sequencer = NULL;
-  m_parent_map = NULL;
+  m_parent = nullptr;
+  m_adapter = nullptr;
+  m_sequencer = nullptr;
+  m_parent_map = nullptr;
   m_parent_maps.clear();
   m_submaps.clear();
   m_submap_rights.clear();
@@ -301,16 +301,16 @@ void uvm_reg_map::add_submap( uvm_reg_map* child_map,
 {
   uvm_reg_map* parent_map;
 
-  if(child_map == NULL)
+  if(child_map == nullptr)
   {
-    UVM_ERROR("RegModel", "Attempting to add NULL map to map '" + get_full_name() + "'");
+    UVM_ERROR("RegModel", "Attempting to add nullptr map to map '" + get_full_name() + "'");
     return;
   }
 
   parent_map = child_map->get_parent_map();
 
   // Can not have more than one parent (currently)
-  if(parent_map != NULL)
+  if(parent_map != nullptr)
   {
     UVM_ERROR("RegModel", "Map '" +  child_map->get_full_name() +
         "' is already a child of map '" +
@@ -322,7 +322,7 @@ void uvm_reg_map::add_submap( uvm_reg_map* child_map,
 
   // parent_block_check
   uvm_reg_block* child_blk = child_map->get_parent();
-  if (child_blk == NULL)
+  if (child_blk == nullptr)
   {
     UVM_ERROR("RegModel", "Cannot add submap '" + child_map->get_full_name() +
         "' because it does not have a parent block");
@@ -365,13 +365,13 @@ void uvm_reg_map::add_submap( uvm_reg_map* child_map,
 void uvm_reg_map::set_sequencer( uvm_sequencer_base* sequencer,
                                  uvm_reg_adapter* adapter )
 {
-  if( sequencer == NULL )
+  if( sequencer == nullptr )
   {
-    UVM_ERROR("REG_NULL_SQR", "NULL reference specified for bus sequencer");
+    UVM_ERROR("REG_NULL_SQR", "nullptr reference specified for bus sequencer");
     return;
   }
 
-  if( adapter == NULL )
+  if( adapter == nullptr )
   {
     UVM_INFO("REG_NO_ADAPT", "Adapter not specified for map '" + get_full_name() +
         "'. Accesses via this map will send abstract 'uvm_reg_item' items to sequencer '" +
@@ -391,9 +391,9 @@ void uvm_reg_map::set_sequencer( uvm_sequencer_base* sequencer,
 
 void uvm_reg_map::set_submap_offset( uvm_reg_map* submap, uvm_reg_addr_t offset)
 {
-  if( submap == NULL )
+  if( submap == nullptr )
   {
-    UVM_ERROR("REG/NULL","set_submap_offset: submap handle is NULL");
+    UVM_ERROR("REG/NULL","set_submap_offset: submap handle is nullptr");
     return;
   }
 
@@ -417,9 +417,9 @@ uvm_reg_addr_t uvm_reg_map::get_submap_offset( const uvm_reg_map* submap ) const
 {
   uvm_reg_map* map = const_cast<uvm_reg_map*>(submap);
 
-  if(map == NULL)
+  if(map == nullptr)
   {
-    UVM_ERROR("REG/NULL","set_submap_offset: submap handle is NULL");
+    UVM_ERROR("REG/NULL","set_submap_offset: submap handle is nullptr");
     return -1; // TODO is this compatible with the return type?
   }
 
@@ -441,7 +441,7 @@ uvm_reg_addr_t uvm_reg_map::get_submap_offset( const uvm_reg_map* submap ) const
 
 void uvm_reg_map::set_base_addr( uvm_reg_addr_t offset )
 {
-  if(m_parent_map != NULL)
+  if(m_parent_map != nullptr)
   {
     m_parent_map->set_submap_offset(this, offset);
   }
@@ -509,7 +509,7 @@ const std::string uvm_reg_map::get_full_name() const
 {
   std::string name = get_name();
 
-  if(m_parent == NULL)
+  if(m_parent == nullptr)
     return name;
 
   return m_parent->get_full_name() + "." + name;
@@ -528,7 +528,7 @@ const std::string uvm_reg_map::get_full_name() const
 uvm_reg_map* uvm_reg_map::get_root_map() const
 {
   const uvm_reg_map* ret;
-  ret = (m_parent_map == NULL) ? this : m_parent_map->get_root_map();
+  ret = (m_parent_map == nullptr) ? this : m_parent_map->get_root_map();
   return const_cast<uvm_reg_map*>(ret); // TODO avoid this?
 }
 
@@ -551,7 +551,7 @@ uvm_reg_block* uvm_reg_map::get_parent() const
 //! Get the higher-level address map
 //!
 //! Return the address map in which this address map is mapped.
-//! returns NULL if this is a top-level address map.
+//! returns nullptr if this is a top-level address map.
 //----------------------------------------------------------------------
 
 uvm_reg_map* uvm_reg_map::get_parent_map() const
@@ -572,7 +572,7 @@ uvm_reg_addr_t uvm_reg_map::get_base_addr( uvm_hier_e hier ) const
 {
   uvm_reg_addr_t addr;
 
-  if (hier == UVM_NO_HIER || m_parent_map == NULL)
+  if (hier == UVM_NO_HIER || m_parent_map == nullptr)
     return m_base_addr;
 
   addr = m_parent_map->get_submap_offset(this);
@@ -620,7 +620,7 @@ unsigned int uvm_reg_map::get_addr_unit_bytes() const
 
 uvm_endianness_e uvm_reg_map::get_endian( uvm_hier_e hier ) const
 {
-  if (hier == UVM_NO_HIER || m_parent_map == NULL)
+  if (hier == UVM_NO_HIER || m_parent_map == nullptr)
     return m_endian;
 
   return m_parent_map->get_endian(hier);
@@ -636,7 +636,7 @@ uvm_endianness_e uvm_reg_map::get_endian( uvm_hier_e hier ) const
 
 uvm_sequencer_base* uvm_reg_map::get_sequencer( uvm_hier_e hier ) const
 {
-  if (hier == UVM_NO_HIER || m_parent_map == NULL)
+  if (hier == UVM_NO_HIER || m_parent_map == nullptr)
     return m_sequencer;
 
   return m_parent_map->get_sequencer(hier);
@@ -652,7 +652,7 @@ uvm_sequencer_base* uvm_reg_map::get_sequencer( uvm_hier_e hier ) const
 
 uvm_reg_adapter* uvm_reg_map::get_adapter( uvm_hier_e hier ) const
 {
-  if (hier == UVM_NO_HIER || m_parent_map == NULL)
+  if (hier == UVM_NO_HIER || m_parent_map == nullptr)
     return m_adapter;
 
   return m_parent_map->get_adapter(hier);
@@ -820,7 +820,7 @@ int uvm_reg_map::get_physical_addresses( uvm_reg_addr_t base_addr,
                                          std::vector<uvm_reg_addr_t>& addr ) const
 {
   unsigned int bus_width = get_n_bytes(UVM_NO_HIER);
-  uvm_reg_map* up_map = NULL;
+  uvm_reg_map* up_map = nullptr;
   std::vector<uvm_reg_addr_t> local_addr;
   int multiplier = m_byte_addressing ? bus_width : 1;
 
@@ -894,7 +894,7 @@ int uvm_reg_map::get_physical_addresses( uvm_reg_addr_t base_addr,
   up_map = get_parent_map();
 
   // Then translate these addresses in the parent's space
-  if (up_map == NULL)
+  if (up_map == nullptr)
   {
     // This is the top-most system/block!
     for( unsigned int i = 0; i < local_addr.size(); i++ )
@@ -952,7 +952,7 @@ int uvm_reg_map::get_physical_addresses( uvm_reg_addr_t base_addr,
 //!
 //! Identify the register located at the specified offset within
 //! this address map for the specified type of access.
-//! Returns NULL if no such register is found.
+//! Returns nullptr if no such register is found.
 //!
 //! The model must be locked using uvm_reg_block::lock_model()
 //! to enable this functionality.
@@ -965,7 +965,7 @@ uvm_reg* uvm_reg_map::get_reg_by_offset( uvm_reg_addr_t offset,
   {
     UVM_ERROR("RegModel",
       "Cannot get register by offset: Block " + m_parent->get_full_name() + " is not locked.");
-    return NULL;
+    return nullptr;
   }
 
   if (!read && (m_regs_by_offset_wo.find(offset) != m_regs_by_offset_wo.end() )) //exists
@@ -974,7 +974,7 @@ uvm_reg* uvm_reg_map::get_reg_by_offset( uvm_reg_addr_t offset,
   if (m_regs_by_offset.find(offset) != m_regs_by_offset.end()) //exists
     return m_regs_by_offset.find(offset)->second;
 
-  return NULL;
+  return nullptr;
 }
 
 //----------------------------------------------------------------------
@@ -985,7 +985,7 @@ uvm_reg* uvm_reg_map::get_reg_by_offset( uvm_reg_addr_t offset,
 //! Identify the memory located at the specified offset within
 //! this address map. The offset may refer to any memory location
 //! in that memory.
-//! Returns NULL if no such memory is found.
+//! Returns nullptr if no such memory is found.
 //!
 //! The model must be locked using uvm_reg_block::lock_model()
 //! to enable this functionality.
@@ -997,7 +997,7 @@ uvm_mem* uvm_reg_map::get_mem_by_offset( uvm_reg_addr_t offset ) const
   {
     UVM_ERROR("RegModel",
       "Cannot memory register by offset: Block " + m_parent->get_full_name() + " is not locked.");
-    return NULL;
+    return nullptr;
   }
 
   for( m_mems_by_offset_citt it = m_mems_by_offset.begin();
@@ -1010,7 +1010,7 @@ uvm_mem* uvm_reg_map::get_mem_by_offset( uvm_reg_addr_t offset ) const
       return m_mems_by_offset.find(range)->second;
   }
 
-  return NULL;
+  return nullptr;
 }
 
 //----------------------------------------------------------------------
@@ -1210,15 +1210,15 @@ void uvm_reg_map::do_bus_write( uvm_reg_item* rw,
 
       adapter->m_set_item(rw);
       bus_req = adapter->reg2bus(rw_access);
-      adapter->m_set_item(NULL);
+      adapter->m_set_item(nullptr);
 
-      if (bus_req == NULL)
+      if (bus_req == nullptr)
         UVM_FATAL("RegMem","adapter [" + adapter->get_name() + "] did not return a bus transaction");
 
       bus_req->set_sequencer(sequencer);
       rw->parent->start_item(bus_req, rw->prior);
 
-      if (rw->parent != NULL && i == 0)
+      if (rw->parent != nullptr && i == 0)
         rw->parent->mid_do(rw);
 
       rw->parent->finish_item(bus_req);
@@ -1236,7 +1236,7 @@ void uvm_reg_map::do_bus_write( uvm_reg_item* rw,
       else
         adapter->bus2reg(bus_req, rw_access);
 
-       if (rw->parent != NULL && i == addrs.size()-1)
+       if (rw->parent != nullptr && i == addrs.size()-1)
         rw->parent->post_do(rw);
 
       rw->status = rw_access.status;
@@ -1364,15 +1364,15 @@ void uvm_reg_map::do_bus_read( uvm_reg_item* rw,
 
       adapter->m_set_item(rw);
       bus_req = adapter->reg2bus(rw_access);
-      adapter->m_set_item(NULL);
+      adapter->m_set_item(nullptr);
 
-      if (bus_req == NULL)
+      if (bus_req == nullptr)
         UVM_FATAL("RegMem","Adapter [" + adapter->get_name() + "] did not return a bus transaction");
 
       bus_req->set_sequencer(sequencer);
       rw->parent->start_item(bus_req, rw->prior);
 
-      if (rw->parent != NULL && i == 0)
+      if (rw->parent != nullptr && i == 0)
         rw->parent->mid_do(rw);
 
       rw->parent->finish_item(bus_req);
@@ -1420,7 +1420,7 @@ void uvm_reg_map::do_bus_read( uvm_reg_item* rw,
       val |= val2;
       rw->value[val_idx] = val;
 
-      if (rw->parent != NULL && i == addrs.size()-1)
+      if (rw->parent != nullptr && i == addrs.size()-1)
         rw->parent->post_do(rw);
 
       curr_byte += bus_width;
@@ -1443,12 +1443,12 @@ void uvm_reg_map::do_bus_read( uvm_reg_item* rw,
 
 void uvm_reg_map::do_write( uvm_reg_item* rw )
 {
-  uvm_sequence_base* tmp_parent_seq = NULL;
+  uvm_sequence_base* tmp_parent_seq = nullptr;
   uvm_reg_map* system_map = get_root_map();
   uvm_reg_adapter* adapter = system_map->get_adapter();
   uvm_sequencer_base* sequencer = system_map->get_sequencer();
 
-  if (adapter != NULL && adapter->parent_sequence != NULL)
+  if (adapter != nullptr && adapter->parent_sequence != nullptr)
   {
     uvm_object* obj = adapter->parent_sequence->clone();
     uvm_sequence_base* seq = dynamic_cast<uvm_sequence_base*>(obj);
@@ -1459,14 +1459,14 @@ void uvm_reg_map::do_write( uvm_reg_item* rw )
     tmp_parent_seq = seq;
   }
 
-  if (rw->parent == NULL)
+  if (rw->parent == nullptr)
   {
      uvm_sequence_base* seq = new uvm_sequence_base("default_parent_seq");
      rw->parent = seq;
      tmp_parent_seq = rw->parent;
   }
 
-  if (adapter == NULL)
+  if (adapter == nullptr)
   {
     rw->set_sequencer(sequencer);
     rw->parent->start_item(rw, rw->prior);
@@ -1476,7 +1476,7 @@ void uvm_reg_map::do_write( uvm_reg_item* rw )
   else
     do_bus_write(rw, sequencer, adapter);
 
-  if (tmp_parent_seq != NULL)
+  if (tmp_parent_seq != nullptr)
     sequencer->m_sequence_exiting(tmp_parent_seq);
 }
 
@@ -1488,12 +1488,12 @@ void uvm_reg_map::do_write( uvm_reg_item* rw )
 
 void uvm_reg_map::do_read( uvm_reg_item* rw )
 {
-  uvm_sequence_base* tmp_parent_seq = NULL;
+  uvm_sequence_base* tmp_parent_seq = nullptr;
   uvm_reg_map* system_map = get_root_map();
   uvm_reg_adapter* adapter = system_map->get_adapter();
   uvm_sequencer_base* sequencer = system_map->get_sequencer();
 
-  if (adapter != NULL && adapter->parent_sequence != NULL)
+  if (adapter != nullptr && adapter->parent_sequence != nullptr)
   {
     uvm_object* obj = adapter->parent_sequence->clone();
     uvm_sequence_base* seq = dynamic_cast<uvm_sequence_base*>(obj);
@@ -1504,14 +1504,14 @@ void uvm_reg_map::do_read( uvm_reg_item* rw )
     tmp_parent_seq = seq;
   }
 
-  if (rw->parent == NULL)
+  if (rw->parent == nullptr)
   {
     uvm_sequence_base* seq = new uvm_sequence_base("default_parent_seq");
     rw->parent = seq; // TODO check/delete afterwards
     tmp_parent_seq = rw->parent;
   }
 
-  if (adapter == NULL)
+  if (adapter == nullptr)
   {
     rw->set_sequencer(sequencer);
     rw->parent->start_item(rw, rw->prior);
@@ -1521,7 +1521,7 @@ void uvm_reg_map::do_read( uvm_reg_item* rw )
   else
     do_bus_read(rw, sequencer, adapter);
 
-  if (tmp_parent_seq != NULL)
+  if (tmp_parent_seq != nullptr)
     sequencer->m_sequence_exiting(tmp_parent_seq);
 }
 
@@ -1558,14 +1558,14 @@ uvm_reg_map::~uvm_reg_map()
 void uvm_reg_map::add_parent_map( uvm_reg_map* parent_map,
                                   uvm_reg_addr_t offset )
 {
-  if (parent_map == NULL)
+  if (parent_map == nullptr)
   {
     UVM_ERROR("RegModel",
-       "Attempting to add NULL parent map to map '" + get_full_name() + "'");
+       "Attempting to add nullptr parent map to map '" + get_full_name() + "'");
         return;
   }
 
-  if (m_parent_map != NULL)
+  if (m_parent_map != nullptr)
   {
     std::ostringstream str;
     str << "Map '"
@@ -1597,13 +1597,13 @@ void uvm_reg_map::m_verify_map_config() const
 
    uvm_reg_map* root_map = get_root_map();
 
-   if (root_map->get_adapter() == NULL)
+   if (root_map->get_adapter() == nullptr)
    {
       UVM_ERROR("RegModel", "Map '" + root_map->get_full_name() +
         "' does not have an adapter registered");
       error++;
    }
-   if (root_map->get_sequencer() == NULL)
+   if (root_map->get_sequencer() == nullptr)
    {
       UVM_ERROR("RegModel", "Map '" + root_map->get_full_name() +
         "' does not have a sequencer registered");
@@ -1904,7 +1904,7 @@ void uvm_reg_map::m_set_mem_offset( uvm_mem* mem,
 
 uvm_reg_map_info* uvm_reg_map::get_reg_map_info( const uvm_reg* rg, bool error ) const
 {
-  uvm_reg_map_info* result = NULL;
+  uvm_reg_map_info* result = nullptr;
   uvm_reg* reg = const_cast<uvm_reg*>(rg);
 
   if (m_regs_info.find(reg) == m_regs_info.end()) // not exists
@@ -1912,7 +1912,7 @@ uvm_reg_map_info* uvm_reg_map::get_reg_map_info( const uvm_reg* rg, bool error )
     if (error)
       UVM_ERROR("REG_NO_MAP","Register '" + reg->get_name() +
           "' not in map '" + get_name() + "'");
-    return NULL;
+    return nullptr;
   }
 
   result = m_regs_info.find(reg)->second;
@@ -1939,7 +1939,7 @@ uvm_reg_map_info* uvm_reg_map::get_mem_map_info( const uvm_mem* mem, bool error 
   {
     if (error)
       UVM_ERROR("REG_NO_MAP", "Memory '" + lmem->get_name() + "' not in map '" + get_name() + "'");
-    return NULL;
+    return nullptr;
   }
   return m_mems_info.find(lmem)->second;
 }
@@ -2004,7 +2004,7 @@ unsigned int uvm_reg_map::get_size() const
 
 uvm_reg_map* uvm_reg_map::backdoor()
 {
-   if (m_backdoor == NULL)
+   if (m_backdoor == nullptr)
      m_backdoor = new uvm_reg_map("Backdoor");
 
    return m_backdoor;
@@ -2025,7 +2025,7 @@ void uvm_reg_map::m_get_bus_info( uvm_reg_item* rw,
   if (rw->element_kind == UVM_MEM)
   {
     uvm_mem* mem = dynamic_cast<uvm_mem*>(rw->element);
-    if(rw->element == NULL || mem == NULL )
+    if(rw->element == nullptr || mem == nullptr )
       UVM_FATAL("REG/CAST", "uvm_reg_item 'element_kind' is UVM_MEM, but 'element' does not point to a memory: "
         + rw->get_name() );
     map_info = get_mem_map_info(mem);
@@ -2036,7 +2036,7 @@ void uvm_reg_map::m_get_bus_info( uvm_reg_item* rw,
     {
       uvm_reg* rg;
       rg = dynamic_cast<uvm_reg*>(rw->element);
-      if(rw->element == NULL || rg == NULL)
+      if(rw->element == nullptr || rg == nullptr)
         UVM_FATAL("REG/CAST", "uvm_reg_item 'element_kind' is UVM_REG, but 'element' does not point to a register: "
           + rw->get_name() );
       map_info = get_reg_map_info(rg);
@@ -2046,7 +2046,7 @@ void uvm_reg_map::m_get_bus_info( uvm_reg_item* rw,
       if (rw->element_kind == UVM_FIELD)
       {
         uvm_reg_field* field = dynamic_cast<uvm_reg_field*>(rw->element);
-        if(rw->element == NULL || field == NULL)
+        if(rw->element == nullptr || field == nullptr)
           UVM_FATAL("REG/CAST", "uvm_reg_item 'element_kind' is UVM_FIELD, but 'element' does not point to a field: "
             + rw->get_name() );
         map_info = get_reg_map_info(field->get_parent());
@@ -2330,7 +2330,7 @@ uvm_object* uvm_reg_map::clone()
   //uvm_rag_map* me; // TODO reg_map clone
   //me = new this;
   //return me;
-  return NULL; // dummy
+  return nullptr; // dummy
 }
 
 //----------------------------------------------------------------------
@@ -2363,7 +2363,7 @@ void uvm_reg_map::do_print( const uvm_printer& printer ) const
 
   printer.print_generic("endian", "", -2, std::string(uvm_endianness_name[endian]) );
 
-  if( sqr != NULL )
+  if( sqr != nullptr )
     printer.print_generic("effective sequencer", sqr->get_type_name(), -2, sqr->get_full_name());
 
   get_registers(regs, UVM_NO_HIER);
@@ -2422,7 +2422,7 @@ void uvm_reg_map::do_copy( const uvm_object& rhs )
   /* TODO do_copy
   uvm_reg_map* rhs_ = dynamic_cast<uvm_reg_map*>(&rhs)
 
-  if (rhs_ == NULL)
+  if (rhs_ == nullptr)
     UVM_ERROR("");
 
   rhs_->regs = regs;
