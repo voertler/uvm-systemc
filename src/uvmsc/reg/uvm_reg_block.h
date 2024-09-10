@@ -305,7 +305,13 @@ class uvm_reg_block : public uvm_object
 
   void add_map( uvm_reg_map* map );
 
+#if defined(ALLOW_NON_IEEE_1800_2_2020)
+ public:
+#endif
   void add_reg( uvm_reg* rg );
+#if defined(ALLOW_NON_IEEE_1800_2_2020)
+ private:
+#endif
 
   void add_vreg( uvm_vreg* vreg );
 
