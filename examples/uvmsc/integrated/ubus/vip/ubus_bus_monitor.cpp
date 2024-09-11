@@ -276,6 +276,7 @@ void ubus_bus_monitor::check_which_slave()
     if ((slave->get_min_addr() <= trans_addr) and
         (trans_addr <= slave->get_max_addr()))
     {
+      trans_collected.slave = name;
       slave_found = true;
       break;
     }
