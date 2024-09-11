@@ -269,32 +269,24 @@ void ubus_bus_monitor::collect_data_phase()
 
 void ubus_bus_monitor::check_which_slave()
 {
-  std::string slave_name;
   bool slave_found = false;
-
-  slave_addr_map_it it = slave_addr_map.begin();
-  slave_name = it->first;
-  if(!slave_name.empty())
+  auto trans_addr = trans_collected.addr;
+  for (auto const &[name, slave]: slave_addr_map)
   {
-    do
+    if ((slave->get_min_addr() <= trans_addr) and
+        (trans_addr <= slave->get_max_addr()))
     {
-      if ( (slave_addr_map[slave_name]->get_min_addr() <= trans_collected.addr)
-          && (trans_collected.addr <= slave_addr_map[slave_name]->get_max_addr() ) )
-      {
-        trans_collected.slave = slave_name;
-        slave_found = true;
-      }
-      if (slave_found) break;
-      it++;
+      slave_found = true;
+      break;
     }
-    while (it != slave_addr_map.end());
-    assert(slave_found);
   }
-  else
+
+  if (not slave_found)
   {
     std::ostringstream msg;
-    msg << "Master attempted a transfer at illegal address 0x"
-        << std::hex << trans_collected.addr.to_uint64();
+    msg
+      << "Master attempted a transfer at illegal address 0x"
+      << std::hex << trans_collected.addr.to_uint64();
     UVM_ERROR(get_type_name(), msg.str());
   }
 }
