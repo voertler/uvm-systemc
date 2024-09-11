@@ -1,18 +1,14 @@
-UVM-SystemC Release Notes
-=========================
+# UVM-SystemC Release Notes
 
 July 01, 2024
 
-License
--------
+## License
 
 This library is licensed under the Apache Software Foundations Apache License, 
 Version 2.0, January 2004. 
 The full license is available at: http://www.apache.org/licenses/
 
-
-Disclaimer
-----------
+## Disclaimer
 
 THE CONTRIBUTORS AND THEIR LICENSORS MAKE NO WARRANTY OF ANY KIND WITH REGARD
 TO THIS MATERIAL, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
@@ -22,9 +18,7 @@ MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 AT YOUR OWN RISK. THIS SOFTWARE SHALL BE SOLELY USED FOR STUDY PURPOSES AND 
 SHALL NOT BE USED IN ANY PRODUCTION ENVIRONMENT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-
-Acknowledgements
-----------------
+## Acknowledgements
 
 The creation of this document has been supported by the European Commission as 
 part of the Seventh Framework Programme (FP7) for Research and Technological 
@@ -47,14 +41,12 @@ for the initial donation of the UVM-SC Library Reference and documentation
 and further enhanced and extended to make it compatible with the UVM 1.1 
 standard.
 
-What's new in this release?
----------------------------
+## What's new in this release?
 
 Compared to the 1.0-beta5 release, this release adds:
   - Bugfixes
 
-Known bugs
-----------
+## Known bugs
 The simple/registers/models/aliasing test is failing in case the TODO section
 from its source file tb_test.h is uncommented. This test has been literally
 copied from UVM-SystemVerilog. We doubt whether this test case passes in the
@@ -62,16 +54,14 @@ UVM-SystemVerilog environment, and if it does, whether it should. See [1].
 
 [1]: https://forums.accellera.org/topic/7400-clarification-needed-on-mix-between-bit-bash-sequence-and-single-register-write/
 
-Bugs and Suggestions
---------------------
+## Bugs and Suggestions
 
 Please report bugs and suggestions about this library to:
 
   uvm-systemc-feedback@lists.accellera.org
 
 
-Library status
---------------
+## Library status
 
 This library is in beta status, which means not all UVM functions are implemented
 nor tested. The list below gives an overview of the UVM functionality and their 
