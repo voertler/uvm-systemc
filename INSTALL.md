@@ -97,7 +97,7 @@ To install UVM-SystemC on a Linux system, do the following steps:
         > ../configure
      ```
 
-     While the 'configure' script is running, which takes a few moments,
+     While the `configure` script is running, which takes a few moments,
      it prints messages to inform you of the features it is checking.
      It also detects the platform.
 
@@ -111,9 +111,9 @@ To install UVM-SystemC on a Linux system, do the following steps:
      ```
 
 >    **Note for System V users**
->    If you are using `csh' on an older version of System V, you might
->    need to use the `sh ../configure' command instead of '../configure'.
->    Otherwise, `csh' will attempt to `configure' itself.
+>    If you are using `csh` on an older version of System V, you might
+>    need to use the `sh ../configure` command instead of `../configure`.
+>    Otherwise, `csh` will attempt to `configure` itself.
 
 >    **Note**
 >    As IEEE Std. 1666-2023 mandates C++17 as the baseline for SystemC
@@ -211,21 +211,21 @@ above:
 
 ## Running the Examples
 
-The UVM-SystemC examples reside in the directory 'examples', within
+The UVM-SystemC examples reside in the directory `examples`, within
 the temporary directory which was used for the installation
 (e.g. objdir).
 
-Use the makefiles provided in the 'examples' directory as templates
+Use the makefiles provided in the `examples` directory as templates
 for makefiles you need for compiling your own examples. In order to
 run these example, the environment variable SYSTEMC_HOME should be
-set beforehand. The examples can be executed by using 'make check'.
+set beforehand. The examples can be executed by using `make check`.
 
 ## Using the Configure Script
 
-The `configure' shell script tries to determine the correct values for
+The `configure` shell script tries to determine the correct values for
 various system-dependent variables used during compilation. It uses
-these values to create a `Makefile' in each directory of the package.
-It also creates one or more `.h' files containing system-dependent
+these values to create a `Makefile` in each directory of the package.
+It also creates one or more `.h` files containing system-dependent
 definitions if needed. Then, it creates the following files:
 
   config.status         A shell script that you can run at another time to
@@ -247,30 +247,30 @@ the commands you used to the email address provided in the README file.
 This information will be used to improve the installation process in
 the next release.
 
-The `configure.in' file is provided in case you want to change or regenerate
-the `configure' script, for example to use a newer version of `autoconf'.
-The `configure.in' file is used by the `autoconf' program to create the
-`configure' script.
+The `configure.in` file is provided in case you want to change or regenerate
+the `configure` script, for example to use a newer version of `autoconf`.
+The `configure.in` file is used by the `autoconf` program to create the
+`configure` script.
 
 > **Note for developers**
 > 
->   In case you have changed the `configure.in' file or one of the
->   `Makefile.am' files:
+>   In case you have changed the `configure.in` file or one of the
+>   `Makefile.am` files:
 > 
->   - Use the `config/distclean' script to remove the generated `configure'
->     script, the generated `aclocal.m4' file and the generated `Makefile.in'
+>   - Use the `config/distclean` script to remove the generated `configure`
+>     script, the generated `aclocal.m4` file and the generated `Makefile.in`
 >     files.
 > 
->   - Use the `config/bootstrap' script to generate the `configure' script
->     and the necessary `Makefile.in' files. This script makes use of the
->     GNU auto-tools `aclocal', `automake', and `autoconf'.
+>   - Use the `config/bootstrap` script to generate the `configure` script
+>     and the necessary `Makefile.in` files. This script makes use of the
+>     GNU auto-tools `aclocal`, `automake`, and `autoconf`.
 
 ## Compilation and Linking Options
 
-Some systems require compilation or linking options that the `configure'
+Some systems require compilation or linking options that the `configure`
 script does not define. You can define the initial values for these
 options by setting them in your environment before running the
-`configure' script.
+`configure` script.
 
 Using a Bourne-compatible shell, the command line entry might be:
 
@@ -278,7 +278,7 @@ Using a Bourne-compatible shell, the command line entry might be:
         > CC=c89 CFLAGS=-O2 LIBS=-lposix ../configure
      ```
 
-Or, on systems that have the `env' program, the command line entry might be:
+Or, on systems that have the `env` program, the command line entry might be:
 
      ```
         > env CPPFLAGS=-I/usr/local/include LDFLAGS=-s ../configure
@@ -286,71 +286,71 @@ Or, on systems that have the `env' program, the command line entry might be:
 
 ## Specifying the System Type
 
-Some features cannot be automatically determined by `configure' unless
+Some features cannot be automatically determined by `configure` unless
 it can detect the host type on which the package will run.
 If it prints a message that it cannot determine the host type,
-use the `--host=TYPE' option to define it. TYPE can either be a
-short system name, such as `sun4', or a canonical name with three fields:
+use the `--host=TYPE` option to define it. TYPE can either be a
+short system name, such as `sun4`, or a canonical name with three fields:
 
      CPU-COMPANY-SYSTEM
 
-See the `config.sub' file for details about the values of each field. If
-the `config.sub' file is not included in the package, the package does not
+See the `config.sub` file for details about the values of each field. If
+the `config.sub` file is not included in the package, the package does not
 need to know the host type.
 
 If you are building compiler tools for cross-compiling, you can also
-use the `--target=TYPE' option to select the type of system for which
-the code is produced and the `--build=TYPE' option to select the type of
+use the `--target=TYPE` option to select the type of system for which
+the code is produced and the `--build=TYPE` option to select the type of
 system on which you are compiling the package.
 
 ## Sharing Defaults
 
-You can set the default values that `configure' scripts share by
-creating a site shell script called `config.site'. This file contains the
-default values for variables like `CC', `cache_file', and `prefix'.
-The `configure' script looks for the `config.site' file in the following
+You can set the default values that `configure` scripts share by
+creating a site shell script called `config.site`. This file contains the
+default values for variables like `CC`, `cache_file`, and `prefix`.
+The `configure` script looks for the `config.site` file in the following
 search precedence:
 
   1. PREFIX/share/config.site
 
   2. PREFIX/etc/config.site
 
-Alternatively, you can set the `CONFIG_SITE' environment variable to the
+Alternatively, you can set the `CONFIG_SITE` environment variable to the
 site script path.
 
 > **Note** 
-> The `configure' script for some systems does not look for a site script.
+> The `configure` script for some systems does not look for a site script.
 
 ## Operation Controls
 
-The `configure' script recognizes the following options to control its
+The `configure` script recognizes the following options to control its
 operation:
 
-`--cache-file=FILE'
+`--cache-file=FILE`
         Use and save the test results in FILE instead of
-        `./config.cache'. Set FILE to `/dev/null' to disable caching
-        when debugging `configure'.
+        `./config.cache`. Set FILE to `/dev/null` to disable caching
+        when debugging `configure`.
 
-`--help'
-        Print a summary of `configure' options and exit.
+`--help`
+        Print a summary of `configure` options and exit.
 
-`--quiet'
-`--silent'
-`-q'
+`--quiet`
+`--silent`
+`-q`
         Do not print messages about checks being made.
-        To suppress all normal output, redirect it to `/dev/null'.
+        To suppress all normal output, redirect it to `/dev/null`.
         Error messages continue to print.
 
-`--srcdir=DIR'
+`--srcdir=DIR`
         Look for the package's source code in directory DIR.
-        Typically `configure' determines the directory automatically.
+        Typically `configure` determines the directory automatically.
 
-`--version'
-        Print the version of `autoconf' used to generate the `configure'
+`--version`
+        Print the version of `autoconf` used to generate the `configure`
         script and exit.
 
-Other options that are rarely used are available in the `configure' script.
-Use the `--help' option to print a list.
+Other options that are rarely used are available in the `configure` script.
+Use the `--help` option to print a list.
 
 
 # Installation Notes for Windows 10
@@ -378,26 +378,26 @@ Set the following environment variable(s) under Windows:
 
 ## Microsoft Visual Studio C++ 2015 or later
 
-The root directory contains two subdirectories: 'msvc14' and 'examples'.
+The root directory contains two subdirectories: `msvc14` and `examples`.
 
-The 'msvc14' subdirectory 'uvmsc' contains the project and workspace files to
-compile the 'uvm-systemc.lib' library. Double-click on the 'uvm-systemc.sln'
+The `msvc14` subdirectory `uvmsc` contains the project and workspace files to
+compile the `uvm-systemc.lib` library. Double-click on the `uvm-systemc.sln`
 file to launch Visual Studio C++ 2015 with the workspace file. The workspace file
 will have the proper switches set to compile for Visual Studio C++ 2015.
-Select 'Build uvm-systemc' under the Build menu or press F7 to build
-`uvm-systemc.lib'.
+Select `Build uvm-systemc` under the Build menu or press F7 to build
+`uvm-systemc.lib`.
 
 
 ## Running the Examples in Microsoft Visual Studio C++
 
-The UVM-SystemC examples reside in the directory 'examples' at the
+The UVM-SystemC examples reside in the directory `examples` at the
 highest level of the installation.
 
 Each examples contain the project and workspace files in the subdirectory
-'msvc14'. Go to one of these examples subdirectories and double-click on
+`msvc14`. Go to one of these examples subdirectories and double-click on
 the .vcxproj file to launch Visual Studio C++ with the workspace file. The
 workspace file will have the proper switches set to compile for Visual
-Studio C++ 2015. Select 'Build <example>.exe' under the Build menu or press F7
+Studio C++ 2015. Select `Build <example>.exe` under the Build menu or press F7
 to build the example executable.
 
 ## Creating UVM-SystemC Applications in Microsoft Visual Studio C++
@@ -407,43 +407,43 @@ to build the example executable.
    then click OK.
 
 2. Select the Application Settings page of the Win32 Application Wizard
-   and make sure the 'Empty project' box is ticked. Click 'Finish' to
+   and make sure the `Empty project` box is ticked. Click `Finish` to
    complete the wizard.
 
 3. Add new/existing C++ files to the project and edit code.
 
-4. Display the project Property Pages by selecting 'Properties...' from
+4. Display the project Property Pages by selecting `Properties...` from
    the Project menu.
 
 5. Select in Configuration to set the properties for Debug or Release
    
 6. From the C/C++ tab, select the General properties and set
-   'Detect 64-bit Portability Issues' to No
+   `Detect 64-bit Portability Issues` to No
 
 7. From the C/C++ tab, select the General properties and add to
-   'Additional Include Directories' the path 
-   '$(UVMSYSTEMC)\..\src;$(SYSTEMC)\..\src;'
+   `Additional Include Directories` the path 
+   `$(UVMSYSTEMC)\..\src;$(SYSTEMC)\..\src;`
    
 8. From the C/C++ tab, select the Code Generation and set
-   'Runtime Library' to 'Multi-threaded DLL (/MD)' in case of a Release 
-   Configuration or 'Multi-threaded Debug DLL (/MDd)' in case of a Debug 
+   `Runtime Library` to `Multi-threaded DLL (/MD)` in case of a Release 
+   Configuration or `Multi-threaded Debug DLL (/MDd)` in case of a Debug 
    Configuration
 
 9. From the C/C++ tab, select the Language properties and set
-   'Enable Run-Time Type Info' to Yes (/GR)
+   `Enable Run-Time Type Info` to Yes (/GR)
 
 10. From the C/C++ tab, select the Command Line properties and add /vmg
-    to the 'Additional Options:' box.
+    to the `Additional Options:` box.
 
 11. From the Linker tab, select the General properties and add to 
-    'Additional Library Directories' the path 
-    '$(SYSTEMC)\SystemC\Release;$(UVMSYSTEMC)\uvmsc\Release;'
+    `Additional Library Directories` the path 
+    `$(SYSTEMC)\SystemC\Release;$(UVMSYSTEMC)\uvmsc\Release;`
     
 12. From the Linker tab, select the Input properties and add to 
-    'Additional Dependencies' the files 'systemc.lib;uvm-systemc.lib;'
+    `Additional Dependencies` the files `systemc.lib;uvm-systemc.lib;`
 
 13. From the Linker tab, select the System properties and set 
-    'Subsystem' to 'Console (/SUBSYSTEM:CONSOLE)'
+    `Subsystem` to `Console (/SUBSYSTEM:CONSOLE)`
 
 14. Click OK. If necessary repeat the same steps for Configuration Debug 
     or Release
