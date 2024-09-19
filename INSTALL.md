@@ -70,32 +70,32 @@ To install UVM-SystemC on a Linux system, do the following steps:
 
   2. Create a temporary directory, e.g.,
 
-     ```
+```
         > mkdir objdir
-     ```
+```
 
   3. Change to the temporary directory, e.g.,
 
-     ```
+```
         > cd objdir
-     ```
+```
 
   4. Set the following environment variable(s):
 
      For gcc compilers on Linux:
 
-     ```
+```
         > setenv CXX g++
-     ```
+```
 
      You can also specify an absolute path to the compiler of your choice.
 
   5. Configure the package for your system, e.g.,
      (The configure script is explained below.)
 
-     ```
+```
         > ../configure
-     ```
+```
 
      While the `configure` script is running, which takes a few moments,
      it prints messages to inform you of the features it is checking.
@@ -106,9 +106,9 @@ To install UVM-SystemC on a Linux system, do the following steps:
      the configure script cannot find SystemC, it will stop. You can specify
      the path to the SystemC installation directory as follows:
 
-     ```
+```
         > ../configure --with-systemc=/path/to/your/systemc
-     ```
+```
 
 >    **Note for System V users**
 >    If you are using `csh` on an older version of System V, you might
@@ -120,24 +120,24 @@ To install UVM-SystemC on a Linux system, do the following steps:
 >    implementations, make sure you enable the compiler flag to select C++17
 >    for UVM-SystemC as well, e.g.:
 
-     ```
+```
         > ../configure 'CXXFLAGS=-std=c++17'
-     ```
+```
 
      In case you want to install the package in another place than the
      top level directory, configure the package e.g. as
      follows:
 
-     ```
+```
         > ../configure --prefix=/usr/local/uvm-systemc
-     ```
+```
 
 >    **Note**
 >    Make sure you have created the target directory before installing the
 >    package. Do _not_ use /usr/local as a prefix.
 
      See the section on the general usage of the configure script and
-     "../configure --help" for more information.
+     `../configure --help` for more information.
 
 >    **Note**
 >    If you change the configuration after having compiled the package already,
@@ -145,9 +145,9 @@ To install UVM-SystemC on a Linux system, do the following steps:
 
   6. Compile the package.
 
-     ```
+```
         > gmake
-     ```
+```
 
 >    **Note**
 >    The explicit gmake targets "opt" and "debug", etc. have been removed in
@@ -156,26 +156,26 @@ To install UVM-SystemC on a Linux system, do the following steps:
 
   7. Install the package.
 
-     ```
+```
         > gmake install
-     ```
+```
 
   8. At this point you may wish to verify the installation by
      testing the example suite.
 
-     ```
+```
         > gmake check
-     ```
+```
 
      This will compile and run the examples in the subdirectory
      examples.
 
   9. You can now remove the temporary directory, .e.g,
 
-     ```
+```
         > cd ..
         > rm -rf objdir
-     ```
+```
 
      Alternatively, you can keep the temporary directory to allow
      you to:
@@ -185,15 +185,15 @@ To install UVM-SystemC on a Linux system, do the following steps:
      b) Later uninstall the package. To clean up the temporary
         directory, enter:
 
-     ```
+```
             > gmake clean
-     ```
+```
 
         To uninstall the package, enter:
 
-     ```
+```
             > gmake uninstall
-     ```
+```
 
 
 ## Known issues
@@ -203,10 +203,10 @@ error message complaining about automake incompatibilities: Please reset the
 timestamps of relevant files before step 5 of the basic installation steps
 above:
 
- ```
+```
     > touch aclocal.m4 configure
     > find . -name Makefile.in -exec touch {} \;
- ```
+```
 
 
 ## Running the Examples
@@ -228,17 +228,18 @@ these values to create a `Makefile` in each directory of the package.
 It also creates one or more `.h` files containing system-dependent
 definitions if needed. Then, it creates the following files:
 
-  config.status         A shell script that you can run at another time to
-                        recreate the current configuration.
+* config.status:
+    A shell script that you can run at another time to recreate the current
+    configuration.
+* config.cache:
+    A file in which the configure test results are saved to speed up
+    reconfiguration.
+    Data is appended to the config.cache file.
+    You can remove unwanted data.
 
-  config.cache          A file in which the configure test results are
-                        saved to speed up reconfiguration.
-
-                        Data is appended to the config.cache file.
-                        You can remove unwanted data.
-
-  config.log            A file in which compiler output is saved.
-                        This is used to debug the configure script.
+* config.log:
+    A file in which compiler output is saved. This is used to debug the
+    configure script.
 
 If you need to use other commands to successfully compile the package
 on your system, please try to determine if the configure script can be used
@@ -274,15 +275,15 @@ options by setting them in your environment before running the
 
 Using a Bourne-compatible shell, the command line entry might be:
 
-     ```
+```
         > CC=c89 CFLAGS=-O2 LIBS=-lposix ../configure
-     ```
+```
 
 Or, on systems that have the `env` program, the command line entry might be:
 
-     ```
+```
         > env CPPFLAGS=-I/usr/local/include LDFLAGS=-s ../configure
-     ```
+```
 
 ## Specifying the System Type
 
@@ -365,7 +366,7 @@ UVM-SystemC was tested on the following Windows platforms against SystemC 2.3.3,
  ----------------------------------------------
  Windows 10 |   x  |   x  |    x     |    x
 
-Note: SystemC 3.0.0 requires at least VS2019 for C++17 support.
+> **Note** SystemC 3.0.0 requires at least VS2019 for C++17 support.
 
 Set the following environment variable(s) under Windows:
 
