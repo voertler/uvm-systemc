@@ -5,8 +5,8 @@
 # Installation notes for UVM-SystemC
 
 **Contents**
- * Installation Notes for Linux
- * Installation Notes for Windows
+* Installation Notes for Linux
+* Installation Notes for Windows
 
 # Installation Notes for Linux
 
@@ -36,178 +36,151 @@ required to build against SystemC 3.0.0.
 To build, install, and use UVM-SystemC on UNIX platforms, you need
 the following tools:
 
-  1. GNU C++ compiler or Clang compiler with C++11 support.
+1. GNU C++ compiler or Clang compiler with C++11 support.
 
-  2. GNU Make (gmake)
+2. GNU Make (gmake)
 
-  3. Accellera Systems Initiative SystemC reference implementation
-     version 2.3.3, 2.3.4 or 3.0.0
+3. Accellera Systems Initiative SystemC reference implementation version 2.3.3,
+2.3.4 or 3.0.0
 
 GCC, Clang, and gmake are free software that you can
 obtain from the following sources:
 
-  GCC           http://www.gnu.org/software/gcc/gcc.html
-
-  Clang         http://clang.llvm.org/
-
-  gmake         http://www.gnu.org/software/make/make.html
+* GCC: http://www.gnu.org/software/gcc/gcc.html
+* Clang: http://clang.llvm.org/
+* gmake: http://www.gnu.org/software/make/make.html
 
 The SystemC reference implementations are available under Apache License
 Version 2.0 and can be obtained from the following location:
 
-  SystemC       https://www.accellera.org/downloads/standards/systemc
+* SystemC: https://www.accellera.org/downloads/standards/systemc
 
 > **Note**
->  Various EDA vendors natively support SystemC. Please consult your EDA vendors
->  to make use of the build-in SystemC capabilities of their simulation
->  framework.
+> Various EDA vendors natively support SystemC. Please consult your EDA vendors
+> to make use of the build-in SystemC capabilities of their simulation
+> framework.
 
 ## Basic UVM-SystemC Installation
 
 To install UVM-SystemC on a Linux system, do the following steps:
 
-  1. Change to the top level directory
+1. Change to the top level directory
 
-  2. Create a temporary directory, e.g.,
-
+2. Create a temporary directory, e.g.,
 ```
         > mkdir objdir
 ```
 
-  3. Change to the temporary directory, e.g.,
-
+3. Change to the temporary directory, e.g.,
 ```
         > cd objdir
 ```
 
-  4. Set the following environment variable(s):
-
-     For gcc compilers on Linux:
-
+4. Set the following environment variable(s); for gcc compilers on Linux:
 ```
         > setenv CXX g++
 ```
+> You can also specify an absolute path to the compiler of your choice.
 
-     You can also specify an absolute path to the compiler of your choice.
-
-  5. Configure the package for your system, e.g.,
-     (The configure script is explained below.)
-
+5. Configure the package for your system, e.g.,
+(The configure script is explained below.)
 ```
         > ../configure
 ```
 
-     While the `configure` script is running, which takes a few moments,
-     it prints messages to inform you of the features it is checking.
-     It also detects the platform.
+> While the `configure` script is running, which takes a few moments,
+> it prints messages to inform you of the features it is checking.
+> It also detects the platform.
 
-     As UVM-SystemC relies on the availability of a SystemC installation
-     directory, the configure script will automatically check this. In case
-     the configure script cannot find SystemC, it will stop. You can specify
-     the path to the SystemC installation directory as follows:
-
+> As UVM-SystemC relies on the availability of a SystemC installation
+> directory, the configure script will automatically check this. In case
+> the configure script cannot find SystemC, it will stop. You can specify
+> the path to the SystemC installation directory as follows:
 ```
         > ../configure --with-systemc=/path/to/your/systemc
 ```
+> **Note for System V users**
+> If you are using `csh` on an older version of System V, you might
+> need to use the `sh ../configure` command instead of `../configure`.
+> Otherwise, `csh` will attempt to `configure` itself.
 
->    **Note for System V users**
->    If you are using `csh` on an older version of System V, you might
->    need to use the `sh ../configure` command instead of `../configure`.
->    Otherwise, `csh` will attempt to `configure` itself.
-
->    **Note**
->    As IEEE Std. 1666-2023 mandates C++17 as the baseline for SystemC
->    implementations, make sure you enable the compiler flag to select C++17
->    for UVM-SystemC as well, e.g.:
-
+> **Note**
+> As IEEE Std. 1666-2023 mandates C++17 as the baseline for SystemC
+> implementations, make sure you enable the compiler flag to select C++17
+> for UVM-SystemC as well, e.g.:
 ```
         > ../configure 'CXXFLAGS=-std=c++17'
 ```
-
-     In case you want to install the package in another place than the
-     top level directory, configure the package e.g. as
-     follows:
-
+> In case you want to install the package in another place than the
+> top level directory, configure the package e.g. as
+> follows:
 ```
         > ../configure --prefix=/usr/local/uvm-systemc
 ```
+> **Note**
+> Make sure you have created the target directory before installing the
+> package. Do _not_ use /usr/local as a prefix.
 
->    **Note**
->    Make sure you have created the target directory before installing the
->    package. Do _not_ use /usr/local as a prefix.
+> See the section on the general usage of the configure script and
+> `../configure --help` for more information.
 
-     See the section on the general usage of the configure script and
-     `../configure --help` for more information.
+> **Note**
+> If you change the configuration after having compiled the package already,
+> you should run a "gmake clean" before recompiling.
 
->    **Note**
->    If you change the configuration after having compiled the package already,
->    you should run a "gmake clean" before recompiling.
-
-  6. Compile the package.
-
+6. Compile the package.
 ```
         > gmake
 ```
+> **Note**
+> The explicit gmake targets "opt" and "debug", etc. have been removed in
+> this package.  Use the corresponding options to the configure script
+> instead.
 
->    **Note**
->    The explicit gmake targets "opt" and "debug", etc. have been removed in
->    this package.  Use the corresponding options to the configure script
->    instead.
-
-  7. Install the package.
-
+7. Install the package.
 ```
         > gmake install
 ```
 
-  8. At this point you may wish to verify the installation by
-     testing the example suite.
-
+8. At this point you may wish to verify the installation by testing the
+example suite.
 ```
         > gmake check
 ```
 
-     This will compile and run the examples in the subdirectory
-     examples.
+> This will compile and run the examples in the subdirectory examples.
 
-  9. You can now remove the temporary directory, .e.g,
-
+9. You can now remove the temporary directory, e.g.,
 ```
         > cd ..
         > rm -rf objdir
 ```
 
-     Alternatively, you can keep the temporary directory to allow
-     you to:
+> Alternatively, you can keep the temporary directory to allow
+> you to:
 
-     a) Experiment with the examples.
+> a) Experiment with the examples.
 
-     b) Later uninstall the package. To clean up the temporary
-        directory, enter:
-
+> b) Later uninstall the package. To clean up the temporary
+   directory, enter:
 ```
             > gmake clean
 ```
 
-        To uninstall the package, enter:
-
+> To uninstall the package, enter:
 ```
             > gmake uninstall
 ```
 
-
 ## Known issues
 
-In case automake gets called during gmake and you end up with an
-error message complaining about automake incompatibilities: Please reset the
-timestamps of relevant files before step 5 of the basic installation steps
-above:
-
+In case automake gets called during gmake and you end up with an error message
+complaining about automake incompatibilities, reset the timestamps of relevant
+files before step 5 of the basic installation steps above:
 ```
     > touch aclocal.m4 configure
     > find . -name Makefile.in -exec touch {} \;
 ```
-
 
 ## Running the Examples
 
@@ -255,16 +228,16 @@ The `configure.in` file is used by the `autoconf` program to create the
 
 > **Note for developers**
 > 
->   In case you have changed the `configure.in` file or one of the
->   `Makefile.am` files:
-> 
->   - Use the `config/distclean` script to remove the generated `configure`
->     script, the generated `aclocal.m4` file and the generated `Makefile.in`
->     files.
-> 
->   - Use the `config/bootstrap` script to generate the `configure` script
->     and the necessary `Makefile.in` files. This script makes use of the
->     GNU auto-tools `aclocal`, `automake`, and `autoconf`.
+> In case you have changed the `configure.in` file or one of the
+> `Makefile.am` files:
+>
+> - Use the `config/distclean` script to remove the generated `configure`
+>   script, the generated `aclocal.m4` file and the generated `Makefile.in`
+>   files.
+>
+> - Use the `config/bootstrap` script to generate the `configure` script
+>   and the necessary `Makefile.in` files. This script makes use of the
+>   GNU auto-tools `aclocal`, `automake`, and `autoconf`.
 
 ## Compilation and Linking Options
 
@@ -274,13 +247,11 @@ options by setting them in your environment before running the
 `configure` script.
 
 Using a Bourne-compatible shell, the command line entry might be:
-
 ```
         > CC=c89 CFLAGS=-O2 LIBS=-lposix ../configure
 ```
 
 Or, on systems that have the `env` program, the command line entry might be:
-
 ```
         > env CPPFLAGS=-I/usr/local/include LDFLAGS=-s ../configure
 ```
@@ -293,7 +264,7 @@ If it prints a message that it cannot determine the host type,
 use the `--host=TYPE` option to define it. TYPE can either be a
 short system name, such as `sun4`, or a canonical name with three fields:
 
-     CPU-COMPANY-SYSTEM
+> CPU-COMPANY-SYSTEM
 
 See the `config.sub` file for details about the values of each field. If
 the `config.sub` file is not included in the package, the package does not
@@ -312,9 +283,9 @@ default values for variables like `CC`, `cache_file`, and `prefix`.
 The `configure` script looks for the `config.site` file in the following
 search precedence:
 
-  1. PREFIX/share/config.site
+1. PREFIX/share/config.site
 
-  2. PREFIX/etc/config.site
+2. PREFIX/etc/config.site
 
 Alternatively, you can set the `CONFIG_SITE` environment variable to the
 site script path.
@@ -361,21 +332,20 @@ Use the `--help` option to print a list.
 UVM-SystemC was tested on the following Windows platforms against SystemC 2.3.3,
 2.3.4, 3.0.0:
 
-            | VS   | VS   | MinGW64  | MinGW64
- Platform   | 2015 | 2019 | GCC 13.1 | Clang 16
- ----------------------------------------------
- Windows 10 |   x  |   x  |    x     |    x
+| Platform   | VS 2015 | VS 2019 | MinGW64 GCC 13.1 | MinGW64 Clang 16
+| ---------- | ------- |-------- | ---------------- | ----------------
+| Windows 10 |    x    |    x    |         x        |         x
 
 > **Note** SystemC 3.0.0 requires at least VS2019 for C++17 support.
 
 Set the following environment variable(s) under Windows:
+```
+  Variable: SYSTEMC
+  Value   : c:\my\path\to\systemc\msvc10
 
-     Variable: SYSTEMC
-     Value   : c:\my\path\to\systemc\msvc10
-
-     Variable: UVMSYSTEMC
-     Value   : c:\my\path\to\uvm-systemc\msvc14
-
+  Variable: UVMSYSTEMC
+  Value   : c:\my\path\to\uvm-systemc\msvc14
+```
 
 ## Microsoft Visual Studio C++ 2015 or later
 
@@ -387,7 +357,6 @@ file to launch Visual Studio C++ 2015 with the workspace file. The workspace fil
 will have the proper switches set to compile for Visual Studio C++ 2015.
 Select `Build uvm-systemc` under the Build menu or press F7 to build
 `uvm-systemc.lib`.
-
 
 ## Running the Examples in Microsoft Visual Studio C++
 
