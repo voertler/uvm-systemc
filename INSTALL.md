@@ -55,7 +55,7 @@ Version 2.0 and can be obtained from the following location:
 
 * SystemC: https://www.accellera.org/downloads/standards/systemc
 
-> **Note**
+> **Note:**
 > Various EDA vendors natively support SystemC. Please consult your EDA vendors
 > to make use of the build-in SystemC capabilities of their simulation
 > framework.
@@ -99,12 +99,12 @@ To install UVM-SystemC on a Linux system, do the following steps:
 ```
         > ../configure --with-systemc=/path/to/your/systemc
 ```
-> **Note for System V users**
+> **Note for System V users:**
 > If you are using `csh` on an older version of System V, you might
 > need to use the `sh ../configure` command instead of `../configure`.
 > Otherwise, `csh` will attempt to `configure` itself.
 
-> **Note**
+> **Note:**
 > As IEEE Std. 1666-2023 mandates C++17 as the baseline for SystemC
 > implementations, make sure you enable the compiler flag to select C++17
 > for UVM-SystemC as well, e.g.:
@@ -117,14 +117,14 @@ To install UVM-SystemC on a Linux system, do the following steps:
 ```
         > ../configure --prefix=/usr/local/uvm-systemc
 ```
-> **Note**
+> **Note:**
 > Make sure you have created the target directory before installing the
 > package. Do _not_ use /usr/local as a prefix.
 
 > See the section on the general usage of the configure script and
 > `../configure --help` for more information.
 
-> **Note**
+> **Note:**
 > If you change the configuration after having compiled the package already,
 > you should run a "gmake clean" before recompiling.
 
@@ -132,7 +132,7 @@ To install UVM-SystemC on a Linux system, do the following steps:
 ```
         > gmake
 ```
-> **Note**
+> **Note:**
 > The explicit gmake targets "opt" and "debug", etc. have been removed in
 > this package.  Use the corresponding options to the configure script
 > instead.
@@ -226,8 +226,8 @@ the `configure` script, for example to use a newer version of `autoconf`.
 The `configure.in` file is used by the `autoconf` program to create the
 `configure` script.
 
-> **Note for developers**
-> 
+> **Note for developers:**
+>
 > In case you have changed the `configure.in` file or one of the
 > `Makefile.am` files:
 >
@@ -290,7 +290,7 @@ search precedence:
 Alternatively, you can set the `CONFIG_SITE` environment variable to the
 site script path.
 
-> **Note** 
+> **Note:** 
 > The `configure` script for some systems does not look for a site script.
 
 ## Operation Controls
@@ -336,7 +336,7 @@ UVM-SystemC was tested on the following Windows platforms against SystemC 2.3.3,
 | ---------- | ------- |-------- | ---------------- | ----------------
 | Windows 10 |    x    |    x    |         x        |         x
 
-> **Note** SystemC 3.0.0 requires at least VS2019 for C++17 support.
+> **Note:** SystemC 3.0.0 requires at least VS2019 for C++17 support.
 
 Set the following environment variable(s) under Windows:
 ```
