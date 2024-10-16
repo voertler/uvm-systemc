@@ -50,7 +50,7 @@ uvm_reg_fifo::uvm_reg_fifo( const std::string& name,
 : uvm_reg( (name.empty())? sc_core::sc_gen_unique_name("reg_fifo") : name , n_bits, has_cover)
 {
   m_size = size;
-  m_value = NULL;
+  m_value = nullptr;
   m_set_cnt = 0;
 }
 

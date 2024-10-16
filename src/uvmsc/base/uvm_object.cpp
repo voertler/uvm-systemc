@@ -52,7 +52,7 @@ int g_inst_count = 0;
 // initialization of static data members
 //----------------------------------------------------------------------------
 
-uvm_status_container* uvm_object::__m_uvm_status_container = NULL;
+uvm_status_container* uvm_object::__m_uvm_status_container = nullptr;
 
 //----------------------------------------------------------------------------
 // initialization of external members
@@ -71,7 +71,7 @@ uvm_object::uvm_object()
   m_inst_id = g_inst_count++;
 
   // make only one status container
-  if (uvm_object::__m_uvm_status_container == NULL)
+  if (uvm_object::__m_uvm_status_container == nullptr)
     __m_uvm_status_container = new uvm_status_container();
 
   // register callbacks
@@ -84,7 +84,7 @@ uvm_object::uvm_object( uvm_object_name name)
   m_inst_id = g_inst_count++;
 
   // make only one status container
-  if (uvm_object::__m_uvm_status_container == NULL)
+  if (uvm_object::__m_uvm_status_container == nullptr)
     __m_uvm_status_container = new uvm_status_container();
 
   // register callbacks
@@ -168,14 +168,14 @@ int uvm_object::get_inst_count()
 //! means of supplying those arguments.
 //!
 //! The default implementation of this method produces an error and returns
-//! NULL. To enable use of this method, a user's subtype must implement a
+//! nullptr. To enable use of this method, a user's subtype must implement a
 //! version that returns the subtype's wrapper.
 //----------------------------------------------------------------------------
 
 const uvm_object_wrapper* uvm_object::get_type()
 {
   uvm_report_error("NOTYPID", "Member function get_type() not implemented in derived class.", UVM_NONE);
-  return NULL;
+  return nullptr;
 }
 
 //----------------------------------------------------------------------------
@@ -197,7 +197,7 @@ const uvm_object_wrapper* uvm_object::get_type()
 const uvm_object_wrapper* uvm_object::get_object_type() const
 {
   if( get_type_name() == "<unknown>" )
-    return NULL;
+    return nullptr;
 
   uvm_coreservice_t* cs = uvm_coreservice_t::get();
   uvm_factory* factory = cs->get_factory();
@@ -238,7 +238,7 @@ uvm_object* uvm_object::create( const std::string& name )
   str << "Member function create() of object '"
       << get_name() << "' not overloaded by the application.";
   uvm_report_error("NO_OVERRIDE", str.str(), UVM_NONE);
-  return NULL;
+  return nullptr;
 }
 
 //----------------------------------------------------------------------------
@@ -252,7 +252,7 @@ uvm_object* uvm_object::create( const std::string& name )
 uvm_object* uvm_object::clone()
 {
   uvm_object* obj = this->create(get_name());
-  if(obj == NULL)
+  if(obj == nullptr)
   {
     std::ostringstream str;
     str <<  "The member function create failed for object '" << get_name() << "', object cannot be cloned.";
@@ -278,11 +278,11 @@ uvm_object* uvm_object::clone()
 
 void uvm_object::print( uvm_printer* printer ) const
 {
-  if (printer == NULL)
+  if (printer == nullptr)
     printer = uvm_default_printer;
 
-  if (printer == NULL)
-    uvm_report_error("NULLPRINTER","uvm_default_printer is NULL");
+  if (printer == nullptr)
+    uvm_report_error("nullptrPRINTER","uvm_default_printer is nullptr");
 
   //$fwrite(printer.knobs.mcd,); // TODO printer knobs?
   std::string s = sprint(printer);
@@ -298,7 +298,7 @@ void uvm_object::print( uvm_printer* printer ) const
 
 std::string uvm_object::sprint( uvm_printer* printer ) const
 {
-  if( printer == NULL )
+  if( printer == nullptr )
     printer = uvm_default_printer;
 
   // not at top-level, must be recursing into sub-object
@@ -375,7 +375,7 @@ std::string uvm_object::convert2string() const
 
 void uvm_object::record( uvm_recorder* recorder )
 {
-  if(recorder == NULL)
+  if(recorder == nullptr)
     recorder = new uvm_recorder();
 
   if(!recorder->tr_handle)
@@ -464,7 +464,7 @@ void uvm_object::do_copy( const uvm_object& rhs )
 bool uvm_object::compare( const uvm_object& rhs,
                           const uvm_comparer* comparer ) const
 {
-  return do_compare(rhs, (comparer==NULL)?::uvm::uvm_default_comparer:comparer);
+  return do_compare(rhs, (comparer==nullptr)?::uvm::uvm_default_comparer:comparer);
 }
 
 
@@ -496,7 +496,7 @@ bool uvm_object::do_compare( const uvm_object& rhs,
 
 void uvm_object::m_pack( uvm_packer*& packer )
 {
-  if( packer != NULL)
+  if( packer != nullptr)
     __m_uvm_status_container->packer = packer;
   else
     __m_uvm_status_container->packer = uvm_default_packer;
@@ -582,7 +582,7 @@ void uvm_object::do_pack( uvm_packer& packer ) const
 
 void uvm_object::m_unpack_pre( uvm_packer*& packer )
 {
-  if( packer != NULL)
+  if( packer != nullptr)
     __m_uvm_status_container->packer = packer;
   else
     __m_uvm_status_container->packer = uvm_default_packer;

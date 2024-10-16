@@ -49,7 +49,7 @@ class tb_test : public uvm::uvm_test
 
     env = dynamic_cast<tb_env*>(uvm::uvm_root::get()->find("env"));
 
-    if ( env == NULL )
+    if ( env == nullptr )
       UVM_FATAL("test", "Cannot find tb_env");
 
     UVM_INFO("Test", "Reset RegModel...", uvm::UVM_NONE);
@@ -59,8 +59,8 @@ class tb_test : public uvm::uvm_test
 
     UVM_INFO("Test", "Demonstrating RO/WO sharing...", uvm::UVM_NONE);
 
-    env->regmodel->R->read(status, data, uvm::UVM_DEFAULT_PATH, NULL, seq);
-    env->regmodel->W->write(status, 0xDEADBEEF, uvm::UVM_DEFAULT_PATH, NULL, seq);
+    env->regmodel->R->read(status, data, uvm::UVM_DEFAULT_PATH, nullptr, seq);
+    env->regmodel->W->write(status, 0xDEADBEEF, uvm::UVM_DEFAULT_PATH, nullptr, seq);
 
     UVM_INFO("Test", "Done.", uvm::UVM_NONE);
 

@@ -61,7 +61,7 @@ class uvm_reg_map_info
   // Constructor
   uvm_reg_map_info()
   {
-    frontdoor = NULL;
+    frontdoor = nullptr;
     default_rights = RW;
     offset = 0;
     rights = "RW";
@@ -110,19 +110,19 @@ public:
                         uvm_reg_addr_t offset,
                         const std::string& rights = "RW",
                         bool unmapped = false,
-                        uvm_reg_frontdoor* frontdoor = NULL );
+                        uvm_reg_frontdoor* frontdoor = nullptr );
 
   virtual void add_mem( uvm_mem* mem,
                         uvm_reg_addr_t offset,
                         const std::string& rights = "RW",
                         bool unmapped = false,
-                        uvm_reg_frontdoor* frontdoor = NULL );
+                        uvm_reg_frontdoor* frontdoor = nullptr );
 
   virtual void add_submap( uvm_reg_map* child_map,
                            uvm_reg_addr_t offset );
 
   virtual void set_sequencer( uvm_sequencer_base* sequencer,
-                              uvm_reg_adapter* adapter = NULL );
+                              uvm_reg_adapter* adapter = nullptr );
 
   virtual void set_submap_offset( uvm_reg_map* submap,
                                   uvm_reg_addr_t offset);

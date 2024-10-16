@@ -66,7 +66,7 @@ public:
   void configure( uvm_reg* idx,
                   std::vector<uvm_reg*> reg_a,
                   uvm_reg_block* blk_parent,
-                  uvm_reg_file* regfile_parent = NULL );
+                  uvm_reg_file* regfile_parent = nullptr );
 
 
    /////////////////////////////////////////////////////
@@ -105,55 +105,55 @@ public:
    virtual void write( uvm_status_e&      status,
                        uvm_reg_data_t     value,
                        uvm_path_e         path = UVM_DEFAULT_PATH,
-                       uvm_reg_map*       map = NULL,
-                       uvm_sequence_base* parent = NULL,
+                       uvm_reg_map*       map = nullptr,
+                       uvm_sequence_base* parent = nullptr,
                        int                prior = -1,
-                       uvm_object*        extension = NULL,
+                       uvm_object*        extension = nullptr,
                        const std::string& fname = "",
                        int                lineno = 0);
 
    virtual void read( uvm_status_e&      status,
                       uvm_reg_data_t&    value,
                       uvm_path_e         path = UVM_DEFAULT_PATH,
-                      uvm_reg_map*       map = NULL,
-                      uvm_sequence_base* parent = NULL,
+                      uvm_reg_map*       map = nullptr,
+                      uvm_sequence_base* parent = nullptr,
                       int                prior = -1,
-                      uvm_object*        extension = NULL,
+                      uvm_object*        extension = nullptr,
                       const std::string& fname = "",
                       int                lineno = 0 );
 
    virtual void poke( uvm_status_e&      status,
                       uvm_reg_data_t     value,
                       const std::string& kind = "",
-                      uvm_sequence_base* parent = NULL,
-                      uvm_object*        extension = NULL,
+                      uvm_sequence_base* parent = nullptr,
+                      uvm_object*        extension = nullptr,
                       const std::string& fname = "",
                       int                lineno = 0 );
 
    virtual void peek( uvm_status_e&      status,
                       uvm_reg_data_t&    value,
                       const std::string& kind = "",
-                      uvm_sequence_base* parent = NULL,
-                      uvm_object*        extension = NULL,
+                      uvm_sequence_base* parent = nullptr,
+                      uvm_object*        extension = nullptr,
                       const std::string& fname = "",
                       int                lineno = 0 );
 
    virtual void update( uvm_status_e&      status,
                         uvm_path_e         path = UVM_DEFAULT_PATH,
-                        uvm_reg_map*       map = NULL,
-                        uvm_sequence_base* parent = NULL,
+                        uvm_reg_map*       map = nullptr,
+                        uvm_sequence_base* parent = nullptr,
                         int                prior = -1,
-                        uvm_object*        extension = NULL,
+                        uvm_object*        extension = nullptr,
                         const std::string& fname = "",
                         int                lineno = 0);
    
    virtual void mirror( uvm_status_e&      status,
                         uvm_check_e        check  = UVM_NO_CHECK,
                         uvm_path_e         path = UVM_DEFAULT_PATH,
-                        uvm_reg_map*       map = NULL,
-                        uvm_sequence_base* parent = NULL,
+                        uvm_reg_map*       map = nullptr,
+                        uvm_sequence_base* parent = nullptr,
                         int                prior = -1,
-                        uvm_object*        extension = NULL,
+                        uvm_object*        extension = nullptr,
                         const std::string& fname = "",
                         int                lineno = 0);
 

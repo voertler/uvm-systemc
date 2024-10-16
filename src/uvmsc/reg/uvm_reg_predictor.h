@@ -56,7 +56,7 @@ class uvm_predict_s
  public:
   uvm_predict_s()
   {
-    reg_item = NULL;
+    reg_item = nullptr;
     addr.clear();
   }
 
@@ -147,8 +147,8 @@ template <typename BUSTYPE>
 uvm_reg_predictor<BUSTYPE>::uvm_reg_predictor( uvm_component_name name )
   : uvm_component(name), bus_in("bus_in", this), reg_ap("reg_ap")
 {
-  map = NULL;
-  adapter = NULL;
+  map = nullptr;
+  adapter = nullptr;
   m_pending.clear();
 }
 
@@ -176,8 +176,8 @@ void uvm_reg_predictor<BUSTYPE>::write( const BUSTYPE& tr )
   uvm_reg* rg;
   uvm_reg_bus_op rw;
 
-  if (adapter == NULL)
-    UVM_FATAL("REG/WRITE/NULL", "write: adapter handle is NULL");
+  if (adapter == nullptr)
+    UVM_FATAL("REG/WRITE/NULL", "write: adapter handle is nullptr");
 
   // In case they forget to set byte_en
   rw.byte_en = -1;
@@ -187,7 +187,7 @@ void uvm_reg_predictor<BUSTYPE>::write( const BUSTYPE& tr )
 
   // UVM_SV TODO: Add memory look-up and call uvm_mem::m_sample()
 
-  if (rg != NULL)
+  if (rg != nullptr)
   {
     bool found = false;
     uvm_reg_item* reg_item;
@@ -229,7 +229,7 @@ void uvm_reg_predictor<BUSTYPE>::write( const BUSTYPE& tr )
     local_map = rg->get_local_map(map, "predictor::write()" );
     map_info = local_map->get_reg_map_info(rg);
     ireg = dynamic_cast<uvm_reg_indirect_data*>(rg);
-    ir = (ireg != NULL) ? ireg->get_indirect_reg() : rg;
+    ir = (ireg != nullptr) ? ireg->get_indirect_reg() : rg;
 
     for( unsigned int i = 0; i < map_info->addr.size(); i++ )
     {

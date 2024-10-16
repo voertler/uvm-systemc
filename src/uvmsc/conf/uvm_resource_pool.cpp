@@ -44,7 +44,7 @@ namespace uvm {
 // initialize static members
 //----------------------------------------------------------------------
 
-uvm_resource_pool* uvm_resource_pool::rp = NULL;
+uvm_resource_pool* uvm_resource_pool::rp = nullptr;
 bool uvm_resource_pool::m_has_wildcard_names = false;
 
 //----------------------------------------------------------------------
@@ -95,7 +95,7 @@ uvm_resource_pool::~uvm_resource_pool()
 
 uvm_resource_pool* uvm_resource_pool::get()
 {
-  if( rp == NULL )
+  if( rp == nullptr )
     rp = new uvm_resource_pool();
   return rp;
 }
@@ -131,7 +131,7 @@ void uvm_resource_pool::set( uvm_resource_base* rsrc,
   uvm_resource_base* type_handle;
 
   // If resource handle is null then there is nothing to do.
-  if(rsrc == NULL)
+  if(rsrc == nullptr)
     return;
 
   // insert into the name map.  Resources with empty names are
@@ -270,7 +270,7 @@ void uvm_resource_pool::dump_get_records() const
         it++ )
   {
     record = (*it);
-    success = (record->rsrc != NULL);
+    success = (record->rsrc != nullptr);
 
     std::ostringstream str;
     str << "get: name=" << record->name
@@ -322,7 +322,7 @@ uvm_resource_types::rsrc_q_t* uvm_resource_pool::lookup_name(
     r = rq->get(i);
     // does the scope and type match?
     if( r->match_scope(scope) &&
-        ((type_handle == NULL) || (r->get_type_handle() == type_handle)))
+        ((type_handle == nullptr) || (r->get_type_handle() == type_handle)))
       q->push_back(r);
   }
 
@@ -346,7 +346,7 @@ uvm_resource_base* uvm_resource_pool::get_highest_precedence( uvm_resource_types
   unsigned int prec;
 
   if(q->size() == 0)
-    return NULL;
+    return nullptr;
 
   // get the first resources in the queue
   rsrc = q->get(0);
@@ -429,8 +429,8 @@ uvm_resource_base* uvm_resource_pool::get_by_name( const std::string& scope,
 
   if(q->size() == 0)
   {
-    push_get_record(name, scope, NULL);
-    return NULL;
+    push_get_record(name, scope, nullptr);
+    return nullptr;
   }
 
   rsrc = get_highest_precedence(q);
@@ -453,7 +453,7 @@ uvm_resource_types::rsrc_q_t* uvm_resource_pool::lookup_type( const std::string&
   uvm_resource_types::rsrc_q_t* rq;
   uvm_resource_base* r;
 
-  if(type_handle == NULL || (ttab.find(type_handle)==ttab.end()) )
+  if(type_handle == nullptr || (ttab.find(type_handle)==ttab.end()) )
     return q;
 
   rq = ttab.find(type_handle)->second; // rq = ttab[type_handle];
@@ -485,8 +485,8 @@ uvm_resource_base* uvm_resource_pool::get_by_type( const std::string& scope,
 
   if(q->size() == 0)
   {
-    push_get_record("<type>", scope, NULL);
-    return NULL;
+    push_get_record("<type>", scope, nullptr);
+    return nullptr;
   }
 
   rsrc = q->get(0);
@@ -539,7 +539,7 @@ uvm_resource_types::rsrc_q_t* uvm_resource_pool::lookup_regex_names(
         // does the scope match?
         if(r->match_scope(scope) &&
           // does the type match?
-          ((type_handle == NULL) || (r->get_type_handle() == type_handle)))
+          ((type_handle == nullptr) || (r->get_type_handle() == type_handle)))
           result_q->push_back(r);
     }
   }
@@ -630,7 +630,7 @@ void uvm_resource_pool::set_priority_queue( uvm_resource_base* rsrc,
                                             uvm_resource_types::rsrc_q_t* q,
                                             uvm_resource_types::priority_e pri)
 {
-  uvm_resource_base* r = NULL;
+  uvm_resource_base* r = nullptr;
   std::string msg;
   std::string name = rsrc->get_name();
   int i;
@@ -675,9 +675,9 @@ void uvm_resource_pool::set_priority_type( uvm_resource_base* rsrc,
   std::string msg;
   uvm_resource_types::rsrc_q_t* q;
 
-  if(rsrc == NULL)
+  if(rsrc == nullptr)
   {
-    uvm_report_warning("NULLRASRC", "attempting to change the serach priority of a null resource");
+    uvm_report_warning("NULLRASRC", "attempting to change the serach priority of a nullptr resource");
     return;
   }
 
@@ -711,9 +711,9 @@ void uvm_resource_pool::set_priority_name( uvm_resource_base* rsrc,
   std::string msg;
   uvm_resource_types::rsrc_q_t* q;
 
-  if(rsrc == NULL)
+  if(rsrc == nullptr)
   {
-    uvm_report_warning("NULLRASRC", "Attempting to change the search priority of a NULL resource.");
+    uvm_report_warning("NULLRASRC", "Attempting to change the search priority of a nullptr resource.");
     return;
   }
 
@@ -807,10 +807,10 @@ void uvm_resource_pool::print_resources( uvm_resource_types::rsrc_q_t* rq,
   printer->knobs.type_name = 0;
   printer->knobs.reference = 0;
 
-  if(rq != NULL)
+  if(rq != nullptr)
     size = rq->size();
 
-  if(rq == NULL || size == 0)
+  if(rq == nullptr || size == 0)
   {
     uvm_report_info("UVM/RESOURCE/PRINT","<none>", UVM_NONE);
     return;
@@ -871,7 +871,7 @@ void uvm_resource_pool::cleanup()
   if (rp)
   {
     delete rp;
-    rp = NULL;
+    rp = nullptr;
   }
 }
 

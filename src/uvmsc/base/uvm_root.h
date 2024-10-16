@@ -79,9 +79,9 @@ class uvm_root : public uvm_component
   uvm_component* find( const std::string& comp_match );
 
   void find_all( const std::string& comp_match, std::vector<uvm_component*>& comps,
-                 uvm_component* comp = NULL );
+                 uvm_component* comp = nullptr );
 
-  void print_topology( uvm_printer* printer = NULL );
+  void print_topology( uvm_printer* printer = nullptr );
 
   void enable_print_topology( bool enable = true );
 
@@ -125,7 +125,7 @@ class uvm_root : public uvm_component
   explicit uvm_root( uvm_component_name nm );
 
   void m_find_all_recurse( const std::string& comp_match, std::vector<uvm_component*>& comps,
-                           uvm_component* comp = NULL );
+                           uvm_component* comp = nullptr );
 
   void m_register_test( const std::string& test_name );
 

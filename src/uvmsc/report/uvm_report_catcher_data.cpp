@@ -29,8 +29,8 @@ namespace uvm {
 //------------------------------------------------------------------------------
 
 uvm_report_catcher_data::uvm_report_catcher_data()
-  : m_modified_report_message(NULL),
-    m_orig_report_message(NULL),
+  : m_modified_report_message(nullptr),
+    m_orig_report_message(nullptr),
     m_demoted_fatal(0),
     m_demoted_error(0),
     m_demoted_warning(0),

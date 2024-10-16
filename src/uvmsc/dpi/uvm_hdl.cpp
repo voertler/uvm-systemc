@@ -48,7 +48,7 @@ bool uvm_hdl_check_path( const std::string& path )
   uvm_extract_path_index(path, objname, id1, id2);
   sc_core::sc_object* obj = sc_core::sc_find_object(objname.c_str());
 
-  if (obj == NULL)
+  if (obj == nullptr)
   {
     uvm_report_error("HDL_CHK_PATH", "Object " + objname + " not found in design hierarchy.");
     return false;

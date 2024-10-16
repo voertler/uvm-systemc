@@ -106,8 +106,8 @@ public:
   // Group: Audit Trail
   //--------------------------------------------------------------------------
 
-  void record_read_access( uvm_object* accessor = NULL );
-  void record_write_access( uvm_object* accessor = NULL );
+  void record_read_access( uvm_object* accessor = nullptr );
+  void record_write_access( uvm_object* accessor = nullptr );
 
   virtual void print_accessors() const;
 

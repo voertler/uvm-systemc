@@ -48,7 +48,7 @@ uvm_sequence_base::uvm_sequence_base( uvm_object_name name_ )
   m_wait_for_grant_semaphore = 0;
   m_next_transaction_id = 1;
 
-  //starting_phase = NULL;
+  //starting_phase = nullptr;
   m_sqr_seq_ids.clear();
 
   m_priority = -1;
@@ -62,8 +62,8 @@ uvm_sequence_base::uvm_sequence_base( uvm_object_name name_ )
   is_rel_default = true;
   wait_rel_default = false;
 
-  m_automatic_phase_objection_dap = NULL;
-  m_starting_phase_dap = NULL;
+  m_automatic_phase_objection_dap = nullptr;
+  m_starting_phase_dap = nullptr;
   m_init_phase_daps(true);
 }
 
@@ -137,7 +137,7 @@ void uvm_sequence_base::start(
     uvm_report_fatal("SEQ_NOT_DONE", str.str(), UVM_NONE);
   }
 
-  if (m_parent_sequence != NULL)
+  if (m_parent_sequence != nullptr)
      m_parent_sequence->children_array[this] = true;
 
   if (this_priority < -1)
@@ -149,7 +149,7 @@ void uvm_sequence_base::start(
 
   if (this_priority < 0)
   {
-    if (parent_sequence == NULL)
+    if (parent_sequence == nullptr)
       this_priority = 100;
      else
        this_priority = parent_sequence->get_priority();
@@ -160,9 +160,9 @@ void uvm_sequence_base::start(
 
   m_priority = this_priority;
 
-  if (get_sequencer() != NULL)
+  if (get_sequencer() != nullptr)
   {
-    if (m_parent_sequence == NULL)
+    if (m_parent_sequence == nullptr)
       m_tr_handle = m_sequencer->begin_tr(*this, get_name());
     else
       m_tr_handle = m_sequencer->begin_child_tr( *this, m_parent_sequence->m_tr_handle,
@@ -177,7 +177,7 @@ void uvm_sequence_base::start(
   m_sqr_seq_ids.clear();
 
   // Register the sequence with the sequencer if defined
-  if (get_sequencer() != NULL)
+  if (get_sequencer() != nullptr)
     get_sequencer()->m_register_sequence(this);
 
   // Change the state to PRE_START, do this before the fork so that
@@ -189,19 +189,19 @@ void uvm_sequence_base::start(
     m_sequence_process = sc_spawn(sc_bind(&uvm_sequence_base::m_start_core, this, parent_sequence, call_pre_post))
   SC_JOIN
 
-  if (m_sequencer != NULL)
+  if (m_sequencer != nullptr)
     m_sequencer->end_tr(*this);
 
   // Clean up any sequencer queues after exiting; if we
   // were forcibly stopped, this step has already taken place
   if (m_sequence_state != UVM_STOPPED)
-    if (get_sequencer() != NULL)
+    if (get_sequencer() != nullptr)
       get_sequencer()->m_sequence_exiting(this);
 
   // allow stopped and finish waiters to resume
   sc_core::wait(SC_ZERO_TIME);
 
-  if ((m_parent_sequence != NULL) && (m_parent_sequence->children_array.find(this)!= m_parent_sequence->children_array.end()))
+  if ((m_parent_sequence != nullptr) && (m_parent_sequence->children_array.find(this)!= m_parent_sequence->children_array.end()))
     m_parent_sequence->children_array.erase(this); // TODO also delete pointer here?
 
   old_automatic_phase_objection = get_automatic_phase_objection();
@@ -326,7 +326,7 @@ void uvm_sequence_base::post_start()
 // member function get_starting_phase
 // Returns the 'starting phase'.
 //
-//! If non-NULL, the starting phase specifies the phase in which this
+//! If non-nullptr, the starting phase specifies the phase in which this
 //! sequence was started.  The starting phase is set automatically when
 //! this sequence is started as the default sequence on a sequencer.
 //----------------------------------------------------------------------
@@ -485,7 +485,7 @@ void uvm_sequence_base::wait_for_relevant() const
 //----------------------------------------------------------------------
 // member function: lock
 //
-//! Requests a lock on the specified sequencer. If sequencer is NULL, the lock
+//! Requests a lock on the specified sequencer. If sequencer is nullptr, the lock
 //! will be requested on the current default sequencer.
 //!
 //! A lock request will be arbitrated the same as any other request.  A lock is
@@ -497,11 +497,11 @@ void uvm_sequence_base::wait_for_relevant() const
 
 void uvm_sequence_base::lock( uvm_sequencer_base* sequencer )
 {
-  if (sequencer == NULL)
+  if (sequencer == nullptr)
     sequencer = m_sequencer;
 
-  if (sequencer == NULL)
-    uvm_report_fatal("LOCKSEQR", "Null m_sequencer reference", UVM_NONE);
+  if (sequencer == nullptr)
+    uvm_report_fatal("LOCKSEQR", "nullptr m_sequencer reference", UVM_NONE);
 
   sequencer->lock(this);
 }
@@ -521,10 +521,10 @@ void uvm_sequence_base::lock( uvm_sequencer_base* sequencer )
 
 void uvm_sequence_base::grab( uvm_sequencer_base* sequencer )
 {
-  if (sequencer == NULL)
+  if (sequencer == nullptr)
   {
-    if (m_sequencer == NULL)
-      uvm_report_fatal("GRAB", "Null m_sequencer reference", UVM_NONE);
+    if (m_sequencer == nullptr)
+      uvm_report_fatal("GRAB", "nullptr m_sequencer reference", UVM_NONE);
 
     m_sequencer->grab(this);
   }
@@ -543,10 +543,10 @@ void uvm_sequence_base::grab( uvm_sequencer_base* sequencer )
 
 void uvm_sequence_base::unlock( uvm_sequencer_base* sequencer )
 {
-  if (sequencer == NULL)
+  if (sequencer == nullptr)
   {
-    if (m_sequencer == NULL)
-      uvm_report_fatal("UNLOCK", "Null m_sequencer reference", UVM_NONE);
+    if (m_sequencer == nullptr)
+      uvm_report_fatal("UNLOCK", "nullptr m_sequencer reference", UVM_NONE);
 
     m_sequencer->unlock(this);
   }
@@ -559,7 +559,7 @@ void uvm_sequence_base::unlock( uvm_sequencer_base* sequencer )
 // member function: ungrab
 //
 //! Removes any locks or grabs obtained by this sequence on the specified
-//! sequencer. If sequencer is NULL, then the unlock will be done on the
+//! sequencer. If sequencer is nullptr, then the unlock will be done on the
 //! current default sequencer.
 //----------------------------------------------------------------------
 
@@ -619,7 +619,7 @@ void uvm_sequence_base::kill()
   {
     // If we are not connected to a sequencer, then issue
     // kill locally.
-    if (m_sequencer == NULL)
+    if (m_sequencer == nullptr)
     {
       m_kill();
 
@@ -699,17 +699,17 @@ void uvm_sequence_base::start_item( uvm_sequence_item* item,
 {
   uvm_sequence_base* seq;
 
-  if(item == NULL)
+  if(item == nullptr)
   {
     std::ostringstream msg;
-    msg << "attempting to start a null item from sequence '"
+    msg << "attempting to start a nullptr item from sequence '"
         << get_full_name() << "'";
     uvm_report_fatal("NULLITM", msg.str(), UVM_NONE);
     return;
   }
 
   seq = dynamic_cast<uvm_sequence_base*>(item);
-  if(seq != NULL)
+  if(seq != nullptr)
   {
     std::ostringstream msg;
     msg << "attempting to start a sequence using start_item() from sequence '"
@@ -718,13 +718,13 @@ void uvm_sequence_base::start_item( uvm_sequence_item* item,
     return;
   }
 
-  if (sequencer == NULL)
+  if (sequencer == nullptr)
       sequencer = item->get_sequencer();
 
-  if(sequencer == NULL)
+  if(sequencer == nullptr)
       sequencer = get_sequencer();
 
-  if(sequencer == NULL)
+  if(sequencer == nullptr)
   {
     std::ostringstream msg;
     msg << "neither the item's sequencer nor dedicated sequencer has been "
@@ -763,8 +763,8 @@ void uvm_sequence_base::finish_item( uvm_sequence_item* item,
 
   sequencer = item->get_sequencer();
 
-  if (sequencer == NULL)
-      uvm_report_fatal("STRITM", "sequence_item has null sequencer", UVM_NONE);
+  if (sequencer == nullptr)
+      uvm_report_fatal("STRITM", "sequence_item has nullptr sequencer", UVM_NONE);
 
   mid_do(item);
   sequencer->send_request(this, item);
@@ -800,8 +800,8 @@ void uvm_sequence_base::finish_item( uvm_sequence_item* item,
 
 void uvm_sequence_base::wait_for_grant( int item_priority, bool lock_request )
 {
-  if (get_sequencer() == NULL)
-    uvm_report_fatal("WAITGRANT", "Null m_sequencer reference", UVM_NONE);
+  if (get_sequencer() == nullptr)
+    uvm_report_fatal("WAITGRANT", "nullptr m_sequencer reference", UVM_NONE);
 
   get_sequencer()->wait_for_grant(this, item_priority, lock_request);
 }
@@ -820,7 +820,7 @@ void uvm_sequence_base::send_request( uvm_sequence_item* request, bool rerandomi
 {
   // NOTE: this method shall not be called - is overloaded by implementation
   // in param_base class
-  if (get_sequencer() == NULL)
+  if (get_sequencer() == nullptr)
       uvm_report_fatal("SENDREQ", "Unable to find sequencer.", UVM_NONE); // was: Null m_sequencer reference
 
   get_sequencer()->send_request(this, request, rerandomize);
@@ -842,7 +842,7 @@ void uvm_sequence_base::send_request( uvm_sequence_item* request, bool rerandomi
 
 void uvm_sequence_base::wait_for_item_done( int transaction_id )
 {
-  if ( get_sequencer() == NULL)
+  if ( get_sequencer() == nullptr)
       uvm_report_fatal("WAITITEMDONE", "Unable to find default sequencer.", UVM_NONE);
 
   get_sequencer()->wait_for_item_done(this, transaction_id);
@@ -988,7 +988,7 @@ void uvm_sequence_base::m_start_core( uvm_sequence_base* parent_sequence,
     pre_body();
   }
 
-  if (parent_sequence != NULL)
+  if (parent_sequence != nullptr)
   {
     parent_sequence->pre_do(0);
     parent_sequence->mid_do(this);
@@ -1003,7 +1003,7 @@ void uvm_sequence_base::m_start_core( uvm_sequence_base* parent_sequence,
   m_sequence_state_ev.notify();
   sc_core::wait(SC_ZERO_TIME);
 
-  if (parent_sequence != NULL)
+  if (parent_sequence != nullptr)
     parent_sequence->post_do(this);
 
   if (call_pre_post == true) {
@@ -1179,7 +1179,7 @@ void uvm_sequence_base::m_kill()
   }
   m_sequence_state = UVM_STOPPED;
 
-  if ((m_parent_sequence != NULL) && (m_parent_sequence->children_array.find(this)!= m_parent_sequence->children_array.end()))
+  if ((m_parent_sequence != nullptr) && (m_parent_sequence->children_array.find(this)!= m_parent_sequence->children_array.end()))
     m_parent_sequence->children_array.erase(this); // TODO also delete pointer here?
 }
 
@@ -1248,7 +1248,7 @@ void uvm_sequence_base::m_safe_raise_starting_phase( std::string description,
                                                      int count )
 {
   uvm_phase* starting_phase = get_starting_phase();
-  if (starting_phase != NULL)
+  if (starting_phase != nullptr)
     starting_phase->raise_objection(this, description, count);
 
 }
@@ -1263,7 +1263,7 @@ void uvm_sequence_base::m_safe_drop_starting_phase( std::string description,
                                                     int count )
 {
   uvm_phase* starting_phase = get_starting_phase();
-  if (starting_phase != NULL)
+  if (starting_phase != nullptr)
     starting_phase->drop_objection(this, description, count);
 }
 
@@ -1280,10 +1280,10 @@ void uvm_sequence_base::m_init_phase_daps( bool create )
   std::string sp_name = get_full_name() + ".starting_phase";
 
   // clean-up  old instances if they exist
-  if (m_automatic_phase_objection_dap != NULL)
+  if (m_automatic_phase_objection_dap != nullptr)
     delete m_automatic_phase_objection_dap;
 
-  if (m_starting_phase_dap != NULL)
+  if (m_starting_phase_dap != nullptr)
     delete m_starting_phase_dap;
 
   if(create)
@@ -1308,10 +1308,10 @@ void uvm_sequence_base::m_init_phase_daps( bool create )
 
 void uvm_sequence_base::m_clear_phase_daps()
 {
-  if (m_automatic_phase_objection_dap != NULL) delete m_automatic_phase_objection_dap;
-  if (m_starting_phase_dap != NULL) delete m_starting_phase_dap;
-  m_automatic_phase_objection_dap = NULL;
-  m_starting_phase_dap = NULL;
+  if (m_automatic_phase_objection_dap != nullptr) delete m_automatic_phase_objection_dap;
+  if (m_starting_phase_dap != nullptr) delete m_starting_phase_dap;
+  m_automatic_phase_objection_dap = nullptr;
+  m_starting_phase_dap = nullptr;
 }
 
 

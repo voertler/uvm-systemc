@@ -330,18 +330,18 @@ void uvm_report_catcher::add_object( const std::string& name,
 
 uvm_report_catcher* uvm_report_catcher::get_report_catcher( const std::string& name )
 {
-  static uvm_report_cb_iter* iter = new uvm_report_cb_iter(NULL);
+  static uvm_report_cb_iter* iter = new uvm_report_cb_iter(nullptr);
 
   uvm_report_catcher* report_catcher = iter->first();
 
-  while(report_catcher != NULL)
+  while(report_catcher != nullptr)
   {
     if(report_catcher->get_name() == name)
       return report_catcher;
     report_catcher = iter->next();
   }
 
-  return NULL;
+  return nullptr;
 }
 
 //------------------------------------------------------------------------------
@@ -359,13 +359,13 @@ void uvm_report_catcher::print_catcher( UVM_FILE file )
   uvm_report_catcher* catcher;
   std::vector<std::string> q;
 
-  static uvm_report_cb_iter* iter = new uvm_report_cb_iter(NULL);
+  static uvm_report_cb_iter* iter = new uvm_report_cb_iter(nullptr);
 
   q.push_back("-------------UVM REPORT CATCHERS----------------------------\n");
 
   catcher = iter->first();
 
-  while(catcher != NULL)
+  while(catcher != nullptr)
   {
     if(catcher->callback_mode())
       enabled = "ON";
@@ -590,7 +590,7 @@ bool uvm_report_catcher::process_all_report_catchers( uvm_report_message* rm )
   rcd.m_modified_report_message = rm;
 
   catcher = uvm_report_cb::get_first(iter, l_report_object);
-  if (catcher != NULL)
+  if (catcher != nullptr)
   {
     if(rcd.m_debug_flags & rcd.DO_NOT_MODIFY)
     {
@@ -604,7 +604,7 @@ bool uvm_report_catcher::process_all_report_catchers( uvm_report_message* rm )
     }
   }
 
-  while(catcher != NULL)
+  while(catcher != nullptr)
   {
     uvm_severity prev_sev;
 

@@ -113,7 +113,7 @@ class uvm_report_handler : public uvm_object
                        int verbosity_level = UVM_MEDIUM,
                        const std::string& filename = "",
                        int line = 0,
-                       uvm_report_object* client = NULL );
+                       uvm_report_object* client = nullptr );
 
   virtual ~uvm_report_handler();
 

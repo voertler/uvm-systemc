@@ -88,9 +88,9 @@ class uvm_reg_sequence : public BASE
                           uvm_status_e&       status, // output
                           uvm_reg_data_t      value,
                           uvm_path_e          path = UVM_DEFAULT_PATH,
-                          uvm_reg_map*        map = NULL,
+                          uvm_reg_map*        map = nullptr,
                           int                 prior = -1,
-                          uvm_object*         extension = NULL,
+                          uvm_object*         extension = nullptr,
                           const std::string&  fname = "",
                           int                 lineno = 0 );
 
@@ -99,9 +99,9 @@ class uvm_reg_sequence : public BASE
                           uvm_status_e&       status, // output
                           uvm_reg_data_t&     value, // output
                           uvm_path_e          path = UVM_DEFAULT_PATH,
-                          uvm_reg_map*        map = NULL,
+                          uvm_reg_map*        map = nullptr,
                           int                 prior = -1,
-                          uvm_object*         extension = NULL,
+                          uvm_object*         extension = nullptr,
                           const std::string&  fname = "",
                           int                 lineno = 0 );
 
@@ -109,7 +109,7 @@ class uvm_reg_sequence : public BASE
                           uvm_status_e&      status, // output
                           uvm_reg_data_t     value,
                           const std::string& kind = "",
-                          uvm_object*        extension = NULL,
+                          uvm_object*        extension = nullptr,
                           const std::string& fname = "",
                           int                lineno = 0 );
 
@@ -117,16 +117,16 @@ class uvm_reg_sequence : public BASE
                           uvm_status_e&       status, // output
                           uvm_reg_data_t&     value, // output
                           const std::string&  kind = "",
-                          uvm_object*         extension = NULL,
+                          uvm_object*         extension = nullptr,
                           const std::string&  fname = "",
                           int                 lineno = 0 );
    
    virtual void update_reg( uvm_reg*           rg,
                             uvm_status_e&      status,
                             uvm_path_e         path = UVM_DEFAULT_PATH,
-                            uvm_reg_map*       map = NULL,
+                            uvm_reg_map*       map = nullptr,
                             int                prior = -1,
-                            uvm_object*        extension = NULL,
+                            uvm_object*        extension = nullptr,
                             const std::string& fname = "",
                             int                lineno = 0 );
 
@@ -134,9 +134,9 @@ class uvm_reg_sequence : public BASE
                             uvm_status_e&      status, // output
                             uvm_check_e        check  = UVM_NO_CHECK,
                             uvm_path_e         path = UVM_DEFAULT_PATH,
-                            uvm_reg_map*       map = NULL,
+                            uvm_reg_map*       map = nullptr,
                             int                prior = -1,
-                            uvm_object*        extension = NULL,
+                            uvm_object*        extension = nullptr,
                             const std::string& fname = "",
                             int                lineno = 0 );
 
@@ -145,9 +145,9 @@ class uvm_reg_sequence : public BASE
                            uvm_reg_addr_t     offset,
                            uvm_reg_data_t     value,
                            uvm_path_e         path = UVM_DEFAULT_PATH,
-                           uvm_reg_map*       map = NULL,
+                           uvm_reg_map*       map = nullptr,
                            int                prior = -1,
-                           uvm_object*        extension = NULL,
+                           uvm_object*        extension = nullptr,
                            const std::string& fname = "",
                            int                lineno = 0 );
 
@@ -156,9 +156,9 @@ class uvm_reg_sequence : public BASE
                           uvm_reg_addr_t      offset,
                           uvm_reg_data_t&     value, // output
                           uvm_path_e          path = UVM_DEFAULT_PATH,
-                          uvm_reg_map*        map = NULL,
+                          uvm_reg_map*        map = nullptr,
                           int                 prior = -1,
-                          uvm_object*         extension = NULL,
+                          uvm_object*         extension = nullptr,
                           const std::string&  fname = "",
                           int                 lineno = 0 );
 
@@ -167,7 +167,7 @@ class uvm_reg_sequence : public BASE
                           uvm_reg_addr_t offset,
                           uvm_reg_data_t value,
                           const std::string&         kind = "",
-                          uvm_object*    extension = NULL,
+                          uvm_object*    extension = nullptr,
                           const std::string&         fname = "",
                           int            lineno = 0 );
 
@@ -176,7 +176,7 @@ class uvm_reg_sequence : public BASE
                           uvm_reg_addr_t  offset,
                           uvm_reg_data_t& value, // output
                           const std::string&          kind = "",
-                          uvm_object*     extension = NULL,
+                          uvm_object*     extension = nullptr,
                           const std::string&          fname = "",
                           int             lineno = 0 );
 
@@ -234,10 +234,10 @@ class uvm_reg_sequence : public BASE
 template <typename BASE>
 uvm_reg_sequence<BASE>::uvm_reg_sequence( const std::string& name ) : BASE(name)
 {
-  model = NULL;
-  adapter = NULL;
-  reg_seqr = NULL;
-  upstream_parent = NULL;
+  model = nullptr;
+  adapter = nullptr;
+  reg_seqr = nullptr;
+  upstream_parent = nullptr;
 
   parent_select = LOCAL;
 }
@@ -258,12 +258,12 @@ uvm_reg_sequence<BASE>::uvm_reg_sequence( const std::string& name ) : BASE(name)
 template <typename BASE>
 void uvm_reg_sequence<BASE>::body()
 {
-  if (this->m_sequencer == NULL)
+  if (this->m_sequencer == nullptr)
   {
     UVM_FATAL("NO_SEQR", std::string("Sequence executing as translation sequence, ") +
     	std::string("but is not associated with a sequencer (m_sequencer == )") );
   }
-  if (reg_seqr == NULL)
+  if (reg_seqr == nullptr)
   {
     UVM_WARNING("REG_XLATE_NO_SEQR",
       "Executing RegModel translation sequence on sequencer " +
@@ -303,10 +303,10 @@ void uvm_reg_sequence<BASE>::body()
 template <typename BASE>
 void uvm_reg_sequence<BASE>::do_reg_item( uvm_reg_item* rw )
 {
-  if (this->m_sequencer == NULL)
-    UVM_FATAL("REG/DO_ITEM/", "do_reg_item: m_sequencer is NULL");
-  if (adapter == NULL)
-    UVM_FATAL("REG/DO_ITEM/", "do_reg_item: adapter handle is NULL");
+  if (this->m_sequencer == nullptr)
+    UVM_FATAL("REG/DO_ITEM/NULL", "do_reg_item: m_sequencer is nullptr");
+  if (adapter == nullptr)
+    UVM_FATAL("REG/DO_ITEM/NULL", "do_reg_item: adapter handle is nullptr");
 
   UVM_INFO("DO_RW_ACCESS", std::string("Doing transaction: ") + rw->convert2string(), UVM_HIGH);
 
@@ -348,9 +348,9 @@ void uvm_reg_sequence<BASE>::write_reg( uvm_reg* rg,
                                         const std::string& fname,
                                         int  lineno )
 {
-  if (rg == NULL)
+  if (rg == nullptr)
   {
-    UVM_ERROR("NO_REG", "Register argument is NULL");
+    UVM_ERROR("NO_REG", "Register argument is nullptr");
   }
   else
     rg->write(status, value, path, map, this, prior, extension, fname, lineno);
@@ -374,9 +374,9 @@ void uvm_reg_sequence<BASE>::read_reg( uvm_reg* rg,
                                        const std::string& fname,
                                        int lineno )
 {
-  if (rg == NULL)
+  if (rg == nullptr)
   {
-    UVM_ERROR("NO_REG", "Register argument is NULL");
+    UVM_ERROR("NO_REG", "Register argument is nullptr");
   }
   else
     rg->read(status, value, path, map, this, prior, extension, fname, lineno);
@@ -399,9 +399,9 @@ void uvm_reg_sequence<BASE>::poke_reg( uvm_reg* rg,
                                        const std::string& fname,
                                        int lineno )
 {
-  if (rg == NULL)
+  if (rg == nullptr)
   {
-    UVM_ERROR("NO_REG", "Register argument is NULL");
+    UVM_ERROR("NO_REG", "Register argument is nullptr");
   }
   else
     rg->poke(status, value, kind, this, extension, fname, lineno);
@@ -425,9 +425,9 @@ void uvm_reg_sequence<BASE>::peek_reg( uvm_reg* rg,
                                        const std::string& fname,
                                        int lineno )
 {
-  if (rg == NULL)
+  if (rg == nullptr)
   {
-    UVM_ERROR("NO_REG", "Register argument is NULL");
+    UVM_ERROR("NO_REG", "Register argument is nullptr");
   }
   else
    rg->peek(status, value, kind, this, extension, fname, lineno);
@@ -451,9 +451,9 @@ void uvm_reg_sequence<BASE>::update_reg( uvm_reg* rg,
                                          const std::string& fname,
                                          int lineno )
 {
-  if (rg == NULL)
+  if (rg == nullptr)
   {
-     UVM_ERROR("NO_REG", "Register argument is NULL");
+     UVM_ERROR("NO_REG", "Register argument is nullptr");
   }
   else
     rg->update(status, path, map, this, prior, extension, fname, lineno);
@@ -478,9 +478,9 @@ void uvm_reg_sequence<BASE>::mirror_reg( uvm_reg* rg,
                                          const std::string& fname,
                                          int lineno )
 {
-  if (rg == NULL)
+  if (rg == nullptr)
   {
-    UVM_ERROR("NO_REG", "Register argument is NULL");
+    UVM_ERROR("NO_REG", "Register argument is nullptr");
   }
   else
     rg->mirror(status, check, path, map, this, prior, extension, fname, lineno);
@@ -507,9 +507,9 @@ void uvm_reg_sequence<BASE>::write_mem( uvm_mem* mem,
                                         const std::string& fname,
                                         int lineno )
 {
-  if (mem == NULL)
+  if (mem == nullptr)
   {
-    UVM_ERROR("NO_MEM", "Memory argument is NULL");
+    UVM_ERROR("NO_MEM", "Memory argument is nullptr");
   }
   else
     mem->write(status, offset, value, path, map, this, prior, extension, fname, lineno);
@@ -535,9 +535,9 @@ void uvm_reg_sequence<BASE>::read_mem( uvm_mem* mem,
                                        const std::string& fname,
                                        int lineno )
 {
-  if (mem == NULL)
+  if (mem == nullptr)
   {
-    UVM_ERROR("NO_MEM", "Memory argument is NULL");
+    UVM_ERROR("NO_MEM", "Memory argument is nullptr");
   }
   else
     mem->read(status, offset, value, path, map, this, prior, extension, fname, lineno);
@@ -561,9 +561,9 @@ void uvm_reg_sequence<BASE>::poke_mem( uvm_mem* mem,
                                        const std::string& fname,
                                        int lineno )
 {
-   if (mem == NULL)
+   if (mem == nullptr)
    {
-     UVM_ERROR("NO_MEM", "Memory argument is NULL");
+     UVM_ERROR("NO_MEM", "Memory argument is nullptr");
    }
    else
      mem->poke(status, offset, value, kind, this, extension, fname, lineno);
@@ -587,9 +587,9 @@ void uvm_reg_sequence<BASE>::peek_mem( uvm_mem* mem,
                                        const std::string& fname,
                                        int lineno )
 {
-  if (mem == NULL)
+  if (mem == nullptr)
   {
-    UVM_ERROR("NO_MEM", "Memory argument is NULL");
+    UVM_ERROR("NO_MEM", "Memory argument is nullptr");
   }
   else
     mem->peek(status, offset, value, kind, this, extension, fname, lineno);

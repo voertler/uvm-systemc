@@ -90,12 +90,12 @@ class uvm_typeid : public uvm_typeid_base
 };
 
 template <typename T>
-uvm_typeid<T>* uvm_typeid<T>::m_b_inst = NULL;
+uvm_typeid<T>* uvm_typeid<T>::m_b_inst = nullptr;
 
 template <typename T>
 inline uvm_typeid<T>* uvm_typeid<T>::get()
 {
-  if( m_b_inst == NULL )
+  if( m_b_inst == nullptr )
     m_b_inst = new uvm_typeid<T>();
 
   return m_b_inst;

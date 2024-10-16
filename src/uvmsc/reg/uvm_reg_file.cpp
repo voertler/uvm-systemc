@@ -42,8 +42,8 @@ namespace uvm {
 
 uvm_reg_file::uvm_reg_file( const std::string& name ) : uvm_object(name)
 {
-  m_parent = NULL;
-  m_rf = NULL;
+  m_parent = nullptr;
+  m_rf = nullptr;
   m_default_hdl_path = "RTL";
   m_hdl_paths_pool.clear();
 }
@@ -56,7 +56,7 @@ uvm_reg_file::uvm_reg_file( const std::string& name ) : uvm_object(name)
 //! Specify the parent block and register file of the register file
 //! instance.
 //! If the register file is instantiated in a block,
-//! \p regfile_parent is specified as NULL.
+//! \p regfile_parent is specified as nullptr.
 //! If the register file is instantiated in a register file,
 //! \p blk_parent must be the block parent of that register file and
 //! \p regfile_parent is specified as that register file.
@@ -108,16 +108,16 @@ const std::string uvm_reg_file::get_full_name() const
   name = get_name();
 
   // Do not include top-level name in full name
-  if (m_rf != NULL)
+  if (m_rf != nullptr)
     return m_rf->get_full_name() + "." + name;
 
   // Do not include top-level name in full name
   blk = get_block();
 
-  if (blk == NULL)
+  if (blk == nullptr)
     return name;
 
-  if (blk->get_parent() == NULL)
+  if (blk->get_parent() == nullptr)
     return name;
 
   name = m_parent->get_full_name() + "." + name;
@@ -141,7 +141,7 @@ uvm_reg_block* uvm_reg_file::get_parent() const
 //
 //! Get the parent register file
 //
-//! Returns NULL if this register file is instantiated in a block.
+//! Returns nullptr if this register file is instantiated in a block.
 //----------------------------------------------------------------------
 
 uvm_reg_file* uvm_reg_file::get_regfile() const
@@ -174,7 +174,7 @@ void uvm_reg_file::clear_hdl_path( const std::string& kind )
 
   if (lkind.empty())
   {
-    if (m_rf != NULL)
+    if (m_rf != nullptr)
       lkind = m_rf->get_default_hdl_path();
     else
       lkind = m_parent->get_default_hdl_path();
@@ -231,7 +231,7 @@ bool uvm_reg_file::has_hdl_path( const std::string& kind ) const
 
   if (lkind.empty())
   {
-    if (m_rf != NULL)
+    if (m_rf != nullptr)
       lkind = m_rf->get_default_hdl_path();
     else
       lkind = m_parent->get_default_hdl_path();
@@ -262,7 +262,7 @@ void uvm_reg_file::get_hdl_path( std::vector<std::string>& paths, const std::str
 
   if (lkind.empty())
   {
-    if (m_rf != NULL)
+    if (m_rf != nullptr)
        lkind = m_rf->get_default_hdl_path();
     else
        lkind = m_parent->get_default_hdl_path();
@@ -319,10 +319,10 @@ void uvm_reg_file::get_full_hdl_path( std::vector<std::string>& paths,
 
   std::vector<std::string> parent_paths;
 
-  if (m_rf != NULL)
+  if (m_rf != nullptr)
     m_rf->get_full_hdl_path(parent_paths, kind, separator);
   else
-    if (m_parent != NULL)
+    if (m_parent != nullptr)
       m_parent->get_full_hdl_path(parent_paths, kind, separator);
 
   for ( unsigned int i = 0; i < hdl_paths.size(); i++ )
@@ -358,10 +358,10 @@ void uvm_reg_file::set_default_hdl_path(std::string kind)
 {
   if (kind.empty())
   {
-    if (m_rf != NULL)
+    if (m_rf != nullptr)
       kind = m_rf->get_default_hdl_path();
     else
-      if (m_parent != NULL)
+      if (m_parent != nullptr)
         kind = m_parent->get_default_hdl_path();
       else
       {
@@ -389,7 +389,7 @@ std::string uvm_reg_file::get_default_hdl_path() const
 {
   if (m_default_hdl_path.empty())
   {
-    if (m_rf != NULL)
+    if (m_rf != nullptr)
       return m_rf->get_default_hdl_path();
     else
       return m_parent->get_default_hdl_path();
@@ -459,7 +459,7 @@ std::string uvm_reg_file::convert2string() const
 uvm_object* uvm_reg_file::clone()
 {
   UVM_FATAL("RegModel","RegModel register files cannot be cloned");
-  return NULL;
+  return nullptr;
 }
 
 //----------------------------------------------------------------------

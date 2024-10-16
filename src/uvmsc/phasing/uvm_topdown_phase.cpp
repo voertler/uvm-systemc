@@ -109,7 +109,7 @@ void uvm_topdown_phase::traverse( uvm_component* comp,
         case UVM_PHASE_ENDED:
         {
           comp->phase_ended(*phase);
-          comp->m_current_phase = NULL;
+          comp->m_current_phase = nullptr;
           break;
         }
 

@@ -69,44 +69,44 @@ class uvm_resource_db
   static void set( const std::string& scope,
                    const std::string& name,
                    const T& val,
-                   uvm_object* accessor = NULL );
+                   uvm_object* accessor = nullptr );
 
   static void set_anonymous( const std::string& scope,
                              const T& val,
-                             uvm_object* accessor = NULL );
+                             uvm_object* accessor = nullptr );
 
   static void set_override( const std::string& scope,
                             const std::string& name,
                             const T& val,
-                            uvm_object* accessor = NULL );
+                            uvm_object* accessor = nullptr );
 
   static void set_override_type( const std::string& scope,
                                  const std::string& name,
                                  const T& val,
-                                 uvm_object* accessor = NULL );
+                                 uvm_object* accessor = nullptr );
 
   static void set_override_name( const std::string& scope,
                                  const std::string& name,
                                  const T& val,
-                                 uvm_object* accessor = NULL );
+                                 uvm_object* accessor = nullptr );
 
   static bool read_by_name( const std::string& scope,
                             const std::string& name,
                             T& val,
-                            uvm_object* accessor = NULL );
+                            uvm_object* accessor = nullptr );
 
   static bool read_by_type( const std::string& scope,
                             T& val,
-                            uvm_object* accessor = NULL );
+                            uvm_object* accessor = nullptr );
 
   static bool write_by_name( const std::string& scope,
                              const std::string& name,
                              const T& val,
-                             uvm_object* accessor = NULL );
+                             uvm_object* accessor = nullptr );
 
   static bool write_by_type( const std::string& scope,
                              const T& val,
-                             uvm_object* accessor = NULL );
+                             uvm_object* accessor = nullptr );
 
   static void dump();
 
@@ -323,7 +323,7 @@ bool uvm_resource_db<T>::read_by_name( const std::string& scope,
   if(uvm_resource_db_options::is_tracing())
     m_show_msg("RSRCDB/RDBYNAM", "Resource", "read", scope, name, accessor, rsrc);
 
-  if(rsrc == NULL)
+  if(rsrc == nullptr)
     return false;
 
   val = rsrc->read(accessor);
@@ -350,7 +350,7 @@ bool uvm_resource_db<T>::read_by_type( const std::string& scope,
   if(uvm_resource_db_options::is_tracing())
     m_show_msg("RSRCDB/RDBYTYP", "Resource", "read", scope, "", accessor, rsrc);
 
-  if(rsrc == NULL)
+  if(rsrc == nullptr)
     return false;
 
   val = rsrc->read(accessor);
@@ -383,7 +383,7 @@ bool uvm_resource_db<T>::write_by_name( const std::string& scope,
   if(uvm_resource_db_options::is_tracing())
     m_show_msg("RSRCDB/WR", "Resource", "written", scope, name, accessor, rsrc);
 
-  if(rsrc == NULL)
+  if(rsrc == nullptr)
     return false;
 
   rsrc->write(val, accessor);
@@ -416,7 +416,7 @@ bool uvm_resource_db<T>::write_by_type( const std::string& scope,
   if(uvm_resource_db_options::is_tracing())
     m_show_msg("RSRCDB/WRTYP", "Resource", "written", scope, "", accessor, rsrc);
 
-  if(rsrc == NULL)
+  if(rsrc == nullptr)
     return false;
 
   rsrc->write(val, accessor);
@@ -474,9 +474,9 @@ void uvm_resource_db<T>::m_show_msg( const std::string& id,
        << ") "
        << action
        << " by "
-       << ( ( accessor == NULL ) ? "NULL (accessor not set)" : accessor->get_full_name() )
+       << ( ( accessor == nullptr ) ? "nullptr (accessor not set)" : accessor->get_full_name() )
        << " = "
-       << ( ( rsrc==NULL ) ? "NULL (failed lookup)" : rsrc->convert2string() );
+       << ( ( rsrc==nullptr ) ? "nullptr (failed lookup)" : rsrc->convert2string() );
 
    UVM_INFO(id, msg.str(), UVM_LOW);
 }

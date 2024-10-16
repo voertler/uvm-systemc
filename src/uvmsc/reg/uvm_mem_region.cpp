@@ -108,7 +108,7 @@ void uvm_mem_region::release_region()
 //!
 //! Return a reference to the memory abstraction class
 //! for the memory implementing this allocated memory region.
-//! Returns NULL if no memory abstraction class was specified
+//! Returns nullptr if no memory abstraction class was specified
 //! for the allocation manager that allocated this region.
 //----------------------------------------------------------------------
 
@@ -125,7 +125,7 @@ uvm_mem* uvm_mem_region::get_memory() const
 //!
 //! Return a reference to the virtual register array abstraction class
 //! implemented in this region.
-//! Returns NULL if the memory region is
+//! Returns nullptr if the memory region is
 //! not known to implement virtual registers.
 //----------------------------------------------------------------------
 
@@ -163,7 +163,7 @@ void uvm_mem_region::write( uvm_status_e& status, // output
   m_fname = fname;
   m_lineno = lineno;
 
-  if (mem == NULL)
+  if (mem == nullptr)
   {
     UVM_ERROR("RegModel", "Cannot use uvm_mem_region::write() on a region that was allocated by a Memory Allocation Manager that was not associated with a uvm_mem instance");
     status = UVM_NOT_OK;
@@ -216,7 +216,7 @@ void uvm_mem_region::read( uvm_status_e& status, // output
   m_fname = fname;
   m_lineno = lineno;
 
-  if (mem == NULL)
+  if (mem == nullptr)
   {
     UVM_ERROR("RegModel", "Cannot use uvm_mem_region::read() on a region that was allocated by a Memory Allocation Manager that was not associated with a uvm_mem instance");
     status = UVM_NOT_OK;
@@ -269,7 +269,7 @@ void uvm_mem_region::burst_write( uvm_status_e& status, // output
   m_fname = fname;
   m_lineno = lineno;
 
-  if (mem == NULL)
+  if (mem == nullptr)
   {
     UVM_ERROR("RegModel", "Cannot use uvm_mem_region::burst_write() on a region that was allocated by a Memory Allocation Manager that was not associated with a uvm_mem instance");
     status = UVM_NOT_OK;
@@ -326,7 +326,7 @@ void uvm_mem_region::burst_read( uvm_status_e& status, // output
   m_fname = fname;
   m_lineno = lineno;
 
-  if (mem == NULL)
+  if (mem == nullptr)
   {
     UVM_ERROR("RegModel", "Cannot use uvm_mem_region::burst_read() on a region that was allocated by a Memory Allocation Manager that was not associated with a uvm_mem instance");
     status = UVM_NOT_OK;
@@ -379,7 +379,7 @@ void uvm_mem_region::poke( uvm_status_e& status, // output
   m_fname = fname;
   m_lineno = lineno;
 
-  if (mem == NULL)
+  if (mem == nullptr)
   {
     UVM_ERROR("RegModel", "Cannot use uvm_mem_region::poke() on a region that was allocated by a Memory Allocation Manager that was not associated with a uvm_mem instance");
     status = UVM_NOT_OK;
@@ -427,7 +427,7 @@ void uvm_mem_region::peek( uvm_status_e& status, // output
   m_fname = fname;
   m_lineno = lineno;
 
-  if (mem == NULL)
+  if (mem == nullptr)
   {
     UVM_ERROR("RegModel", "Cannot use uvm_mem_region::peek() on a region that was allocated by a Memory Allocation Manager that was not associated with a uvm_mem instance");
     status = UVM_NOT_OK;
@@ -464,7 +464,7 @@ uvm_mem_region::uvm_mem_region( unsigned long start_offset,
   : m_len(len), m_n_bytes(n_bytes), m_parent(parent),
     m_start_offset(start_offset), m_end_offset(end_offset)
 {
-  m_vreg = NULL;
+  m_vreg = nullptr;
   m_lineno = 0;
   m_fname = "";
 

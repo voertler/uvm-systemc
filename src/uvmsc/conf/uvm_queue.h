@@ -110,7 +110,7 @@ template <typename T>
 const std::string uvm_queue<T>::type_name = "uvm::uvm_queue";
 
 template <typename T>
-uvm_queue<T>* uvm_queue<T>::m_global_queue = NULL;
+uvm_queue<T>* uvm_queue<T>::m_global_queue = nullptr;
 
 //------------------------------------------------------------------------------
 // Constructors
@@ -144,7 +144,7 @@ uvm_queue<T>::~uvm_queue()
 template <typename T>
 uvm_queue<T>* uvm_queue<T>::get_global_queue()
 {
-  if (m_global_queue == NULL)
+  if (m_global_queue == nullptr)
     m_global_queue = new uvm_queue("global_queue");
   return m_global_queue;
 }
@@ -262,7 +262,7 @@ void uvm_queue<T>::do_delete( int index )
 // member function: pop_front
 //
 //! Removes and returns the first element of the queue,
-//! or NULL if the queue is empty.
+//! or nullptr if the queue is empty.
 //------------------------------------------------------------------------------
 
 template <typename T>
@@ -284,7 +284,7 @@ T uvm_queue<T>::pop_front()
 // member function: pop_back
 //
 //! Removes and returns the last element of the queue,
-//! or NULL if the queue is empty.
+//! or nullptr if the queue is empty.
 //------------------------------------------------------------------------------
 
 template <typename T>
@@ -363,7 +363,7 @@ void uvm_queue<T>::do_copy(const uvm_object& rhs )
 {
   uvm_object::do_copy(rhs);
   const uvm_queue<T>* p = dynamic_cast<const uvm_queue<T>*>(&rhs);
-  if (p == NULL)
+  if (p == nullptr)
     return;
   queue = p->queue;
 }

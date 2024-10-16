@@ -51,7 +51,7 @@ class uvm_printer;
 
 void run_test( const std::string& test_name = "" );
 
-void print_topology( uvm_printer* printer = NULL );
+void print_topology( uvm_printer* printer = nullptr );
 
 //------------------------------------------------------------------------------
 // global variable to get a handle to the top

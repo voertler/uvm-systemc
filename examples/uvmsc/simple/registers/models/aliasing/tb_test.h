@@ -36,7 +36,7 @@ class tb_test : public uvm::uvm_test
   uvm::uvm_reg_sequence<>* seq;
 
   tb_test( uvm::uvm_component_name name = "tb_test")
-  : uvm::uvm_test(name), env(NULL), seq(NULL) {}
+  : uvm::uvm_test(name), env(nullptr), seq(nullptr) {}
 
   UVM_COMPONENT_UTILS(tb_test);
 
@@ -63,22 +63,22 @@ class tb_test : public uvm::uvm_test
  /* TODO
     UVM_INFO("Test", "Verifying aliasing...", uvm::UVM_NONE);
 
-    env->regmodel->Ra->write(status, 0xDEADBEEF, uvm::UVM_DEFAULT_PATH, NULL, seq);
+    env->regmodel->Ra->write(status, 0xDEADBEEF, uvm::UVM_DEFAULT_PATH, nullptr, seq);
     env->regmodel->mirror(status, uvm::UVM_CHECK, uvm::UVM_DEFAULT_PATH, seq);
 
-    env->regmodel->Rb->write(status, 0x87654320, uvm::UVM_DEFAULT_PATH, NULL, seq);
+    env->regmodel->Rb->write(status, 0x87654320, uvm::UVM_DEFAULT_PATH, nullptr, seq);
     env->regmodel->mirror(status, uvm::UVM_CHECK, uvm::UVM_DEFAULT_PATH, seq);
 
-    env->regmodel->Ra->F1->write(status, 0xA5, uvm::UVM_DEFAULT_PATH, NULL, seq);
+    env->regmodel->Ra->F1->write(status, 0xA5, uvm::UVM_DEFAULT_PATH, nullptr, seq);
     env->regmodel->mirror(status, uvm::UVM_CHECK, uvm::UVM_DEFAULT_PATH, seq);
 
-    env->regmodel->Rb->F1->write(status, 0xC3, uvm::UVM_DEFAULT_PATH, NULL, seq);
+    env->regmodel->Rb->F1->write(status, 0xC3, uvm::UVM_DEFAULT_PATH, nullptr, seq);
     env->regmodel->mirror(status, uvm::UVM_CHECK, uvm::UVM_DEFAULT_PATH, seq);
 
-    env->regmodel->Ra->F2->write(status, 0xBD, uvm::UVM_DEFAULT_PATH, NULL, seq);
+    env->regmodel->Ra->F2->write(status, 0xBD, uvm::UVM_DEFAULT_PATH, nullptr, seq);
     env->regmodel->mirror(status, uvm::UVM_CHECK, uvm::UVM_DEFAULT_PATH, seq);
 
-    env->regmodel->Rb->F2->write(status, 0x2A, uvm::UVM_DEFAULT_PATH, NULL, seq);
+    env->regmodel->Rb->F2->write(status, 0x2A, uvm::UVM_DEFAULT_PATH, nullptr, seq);
     env->regmodel->mirror(status, uvm::UVM_CHECK, uvm::UVM_DEFAULT_PATH, seq);
 */
     phase.drop_objection(this);

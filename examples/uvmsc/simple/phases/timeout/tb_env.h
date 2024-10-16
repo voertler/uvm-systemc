@@ -34,9 +34,9 @@ class tb_env : public uvm::uvm_env
 
   void build_phase(uvm::uvm_phase& phase)
   {
-    uvm::uvm_config_db<sc_core::sc_time>::set(NULL, "global_timer.*",    "timeout", sc_core::sc_time(1000, sc_core::SC_US));
-    uvm::uvm_config_db<sc_core::sc_time>::set(NULL, "global_timer.main", "timeout", sc_core::sc_time(3000, sc_core::SC_US));
-    uvm::uvm_config_db<sc_core::sc_time>::set(NULL, "global_timer.run",  "timeout", sc_core::sc_time(0, sc_core::SC_US));
+    uvm::uvm_config_db<sc_core::sc_time>::set(nullptr, "global_timer.*",    "timeout", sc_core::sc_time(1000, sc_core::SC_US));
+    uvm::uvm_config_db<sc_core::sc_time>::set(nullptr, "global_timer.main", "timeout", sc_core::sc_time(3000, sc_core::SC_US));
+    uvm::uvm_config_db<sc_core::sc_time>::set(nullptr, "global_timer.run",  "timeout", sc_core::sc_time(0, sc_core::SC_US));
   }
    
   void reset_phase(uvm::uvm_phase& phase)

@@ -49,8 +49,8 @@ class uvm_event_callback : public uvm_object
 {
 public:
   uvm_event_callback( const std::string& name = "" );
-  virtual bool pre_trigger( const uvm_event* e, const uvm_object* data = NULL ) const;
-  virtual void post_trigger( const uvm_event* e, const uvm_object* data = NULL) const;
+  virtual bool pre_trigger( const uvm_event* e, const uvm_object* data = nullptr ) const;
+  virtual void post_trigger( const uvm_event* e, const uvm_object* data = nullptr) const;
   virtual uvm_object* create( const std::string& name = "" );
 
 }; // class uvm_event_callback

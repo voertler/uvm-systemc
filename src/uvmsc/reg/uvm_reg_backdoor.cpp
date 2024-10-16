@@ -88,7 +88,7 @@ void uvm_reg_backdoor::do_post_read( uvm_reg_item* rw )
   uvm_callback_iter<uvm_reg_backdoor, uvm_reg_cbs>* iter =
       new uvm_callback_iter<uvm_reg_backdoor, uvm_reg_cbs>(this);
 
-  for( uvm_reg_cbs* cb = iter->last(); cb != NULL; cb = iter->prev())
+  for( uvm_reg_cbs* cb = iter->last(); cb != nullptr; cb = iter->prev())
     cb->decode(rw->value);
 
   UVM_DO_OBJ_CALLBACKS(uvm_reg_backdoor, uvm_reg_cbs, this, post_read(rw))
@@ -114,7 +114,7 @@ void uvm_reg_backdoor::do_pre_write( uvm_reg_item* rw )
 
   UVM_DO_OBJ_CALLBACKS(uvm_reg_backdoor, uvm_reg_cbs, this, pre_write(rw))
 
-  for( uvm_reg_cbs* cb = iter->first(); cb != NULL; cb = iter->next())
+  for( uvm_reg_cbs* cb = iter->first(); cb != nullptr; cb = iter->next())
     cb->encode(rw->value);
 }
 
@@ -288,7 +288,7 @@ void uvm_reg_backdoor::post_write( uvm_reg_item* rw )
 
 void uvm_reg_backdoor::start_update_thread( uvm_object* element )
 {
-  uvm_reg* rg = NULL;
+  uvm_reg* rg = nullptr;
 
   // if already exists, kill previous thread
   if ( m_update_thread.find(element) != m_update_thread.end()) // if exists
@@ -298,7 +298,7 @@ void uvm_reg_backdoor::start_update_thread( uvm_object* element )
   }
 
   rg = dynamic_cast<uvm_reg*>(element);
-  if (rg == NULL)
+  if (rg == nullptr)
     return; // only regs supported at this time
 
   m_update_thread[element] =
@@ -315,7 +315,7 @@ void uvm_reg_backdoor::start_update_thread_core( uvm_object* element, uvm_reg* r
 {
   std::vector<uvm_reg_field*> fields;
 
-  if (rg == NULL)
+  if (rg == nullptr)
     return; // only regs supported at this time
   else
     rg->get_fields(fields);

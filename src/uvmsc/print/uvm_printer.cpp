@@ -226,8 +226,8 @@ void uvm_printer::print_object( const std::string& name,
                                 const uvm_object& obj,
                                 const char* scope_separator ) const
 {
-  const uvm_component* comp = NULL;
-  const uvm_component* child_comp = NULL;
+  const uvm_component* comp = nullptr;
+  const uvm_component* child_comp = nullptr;
 
   const uvm_object* objp = &obj;
 
@@ -238,14 +238,14 @@ void uvm_printer::print_object( const std::string& name,
     )
   {
     objp->__m_uvm_status_container->cycle_check[objp] = true;
-    if(name.empty() && objp != NULL)
+    if(name.empty() && objp != nullptr)
       m_scope.down(objp->get_name());
     else
       m_scope.down(name);
 
     // Handle children of the comp
     comp = dynamic_cast<const uvm_component*>(objp);
-    if(comp != NULL)
+    if(comp != nullptr)
     {
       std::string lname;
       if (comp->get_first_child(lname))
@@ -288,10 +288,10 @@ void uvm_printer::print_object_header( const std::string& name,
 
   if(lname.empty())
   {
-    if(objp != NULL )
+    if(objp != nullptr )
     {
       comp = dynamic_cast<const uvm_component*>(objp);
-      if( (m_scope.depth() == 0) && (comp != NULL) )
+      if( (m_scope.depth() == 0) && (comp != nullptr) )
         lname = comp->get_full_name();
       else
         lname = objp->get_name();
@@ -309,7 +309,7 @@ void uvm_printer::print_object_header( const std::string& name,
   else
     row_info.name = adjust_name(m_scope.get(), scope_separator);
 
-  row_info.type_name = (objp != NULL) ?  objp->get_type_name() : "object";
+  row_info.type_name = (objp != nullptr) ?  objp->get_type_name() : "object";
   row_info.size = "-";
   row_info.val = knobs.reference ? uvm_object_value_str(objp) : "-";
 

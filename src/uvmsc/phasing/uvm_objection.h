@@ -60,11 +60,11 @@ class uvm_objection_context_object
   // preventing memory leaks from reused objects
   void clear()
   {
-    obj = NULL;
-    source_obj = NULL;
+    obj = nullptr;
+    source_obj = nullptr;
     description = "";
     count = 0;
-    objection = NULL;
+    objection = nullptr;
   }
 };
 
@@ -90,7 +90,7 @@ class uvm_objection : public uvm_object
   uvm_objection();
   uvm_objection( const std::string& name );
 
-  virtual void clear( uvm_object* obj = NULL );
+  virtual void clear( uvm_object* obj = nullptr );
 
   bool trace_mode( int mode = -1 );
 
@@ -108,7 +108,7 @@ class uvm_objection : public uvm_object
                                const std::string& description = "",
                                int count = 1 );
 
-  void set_drain_time( uvm_object* obj = NULL,
+  void set_drain_time( uvm_object* obj = nullptr,
                        const sc_core::sc_time& drain = sc_core::SC_ZERO_TIME );
 
   //--------------------------------------------------------------------------
@@ -137,15 +137,15 @@ class uvm_objection : public uvm_object
   void get_objectors( std::vector<uvm_object*>& objlist ) const;
 
   void wait_for( uvm_objection_event objt_event,
-                 uvm_object* obj = NULL );
+                 uvm_object* obj = nullptr );
 
-  int get_objection_count( uvm_object* obj = NULL ) const;
+  int get_objection_count( uvm_object* obj = nullptr ) const;
 
-  int get_objection_total( uvm_object* obj = NULL ) const;
+  int get_objection_total( uvm_object* obj = nullptr ) const;
 
-  const sc_core::sc_time get_drain_time( uvm_object* obj = NULL ) const;
+  const sc_core::sc_time get_drain_time( uvm_object* obj = nullptr ) const;
 
-  void display_objections( uvm_object* obj = NULL,
+  void display_objections( uvm_object* obj = nullptr,
                            bool show_header = true ) const;
 
   /////////////////////////////////////////////////////
@@ -197,7 +197,7 @@ class uvm_objection : public uvm_object
 
   static void m_init_objections();
 
-  std::string m_display_objections( uvm_object* obj = NULL,
+  std::string m_display_objections( uvm_object* obj = nullptr,
                                     bool show_header = true ) const;
   // member variables
  protected:

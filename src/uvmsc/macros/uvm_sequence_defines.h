@@ -114,13 +114,13 @@
   ::uvm::uvm_sequence_base* seq__; \
   UVM_CREATE_ON(SEQ_OR_ITEM, SEQR) \
   seq__ = dynamic_cast<uvm::uvm_sequence_base*>(SEQ_OR_ITEM); \
-  if (seq__ == NULL) start_item(SEQ_OR_ITEM, PRIORITY); \
-  if (seq__ == NULL) finish_item(SEQ_OR_ITEM, PRIORITY); \
+  if (seq__ == nullptr) start_item(SEQ_OR_ITEM, PRIORITY); \
+  if (seq__ == nullptr) finish_item(SEQ_OR_ITEM, PRIORITY); \
   else seq__->start(SEQR, this, PRIORITY, 0); \
   } \
 
 /* TODO randomization - when ready insert after start_item above
-    if ((seq__ == NULL || !seq__.do_not_randomize) && !SEQ_OR_ITEM.randomize() with CONSTRAINTS ) \
+    if ((seq__ == nullptr || !seq__.do_not_randomize) && !SEQ_OR_ITEM.randomize() with CONSTRAINTS ) \
     UVM_WARNING("RNDFLD", "Randomization failed in uvm_do_with action"); \
 */
 

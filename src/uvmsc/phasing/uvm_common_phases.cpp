@@ -44,7 +44,7 @@ void uvm_build_phase::exec_func(uvm_component* comp, uvm_phase* phase)
 
 uvm_build_phase* uvm_build_phase::get()
 {
-  if( m_inst == NULL )
+  if( m_inst == nullptr )
      m_inst = new uvm_build_phase();
   return m_inst;
 }
@@ -54,7 +54,7 @@ const std::string uvm_build_phase::get_type_name() const
   return type_name;
 }
 
-uvm_build_phase* uvm_build_phase::m_inst = NULL;
+uvm_build_phase* uvm_build_phase::m_inst = nullptr;
 const std::string uvm_build_phase::type_name = "uvm_build_phase";
 
 //----------------------------------------------------------------------
@@ -72,7 +72,7 @@ void uvm_connect_phase::exec_func(uvm_component* comp, uvm_phase* phase)
 
 uvm_connect_phase* uvm_connect_phase::get()
 {
-  if( m_inst == NULL )
+  if( m_inst == nullptr )
      m_inst = new uvm_connect_phase();
   return m_inst;
 }
@@ -82,7 +82,7 @@ const std::string uvm_connect_phase::get_type_name() const
   return type_name;
 }
 
-uvm_connect_phase* uvm_connect_phase::m_inst = NULL;
+uvm_connect_phase* uvm_connect_phase::m_inst = nullptr;
 const std::string uvm_connect_phase::type_name = "uvm_connect_phase";
 
 //----------------------------------------------------------------------
@@ -100,7 +100,7 @@ void uvm_end_of_elaboration_phase::exec_func(uvm_component* comp, uvm_phase* pha
 
 uvm_end_of_elaboration_phase* uvm_end_of_elaboration_phase::get()
 {
-  if( m_inst == NULL )
+  if( m_inst == nullptr )
      m_inst = new uvm_end_of_elaboration_phase();
   return m_inst;
 }
@@ -110,7 +110,7 @@ const std::string uvm_end_of_elaboration_phase::get_type_name() const
   return type_name;
 }
 
-uvm_end_of_elaboration_phase* uvm_end_of_elaboration_phase::m_inst = NULL;
+uvm_end_of_elaboration_phase* uvm_end_of_elaboration_phase::m_inst = nullptr;
 const std::string uvm_end_of_elaboration_phase::type_name = "uvm_end_of_elaboration_phase";
 
 //----------------------------------------------------------------------
@@ -129,7 +129,7 @@ void uvm_start_of_simulation_phase::exec_func( uvm_component* comp,
 
 uvm_start_of_simulation_phase* uvm_start_of_simulation_phase::get()
 {
-  if( m_inst == NULL )
+  if( m_inst == nullptr )
      m_inst = new uvm_start_of_simulation_phase();
   return m_inst;
 }
@@ -139,7 +139,7 @@ const std::string uvm_start_of_simulation_phase::get_type_name() const
   return type_name;
 }
 
-uvm_start_of_simulation_phase* uvm_start_of_simulation_phase::m_inst = NULL;
+uvm_start_of_simulation_phase* uvm_start_of_simulation_phase::m_inst = nullptr;
 const std::string uvm_start_of_simulation_phase::type_name = "uvm_start_of_simulation_phase";
 
 //----------------------------------------------------------------------
@@ -156,7 +156,7 @@ void uvm_run_phase::exec_process(uvm_component* comp, uvm_phase* phase)
 
 uvm_run_phase* uvm_run_phase::get()
 {
-  if( m_inst == NULL )
+  if( m_inst == nullptr )
      m_inst = new uvm_run_phase();
   return m_inst;
 }
@@ -166,7 +166,7 @@ const std::string uvm_run_phase::get_type_name() const
   return type_name;
 }
 
-uvm_run_phase* uvm_run_phase::m_inst = NULL;
+uvm_run_phase* uvm_run_phase::m_inst = nullptr;
 const std::string uvm_run_phase::type_name = "uvm_run_phase";
 
 
@@ -185,7 +185,7 @@ void uvm_extract_phase::exec_func(uvm_component* comp, uvm_phase* phase)
 
 uvm_extract_phase* uvm_extract_phase::get()
 {
-  if( m_inst == NULL )
+  if( m_inst == nullptr )
      m_inst = new uvm_extract_phase();
   return m_inst;
 }
@@ -195,7 +195,7 @@ const std::string uvm_extract_phase::get_type_name() const
   return type_name;
 }
 
-uvm_extract_phase* uvm_extract_phase::m_inst = NULL;
+uvm_extract_phase* uvm_extract_phase::m_inst = nullptr;
 const std::string uvm_extract_phase::type_name = "uvm_extract_phase";
 
 
@@ -214,7 +214,7 @@ void uvm_check_phase::exec_func(uvm_component* comp, uvm_phase* phase)
 
 uvm_check_phase* uvm_check_phase::get()
 {
-  if( m_inst == NULL )
+  if( m_inst == nullptr )
      m_inst = new uvm_check_phase();
   return m_inst;
 }
@@ -224,7 +224,7 @@ const std::string uvm_check_phase::get_type_name() const
   return type_name;
 }
 
-uvm_check_phase* uvm_check_phase::m_inst = NULL;
+uvm_check_phase* uvm_check_phase::m_inst = nullptr;
 const std::string uvm_check_phase::type_name = "uvm_check_phase";
 
 //----------------------------------------------------------------------
@@ -242,7 +242,7 @@ void uvm_report_phase::exec_func(uvm_component* comp, uvm_phase* phase)
 
 uvm_report_phase* uvm_report_phase::get()
 {
-  if( m_inst == NULL )
+  if( m_inst == nullptr )
      m_inst = new uvm_report_phase();
   return m_inst;
 }
@@ -252,7 +252,7 @@ const std::string uvm_report_phase::get_type_name() const
   return type_name;
 }
 
-uvm_report_phase* uvm_report_phase::m_inst = NULL;
+uvm_report_phase* uvm_report_phase::m_inst = nullptr;
 const std::string uvm_report_phase::type_name = "uvm_report_phase";
 
 //----------------------------------------------------------------------
@@ -270,7 +270,7 @@ void uvm_final_phase::exec_func(uvm_component* comp, uvm_phase* phase)
 
 uvm_final_phase* uvm_final_phase::get()
 {
-  if( m_inst == NULL )
+  if( m_inst == nullptr )
      m_inst = new uvm_final_phase();
   return m_inst;
 }
@@ -280,7 +280,7 @@ const std::string uvm_final_phase::get_type_name() const
   return type_name;
 }
 
-uvm_final_phase* uvm_final_phase::m_inst = NULL;
+uvm_final_phase* uvm_final_phase::m_inst = nullptr;
 const std::string uvm_final_phase::type_name = "uvm_final_phase";
 
 

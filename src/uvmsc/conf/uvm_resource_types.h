@@ -77,7 +77,7 @@ class uvm_resource_types
 // Class: get_t
 //
 //! Instances of get_t are stored in the history list as a record of each
-//! get.  Failed gets are indicated with rsrc set to NULL. This is part
+//! get.  Failed gets are indicated with rsrc set to nullptr. This is part
 //! of the audit trail facility for resources.
 //----------------------------------------------------------------------
 

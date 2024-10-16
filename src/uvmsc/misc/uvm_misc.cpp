@@ -228,13 +228,13 @@ std::string uvm_leaf_scope( const std::string& full_name, const char* scope_sepa
 //----------------------------------------------------------------------
 // Global function: uvm_object_value_str
 //
-//! Return instance id if it exists, otherwise return NULL
+//! Return instance id if it exists, otherwise return nullptr
 //----------------------------------------------------------------------
 
 std::string uvm_object_value_str( const uvm_object* v )
 {
-  if (v == NULL)
-    return "<NULL>";
+  if (v == nullptr)
+    return "<nullptr>";
 
   std::ostringstream str;
   str << "@" << std::setw(3) << std::setfill('0') << v->get_inst_id();

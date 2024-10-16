@@ -38,9 +38,9 @@ namespace uvm {
 // Initialization of static data members
 //------------------------------------------------------------------------------
 
-//uvm_phase* uvm_domain::m_uvm_schedule = NULL;
-//uvm_domain* uvm_domain::m_uvm_domain = NULL;
-//uvm_domain* uvm_domain::m_common_domain = NULL;
+//uvm_phase* uvm_domain::m_uvm_schedule = nullptr;
+//uvm_domain* uvm_domain::m_uvm_domain = nullptr;
+//uvm_domain* uvm_domain::m_common_domain = nullptr;
 
 //------------------------------------------------------------------------------
 // Constructor: uvm_domain
@@ -98,11 +98,11 @@ uvm_phase* uvm_domain::get_uvm_schedule()
 
 uvm_domain* uvm_domain::get_common_domain()
 {
-  static uvm_domain* m_common_domain = NULL;
+  static uvm_domain* m_common_domain = nullptr;
 
-  uvm_domain* domain = NULL;
+  uvm_domain* domain = nullptr;
 
-  if (m_common_domain != NULL)
+  if (m_common_domain != nullptr)
     return m_common_domain;
 
   domain = new uvm_domain("common");
@@ -169,9 +169,9 @@ void uvm_domain::add_uvm_phases( uvm_phase* schedule )
 
 uvm_domain* uvm_domain::get_uvm_domain()
 {
-  static uvm_domain* m_uvm_domain = NULL;
+  static uvm_domain* m_uvm_domain = nullptr;
 
-  if (m_uvm_domain == NULL)
+  if (m_uvm_domain == nullptr)
   {
     m_uvm_domain = new uvm_domain("uvm");
     m_domains()[m_uvm_domain->get_name()] = m_uvm_domain;

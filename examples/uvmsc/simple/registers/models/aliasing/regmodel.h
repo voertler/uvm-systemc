@@ -161,11 +161,11 @@ class block_B : public uvm::uvm_reg_block
     default_map = create_map("default_map", base_addr, n_bytes, uvm::UVM_BIG_ENDIAN);
 
     Ra = reg_Ra::type_id::create("Ra");
-    Ra->configure(this, NULL);
+    Ra->configure(this, nullptr);
     Ra->build();
 
     Rb = reg_Rb::type_id::create("Rb");
-    Rb->configure(this, NULL);
+    Rb->configure(this, nullptr);
     Rb->build();
 
     default_map->add_reg(Ra, 0x0,   "RW");
@@ -173,7 +173,7 @@ class block_B : public uvm::uvm_reg_block
 
     alias_RaRb* RaRb;
 
-    RaRb = alias_RaRb::type_id::create("RaRb", NULL, get_full_name());
+    RaRb = alias_RaRb::type_id::create("RaRb", nullptr, get_full_name());
     RaRb->configure(Ra, Rb);
   }
 

@@ -94,9 +94,9 @@ class uvm_mem_mam
   // Constructor
   explicit uvm_mem_mam( const std::string& name,
                         uvm_mem_mam_cfg* cfg,
-                        uvm_mem* mem = NULL );
+                        uvm_mem* mem = nullptr );
 
-  uvm_mem_mam_cfg* reconfigure( uvm_mem_mam_cfg* cfg = NULL );
+  uvm_mem_mam_cfg* reconfigure( uvm_mem_mam_cfg* cfg = nullptr );
 
   //--------------------------------------------------------------------
   // Group: Memory Management
@@ -108,7 +108,7 @@ class uvm_mem_mam
                                   int lineno = 0 );
 
   uvm_mem_region* request_region( unsigned int n_bytes,
-                                  uvm_mem_mam_policy* alloc = NULL,
+                                  uvm_mem_mam_policy* alloc = nullptr,
                                   const std::string& fname = "",
                                   int lineno = 0 );
 

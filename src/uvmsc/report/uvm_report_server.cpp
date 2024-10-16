@@ -54,7 +54,7 @@ void uvm_report_server::do_copy( const uvm_object& rhs )
 
   const uvm_report_server* rhs_ = dynamic_cast<const uvm_report_server*>(&rhs);
 
-  if(rhs_ == NULL)
+  if(rhs_ == nullptr)
     UVM_ERROR("UVM/REPORT/SERVER/RPTCOPY", "Cannot copy to report_server from the given datatype.");
     //TODO should be FATAL?
 

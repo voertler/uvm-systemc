@@ -44,7 +44,7 @@ int uvm_event::g_cnt = 0;
 
 uvm_event::uvm_event( const std::string& name ): uvm_object(name)
 {
-  trigger_data = NULL;
+  trigger_data = nullptr;
   trigger_time = SC_ZERO_TIME;
 
   m_event = new sc_event();
@@ -292,7 +292,7 @@ void uvm_event::reset( bool wakeup )
   on = false;
   m_on_ev->notify();
   trigger_time = SC_ZERO_TIME;
-  trigger_data = NULL;
+  trigger_data = nullptr;
 }
 
 //----------------------------------------------------------------------
@@ -390,8 +390,8 @@ int uvm_event::get_num_waiters() const
 void uvm_event::m_clean()
 {
   // clean memory
-  if (m_event != NULL) { delete m_event; m_event = NULL; }
-  if (m_on_ev != NULL) { delete m_on_ev; m_on_ev = NULL; }
+  if (m_event != nullptr) { delete m_event; m_event = nullptr; }
+  if (m_on_ev != nullptr) { delete m_on_ev; m_on_ev = nullptr; }
 
   while(!m_uvm_event_list.empty())
   {
@@ -511,7 +511,7 @@ void uvm_event::do_copy( const uvm_object& rhs )
   uvm_object::do_copy(rhs);
   e = dynamic_cast<uvm_event*>(rhs);
 
-  if(e==NULL) return;
+  if(e==nullptr) return;
 
   m_event = e->m_event;
   m_num_waiters = e->m_num_waiters;

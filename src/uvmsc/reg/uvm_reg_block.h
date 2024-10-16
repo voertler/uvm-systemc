@@ -76,7 +76,7 @@ class uvm_reg_block : public uvm_object
   uvm_reg_block( const std::string& name = "",
                  int has_coverage = UVM_NO_COVERAGE );
 
-  void configure( uvm_reg_block* parent = NULL,
+  void configure( uvm_reg_block* parent = nullptr,
 		  const std::string& hdl_path = "" );
 
   virtual uvm_reg_map* create_map( const std::string& name,
@@ -109,12 +109,12 @@ class uvm_reg_block : public uvm_object
 
   static int find_blocks( std::string name,
 		  	  	  	      std::vector<uvm_reg_block*>& blks,
-                          uvm_reg_block* root = NULL,
-                          uvm_object* accessor = NULL );
+                          uvm_reg_block* root = nullptr,
+                          uvm_object* accessor = nullptr );
       
   static uvm_reg_block* find_block( const std::string& name,
-                                    uvm_reg_block* root = NULL,
-                                    uvm_object* accessor = NULL );
+                                    uvm_reg_block* root = nullptr,
+                                    uvm_object* accessor = nullptr );
 
   virtual void get_blocks( std::vector<uvm_reg_block*>& blks,
                            uvm_hier_e hier = UVM_HIER ) const;
@@ -186,18 +186,18 @@ class uvm_reg_block : public uvm_object
 
   virtual void update( uvm_status_e status,
                        uvm_path_e path = UVM_DEFAULT_PATH,
-                       uvm_sequence_base* parent = NULL,
+                       uvm_sequence_base* parent = nullptr,
                        int prior = -1,
-                       uvm_object* extension = NULL,
+                       uvm_object* extension = nullptr,
                        const std::string& fname = "",
                        int lineno = 0 );
 
   virtual void mirror( uvm_status_e status,
                        uvm_check_e check = UVM_NO_CHECK,
                        uvm_path_e path  = UVM_DEFAULT_PATH,
-                       uvm_sequence_base* parent = NULL,
+                       uvm_sequence_base* parent = nullptr,
                        int prior = -1,
-                       uvm_object* extension = NULL,
+                       uvm_object* extension = nullptr,
                        const std::string& fname = "",
                        int lineno = 0 );
 
@@ -205,10 +205,10 @@ class uvm_reg_block : public uvm_object
 		  	  	  	  	  	      const std::string& name,
                                   uvm_reg_data_t data,
                                   uvm_path_e path = UVM_DEFAULT_PATH,
-                                  uvm_reg_map* map = NULL,
-                                  uvm_sequence_base* parent = NULL,
+                                  uvm_reg_map* map = nullptr,
+                                  uvm_sequence_base* parent = nullptr,
                                   int prior = -1,
-                                  uvm_object* extension = NULL,
+                                  uvm_object* extension = nullptr,
                                   const std::string& fname = "",
                                   int lineno = 0 );
 
@@ -216,10 +216,10 @@ class uvm_reg_block : public uvm_object
 		  	  	  	  	  	  	 const std::string& name,
                                  uvm_reg_data_t data,
                                  uvm_path_e path = UVM_DEFAULT_PATH,
-                                 uvm_reg_map* map = NULL,
-                                 uvm_sequence_base* parent = NULL,
+                                 uvm_reg_map* map = nullptr,
+                                 uvm_sequence_base* parent = nullptr,
                                  int prior = -1,
-                                 uvm_object* extension = NULL,
+                                 uvm_object* extension = nullptr,
                                  const std::string& fname = "",
                                  int lineno = 0 );
 
@@ -228,10 +228,10 @@ class uvm_reg_block : public uvm_object
                                   uvm_reg_addr_t offset,
                                   uvm_reg_data_t data,
                                   uvm_path_e path = UVM_DEFAULT_PATH,
-                                  uvm_reg_map* map = NULL,
-                                  uvm_sequence_base* parent = NULL,
+                                  uvm_reg_map* map = nullptr,
+                                  uvm_sequence_base* parent = nullptr,
                                   int prior = -1,
-                                  uvm_object* extension = NULL,
+                                  uvm_object* extension = nullptr,
                                   const std::string& fname = "",
                                   int lineno = 0 );
 
@@ -240,10 +240,10 @@ class uvm_reg_block : public uvm_object
                                  uvm_reg_addr_t offset,
                                  uvm_reg_data_t data,
                                  uvm_path_e path = UVM_DEFAULT_PATH,
-                                 uvm_reg_map* map = NULL,
-                                 uvm_sequence_base* parent = NULL,
+                                 uvm_reg_map* map = nullptr,
+                                 uvm_sequence_base* parent = nullptr,
                                  int prior = -1,
-                                 uvm_object* extension = NULL,
+                                 uvm_object* extension = nullptr,
                                  const std::string& fname = "",
                                  int lineno = 0 );
 

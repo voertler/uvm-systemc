@@ -85,7 +85,7 @@ uvm_mem_mam_cfg* uvm_mem_mam::reconfigure( uvm_mem_mam_cfg* cfg )
   uvm_coreservice_t* cs = uvm_coreservice_t::get();
   uvm_root* top = cs->get_root();
 
-  if (cfg == NULL)
+  if (cfg == nullptr)
     return m_cfg;
 
   // Cannot reconfigure n_bytes
@@ -165,7 +165,7 @@ uvm_mem_region* uvm_mem_mam::reserve_region( unsigned long start_offset,
   if (n_bytes == 0)
   {
     UVM_ERROR("RegModel", "Cannot reserve 0 bytes");
-    return NULL;
+    return nullptr;
   }
 
   if (start_offset < m_cfg->start_offset)
@@ -176,7 +176,7 @@ uvm_mem_region* uvm_mem_mam::reserve_region( unsigned long start_offset,
         << " < 0x"
         << std::hex << m_cfg->start_offset;
     UVM_ERROR("RegModel", str.str());
-    return NULL;
+    return nullptr;
   }
 
   _end_offset = start_offset + ((n_bytes-1) / m_cfg->n_bytes);
@@ -191,7 +191,7 @@ uvm_mem_region* uvm_mem_mam::reserve_region( unsigned long start_offset,
         << std::hex << m_cfg->end_offset
         << ".";
     UVM_ERROR("RegModel", str.str());
-    return NULL;
+    return nullptr;
   }
 
   std::ostringstream inf;
@@ -219,7 +219,7 @@ uvm_mem_region* uvm_mem_mam::reserve_region( unsigned long start_offset,
           << (*it)->convert2string()
           << ".";
       UVM_ERROR("RegModel", str.str());
-      return NULL;
+      return nullptr;
     }
 
     // Regions are stored in increasing start offset
@@ -253,7 +253,7 @@ uvm_mem_region* uvm_mem_mam::reserve_region( unsigned long start_offset,
 //! the uvm_mem_mam::default_alloc class property is randomized.
 //!
 //! A descriptor of the allocated region is returned.
-//! If no region can be allocated, NULL is returned.
+//! If no region can be allocated, nullptr is returned.
 //!
 //! It may not be possible to allocate a region because
 //! there is no area in the memory with enough consecutive locations
@@ -275,7 +275,7 @@ uvm_mem_region* uvm_mem_mam::request_region( unsigned int n_bytes,
   m_fname = fname;
   m_lineno = lineno;
 
-  if (alloc == NULL)
+  if (alloc == nullptr)
     alloc = default_alloc;
 
   alloc->len        = (n_bytes-1) / m_cfg->n_bytes + 1;
@@ -287,7 +287,7 @@ uvm_mem_region* uvm_mem_mam::request_region( unsigned int n_bytes,
   if (!alloc->randomize())
   {
     UVM_ERROR("RegModel", "Unable to randomize policy");
-    return NULL;
+    return nullptr;
   }
   */
   return reserve_region(alloc->start_offset, n_bytes);
@@ -307,7 +307,7 @@ uvm_mem_region* uvm_mem_mam::request_region( unsigned int n_bytes,
 
 void uvm_mem_mam::release_region( uvm_mem_region* region )
 {
-  if (region == NULL) return;
+  if (region == nullptr) return;
 
   for( m_in_use_itt it = m_in_use.begin();
        it != m_in_use.end();
@@ -377,7 +377,7 @@ std::string uvm_mem_mam::convert2string()
 //!
 //! If reset is TRUE, reset the iterator
 //! and return the first allocated region.
-//! Returns NULL when there are no additional allocated
+//! Returns nullptr when there are no additional allocated
 //! regions to iterate on.
 //----------------------------------------------------------------------
 
@@ -389,7 +389,7 @@ uvm_mem_region* uvm_mem_mam::for_each( bool reset )
    m_for_each_idx++;
 
    if (m_for_each_idx >= (int)m_in_use.size())
-      return NULL;
+      return nullptr;
 
    return m_in_use[m_for_each_idx];
 }
@@ -402,7 +402,7 @@ uvm_mem_region* uvm_mem_mam::for_each( bool reset )
 //! Return the reference to the memory abstraction class
 //! for the memory implementing
 //! the locations managed by this instance of the allocation manager.
-//! Returns NULL if no
+//! Returns nullptr if no
 //! memory abstraction class was specified at construction time.
 //----------------------------------------------------------------------
 

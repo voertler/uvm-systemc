@@ -67,7 +67,7 @@ uvm_comparer::uvm_comparer()
 
 uvm_comparer* uvm_comparer::init()
 {
-  if( uvm_default_comparer == NULL )
+  if( uvm_default_comparer == nullptr )
     uvm_default_comparer = new uvm_comparer();
 
   return uvm_default_comparer;

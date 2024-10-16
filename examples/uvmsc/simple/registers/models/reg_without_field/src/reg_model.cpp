@@ -45,7 +45,7 @@ void block_B::build()
     default_map = create_map("default_map", 0, 4, uvm::UVM_BIG_ENDIAN);
 
     R = reg_R::type_id::create("R");
-    R->configure(this, NULL);
+    R->configure(this, nullptr);
     R->build();
 
     default_map->add_reg(R, 0x0, "RW");

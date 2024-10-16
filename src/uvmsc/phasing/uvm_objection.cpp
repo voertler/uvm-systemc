@@ -82,7 +82,7 @@ void uvm_objection::clear( uvm_object* obj )
   m_scheduled_list_itt idx_it;
   unsigned int idx;
 
-  if (obj == NULL)
+  if (obj == nullptr)
     obj = m_top;
 
   name = obj->get_full_name();
@@ -193,7 +193,7 @@ void uvm_objection::m_set_hier_mode( uvm_object* obj )
   }
 
   comp = dynamic_cast<uvm_component*>(obj);
-  if(comp != NULL)
+  if(comp != nullptr)
   {
     // Don't set if object is a leaf.
     if(comp->get_num_children() == 0)
@@ -221,7 +221,7 @@ void uvm_objection::m_set_hier_mode( uvm_object* obj )
       theobj = m_get_parent(theobj);
       m_total_count_ev.notify(); // let other processes take action
     }
-    while (theobj != NULL);
+    while (theobj != nullptr);
   }
 
   m_hier_mode = true;
@@ -240,7 +240,7 @@ void uvm_objection::raise_objection( uvm_object* obj,
                                      const std::string& description,
                                      int count )
 {
-  if(obj == NULL)
+  if(obj == nullptr)
     obj = m_top;
 
   m_cleared = false;
@@ -262,7 +262,7 @@ void uvm_objection::drop_objection( uvm_object* obj,
                                     const std::string& description,
                                     int count )
 {
-  if(obj == NULL)
+  if(obj == nullptr)
     obj = m_top;
 
   m_drop(obj, obj, description, count, 0);
@@ -285,7 +285,7 @@ void uvm_objection::drop_objection( uvm_object* obj,
 
 void uvm_objection::set_drain_time( uvm_object* obj, const sc_time& drain )
 {
-  if (obj == NULL)
+  if (obj == nullptr)
     obj = m_top;
 
   m_drain_time[obj] = drain;
@@ -310,7 +310,7 @@ void uvm_objection::raised( uvm_object* obj,
                             int count)
 {
   uvm_component* comp = dynamic_cast<uvm_component*>(obj);
-  if (comp != NULL)
+  if (comp != nullptr)
     comp->raised(this, source_obj, description, count);
 
   if (m_events.find(obj) != m_events.end()) //exists
@@ -331,7 +331,7 @@ void uvm_objection::dropped( uvm_object* obj,
                              int count)
 {
   uvm_component* comp = dynamic_cast<uvm_component*>(obj);
-  if(comp != NULL)
+  if(comp != nullptr)
     comp->dropped(this, source_obj, description, count);
 
   if (m_events.find(obj) != m_events.end()) // if exists
@@ -354,7 +354,7 @@ void uvm_objection::all_dropped( uvm_object* obj,
 {
   uvm_component* comp;
   comp = dynamic_cast<uvm_component*>(obj);
-  if(comp != NULL)
+  if(comp != nullptr)
     comp->all_dropped(this, source_obj, description, count);
 
   if (m_events.find(obj) != m_events.end()) // if exists
@@ -394,7 +394,7 @@ void uvm_objection::get_objectors( std::vector<uvm_object*>& objlist ) const
 
 void uvm_objection::wait_for( uvm_objection_event objt_event, uvm_object* obj )
 {
-  if (obj == NULL)
+  if (obj == nullptr)
     obj = m_top;
 
   if ( m_events.find(obj) == m_events.end()) // not exists
@@ -423,7 +423,7 @@ void uvm_objection::wait_for( uvm_objection_event objt_event, uvm_object* obj )
 
 int uvm_objection::get_objection_count( uvm_object* obj ) const
 {
-  if (obj == NULL)
+  if (obj == nullptr)
     obj = m_top;
 
   if (m_source_count.find(obj) == m_source_count.end() )
@@ -446,7 +446,7 @@ int uvm_objection::get_objection_total( uvm_object* obj ) const
   std::string child;
   int objection_total;
 
-  if (obj == NULL)
+  if (obj == nullptr)
     obj = m_top;
 
   if (m_total_count.find(obj) == m_total_count.end() ) // if not found
@@ -457,7 +457,7 @@ int uvm_objection::get_objection_total( uvm_object* obj ) const
   else
   {
     comp = dynamic_cast<uvm_component*>(obj);
-    if (comp != NULL)
+    if (comp != nullptr)
     {
       if (m_source_count.find(obj) == m_source_count.end()) // if not exists
         objection_total = 0;
@@ -483,7 +483,7 @@ int uvm_objection::get_objection_total( uvm_object* obj ) const
 
 const sc_time uvm_objection::get_drain_time( uvm_object* obj ) const
 {
-  if (obj == NULL)
+  if (obj == nullptr)
     obj = m_top;
 
   if (m_drain_time.find(obj) == m_drain_time.end()) // not exists
@@ -496,7 +496,7 @@ const sc_time uvm_objection::get_drain_time( uvm_object* obj ) const
 // member function: display_objections
 //
 //! Displays objection information about the given \p object. If \p object is
-//! not specified or NULL, the implicit top-level component, #uvm_root, is
+//! not specified or nullptr, the implicit top-level component, #uvm_root, is
 //! chosen. The argument \p show_header allows control of whether a header is
 //! output.
 //----------------------------------------------------------------------
@@ -535,7 +535,7 @@ void uvm_objection::m_objection_init()
   m_trace_mode = false;
   m_hier_mode = true;
 
-  m_ctxt = NULL;
+  m_ctxt = nullptr;
   m_context_pool.clear();
   m_scheduled_list().clear();
 
@@ -614,7 +614,7 @@ void uvm_objection::m_raise( uvm_object* obj,
   // Handle any outstanding drains...
 
   // First go through the scheduled list
-  uvm_objection_context_object* ctxt = NULL;
+  uvm_objection_context_object* ctxt = nullptr;
   unsigned int idx = 0;
   m_scheduled_list_itt idx_it = m_scheduled_list().begin();
 
@@ -633,7 +633,7 @@ void uvm_objection::m_raise( uvm_object* obj,
   }
 
   // If it's not there, go through the forked list
-  if (ctxt == NULL)
+  if (ctxt == nullptr)
   {
     idx = 0;
     idx_it = m_forked_list.begin();
@@ -654,7 +654,7 @@ void uvm_objection::m_raise( uvm_object* obj,
   }
 
   // If it's not there, go through the forked contexts
-  if (ctxt == NULL)
+  if (ctxt == nullptr)
   {
     if (m_forked_contexts.find(obj) != m_forked_contexts.end()) // exists
     {
@@ -668,7 +668,7 @@ void uvm_objection::m_raise( uvm_object* obj,
     }
   }
 
-  if (ctxt == NULL)
+  if (ctxt == nullptr)
   {
     // If there were no drains, just propagate as usual
 
@@ -786,7 +786,7 @@ void uvm_objection::m_drop( uvm_object* obj,
   }
   else
   {
-    uvm_objection_context_object* ctxt = NULL;
+    uvm_objection_context_object* ctxt = nullptr;
     if (m_context_pool.size())
     {
       ctxt = m_context_pool.front();                // pop_
@@ -892,7 +892,7 @@ void uvm_objection::m_propagate( uvm_object* obj,
                                  bool raise,
                                  int in_top_thread)
 {
-  if (obj != NULL && obj != m_top)
+  if (obj != nullptr && obj != m_top)
   {
     obj = m_get_parent(obj);
     if(raise)
@@ -915,20 +915,20 @@ uvm_object* uvm_objection::m_get_parent( uvm_object* obj )
   uvm_sequence_base* seq;
 
   comp = dynamic_cast<uvm_component*>(obj);
-  if (comp != NULL)
+  if (comp != nullptr)
   {
     obj = comp->get_parent();
   }
   else
   {
     seq = dynamic_cast<uvm_sequence_base*>(obj);
-    if (seq != NULL)
+    if (seq != nullptr)
       obj = dynamic_cast<uvm_object*>(seq->get_sequencer());
     else
       obj = m_top;
   }
 
-  if (obj == NULL)
+  if (obj == nullptr)
     obj = m_top;
 
   return obj;
@@ -1021,7 +1021,7 @@ void uvm_objection::m_execute_scheduled_forks()
 
     if(m_scheduled_list().size() != 0)
     {
-      uvm_objection_context_object* c = NULL;
+      uvm_objection_context_object* c = nullptr;
 
       // Save off the context before the fork
       c = m_scheduled_list().front();
@@ -1056,7 +1056,7 @@ void uvm_objection::m_forked_drain_guard(uvm_objection_context_object* context)
   // Check to make sure re-raise didn't empty the fifo
   if (objection->m_forked_list.size() > 0)
   {
-    uvm_objection_context_object* ctxt = NULL;
+    uvm_objection_context_object* ctxt = nullptr;
     ctxt = objection->m_forked_list.front();
     objection->m_forked_list.erase(objection->m_forked_list.begin());
 
@@ -1122,7 +1122,7 @@ std::string uvm_objection::m_display_objections( uvm_object* obj,
       lmap[theobj->get_full_name()] = theobj;
   }
 
-  if (obj == NULL)
+  if (obj == nullptr)
     obj = m_top;
 
   total = get_objection_total(obj);

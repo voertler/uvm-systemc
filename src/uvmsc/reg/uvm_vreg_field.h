@@ -78,7 +78,7 @@ class uvm_vreg_field : public uvm_object
 
   virtual unsigned int get_n_bits() const;
 
-  virtual std::string get_access( uvm_reg_map* map = NULL ) const;
+  virtual std::string get_access( uvm_reg_map* map = nullptr ) const;
 
   //--------------------------------------------------------------------
   // Group: HDL Access
@@ -88,9 +88,9 @@ class uvm_vreg_field : public uvm_object
                       uvm_status_e&  status,
                       uvm_reg_data_t value,
                       uvm_path_e path = UVM_DEFAULT_PATH,
-                      uvm_reg_map* map = NULL,
-                      uvm_sequence_base*  parent = NULL,
-                      uvm_object*         extension = NULL,
+                      uvm_reg_map* map = nullptr,
+                      uvm_sequence_base*  parent = nullptr,
+                      uvm_object*         extension = nullptr,
                       const std::string& fname = "",
                       int lineno = 0 );
 
@@ -98,25 +98,25 @@ class uvm_vreg_field : public uvm_object
                      uvm_status_e& status,
                      uvm_reg_data_t& value,
                      uvm_path_e path = UVM_DEFAULT_PATH,
-                     uvm_reg_map* map = NULL,
-                     uvm_sequence_base* parent = NULL,
-                     uvm_object* extension = NULL,
+                     uvm_reg_map* map = nullptr,
+                     uvm_sequence_base* parent = nullptr,
+                     uvm_object* extension = nullptr,
                      const std::string& fname = "",
                      int lineno = 0 );
 
   virtual void poke( unsigned long idx,
                      uvm_status_e& status,
                      uvm_reg_data_t value,
-                     uvm_sequence_base* parent = NULL,
-                     uvm_object* extension = NULL,
+                     uvm_sequence_base* parent = nullptr,
+                     uvm_object* extension = nullptr,
                      const std::string& fname = "",
                      int lineno = 0 );
 
   virtual void peek( unsigned long idx,
                      uvm_status_e& status,
                      uvm_reg_data_t& value,
-                     uvm_sequence_base* parent = NULL,
-                     uvm_object* extension = NULL,
+                     uvm_sequence_base* parent = nullptr,
+                     uvm_object* extension = nullptr,
                      const std::string& fname = "",
                      int lineno = 0 );
 

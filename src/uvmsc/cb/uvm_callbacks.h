@@ -135,7 +135,7 @@ class uvm_callbacks : public uvm_typed_callbacks<T>
   // Group: Debug
   //----------------------------------------------------------------------
 
-  static void display( T* obj = NULL );
+  static void display( T* obj = nullptr );
 
   /////////////////////////////////////////////////////
   // Implementation-defined member functions below,
@@ -187,13 +187,13 @@ class uvm_callbacks : public uvm_typed_callbacks<T>
 //----------------------------------------------------------------------
 
 template <typename T, typename CB>
-uvm_callbacks<T,CB>* uvm_callbacks<T,CB>::m_inst = NULL;
+uvm_callbacks<T,CB>* uvm_callbacks<T,CB>::m_inst = nullptr;
 
 template <typename T, typename CB>
-uvm_typeid_base* uvm_callbacks<T,CB>::m_typeid = NULL;
+uvm_typeid_base* uvm_callbacks<T,CB>::m_typeid = nullptr;
 
 template <typename T, typename CB>
-uvm_typeid_base* uvm_callbacks<T,CB>::m_cb_typeid = NULL;
+uvm_typeid_base* uvm_callbacks<T,CB>::m_cb_typeid = nullptr;
 
 template <typename T, typename CB>
 std::string uvm_callbacks<T,CB>::m_typename;
@@ -202,7 +202,7 @@ template <typename T, typename CB>
 std::string uvm_callbacks<T,CB>::m_cb_typename;
 
 template <typename T, typename CB>
-uvm_typed_callbacks<T>* uvm_callbacks<T,CB>::m_base_inst = NULL;
+uvm_typed_callbacks<T>* uvm_callbacks<T,CB>::m_base_inst = nullptr;
 
 //----------------------------------------------------------------------
 // Constructor
@@ -239,8 +239,8 @@ uvm_callbacks<T,CB>::uvm_callbacks()
 template <typename T, typename CB>
 void uvm_callbacks<T,CB>::add( T* obj, uvm_callback* cb, uvm_apprepend ordering )
 {
-  uvm_queue<uvm_callback*>* q = NULL;
-  uvm_object* bobj = NULL;
+  uvm_queue<uvm_callback*>* q = nullptr;
+  uvm_object* bobj = nullptr;
 
   std::string nm;
   std::string tnm;
@@ -248,14 +248,14 @@ void uvm_callbacks<T,CB>::add( T* obj, uvm_callback* cb, uvm_apprepend ordering 
   // last-minute registration of the object callback
   // this differs from UVMSV since we cannot register using the macro
   // because the static method cannot be initialize within the class declaration
-  if( obj != NULL )
+  if( obj != nullptr )
     obj->m_register_cb();
 
   get();
 
-  if( cb == NULL )
+  if( cb == nullptr )
   {
-    if( obj == NULL )
+    if( obj == nullptr )
       nm = "(*)";
     else
       nm = obj->get_full_name();
@@ -264,14 +264,14 @@ void uvm_callbacks<T,CB>::add( T* obj, uvm_callback* cb, uvm_apprepend ordering 
       tnm = m_base_inst->m_typename;
     else
     {
-      if (obj != NULL)
+      if (obj != nullptr)
         tnm = obj->get_type_name();
       else
         tnm = "uvm_object";
     }
 
     uvm_report_error("CBUNREG",
-        "NULL callback object cannot be registered with object " +
+        "nullptr callback object cannot be registered with object " +
         nm + " (" + tnm + ")", UVM_NONE);
     return;
   }
@@ -279,7 +279,7 @@ void uvm_callbacks<T,CB>::add( T* obj, uvm_callback* cb, uvm_apprepend ordering 
   if (!m_base_inst->check_registration(obj, cb))
   {
     //std::cout << "not registered obj/cb" << std::endl;
-    if (obj == NULL)
+    if (obj == nullptr)
       nm = "(*)";
     else
       nm = obj->get_full_name();
@@ -288,7 +288,7 @@ void uvm_callbacks<T,CB>::add( T* obj, uvm_callback* cb, uvm_apprepend ordering 
       tnm = m_base_inst->m_typename;
     else
     {
-      if(obj != NULL)
+      if(obj != nullptr)
         tnm = obj->get_type_name();
       else
         tnm = "uvm_object";
@@ -301,7 +301,7 @@ void uvm_callbacks<T,CB>::add( T* obj, uvm_callback* cb, uvm_apprepend ordering 
     return;
   }
 
-  if(obj == NULL)
+  if(obj == nullptr)
   {
     if ( uvm_typed_callbacks<T>::m_cb_find(uvm_typed_callbacks<T>::m_t_inst->m_tw_cb_q, cb) != -1)
     {
@@ -339,14 +339,14 @@ void uvm_callbacks<T,CB>::add( T* obj, uvm_callback* cb, uvm_apprepend ordering 
 
 
     bobj =  dynamic_cast<uvm_object*>(obj);
-    if (bobj == NULL)
+    if (bobj == nullptr)
       uvm_report_error("CBPREG",
         "Callback object cannot be registered with object " +
         nm + " because " + nm + " is not derived from type uvm_object.", UVM_NONE);
     else
         q = (*m_base_inst->m_pool)[bobj];
 
-    if (q == NULL)
+    if (q == nullptr)
     {
       q = new uvm_queue<uvm_callback*>();
       (*m_base_inst->m_pool)[bobj] = q;
@@ -358,7 +358,7 @@ void uvm_callbacks<T,CB>::add( T* obj, uvm_callback* cb, uvm_apprepend ordering 
       // way users don't need to set up uvm_report_object as a super type.
       uvm_report_object* o;
       o = dynamic_cast<uvm_report_object*>(obj);
-      if( o != NULL )
+      if( o != nullptr )
       {
         uvm_queue<uvm_callback*>* qr;
 
@@ -407,17 +407,17 @@ void uvm_callbacks<T,CB>::add_by_name( const std::string& name,
                                        uvm_apprepend ordering )
 {
   std::vector<uvm_component*> cq;
-  uvm_root* top = NULL;
-  uvm_coreservice_t* cs = NULL;
-  T* t = NULL;
+  uvm_root* top = nullptr;
+  uvm_coreservice_t* cs = nullptr;
+  T* t = nullptr;
 
   get();
 
   top = cs->get_root();
 
-  if(cb == NULL)
+  if(cb == nullptr)
   {
-     uvm_report_error("CBUNREG", "Null callback object cannot be registered with object(s) " +
+     uvm_report_error("CBUNREG", "nullptr callback object cannot be registered with object(s) " +
        name, UVM_NONE);
      return;
   }
@@ -441,7 +441,7 @@ void uvm_callbacks<T,CB>::add_by_name( const std::string& name,
   for( unsigned int i = 0; i < cq.size(); i++ )
   {
     t = dynamic_cast<T*>(cq[i]);
-    if(t != NULL)
+    if(t != nullptr)
       add(t, cb, ordering);
   }
 }
@@ -466,13 +466,13 @@ template <typename T, typename CB>
 void uvm_callbacks<T,CB>::do_delete( T* obj, uvm_callback* cb )
 {
   uvm_object* b_obj;
-  uvm_queue<uvm_callback*>* q  = NULL;
+  uvm_queue<uvm_callback*>* q  = nullptr;
   bool found = false;
   int pos = -1;
 
   get();
 
-  if(obj == NULL)
+  if(obj == nullptr)
   {
     UVM_CB_TRACE_NOOBJ(cb,"Delete typewide callback " + cb->get_name() + " for type "
                      + m_base_inst.m_typename )
@@ -482,7 +482,7 @@ void uvm_callbacks<T,CB>::do_delete( T* obj, uvm_callback* cb )
   {
     b_obj = dynamic_cast<uvm_object*>(obj);
 
-    if (b_obj==NULL)
+    if (b_obj==nullptr)
       UVM_FATAL("CB/DELETE", "Cannot delete this callback object.");
 
     UVM_CB_TRACE_NOOBJ(cb, "Delete callback " + cb->get_name() + " from object %0s "
@@ -499,7 +499,7 @@ void uvm_callbacks<T,CB>::do_delete( T* obj, uvm_callback* cb )
   {
 	  std::string nm;
 
-    if(obj == NULL)
+    if(obj == nullptr)
       nm = "(*)";
     else
       nm = obj->get_full_name();
@@ -526,9 +526,9 @@ void uvm_callbacks<T,CB>::delete_by_name( const std::string& name,
                                           uvm_component* root )
 {
   std::vector<uvm_component*> cq;
-  uvm_root* top = NULL;
-  uvm_coreservice_t* cs = NULL;
-  T* t = NULL;
+  uvm_root* top = nullptr;
+  uvm_coreservice_t* cs = nullptr;
+  T* t = nullptr;
 
   get();
 
@@ -549,7 +549,7 @@ void uvm_callbacks<T,CB>::delete_by_name( const std::string& name,
   for( unsigned int i = 0; i < cq.size(); i++ )
   {
     t = dynamic_cast<T*>(cq[i]);
-    if( t != NULL)
+    if( t != nullptr)
        do_delete(t, cb);
   }
 }
@@ -581,8 +581,8 @@ void uvm_callbacks<T,CB>::delete_by_name( const std::string& name,
 template <typename T, typename CB>
 CB* uvm_callbacks<T,CB>::get_first( int& itr, T* obj )
 {
-  uvm_queue<uvm_callback*>* q = NULL;
-  CB* cb = NULL;
+  uvm_queue<uvm_callback*>* q = nullptr;
+  CB* cb = nullptr;
 
   get();
   m_get_q(q, obj);
@@ -590,11 +590,11 @@ CB* uvm_callbacks<T,CB>::get_first( int& itr, T* obj )
   for(itr = 0; itr < q->size(); ++itr)
   {
     cb = dynamic_cast<CB*>(q->get(itr));
-    if( (cb != NULL) && cb->callback_mode() )
+    if( (cb != nullptr) && cb->callback_mode() )
        return cb;
   }
 
-  return NULL;
+  return nullptr;
 }
 
 //----------------------------------------------------------------------
@@ -614,8 +614,8 @@ CB* uvm_callbacks<T,CB>::get_first( int& itr, T* obj )
 template <typename T, typename CB>
 CB* uvm_callbacks<T,CB>::get_last( int& itr, T* obj )
 {
-  uvm_queue<uvm_callback*>* q = NULL;
-  CB* cb = NULL;
+  uvm_queue<uvm_callback*>* q = nullptr;
+  CB* cb = nullptr;
 
   get();
   m_get_q(q, obj);
@@ -623,11 +623,11 @@ CB* uvm_callbacks<T,CB>::get_last( int& itr, T* obj )
   for(itr = q->size()-1; itr>=0; --itr)
   {
     cb = dynamic_cast<CB*>(q->get(itr));
-    if ( (cb != NULL) && cb->callback_mode() )
+    if ( (cb != nullptr) && cb->callback_mode() )
        return cb;
   }
 
-  return NULL;
+  return nullptr;
 }
 
 
@@ -650,8 +650,8 @@ CB* uvm_callbacks<T,CB>::get_last( int& itr, T* obj )
 template <typename T, typename CB>
 CB* uvm_callbacks<T,CB>::get_next( int& itr, T* obj )
 {
-  uvm_queue<uvm_callback*>* q = NULL;
-  CB* cb = NULL;
+  uvm_queue<uvm_callback*>* q = nullptr;
+  CB* cb = nullptr;
 
   get();
   m_get_q(q, obj);
@@ -659,11 +659,11 @@ CB* uvm_callbacks<T,CB>::get_next( int& itr, T* obj )
   for( itr = itr+1; itr < q->size(); ++itr)
   {
     cb = dynamic_cast<CB*>(q->get(itr));
-    if ( (cb != NULL) && cb->callback_mode() )
+    if ( (cb != nullptr) && cb->callback_mode() )
        return cb;
   }
 
-  return NULL;
+  return nullptr;
 }
 
 //----------------------------------------------------------------------
@@ -685,8 +685,8 @@ CB* uvm_callbacks<T,CB>::get_next( int& itr, T* obj )
 template <typename T, typename CB>
 CB* uvm_callbacks<T,CB>::get_prev( int& itr, T* obj )
 {
-  uvm_queue<uvm_callback*>* q = NULL;
-  CB* cb = NULL;
+  uvm_queue<uvm_callback*>* q = nullptr;
+  CB* cb = nullptr;
 
   get();
   m_get_q(q, obj);
@@ -694,11 +694,11 @@ CB* uvm_callbacks<T,CB>::get_prev( int& itr, T* obj )
   for( itr = itr-1; itr >= 0; --itr)
   {
     cb = dynamic_cast<CB*>(q->get(itr));
-    if( (cb != NULL) && cb->callback_mode() )
+    if( (cb != nullptr) && cb->callback_mode() )
        return cb;
   }
 
-  return NULL;
+  return nullptr;
 }
 
 //----------------------------------------------------------------------
@@ -736,9 +736,9 @@ void uvm_callbacks<T,CB>::display( T* obj  )
 template <typename T, typename CB>
 uvm_callbacks<T,CB>* uvm_callbacks<T,CB>::get()
 {
-  if (m_inst == NULL)
+  if (m_inst == nullptr)
   {
-    uvm_typeid_base* cb_base_type = NULL;
+    uvm_typeid_base* cb_base_type = nullptr;
 
     base_type::m_initialize();
 
@@ -763,8 +763,8 @@ uvm_callbacks<T,CB>* uvm_callbacks<T,CB>::get()
       m_base_inst->m_this_type.push_back(m_inst);
     }
 
-    if (m_inst == NULL)
-      UVM_FATAL("CB/INTERNAL","get(): m_inst is NULL");
+    if (m_inst == nullptr)
+      UVM_FATAL("CB/INTERNAL","get(): m_inst is nullptr");
   }
 
   return m_inst;
@@ -779,21 +779,21 @@ uvm_callbacks<T,CB>* uvm_callbacks<T,CB>::get()
 template <typename T, typename CB>
 void uvm_callbacks<T,CB>::m_get_q( uvm_queue<uvm_callback*>*& q, T* obj )
 {
-  uvm_object* bobj = NULL;
+  uvm_object* bobj = nullptr;
   bobj =  dynamic_cast<uvm_object*>(obj);
 
-  if (bobj == NULL)
+  if (bobj == nullptr)
     UVM_FATAL("CB/INTERNAL","Cannot retrieve callback queue.");
 
   if(m_base_inst->m_pool->find(bobj) == m_base_inst->m_pool->end()) //no instance specific
   {
-    q = ((bobj == NULL) ? uvm_typed_callbacks<T>::m_t_inst->m_tw_cb_q : uvm_typed_callbacks<T>::m_t_inst->m_get_tw_cb_q(bobj));
+    q = ((bobj == nullptr) ? uvm_typed_callbacks<T>::m_t_inst->m_tw_cb_q : uvm_typed_callbacks<T>::m_t_inst->m_get_tw_cb_q(bobj));
   }
   else
   {
     q = (*m_base_inst->m_pool)[bobj];
 
-    if(q == NULL)
+    if(q == nullptr)
     {
       q = new uvm_queue<uvm_callback*>();
       (*m_base_inst->m_pool)[bobj] = q;
@@ -851,9 +851,9 @@ bool uvm_callbacks<T,CB>::m_is_registered( uvm_object* obj, uvm_callback* cb )
 template <typename T, typename CB>
 bool uvm_callbacks<T,CB>::m_is_for_me( uvm_callback* cb )
 {
-  CB* this_cb = NULL;
+  CB* this_cb = nullptr;
   this_cb = dynamic_cast<CB*>(cb);
-  return( this_cb != NULL );
+  return( this_cb != nullptr );
 }
 
 

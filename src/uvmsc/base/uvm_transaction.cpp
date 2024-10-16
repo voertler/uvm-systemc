@@ -142,7 +142,7 @@ void uvm_transaction::end_tr( const sc_time& end_time, bool free_handle )
 void uvm_transaction::m_init_transaction()
 {
   m_transaction_id =-1;
-  initiator = NULL; // TODO assign parent component
+  initiator = nullptr; // TODO assign parent component
 
   begin_time = SC_ZERO_TIME; // TODO replace by sc_max_time?
   end_time = SC_ZERO_TIME;
@@ -182,7 +182,7 @@ void uvm_transaction::do_print( const uvm_printer& printer ) const
   if(end_time != SC_ZERO_TIME )
     printer.print_time("end_time", end_time);
 
-  if(initiator != NULL)
+  if(initiator != nullptr)
   {
     std::ostringstream str;
     str << "@" << initiator->get_inst_id();

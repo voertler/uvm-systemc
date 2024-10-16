@@ -99,9 +99,9 @@ class uvm_reg_field : public uvm_object
 
   static bool define_access( std::string name );
 
-  virtual std::string get_access( uvm_reg_map* map = NULL ) const;
+  virtual std::string get_access( uvm_reg_map* map = nullptr ) const;
 
-  virtual bool is_known_access( uvm_reg_map* map = NULL ) const;
+  virtual bool is_known_access( uvm_reg_map* map = nullptr ) const;
 
   virtual void set_volatility( bool is_volatile ); // changed argument icm UVM-SV
 
@@ -136,46 +136,46 @@ class uvm_reg_field : public uvm_object
   virtual void write( uvm_status_e& status,
                       uvm_reg_data_t value,
                       uvm_path_e path = UVM_DEFAULT_PATH,
-                      uvm_reg_map* map = NULL,
-                      uvm_sequence_base* parent = NULL,
+                      uvm_reg_map* map = nullptr,
+                      uvm_sequence_base* parent = nullptr,
                       int prior = -1,
-                      uvm_object* extension = NULL,
+                      uvm_object* extension = nullptr,
                       const std::string& fname = "",
                       int lineno = 0 );
 
   virtual void read( uvm_status_e& status,
                      uvm_reg_data_t& value,
                      uvm_path_e path = UVM_DEFAULT_PATH,
-                     uvm_reg_map* map = NULL,
-                     uvm_sequence_base* parent = NULL,
+                     uvm_reg_map* map = nullptr,
+                     uvm_sequence_base* parent = nullptr,
                      int prior = -1,
-                     uvm_object* extension = NULL,
+                     uvm_object* extension = nullptr,
                      const std::string& fname = "",
                      int lineno = 0 );
 
   virtual void poke( uvm_status_e& status,
                      uvm_reg_data_t value,
                      const std::string& kind = "",
-                     uvm_sequence_base* parent = NULL,
-                     uvm_object* extension = NULL,
+                     uvm_sequence_base* parent = nullptr,
+                     uvm_object* extension = nullptr,
                      const std::string& fname = "",
                      int lineno = 0 );
 
   virtual void peek( uvm_status_e& status,
                      uvm_reg_data_t& value,
                      const std::string& kind = "",
-                     uvm_sequence_base* parent = NULL,
-                     uvm_object* extension = NULL,
+                     uvm_sequence_base* parent = nullptr,
+                     uvm_object* extension = nullptr,
                      const std::string& fname = "",
                      int lineno = 0 );
 
   virtual void mirror( uvm_status_e& status,
                        uvm_check_e check = UVM_NO_CHECK,
                        uvm_path_e path = UVM_DEFAULT_PATH,
-                       uvm_reg_map* map = NULL,
-                       uvm_sequence_base* parent = NULL,
+                       uvm_reg_map* map = nullptr,
+                       uvm_sequence_base* parent = nullptr,
                        int prior = -1,
-                       uvm_object* extension = NULL,
+                       uvm_object* extension = nullptr,
                        const std::string& fname = "",
                        int lineno = 0 );
 
@@ -190,7 +190,7 @@ class uvm_reg_field : public uvm_object
                 uvm_reg_byte_en_t be = -1,
                 uvm_predict_e kind = UVM_PREDICT_DIRECT,
                 uvm_path_e path = UVM_FRONTDOOR,
-                uvm_reg_map* map = NULL,
+                uvm_reg_map* map = nullptr,
                 const std::string& fname = "",
                 int lineno = 0 );
 

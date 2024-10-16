@@ -545,7 +545,7 @@ void uvm_report_message_element_container::do_copy( const uvm_object& rhs )
 
   urme_container = dynamic_cast<const uvm_report_message_element_container*>(&rhs);
 
-  if( urme_container==NULL )
+  if( urme_container==nullptr )
     return;
 
   delete_elements();
@@ -646,7 +646,7 @@ void uvm_report_message::do_copy( const uvm_object& rhs )
 
   report_message =  dynamic_cast<const uvm_report_message*>(&rhs);
 
-  if (report_message == NULL) return;
+  if (report_message == nullptr) return;
 
   m_report_object = report_message->get_report_object();
   m_report_handler = report_message->get_report_handler();

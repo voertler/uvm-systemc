@@ -66,7 +66,7 @@ uvm_sequence_item* uvm_reg_tlm_adapter::reg2bus( const uvm_reg_bus_op& rw )
 
   return gp;
   */
-  return NULL;
+  return nullptr;
 }
 
 //----------------------------------------------------------------------
@@ -83,11 +83,11 @@ void uvm_reg_tlm_adapter::bus2reg( const uvm_sequence_item* bus_item,
   uvm_tlm_gp* gp;
   int nbytes;
 
-  if (bus_item == NULL)
-    UVM_FATAL("REG/NULL_ITEM","bus2reg: bus_item argument is NULL");
+  if (bus_item == nullptr)
+    UVM_FATAL("REG/NULL_ITEM","bus2reg: bus_item argument is nullptr");
 
   gp = dynamic_cast<uvm_tlm_gp*>(bus_item);
-  if (gp == NULL)
+  if (gp == nullptr)
   {
     UVM_ERROR("WRONG_TYPE", "Provided bus_item is not of type uvm_tlm_gp");
     return;

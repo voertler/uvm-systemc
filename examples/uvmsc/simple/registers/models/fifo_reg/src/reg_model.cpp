@@ -31,7 +31,7 @@ void reg_block_B::build()
     default_map = create_map("default_map", 0x0, 4, uvm::UVM_LITTLE_ENDIAN);
 
     FIFO = fifo_reg::type_id::create("FIFO");
-    FIFO->configure(this, NULL);
+    FIFO->configure(this, nullptr);
     FIFO->build();
 
     default_map->add_reg(FIFO, 0x0, "RW");

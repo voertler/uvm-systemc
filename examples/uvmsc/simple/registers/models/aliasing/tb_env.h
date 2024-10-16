@@ -89,10 +89,10 @@ class tb_env : public uvm::uvm_env
 
   tb_env( uvm::uvm_component_name name = "tb_env")
   : uvm::uvm_env(name),
-    regmodel(NULL),
-    bus(NULL),
-    predict(NULL),
-    reg2rw(NULL)
+    regmodel(nullptr),
+    bus(nullptr),
+    predict(nullptr),
+    reg2rw(nullptr)
   {}
 
   virtual void build_phase(uvm::uvm_phase& phase)

@@ -53,7 +53,7 @@ uvm_recorder::uvm_recorder( const std::string& name ) : uvm_object(name)
   scope = new uvm_scope_stack();
   filename = "tr_db.log";
 
-  outstr = NULL;
+  outstr = nullptr;
 }
 
 //--------------------------------------------------------------------------
@@ -134,7 +134,7 @@ void uvm_recorder::record_object( const std::string& name, uvm_object* value )
 
   if(identifier)
   {
-    if(value != NULL)
+    if(value != nullptr)
     {
       str << value->get_inst_id();
     }
@@ -144,7 +144,7 @@ void uvm_recorder::record_object( const std::string& name, uvm_object* value )
 
   if(policy != UVM_REFERENCE)
   {
-    if(value != NULL)
+    if(value != nullptr)
     {
       if(value->__m_uvm_status_container->cycle_check.find(value) != value->__m_uvm_status_container->cycle_check.end()) // exists
         return;
@@ -244,7 +244,7 @@ bool uvm_recorder::open_file()
   }
   else
   {
-    outstr = NULL;
+    outstr = nullptr;
     return false;
   }
 }

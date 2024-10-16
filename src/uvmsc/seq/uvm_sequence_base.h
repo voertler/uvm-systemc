@@ -71,7 +71,7 @@ class uvm_sequence_base: public uvm_sequence_item
   //--------------------------------------------------------------------------
 
   virtual void start( uvm_sequencer_base* sqr,
-                                            uvm_sequence_base* parent_sequence = NULL,
+                                            uvm_sequence_base* parent_sequence = nullptr,
                                             int this_priority = -1,
                                             bool call_pre_post = true );
   virtual void pre_start();
@@ -100,10 +100,10 @@ class uvm_sequence_base: public uvm_sequence_item
   int get_priority() const;
   virtual bool is_relevant() const;
   virtual void wait_for_relevant() const;
-  void lock( uvm_sequencer_base* sequencer = NULL );
-  void grab( uvm_sequencer_base* sequencer = NULL );
-  void unlock( uvm_sequencer_base* sequencer = NULL );
-  void ungrab( uvm_sequencer_base* sequencer = NULL );
+  void lock( uvm_sequencer_base* sequencer = nullptr );
+  void grab( uvm_sequencer_base* sequencer = nullptr );
+  void unlock( uvm_sequencer_base* sequencer = nullptr );
+  void ungrab( uvm_sequencer_base* sequencer = nullptr );
   bool is_blocked() const;
   bool has_lock();
   void kill();
@@ -119,7 +119,7 @@ class uvm_sequence_base: public uvm_sequence_item
 
   virtual void start_item( uvm_sequence_item* item,
                            int set_priority = -1,
-                           uvm_sequencer_base* sequencer = NULL );
+                           uvm_sequencer_base* sequencer = nullptr );
 
   virtual void finish_item( uvm_sequence_item* item,
                             int set_priority = -1 );

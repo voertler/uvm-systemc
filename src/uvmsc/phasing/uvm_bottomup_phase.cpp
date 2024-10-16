@@ -102,7 +102,7 @@ void uvm_bottomup_phase::traverse( uvm_component* comp,
       case UVM_PHASE_ENDED:
       {
         comp->phase_ended(*phase); // TODO phase should be ref?
-        comp->m_current_phase = NULL;
+        comp->m_current_phase = nullptr;
         break;
       }
       default:

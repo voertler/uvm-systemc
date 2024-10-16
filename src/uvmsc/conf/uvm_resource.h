@@ -82,10 +82,10 @@ class uvm_resource : public uvm_resource_base
   // Group: Read/Write Interface
   //--------------------------------------------------------------------
 
-  // TODO check if standard initialization with NULL is neccessary (potential problems with MSVC)
-  T read( uvm_object*& accessor ); // = NULL
+  // TODO check if standard initialization with nullptr is neccessary (potential problems with MSVC)
+  T read( uvm_object*& accessor ); // = nullptr
 
-  void write( const T& t, uvm_object*& accessor); // = NULL
+  void write( const T& t, uvm_object*& accessor); // = nullptr
 
   //--------------------------------------------------------------------
   // Group: Priority
@@ -170,7 +170,7 @@ uvm_resource<T>::~uvm_resource()
 template <typename T>
 m_uvm_resource_converter<T>* uvm_resource<T>::m_get_converter()
 {
-  if ( m_r2s == NULL )
+  if ( m_r2s == nullptr )
     m_r2s = new m_uvm_resource_converter<T>();
   return m_r2s;
 }
@@ -179,7 +179,7 @@ m_uvm_resource_converter<T>* uvm_resource<T>::m_get_converter()
 // member function: m_set_converter
 //
 //! Specify how to convert the value of a resource of this type to a string
-//! If not specified (or set to NULL),
+//! If not specified (or set to nullptr),
 //! a default converter that display the name of the resource type is used.
 //! Default conversion policies are specified for the built-in type.
 //----------------------------------------------------------------------
@@ -210,7 +210,7 @@ std::string uvm_resource<T>::convert2string() const
 template <typename T>
 uvm_resource<T>* uvm_resource<T>::get_type()
 {
-  if ( my_type == NULL )
+  if ( my_type == nullptr )
     my_type = new uvm_resource<T>();
   return my_type;
 }
@@ -285,11 +285,11 @@ uvm_resource<T>* uvm_resource<T>::get_by_name( const std::string& scope,
   std::string msg;
 
   rsrc_base = rp->get_by_name(scope, name, my_type, rpterr);
-  if( rsrc_base == NULL )
-    return NULL;
+  if( rsrc_base == nullptr )
+    return nullptr;
 
   rsrc = dynamic_cast<uvm_resource<T>*>(rsrc_base);
-  if(rsrc == NULL)
+  if(rsrc == nullptr)
   {
     if(rpterr)
     {
@@ -297,7 +297,7 @@ uvm_resource<T>* uvm_resource<T>::get_by_name( const std::string& scope,
       msg << "Resource with name " << name << " in scope " << scope << " has incorrect type.";
       UVM_WARNING("RSRCTYPE", msg.str() );
     }
-    return NULL;
+    return nullptr;
   }
 
   return rsrc;
@@ -308,7 +308,7 @@ uvm_resource<T>* uvm_resource<T>::get_by_name( const std::string& scope,
 //
 //! Looks up a resource by \p type_handle in the type map. The first resource
 //! with the specified \p type_handle that is visible in the specified \p scope is
-//! returned, if one exists. NULL is returned if there is no resource matching
+//! returned, if one exists. nullptr is returned if there is no resource matching
 //! the specifications.
 //----------------------------------------------------------------------
 
@@ -321,20 +321,20 @@ uvm_resource<T>* uvm_resource<T>::get_by_type( const std::string& scope,
   uvm_resource<T>* rsrc;
   std::string msg;
 
-  if( type_handle == NULL )
-    return NULL;
+  if( type_handle == nullptr )
+    return nullptr;
 
   rsrc_base = rp->get_by_type(scope, type_handle);
-  if( rsrc_base == NULL )
-    return NULL;
+  if( rsrc_base == nullptr )
+    return nullptr;
 
   rsrc = dynamic_cast<uvm_resource<T>*>(rsrc_base);
-  if(rsrc == NULL)
+  if(rsrc == nullptr)
   {
     std::ostringstream msg;
     msg << "Resource with specified type handle in scope " << scope << " was not located.";
     UVM_WARNING("RSRCNF", msg.str() );
-    return NULL;
+    return nullptr;
   }
   return rsrc;
 }
@@ -410,25 +410,25 @@ void uvm_resource<T>::set_priority( uvm_resource_types::priority_e pri )
 template <typename T>
 uvm_resource<T>* uvm_resource<T>::get_highest_precedence( uvm_resource_types::rsrc_q_t* q )
 {
-  uvm_resource<T>* rsrc = NULL;
-  uvm_resource<T>* r = NULL;
+  uvm_resource<T>* rsrc = nullptr;
+  uvm_resource<T>* r = nullptr;
   unsigned int prec = 0;
   unsigned int first = 0;
 
   if(q->size() == 0)
-    return NULL;
+    return nullptr;
 
   // Locate first resources in the queue whose type is T
   for(first = 0; first < (unsigned)q->size(); first++)
   {
     rsrc = dynamic_cast<uvm_resource<T>* >(q->get(first));
-    if (rsrc != NULL)
+    if (rsrc != nullptr)
       break;
   }
 
   // no resource in the queue whose type is T
-  if(rsrc == NULL)
-    return NULL;
+  if(rsrc == nullptr)
+    return nullptr;
   prec = rsrc->precedence;
 
   // start searching from the next resource after the first resource
@@ -436,7 +436,7 @@ uvm_resource<T>* uvm_resource<T>::get_highest_precedence( uvm_resource_types::rs
   for(unsigned int i = first+1; i < (unsigned)q->size(); i++)
   {
     r = dynamic_cast<uvm_resource<T>* >(q->get(i));
-    if( r!= NULL )
+    if( r!= nullptr )
     {
       if(r->precedence > prec)
       {

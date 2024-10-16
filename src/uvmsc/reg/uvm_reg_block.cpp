@@ -61,14 +61,14 @@ uvm_reg_block::m_rootsT uvm_reg_block::m_roots;
 uvm_reg_block::uvm_reg_block( const std::string& name,
                               int has_coverage) : uvm_object(name)
 {
-  m_parent = NULL;
+  m_parent = nullptr;
 
   m_blks.clear();
   m_regs.clear();
   m_vregs.clear();
   m_mems.clear();
   m_maps.clear();
-  m_backdoor = NULL;
+  m_backdoor = nullptr;
 
   m_root_hdl_paths.clear();
   m_hdl_paths_pool.clear();
@@ -108,7 +108,7 @@ void uvm_reg_block::configure( uvm_reg_block* parent,
 {
   m_parent = parent;
 
-  if (m_parent != NULL)
+  if (m_parent != nullptr)
     m_parent->add_block(this);
 
   add_hdl_path(hdl_path);
@@ -148,10 +148,10 @@ uvm_reg_map* uvm_reg_block::create_map( const std::string& name,
   if (this->is_locked() )
   {
     UVM_ERROR("RegModel", "Cannot add map to locked model");
-    return NULL;
+    return nullptr;
   }
 
-  map = uvm_reg_map::type_id::create(name, NULL, this->get_full_name());
+  map = uvm_reg_map::type_id::create(name, nullptr, this->get_full_name());
 
   map->configure(this, base_addr, n_bytes, endian, byte_addressing);
 
@@ -261,7 +261,7 @@ void uvm_reg_block::lock_model()
     blk->lock_model();
   }
 
-  if (m_parent == NULL)
+  if (m_parent == nullptr)
   {
     unsigned int max_size = uvm_reg::get_max_size();
 
@@ -351,7 +351,7 @@ bool uvm_reg_block::is_locked() const
 
 const std::string uvm_reg_block::get_full_name() const
 {
-  if (m_parent == NULL)
+  if (m_parent == nullptr)
     return get_name();
 
   return m_parent->get_full_name() + "." + get_name();
@@ -362,7 +362,7 @@ const std::string uvm_reg_block::get_full_name() const
 //
 //! Get the parent block
 //!
-//! If this a top-level block, returns NULL.
+//! If this a top-level block, returns nullptr.
 //----------------------------------------------------------------------
 
 uvm_reg_block* uvm_reg_block::get_parent() const
@@ -406,7 +406,7 @@ int uvm_reg_block::find_blocks( std::string name,
 
   blks.clear(); // delete all entries
 
-  if (root != NULL)
+  if (root != nullptr)
     name = root->get_full_name() + "." + name;
 
   rs = rpl->lookup_regex(name, "uvm_reg::");
@@ -415,7 +415,7 @@ int uvm_reg_block::find_blocks( std::string name,
   {
     uvm_resource<uvm_reg_block*>* blk;
     blk = dynamic_cast<uvm_resource<uvm_reg_block*>*>(rs->get(i));
-    if (blk == NULL)
+    if (blk == nullptr)
       continue;
     blks.push_back(blk->read(accessor));
   }
@@ -431,7 +431,7 @@ int uvm_reg_block::find_blocks( std::string name,
 //! If a ~root~ block is specified, the name of the blocks are
 //! relative to that block, otherwise they are absolute.
 //!
-//! Returns the first block found or NULL otherwise.
+//! Returns the first block found or nullptr otherwise.
 //! A warning is issued if more than one block is found.
 //----------------------------------------------------------------------
 
@@ -441,7 +441,7 @@ uvm_reg_block* uvm_reg_block::find_block( const std::string& name,
 {
   std::vector<uvm_reg_block*> blks;
   if (!find_blocks(name, blks, root, accessor))
-    return NULL;
+    return nullptr;
 
   if (blks.size() > 1)
   {
@@ -646,7 +646,7 @@ void uvm_reg_block::get_virtual_fields( std::vector<uvm_vreg_field*>& fields,
 //! are searched for a block of that name and the first one to be found
 //! is returned.
 //!
-//! If no blocks are found, returns NULL.
+//! If no blocks are found, returns nullptr.
 //----------------------------------------------------------------------
 
 uvm_reg_block* uvm_reg_block::get_block_by_name( const std::string& name ) const
@@ -674,7 +674,7 @@ uvm_reg_block* uvm_reg_block::get_block_by_name( const std::string& name ) const
 
   UVM_WARNING("RegModel",
     "Unable to locate block '" + name + "' in block '" + get_full_name() + "'");
-  return NULL;
+  return nullptr;
 }
 
 //----------------------------------------------------------------------
@@ -688,7 +688,7 @@ uvm_reg_block* uvm_reg_block::get_block_by_name( const std::string& name ) const
 //! are searched for a map of that name and the first one to be found
 //! is returned.
 //!
-//! If no address maps are found, returns NULL.
+//! If no address maps are found, returns nullptr.
 //----------------------------------------------------------------------
 
 uvm_reg_map* uvm_reg_block::get_map_by_name( const std::string& name ) const
@@ -713,7 +713,7 @@ uvm_reg_map* uvm_reg_block::get_map_by_name( const std::string& name ) const
   }
 
   UVM_WARNING("RegModel", "Map with name '" + name + "' does not exist in block");
-  return NULL;
+  return nullptr;
 }
 
 //----------------------------------------------------------------------
@@ -727,7 +727,7 @@ uvm_reg_map* uvm_reg_block::get_map_by_name( const std::string& name ) const
 //! are searched for a register of that name and the first one to be found
 //! is returned.
 //!
-//! If no registers are found, returns NULL.
+//! If no registers are found, returns nullptr.
 //----------------------------------------------------------------------
 
 uvm_reg* uvm_reg_block::get_reg_by_name( const std::string& name ) const
@@ -751,7 +751,7 @@ uvm_reg* uvm_reg_block::get_reg_by_name( const std::string& name ) const
 
   UVM_WARNING("RegModel",
     "Unable to locate register '" + name + "' in block '" + get_full_name() + "'" );
-  return NULL;
+  return nullptr;
 }
 
 //----------------------------------------------------------------------
@@ -765,7 +765,7 @@ uvm_reg* uvm_reg_block::get_reg_by_name( const std::string& name ) const
 //! are searched for a field of that name and the first one to be found
 //! is returned.
 //!
-//! If no fields are found, returns NULL.
+//! If no fields are found, returns nullptr.
 //----------------------------------------------------------------------
 
 uvm_reg_field* uvm_reg_block::get_field_by_name( const std::string& name ) const
@@ -802,7 +802,7 @@ uvm_reg_field* uvm_reg_block::get_field_by_name( const std::string& name ) const
   UVM_WARNING("RegModel", "Unable to locate field '" + name +
     "' in block '" + get_full_name() + "'");
 
-  return NULL;
+  return nullptr;
 }
 
 //----------------------------------------------------------------------
@@ -816,7 +816,7 @@ uvm_reg_field* uvm_reg_block::get_field_by_name( const std::string& name ) const
 //! are searched for a memory of that name and the first one to be found
 //! is returned.
 //!
-//! If no memories are found, returns NULL.
+//! If no memories are found, returns nullptr.
 //----------------------------------------------------------------------
 
 uvm_mem* uvm_reg_block::get_mem_by_name( const std::string& name ) const
@@ -840,7 +840,7 @@ uvm_mem* uvm_reg_block::get_mem_by_name( const std::string& name ) const
 
   UVM_WARNING("RegModel", "Unable to locate memory '" + name +
       "' in block '" + get_full_name() + "'");
-  return NULL;
+  return nullptr;
 }
 
 //----------------------------------------------------------------------
@@ -855,7 +855,7 @@ uvm_mem* uvm_reg_block::get_mem_by_name( const std::string& name ) const
 //! the sub-blocks are searched for a virtual register of that name
 //! and the first one to be found is returned.
 //!
-//! If no virtual registers are found, returns NULL.
+//! If no virtual registers are found, returns nullptr.
 //----------------------------------------------------------------------
 
 uvm_vreg* uvm_reg_block::get_vreg_by_name( const std::string& name ) const
@@ -880,7 +880,7 @@ uvm_vreg* uvm_reg_block::get_vreg_by_name( const std::string& name ) const
   UVM_WARNING("RegModel",
       "Unable to locate virtual register '" + name + "' in block '" + get_full_name() + "'");
 
-  return NULL;
+  return nullptr;
 }
 
 //----------------------------------------------------------------------
@@ -895,7 +895,7 @@ uvm_vreg* uvm_reg_block::get_vreg_by_name( const std::string& name ) const
 //! the sub-blocks are searched for a virtual field of that name
 //! and the first one to be found is returned.
 //!
-//! If no virtual fields are found, returns NULL.
+//! If no virtual fields are found, returns nullptr.
 //----------------------------------------------------------------------
 
 uvm_vreg_field* uvm_reg_block::get_vfield_by_name( const std::string& name ) const
@@ -932,7 +932,7 @@ uvm_vreg_field* uvm_reg_block::get_vfield_by_name( const std::string& name ) con
    "Unable to locate virtual field '" + name + "' in block '" +
    get_full_name() + "'");
 
-  return NULL;
+  return nullptr;
 }
 
 //----------------------------------------------------------------------
@@ -1142,7 +1142,7 @@ uvm_path_e uvm_reg_block::get_default_path() const
   if (default_path != UVM_DEFAULT_PATH)
     return default_path;
 
-  if (m_parent != NULL)
+  if (m_parent != nullptr)
     return m_parent->get_default_path();
 
   return UVM_FRONTDOOR;
@@ -1263,7 +1263,7 @@ void uvm_reg_block::update( uvm_status_e status,
     uvm_reg* rg = (*it).first;
     if (rg->needs_update())
     {
-      rg->update(status, path, NULL, parent, prior, extension);
+      rg->update(status, path, nullptr, parent, prior, extension);
 
       if (status != UVM_IS_OK && status != UVM_HAS_X)
       {
@@ -1308,7 +1308,7 @@ void uvm_reg_block::mirror( uvm_status_e status,
   for( m_regs_itt it = m_regs.begin(); it != m_regs.end(); it++ )
   {
     uvm_reg* rg = (*it).first;
-    rg->mirror( status, check, path, NULL,
+    rg->mirror( status, check, path, nullptr,
                 parent, prior, extension, fname, lineno );
   }
 
@@ -1345,7 +1345,7 @@ void uvm_reg_block::write_reg_by_name( uvm_status_e status,
 
   status = UVM_NOT_OK;
   rg = this->get_reg_by_name(name);
-  if (rg != NULL)
+  if (rg != nullptr)
     rg->write(status, data, path, map, parent, prior, extension);
 }
 
@@ -1374,7 +1374,7 @@ void uvm_reg_block::read_reg_by_name( uvm_status_e status,
 
   status = UVM_NOT_OK;
   rg = get_reg_by_name(name);
-  if (rg != NULL)
+  if (rg != nullptr)
     rg->read(status, data, path, map, parent, prior, extension);
 }
 
@@ -1404,7 +1404,7 @@ void uvm_reg_block::write_mem_by_name( uvm_status_e status,
 
   status = UVM_NOT_OK;
   mem = get_mem_by_name(name);
-  if (mem != NULL)
+  if (mem != nullptr)
     mem->write(status, offset, data, path, map, parent, prior, extension);
 }
 
@@ -1434,7 +1434,7 @@ void uvm_reg_block::read_mem_by_name( uvm_status_e status,
 
   status = UVM_NOT_OK;
   mem = get_mem_by_name(name);
-  if (mem != NULL)
+  if (mem != nullptr)
     mem->read(status, offset, data, path, map, parent, prior, extension);
 }
 
@@ -1457,14 +1457,14 @@ void uvm_reg_block::read_mem_by_name( uvm_status_e status,
 
 uvm_reg_backdoor* uvm_reg_block::get_backdoor( bool inherited ) const
 {
-  if (m_backdoor == NULL && inherited)
+  if (m_backdoor == nullptr && inherited)
   {
     uvm_reg_block* blk = get_parent();
 
-    while (blk != NULL)
+    while (blk != nullptr)
     {
       uvm_reg_backdoor* bkdr = blk->get_backdoor();
-      if (bkdr != NULL)
+      if (bkdr != nullptr)
         return bkdr;
       blk = blk->get_parent();
     }
@@ -1489,7 +1489,7 @@ void uvm_reg_block::set_backdoor( uvm_reg_backdoor* bkdr,
   bkdr->m_fname = fname;
   bkdr->m_lineno = lineno;
 
-  if( m_backdoor != NULL &&
+  if( m_backdoor != nullptr &&
       m_backdoor->has_update_threads() )
   {
     UVM_WARNING("RegModel", "Previous register backdoor still has update threads running. Backdoors with active mirroring should only be set before simulation starts.");
@@ -1648,7 +1648,7 @@ void uvm_reg_block::get_full_hdl_path( std::vector<std::string>& paths,
 
   std::vector<std::string> parent_paths;
 
-  if (m_parent != NULL)
+  if (m_parent != nullptr)
     m_parent->get_full_hdl_path(parent_paths, kind, separator);
 
   for ( unsigned int i = 0; i < hdl_paths.size(); i++ )
@@ -1684,7 +1684,7 @@ void uvm_reg_block::set_default_hdl_path( std::string kind )
 {
   if (kind.empty())
   {
-    if (m_parent == NULL)
+    if (m_parent == nullptr)
     {
       UVM_ERROR("RegModel",
         "Block has no parent. Must specify a valid HDL abstraction (kind)");
@@ -1709,7 +1709,7 @@ void uvm_reg_block::set_default_hdl_path( std::string kind )
 
 std::string uvm_reg_block::get_default_hdl_path() const
 {
-  if (m_default_hdl_path.empty() && m_parent != NULL)
+  if (m_default_hdl_path.empty() && m_parent != nullptr)
     return m_parent->get_default_hdl_path();
 
   return m_default_hdl_path;
@@ -1785,7 +1785,7 @@ void uvm_reg_block::m_sample( uvm_reg_addr_t addr,
                               uvm_reg_map* map )
 {
   sample(addr, is_read, map);
-  if (m_parent != NULL)
+  if (m_parent != nullptr)
   {
     // UVM-SV
     // ToDo: Call m_sample in the parent block
@@ -1956,7 +1956,7 @@ void uvm_reg_block::do_print( const uvm_printer& printer ) const
 uvm_object* uvm_reg_block::clone()
 {
   UVM_FATAL("RegModel","RegModel blocks cannot be cloned");
-  return NULL;
+  return nullptr;
 }
 
 //----------------------------------------------------------------------

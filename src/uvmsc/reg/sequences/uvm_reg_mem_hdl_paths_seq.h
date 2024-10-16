@@ -75,9 +75,9 @@ class uvm_reg_mem_hdl_paths_seq
   virtual void body()
   {
 
-    if (model == NULL)
+    if (model == nullptr)
     {
-      uvm_report_error("uvm_reg_mem_hdl_paths_seq", "Register model handle is null");
+      uvm_report_error("uvm_reg_mem_hdl_paths_seq", "Register model handle is nullptr");
       return;
     }
 

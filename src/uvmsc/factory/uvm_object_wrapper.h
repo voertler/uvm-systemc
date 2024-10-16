@@ -60,7 +60,7 @@ class uvm_object_wrapper
 
   virtual uvm_object* create_object( const std::string& name = "" )
   {
-    return NULL;
+    return nullptr;
   }
 
   //--------------------------------------------------------------------------
@@ -75,7 +75,7 @@ class uvm_object_wrapper
   virtual uvm_component* create_component( const std::string& name,
                                            uvm_component* parent)
   {
-    return NULL;
+    return nullptr;
   }
 
   //--------------------------------------------------------------------------

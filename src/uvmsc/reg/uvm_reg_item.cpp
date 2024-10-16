@@ -35,10 +35,10 @@ namespace uvm {
 uvm_reg_item::uvm_reg_item( const std::string& name ) : uvm_sequence_item(name)
   , value(1)
 {
-  element = NULL;
-  local_map = NULL;
-  parent = NULL;
-  extension = NULL;
+  element = nullptr;
+  local_map = nullptr;
+  parent = nullptr;
+  extension = nullptr;
 
   prior = -1;
 }
@@ -56,7 +56,7 @@ std::string uvm_reg_item::convert2string() const
 
   s << "access_kind = " << uvm_access_name[access_kind]
     << " element_kind = " << uvm_elem_kind_name[element_kind]
-    << " element_name = " << ( (element == NULL) ? "NULL" : element->get_full_name() );
+    << " element_name = " << ( (element == nullptr) ? "nullptr" : element->get_full_name() );
 
   if(value.size() > 1 && uvm_report_enabled(UVM_HIGH, UVM_INFO, "RegModel"))
   {
@@ -76,7 +76,7 @@ std::string uvm_reg_item::convert2string() const
     s << " offset = 0x" << std::hex << offset.to_uint64();
 
   s << " map = "
-    << ( map == NULL ? "NULL" : map->get_full_name() )
+    << ( map == nullptr ? "nullptr" : map->get_full_name() )
     << " path = " << uvm_path_name[path]
     << " status = " << uvm_status_name[status];
 
@@ -96,7 +96,7 @@ void uvm_reg_item::do_copy( const uvm_object& rhs )
 
   rhs_ = dynamic_cast<const uvm_reg_item*>(&rhs);
 
-  if (rhs_ == NULL)
+  if (rhs_ == nullptr)
   {
     UVM_ERROR("WRONG_TYPE","Provided rhs is not of type uvm_reg_item");
     return;

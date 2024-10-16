@@ -76,10 +76,10 @@ class uvm_reg_fifo : public uvm_reg
 
   virtual void update( uvm_status_e&      status,
                        uvm_path_e         path = UVM_DEFAULT_PATH,
-                       uvm_reg_map*       map = NULL,
-                       uvm_sequence_base* parent = NULL,
+                       uvm_reg_map*       map = nullptr,
+                       uvm_sequence_base* parent = nullptr,
                        int                prior = -1,
-                       uvm_object*        extension = NULL,
+                       uvm_object*        extension = nullptr,
                        const std::string&             fname = "",
                        int                lineno = 0 );
 

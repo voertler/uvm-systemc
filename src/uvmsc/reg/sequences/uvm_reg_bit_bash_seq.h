@@ -88,7 +88,7 @@ class uvm_reg_single_bit_bash_seq
     uvm_reg_data_t  reset_val;
     int n_bits;
 
-    if (rg == NULL)
+    if (rg == nullptr)
     {
       UVM_ERROR("uvm_reg_bit_bash_seq", "No register specified to run sequence on");
       return;
@@ -96,9 +96,9 @@ class uvm_reg_single_bit_bash_seq
 
     // Registers with some attributes are not to be tested
     if ( uvm_resource_db<bool>::get_by_name("REG::" + rg->get_full_name(),
-           "NO_REG_TESTS", false) != NULL ||
+           "NO_REG_TESTS", false) != nullptr ||
         uvm_resource_db<bool>::get_by_name("REG::" + rg->get_full_name(),
-           "NO_REG_BIT_BASH_TEST", false) != NULL )
+           "NO_REG_BIT_BASH_TEST", false) != nullptr )
       return;
 
     n_bits = rg->get_n_bytes() * 8;
@@ -272,7 +272,7 @@ class uvm_reg_bit_bash_seq
   //
   virtual void body()
   {
-    if (model == NULL)
+    if (model == nullptr)
     {
       UVM_ERROR("uvm_reg_bit_bash_seq", "No register model specified to run sequence on");
       return;
@@ -300,9 +300,9 @@ class uvm_reg_bit_bash_seq
     std::vector<uvm_reg*> regs;
 
     if (uvm_resource_db<bool>::get_by_name("REG::" + blk->get_full_name(),
-            "NO_REG_TESTS", false) != NULL ||
+            "NO_REG_TESTS", false) != nullptr ||
         uvm_resource_db<bool>::get_by_name("REG::" + blk->get_full_name(),
-            "NO_REG_BIT_BASH_TEST", false) != NULL )
+            "NO_REG_BIT_BASH_TEST", false) != nullptr )
       return;
 
     // Iterate over all registers, checking accesses
@@ -312,13 +312,13 @@ class uvm_reg_bit_bash_seq
     {
       // Registers with some attributes are not to be tested
       if (uvm_resource_db<bool>::get_by_name("REG::" + regs[i]->get_full_name(),
-          "NO_REG_TESTS", false) != NULL ||
+          "NO_REG_TESTS", false) != nullptr ||
           uvm_resource_db<bool>::get_by_name("REG::" + regs[i]->get_full_name(),
-              "NO_REG_BIT_BASH_TEST", false) != NULL )
+              "NO_REG_BIT_BASH_TEST", false) != nullptr )
         continue;
 
       reg_seq->rg = regs[i];
-      reg_seq->start(NULL, this);
+      reg_seq->start(nullptr, this);
     }
 
     std::vector<uvm_reg_block*> blks;
