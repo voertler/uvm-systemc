@@ -6,14 +6,14 @@ SUBDIRS = \
 	examples
 
 DOC_FILES = \
-	AUTHORS \
+	AUTHORS.md \
 	ChangeLog \
-	INSTALL \
+	INSTALL.md \
 	LICENSE \
 	NEWS \
 	NOTICE \
 	README.md \
-	RELEASENOTES
+	RELEASENOTES.md
 
 EXTRA_DIST += \
 			  $(DOC_FILES) \
