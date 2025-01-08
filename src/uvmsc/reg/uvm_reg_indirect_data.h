@@ -108,6 +108,9 @@ public:
 
    virtual bool needs_update() const;
 
+#if defined(ALLOW_NON_IEEE_1800_2_2020)
+ protected:
+#endif
    virtual void write( uvm_status_e&      status,
                        uvm_reg_data_t     value,
                        uvm_path_e         path = UVM_DEFAULT_PATH,
@@ -118,9 +121,6 @@ public:
                        const std::string& fname = "",
                        int                lineno = 0);
 
-#if defined(ALLOW_NON_IEEE_1800_2_2020)
- protected:
-#endif
    virtual void read( uvm_status_e&      status,
                       uvm_reg_data_t&    value,
                       uvm_path_e         path = UVM_DEFAULT_PATH,
