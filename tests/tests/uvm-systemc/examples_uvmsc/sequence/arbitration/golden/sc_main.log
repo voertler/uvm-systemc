@@ -1,0 +1,31 @@
+SystemC Simulation
+UVM_INFO @ 0 s: reporter [RNTST] Running test arb_test...
+UVM_INFO @ 0 s: arb_test [arb_test:] Sequencer Arbitration selected: SEQ_ARB_STRICT_RANDOM
+UVM_INFO @ 1 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:1 SEQ_2:0 SEQ_3:0 SEQ_4:0
+UVM_INFO @ 11 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:2 SEQ_2:0 SEQ_3:0 SEQ_4:0
+UVM_INFO @ 21 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:3 SEQ_2:0 SEQ_3:0 SEQ_4:0
+UVM_INFO @ 31 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:4 SEQ_2:0 SEQ_3:0 SEQ_4:0
+UVM_INFO @ 41 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:4 SEQ_2:1 SEQ_3:0 SEQ_4:0
+UVM_INFO @ 51 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:4 SEQ_2:2 SEQ_3:0 SEQ_4:0
+UVM_INFO @ 61 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:4 SEQ_2:3 SEQ_3:0 SEQ_4:0
+UVM_INFO @ 71 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:4 SEQ_2:4 SEQ_3:0 SEQ_4:0
+UVM_INFO @ 81 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:4 SEQ_2:4 SEQ_3:1 SEQ_4:0
+UVM_INFO @ 91 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:4 SEQ_2:4 SEQ_3:2 SEQ_4:0
+UVM_INFO @ 101 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:4 SEQ_2:4 SEQ_3:3 SEQ_4:0
+UVM_INFO @ 111 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:4 SEQ_2:4 SEQ_3:4 SEQ_4:0
+UVM_INFO @ 121 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:4 SEQ_2:4 SEQ_3:4 SEQ_4:1
+UVM_INFO @ 131 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:4 SEQ_2:4 SEQ_3:4 SEQ_4:2
+UVM_INFO @ 141 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:4 SEQ_2:4 SEQ_3:4 SEQ_4:3
+UVM_INFO @ 151 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:4 SEQ_2:4 SEQ_3:4 SEQ_4:4
+UVM_INFO <removed by verify-uvm.pl> @ 251 ms: reporter [UVM/REPORT/SERVER]
+--- UVM Report Summary ---
+** Report counts by severity
+UVM_INFO      :  18
+UVM_WARNING   :   0
+UVM_ERROR     :   0
+UVM_FATAL     :   0
+** Report counts by id
+[RECEIVED_SEQ]         16
+[RNTST]                 1
+[arb_test:]             1
+UVM_INFO @ 251 ms: reporter [FINISH] UVM-SystemC phasing completed; simulation finished

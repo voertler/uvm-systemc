@@ -1,0 +1,353 @@
+SystemC Simulation
+UVM_INFO @ 0 s: reporter [RNTST] Running test test...
+UVM_WARNING @ 0 s: reporter [DOPRNT] member function do_print not implemented in <unknown>
+UVM_WARNING @ 0 s: reporter [DOPRNT] member function do_print not implemented in <unknown>
+UVM_WARNING <removed by verify-uvm.pl> @ 0 s: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed by verify-uvm.pl> @ 0 s: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed by verify-uvm.pl> @ 0 s: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed by verify-uvm.pl> @ 0 s: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed by verify-uvm.pl> @ 0 s: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed by verify-uvm.pl> @ 0 s: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed by verify-uvm.pl> @ 0 s: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed by verify-uvm.pl> @ 0 s: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed by verify-uvm.pl> @ 0 s: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed by verify-uvm.pl> @ 0 s: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed by verify-uvm.pl> @ 0 s: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed by verify-uvm.pl> @ 0 s: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed by verify-uvm.pl> @ 0 s: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed by verify-uvm.pl> @ 0 s: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed by verify-uvm.pl> @ 0 s: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed by verify-uvm.pl> @ 0 s: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed by verify-uvm.pl> @ 0 s: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed by verify-uvm.pl> @ 0 s: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed by verify-uvm.pl> @ 0 s: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed by verify-uvm.pl> @ 0 s: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed by verify-uvm.pl> @ 0 s: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed by verify-uvm.pl> @ 0 s: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed by verify-uvm.pl> @ 0 s: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed by verify-uvm.pl> @ 0 s: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed by verify-uvm.pl> @ 0 s: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed by verify-uvm.pl> @ 0 s: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING @ 0 s: reporter [DOPRNT] member function do_print not implemented in uvm_reg_map
+UVM_WARNING <removed by verify-uvm.pl> @ 0 s: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed by verify-uvm.pl> @ 0 s: reporter [RegModel] Register 'rg' is unmapped in map 'blk.map'
+--------------------------------------------------------------
+Name        Type           Size  Value
+--------------------------------------------------------------
+blk         <unknown>      -     @<removed by verify-uvm.pl>
+  rg        <unknown>      -     @<removed by verify-uvm.pl>
+    RO      uvm_reg_field  ...    RO rg[1:0] = 0x1 (0b01)
+    RW      uvm_reg_field  ...    RW rg[3:2] = 0x1 (0b01)
+    RC      uvm_reg_field  ...    RC rg[5:4] = 0x1 (0b01)
+    RS      uvm_reg_field  ...    RS rg[7:6] = 0x1 (0b01)
+    WRC     uvm_reg_field  ...    WRC rg[9:8] = 0x1 (0b01)
+    WRS     uvm_reg_field  ...    WRS rg[11:10] = 0x1 (0b01)
+    WC      uvm_reg_field  ...    WC rg[13:12] = 0x1 (0b01)
+    WS      uvm_reg_field  ...    WS rg[15:14] = 0x1 (0b01)
+    WSRC    uvm_reg_field  ...    WSRC rg[17:16] = 0x1 (0b01)
+    WCRS    uvm_reg_field  ...    WCRS rg[19:18] = 0x1 (0b01)
+    W1C     uvm_reg_field  ...    W1C rg[21:20] = 0x1 (0b01)
+    W1S     uvm_reg_field  ...    W1S rg[23:22] = 0x1 (0b01)
+    W1T     uvm_reg_field  ...    W1T rg[25:24] = 0x1 (0b01)
+    W0C     uvm_reg_field  ...    W0C rg[27:26] = 0x1 (0b01)
+    W0S     uvm_reg_field  ...    W0S rg[29:28] = 0x1 (0b01)
+    W0T     uvm_reg_field  ...    W0T rg[31:30] = 0x1 (0b01)
+    W1SRC   uvm_reg_field  ...    W1SRC rg[33:32] = 0x1 (0b01)
+    W1CRS   uvm_reg_field  ...    W1CRS rg[35:34] = 0x1 (0b01)
+    W0SRC   uvm_reg_field  ...    W0SRC rg[37:36] = 0x1 (0b01)
+    W0CRS   uvm_reg_field  ...    W0CRS rg[39:38] = 0x1 (0b01)
+    WO      uvm_reg_field  ...    WO rg[41:40] = 0x1 (0b01)
+    WOC     uvm_reg_field  ...    WOC rg[43:42] = 0x1 (0b01)
+    WOS     uvm_reg_field  ...    WOS rg[45:44] = 0x1 (0b01)
+    W1      uvm_reg_field  ...    W1 rg[47:46] = 0x1 (0b01)
+    WO1     uvm_reg_field  ...    WO1 rg[49:48] = 0x1 (0b01)
+    DC      uvm_reg_field  ...    RW rg[51:50] = 0x1 (0b01)
+  map       uvm_reg_map    -     @<removed by verify-uvm.pl>
+    endian                 ...   UVM_BIG_ENDIAN
+    rg      <unknown>      ...   @<removed by verify-uvm.pl>+ 0x0
+--------------------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] Verifying bits in register blk.rg  in map 'blk.map'...
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing RO bit #0
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x5555555555554
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x84071f443c555
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x971ccf44cccc4
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0xc40f0f443ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing RO bit #1
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0xd71ccf44cccc7
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x840f0f443ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x971ccf44cccc7
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0xc40f0f443ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing RW bit #2
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0xd71ccf44cccc1
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x840f0f443ccc1
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x971ccf44cccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x840f0f443ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing RW bit #3
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x971ccf44ccccd
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x840f0f443cccd
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x971ccf44cccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x840f0f443ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing RC bit #4
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x971ccf44cccd5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0xc40f0f443ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0xd71ccf44cccd5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0xc40f0f443ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing RC bit #5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0xd71ccf44ccce5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0xc40f0f443ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0xd71ccf44ccce5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x440f0f443ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing RS bit #6
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x571ccf44ccc85
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x40f0f443ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x171ccf44ccc85
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x440f0f443ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing RS bit #7
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x571ccf44ccc45
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0xc40f0f443ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0xd71ccf44ccc45
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x840f0f443ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing WRC bit #8
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x971ccf44ccdc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x440f0f443cdc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x571ccf44ccdc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x40f0f443cdc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing WRC bit #9
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x171ccf44ccec5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0xc40f0f443cec5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0xd71ccf44ccec5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x440f0f443cec5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing WRS bit #10
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x571ccf44cc8c5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0xc40f0f443c8c5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0xd71ccf44cc8c5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x840f0f443c8c5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing WRS bit #11
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x971ccf44cc4c5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x840f0f443c4c5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x971ccf44cc4c5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x840f0f443c4c5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing WC bit #12
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x971ccf44cdcc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x840f0f443ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x971ccf44cdcc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x840f0f443ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing WC bit #13
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x971ccf44cecc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0xc40f0f443ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0xd71ccf44cecc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x440f0f443ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing WS bit #14
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x571ccf44c8cc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x40f0f443ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x171ccf44c8cc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0xc40f0f443ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing WS bit #15
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0xd71ccf44c4cc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x840f0f443ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x971ccf44c4cc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x840f0f443ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing WSRC bit #16
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x971ccf44dccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0xc40f0f443ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0xd71ccf44dccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x840f0f443ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing WSRC bit #17
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x971ccf44eccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x40f0f443ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x171ccf44eccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0xc40f0f443ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing WCRS bit #18
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0xd71ccf448ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x440f0f443ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x571ccf448ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0xc40f0f443ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing WCRS bit #19
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0xd71ccf444ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x840f0f443ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x971ccf444ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x440f0f443ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing W1C bit #20
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x571ccf45cccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x40f0f443ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x171ccf45cccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0xc40f0f443ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing W1C bit #21
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0xd71ccf46cccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x440f0f443ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x571ccf46cccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0xc40f0f443ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing W1S bit #22
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0xd71ccf40cccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x40f0f443ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x171ccf40cccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x40f0f443ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing W1S bit #23
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x171ccf4ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x40f0f4c3ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x171ccf44cccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0xc40f0f4c3ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing W1T bit #24
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0xd71ccf5ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x840f0f5c3ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x971ccf4ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x840f0f5c3ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing W1T bit #25
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x971ccf7ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x440f0f6c3ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x571ccf4ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x40f0f6c3ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing W0C bit #26
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x171ccf2ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x40f0f0c3ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x171ccf4ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x840f0f0c3ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing W0C bit #27
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x971ccf8ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x40f0f0c3ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x171ccf8ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x840f0f0c3ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing W0S bit #28
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x971cce0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x40f0f0c3ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x171cce0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0xc40f0f0c3ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing W0S bit #29
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0xd71ccd0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x440f0f0c3ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x571ccd0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x40f0f0c3ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing W0T bit #30
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x171ccb0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x440f0b0c3ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x571ccf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x40f0b0c3ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing W0T bit #31
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x171cc30ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x440f070c3ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x571ccf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x840f070c3ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing W1SRC bit #32
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x971cd70ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x840f1f0c3ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x971cdf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x840f1f0c3ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing W1SRC bit #33
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x971cef0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x440f2f0c3ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x571cef0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x440f2f0c3ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing W1CRS bit #34
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x571c8f0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x840f4f0c3ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x971c8f0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x40f4f0c3ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing W1CRS bit #35
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x171c4f0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x840f8f0c3ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x971c4f0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0xc40f8f0c3ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing W0SRC bit #36
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0xd71dcf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0xc40e0f0c3ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0xd71dcf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x440e0f0c3ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing W0SRC bit #37
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x571ecf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x440d0f0c3ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x571ecf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x40d0f0c3ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing W0CRS bit #38
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x1718cf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x840b0f0c3ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x9718cf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x840b0f0c3ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing W0CRS bit #39
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x9714cf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x84070f0c3ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x9714cf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x84070f0c3ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing W1 bit #46
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x931ccf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x40f0f0c3ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x131ccf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x440f0f0c3ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing W1 bit #47
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x5f1ccf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0xc40f0f0c3ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0xdf1ccf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0xc40f0f0c3ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing RO bit #52
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x1d71ccf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x840f0f0c3ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x1971ccf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x440f0f0c3ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing RO bit #53
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x2571ccf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x440f0f0c3ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x2571ccf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x440f0f0c3ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing RO bit #54
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x4571ccf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x40f0f0c3ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x4171ccf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x440f0f0c3ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing RO bit #55
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x8571ccf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x440f0f0c3ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x8571ccf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x40f0f0c3ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing RO bit #56
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x10171ccf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x840f0f0c3ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x10971ccf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0xc40f0f0c3ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing RO bit #57
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x20d71ccf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x840f0f0c3ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x20971ccf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x440f0f0c3ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing RO bit #58
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x40571ccf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x440f0f0c3ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x40571ccf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x40f0f0c3ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing RO bit #59
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x80171ccf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x440f0f0c3ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x80571ccf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0xc40f0f0c3ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing RO bit #60
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x100d71ccf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x440f0f0c3ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x100571ccf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x440f0f0c3ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing RO bit #61
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x200571ccf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x40f0f0c3ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x200171ccf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x40f0f0c3ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing RO bit #62
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x400171ccf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x40f0f0c3ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x400171ccf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x40f0f0c3ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] ...Bashing RO bit #63
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x800171ccf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0xc40f0f0c3ccc5
+UVM_INFO @ 0 s: reporter [RegModel] Wrote register via user frontdoor: blk.rg = 0x800d71ccf0ccccc5
+UVM_INFO @ 0 s: reporter [RegModel] Read register via user frontdoor: blk.rg = 0x840f0f0c3ccc5
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [UVM/REPORT/SERVER]
+--- UVM Report Summary ---
+** Report counts by severity
+UVM_INFO      : 272
+UVM_WARNING   :  31
+UVM_ERROR     :   0
+UVM_FATAL     :   0
+** Report counts by id
+[DOPRNT]                3
+[RNTST]                 1
+[RegModel]             244
+[uvm_reg_bit_bash_seq] 55
+UVM_INFO @ 0 s: reporter [FINISH] UVM-SystemC phasing completed; simulation finished
+** UVM TEST PASSED **

@@ -1,0 +1,57 @@
+SystemC Simulation
+UVM_INFO @ 0 s: reporter [RNTST] Running test test...
+phase_started: 1=build (@<removed by verify-uvm.pl>)
+phase_started: 0=build (@<removed by verify-uvm.pl>)
+phase_started: 1=connect (@<removed by verify-uvm.pl>)
+phase_started: 0=connect (@<removed by verify-uvm.pl>)
+phase_started: 1=end_of_elaboration (@<removed by verify-uvm.pl>)
+phase_started: 0=end_of_elaboration (@<removed by verify-uvm.pl>)
+phase_started: 1=start_of_simulation (@<removed by verify-uvm.pl>)
+phase_started: 0=start_of_simulation (@<removed by verify-uvm.pl>)
+phase_started: 1=run (@<removed by verify-uvm.pl>)
+phase_started: 0=run (@<removed by verify-uvm.pl>)
+phase_started: 1=pre_reset (@<removed by verify-uvm.pl>)
+phase_started: 0=pre_reset (@<removed by verify-uvm.pl>)
+phase_started: 1=reset (@<removed by verify-uvm.pl>)
+phase_started: 0=reset (@<removed by verify-uvm.pl>)
+phase_started: 1=post_reset (@<removed by verify-uvm.pl>)
+phase_started: 0=post_reset (@<removed by verify-uvm.pl>)
+phase_started: 1=pre_configure (@<removed by verify-uvm.pl>)
+phase_started: 0=pre_configure (@<removed by verify-uvm.pl>)
+phase_started: 1=configure (@<removed by verify-uvm.pl>)
+phase_started: 0=configure (@<removed by verify-uvm.pl>)
+phase_started: 1=post_configure (@<removed by verify-uvm.pl>)
+phase_started: 0=post_configure (@<removed by verify-uvm.pl>)
+phase_started: 1=pre_main (@<removed by verify-uvm.pl>)
+phase_started: 0=pre_main (@<removed by verify-uvm.pl>)
+phase_started: 1=main (@<removed by verify-uvm.pl>)
+phase_started: 0=main (@<removed by verify-uvm.pl>)
+phase_started: 1=post_main (@<removed by verify-uvm.pl>)
+phase_started: 0=post_main (@<removed by verify-uvm.pl>)
+phase_started: 1=pre_shutdown (@<removed by verify-uvm.pl>)
+phase_started: 0=pre_shutdown (@<removed by verify-uvm.pl>)
+phase_started: 1=shutdown (@<removed by verify-uvm.pl>)
+phase_started: 0=shutdown (@<removed by verify-uvm.pl>)
+phase_started: 1=post_shutdown (@<removed by verify-uvm.pl>)
+phase_started: 0=post_shutdown (@<removed by verify-uvm.pl>)
+phase_started: 1=extract (@<removed by verify-uvm.pl>)
+phase_started: 0=extract (@<removed by verify-uvm.pl>)
+phase_started: 1=check (@<removed by verify-uvm.pl>)
+phase_started: 0=check (@<removed by verify-uvm.pl>)
+phase_started: 1=report (@<removed by verify-uvm.pl>)
+phase_started: 0=report (@<removed by verify-uvm.pl>)
+phase_started: 1=final (@<removed by verify-uvm.pl>)
+phase_started: 0=final (@<removed by verify-uvm.pl>)
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test [FINAL] Starting Final
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [UVM/REPORT/SERVER]
+--- UVM Report Summary ---
+** Report counts by severity
+UVM_INFO      :   2
+UVM_WARNING   :   0
+UVM_ERROR     :   0
+UVM_FATAL     :   0
+** Report counts by id
+[FINAL]                 1
+[RNTST]                 1
+UVM_INFO @ 0 s: reporter [FINISH] UVM-SystemC phasing completed; simulation finished
+*** UVM TEST PASSED ***

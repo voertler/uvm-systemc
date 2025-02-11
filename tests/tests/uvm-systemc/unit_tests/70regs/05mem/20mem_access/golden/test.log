@@ -1,0 +1,149 @@
+SystemC Simulation
+Mem[0] = 028e837c5cb41dc3e
+Mem[1] = 0fdfd3a7c3e40f98b
+Mem[2] = 00a213217f032e8b9
+Mem[3] = 098f56903cee3fcee
+Mem[4] = 08ad330133b0725ac
+Mem[5] = 00ea2062afd5fe9ee
+Mem[6] = 0a1abd7f3042ae12f
+Mem[7] = 06c6f1e45458246e8
+UVM_INFO @ 0 s: reporter [RNTST] Running test test...
+test: (test@<removed by verify-uvm.pl>) {
+  drv: (user_driver@<removed by verify-uvm.pl>) @123
+  sqr: (user_sequencer@<removed by verify-uvm.pl>) {
+    arbitration_queue: -
+    lock_queue: -
+  }
+}
+model: (mmap_type@<removed by verify-uvm.pl>) {
+  mem: (mem_type@<removed by verify-uvm.pl>) {
+    n_bits: 64
+    size: 8
+  }
+  default_map: (uvm_reg_map@<removed by verify-uvm.pl>) {
+    endian: UVM_LITTLE_ENDIAN
+    effective sequencer: test.sqr
+    mem: (mem_type@<removed by verify-uvm.pl> + 0x100) @120 + 0x100
+  }
+}
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@user_test_seq [TEST_SEQ] <><><><><><><><><><><><><><><><><><><><><><><>
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@user_test_seq [TEST_SEQ]   Starting Test Sequence
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@user_test_seq [TEST_SEQ] <><><><><><><><><><><><><><><><><><><><><><><>
+UVM_INFO <removed by verify-uvm.pl> @ 1 us: test.drv [USRDRV] Received following transaction :
+txn: (user_transaction@<removed by verify-uvm.pl>) {
+  depth: 2
+  parent sequence (name): user_test_seq
+  parent sequence (full name): user_test_seq
+  sequencer: test.sqr
+  addr: 0x100
+  data: 0x706050403020100
+  r_wn: 0x0
+}
+UVM_INFO <removed by verify-uvm.pl> @ 2 us: test.drv [USRDRV] Received following transaction :
+txn: (user_transaction@<removed by verify-uvm.pl>) {
+  depth: 2
+  parent sequence (name): user_test_seq
+  parent sequence (full name): user_test_seq
+  sequencer: test.sqr
+  addr: 0x108
+  data: 0xf0e0d0c0b0a0908
+  r_wn: 0x0
+}
+UVM_INFO <removed by verify-uvm.pl> @ 3 us: test.drv [USRDRV] Received following transaction :
+txn: (user_transaction@<removed by verify-uvm.pl>) {
+  depth: 2
+  parent sequence (name): user_test_seq
+  parent sequence (full name): user_test_seq
+  sequencer: test.sqr
+  addr: 0x110
+  data: 0x1716151413121110
+  r_wn: 0x0
+}
+UVM_INFO <removed by verify-uvm.pl> @ 4 us: test.drv [USRDRV] Received following transaction :
+txn: (user_transaction@<removed by verify-uvm.pl>) {
+  depth: 2
+  parent sequence (name): user_test_seq
+  parent sequence (full name): user_test_seq
+  sequencer: test.sqr
+  addr: 0x118
+  data: 0x1f1e1d1c1b1a1918
+  r_wn: 0x0
+}
+UVM_INFO <removed by verify-uvm.pl> @ 5 us: test.drv [USRDRV] Received following transaction :
+txn: (user_transaction@<removed by verify-uvm.pl>) {
+  depth: 2
+  parent sequence (name): user_test_seq
+  parent sequence (full name): user_test_seq
+  sequencer: test.sqr
+  addr: 0x120
+  data: 0x2726252423222120
+  r_wn: 0x0
+}
+UVM_INFO <removed by verify-uvm.pl> @ 6 us: test.drv [USRDRV] Received following transaction :
+txn: (user_transaction@<removed by verify-uvm.pl>) {
+  depth: 2
+  parent sequence (name): user_test_seq
+  parent sequence (full name): user_test_seq
+  sequencer: test.sqr
+  addr: 0x128
+  data: 0x2f2e2d2c2b2a2928
+  r_wn: 0x0
+}
+UVM_INFO <removed by verify-uvm.pl> @ 7 us: test.drv [USRDRV] Received following transaction :
+txn: (user_transaction@<removed by verify-uvm.pl>) {
+  depth: 2
+  parent sequence (name): user_test_seq
+  parent sequence (full name): user_test_seq
+  sequencer: test.sqr
+  addr: 0x130
+  data: 0x3736353433323130
+  r_wn: 0x0
+}
+UVM_INFO <removed by verify-uvm.pl> @ 8 us: test.drv [USRDRV] Received following transaction :
+txn: (user_transaction@<removed by verify-uvm.pl>) {
+  depth: 2
+  parent sequence (name): user_test_seq
+  parent sequence (full name): user_test_seq
+  sequencer: test.sqr
+  addr: 0x138
+  data: 0x3f3e3d3c3b3a3938
+  r_wn: 0x0
+}
+Mem[0] = 00706050403020100
+Mem[1] = 00f0e0d0c0b0a0908
+Mem[2] = 01716151413121110
+Mem[3] = 01f1e1d1c1b1a1918
+Mem[4] = 02726252423222120
+Mem[5] = 02f2e2d2c2b2a2928
+Mem[6] = 03736353433323130
+Mem[7] = 03f3e3d3c3b3a3938
+** UVM TEST PASSED **
+UVM_INFO <removed by verify-uvm.pl> @ 8 us: reporter [UVM/REPORT/CATCHER]
+--- UVM Report catcher Summary ---
+Number of demoted UVM_FATAL reports  :    0
+Number of demoted UVM_ERROR reports  :    0
+Number of demoted UVM_WARNING reports:    0
+Number of caught UVM_FATAL reports   :    0
+Number of caught UVM_ERROR reports   :    0
+Number of caught UVM_WARNING reports :    0
+UVM_INFO <removed by verify-uvm.pl> @ 8 us: reporter [UVM/REPORT/SERVER]
+--- UVM Report Summary ---
+** Report counts by severity
+UVM_INFO      :  13
+UVM_WARNING   :   0
+UVM_ERROR     :   0
+UVM_FATAL     :   0
+** Report counts by id
+[RNTST]                 1
+[TEST_SEQ]              3
+[USRDRV]                8
+[UVM/REPORT/CATCHER]    1
+Mem[0] = 00706050403020100
+Mem[1] = 00f0e0d0c0b0a0908
+Mem[2] = 01716151413121110
+Mem[3] = 01f1e1d1c1b1a1918
+Mem[4] = 02726252423222120
+Mem[5] = 02f2e2d2c2b2a2928
+Mem[6] = 03736353433323130
+Mem[7] = 03f3e3d3c3b3a3938
+UVM_INFO @ 8 us: reporter [FINISH] UVM-SystemC phasing completed; simulation finished

@@ -1,0 +1,40 @@
+SystemC Simulation
+UVM_INFO @ 0 s: reporter [RNTST] Running test ...
+UVM_INFO @ 50 ms: reporter [HDL_READ] Value 0x00f read from dut.q.
+UVM_INFO @ 50 ms: reporter [HDL_READ] Value 0x00f read from dut.w.
+UVM_INFO @ 50 ms: reporter [HDL_READ] Value 0x001 read from dut.q[1].
+UVM_INFO @ 50 ms: reporter [HDL_READ] Value 0x00f read from $root.dut.q.
+UVM_INFO @ 50 ms: reporter [HDL_READ] Value 0x00f read from $root.dut.w.
+UVM_INFO @ 50 ms: reporter [HDL_READ] Value 0x001 read from $root.dut.q[1].
+UVM_INFO @ 50 ms: reporter [HDL_DEPOSIT] Value 0x03c written to dut.q.
+UVM_INFO @ 50 ms: reporter [HDL_READ] Value 0x03c read from dut.q.
+UVM_INFO @ 50 ms: reporter [HDL_DEPOSIT] Value 0x000 written to dut.q[4].
+UVM_INFO @ 50 ms: reporter [HDL_READ] Value 0x000 read from dut.q[4].
+UVM_INFO @ 50 ms: reporter [HDL_DEPOSIT] Value 0x001 written to dut.q[6].
+UVM_INFO @ 50 ms: reporter [HDL_READ] Value 0x001 read from dut.q[6].
+UVM_INFO @ 50 ms: reporter [HDL_DEPOSIT] Value 0x002 written to dut.q[6:4].
+UVM_INFO @ 50 ms: reporter [HDL_READ] Value 0x002 read from dut.q[6:4].
+UVM_INFO @ 50 ms: reporter [HDL_READ] Value 0x02c read from dut.q.
+UVM_INFO @ 50 ms: reporter [HDL_DEPOSIT] Value 0x006 written to dut.q[7:4].
+UVM_INFO @ 50 ms: reporter [HDL_READ] Value 0x006 read from dut.q[7:4].
+UVM_INFO @ 50 ms: reporter [HDL_READ] Value 0x06c read from dut.w.
+UVM_INFO @ 50 ms: reporter [HDL_DEPOSIT] Value 0x03c written to dut.w.
+UVM_INFO @ 50 ms: reporter [HDL_READ] Value 0x03c read from dut.w.
+UVM_INFO @ 50 ms: reporter [HDL_READ] Value 0x03c read from dut.w.
+UVM_INFO @ 50 ms: reporter [HDL_DEPOSIT] Value 0x0a5 written to dut.q.
+UVM_INFO @ 50 ms: reporter [HDL_READ] Value 0x0a5 read from dut.q.
+UVM_INFO @ 150 ms: reporter [HDL_READ] Value 0x0f0 read from dut.q.
+UVM_INFO @ 150 ms: reporter [HDL_READ] Value 0x0f0 read from dut.w.
+UVM_INFO <removed by verify-uvm.pl> @ 150 ms: reporter [UVM/REPORT/SERVER]
+--- UVM Report Summary ---
+** Report counts by severity
+UVM_INFO      :  26
+UVM_WARNING   :   0
+UVM_ERROR     :   0
+UVM_FATAL     :   0
+** Report counts by id
+[HDL_DEPOSIT]           7
+[HDL_READ]             18
+[RNTST]                 1
+UVM_INFO @ 150 ms: reporter [FINISH] UVM-SystemC phasing completed; simulation finished
+** UVM TEST PASSED **

@@ -1,0 +1,76 @@
+SystemC Simulation
+UVM_INFO @ 0 s: reporter [RNTST] Running test ...
+0 s: t1 phase: build
+0 s: t1.a1.a phase: build
+0 s: t1.a1.a.b1 phase: build
+0 s: t1.a1.a.d1 phase: build
+0 s: t1.a2.a phase: build
+0 s: t1.a2.a.b1 phase: build
+0 s: t1.a2.a.d1 phase: build
+0 s: t1.a1.a.b1 phase: connect
+0 s: t1.a1.a.d1 phase: connect
+0 s: t1.a1.a phase: connect
+0 s: t1.a2.a.b1 phase: connect
+0 s: t1.a2.a.d1 phase: connect
+0 s: t1.a2.a phase: connect
+0 s: t1 phase: connect
+0 s: t1.a1.a.b1 phase: end_of_elaboration
+0 s: t1.a1.a.d1 phase: end_of_elaboration
+0 s: t1.a1.a phase: end_of_elaboration
+0 s: t1.a2.a.b1 phase: end_of_elaboration
+0 s: t1.a2.a.d1 phase: end_of_elaboration
+0 s: t1.a2.a phase: end_of_elaboration
+0 s: t1 phase: end_of_elaboration
+0 s: t1.a1.a.b1 phase: start_of_simulation
+0 s: t1.a1.a.d1 phase: start_of_simulation
+0 s: t1.a1.a phase: start_of_simulation
+0 s: t1.a2.a.b1 phase: start_of_simulation
+0 s: t1.a2.a.d1 phase: start_of_simulation
+0 s: t1.a2.a phase: start_of_simulation
+0 s: t1 phase: start_of_simulation
+0 s: t1.a1.a.b1 start phase: run
+0 s: t1.a1.a start phase: run
+0 s: t1.a2.a.b1 start phase: run
+0 s: t1.a2.a start phase: run
+0 s: t1 start phase: run
+1100 us: t1.a1.a.b1 end phase: run
+1100 us: t1.a2.a.b1 end phase: run
+5500 us: t1.a1.a end phase: run
+5500 us: t1.a2.a end phase: run
+50 ms: t1 end phase: run
+50 ms: t1.a1.a.b1 phase: extract
+50 ms: t1.a1.a.d1 phase: extract
+50 ms: t1.a1.a phase: extract
+50 ms: t1.a2.a.b1 phase: extract
+50 ms: t1.a2.a.d1 phase: extract
+50 ms: t1.a2.a phase: extract
+50 ms: t1 phase: extract
+50 ms: t1.a1.a.b1 phase: check
+50 ms: t1.a1.a.d1 phase: check
+50 ms: t1.a1.a phase: check
+50 ms: t1.a2.a.b1 phase: check
+50 ms: t1.a2.a.d1 phase: check
+50 ms: t1.a2.a phase: check
+50 ms: t1 phase: check
+50 ms: t1.a1.a.b1 phase: report
+50 ms: t1.a1.a.d1 phase: report
+50 ms: t1.a1.a phase: report
+50 ms: t1.a2.a.b1 phase: report
+50 ms: t1.a2.a.d1 phase: report
+50 ms: t1.a2.a phase: report
+50 ms: t1 phase: report
+50 ms: t1 phase: final
+50 ms: t1.a1.a phase: final
+50 ms: t1.a1.a.d1 phase: final
+50 ms: t1.a2.a phase: final
+50 ms: t1.a2.a.d1 phase: final
+UVM_INFO <removed by verify-uvm.pl> @ 50 ms: reporter [UVM/REPORT/SERVER]
+--- UVM Report Summary ---
+** Report counts by severity
+UVM_INFO      :   1
+UVM_WARNING   :   0
+UVM_ERROR     :   0
+UVM_FATAL     :   0
+** Report counts by id
+[RNTST]                 1
+UVM_INFO @ 50 ms: reporter [FINISH] UVM-SystemC phasing completed; simulation finished

@@ -1,0 +1,202 @@
+UVM_INFO <removed> @ 0: reporter [UVM/RELNOTES] 
+----------------------------------------------------------------
+UVM-1.2
+(C) 2007-2014 Mentor Graphics Corporation
+(C) 2007-2014 Cadence Design Systems, Inc.
+(C) 2006-2014 Synopsys, Inc.
+(C) 2011-2013 Cypress Semiconductor Corp.
+(C) 2013-2014 NVIDIA Corporation
+----------------------------------------------------------------
+
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_NO_DEPRECATED undefined.
+  See http://www.eda.org/svdb/view.php?id=3313 for more details.
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_OBJECT_DO_NOT_NEED_CONSTRUCTOR undefined.
+  See http://www.eda.org/svdb/view.php?id=3770 for more details.
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_INFO @ 0: reporter [RNTST] Running test test...
+Mem[0] = 561a45f639df22c0
+Mem[1] = c1dd645f8e3b47a8
+Mem[2] = b17f94eff90ebb35
+Mem[3] = 50b92ab6aef051f6
+Mem[4] = a0df3d0c0d45cdcc
+Mem[5] = f6900649e80f8643
+Mem[6] = 401fc443f2763cb0
+Mem[7] = 80c1968ace12380a
+uvm_test_top: (test@1957) {
+  drv: (user_driver@2730) {
+    rsp_port: (uvm_analysis_port@2830) @2830 
+    seq_item_port: (uvm_seq_item_pull_port@2780) @2780 
+  }
+  sqr: (user_sequencer@2075) {
+    rsp_export: (uvm_analysis_export@2135) @2135 
+    seq_item_export: (uvm_seq_item_pull_imp@2697) @2697 
+    arbitration_queue: - 
+    lock_queue: - 
+    num_last_reqs: 'd1 
+    num_last_rsps: 'd1 
+  }
+}
+model: (mmap_type@2025) {
+  mem: (mem_type@2046) {
+    n_bits: 'd64 
+    size: 'd8 
+  }
+  default_map: (uvm_reg_map@2037) {
+    endian: UVM_LITTLE_ENDIAN 
+    effective sequencer: uvm_test_top.sqr 
+    mem: (mem_type@2046 +'h100) @2046 +'h100 
+  }
+}
+UVM_INFO test.sv(77) @ 0: reporter@@user_test_seq [TEST_SEQ] <><><><><><><><><><><><><><><><><><><><><><><>
+UVM_INFO test.sv(78) @ 0: reporter@@user_test_seq [TEST_SEQ]   Starting Test Sequence
+UVM_INFO test.sv(79) @ 0: reporter@@user_test_seq [TEST_SEQ] <><><><><><><><><><><><><><><><><><><><><><><>
+
+UVM_INFO test.sv(130) @ 1: uvm_test_top.drv [USRDRV] Received following transaction :
+txn: (user_transaction@2976) {
+  addr: 'h100 
+  data: 'h706050403020100 
+  r_wn: 'h0 
+  begin_time: 0 
+  depth: 'd2 
+  parent sequence (name): user_test_seq 
+  parent sequence (full name): user_test_seq 
+  sequencer: uvm_test_top.sqr 
+}
+
+UVM_INFO test.sv(130) @ 2: uvm_test_top.drv [USRDRV] Received following transaction :
+txn: (user_transaction@2957) {
+  addr: 'h108 
+  data: 'hf0e0d0c0b0a0908 
+  r_wn: 'h0 
+  begin_time: 1 
+  depth: 'd2 
+  parent sequence (name): user_test_seq 
+  parent sequence (full name): user_test_seq 
+  sequencer: uvm_test_top.sqr 
+}
+
+UVM_INFO test.sv(130) @ 3: uvm_test_top.drv [USRDRV] Received following transaction :
+txn: (user_transaction@2969) {
+  addr: 'h110 
+  data: 'h1716151413121110 
+  r_wn: 'h0 
+  begin_time: 2 
+  depth: 'd2 
+  parent sequence (name): user_test_seq 
+  parent sequence (full name): user_test_seq 
+  sequencer: uvm_test_top.sqr 
+}
+
+UVM_INFO test.sv(130) @ 4: uvm_test_top.drv [USRDRV] Received following transaction :
+txn: (user_transaction@2965) {
+  addr: 'h118 
+  data: 'h1f1e1d1c1b1a1918 
+  r_wn: 'h0 
+  begin_time: 3 
+  depth: 'd2 
+  parent sequence (name): user_test_seq 
+  parent sequence (full name): user_test_seq 
+  sequencer: uvm_test_top.sqr 
+}
+
+UVM_INFO test.sv(130) @ 5: uvm_test_top.drv [USRDRV] Received following transaction :
+txn: (user_transaction@2971) {
+  addr: 'h120 
+  data: 'h2726252423222120 
+  r_wn: 'h0 
+  begin_time: 4 
+  depth: 'd2 
+  parent sequence (name): user_test_seq 
+  parent sequence (full name): user_test_seq 
+  sequencer: uvm_test_top.sqr 
+}
+
+UVM_INFO test.sv(130) @ 6: uvm_test_top.drv [USRDRV] Received following transaction :
+txn: (user_transaction@2958) {
+  addr: 'h128 
+  data: 'h2f2e2d2c2b2a2928 
+  r_wn: 'h0 
+  begin_time: 5 
+  depth: 'd2 
+  parent sequence (name): user_test_seq 
+  parent sequence (full name): user_test_seq 
+  sequencer: uvm_test_top.sqr 
+}
+
+UVM_INFO test.sv(130) @ 7: uvm_test_top.drv [USRDRV] Received following transaction :
+txn: (user_transaction@2963) {
+  addr: 'h130 
+  data: 'h3736353433323130 
+  r_wn: 'h0 
+  begin_time: 6 
+  depth: 'd2 
+  parent sequence (name): user_test_seq 
+  parent sequence (full name): user_test_seq 
+  sequencer: uvm_test_top.sqr 
+}
+
+UVM_INFO test.sv(130) @ 8: uvm_test_top.drv [USRDRV] Received following transaction :
+txn: (user_transaction@2967) {
+  addr: 'h138 
+  data: 'h3f3e3d3c3b3a3938 
+  r_wn: 'h0 
+  begin_time: 7 
+  depth: 'd2 
+  parent sequence (name): user_test_seq 
+  parent sequence (full name): user_test_seq 
+  sequencer: uvm_test_top.sqr 
+}
+
+Mem[0] = 0706050403020100
+Mem[1] = 0f0e0d0c0b0a0908
+Mem[2] = 1716151413121110
+Mem[3] = 1f1e1d1c1b1a1918
+Mem[4] = 2726252423222120
+Mem[5] = 2f2e2d2c2b2a2928
+Mem[6] = 3736353433323130
+Mem[7] = 3f3e3d3c3b3a3938
+UVM_INFO <removed> @ 8: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+** UVM TEST PASSED **
+UVM_INFO <removed> @ 8: reporter [UVM/REPORT/CATCHER] 
+--- UVM Report catcher Summary ---
+
+
+Number of demoted UVM_FATAL reports  :    0
+Number of demoted UVM_ERROR reports  :    0
+Number of demoted UVM_WARNING reports:    0
+Number of caught UVM_FATAL reports   :    0
+Number of caught UVM_ERROR reports   :    0
+Number of caught UVM_WARNING reports :    0
+
+UVM_INFO <removed> @ 8: reporter [UVM/REPORT/SERVER] 
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :   15
+UVM_WARNING :    0
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[RNTST]     1
+[TEST_DONE]     1
+[TEST_SEQ]     3
+[USRDRV]     8
+[UVM/RELNOTES]     1
+[UVM/REPORT/CATCHER]     1
+
+Mem[0] = 0706050403020100
+Mem[1] = 0f0e0d0c0b0a0908
+Mem[2] = 1716151413121110
+Mem[3] = 1f1e1d1c1b1a1918
+Mem[4] = 2726252423222120
+Mem[5] = 2f2e2d2c2b2a2928
+Mem[6] = 3736353433323130
+Mem[7] = 3f3e3d3c3b3a3938
+Simulation complete via $finish(1) at time 8 NS + 63

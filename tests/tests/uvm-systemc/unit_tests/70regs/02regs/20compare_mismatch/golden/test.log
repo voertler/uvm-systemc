@@ -1,0 +1,114 @@
+SystemC Simulation
+UVM_INFO @ 0 s: reporter [RNTST] Running test test...
+-------------------------------------------------------------------------------------------
+Name                       Type           Size  Value
+-------------------------------------------------------------------------------------------
+model                      mmap0_type     -     @<removed by verify-uvm.pl>
+  rfile0                   rfile0_t       -     @<removed by verify-uvm.pl>
+    ureg0                  ureg0_t        -     @<removed by verify-uvm.pl>
+      destination          uvm_reg_field  ...    RW ureg0[13:0] = 0x0 (0b00000000000000)
+      frame_kind           uvm_reg_field  ...    RW ureg0[15:14] = 0x0 (0b00)
+      rsvd                 uvm_reg_field  ...    RW ureg0[31:16] = 0x0 (0b0000000000000000)
+    ureg1                  ureg1_t        -     @<removed by verify-uvm.pl>
+      destination          uvm_reg_field  ...    RW ureg1[13:0] = 0x0 (0b00000000000000)
+      frame_kind           uvm_reg_field  ...    RW ureg1[15:14] = 0x0 (0b00)
+      rsvd                 uvm_reg_field  ...    RW ureg1[31:16] = 0x0 (0b0000000000000000)
+    ureg2                  ureg2_t        -     @<removed by verify-uvm.pl>
+      destination          uvm_reg_field  ...    RW ureg2[13:0] = 0x0 (0b00000000000000)
+      frame_kind           uvm_reg_field  ...    RW ureg2[15:14] = 0x0 (0b00)
+      rsvd                 uvm_reg_field  ...    RW ureg2[31:16] = 0x0 (0b0000000000000000)
+    ureg3                  ureg3_t        -     @<removed by verify-uvm.pl>
+      destination          uvm_reg_field  ...    RW ureg3[13:0] = 0x0 (0b00000000000000)
+      frame_kind           uvm_reg_field  ...    RW ureg3[15:14] = 0x0 (0b00)
+      rsvd                 uvm_reg_field  ...    RW ureg3[31:16] = 0x0 (0b0000000000000000)
+    ureg4                  ureg4_t        -     @<removed by verify-uvm.pl>
+      destination          uvm_reg_field  ...    RW ureg4[13:0] = 0x0 (0b00000000000000)
+      frame_kind           uvm_reg_field  ...    RW ureg4[15:14] = 0x0 (0b00)
+      rsvd                 uvm_reg_field  ...    RW ureg4[31:16] = 0x0 (0b0000000000000000)
+    ureg5                  ureg5_t        -     @<removed by verify-uvm.pl>
+      destination          uvm_reg_field  ...    RW ureg5[13:0] = 0x0 (0b00000000000000)
+      frame_kind           uvm_reg_field  ...    RW ureg5[15:14] = 0x0 (0b00)
+      rsvd                 uvm_reg_field  ...    RW ureg5[31:16] = 0x0 (0b0000000000000000)
+    ureg6                  ureg6_t        -     @<removed by verify-uvm.pl>
+      destination          uvm_reg_field  ...    RW ureg6[13:0] = 0x0 (0b00000000000000)
+      frame_kind           uvm_reg_field  ...    RW ureg6[15:14] = 0x0 (0b00)
+      rsvd                 uvm_reg_field  ...    RW ureg6[31:16] = 0x0 (0b0000000000000000)
+    ureg7                  ureg7_t        -     @<removed by verify-uvm.pl>
+      destination          uvm_reg_field  ...    RW ureg7[13:0] = 0x0 (0b00000000000000)
+      frame_kind           uvm_reg_field  ...    RW ureg7[15:14] = 0x0 (0b00)
+      rsvd                 uvm_reg_field  ...    RW ureg7[31:16] = 0x0 (0b0000000000000000)
+    ureg8                  ureg8_t        -     @<removed by verify-uvm.pl>
+      destination          uvm_reg_field  ...    RW ureg8[13:0] = 0x0 (0b00000000000000)
+      frame_kind           uvm_reg_field  ...    RW ureg8[15:14] = 0x0 (0b00)
+      rsvd                 uvm_reg_field  ...    RW ureg8[31:16] = 0x0 (0b0000000000000000)
+    ureg9                  ureg9_t        -     @<removed by verify-uvm.pl>
+      destination          uvm_reg_field  ...    RW ureg9[13:0] = 0x0 (0b00000000000000)
+      frame_kind           uvm_reg_field  ...    RW ureg9[15:14] = 0x0 (0b00)
+      rsvd                 uvm_reg_field  ...    RW ureg9[31:16] = 0x0 (0b0000000000000000)
+    default_map            uvm_reg_map    -     @<removed by verify-uvm.pl>
+      endian                              ...   UVM_LITTLE_ENDIAN
+      effective sequencer  uvc_sequencer  ...   test.uenv.uos
+      ureg0                ureg0_t        ...   @<removed by verify-uvm.pl>+ 0x0
+      ureg1                ureg1_t        ...   @<removed by verify-uvm.pl>+ 0x0
+      ureg2                ureg2_t        ...   @<removed by verify-uvm.pl>+ 0x0
+      ureg3                ureg3_t        ...   @<removed by verify-uvm.pl>+ 0x0
+      ureg4                ureg4_t        ...   @<removed by verify-uvm.pl>+ 0x0
+      ureg5                ureg5_t        ...   @<removed by verify-uvm.pl>+ 0x0
+      ureg6                ureg6_t        ...   @<removed by verify-uvm.pl>+ 0x0
+      ureg7                ureg7_t        ...   @<removed by verify-uvm.pl>+ 0x0
+      ureg8                ureg8_t        ...   @<removed by verify-uvm.pl>+ 0x0
+      ureg9                ureg9_t        ...   @<removed by verify-uvm.pl>+ 0x0
+  default_map              uvm_reg_map    -     @<removed by verify-uvm.pl>
+    endian                                ...   UVM_LITTLE_ENDIAN
+    effective sequencer    uvc_sequencer  ...   test.uenv.uos
+    default_map            uvm_reg_map    -     @<removed by verify-uvm.pl>
+      endian                              ...   UVM_LITTLE_ENDIAN
+      effective sequencer  uvc_sequencer  ...   test.uenv.uos
+      ureg0                ureg0_t        ...   @<removed by verify-uvm.pl>+ 0x0
+      ureg1                ureg1_t        ...   @<removed by verify-uvm.pl>+ 0x0
+      ureg2                ureg2_t        ...   @<removed by verify-uvm.pl>+ 0x0
+      ureg3                ureg3_t        ...   @<removed by verify-uvm.pl>+ 0x0
+      ureg4                ureg4_t        ...   @<removed by verify-uvm.pl>+ 0x0
+      ureg5                ureg5_t        ...   @<removed by verify-uvm.pl>+ 0x0
+      ureg6                ureg6_t        ...   @<removed by verify-uvm.pl>+ 0x0
+      ureg7                ureg7_t        ...   @<removed by verify-uvm.pl>+ 0x0
+      ureg8                ureg8_t        ...   @<removed by verify-uvm.pl>+ 0x0
+      ureg9                ureg9_t        ...   @<removed by verify-uvm.pl>+ 0x0
+-------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------
+Name                       Type           Size  Value
+-------------------------------------------------------------------------------------------
+default_map                uvm_reg_map    -     @<removed by verify-uvm.pl>
+  endian                                  ...   UVM_LITTLE_ENDIAN
+  effective sequencer      uvc_sequencer  ...   test.uenv.uos
+  default_map              uvm_reg_map    -     @<removed by verify-uvm.pl>
+    endian                                ...   UVM_LITTLE_ENDIAN
+    effective sequencer    uvc_sequencer  ...   test.uenv.uos
+    ureg0                  ureg0_t        ...   @<removed by verify-uvm.pl>+ 0x0
+    ureg1                  ureg1_t        ...   @<removed by verify-uvm.pl>+ 0x0
+    ureg2                  ureg2_t        ...   @<removed by verify-uvm.pl>+ 0x0
+    ureg3                  ureg3_t        ...   @<removed by verify-uvm.pl>+ 0x0
+    ureg4                  ureg4_t        ...   @<removed by verify-uvm.pl>+ 0x0
+    ureg5                  ureg5_t        ...   @<removed by verify-uvm.pl>+ 0x0
+    ureg6                  ureg6_t        ...   @<removed by verify-uvm.pl>+ 0x0
+    ureg7                  ureg7_t        ...   @<removed by verify-uvm.pl>+ 0x0
+    ureg8                  ureg8_t        ...   @<removed by verify-uvm.pl>+ 0x0
+    ureg9                  ureg9_t        ...   @<removed by verify-uvm.pl>+ 0x0
+-------------------------------------------------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@test_seq [TEST_SEQ] <><><><><><><><><><><><><><><><><><><><><><><>
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@test_seq [TEST_SEQ]   Starting Test Sequence
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@test_seq [TEST_SEQ] <><><><><><><><><><><><><><><><><><><><><><><>
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter@@test_seq [TEST_SEQ] Backdoor mirror the shadow. Expect mismatch errors
+** UVM TEST PASSED **
+UVM TEST EXPECT 1 UVM_ERROR
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [UVM/REPORT/SERVER]
+--- UVM Report Summary ---
+** Report counts by severity
+UVM_INFO      :   5
+UVM_WARNING   :   0
+UVM_ERROR     :   0
+UVM_FATAL     :   0
+** Report counts by id
+[RNTST]                 1
+[TEST_SEQ]              4
+UVM_INFO @ 0 s: reporter [FINISH] UVM-SystemC phasing completed; simulation finished

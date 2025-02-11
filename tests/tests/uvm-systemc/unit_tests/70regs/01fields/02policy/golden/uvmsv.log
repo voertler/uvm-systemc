@@ -1,0 +1,114 @@
+UVM_INFO <removed> @ 0: reporter [UVM/RELNOTES] 
+----------------------------------------------------------------
+UVM-1.2
+(C) 2007-2014 Mentor Graphics Corporation
+(C) 2007-2014 Cadence Design Systems, Inc.
+(C) 2006-2014 Synopsys, Inc.
+(C) 2011-2013 Cypress Semiconductor Corp.
+(C) 2013-2014 NVIDIA Corporation
+----------------------------------------------------------------
+
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_NO_DEPRECATED undefined.
+  See http://www.eda.org/svdb/view.php?id=3313 for more details.
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_OBJECT_DO_NOT_NEED_CONSTRUCTOR undefined.
+  See http://www.eda.org/svdb/view.php?id=3770 for more details.
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_WARNING <removed> @ 0: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed> @ 0: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed> @ 0: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed> @ 0: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed> @ 0: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed> @ 0: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed> @ 0: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed> @ 0: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed> @ 0: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed> @ 0: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed> @ 0: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed> @ 0: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed> @ 0: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed> @ 0: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed> @ 0: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed> @ 0: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed> @ 0: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed> @ 0: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed> @ 0: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed> @ 0: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed> @ 0: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed> @ 0: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed> @ 0: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed> @ 0: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed> @ 0: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed> @ 0: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed> @ 0: reporter [RegModel] map 'map' does not seem to be initialized correctly, check that the top register model is locked()
+UVM_WARNING <removed> @ 0: reporter [RegModel] Register 'rg' is unmapped in map 'blk.map'
+------------------------------------------------------
+Name        Type           Size  Value                
+------------------------------------------------------
+blk         <unknown>      -     @1803                
+  rg        <unknown>      -     @1815                
+    RO      uvm_reg_field  ...    RO rg[1:0]=2'h1     
+    RW      uvm_reg_field  ...    RW rg[3:2]=2'h1     
+    RC      uvm_reg_field  ...    RC rg[5:4]=2'h1     
+    RS      uvm_reg_field  ...    RS rg[7:6]=2'h1     
+    WRC     uvm_reg_field  ...    WRC rg[9:8]=2'h1    
+    WRS     uvm_reg_field  ...    WRS rg[11:10]=2'h1  
+    WC      uvm_reg_field  ...    WC rg[13:12]=2'h1   
+    WS      uvm_reg_field  ...    WS rg[15:14]=2'h1   
+    WSRC    uvm_reg_field  ...    WSRC rg[17:16]=2'h1 
+    WCRS    uvm_reg_field  ...    WCRS rg[19:18]=2'h1 
+    W1C     uvm_reg_field  ...    W1C rg[21:20]=2'h1  
+    W1S     uvm_reg_field  ...    W1S rg[23:22]=2'h1  
+    W1T     uvm_reg_field  ...    W1T rg[25:24]=2'h1  
+    W0C     uvm_reg_field  ...    W0C rg[27:26]=2'h1  
+    W0S     uvm_reg_field  ...    W0S rg[29:28]=2'h1  
+    W0T     uvm_reg_field  ...    W0T rg[31:30]=2'h1  
+    W1SRC   uvm_reg_field  ...    W1SRC rg[33:32]=2'h1
+    W1CRS   uvm_reg_field  ...    W1CRS rg[35:34]=2'h1
+    W0SRC   uvm_reg_field  ...    W0SRC rg[37:36]=2'h1
+    W0CRS   uvm_reg_field  ...    W0CRS rg[39:38]=2'h1
+    WO      uvm_reg_field  ...    WO rg[41:40]=2'h1   
+    WOC     uvm_reg_field  ...    WOC rg[43:42]=2'h1  
+    WOS     uvm_reg_field  ...    WOS rg[45:44]=2'h1  
+    W1      uvm_reg_field  ...    W1 rg[47:46]=2'h1   
+    WO1     uvm_reg_field  ...    WO1 rg[49:48]=2'h1  
+    DC      uvm_reg_field  ...    RW rg[51:50]=2'h1   
+  map       uvm_reg_map    -     @1842                
+    endian                 ...   UVM_BIG_ENDIAN       
+    rg      <unknown>      ...   @1815 +'h0           
+------------------------------------------------------
+UVM_INFO <removed> @ 0: reporter@@uvm_reg_single_bit_bash_seq [uvm_reg_bit_bash_seq] Verifying bits in register blk.rg in map "blk.map"...
+UVM_INFO <removed> @ 0: reporter [UVM/REPORT/CATCHER] 
+--- UVM Report catcher Summary ---
+
+
+Number of demoted UVM_FATAL reports  :    0
+Number of demoted UVM_ERROR reports  :    0
+Number of demoted UVM_WARNING reports:    0
+Number of caught UVM_FATAL reports   :    0
+Number of caught UVM_ERROR reports   :    0
+Number of caught UVM_WARNING reports :    0
+
+UVM_INFO <removed> @ 0: reporter [UVM/REPORT/SERVER] 
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :    3
+UVM_WARNING :   28
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[RegModel]    28
+[UVM/RELNOTES]     1
+[UVM/REPORT/CATCHER]     1
+[uvm_reg_bit_bash_seq]     1
+
+** UVM TEST PASSED **
+Simulation complete via implicit call to $finish(1) at time 0 FS + 1737
+

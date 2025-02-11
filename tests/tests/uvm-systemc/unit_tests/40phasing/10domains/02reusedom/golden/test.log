@@ -1,0 +1,88 @@
+SystemC Simulation
+UVM_INFO @ 0 s: reporter [RNTST] Running test ...
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test1.env1.l1 [run] Starting run
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test1.env1.l2 [run] Starting run
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test1.env1 [run] Starting run
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test1.env2.l1 [run] Starting run
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test1.env2.l2 [run] Starting run
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test1.env2 [run] Starting run
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test1 [run] Starting run
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test1.env2.l1 [reset] Starting reset
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test1.env1.l1 [reset] Starting reset
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test1.env1.l2 [reset] Starting reset
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test1.env1 [reset] Starting reset
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test1.env2 [reset] Starting reset
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test1 [reset] Starting reset
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test1.env2.l2 [reset] Starting reset
+UVM_INFO <removed by verify-uvm.pl> @ 108 s: test1.env2.l1 [reset] Ending reset
+UVM_INFO <removed by verify-uvm.pl> @ 108 s: test1.env2.l1 [main] Starting main
+UVM_INFO <removed by verify-uvm.pl> @ 151 s: test1.env2.l2 [reset] Ending reset
+UVM_INFO <removed by verify-uvm.pl> @ 151 s: test1.env2.l2 [main] Starting main
+UVM_INFO <removed by verify-uvm.pl> @ 205 s: test1.env1.l1 [reset] Ending reset
+UVM_INFO <removed by verify-uvm.pl> @ 205 s: test1.env1.l1 [main] Starting main
+UVM_INFO <removed by verify-uvm.pl> @ 216 s: test1.env2.l1 [main] Ending main
+UVM_INFO <removed by verify-uvm.pl> @ 216 s: test1.env2.l1 [shutdown] Starting shutdown
+UVM_INFO <removed by verify-uvm.pl> @ 300 s: test1.env1 [reset] Ending reset
+UVM_INFO <removed by verify-uvm.pl> @ 300 s: test1.env1.l2 [reset] Ending reset
+UVM_INFO <removed by verify-uvm.pl> @ 300 s: test1.env2 [reset] Ending reset
+UVM_INFO <removed by verify-uvm.pl> @ 300 s: test1 [reset] Ending reset
+UVM_INFO <removed by verify-uvm.pl> @ 300 s: test1.env1.l2 [main] Starting main
+UVM_INFO <removed by verify-uvm.pl> @ 300 s: test1.env1 [main] Starting main
+UVM_INFO <removed by verify-uvm.pl> @ 300 s: test1.env2 [main] Starting main
+UVM_INFO <removed by verify-uvm.pl> @ 300 s: test1 [main] Starting main
+UVM_INFO <removed by verify-uvm.pl> @ 302 s: test1.env2.l2 [main] Ending main
+UVM_INFO <removed by verify-uvm.pl> @ 302 s: test1.env2.l2 [shutdown] Starting shutdown
+UVM_INFO <removed by verify-uvm.pl> @ 324 s: test1.env2.l1 [shutdown] Ending shutdown
+UVM_INFO <removed by verify-uvm.pl> @ 410 s: test1.env1.l1 [main] Ending main
+UVM_INFO <removed by verify-uvm.pl> @ 410 s: test1.env1.l1 [shutdown] Starting shutdown
+UVM_INFO <removed by verify-uvm.pl> @ 453 s: test1.env2.l2 [shutdown] Ending shutdown
+UVM_INFO <removed by verify-uvm.pl> @ 600 s: test1.env2 [main] Ending main
+UVM_INFO <removed by verify-uvm.pl> @ 600 s: test1 [main] Ending main
+UVM_INFO <removed by verify-uvm.pl> @ 600 s: test1.env1 [main] Ending main
+UVM_INFO <removed by verify-uvm.pl> @ 600 s: test1.env1.l2 [main] Ending main
+UVM_INFO <removed by verify-uvm.pl> @ 600 s: test1.env1 [shutdown] Starting shutdown
+UVM_INFO <removed by verify-uvm.pl> @ 600 s: test1.env2 [shutdown] Starting shutdown
+UVM_INFO <removed by verify-uvm.pl> @ 600 s: test1 [shutdown] Starting shutdown
+UVM_INFO <removed by verify-uvm.pl> @ 600 s: test1.env1.l2 [shutdown] Starting shutdown
+UVM_INFO <removed by verify-uvm.pl> @ 615 s: test1.env1.l1 [shutdown] Ending shutdown
+UVM_INFO <removed by verify-uvm.pl> @ 900 s: test1.env1 [shutdown] Ending shutdown
+UVM_INFO <removed by verify-uvm.pl> @ 900 s: test1.env2 [shutdown] Ending shutdown
+UVM_INFO <removed by verify-uvm.pl> @ 900 s: test1 [shutdown] Ending shutdown
+UVM_INFO <removed by verify-uvm.pl> @ 900 s: test1.env1.l2 [shutdown] Ending shutdown
+UVM_INFO <removed by verify-uvm.pl> @ 1500 s: test1.env2.l1 [run] Ending run
+UVM_INFO <removed by verify-uvm.pl> @ 1500 s: test1 [run] Ending run
+UVM_INFO <removed by verify-uvm.pl> @ 1500 s: test1.env1 [run] Ending run
+UVM_INFO <removed by verify-uvm.pl> @ 1500 s: test1.env2.l2 [run] Ending run
+UVM_INFO <removed by verify-uvm.pl> @ 1500 s: test1.env1.l1 [run] Ending run
+UVM_INFO <removed by verify-uvm.pl> @ 1500 s: test1.env1.l2 [run] Ending run
+UVM_INFO <removed by verify-uvm.pl> @ 1500 s: test1.env2 [run] Ending run
+UVM_INFO <removed by verify-uvm.pl> @ 1500 s: test1.env1.l1 [EXTRACT] Starting Extract
+UVM_INFO <removed by verify-uvm.pl> @ 1500 s: test1.env1.l1 [EXTRACT] Ending Extract
+UVM_INFO <removed by verify-uvm.pl> @ 1500 s: test1.env1.l2 [EXTRACT] Starting Extract
+UVM_INFO <removed by verify-uvm.pl> @ 1500 s: test1.env1.l2 [EXTRACT] Ending Extract
+UVM_INFO <removed by verify-uvm.pl> @ 1500 s: test1.env1 [EXTRACT] Starting Extract
+UVM_INFO <removed by verify-uvm.pl> @ 1500 s: test1.env1 [EXTRACT] Ending Extract
+UVM_INFO <removed by verify-uvm.pl> @ 1500 s: test1.env2.l1 [EXTRACT] Starting Extract
+UVM_INFO <removed by verify-uvm.pl> @ 1500 s: test1.env2.l1 [EXTRACT] Ending Extract
+UVM_INFO <removed by verify-uvm.pl> @ 1500 s: test1.env2.l2 [EXTRACT] Starting Extract
+UVM_INFO <removed by verify-uvm.pl> @ 1500 s: test1.env2.l2 [EXTRACT] Ending Extract
+UVM_INFO <removed by verify-uvm.pl> @ 1500 s: test1.env2 [EXTRACT] Starting Extract
+UVM_INFO <removed by verify-uvm.pl> @ 1500 s: test1.env2 [EXTRACT] Ending Extract
+UVM_INFO <removed by verify-uvm.pl> @ 1500 s: test1 [EXTRACT] Starting Extract
+UVM_INFO <removed by verify-uvm.pl> @ 1500 s: test1 [EXTRACT] Ending Extract
+*** UVM TEST PASSED ***
+UVM_INFO <removed by verify-uvm.pl> @ 1500 s: reporter [UVM/REPORT/SERVER]
+--- UVM Report Summary ---
+** Report counts by severity
+UVM_INFO      :  71
+UVM_WARNING   :   0
+UVM_ERROR     :   0
+UVM_FATAL     :   0
+** Report counts by id
+[EXTRACT]              14
+[RNTST]                 1
+[main]                 14
+[reset]                14
+[run]                  14
+[shutdown]             14
+UVM_INFO @ 1500 s: reporter [FINISH] UVM-SystemC phasing completed; simulation finished

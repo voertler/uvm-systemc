@@ -1,0 +1,59 @@
+SystemC Simulation
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [UVMTOP] UVM testbench topology:
+--------------------------------------------
+Name         Type                Size  Value
+--------------------------------------------
+top          top                 -     -
+  consumer   consumer<T>         -     -
+  producer1  uvm::uvm_component  -     -
+  producer2  uvm::uvm_component  -     -
+--------------------------------------------
+UVM_INFO @ 0 s: reporter [RNTST] Running test ...
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: top.producer1 [producer1] Starting.
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: top.producer1 [producer1] Sending producer1-0
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: top.producer2 [producer2] Starting.
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: top.producer2 [producer2] Sending producer2-0
+UVM_INFO <removed by verify-uvm.pl> @ 10 us: top.producer2 [producer2] Sending producer2-1
+UVM_INFO <removed by verify-uvm.pl> @ 20 us: top.producer2 [producer2] Sending producer2-2
+UVM_INFO <removed by verify-uvm.pl> @ 40 us: top.consumer [consumer] Received producer1-0: (packet@<removed by verify-uvm.pl>) {
+  addr: 0x100
+}
+ local_count=1
+UVM_INFO <removed by verify-uvm.pl> @ 50 us: top.producer1 [producer1] Sending producer1-1
+UVM_INFO <removed by verify-uvm.pl> @ 80 us: top.consumer [consumer] Received producer2-0: (packet@<removed by verify-uvm.pl>) {
+  addr: 0x100
+}
+ local_count=2
+UVM_INFO <removed by verify-uvm.pl> @ 90 us: top.producer2 [producer2] Sending producer2-3
+UVM_INFO <removed by verify-uvm.pl> @ 120 us: top.consumer [consumer] Received producer2-1: (packet@<removed by verify-uvm.pl>) {
+  addr: 0x101
+}
+ local_count=3
+UVM_INFO <removed by verify-uvm.pl> @ 130 us: top.producer2 [producer2] Exiting.
+UVM_INFO <removed by verify-uvm.pl> @ 160 us: top.consumer [consumer] Received producer2-2: (packet@<removed by verify-uvm.pl>) {
+  addr: 0x102
+}
+ local_count=4
+UVM_INFO <removed by verify-uvm.pl> @ 200 us: top.consumer [consumer] Received producer2-3: (packet@<removed by verify-uvm.pl>) {
+  addr: 0x103
+}
+ local_count=5
+UVM_INFO <removed by verify-uvm.pl> @ 240 us: top.consumer [consumer] Received producer1-1: (packet@<removed by verify-uvm.pl>) {
+  addr: 0x101
+}
+ local_count=6
+UVM_INFO <removed by verify-uvm.pl> @ 250 us: top.producer1 [producer1] Exiting.
+UVM_INFO <removed by verify-uvm.pl> @ 1 ms: reporter [UVM/REPORT/SERVER]
+--- UVM Report Summary ---
+** Report counts by severity
+UVM_INFO      :  18
+UVM_WARNING   :   0
+UVM_ERROR     :   0
+UVM_FATAL     :   0
+** Report counts by id
+[RNTST]                 1
+[UVMTOP]                1
+[consumer]              6
+[producer1]             4
+[producer2]             6
+UVM_INFO @ 1 ms: reporter [FINISH] UVM-SystemC phasing completed; simulation finished

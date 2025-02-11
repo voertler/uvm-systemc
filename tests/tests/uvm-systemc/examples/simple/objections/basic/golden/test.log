@@ -1,0 +1,30 @@
+SystemC Simulation
+UVM_INFO @ 0 s: reporter [RNTST] Running test simple_test...
+UVM_INFO @ 0 s: simple_test [drain] Setting drain time of 12500 ns
+UVM_INFO @ 0 s: simple_test [doit] Starting doit (0) with delay 35
+UVM_INFO @ 0 s: simple_test [doit] Starting doit (1) with delay 25
+UVM_INFO @ 0 s: simple_test [doit] Starting doit (2) with delay 50
+UVM_INFO @ 0 s: simple_test [doit] Starting doit (3) with delay 15
+UVM_INFO @ 15 us: simple_test [doit] Ending doit (3)
+UVM_INFO @ 15 us: simple_test [dropped] 1 objection(s) dropped from simple_test, total count is now 3 top: 4
+UVM_INFO @ 25 us: simple_test [doit] Ending doit (1)
+UVM_INFO @ 25 us: simple_test [dropped] 1 objection(s) dropped from simple_test, total count is now 2 top: 3
+UVM_INFO @ 35 us: simple_test [doit] Ending doit (0)
+UVM_INFO @ 35 us: simple_test [dropped] 1 objection(s) dropped from simple_test, total count is now 1 top: 2
+UVM_INFO @ 50 us: simple_test [doit] Ending doit (2)
+UVM_INFO @ 50 us: simple_test [dropped] 1 objection(s) dropped from simple_test, total count is now 0 top: 1
+UVM_INFO @ 62500 ns: simple_test [simple_test] Ended all doit's
+UVM_INFO <removed by verify-uvm.pl> @ 62500 ns: reporter [UVM/REPORT/SERVER]
+--- UVM Report Summary ---
+** Report counts by severity
+UVM_INFO      :  15
+UVM_WARNING   :   0
+UVM_ERROR     :   0
+UVM_FATAL     :   0
+** Report counts by id
+[RNTST]                 1
+[doit]                  8
+[drain]                 1
+[dropped]               4
+[simple_test]           1
+UVM_INFO @ 62500 ns: reporter [FINISH] UVM-SystemC phasing completed; simulation finished

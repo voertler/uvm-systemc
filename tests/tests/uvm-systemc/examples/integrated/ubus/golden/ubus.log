@@ -1,0 +1,1388 @@
+SystemC Simulation
+UVM_INFO @ 0 s: reporter [RNTST] Running test test_2m_4s...
+UVM_WARNING @ 0 s: test_2m_4s.ubus_example_tb0.ubus0.masters[0] [ACTPASS:] Active or passive mode for agent 'test_2m_4s.ubus_example_tb0.ubus0.masters[0]' has not been defined. Default behavior is active.
+UVM_WARNING @ 0 s: test_2m_4s.ubus_example_tb0.ubus0.masters[1] [ACTPASS:] Active or passive mode for agent 'test_2m_4s.ubus_example_tb0.ubus0.masters[1]' has not been defined. Default behavior is active.
+UVM_WARNING @ 0 s: test_2m_4s.ubus_example_tb0.ubus0.slaves[0] [ACTPASS:] Active or passive mode for agent 'test_2m_4s.ubus_example_tb0.ubus0.slaves[0]' has not been defined. Default behavior is active.
+UVM_WARNING @ 0 s: test_2m_4s.ubus_example_tb0.ubus0.slaves[1] [ACTPASS:] Active or passive mode for agent 'test_2m_4s.ubus_example_tb0.ubus0.slaves[1]' has not been defined. Default behavior is active.
+UVM_WARNING @ 0 s: test_2m_4s.ubus_example_tb0.ubus0.slaves[2] [ACTPASS:] Active or passive mode for agent 'test_2m_4s.ubus_example_tb0.ubus0.slaves[2]' has not been defined. Default behavior is active.
+UVM_WARNING @ 0 s: test_2m_4s.ubus_example_tb0.ubus0.slaves[3] [ACTPASS:] Active or passive mode for agent 'test_2m_4s.ubus_example_tb0.ubus0.slaves[3]' has not been defined. Default behavior is active.
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test_2m_4s [test_2m_4s] Printing the test topology :
+--------------------------------------------------------
+Name                Type                     Size  Value
+--------------------------------------------------------
+test_2m_4s          test_2m_4s               -     @<removed by verify-uvm.pl>
+  ubus_example_tb0  ubus_example_tb          -     @<removed by verify-uvm.pl>
+    scoreboard0     ubus_example_scoreboard  -     @<removed by verify-uvm.pl>
+    ubus0           ubus_env                 -     @<removed by verify-uvm.pl>
+      bus_monitor   ubus_bus_monitor         -     @<removed by verify-uvm.pl>
+      masters[0]    ubus_master_agent        -     @<removed by verify-uvm.pl>
+      masters[1]    ubus_master_agent        -     @<removed by verify-uvm.pl>
+      slaves[0]     ubus_slave_agent         -     @<removed by verify-uvm.pl>
+      slaves[1]     ubus_slave_agent         -     @<removed by verify-uvm.pl>
+      slaves[2]     ubus_slave_agent         -     @<removed by verify-uvm.pl>
+      slaves[3]     ubus_slave_agent         -     @<removed by verify-uvm.pl>
+--------------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor] MASTER ID = 0
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor] MASTER ID = 1
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test_2m_4s.ubus_example_tb0.ubus0.slaves[0].sequencer@@slave_memory_seq [slave_memory_seq] slave_memory_seq starting...
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test_2m_4s.ubus_example_tb0.ubus0.slaves[1].sequencer@@slave_memory_seq [slave_memory_seq] slave_memory_seq starting...
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test_2m_4s.ubus_example_tb0.ubus0.slaves[2].sequencer@@slave_memory_seq [slave_memory_seq] slave_memory_seq starting...
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test_2m_4s.ubus_example_tb0.ubus0.slaves[3].sequencer@@slave_memory_seq [slave_memory_seq] slave_memory_seq starting...
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test_2m_4s.ubus_example_tb0.ubus0.masters[0].sequencer@@loop_read_modify_write_seq [loop_read_modify_write_seq] loop_read_modify_write_seq starting...itr =6
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test_2m_4s.ubus_example_tb0.ubus0.masters[1].sequencer@@loop_read_modify_write_seq [loop_read_modify_write_seq] loop_read_modify_write_seq starting...itr =8
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test_2m_4s.ubus_example_tb0.ubus0.masters[1].sequencer@@loop_read_modify_write_seq.rmw_seq [read_modify_write_seq] loop_read_modify_write_seq.rmw_seq starting...
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test_2m_4s.ubus_example_tb0.ubus0.masters[0].sequencer@@loop_read_modify_write_seq.rmw_seq [read_modify_write_seq] loop_read_modify_write_seq.rmw_seq starting...
+UVM_INFO <removed by verify-uvm.pl> @ 110 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xed
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[0]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 110 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] READ to empty address...Updating address : 0x1111 with data : 0x0ed
+UVM_INFO <removed by verify-uvm.pl> @ 110 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xed
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[0]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 160 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xed
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 160 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] READ to existing address...Checking address : 0x01111 with data : 0x0ed
+UVM_INFO <removed by verify-uvm.pl> @ 160 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xed
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 210 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         5     WRITE
+  size              int            64    0x1
+  data[0]           int            64    0xee
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[0]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 210 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] WRITE to existing address...Updating address : 0x1111 with data : 0x0ee
+UVM_INFO <removed by verify-uvm.pl> @ 210 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         5     WRITE
+  size              int            64    0x1
+  data[0]           int            64    0xee
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[0]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 260 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         5     WRITE
+  size              int            64    0x1
+  data[0]           int            64    0xee
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 260 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         5     WRITE
+  size              int            64    0x1
+  data[0]           int            64    0xee
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 260 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] WRITE to existing address...Updating address : 0x1111 with data : 0x0ee
+UVM_INFO <removed by verify-uvm.pl> @ 310 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xee
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[0]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 310 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] READ to existing address...Checking address : 0x01111 with data : 0x0ee
+UVM_INFO <removed by verify-uvm.pl> @ 310 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xee
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[0]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 310 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[0].sequencer@@loop_read_modify_write_seq.rmw_seq [read_modify_write_seq] sequence finished.
+UVM_INFO <removed by verify-uvm.pl> @ 310 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[0].sequencer@@loop_read_modify_write_seq.rmw_seq [read_modify_write_seq] loop_read_modify_write_seq.rmw_seq starting...
+UVM_INFO <removed by verify-uvm.pl> @ 360 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xee
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 360 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xee
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 360 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] READ to existing address...Checking address : 0x01111 with data : 0x0ee
+UVM_INFO <removed by verify-uvm.pl> @ 360 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].sequencer@@loop_read_modify_write_seq.rmw_seq [read_modify_write_seq] sequence finished.
+UVM_INFO <removed by verify-uvm.pl> @ 360 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].sequencer@@loop_read_modify_write_seq.rmw_seq [read_modify_write_seq] loop_read_modify_write_seq.rmw_seq starting...
+UVM_INFO <removed by verify-uvm.pl> @ 410 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xee
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[0]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 410 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] READ to existing address...Checking address : 0x01111 with data : 0x0ee
+UVM_INFO <removed by verify-uvm.pl> @ 410 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xee
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[0]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 460 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xee
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 460 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xee
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 460 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] READ to existing address...Checking address : 0x01111 with data : 0x0ee
+UVM_INFO <removed by verify-uvm.pl> @ 510 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         5     WRITE
+  size              int            64    0x1
+  data[0]           int            64    0xef
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[0]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 510 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] WRITE to existing address...Updating address : 0x1111 with data : 0x0ef
+UVM_INFO <removed by verify-uvm.pl> @ 510 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         5     WRITE
+  size              int            64    0x1
+  data[0]           int            64    0xef
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[0]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 560 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         5     WRITE
+  size              int            64    0x1
+  data[0]           int            64    0xef
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 560 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         5     WRITE
+  size              int            64    0x1
+  data[0]           int            64    0xef
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 560 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] WRITE to existing address...Updating address : 0x1111 with data : 0x0ef
+UVM_INFO <removed by verify-uvm.pl> @ 610 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xef
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[0]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 610 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] READ to existing address...Checking address : 0x01111 with data : 0x0ef
+UVM_INFO <removed by verify-uvm.pl> @ 610 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xef
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[0]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 610 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[0].sequencer@@loop_read_modify_write_seq.rmw_seq [read_modify_write_seq] sequence finished.
+UVM_INFO <removed by verify-uvm.pl> @ 610 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[0].sequencer@@loop_read_modify_write_seq.rmw_seq [read_modify_write_seq] loop_read_modify_write_seq.rmw_seq starting...
+UVM_INFO <removed by verify-uvm.pl> @ 660 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xef
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 660 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xef
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 660 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] READ to existing address...Checking address : 0x01111 with data : 0x0ef
+UVM_INFO <removed by verify-uvm.pl> @ 660 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].sequencer@@loop_read_modify_write_seq.rmw_seq [read_modify_write_seq] sequence finished.
+UVM_INFO <removed by verify-uvm.pl> @ 660 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].sequencer@@loop_read_modify_write_seq.rmw_seq [read_modify_write_seq] loop_read_modify_write_seq.rmw_seq starting...
+UVM_INFO <removed by verify-uvm.pl> @ 710 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xef
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[0]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 710 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] READ to existing address...Checking address : 0x01111 with data : 0x0ef
+UVM_INFO <removed by verify-uvm.pl> @ 710 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xef
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[0]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 760 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xef
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 760 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xef
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 760 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] READ to existing address...Checking address : 0x01111 with data : 0x0ef
+UVM_INFO <removed by verify-uvm.pl> @ 810 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         5     WRITE
+  size              int            64    0x1
+  data[0]           int            64    0xf0
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[0]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 810 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] WRITE to existing address...Updating address : 0x1111 with data : 0x0f0
+UVM_INFO <removed by verify-uvm.pl> @ 810 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         5     WRITE
+  size              int            64    0x1
+  data[0]           int            64    0xf0
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[0]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 860 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         5     WRITE
+  size              int            64    0x1
+  data[0]           int            64    0xf0
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 860 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         5     WRITE
+  size              int            64    0x1
+  data[0]           int            64    0xf0
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 860 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] WRITE to existing address...Updating address : 0x1111 with data : 0x0f0
+UVM_INFO <removed by verify-uvm.pl> @ 910 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xf0
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[0]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 910 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] READ to existing address...Checking address : 0x01111 with data : 0x0f0
+UVM_INFO <removed by verify-uvm.pl> @ 910 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xf0
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[0]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 910 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[0].sequencer@@loop_read_modify_write_seq.rmw_seq [read_modify_write_seq] sequence finished.
+UVM_INFO <removed by verify-uvm.pl> @ 910 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[0].sequencer@@loop_read_modify_write_seq.rmw_seq [read_modify_write_seq] loop_read_modify_write_seq.rmw_seq starting...
+UVM_INFO <removed by verify-uvm.pl> @ 960 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xf0
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 960 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xf0
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 960 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] READ to existing address...Checking address : 0x01111 with data : 0x0f0
+UVM_INFO <removed by verify-uvm.pl> @ 960 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].sequencer@@loop_read_modify_write_seq.rmw_seq [read_modify_write_seq] sequence finished.
+UVM_INFO <removed by verify-uvm.pl> @ 960 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].sequencer@@loop_read_modify_write_seq.rmw_seq [read_modify_write_seq] loop_read_modify_write_seq.rmw_seq starting...
+UVM_INFO <removed by verify-uvm.pl> @ 1010 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xf0
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[0]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 1010 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] READ to existing address...Checking address : 0x01111 with data : 0x0f0
+UVM_INFO <removed by verify-uvm.pl> @ 1010 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xf0
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[0]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 1060 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xf0
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 1060 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xf0
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 1060 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] READ to existing address...Checking address : 0x01111 with data : 0x0f0
+UVM_INFO <removed by verify-uvm.pl> @ 1110 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         5     WRITE
+  size              int            64    0x1
+  data[0]           int            64    0xf1
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[0]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 1110 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] WRITE to existing address...Updating address : 0x1111 with data : 0x0f1
+UVM_INFO <removed by verify-uvm.pl> @ 1110 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         5     WRITE
+  size              int            64    0x1
+  data[0]           int            64    0xf1
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[0]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 1160 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         5     WRITE
+  size              int            64    0x1
+  data[0]           int            64    0xf1
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 1160 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         5     WRITE
+  size              int            64    0x1
+  data[0]           int            64    0xf1
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 1160 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] WRITE to existing address...Updating address : 0x1111 with data : 0x0f1
+UVM_INFO <removed by verify-uvm.pl> @ 1210 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xf1
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[0]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 1210 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] READ to existing address...Checking address : 0x01111 with data : 0x0f1
+UVM_INFO <removed by verify-uvm.pl> @ 1210 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xf1
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[0]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 1210 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[0].sequencer@@loop_read_modify_write_seq.rmw_seq [read_modify_write_seq] sequence finished.
+UVM_INFO <removed by verify-uvm.pl> @ 1210 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[0].sequencer@@loop_read_modify_write_seq.rmw_seq [read_modify_write_seq] loop_read_modify_write_seq.rmw_seq starting...
+UVM_INFO <removed by verify-uvm.pl> @ 1260 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xf1
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 1260 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xf1
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 1260 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] READ to existing address...Checking address : 0x01111 with data : 0x0f1
+UVM_INFO <removed by verify-uvm.pl> @ 1260 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].sequencer@@loop_read_modify_write_seq.rmw_seq [read_modify_write_seq] sequence finished.
+UVM_INFO <removed by verify-uvm.pl> @ 1260 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].sequencer@@loop_read_modify_write_seq.rmw_seq [read_modify_write_seq] loop_read_modify_write_seq.rmw_seq starting...
+UVM_INFO <removed by verify-uvm.pl> @ 1310 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xf1
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[0]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 1310 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] READ to existing address...Checking address : 0x01111 with data : 0x0f1
+UVM_INFO <removed by verify-uvm.pl> @ 1310 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xf1
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[0]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 1360 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xf1
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 1360 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xf1
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 1360 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] READ to existing address...Checking address : 0x01111 with data : 0x0f1
+UVM_INFO <removed by verify-uvm.pl> @ 1410 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         5     WRITE
+  size              int            64    0x1
+  data[0]           int            64    0xf2
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[0]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 1410 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] WRITE to existing address...Updating address : 0x1111 with data : 0x0f2
+UVM_INFO <removed by verify-uvm.pl> @ 1410 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         5     WRITE
+  size              int            64    0x1
+  data[0]           int            64    0xf2
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[0]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 1460 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         5     WRITE
+  size              int            64    0x1
+  data[0]           int            64    0xf2
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 1460 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         5     WRITE
+  size              int            64    0x1
+  data[0]           int            64    0xf2
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 1460 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] WRITE to existing address...Updating address : 0x1111 with data : 0x0f2
+UVM_INFO <removed by verify-uvm.pl> @ 1510 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xf2
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[0]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 1510 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] READ to existing address...Checking address : 0x01111 with data : 0x0f2
+UVM_INFO <removed by verify-uvm.pl> @ 1510 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xf2
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[0]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 1510 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[0].sequencer@@loop_read_modify_write_seq.rmw_seq [read_modify_write_seq] sequence finished.
+UVM_INFO <removed by verify-uvm.pl> @ 1510 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[0].sequencer@@loop_read_modify_write_seq.rmw_seq [read_modify_write_seq] loop_read_modify_write_seq.rmw_seq starting...
+UVM_INFO <removed by verify-uvm.pl> @ 1560 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xf2
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 1560 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xf2
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 1560 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] READ to existing address...Checking address : 0x01111 with data : 0x0f2
+UVM_INFO <removed by verify-uvm.pl> @ 1560 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].sequencer@@loop_read_modify_write_seq.rmw_seq [read_modify_write_seq] sequence finished.
+UVM_INFO <removed by verify-uvm.pl> @ 1560 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].sequencer@@loop_read_modify_write_seq.rmw_seq [read_modify_write_seq] loop_read_modify_write_seq.rmw_seq starting...
+UVM_INFO <removed by verify-uvm.pl> @ 1610 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xf2
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[0]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 1610 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] READ to existing address...Checking address : 0x01111 with data : 0x0f2
+UVM_INFO <removed by verify-uvm.pl> @ 1610 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xf2
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[0]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 1660 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xf2
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 1660 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xf2
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 1660 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] READ to existing address...Checking address : 0x01111 with data : 0x0f2
+UVM_INFO <removed by verify-uvm.pl> @ 1710 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         5     WRITE
+  size              int            64    0x1
+  data[0]           int            64    0xf3
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[0]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 1710 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] WRITE to existing address...Updating address : 0x1111 with data : 0x0f3
+UVM_INFO <removed by verify-uvm.pl> @ 1710 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         5     WRITE
+  size              int            64    0x1
+  data[0]           int            64    0xf3
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[0]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 1760 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         5     WRITE
+  size              int            64    0x1
+  data[0]           int            64    0xf3
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 1760 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         5     WRITE
+  size              int            64    0x1
+  data[0]           int            64    0xf3
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 1760 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] WRITE to existing address...Updating address : 0x1111 with data : 0x0f3
+UVM_INFO <removed by verify-uvm.pl> @ 1810 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xf3
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[0]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 1810 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] READ to existing address...Checking address : 0x01111 with data : 0x0f3
+UVM_INFO <removed by verify-uvm.pl> @ 1810 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xf3
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[0]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 1810 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[0].sequencer@@loop_read_modify_write_seq.rmw_seq [read_modify_write_seq] sequence finished.
+UVM_INFO <removed by verify-uvm.pl> @ 1860 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xf3
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 1860 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xf3
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 1860 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] READ to existing address...Checking address : 0x01111 with data : 0x0f3
+UVM_INFO <removed by verify-uvm.pl> @ 1860 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].sequencer@@loop_read_modify_write_seq.rmw_seq [read_modify_write_seq] sequence finished.
+UVM_INFO <removed by verify-uvm.pl> @ 1860 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].sequencer@@loop_read_modify_write_seq.rmw_seq [read_modify_write_seq] loop_read_modify_write_seq.rmw_seq starting...
+UVM_INFO <removed by verify-uvm.pl> @ 1930 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] READ to existing address...Checking address : 0x01111 with data : 0x0f3
+UVM_INFO <removed by verify-uvm.pl> @ 1930 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xf3
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 1930 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xf3
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 2 us: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         5     WRITE
+  size              int            64    0x1
+  data[0]           int            64    0xf4
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 2 us: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] WRITE to existing address...Updating address : 0x1111 with data : 0x0f4
+UVM_INFO <removed by verify-uvm.pl> @ 2 us: test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         5     WRITE
+  size              int            64    0x1
+  data[0]           int            64    0xf4
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 2070 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] READ to existing address...Checking address : 0x01111 with data : 0x0f4
+UVM_INFO <removed by verify-uvm.pl> @ 2070 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xf4
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 2070 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xf4
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 2070 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].sequencer@@loop_read_modify_write_seq.rmw_seq [read_modify_write_seq] sequence finished.
+UVM_INFO <removed by verify-uvm.pl> @ 2070 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].sequencer@@loop_read_modify_write_seq.rmw_seq [read_modify_write_seq] loop_read_modify_write_seq.rmw_seq starting...
+UVM_INFO <removed by verify-uvm.pl> @ 2140 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xf4
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 2140 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] READ to existing address...Checking address : 0x01111 with data : 0x0f4
+UVM_INFO <removed by verify-uvm.pl> @ 2140 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xf4
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 2210 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] WRITE to existing address...Updating address : 0x1111 with data : 0x0f5
+UVM_INFO <removed by verify-uvm.pl> @ 2210 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         5     WRITE
+  size              int            64    0x1
+  data[0]           int            64    0xf5
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 2210 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         5     WRITE
+  size              int            64    0x1
+  data[0]           int            64    0xf5
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 2280 ns: test_2m_4s.ubus_example_tb0.ubus0.bus_monitor [ubus_bus_monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xf5
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         9     slaves[0]
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 2280 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] READ to existing address...Checking address : 0x01111 with data : 0x0f5
+UVM_INFO <removed by verify-uvm.pl> @ 2280 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor [test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor] Transfer collected :
+---------------------------------------------------
+Name                Type           Size  Value
+---------------------------------------------------
+ubus_transfer_inst  ubus_transfer  -     @<removed by verify-uvm.pl>
+  addr              int            64    0x1111
+  read_write        string         4     READ
+  size              int            64    0x1
+  data[0]           int            64    0xf5
+  wait_state[0]     int            64    0x0
+  error_pos         int            64    0x0
+  transmit_delay    int            64    0x0
+  master            string         10    masters[1]
+  slave             string         0     ""
+---------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 2280 ns: test_2m_4s.ubus_example_tb0.ubus0.masters[1].sequencer@@loop_read_modify_write_seq.rmw_seq [read_modify_write_seq] sequence finished.
+UVM_INFO <removed by verify-uvm.pl> @ 2330 ns: test_2m_4s.ubus_example_tb0.scoreboard0 [ubus_example_scoreboard] Reporting scoreboard information...
+-------------------------------------------------------------
+Name                Type                     Size  Value
+-------------------------------------------------------------
+scoreboard0         ubus_example_scoreboard  -     @<removed by verify-uvm.pl>
+-------------------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 2330 ns: test_2m_4s [test_2m_4s] ** UVM TEST PASSED **
+UVM_INFO <removed by verify-uvm.pl> @ 2330 ns: reporter [UVM/REPORT/SERVER]
+--- UVM Report Summary ---
+** Report counts by severity
+UVM_INFO      : 166
+UVM_WARNING   :   6
+UVM_ERROR     :   0
+UVM_FATAL     :   0
+** Report counts by id
+[ACTPASS:]              6
+[RNTST]                 1
+[loop_read_modify_write_seq]                                      2
+[read_modify_write_seq]                                     28
+[slave_memory_seq]      4
+[test_2m_4s]            2
+[test_2m_4s.ubus_example_tb0.ubus0.masters[0].monitor]                                     19
+[test_2m_4s.ubus_example_tb0.ubus0.masters[1].monitor]                                     25
+[ubus_bus_monitor]     42
+[ubus_example_scoreboard]                                     43
+UVM_INFO @ 2330 ns: reporter [FINISH] UVM-SystemC phasing completed; simulation finished

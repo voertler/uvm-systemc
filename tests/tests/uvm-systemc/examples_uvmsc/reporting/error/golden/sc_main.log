@@ -1,0 +1,16 @@
+SystemC Simulation
+UVM_INFO @ 0 s: reporter [RNTST] Running test ...
+UVM_ERROR <removed by verify-uvm.pl> @ 0 s: comp_a1 [comp_a1] Report error 1 using verbosity level UVM_NONE
+UVM_ERROR @ 0 s: comp_a1 [comp_a1] Report error 2 using verbosity level UVM_NONE
+UVM_ERROR <removed by verify-uvm.pl> @ 0 s: comp_a1 [comp_a1] Report error 8 using macro and verbosity level UVM_NONE
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [UVM/REPORT/SERVER]
+--- UVM Report Summary ---
+** Report counts by severity
+UVM_INFO      :   1
+UVM_WARNING   :   0
+UVM_ERROR     :   3
+UVM_FATAL     :   0
+** Report counts by id
+[RNTST]                 1
+[comp_a1]               3
+UVM_INFO @ 0 s: reporter [FINISH] UVM-SystemC phasing completed; simulation finished

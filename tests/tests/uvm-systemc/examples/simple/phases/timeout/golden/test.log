@@ -1,0 +1,16 @@
+SystemC Simulation
+UVM_INFO @ 0 s: reporter [RNTST] Running test test...
+UVM_FATAL <removed by verify-uvm.pl> @ 3320 us: global_timer [TIMEOUT] Time-out expired in main phase
+UVM_INFO <removed by verify-uvm.pl> @ 3320 us: reporter [UVM/REPORT/SERVER]
+--- UVM Report Summary ---
+** Report counts by severity
+UVM_INFO      :   1
+UVM_WARNING   :   0
+UVM_ERROR     :   0
+UVM_FATAL     :   1
+** Report counts by id
+[RNTST]                 1
+[TIMEOUT]               1
+Error: (E549) uncaught exception: Simulation terminated by uvm_root::die()
+In file: <removed by verify-uvm.pl>
+In process: global_timer.exec_proc_main_global_timer_0 @ 3320 us

@@ -1,0 +1,6 @@
+   Universal Verification Methodology for SystemC (UVM-SystemC)
+              Version: 1.0-beta6  Date: 2024-07-01
+          Copyright (c) 2006 - 2024 by all Contributors
+            See NOTICE file for all Contributors
+                    ALL RIGHTS RESERVED
+         Licensed under the Apache License, Version 2.0

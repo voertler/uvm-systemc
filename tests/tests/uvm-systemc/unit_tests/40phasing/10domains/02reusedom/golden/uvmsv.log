@@ -1,0 +1,127 @@
+UVM_INFO <removed> @ 0: reporter [UVM/RELNOTES] 
+----------------------------------------------------------------
+UVM-1.2
+(C) 2007-2014 Mentor Graphics Corporation
+(C) 2007-2014 Cadence Design Systems, Inc.
+(C) 2006-2014 Synopsys, Inc.
+(C) 2011-2013 Cypress Semiconductor Corp.
+(C) 2013-2014 NVIDIA Corporation
+----------------------------------------------------------------
+
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_NO_DEPRECATED undefined.
+  See http://www.eda.org/svdb/view.php?id=3313 for more details.
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_OBJECT_DO_NOT_NEED_CONSTRUCTOR undefined.
+  See http://www.eda.org/svdb/view.php?id=3770 for more details.
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_INFO @ 0: reporter [RNTST] Running test test...
+UVM_INFO test.sv(60) @ 0: uvm_test_top [run] Starting run
+UVM_INFO test.sv(60) @ 0: uvm_test_top.env2 [run] Starting run
+UVM_INFO test.sv(60) @ 0: uvm_test_top.env2.l2 [run] Starting run
+UVM_INFO test.sv(60) @ 0: uvm_test_top.env2.l1 [run] Starting run
+UVM_INFO test.sv(60) @ 0: uvm_test_top.env1 [run] Starting run
+UVM_INFO test.sv(60) @ 0: uvm_test_top.env1.l2 [run] Starting run
+UVM_INFO test.sv(60) @ 0: uvm_test_top.env1.l1 [run] Starting run
+UVM_INFO test.sv(57) @ 0: uvm_test_top [reset] Starting reset
+UVM_INFO test.sv(57) @ 0: uvm_test_top.env2 [reset] Starting reset
+UVM_INFO test.sv(57) @ 0: uvm_test_top.env1 [reset] Starting reset
+UVM_INFO test.sv(57) @ 0: uvm_test_top.env1.l1 [reset] Starting reset
+UVM_INFO test.sv(57) @ 0: uvm_test_top.env1.l2 [reset] Starting reset
+UVM_INFO test.sv(57) @ 0: uvm_test_top.env2.l1 [reset] Starting reset
+UVM_INFO test.sv(57) @ 0: uvm_test_top.env2.l2 [reset] Starting reset
+UVM_INFO test.sv(57) @ 108: uvm_test_top.env2.l1 [reset] Ending reset
+UVM_INFO test.sv(58) @ 108: uvm_test_top.env2.l1 [main] Starting main
+UVM_INFO test.sv(57) @ 151: uvm_test_top.env2.l2 [reset] Ending reset
+UVM_INFO test.sv(58) @ 151: uvm_test_top.env2.l2 [main] Starting main
+UVM_INFO test.sv(57) @ 205: uvm_test_top.env1.l1 [reset] Ending reset
+UVM_INFO test.sv(58) @ 205: uvm_test_top.env1.l1 [main] Starting main
+UVM_INFO test.sv(58) @ 216: uvm_test_top.env2.l1 [main] Ending main
+UVM_INFO test.sv(59) @ 216: uvm_test_top.env2.l1 [shutdown] Starting shutdown
+UVM_INFO test.sv(57) @ 300: uvm_test_top [reset] Ending reset
+UVM_INFO test.sv(57) @ 300: uvm_test_top.env2 [reset] Ending reset
+UVM_INFO test.sv(57) @ 300: uvm_test_top.env1 [reset] Ending reset
+UVM_INFO test.sv(57) @ 300: uvm_test_top.env1.l2 [reset] Ending reset
+UVM_INFO test.sv(58) @ 300: uvm_test_top [main] Starting main
+UVM_INFO test.sv(58) @ 300: uvm_test_top.env2 [main] Starting main
+UVM_INFO test.sv(58) @ 300: uvm_test_top.env1 [main] Starting main
+UVM_INFO test.sv(58) @ 300: uvm_test_top.env1.l2 [main] Starting main
+UVM_INFO test.sv(58) @ 302: uvm_test_top.env2.l2 [main] Ending main
+UVM_INFO test.sv(59) @ 302: uvm_test_top.env2.l2 [shutdown] Starting shutdown
+UVM_INFO test.sv(59) @ 324: uvm_test_top.env2.l1 [shutdown] Ending shutdown
+UVM_INFO test.sv(58) @ 410: uvm_test_top.env1.l1 [main] Ending main
+UVM_INFO test.sv(59) @ 410: uvm_test_top.env1.l1 [shutdown] Starting shutdown
+UVM_INFO test.sv(59) @ 453: uvm_test_top.env2.l2 [shutdown] Ending shutdown
+UVM_INFO test.sv(58) @ 600: uvm_test_top [main] Ending main
+UVM_INFO test.sv(58) @ 600: uvm_test_top.env2 [main] Ending main
+UVM_INFO test.sv(58) @ 600: uvm_test_top.env1 [main] Ending main
+UVM_INFO test.sv(58) @ 600: uvm_test_top.env1.l2 [main] Ending main
+UVM_INFO test.sv(59) @ 600: uvm_test_top [shutdown] Starting shutdown
+UVM_INFO test.sv(59) @ 600: uvm_test_top.env2 [shutdown] Starting shutdown
+UVM_INFO test.sv(59) @ 600: uvm_test_top.env1 [shutdown] Starting shutdown
+UVM_INFO test.sv(59) @ 600: uvm_test_top.env1.l2 [shutdown] Starting shutdown
+UVM_INFO test.sv(59) @ 615: uvm_test_top.env1.l1 [shutdown] Ending shutdown
+UVM_INFO test.sv(59) @ 900: uvm_test_top [shutdown] Ending shutdown
+UVM_INFO test.sv(59) @ 900: uvm_test_top.env2 [shutdown] Ending shutdown
+UVM_INFO test.sv(59) @ 900: uvm_test_top.env1 [shutdown] Ending shutdown
+UVM_INFO test.sv(59) @ 900: uvm_test_top.env1.l2 [shutdown] Ending shutdown
+UVM_INFO test.sv(60) @ 1500: uvm_test_top [run] Ending run
+UVM_INFO test.sv(60) @ 1500: uvm_test_top.env2 [run] Ending run
+UVM_INFO test.sv(60) @ 1500: uvm_test_top.env2.l2 [run] Ending run
+UVM_INFO test.sv(60) @ 1500: uvm_test_top.env2.l1 [run] Ending run
+UVM_INFO test.sv(60) @ 1500: uvm_test_top.env1 [run] Ending run
+UVM_INFO test.sv(60) @ 1500: uvm_test_top.env1.l2 [run] Ending run
+UVM_INFO test.sv(60) @ 1500: uvm_test_top.env1.l1 [run] Ending run
+UVM_INFO <removed> @ 1500: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+UVM_INFO test.sv(64) @ 1500: uvm_test_top.env1.l1 [EXTRACT] Starting Extract
+UVM_INFO test.sv(69) @ 1500: uvm_test_top.env1.l1 [EXTRACT] Ending Extract
+UVM_INFO test.sv(64) @ 1500: uvm_test_top.env1.l2 [EXTRACT] Starting Extract
+UVM_INFO test.sv(69) @ 1500: uvm_test_top.env1.l2 [EXTRACT] Ending Extract
+UVM_INFO test.sv(64) @ 1500: uvm_test_top.env1 [EXTRACT] Starting Extract
+UVM_INFO test.sv(69) @ 1500: uvm_test_top.env1 [EXTRACT] Ending Extract
+UVM_INFO test.sv(64) @ 1500: uvm_test_top.env2.l1 [EXTRACT] Starting Extract
+UVM_INFO test.sv(69) @ 1500: uvm_test_top.env2.l1 [EXTRACT] Ending Extract
+UVM_INFO test.sv(64) @ 1500: uvm_test_top.env2.l2 [EXTRACT] Starting Extract
+UVM_INFO test.sv(69) @ 1500: uvm_test_top.env2.l2 [EXTRACT] Ending Extract
+UVM_INFO test.sv(64) @ 1500: uvm_test_top.env2 [EXTRACT] Starting Extract
+UVM_INFO test.sv(69) @ 1500: uvm_test_top.env2 [EXTRACT] Ending Extract
+UVM_INFO test.sv(64) @ 1500: uvm_test_top [EXTRACT] Starting Extract
+UVM_INFO test.sv(69) @ 1500: uvm_test_top [EXTRACT] Ending Extract
+*** UVM TEST PASSED ***
+UVM_INFO <removed> @ 1500: reporter [UVM/REPORT/CATCHER] 
+--- UVM Report catcher Summary ---
+
+
+Number of demoted UVM_FATAL reports  :    0
+Number of demoted UVM_ERROR reports  :    0
+Number of demoted UVM_WARNING reports:    0
+Number of caught UVM_FATAL reports   :    0
+Number of caught UVM_ERROR reports   :    0
+Number of caught UVM_WARNING reports :    0
+
+UVM_INFO <removed> @ 1500: reporter [UVM/REPORT/SERVER] 
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :   74
+UVM_WARNING :    0
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[EXTRACT]    14
+[RNTST]     1
+[TEST_DONE]     1
+[UVM/RELNOTES]     1
+[UVM/REPORT/CATCHER]     1
+[main]    14
+[reset]    14
+[run]    14
+[shutdown]    14
+
+Simulation complete via $finish(1) at time 1500 NS + 62
+

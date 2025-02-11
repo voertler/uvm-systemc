@@ -1,0 +1,22 @@
+SystemC Simulation
+--------------------------------
+Name       Type      Size  Value
+--------------------------------
+test_item  seq_item  -     @<removed by verify-uvm.pl>
+  value    int       64    0x1
+--------------------------------
+--------------------------------
+Name       Type      Size  Value
+--------------------------------
+test_item  seq_item  -     @<removed by verify-uvm.pl>
+  value    int       64    0x2
+--------------------------------
+--------------------------------
+Name       Type      Size  Value
+--------------------------------
+test_item  seq_item  -     @<removed by verify-uvm.pl>
+  value    int       64    0x1
+--------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [MISCMP] Miscompare for : lhs = 0d1 : rhs = 0d2
+comparison result : false
+comparison result : true
