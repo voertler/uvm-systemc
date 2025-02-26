@@ -23,6 +23,7 @@
 #include <systemc>
 #include <sstream>
 
+#include "uvmsc/misc/uvm_status_container.h"
 #include "uvmsc/base/uvm_object.h"
 #include "uvmsc/base/uvm_globals.h"
 #include "uvmsc/policy/uvm_packer.h"

@@ -25,9 +25,8 @@
 #define UVM_SET_GET_DAP_BASE_H_
 
 #include <string>
+#include "uvmsc/base/uvm_object.h"
 
-// forward declaration
-class uvm_object;
 
 namespace uvm {
 

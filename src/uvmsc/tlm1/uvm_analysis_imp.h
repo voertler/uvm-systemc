@@ -21,6 +21,7 @@
 #define UVM_ANALYSIS_IMP_H_
 
 #include <systemc>
+#include <tlm>
 #include <string>
 
 namespace uvm {

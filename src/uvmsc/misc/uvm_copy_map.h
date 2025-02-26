@@ -21,6 +21,8 @@
 #define UVM_COPY_MAP_H_
 
 //////////////
+#include <map>
+#include "uvmsc/base/uvm_object.h"
 
 namespace uvm {
 

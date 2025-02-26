@@ -21,8 +21,8 @@
 #define UVM_TLM_REQ_RSP_CHANNEL_H_
 
 #include <systemc>
-#include <tlm.h>
-
+#include <tlm>
+#include "uvmsc/base/uvm_component_name.h"
 namespace uvm {
 
 //----------------------------------------------------------------------

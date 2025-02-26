@@ -23,6 +23,7 @@
 #ifndef UVM_SCOREBOARD_H_
 #define UVM_SCOREBOARD_H_
 
+#include "uvmsc/base/uvm_component_name.h"
 #include "uvmsc/base/uvm_component.h"
 
 namespace uvm {

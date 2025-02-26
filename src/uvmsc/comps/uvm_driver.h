@@ -27,6 +27,7 @@
 
 #include <systemc>
 
+#include "uvmsc/base/uvm_component_name.h"
 #include "uvmsc/base/uvm_component.h"
 #include "uvmsc/base/uvm_port_base.h"
 #include "uvmsc/seq/uvm_sequence_item.h"

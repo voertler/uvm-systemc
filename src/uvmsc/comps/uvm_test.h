@@ -24,6 +24,7 @@
 #define UVM_TEST_H_
 
 #include "uvmsc/base/uvm_component.h"
+#include "uvmsc/base/uvm_component_name.h"
 
 namespace uvm {
 
