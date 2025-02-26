@@ -21,12 +21,13 @@
 #define UVM_PORTS_H_
 
 #include <systemc>
-#include <tlm.h>
+#include <tlm>
 
 #include <iostream>
 #include <string>
 #include <typeinfo>
 
+#include "uvmsc/base/uvm_port_base.h"
 namespace uvm {
 
 //---------------------------------------------------------------------------

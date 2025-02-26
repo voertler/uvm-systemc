@@ -22,6 +22,7 @@
 
 #ifndef UVM_RESOURCE_POOL_H_
 #define UVM_RESOURCE_POOL_H_
+#include <map>
 
 #include "uvmsc/conf/uvm_queue.h"
 #include "uvmsc/conf/uvm_resource_types.h"

@@ -25,7 +25,10 @@
 
 #include <string>
 
+#include "uvmsc/base/uvm_component.h"
+#include "uvmsc/base/uvm_component_name.h"
 #include "uvmsc/tlm1/uvm_analysis_export.h"
+
 
 namespace uvm {
 

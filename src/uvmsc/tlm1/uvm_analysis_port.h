@@ -21,6 +21,7 @@
 #define UVM_ANALYSIS_PORT_H_
 
 #include <systemc>
+#include <tlm>
 #include <string>
 
 namespace uvm {

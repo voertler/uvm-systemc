@@ -26,6 +26,7 @@
 #include <iostream>
 #include <sstream>
 
+#include "uvmsc/misc/uvm_status_container.h"
 #include "uvmsc/policy/uvm_comparer.h"
 #include "uvmsc/base/uvm_root.h"
 #include "uvmsc/base/uvm_object_globals.h"

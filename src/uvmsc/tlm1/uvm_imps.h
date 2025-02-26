@@ -21,8 +21,8 @@
 #define UVM_IMPS_H_
 
 #include <systemc>
-#include <tlm.h>
-
+#include <tlm>
+#include "uvmsc/base/uvm_export_base.h"
 //#include "base/uvm_globals.h"
 //#include "macros/uvm_message_defines.h"
 

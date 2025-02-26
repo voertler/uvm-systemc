@@ -21,7 +21,8 @@
 #define UVM_EXPORTS_H_
 
 #include <systemc>
-#include <tlm.h>
+#include <tlm>
+#include "uvmsc/base/uvm_export_base.h"
 
 namespace uvm {
 

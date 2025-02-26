@@ -22,6 +22,7 @@
 #ifndef UVM_VREG_CBS_H_
 #define UVM_VREG_CBS_H_
 
+#include "uvmsc/reg/uvm_reg_model.h"
 #include "uvmsc/cb/uvm_callback.h"
 
 namespace uvm {

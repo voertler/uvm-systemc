@@ -23,6 +23,10 @@
 #ifndef UVM_RESOURCE_CONVERTER_H_
 #define UVM_RESOURCE_CONVERTER_H_
 
+#include <string>
+#include <typeinfo>
+#include <sstream>
+
 namespace uvm {
 
 //------------------------------------------------------------------------------

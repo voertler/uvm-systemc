@@ -23,6 +23,8 @@
 #ifndef UVM_HDL_PATH_CONCAT_H_
 #define UVM_HDL_PATH_CONCAT_H_
 
+#include <string>
+#include <vector>
 namespace uvm {
 
 

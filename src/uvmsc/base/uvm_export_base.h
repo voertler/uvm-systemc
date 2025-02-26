@@ -19,6 +19,7 @@
 #define UVM_EXPORT_BASE_H_
 
 #include <systemc>
+#include "uvmsc/base/uvm_component.h"
 
 //////////////
 
