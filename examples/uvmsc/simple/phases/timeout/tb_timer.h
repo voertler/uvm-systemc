@@ -34,7 +34,7 @@ public:
   {
     sc_core::sc_time t;
     if (uvm::uvm_config_db<sc_core::sc_time>::get(this, "run", "timeout", t) &&
-        t.to_seconds() > 0)
+        t > sc_core::SC_ZERO_TIME)
     {
       sc_core::wait(t);
       UVM_FATAL("TIMEOUT", "Time-out expired in run phase");
@@ -45,7 +45,7 @@ public:
   {
     sc_core::sc_time t;
     if (uvm::uvm_config_db<sc_core::sc_time>::get(this, "pre_reset", "timeout", t) &&
-        t.to_seconds() > 0)
+        t > sc_core::SC_ZERO_TIME)
     {
       sc_core::wait(t);
       UVM_FATAL("TIMEOUT", "Time-out expired in pre_reset phase");
@@ -56,7 +56,7 @@ public:
   {
     sc_core::sc_time t;
     if (uvm::uvm_config_db<sc_core::sc_time>::get(this, "reset", "timeout", t) &&
-        t.to_seconds() > 0)
+        t > sc_core::SC_ZERO_TIME)
     {
       sc_core::wait(t);
       UVM_FATAL("TIMEOUT", "Time-out expired in reset phase");
@@ -67,7 +67,7 @@ public:
   {
     sc_core::sc_time t;
     if (uvm::uvm_config_db<sc_core::sc_time>::get(this, "post_reset", "timeout", t) &&
-        t.to_seconds() > 0)
+        t > sc_core::SC_ZERO_TIME)
     {
       sc_core::wait(t);
       UVM_FATAL("TIMEOUT", "Time-out expired in post_reset phase");
@@ -78,7 +78,7 @@ public:
   {
     sc_core::sc_time t;
     if (uvm::uvm_config_db<sc_core::sc_time>::get(this, "pre_configure", "timeout", t) &&
-        t.to_seconds() > 0)
+        t > sc_core::SC_ZERO_TIME)
     {
       sc_core::wait(t);
       UVM_FATAL("TIMEOUT", "Time-out expired in pre_configure phase");
@@ -89,7 +89,7 @@ public:
   {
     sc_core::sc_time t;
     if (uvm::uvm_config_db<sc_core::sc_time>::get(this, "configure", "timeout", t) &&
-        t.to_seconds() > 0)
+        t > sc_core::SC_ZERO_TIME)
     {
       sc_core::wait(t);
       UVM_FATAL("TIMEOUT", "Time-out expired in configure phase");
@@ -100,7 +100,7 @@ public:
   {
     sc_core::sc_time t;
     if (uvm::uvm_config_db<sc_core::sc_time>::get(this, "post_configure", "timeout", t) &&
-        t.to_seconds() > 0)
+        t > sc_core::SC_ZERO_TIME)
     {
       sc_core::wait(t);
       UVM_FATAL("TIMEOUT", "Time-out expired in post_configure phase");
@@ -111,7 +111,7 @@ public:
   {
     sc_core::sc_time t;
     if (uvm::uvm_config_db<sc_core::sc_time>::get(this, "pre_main", "timeout", t) &&
-        t.to_seconds() > 0)
+        t > sc_core::SC_ZERO_TIME)
     {
       sc_core::wait(t);
       UVM_FATAL("TIMEOUT", "Time-out expired in pre_main phase");
@@ -122,7 +122,7 @@ public:
   {
     sc_core::sc_time t;
     if (uvm::uvm_config_db<sc_core::sc_time>::get(this, "main", "timeout", t) &&
-        t.to_seconds() > 0)
+        t > sc_core::SC_ZERO_TIME)
     {
       sc_core::wait(t);
       UVM_FATAL("TIMEOUT", "Time-out expired in main phase");
@@ -133,7 +133,7 @@ public:
   {
     sc_core::sc_time t;
     if (uvm::uvm_config_db<sc_core::sc_time>::get(this, "post_main", "timeout", t) &&
-        t.to_seconds() > 0)
+        t > sc_core::SC_ZERO_TIME)
     {
       sc_core::wait(t);
       UVM_FATAL("TIMEOUT", "Time-out expired in post_main phase");
@@ -144,7 +144,7 @@ public:
   {
     sc_core::sc_time t;
     if (uvm::uvm_config_db<sc_core::sc_time>::get(this, "pre_shutdown", "timeout", t) &&
-        t.to_seconds() > 0)
+        t > sc_core::SC_ZERO_TIME)
     {
       sc_core::wait(t);
       UVM_FATAL("TIMEOUT", "Time-out expired in pre_shutdown phase");
@@ -155,7 +155,7 @@ public:
   {
     sc_core::sc_time t;
     if (uvm::uvm_config_db<sc_core::sc_time>::get(this, "shutdown", "timeout", t) &&
-        t.to_seconds() > 0)
+        t > sc_core::SC_ZERO_TIME)
     {
       sc_core::wait(t);
       UVM_FATAL("TIMEOUT", "Time-out expired in shutdown phase");
@@ -166,7 +166,7 @@ public:
   {
     sc_core::sc_time t;
     if (uvm::uvm_config_db<sc_core::sc_time>::get(this, "post_shutdown", "timeout", t) &&
-        t.to_seconds() > 0)
+        t > sc_core::SC_ZERO_TIME)
     {
       sc_core::wait(t);
       UVM_FATAL("TIMEOUT", "Time-out expired in post_shutdown phase");

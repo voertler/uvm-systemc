@@ -1,6 +1,10 @@
 SystemC Simulation
 UVM_INFO @ 0 s: reporter [RNTST] Running test test...
+<<<<<<< Upstream, based on temp_uvmsc_regression_merge
 UVM TEST - ERROR expected since registering a default catcher with nullptr handle
+=======
+UVM TEST - ERROR expected since registering a default catcher with NULL handle
+>>>>>>> 5aa50b6 Fix regression tests to avoid -Winconsistent-overrides -Woverloaded-virtual
 UVM_ERROR @ 0 s: reporter [CBUNREG] nullptr callback object cannot be registered with object (*) (uvm_object)
 UVM TEST EXPECT 1 UVM_ERROR
 UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [UVM/REPORT/SERVER]

@@ -151,7 +151,7 @@ class test : public uvm_test
         uvm_report_error(hdl_path, str.str());
       }
     }
-  };
+  };;
 
   // Registers (of type sc_reg):
   // Deposit - overwrites value, DUT may change procedurally anytime
@@ -165,7 +165,7 @@ class test : public uvm_test
   //           if not driven, retains value until next direct assignment
   //           (note: Release not supported without DPI)
 
-  void run_phase( uvm_phase& phase )
+  void run_phase( uvm_phase& phase ) override
   {
     phase.raise_objection(this);
 

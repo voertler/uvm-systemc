@@ -34,14 +34,14 @@ int sc_main(int, char*[])
   //uvm::uvm_config_db_options::turn_on_tracing();
 
   // set configuration prior to creating the environment
-  uvm::uvm_config_db<int>::set(nullptr, "topenv.*.u1", "v", 30);
-  uvm::uvm_config_db<int>::set(nullptr, "topenv.inst2.u1", "v", 10);
-  uvm::uvm_config_db<int>::set(nullptr, "topenv.*", "debug", 1);
-  uvm::uvm_config_db<std::string>::set(nullptr, "*", "myaa[foo]", "hi");
-  uvm::uvm_config_db<std::string>::set(nullptr, "*", "myaa[bar]", "bye");
-  uvm::uvm_config_db<std::string>::set(nullptr, "*", "myaa[foobar]", "howdy");
-  uvm::uvm_config_db<std::string>::set(nullptr, "topenv.inst1.u1", "myaa[foo]", "boo");
-  uvm::uvm_config_db<std::string>::set(nullptr, "topenv.inst1.u1", "myaa[foobar]", "boobah");
+  uvm::uvm_config_db<int>::set(NULL, "topenv.*.u1", "v", 30);
+  uvm::uvm_config_db<int>::set(NULL, "topenv.inst2.u1", "v", 10);
+  uvm::uvm_config_db<int>::set(NULL, "topenv.*", "debug", 1);
+  uvm::uvm_config_db<std::string>::set(NULL, "*", "myaa[foo]", "hi");
+  uvm::uvm_config_db<std::string>::set(NULL, "*", "myaa[bar]", "bye");
+  uvm::uvm_config_db<std::string>::set(NULL, "*", "myaa[foobar]", "howdy");
+  uvm::uvm_config_db<std::string>::set(NULL, "topenv.inst1.u1", "myaa[foo]", "boo");
+  uvm::uvm_config_db<std::string>::set(NULL, "topenv.inst1.u1", "myaa[foobar]", "boobah");
 
   topenv = new my_env("topenv");
 

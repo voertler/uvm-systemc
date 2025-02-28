@@ -112,8 +112,8 @@ protected:
 
   // The following two bits are used to control whether checks and coverage are
   // done both in the bus monitor class and the interface.
-  bool checks_enable;  // default true
-  bool coverage_enable; // default true
+  bool checks_enable {false};  // default true in SV example, currently not available in UVM SystemC
+  bool coverage_enable {false}; // default true in SV example, currently not available in UVM SystemC
 
   // The state of the ubus
   ubus_status status;
