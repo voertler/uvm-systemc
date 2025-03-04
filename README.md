@@ -6,7 +6,9 @@ The UVM-SystemC library provides an implementation of the Universal Verification
   
 This version of UVM-SystemC is the reference implementation provided by the [Accellera Systems Initiative][1] and is developed by the [SystemC Verification Working Group][2].
 
--------------------------------------------------------------------------------
+**If you would like to contribute to this repository, please check the [CONTRIBUTING.md](CONTRIBUTING.md) file.**
+
+---
 
 ## Licensing and Copyright
 
@@ -18,11 +20,11 @@ The main documentation of UVM-SystemC can be found in the [docs](docs) directory
 
 ## Installation
 
-See the separate [INSTALL](INSTALL) file that provides system information and installation instructions.
+See the separate [INSTALL.md](INSTALL.md) file that provides system information and installation instructions.
 
 ## Release Notes
 
-See the separate [RELEASENOTES](RELEASENOTES) file that provides up-to-date information about this release of SystemC.
+See the separate [RELEASENOTES.md](RELEASENOTES.md) file that provides up-to-date information about this release of SystemC.
 
 ## SystemC Verification Community
 
@@ -32,7 +34,7 @@ See the separate [RELEASENOTES](RELEASENOTES) file that provides up-to-date info
   * SystemC Verification discussion forum (UVM-SystemC, SCV, CRAVE, FC4SC)  
     https://forums.accellera.org/forum/38-systemc-verification-uvm-systemc-scv-crave-fc4sc/
 
--------------------------------------------------------------------------------
+---
 
 ## About Accellera SystemC Working Groups
 
