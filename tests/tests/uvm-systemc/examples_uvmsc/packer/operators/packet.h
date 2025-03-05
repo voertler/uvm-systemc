@@ -117,13 +117,8 @@ public:
     data = drhs->data;
   }
 
-<<<<<<< Upstream, based on temp_uvmsc_regression_merge
-  virtual bool do_compare( const uvm::uvm_object& rhs,
-                           const uvm::uvm_comparer* comparer = nullptr ) const
-=======
   bool do_compare( const uvm::uvm_object& rhs,
                            const uvm::uvm_comparer* comparer = NULL ) const override
->>>>>>> 5aa50b6 Fix regression tests to avoid -Winconsistent-overrides -Woverloaded-virtual
   {
     const packet* drhs = dynamic_cast<const packet*>(&rhs);
     if (!drhs)
