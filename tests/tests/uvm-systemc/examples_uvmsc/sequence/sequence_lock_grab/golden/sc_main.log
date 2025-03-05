@@ -1,0 +1,65 @@
+SystemC Simulation
+UVM_INFO @ 0 s: reporter [RNTST] Running test arb_test...
+UVM_INFO @ 0 s: arb_test [arb_test:] Sequencer Arbitration selected: SEQ_ARB_FIFO
+UVM_INFO @ 1 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:1 SEQ_2:0 SEQ_3:0 SEQ_4:0 GRAB:0 LOCK:0
+UVM_INFO @ 10 ms: reporter [grab_seq] This sequence is blocked by an existing lock in place
+UVM_INFO @ 11 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:1 SEQ_2:0 SEQ_3:0 SEQ_4:0 GRAB:1 LOCK:0
+UVM_INFO @ 21 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:1 SEQ_2:0 SEQ_3:0 SEQ_4:0 GRAB:2 LOCK:0
+UVM_INFO @ 31 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:1 SEQ_2:0 SEQ_3:0 SEQ_4:0 GRAB:3 LOCK:0
+UVM_INFO @ 41 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:1 SEQ_2:0 SEQ_3:0 SEQ_4:0 GRAB:4 LOCK:0
+UVM_INFO @ 51 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:1 SEQ_2:1 SEQ_3:0 SEQ_4:0 GRAB:4 LOCK:0
+UVM_INFO @ 61 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:2 SEQ_2:1 SEQ_3:0 SEQ_4:0 GRAB:4 LOCK:0
+UVM_INFO @ 71 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:2 SEQ_2:1 SEQ_3:1 SEQ_4:0 GRAB:4 LOCK:0
+UVM_INFO @ 81 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:2 SEQ_2:1 SEQ_3:1 SEQ_4:1 GRAB:4 LOCK:0
+UVM_INFO @ 91 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:2 SEQ_2:2 SEQ_3:1 SEQ_4:1 GRAB:4 LOCK:0
+UVM_INFO @ 101 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:3 SEQ_2:2 SEQ_3:1 SEQ_4:1 GRAB:4 LOCK:0
+UVM_INFO @ 111 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:3 SEQ_2:2 SEQ_3:2 SEQ_4:1 GRAB:4 LOCK:0
+UVM_INFO @ 121 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:3 SEQ_2:2 SEQ_3:2 SEQ_4:2 GRAB:4 LOCK:0
+UVM_INFO @ 131 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:3 SEQ_2:3 SEQ_3:2 SEQ_4:2 GRAB:4 LOCK:0
+UVM_INFO @ 141 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:4 SEQ_2:3 SEQ_3:2 SEQ_4:2 GRAB:4 LOCK:0
+UVM_INFO @ 151 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:4 SEQ_2:3 SEQ_3:3 SEQ_4:2 GRAB:4 LOCK:0
+UVM_INFO @ 161 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:4 SEQ_2:3 SEQ_3:3 SEQ_4:3 GRAB:4 LOCK:0
+UVM_INFO @ 161 ms: reporter [lock_seq] This sequence is not blocked by an existing lock
+UVM_INFO @ 171 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:4 SEQ_2:3 SEQ_3:3 SEQ_4:3 GRAB:4 LOCK:1
+UVM_INFO @ 181 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:4 SEQ_2:3 SEQ_3:3 SEQ_4:3 GRAB:4 LOCK:2
+UVM_INFO @ 181 ms: reporter [grab_seq] This sequence is not blocked by an existing lock in place
+UVM_INFO @ 191 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:4 SEQ_2:3 SEQ_3:3 SEQ_4:3 GRAB:4 LOCK:3
+UVM_INFO @ 201 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:4 SEQ_2:3 SEQ_3:3 SEQ_4:3 GRAB:4 LOCK:4
+UVM_INFO @ 211 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:4 SEQ_2:3 SEQ_3:3 SEQ_4:3 GRAB:5 LOCK:4
+UVM_INFO @ 221 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:4 SEQ_2:3 SEQ_3:3 SEQ_4:3 GRAB:6 LOCK:4
+UVM_INFO @ 231 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:4 SEQ_2:3 SEQ_3:3 SEQ_4:3 GRAB:7 LOCK:4
+UVM_INFO @ 241 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:4 SEQ_2:3 SEQ_3:3 SEQ_4:3 GRAB:8 LOCK:4
+UVM_INFO @ 251 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:4 SEQ_2:4 SEQ_3:3 SEQ_4:3 GRAB:8 LOCK:4
+UVM_INFO @ 261 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:5 SEQ_2:4 SEQ_3:3 SEQ_4:3 GRAB:8 LOCK:4
+UVM_INFO @ 271 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:5 SEQ_2:4 SEQ_3:4 SEQ_4:3 GRAB:8 LOCK:4
+UVM_INFO @ 281 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:5 SEQ_2:5 SEQ_3:4 SEQ_4:3 GRAB:8 LOCK:4
+UVM_INFO @ 291 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:6 SEQ_2:5 SEQ_3:4 SEQ_4:3 GRAB:8 LOCK:4
+UVM_INFO @ 301 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:6 SEQ_2:5 SEQ_3:5 SEQ_4:3 GRAB:8 LOCK:4
+UVM_INFO @ 311 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:6 SEQ_2:6 SEQ_3:5 SEQ_4:3 GRAB:8 LOCK:4
+UVM_INFO @ 321 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:7 SEQ_2:6 SEQ_3:5 SEQ_4:3 GRAB:8 LOCK:4
+UVM_INFO @ 331 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:7 SEQ_2:6 SEQ_3:6 SEQ_4:3 GRAB:8 LOCK:4
+UVM_INFO @ 341 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:7 SEQ_2:7 SEQ_3:6 SEQ_4:3 GRAB:8 LOCK:4
+UVM_INFO @ 351 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:8 SEQ_2:7 SEQ_3:6 SEQ_4:3 GRAB:8 LOCK:4
+UVM_INFO @ 361 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:8 SEQ_2:7 SEQ_3:7 SEQ_4:3 GRAB:8 LOCK:4
+UVM_INFO @ 371 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:8 SEQ_2:8 SEQ_3:7 SEQ_4:3 GRAB:8 LOCK:4
+UVM_INFO @ 381 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:9 SEQ_2:8 SEQ_3:7 SEQ_4:3 GRAB:8 LOCK:4
+UVM_INFO @ 391 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:9 SEQ_2:8 SEQ_3:8 SEQ_4:3 GRAB:8 LOCK:4
+UVM_INFO @ 401 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:9 SEQ_2:9 SEQ_3:8 SEQ_4:3 GRAB:8 LOCK:4
+UVM_INFO @ 411 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:10 SEQ_2:9 SEQ_3:8 SEQ_4:3 GRAB:8 LOCK:4
+UVM_INFO @ 421 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:10 SEQ_2:9 SEQ_3:9 SEQ_4:3 GRAB:8 LOCK:4
+UVM_INFO @ 431 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:10 SEQ_2:10 SEQ_3:9 SEQ_4:3 GRAB:8 LOCK:4
+UVM_INFO @ 441 ms: arb_test.m_driver [RECEIVED_SEQ] Access totals: SEQ_1:10 SEQ_2:10 SEQ_3:10 SEQ_4:3 GRAB:8 LOCK:4
+UVM_INFO <removed by verify-uvm.pl> @ 541 ms: reporter [UVM/REPORT/SERVER]
+--- UVM Report Summary ---
+** Report counts by severity
+UVM_INFO      :  50
+UVM_WARNING   :   0
+UVM_ERROR     :   0
+UVM_FATAL     :   0
+** Report counts by id
+[RECEIVED_SEQ]         45
+[RNTST]                 1
+[arb_test:]             1
+[grab_seq]              2
+[lock_seq]              1
+UVM_INFO @ 541 ms: reporter [FINISH] UVM-SystemC phasing completed; simulation finished

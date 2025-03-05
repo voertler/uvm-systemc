@@ -1,0 +1,63 @@
+UVM_INFO <removed> @ 0: reporter [UVM/RELNOTES] 
+----------------------------------------------------------------
+UVM-1.2
+(C) 2007-2014 Mentor Graphics Corporation
+(C) 2007-2014 Cadence Design Systems, Inc.
+(C) 2006-2014 Synopsys, Inc.
+(C) 2011-2013 Cypress Semiconductor Corp.
+(C) 2013-2014 NVIDIA Corporation
+----------------------------------------------------------------
+
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_NO_DEPRECATED undefined.
+  See http://www.eda.org/svdb/view.php?id=3313 for more details.
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_OBJECT_DO_NOT_NEED_CONSTRUCTOR undefined.
+  See http://www.eda.org/svdb/view.php?id=3770 for more details.
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+fifo put_export: env.fifo
+UVM_INFO @ 0: reporter [RNTST] Running test ...
+UVM_INFO <removed>  @ 10: env.producer [producer] sending     48
+UVM_INFO <removed>  @ 10: env.consumer [consumer] receiving   48
+UVM_INFO <removed>  @ 20: env.producer [producer] sending    -99
+UVM_INFO <removed>  @ 20: env.consumer [consumer] receiving  -99
+UVM_INFO <removed>  @ 30: env.producer [producer] sending    -39
+UVM_INFO <removed>  @ 30: env.consumer [consumer] receiving  -39
+UVM_INFO <removed>  @ 40: env.producer [producer] sending     -9
+UVM_INFO <removed>  @ 40: env.consumer [consumer] receiving   -9
+UVM_INFO <removed>  @ 50: env.producer [producer] sending     57
+UVM_INFO <removed>  @ 50: env.consumer [consumer] receiving   57
+UVM_INFO <removed>  @ 60: env.producer [producer] sending     57
+UVM_INFO <removed>  @ 60: env.consumer [consumer] receiving   57
+UVM_INFO <removed>  @ 70: env.producer [producer] sending    -71
+UVM_INFO <removed>  @ 70: env.consumer [consumer] receiving  -71
+UVM_INFO <removed>  @ 80: env.producer [producer] sending    -14
+UVM_INFO <removed>  @ 80: env.consumer [consumer] receiving  -14
+UVM_INFO <removed>  @ 90: env.producer [producer] sending     61
+UVM_INFO <removed>  @ 90: env.consumer [consumer] receiving   61
+UVM_INFO <removed>  @ 100: env.producer [producer] sending     29
+UVM_INFO <removed>  @ 100: env.consumer [consumer] receiving   29
+UVM_INFO <removed>  @ 1000: reporter [TEST_DONE] All end-of-test objections have been dropped. Calling stop tasks
+UVM_INFO <removed>  @ 1000: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+UVM_INFO <removed>  @ 1000: reporter [UVM/REPORT/SERVER] 
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :   24
+UVM_WARNING :    0
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[RNTST]     1
+[TEST_DONE]     2
+[UVM/RELNOTES]     1
+[consumer]    10
+[producer]    10
+
+Simulation complete via $finish(1) at time 1 US + 58
+

@@ -1,0 +1,70 @@
+SystemC Simulation
+UVM_INFO @ 0 s: reporter [RNTST] Running test ...
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [UVM/FACTORY/PRINT]
+#### Print Factory Configuration (*)
+Instance Overrides:
+Requested Type  Override Path  Override Type
+  --------------  -------------  -------------
+  gen             top.e.gen1     mygen
+Type Overrides:
+  Requested Type  Override Type
+  --------------  -------------
+  packet          mypacket
+All types registered with the factory: 22 total
+  Type Name
+  ---------
+  env
+  gen
+  mygen
+  mypacket
+  packet
+  reg_rw
+  top
+(*) Types with no associated type name will be printed as <unknown>
+####
+UVM_INFO <removed by verify-uvm.pl> @ 15 ns: top.e.gen1 [PKTGEN] Getting a packet from top.e.gen1 (mygen)
+Got packet: mypacket packet: (mypacket@<removed by verify-uvm.pl>) {
+  addr: 0x1234
+  data: 0x5678
+}
+UVM_INFO <removed by verify-uvm.pl> @ 30 ns: top.e.gen1 [PKTGEN] Getting a packet from top.e.gen1 (mygen)
+Got packet: mypacket packet: (mypacket@<removed by verify-uvm.pl>) {
+  addr: 0x1234
+  data: 0x5678
+}
+UVM_INFO <removed by verify-uvm.pl> @ 45 ns: top.e.gen1 [PKTGEN] Getting a packet from top.e.gen1 (mygen)
+Got packet: mypacket packet: (mypacket@<removed by verify-uvm.pl>) {
+  addr: 0x1234
+  data: 0x5678
+}
+UVM_INFO <removed by verify-uvm.pl> @ 60 ns: top.e.gen1 [PKTGEN] Getting a packet from top.e.gen1 (mygen)
+Got packet: mypacket packet: (mypacket@<removed by verify-uvm.pl>) {
+  addr: 0x1234
+  data: 0x5678
+}
+UVM_INFO <removed by verify-uvm.pl> @ 75 ns: top.e.gen1 [PKTGEN] Getting a packet from top.e.gen1 (mygen)
+Got packet: mypacket packet: (mypacket@<removed by verify-uvm.pl>) {
+  addr: 0x1234
+  data: 0x5678
+}
+UVM_INFO <removed by verify-uvm.pl> @ 90 ns: reporter [UVMTOP] UVM testbench topology:
+----------------------------
+Name      Type   Size  Value
+----------------------------
+top       top    -     @<removed by verify-uvm.pl>
+  e       env    -     @<removed by verify-uvm.pl>
+    gen1  mygen  -     @<removed by verify-uvm.pl>
+----------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 90 ns: reporter [UVM/REPORT/SERVER]
+--- UVM Report Summary ---
+** Report counts by severity
+UVM_INFO      :   8
+UVM_WARNING   :   0
+UVM_ERROR     :   0
+UVM_FATAL     :   0
+** Report counts by id
+[PKTGEN]                5
+[RNTST]                 1
+[UVM/FACTORY/PRINT]     1
+[UVMTOP]                1
+UVM_INFO @ 90 ns: reporter [FINISH] UVM-SystemC phasing completed; simulation finished

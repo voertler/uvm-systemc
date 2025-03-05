@@ -1,0 +1,28 @@
+SystemC Simulation
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [Test] Field values set correctly
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [Test] Soft reset value is 0x2893CFC
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [Test] Hard reset value is 0x1765A30
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [Test] Field values set correctly
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [Test] Hard reset value is 0x2895A30
+UVM_WARNING <removed by verify-uvm.pl> @ 0 s: reporter [RegModel] Register 'reg_id' is not registered with any map
+UVM_WARNING <removed by verify-uvm.pl> @ 0 s: reporter [RegModel] Register 'reg_id' is not registered with any map
+UVM_WARNING <removed by verify-uvm.pl> @ 0 s: reporter [RegModel] Register 'reg_id' is not registered with any map
+--------------------------------------------------------------------------------------------
+Name           Type           Size  Value
+--------------------------------------------------------------------------------------------
+reg_id         <unknown>      -     @<removed by verify-uvm.pl>
+  revision_id  uvm_reg_field  ...    RW reg_id[7:0] = 0x30 (0b00110000)
+  chip_id      uvm_reg_field  ...    RW reg_id[15:8] = 0x5a (0b01011010)
+  product_id   uvm_reg_field  ...    RW reg_id[25:16] = 0x289 (0b1010001001) (Mirror: 0x176)
+--------------------------------------------------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [UVM/REPORT/SERVER]
+--- UVM Report Summary ---
+** Report counts by severity
+UVM_INFO      :   5
+UVM_WARNING   :   3
+UVM_ERROR     :   0
+UVM_FATAL     :   0
+** Report counts by id
+[RegModel]              3
+[Test]                  5
+** UVM TEST PASSED **

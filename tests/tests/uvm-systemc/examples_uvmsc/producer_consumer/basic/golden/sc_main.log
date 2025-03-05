@@ -1,0 +1,31 @@
+SystemC Simulation
+UVM_INFO @ 0 s: reporter [RNTST] Running test ...
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: topenv.p1 [topenv.p1] Starting.
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: topenv.p1 [topenv.p1] Sending packet topenv.p1-0 count = 0
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: topenv.p2 [topenv.p2] Starting.
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: topenv.p2 [topenv.p2] Sending packet topenv.p2-0 count = 0
+UVM_INFO <removed by verify-uvm.pl> @ 10 ns: topenv.p1 [topenv.p1] Sending packet topenv.p1-1 count = 1
+UVM_INFO <removed by verify-uvm.pl> @ 20 ns: topenv.p2 [topenv.p2] Sending packet topenv.p2-1 count = 1
+UVM_INFO <removed by verify-uvm.pl> @ 40 ns: topenv.c [topenv.c]  Received packet topenv.p1-0 count = 1
+UVM_INFO <removed by verify-uvm.pl> @ 60 ns: topenv.p1 [topenv.p1] Exiting.
+UVM_INFO <removed by verify-uvm.pl> @ 80 ns: topenv.c [topenv.c]  Received packet topenv.p2-0 count = 2
+UVM_INFO <removed by verify-uvm.pl> @ 100 ns: topenv.p2 [topenv.p2] Sending packet topenv.p2-2 count = 2
+UVM_INFO <removed by verify-uvm.pl> @ 120 ns: topenv.c [topenv.c]  Received packet topenv.p1-1 count = 3
+UVM_INFO <removed by verify-uvm.pl> @ 140 ns: topenv.p2 [topenv.p2] Sending packet topenv.p2-3 count = 3
+UVM_INFO <removed by verify-uvm.pl> @ 160 ns: topenv.c [topenv.c]  Received packet topenv.p2-1 count = 4
+UVM_INFO <removed by verify-uvm.pl> @ 180 ns: topenv.p2 [topenv.p2] Exiting.
+UVM_INFO <removed by verify-uvm.pl> @ 200 ns: topenv.c [topenv.c]  Received packet topenv.p2-2 count = 5
+UVM_INFO <removed by verify-uvm.pl> @ 240 ns: topenv.c [topenv.c]  Received packet topenv.p2-3 count = 6
+UVM_INFO <removed by verify-uvm.pl> @ 280 ns: reporter [UVM/REPORT/SERVER]
+--- UVM Report Summary ---
+** Report counts by severity
+UVM_INFO      :  17
+UVM_WARNING   :   0
+UVM_ERROR     :   0
+UVM_FATAL     :   0
+** Report counts by id
+[RNTST]                 1
+[topenv.c]              6
+[topenv.p1]             4
+[topenv.p2]             6
+UVM_INFO @ 280 ns: reporter [FINISH] UVM-SystemC phasing completed; simulation finished

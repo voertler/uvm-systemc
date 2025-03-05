@@ -1,0 +1,56 @@
+SystemC Simulation
+UVM_INFO @ 0 s: reporter [RNTST] Running test ...
+UVM_INFO @ 0 s: env.master [sending request ] 0
+UVM_INFO @ 0 s: env.master [sending request ] 1
+UVM_INFO @ 0 s: env.slave [recieving request  ] 0
+UVM_INFO @ 0 s: env.slave [sending response   ] 100
+UVM_INFO @ 0 s: env.master [sending request ] 2
+UVM_INFO @ 0 s: env.master [receiving response ] 100
+UVM_INFO @ 0 s: env.slave [recieving request  ] 1
+UVM_INFO @ 0 s: env.slave [sending response   ] 101
+UVM_INFO @ 0 s: env.master [sending request ] 3
+UVM_INFO @ 0 s: env.master [receiving response ] 101
+UVM_INFO @ 0 s: env.slave [recieving request  ] 2
+UVM_INFO @ 0 s: env.slave [sending response   ] 102
+UVM_INFO @ 0 s: env.master [sending request ] 4
+UVM_INFO @ 0 s: env.master [receiving response ] 102
+UVM_INFO @ 0 s: env.slave [recieving request  ] 3
+UVM_INFO @ 0 s: env.slave [sending response   ] 103
+UVM_INFO @ 0 s: env.master [sending request ] 5
+UVM_INFO @ 0 s: env.master [receiving response ] 103
+UVM_INFO @ 0 s: env.slave [recieving request  ] 4
+UVM_INFO @ 0 s: env.slave [sending response   ] 104
+UVM_INFO @ 0 s: env.master [sending request ] 6
+UVM_INFO @ 0 s: env.master [receiving response ] 104
+UVM_INFO @ 0 s: env.slave [recieving request  ] 5
+UVM_INFO @ 0 s: env.slave [sending response   ] 105
+UVM_INFO @ 0 s: env.master [sending request ] 7
+UVM_INFO @ 0 s: env.master [receiving response ] 105
+UVM_INFO @ 0 s: env.slave [recieving request  ] 6
+UVM_INFO @ 0 s: env.slave [sending response   ] 106
+UVM_INFO @ 0 s: env.master [sending request ] 8
+UVM_INFO @ 0 s: env.master [receiving response ] 106
+UVM_INFO @ 0 s: env.slave [recieving request  ] 7
+UVM_INFO @ 0 s: env.slave [sending response   ] 107
+UVM_INFO @ 0 s: env.master [sending request ] 9
+UVM_INFO @ 0 s: env.master [receiving response ] 107
+UVM_INFO @ 0 s: env.slave [recieving request  ] 8
+UVM_INFO @ 0 s: env.slave [sending response   ] 108
+UVM_INFO @ 0 s: env.master [receiving response ] 108
+UVM_INFO @ 0 s: env.slave [recieving request  ] 9
+UVM_INFO @ 0 s: env.slave [sending response   ] 109
+UVM_INFO @ 0 s: env.master [receiving response ] 109
+UVM_INFO <removed by verify-uvm.pl> @ 10 us: reporter [UVM/REPORT/SERVER]
+--- UVM Report Summary ---
+** Report counts by severity
+UVM_INFO      :  41
+UVM_WARNING   :   0
+UVM_ERROR     :   0
+UVM_FATAL     :   0
+** Report counts by id
+[RNTST]                 1
+[receiving response ]  10
+[recieving request  ]  10
+[sending request ]     10
+[sending response   ]  10
+UVM_INFO @ 10 us: reporter [FINISH] UVM-SystemC phasing completed; simulation finished

@@ -1,0 +1,34 @@
+SystemC Simulation
+Fatal message caught: Register model requires that UVM_REG_DATA_WIDTH be defined as 65 or greater. Currently defined as 64
+UVM_WARNING <removed by verify-uvm.pl> @ 0 s: reporter [RegModel] Register model requires that UVM_REG_DATA_WIDTH be defined as 65 or greater. Currently defined as 64
+UVM_WARNING <removed by verify-uvm.pl> @ 0 s: reporter [RegModel] Register 'blk.id' is not registered with any map
+UVM_WARNING <removed by verify-uvm.pl> @ 0 s: reporter [RegModel] Register 'blk.id' is not registered with any map
+UVM_WARNING <removed by verify-uvm.pl> @ 0 s: reporter [RegModel] Register 'blk.id' is not registered with any map
+---------------------------------------------------------------------------------------------------------------
+Name             Type           Size  Value
+---------------------------------------------------------------------------------------------------------------
+blk              <unknown>      -     @<removed by verify-uvm.pl>
+  id             <unknown>      -     @<removed by verify-uvm.pl>
+    revision_id  uvm_reg_field  ...    RW id[7:0] = 0x0 (0b00000000)
+    chip_id      uvm_reg_field  ...    RW id[15:8] = 0x0 (0b00000000)
+    product_id   uvm_reg_field  ...    RW id[64:16] = 0x0 (0b0000000000000000000000000000000000000000000000000)
+---------------------------------------------------------------------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [UVM/REPORT/CATCHER]
+--- UVM Report catcher Summary ---
+Number of demoted UVM_FATAL reports  :    1
+Number of demoted UVM_ERROR reports  :    0
+Number of demoted UVM_WARNING reports:    0
+Number of caught UVM_FATAL reports   :    0
+Number of caught UVM_ERROR reports   :    0
+Number of caught UVM_WARNING reports :    0
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [UVM/REPORT/SERVER]
+--- UVM Report Summary ---
+** Report counts by severity
+UVM_INFO      :   1
+UVM_WARNING   :   4
+UVM_ERROR     :   0
+UVM_FATAL     :   0
+** Report counts by id
+[RegModel]              4
+[UVM/REPORT/CATCHER]    1
+** UVM TEST PASSED **

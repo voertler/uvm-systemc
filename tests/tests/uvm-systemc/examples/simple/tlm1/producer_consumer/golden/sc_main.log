@@ -1,0 +1,34 @@
+SystemC Simulation
+UVM_INFO @ 0 s: reporter [RNTST] Running test ...
+UVM_INFO <removed by verify-uvm.pl> @ 10 us: e.producer [producer] sending   26
+UVM_INFO <removed by verify-uvm.pl> @ 10 us: e.consumer [consumer] receiving 26
+UVM_INFO <removed by verify-uvm.pl> @ 20 us: e.producer [producer] sending   78
+UVM_INFO <removed by verify-uvm.pl> @ 20 us: e.consumer [consumer] receiving 78
+UVM_INFO <removed by verify-uvm.pl> @ 30 us: e.producer [producer] sending   34
+UVM_INFO <removed by verify-uvm.pl> @ 30 us: e.consumer [consumer] receiving 34
+UVM_INFO <removed by verify-uvm.pl> @ 40 us: e.producer [producer] sending   2
+UVM_INFO <removed by verify-uvm.pl> @ 40 us: e.consumer [consumer] receiving 2
+UVM_INFO <removed by verify-uvm.pl> @ 50 us: e.producer [producer] sending   6
+UVM_INFO <removed by verify-uvm.pl> @ 50 us: e.consumer [consumer] receiving 6
+UVM_INFO <removed by verify-uvm.pl> @ 60 us: e.producer [producer] sending   18
+UVM_INFO <removed by verify-uvm.pl> @ 60 us: e.consumer [consumer] receiving 18
+UVM_INFO <removed by verify-uvm.pl> @ 70 us: e.producer [producer] sending   54
+UVM_INFO <removed by verify-uvm.pl> @ 70 us: e.consumer [consumer] receiving 54
+UVM_INFO <removed by verify-uvm.pl> @ 80 us: e.producer [producer] sending   62
+UVM_INFO <removed by verify-uvm.pl> @ 80 us: e.consumer [consumer] receiving 62
+UVM_INFO <removed by verify-uvm.pl> @ 90 us: e.producer [producer] sending   86
+UVM_INFO <removed by verify-uvm.pl> @ 90 us: e.consumer [consumer] receiving 86
+UVM_INFO <removed by verify-uvm.pl> @ 100 us: e.producer [producer] sending   58
+UVM_INFO <removed by verify-uvm.pl> @ 100 us: e.consumer [consumer] receiving 58
+UVM_INFO <removed by verify-uvm.pl> @ 10 ms: reporter [UVM/REPORT/SERVER]
+--- UVM Report Summary ---
+** Report counts by severity
+UVM_INFO      :  21
+UVM_WARNING   :   0
+UVM_ERROR     :   0
+UVM_FATAL     :   0
+** Report counts by id
+[RNTST]                 1
+[consumer]             10
+[producer]             10
+UVM_INFO @ 10 ms: reporter [FINISH] UVM-SystemC phasing completed; simulation finished

@@ -1,0 +1,44 @@
+SystemC Simulation
+UVM_INFO @ 0 s: reporter [RNTST] Running test ...
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [UVM/CB/DISPLAY] Registered callbacks for all instances of bus_driver
+---------------------------------------------------------------
+cb1                  on topenv.driver                   ON
+cb2                  on topenv.driver                   ON
+UVM_INFO @ 0 s: topenv.driver [bus_tr received] addr=1 data=5
+UVM_INFO @ 0 s: topenv.driver [trans_received_cb]   bus_driver=topenv.driver tr=addr=1 data=5
+UVM_INFO @ 100 us: topenv.driver [trans_executed_cb]   bus_driver=topenv.driver tr=addr=1 data=5
+UVM_INFO @ 100 us: topenv.driver [trans_executed_cb2]   bus_driver=topenv.driver tr=addr=1 data=5
+UVM_INFO @ 100 us: topenv.driver [bus_tr executed] addr=1 data=5
+UVM_INFO @ 100 us: topenv.driver [bus_tr received] addr=2 data=4
+UVM_INFO @ 100 us: topenv.driver [trans_received_cb]   bus_driver=topenv.driver tr=addr=2 data=4
+UVM_INFO @ 100 us: topenv.driver [bus_tr dropped] user callback indicated DROPPED
+UVM_INFO @ 100 us: topenv.driver [bus_tr received] addr=3 data=3
+UVM_INFO @ 100 us: topenv.driver [trans_received_cb]   bus_driver=topenv.driver tr=addr=3 data=3
+UVM_INFO @ 200 us: topenv.driver [trans_executed_cb]   bus_driver=topenv.driver tr=addr=3 data=3
+UVM_INFO @ 200 us: topenv.driver [trans_executed_cb2]   bus_driver=topenv.driver tr=addr=3 data=3
+UVM_INFO @ 200 us: topenv.driver [bus_tr executed] addr=3 data=3
+UVM_INFO @ 200 us: topenv.driver [bus_tr received] addr=4 data=2
+UVM_INFO @ 200 us: topenv.driver [trans_received_cb]   bus_driver=topenv.driver tr=addr=4 data=2
+UVM_INFO @ 200 us: topenv.driver [bus_tr dropped] user callback indicated DROPPED
+UVM_INFO @ 200 us: topenv.driver [bus_tr received] addr=5 data=1
+UVM_INFO @ 200 us: topenv.driver [trans_received_cb]   bus_driver=topenv.driver tr=addr=5 data=1
+UVM_INFO @ 300 us: topenv.driver [trans_executed_cb]   bus_driver=topenv.driver tr=addr=5 data=1
+UVM_INFO @ 300 us: topenv.driver [trans_executed_cb2]   bus_driver=topenv.driver tr=addr=5 data=1
+UVM_INFO @ 300 us: topenv.driver [bus_tr executed] addr=5 data=1
+UVM_INFO <removed by verify-uvm.pl> @ 300 us: reporter [UVM/REPORT/SERVER]
+--- UVM Report Summary ---
+** Report counts by severity
+UVM_INFO      :  23
+UVM_WARNING   :   0
+UVM_ERROR     :   0
+UVM_FATAL     :   0
+** Report counts by id
+[RNTST]                 1
+[UVM/CB/DISPLAY]        1
+[bus_tr dropped]        2
+[bus_tr executed]       3
+[bus_tr received]       5
+[trans_executed_cb]     3
+[trans_executed_cb2]    3
+[trans_received_cb]     5
+UVM_INFO @ 300 us: reporter [FINISH] UVM-SystemC phasing completed; simulation finished

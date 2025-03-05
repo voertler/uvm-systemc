@@ -1,0 +1,220 @@
+SystemC Simulation
+UVM_INFO @ 0 s: reporter [RNTST] Running test ...
+0 s: t1.a1.a phase started: build
+0 s: t1.a2.a phase started: build
+0 s: t1 phase: build
+0 s: t1.a1.a phase: build
+0 s: t1.a1.a.b1 phase: build
+0 s: t1.a1.a.d1 phase: build
+0 s: t1.a2.a phase: build
+0 s: t1.a2.a.b1 phase: build
+0 s: t1.a2.a.d1 phase: build
+0 s: t1.a1.a phase ended: build
+0 s: t1.a2.a phase ended: build
+0 s: t1.a1.a phase started: connect
+0 s: t1.a2.a phase started: connect
+0 s: t1.a1.a.b1 phase: connect
+0 s: t1.a1.a.d1 phase: connect
+0 s: t1.a1.a phase: connect
+0 s: t1.a2.a.b1 phase: connect
+0 s: t1.a2.a.d1 phase: connect
+0 s: t1.a2.a phase: connect
+0 s: t1 phase: connect
+0 s: t1.a1.a phase ended: connect
+0 s: t1.a2.a phase ended: connect
+0 s: t1.a1.a phase started: end_of_elaboration
+0 s: t1.a2.a phase started: end_of_elaboration
+0 s: t1.a1.a.b1 phase: end_of_elaboration
+0 s: t1.a1.a.d1 phase: end_of_elaboration
+0 s: t1.a1.a phase: end_of_elaboration
+0 s: t1.a2.a.b1 phase: end_of_elaboration
+0 s: t1.a2.a.d1 phase: end_of_elaboration
+0 s: t1.a2.a phase: end_of_elaboration
+0 s: t1 phase: end_of_elaboration
+0 s: t1.a1.a phase ended: end_of_elaboration
+0 s: t1.a2.a phase ended: end_of_elaboration
+0 s: t1.a1.a phase started: start_of_simulation
+0 s: t1.a2.a phase started: start_of_simulation
+0 s: t1.a1.a.b1 phase: start_of_simulation
+0 s: t1.a1.a.d1 phase: start_of_simulation
+0 s: t1.a1.a phase: start_of_simulation
+0 s: t1.a2.a.b1 phase: start_of_simulation
+0 s: t1.a2.a.d1 phase: start_of_simulation
+0 s: t1.a2.a phase: start_of_simulation
+0 s: t1 phase: start_of_simulation
+0 s: t1.a1.a phase ended: start_of_simulation
+0 s: t1.a2.a phase ended: start_of_simulation
+0 s: t1.a1.a phase started: run
+0 s: t1.a2.a phase started: run
+0 s: t1.a1.a.b1 start phase: run
+0 s: t1.a1.a start phase: run
+0 s: t1.a2.a.b1 start phase: run
+0 s: t1.a2.a start phase: run
+0 s: t1 start phase: run
+0 s: t1.a1.a phase started: pre_reset
+0 s: t1.a2.a phase started: pre_reset
+0 s: t1.a1.a.b1 phase: pre_reset
+0 s: t1.a1.a phase: pre_reset
+0 s: t1.a2.a.b1 phase: pre_reset
+0 s: t1.a2.a phase: pre_reset
+0 s: t1 phase: pre_reset
+0 s: t1.a1.a phase ended: pre_reset
+0 s: t1.a2.a phase ended: pre_reset
+0 s: t1.a1.a phase started: reset
+0 s: t1.a2.a phase started: reset
+0 s: t1.a1.a.b1 phase: reset
+0 s: t1.a1.a phase: reset
+0 s: t1.a2.a.b1 phase: reset
+0 s: t1.a2.a phase: reset
+0 s: t1 phase: reset
+0 s: t1.a1.a phase ended: reset
+0 s: t1.a2.a phase ended: reset
+0 s: t1.a1.a phase started: post_reset
+0 s: t1.a2.a phase started: post_reset
+0 s: t1.a1.a.b1 phase: post_reset
+0 s: t1.a1.a phase: post_reset
+0 s: t1.a2.a.b1 phase: post_reset
+0 s: t1.a2.a phase: post_reset
+0 s: t1 phase: post_reset
+0 s: t1.a1.a phase ended: post_reset
+0 s: t1.a2.a phase ended: post_reset
+0 s: t1.a1.a phase started: pre_configure
+0 s: t1.a2.a phase started: pre_configure
+0 s: t1.a1.a.b1 phase: pre_configure
+0 s: t1.a1.a phase: pre_configure
+0 s: t1.a2.a.b1 phase: pre_configure
+0 s: t1.a2.a phase: pre_configure
+0 s: t1 phase: pre_configure
+0 s: t1.a1.a phase ended: pre_configure
+0 s: t1.a2.a phase ended: pre_configure
+0 s: t1.a1.a phase started: configure
+0 s: t1.a2.a phase started: configure
+0 s: t1.a1.a.b1 phase: configure
+0 s: t1.a1.a phase: configure
+0 s: t1.a2.a.b1 phase: configure
+0 s: t1.a2.a phase: configure
+0 s: t1 phase: configure
+0 s: t1.a1.a phase ended: configure
+0 s: t1.a2.a phase ended: configure
+0 s: t1.a1.a phase started: post_configure
+0 s: t1.a2.a phase started: post_configure
+0 s: t1.a1.a.b1 phase: post_configure
+0 s: t1.a1.a phase: post_configure
+0 s: t1.a2.a.b1 phase: post_configure
+0 s: t1.a2.a phase: post_configure
+0 s: t1 phase: post_configure
+0 s: t1.a1.a phase ended: post_configure
+0 s: t1.a2.a phase ended: post_configure
+0 s: t1.a1.a phase started: pre_main
+0 s: t1.a2.a phase started: pre_main
+0 s: t1.a1.a.b1 phase: pre_main
+0 s: t1.a1.a phase: pre_main
+0 s: t1.a2.a.b1 phase: pre_main
+0 s: t1.a2.a phase: pre_main
+0 s: t1 phase: pre_main
+0 s: t1.a1.a phase ended: pre_main
+0 s: t1.a2.a phase ended: pre_main
+0 s: t1.a1.a phase started: main
+0 s: t1.a2.a phase started: main
+0 s: t1.a1.a.b1 phase: main
+0 s: t1.a1.a phase: main
+0 s: t1.a2.a.b1 phase: main
+0 s: t1.a2.a phase: main
+0 s: t1 phase: main
+0 s: t1.a1.a phase ended: main
+0 s: t1.a2.a phase ended: main
+0 s: t1.a1.a phase started: post_main
+0 s: t1.a2.a phase started: post_main
+0 s: t1.a1.a.b1 phase: post_main
+0 s: t1.a1.a phase: post_main
+0 s: t1.a2.a.b1 phase: post_main
+0 s: t1.a2.a phase: post_main
+0 s: t1 phase: post_main
+0 s: t1.a1.a phase ended: post_main
+0 s: t1.a2.a phase ended: post_main
+0 s: t1.a1.a phase started: pre_shutdown
+0 s: t1.a2.a phase started: pre_shutdown
+0 s: t1.a1.a.b1 phase: pre_shutdown
+0 s: t1.a1.a phase: pre_shutdown
+0 s: t1.a2.a.b1 phase: pre_shutdown
+0 s: t1.a2.a phase: pre_shutdown
+0 s: t1 phase: pre_shutdown
+0 s: t1.a1.a phase ended: pre_shutdown
+0 s: t1.a2.a phase ended: pre_shutdown
+0 s: t1.a1.a phase started: shutdown
+0 s: t1.a2.a phase started: shutdown
+0 s: t1.a1.a.b1 phase: shutdown
+0 s: t1.a1.a phase: shutdown
+0 s: t1.a2.a.b1 phase: shutdown
+0 s: t1.a2.a phase: shutdown
+0 s: t1 phase: shutdown
+0 s: t1.a1.a phase ended: shutdown
+0 s: t1.a2.a phase ended: shutdown
+0 s: t1.a1.a phase started: post_shutdown
+0 s: t1.a2.a phase started: post_shutdown
+0 s: t1.a1.a.b1 phase: post_shutdown
+0 s: t1.a1.a phase: post_shutdown
+0 s: t1.a2.a.b1 phase: post_shutdown
+0 s: t1.a2.a phase: post_shutdown
+0 s: t1 phase: post_shutdown
+1100 us: t1.a1.a.b1 end phase: run
+1100 us: t1.a2.a.b1 end phase: run
+5500 us: t1.a1.a end phase: run
+5500 us: t1.a2.a end phase: run
+50 ms: t1 end phase: run
+50 ms: t1.a1.a phase ended: post_shutdown
+50 ms: t1.a2.a phase ended: post_shutdown
+50 ms: t1.a1.a phase ended: run
+50 ms: t1.a2.a phase ended: run
+50 ms: t1.a1.a phase started: extract
+50 ms: t1.a2.a phase started: extract
+50 ms: t1.a1.a.b1 phase: extract
+50 ms: t1.a1.a.d1 phase: extract
+50 ms: t1.a1.a phase: extract
+50 ms: t1.a2.a.b1 phase: extract
+50 ms: t1.a2.a.d1 phase: extract
+50 ms: t1.a2.a phase: extract
+50 ms: t1 phase: extract
+50 ms: t1.a1.a phase ended: extract
+50 ms: t1.a2.a phase ended: extract
+50 ms: t1.a1.a phase started: check
+50 ms: t1.a2.a phase started: check
+50 ms: t1.a1.a.b1 phase: check
+50 ms: t1.a1.a.d1 phase: check
+50 ms: t1.a1.a phase: check
+50 ms: t1.a2.a.b1 phase: check
+50 ms: t1.a2.a.d1 phase: check
+50 ms: t1.a2.a phase: check
+50 ms: t1 phase: check
+50 ms: t1.a1.a phase ended: check
+50 ms: t1.a2.a phase ended: check
+50 ms: t1.a1.a phase started: report
+50 ms: t1.a2.a phase started: report
+50 ms: t1.a1.a.b1 phase: report
+50 ms: t1.a1.a.d1 phase: report
+50 ms: t1.a1.a phase: report
+50 ms: t1.a2.a.b1 phase: report
+50 ms: t1.a2.a.d1 phase: report
+50 ms: t1.a2.a phase: report
+50 ms: t1 phase: report
+50 ms: t1.a1.a phase ended: report
+50 ms: t1.a2.a phase ended: report
+50 ms: t1.a1.a phase started: final
+50 ms: t1.a2.a phase started: final
+50 ms: t1 phase: final
+50 ms: t1.a1.a phase: final
+50 ms: t1.a1.a.d1 phase: final
+50 ms: t1.a2.a phase: final
+50 ms: t1.a2.a.d1 phase: final
+50 ms: t1.a1.a phase ended: final
+50 ms: t1.a2.a phase ended: final
+UVM_INFO <removed by verify-uvm.pl> @ 50 ms: reporter [UVM/REPORT/SERVER]
+--- UVM Report Summary ---
+** Report counts by severity
+UVM_INFO      :   1
+UVM_WARNING   :   0
+UVM_ERROR     :   0
+UVM_FATAL     :   0
+** Report counts by id
+[RNTST]                 1
+UVM_INFO @ 50 ms: reporter [FINISH] UVM-SystemC phasing completed; simulation finished
