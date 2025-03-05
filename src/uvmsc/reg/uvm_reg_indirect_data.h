@@ -86,7 +86,13 @@ public:
                            uvm_predict_e     kind = UVM_PREDICT_DIRECT,
                            uvm_reg_byte_en_t be = -1 );
 
+#if defined(ALLOW_NON_IEEE_1800_2_2020)
+ protected:
+#endif
   virtual uvm_reg_map* get_local_map( const uvm_reg_map* map, const std::string& caller = "" ) const;
+#if defined(ALLOW_NON_IEEE_1800_2_2020)
+ private:
+#endif
 
   virtual void add_field( uvm_reg_field* field );
 
@@ -102,6 +108,9 @@ public:
 
    virtual bool needs_update() const;
 
+#if defined(ALLOW_NON_IEEE_1800_2_2020)
+ protected:
+#endif
    virtual void write( uvm_status_e&      status,
                        uvm_reg_data_t     value,
                        uvm_path_e         path = UVM_DEFAULT_PATH,
@@ -121,6 +130,9 @@ public:
                       uvm_object*        extension = nullptr,
                       const std::string& fname = "",
                       int                lineno = 0 );
+#if defined(ALLOW_NON_IEEE_1800_2_2020)
+ private:
+#endif
 
    virtual void poke( uvm_status_e&      status,
                       uvm_reg_data_t     value,

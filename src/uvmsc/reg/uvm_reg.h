@@ -129,6 +129,9 @@ class uvm_reg : public uvm_object
   virtual int get_addresses( std::vector<uvm_reg_addr_t>& addr,
                              const uvm_reg_map* map = nullptr ) const;
 
+  virtual uvm_reg_map* get_local_map( const uvm_reg_map* map,
+		  	  	  	  	  	  	      const std::string& caller = "" ) const;
+
   //--------------------------------------------------------------------------
   // Group: Access
   //--------------------------------------------------------------------------
@@ -332,14 +335,17 @@ class uvm_reg : public uvm_object
   virtual void add_field( uvm_reg_field* field );
 
 
+#if defined(ALLOW_NON_IEEE_1800_2_2020)
+ public:
+#endif
   virtual void add_map( uvm_reg_map* map );
+#if defined(ALLOW_NON_IEEE_1800_2_2020)
+ private:
+#endif
 
   void m_lock_model();
 
   // Implementation defined - Introspection
-
-  virtual uvm_reg_map* get_local_map( const uvm_reg_map* map,
-		  	  	  	  	  	  	      const std::string& caller = "" ) const;
 
   virtual uvm_reg_map* get_default_map( const std::string& caller = "" ) const;
 
