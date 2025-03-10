@@ -273,7 +273,7 @@ void ubus_bus_monitor::check_which_slave()
   auto trans_addr = trans_collected.addr;
   for (auto const &[name, slave]: slave_addr_map)
   {
-    if ((slave->get_min_addr() <= trans_addr) and
+    if ((slave->get_min_addr() <= trans_addr) &&
         (trans_addr <= slave->get_max_addr()))
     {
       trans_collected.slave = name;
@@ -282,7 +282,7 @@ void ubus_bus_monitor::check_which_slave()
     }
   }
 
-  if (not slave_found)
+  if (!slave_found)
   {
     std::ostringstream msg;
     msg
