@@ -335,7 +335,7 @@ template <typename REQ, typename RSP>
 bool uvm_sequencer<REQ,RSP>::try_next_item( REQ& req )
 {
   int selected_sequence;
-  sc_core::sc_time arb_time;
+  // sc_core::sc_time arb_time; // Variable is also unused in SystemVerilog reference implementation
   uvm_sequence_base* seq;
 
   if (get_next_item_called)
