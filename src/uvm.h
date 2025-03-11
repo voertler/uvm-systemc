@@ -20,6 +20,8 @@
 #ifndef UVM_H_
 #define UVM_H_
 
+#warning '#include <uvm.h>' is deprecated in favour of '#include <uvm>' and will be removed.
+
 // include some standard namespace (std) definitions
 
 #include <cassert>
