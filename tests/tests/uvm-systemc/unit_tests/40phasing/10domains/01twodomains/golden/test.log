@@ -1,0 +1,36 @@
+SystemC Simulation
+UVM_INFO @ 0 s: reporter [RNTST] Running test ...
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test1.l1 [run] Starting run
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test1.l2 [run] Starting run
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test1.l1 [reset] Starting reset
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test1.l2 [reset] Starting reset
+UVM_INFO <removed by verify-uvm.pl> @ 150 s: test1.l1 [reset] Ending reset
+UVM_INFO <removed by verify-uvm.pl> @ 150 s: test1.l1 [main] Starting main
+UVM_INFO <removed by verify-uvm.pl> @ 300 s: test1.l2 [reset] Ending reset
+UVM_INFO <removed by verify-uvm.pl> @ 300 s: test1.l1 [main] Ending main
+UVM_INFO <removed by verify-uvm.pl> @ 300 s: test1.l1 [shutdown] Starting shutdown
+UVM_INFO <removed by verify-uvm.pl> @ 300 s: test1.l2 [main] Starting main
+UVM_INFO <removed by verify-uvm.pl> @ 450 s: test1.l1 [shutdown] Ending shutdown
+UVM_INFO <removed by verify-uvm.pl> @ 600 s: test1.l2 [main] Ending main
+UVM_INFO <removed by verify-uvm.pl> @ 600 s: test1.l2 [shutdown] Starting shutdown
+UVM_INFO <removed by verify-uvm.pl> @ 900 s: test1.l2 [shutdown] Ending shutdown
+UVM_INFO <removed by verify-uvm.pl> @ 1000 s: test1.l1 [run] Ending run
+UVM_INFO <removed by verify-uvm.pl> @ 1500 s: test1.l2 [run] Ending run
+UVM_INFO <removed by verify-uvm.pl> @ 1500 s: test1.l2 [EXTRACT] Starting Extract
+UVM_INFO <removed by verify-uvm.pl> @ 1500 s: test1.l2 [EXTRACT] Ending Extract
+*** UVM TEST PASSED ***
+UVM_INFO <removed by verify-uvm.pl> @ 1500 s: reporter [UVM/REPORT/SERVER]
+--- UVM Report Summary ---
+** Report counts by severity
+UVM_INFO      :  19
+UVM_WARNING   :   0
+UVM_ERROR     :   0
+UVM_FATAL     :   0
+** Report counts by id
+[EXTRACT]               2
+[RNTST]                 1
+[main]                  4
+[reset]                 4
+[run]                   4
+[shutdown]              4
+UVM_INFO @ 1500 s: reporter [FINISH] UVM-SystemC phasing completed; simulation finished

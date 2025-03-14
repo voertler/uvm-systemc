@@ -1,0 +1,15 @@
+SystemC Simulation
+UVM_INFO @ 0 s: reporter [RNTST] Running test test...
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test [MSG1] Some message
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test [MSG2] Another message
+MY_SERVER: UVM_INFO <removed by verify-uvm.pl> @ 0 s: test [MSG1] Some message again
+MY_SERVER: UVM_INFO <removed by verify-uvm.pl> @ 0 s: test [MSG2] Another message again
+MY_SERVER: UVM_ERROR <removed by verify-uvm.pl> @ 0 s: test [EXPECTED] This is an expected error designed to test whether report_server that was set is used at end of sim.
+**** UVM TEST PASSED ****
+--- UVM Report Summary ---
+** Report counts by severity
+UVM_INFO :     5
+UVM_WARNING :  0
+UVM_ERROR :    1
+UVM_FATAL :    0
+MY_SERVER: UVM_INFO @ 0 s: reporter [FINISH] UVM-SystemC phasing completed; simulation finished

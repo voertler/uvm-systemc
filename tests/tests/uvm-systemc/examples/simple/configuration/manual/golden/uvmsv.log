@@ -1,0 +1,115 @@
+UVM_INFO <removed> @ 0: reporter [UVM/RELNOTES] 
+----------------------------------------------------------------
+UVM-1.2
+(C) 2007-2014 Mentor Graphics Corporation
+(C) 2007-2014 Cadence Design Systems, Inc.
+(C) 2006-2014 Synopsys, Inc.
+(C) 2011-2013 Cypress Semiconductor Corp.
+(C) 2013-2014 NVIDIA Corporation
+----------------------------------------------------------------
+
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_NO_DEPRECATED undefined.
+  See http://www.eda.org/svdb/view.php?id=3313 for more details.
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_OBJECT_DO_NOT_NEED_CONSTRUCTOR undefined.
+  See http://www.eda.org/svdb/view.php?id=3770 for more details.
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_WARNING <removed>  @ 0: reporter [UVM/RSRC/NOREGEX] a resource with meta characters in the field name has been created "myaa[foo]"
+UVM_WARNING <removed>  @ 0: reporter [UVM/RSRC/NOREGEX] a resource with meta characters in the field name has been created "myaa[bar]"
+UVM_WARNING <removed>  @ 0: reporter [UVM/RSRC/NOREGEX] a resource with meta characters in the field name has been created "myaa[foobar]"
+UVM_WARNING <removed>  @ 0: reporter [UVM/RSRC/NOREGEX] a resource with meta characters in the field name has been created "myaa[foo]"
+UVM_WARNING <removed>  @ 0: reporter [UVM/RSRC/NOREGEX] a resource with meta characters in the field name has been created "myaa[foobar]"
+UVM_INFO @ 0: reporter [RNTST] Running test ...
+topenv: In Build: debug = 0
+topenv.inst1: In Build: debug = 1
+topenv.inst2: In Build: debug = 1
+UVM_INFO <removed> @ 0: reporter [UVMTOP] UVM testbench topology:
+----------------------------------------------------
+Name                  Type              Size  Value 
+----------------------------------------------------
+topenv                my_env            -     @1852 
+  inst1               A                 -     @1951 
+    u1                C                 -     @2025 
+      v               integral          32    'h1e  
+      s               integral          32    'h10  
+      myaa            aa_string_string  3     -     
+        myaa[bar]     string            3     bye   
+        myaa[foo]     string            3     boo   
+        myaa[foobar]  string            6     boobah
+    u2                C                 -     @2021 
+      v               integral          32    'h5   
+      s               integral          32    'h10  
+      myaa            aa_string_string  3     -     
+        myaa[bar]     string            3     bye   
+        myaa[foo]     string            2     hi    
+        myaa[foobar]  string            5     howdy 
+    debug             integral          1     'h1   
+  inst2               B                 -     @1927 
+    u1                C                 -     @2110 
+      v               integral          32    'ha   
+      s               integral          32    'h0   
+      myaa            aa_string_string  3     -     
+        myaa[bar]     string            3     bye   
+        myaa[foo]     string            2     hi    
+        myaa[foobar]  string            5     howdy 
+    debug             integral          1     'h1   
+  debug               integral          1     'h0   
+----------------------------------------------------
+
+UVM_INFO <removed> @ 0: reporter [UVMTOP] UVM testbench topology:
+----------------------------------------------------
+Name                  Type              Size  Value 
+----------------------------------------------------
+topenv                my_env            -     @1852 
+  inst1               A                 -     @1951 
+    u1                C                 -     @2025 
+      v               integral          32    'h1e  
+      s               integral          32    'h10  
+      myaa            aa_string_string  3     -     
+        myaa[bar]     string            3     bye   
+        myaa[foo]     string            3     boo   
+        myaa[foobar]  string            6     boobah
+    u2                C                 -     @2021 
+      v               integral          32    'h5   
+      s               integral          32    'h10  
+      myaa            aa_string_string  3     -     
+        myaa[bar]     string            3     bye   
+        myaa[foo]     string            2     hi    
+        myaa[foobar]  string            5     howdy 
+    debug             integral          1     'h1   
+  inst2               B                 -     @1927 
+    u1                C                 -     @2110 
+      v               integral          32    'ha   
+      s               integral          32    'h0   
+      myaa            aa_string_string  3     -     
+        myaa[bar]     string            3     bye   
+        myaa[foo]     string            2     hi    
+        myaa[foobar]  string            5     howdy 
+    debug             integral          1     'h1   
+  debug               integral          1     'h0   
+----------------------------------------------------
+
+UVM_INFO <removed> @ 10: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+UVM_INFO <removed>  @ 10: reporter [UVM/REPORT/SERVER] 
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :    5
+UVM_WARNING :    5
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[RNTST]     1
+[TEST_DONE]     1
+[UVM/RELNOTES]     1
+[UVM/RSRC/NOREGEX]     5
+[UVMTOP]     2
+
+Simulation complete via $finish(1) at time 10 NS + 58
+

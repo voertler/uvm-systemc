@@ -1,0 +1,106 @@
+SystemC Simulation
+content before packing:
+------------------------------
+Name     Type    Size  Value
+------------------------------
+packet1  packet  -     @<removed by verify-uvm.pl>
+  data   int     64    0x12
+  s      string  3     bla
+  addr   int     64    0x100
+  real   double  64    1.07967
+  time   double  64    0.0011
+  o      myobj   -     @<removed by verify-uvm.pl>
+    a    int     64    0x1
+    b    int     64    0x2
+------------------------------
+------------------------------
+Name     Type    Size  Value
+------------------------------
+packet2  packet  -     @<removed by verify-uvm.pl>
+  data   int     64    0x0
+  s      string  0     ""
+  addr   int     64    0x0
+  real   double  64    0
+  time   double  64    0
+  o      myobj   -     @<removed by verify-uvm.pl>
+    a    int     64    0x0
+    b    int     64    0x0
+------------------------------
+start packing...
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [PCKFLDINT] uvm_packer::pack_field_int 0x12, length = 40
+pack_index = 40
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [PCKCHR] uvm_packer::pack_char -> b
+pack_index = 72
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [PCKCHR] uvm_packer::pack_char -> l
+pack_index = 80
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [PCKCHR] uvm_packer::pack_char -> a
+pack_index = 88
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [PCKCHR] uvm_packer::pack_char ->
+pack_index = 96
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [PCKSTR] uvm_packer::pack_string 'bla'
+pack_index = 96
+use_metadata = true
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [PCKFLDINT] uvm_packer::pack_field_int 0x100, length = 40
+pack_index = a0
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [PCKFLDINT] uvm_packer::pack_field_int 0x14654, length = 40
+pack_index = e0
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [PCKFLDINT] uvm_packer::pack_field_int 0x7f601a36e2f205bc, length = 40
+pack_index = 120
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [PCKTIME] uvm_packer::pack_time0.0011
+pack_index = 288
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [PCKFLDINT] uvm_packer::pack_field_int 0x1, length = 40
+pack_index = 164
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [PCKFLDINT] uvm_packer::pack_field_int 0x2, length = 40
+pack_index = 1a4
+Size of packet int vectors: 14
+start unpacking...
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [UNPCKFLDINT] uvm_packer::unpack_field_int 0x12, length = 40
+unpack_index = 40
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [UNPCKSTR] uvm_packer::unpack_char -> b
+unpack_index = 72
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [UNPCKSTR] uvm_packer::unpack_char -> l
+unpack_index = 80
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [UNPCKSTR] uvm_packer::unpack_char -> a
+unpack_index = 88
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [UNPCKSTR] uvm_packer::unpack_string 'bla'
+unpack_index = 96
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [UNPCKFLDINT] uvm_packer::unpack_field_int 0x100, length = 40
+unpack_index = a0
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [UNPCKFLDINT] uvm_packer::unpack_field_int 0x14654, length = 40
+unpack_index = e0
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [UNPCKFLDINT] uvm_packer::unpack_field_int 0x7f601a36e2f205bc, length = 40
+unpack_index = 120
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [UNPCKTIME] uvm_packer::unpack_time1100 us
+pack_index = 448
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [UNPCKFLDINT] uvm_packer::unpack_field_int 0x1, length = 40
+unpack_index = 164
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [UNPCKFLDINT] uvm_packer::unpack_field_int 0x2, length = 40
+unpack_index = 1a4
+content after unpacking:
+------------------------------
+Name     Type    Size  Value
+------------------------------
+packet1  packet  -     @<removed by verify-uvm.pl>
+  data   int     64    0x12
+  s      string  3     bla
+  addr   int     64    0x100
+  real   double  64    1.07967
+  time   double  64    0.0011
+  o      myobj   -     @<removed by verify-uvm.pl>
+    a    int     64    0x1
+    b    int     64    0x2
+------------------------------
+------------------------------
+Name     Type    Size  Value
+------------------------------
+packet2  packet  -     @<removed by verify-uvm.pl>
+  data   int     64    0x12
+  s      string  3     bla
+  addr   int     64    0x100
+  real   double  64    1.07967
+  time   double  64    0.0011
+  o      myobj   -     @<removed by verify-uvm.pl>
+    a    int     64    0x1
+    b    int     64    0x2
+------------------------------
+packet1 and packet2 are the same.

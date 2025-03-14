@@ -1,0 +1,67 @@
+UVM_INFO <removed> @ 0: reporter [UVM/RELNOTES] 
+----------------------------------------------------------------
+UVM-1.2
+(C) 2007-2014 Mentor Graphics Corporation
+(C) 2007-2014 Cadence Design Systems, Inc.
+(C) 2006-2014 Synopsys, Inc.
+(C) 2011-2013 Cypress Semiconductor Corp.
+(C) 2013-2014 NVIDIA Corporation
+----------------------------------------------------------------
+
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_NO_DEPRECATED undefined.
+  See http://www.eda.org/svdb/view.php?id=3313 for more details.
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_OBJECT_DO_NOT_NEED_CONSTRUCTOR undefined.
+  See http://www.eda.org/svdb/view.php?id=3770 for more details.
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_INFO @ 0: reporter [RNTST] Running test test...
+UVM_INFO test.sv(41) @ 0: uvm_test_top.pc [passive_comp] main thread started...
+                   0   top.passive_comp.main_phase busy
+UVM_INFO test.sv(76) @ 0: uvm_test_top.ac [active_comp] main thread started...
+                   0 top.active_comp.main_phase raising
+                   7 top.active_comp.main_phase dropping
+UVM_INFO test.sv(82) @ 7: uvm_test_top.ac [active_comp] main thread completed...
+                   7   top.passive_comp.phase_ready_to_end ready_to_end iter=1
+                   7   top.passive_comp.phase_ready_to_end re-raised
+                   7 top.active_comp.phase_ready_to_end raising
+                  10   top.passive_comp.main_phase not busy
+UVM_INFO test.sv(52) @ 10: uvm_test_top.pc [passive_comp] main thread completed...
+                  14 top.active_comp.phase_ready_to_end dropping
+                  14   top.passive_comp.phase_ready_to_end ready_to_end iter=2
+UVM_INFO test.sv(98) @ 14: uvm_test_top.ac [EXTRACT START] extract phase started...
+** UVM TEST PASSED **
+UVM_INFO <removed> @ 14: reporter [UVM/REPORT/CATCHER] 
+--- UVM Report catcher Summary ---
+
+
+Number of demoted UVM_FATAL reports  :    0
+Number of demoted UVM_ERROR reports  :    0
+Number of demoted UVM_WARNING reports:    0
+Number of caught UVM_FATAL reports   :    0
+Number of caught UVM_ERROR reports   :    0
+Number of caught UVM_WARNING reports :    0
+
+UVM_INFO <removed> @ 14: reporter [UVM/REPORT/SERVER] 
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :    8
+UVM_WARNING :    0
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[EXTRACT START]     1
+[RNTST]     1
+[UVM/RELNOTES]     1
+[UVM/REPORT/CATCHER]     1
+[active_comp]     2
+[passive_comp]     2
+
+Simulation complete via $finish(1) at time 14 NS + 104
+

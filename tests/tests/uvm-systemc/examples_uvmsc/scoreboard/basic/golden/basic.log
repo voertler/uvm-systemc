@@ -1,0 +1,130 @@
+SystemC Simulation
+0 s: constructor tb
+UVM_INFO @ 0 s: reporter [RNTST] Running test ...
+0 s: build_phase tb
+0 s: constructor agent1
+0 s: constructor agent2
+0 s: constructor scoreboard0
+0 s: build_phase tb.agent1
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: tb.agent1 [agent1] is set to UVM_ACTIVE
+0 s: constructor sequencer
+0 s: build_phase tb.agent1.driver
+0 s: build_phase tb.agent1.monitor
+0 s: build_phase tb.agent2
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: tb.agent2 [agent2] is set to UVM_PASSIVE
+0 s: build_phase tb.agent2.monitor
+0 s: build_phase tb.scoreboard0
+0 s: constructor xmt_listener
+0 s: constructor rcv_listener
+0 s: connect_phase tb.agent1
+0 s: connect_phase tb.agent2
+0 s: connect_phase tb
+0 s: my_dut received value 0
+0 s: my_dut send value 1
+0 s: constructor sequence<REQ,RSP>
+0 s: tb.agent1.driver run...
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: tb.agent1.sequencer@@sequence<REQ,RSP> [sequence<REQ,RSP>] Starting sequence
+0 s: tb.agent1.sequencer.sequence<REQ,RSP> start_item value 1
+0 s: tb.agent1.driver sending value 1
+0 s: my_dut received value 1
+0 s: my_dut send value 2
+0 s: tb.agent1.monitor received 1
+0 s: tb.scoreboard0.rcv_listener received value 1
+0 s: tb.scoreboard0 rcv_listener in scoreboard received value 1
+0 s: tb.agent2.monitor received 2
+0 s: tb.scoreboard0.rcv_listener received value 2
+0 s: tb.scoreboard0 rcv_listener in scoreboard received value 2
+10 ns: tb.agent1.sequencer.sequence<REQ,RSP> start_item value 2
+10 ns: tb.agent1.driver sending value 2
+10 ns: my_dut received value 2
+10 ns: my_dut send value 3
+10 ns: tb.agent1.monitor received 2
+10 ns: tb.scoreboard0.rcv_listener received value 2
+10 ns: tb.scoreboard0 rcv_listener in scoreboard received value 2
+10 ns: tb.agent2.monitor received 3
+10 ns: tb.scoreboard0.rcv_listener received value 3
+10 ns: tb.scoreboard0 rcv_listener in scoreboard received value 3
+20 ns: tb.agent1.sequencer.sequence<REQ,RSP> start_item value 3
+20 ns: tb.agent1.driver sending value 3
+20 ns: my_dut received value 3
+20 ns: my_dut send value 4
+20 ns: tb.agent1.monitor received 3
+20 ns: tb.scoreboard0.rcv_listener received value 3
+20 ns: tb.scoreboard0 rcv_listener in scoreboard received value 3
+20 ns: tb.agent2.monitor received 4
+20 ns: tb.scoreboard0.rcv_listener received value 4
+20 ns: tb.scoreboard0 rcv_listener in scoreboard received value 4
+30 ns: tb.agent1.sequencer.sequence<REQ,RSP> start_item value 4
+30 ns: tb.agent1.driver sending value 4
+30 ns: my_dut received value 4
+30 ns: my_dut send value 5
+30 ns: tb.agent1.monitor received 4
+30 ns: tb.scoreboard0.rcv_listener received value 4
+30 ns: tb.scoreboard0 rcv_listener in scoreboard received value 4
+30 ns: tb.agent2.monitor received 5
+30 ns: tb.scoreboard0.rcv_listener received value 5
+30 ns: tb.scoreboard0 rcv_listener in scoreboard received value 5
+40 ns: tb.agent1.sequencer.sequence<REQ,RSP> start_item value 5
+40 ns: tb.agent1.driver sending value 5
+40 ns: my_dut received value 5
+40 ns: my_dut send value 6
+40 ns: tb.agent1.monitor received 5
+40 ns: tb.scoreboard0.rcv_listener received value 5
+40 ns: tb.scoreboard0 rcv_listener in scoreboard received value 5
+40 ns: tb.agent2.monitor received 6
+40 ns: tb.scoreboard0.rcv_listener received value 6
+40 ns: tb.scoreboard0 rcv_listener in scoreboard received value 6
+50 ns: tb.agent1.sequencer.sequence<REQ,RSP> start_item value 6
+50 ns: tb.agent1.driver sending value 6
+50 ns: my_dut received value 6
+50 ns: my_dut send value 7
+50 ns: tb.agent1.monitor received 6
+50 ns: tb.scoreboard0.rcv_listener received value 6
+50 ns: tb.scoreboard0 rcv_listener in scoreboard received value 6
+50 ns: tb.agent2.monitor received 7
+50 ns: tb.scoreboard0.rcv_listener received value 7
+50 ns: tb.scoreboard0 rcv_listener in scoreboard received value 7
+60 ns: tb.agent1.sequencer.sequence<REQ,RSP> start_item value 7
+60 ns: tb.agent1.driver sending value 7
+60 ns: my_dut received value 7
+60 ns: my_dut send value 8
+60 ns: tb.agent1.monitor received 7
+60 ns: tb.scoreboard0.rcv_listener received value 7
+60 ns: tb.scoreboard0 rcv_listener in scoreboard received value 7
+60 ns: tb.agent2.monitor received 8
+60 ns: tb.scoreboard0.rcv_listener received value 8
+60 ns: tb.scoreboard0 rcv_listener in scoreboard received value 8
+70 ns: tb.agent1.sequencer.sequence<REQ,RSP> start_item value 8
+70 ns: tb.agent1.driver sending value 8
+70 ns: my_dut received value 8
+70 ns: my_dut send value 9
+70 ns: tb.agent1.monitor received 8
+70 ns: tb.scoreboard0.rcv_listener received value 8
+70 ns: tb.scoreboard0 rcv_listener in scoreboard received value 8
+70 ns: tb.agent2.monitor received 9
+70 ns: tb.scoreboard0.rcv_listener received value 9
+70 ns: tb.scoreboard0 rcv_listener in scoreboard received value 9
+80 ns: tb.agent1.sequencer.sequence<REQ,RSP> start_item value 9
+80 ns: tb.agent1.driver sending value 9
+80 ns: my_dut received value 9
+80 ns: my_dut send value 10
+80 ns: tb.agent1.monitor received 9
+80 ns: tb.scoreboard0.rcv_listener received value 9
+80 ns: tb.scoreboard0 rcv_listener in scoreboard received value 9
+80 ns: tb.agent2.monitor received 10
+80 ns: tb.scoreboard0.rcv_listener received value 10
+80 ns: tb.scoreboard0 rcv_listener in scoreboard received value 10
+UVM_INFO <removed by verify-uvm.pl> @ 90 ns: tb.agent1.sequencer@@sequence<REQ,RSP> [sequence<REQ,RSP>] Finishing sequence
+UVM_INFO <removed by verify-uvm.pl> @ 90 ns: reporter [UVM/REPORT/SERVER]
+--- UVM Report Summary ---
+** Report counts by severity
+UVM_INFO      :   5
+UVM_WARNING   :   0
+UVM_ERROR     :   0
+UVM_FATAL     :   0
+** Report counts by id
+[RNTST]                 1
+[agent1]                1
+[agent2]                1
+[sequence<REQ,RSP>]     2
+UVM_INFO @ 90 ns: reporter [FINISH] UVM-SystemC phasing completed; simulation finished

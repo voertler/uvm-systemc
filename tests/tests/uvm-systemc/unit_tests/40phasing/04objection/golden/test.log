@@ -1,0 +1,59 @@
+SystemC Simulation
+UVM_INFO @ 0 s: reporter [RNTST] Running test ...
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test1 [BUILD] Starting Build
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test1 [BUILD] Ending Build
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test1.l1 [BUILD] Starting Build
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test1.l1 [BUILD] Ending Build
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test1.l2 [BUILD] Starting Build
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test1.l2 [BUILD] Ending Build
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test1.l1 [RUN] Starting Run
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test1.l2 [RUN] Starting Run
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test1 [TEST_RUN] Setting up objections to certain phases
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test1 [do_phase_test] Phase reset objection raised. Wait for phase to be started...
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test1 [do_phase_test] Phase configure objection raised. Wait for phase to be started...
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test1 [do_phase_test] Phase main objection raised. Wait for phase to be started...
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test1 [do_phase_test] Phase reset started, now wait for 1000ms...
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test1.l1 [RESET] Starting Reset
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test1.l2 [RESET] Starting Reset
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: test1 [RESET] Starting Reset
+UVM_INFO <removed by verify-uvm.pl> @ 100 ms: test1.l1 [RUN] Ending Run
+UVM_INFO <removed by verify-uvm.pl> @ 100 ms: test1 [RESET] Ending Reset
+UVM_INFO <removed by verify-uvm.pl> @ 100 ms: test1.l2 [RUN] Ending Run
+UVM_INFO <removed by verify-uvm.pl> @ 100 ms: test1.l1 [RESET] Ending Reset
+UVM_INFO <removed by verify-uvm.pl> @ 100 ms: test1.l2 [RESET] Ending Reset
+UVM_INFO <removed by verify-uvm.pl> @ 1 s: test1 [do_phase_test] Phase reset objection dropped
+UVM_INFO <removed by verify-uvm.pl> @ 1 s: test1 [do_phase_test] Phase configure started, now wait for 1000ms...
+UVM_INFO <removed by verify-uvm.pl> @ 2 s: test1 [do_phase_test] Phase configure objection dropped
+UVM_INFO <removed by verify-uvm.pl> @ 2 s: test1 [do_phase_test] Phase main started, now wait for 1000ms...
+UVM_INFO <removed by verify-uvm.pl> @ 2 s: test1.l1 [MAIN] Starting Main
+UVM_INFO <removed by verify-uvm.pl> @ 2 s: test1.l2 [MAIN] Starting Main
+UVM_INFO <removed by verify-uvm.pl> @ 2 s: test1 [MAIN] Starting Main
+UVM_INFO <removed by verify-uvm.pl> @ 2100 ms: test1.l1 [MAIN] Ending Main
+UVM_INFO <removed by verify-uvm.pl> @ 2100 ms: test1 [MAIN] Ending Main
+UVM_INFO <removed by verify-uvm.pl> @ 2100 ms: test1.l2 [MAIN] Ending Main
+UVM_INFO <removed by verify-uvm.pl> @ 3 s: test1 [do_phase_test] Phase main objection dropped
+UVM_INFO <removed by verify-uvm.pl> @ 3 s: test1 [TEST_RUN] Ending run phase
+UVM_INFO <removed by verify-uvm.pl> @ 3 s: test1.l1 [EXTRACT] Starting Extract
+UVM_INFO <removed by verify-uvm.pl> @ 3 s: test1.l1 [EXTRACT] Ending Extract
+UVM_INFO <removed by verify-uvm.pl> @ 3 s: test1.l2 [EXTRACT] Starting Extract
+UVM_INFO <removed by verify-uvm.pl> @ 3 s: test1.l2 [EXTRACT] Ending Extract
+UVM_INFO <removed by verify-uvm.pl> @ 3 s: test1 [EXTRACT] Starting Extract
+UVM_INFO <removed by verify-uvm.pl> @ 3 s: test1 [EXTRACT] Ending Extract
+*** UVM TEST PASSED ***
+UVM_INFO <removed by verify-uvm.pl> @ 3 s: reporter [UVM/REPORT/SERVER]
+--- UVM Report Summary ---
+** Report counts by severity
+UVM_INFO      :  40
+UVM_WARNING   :   0
+UVM_ERROR     :   0
+UVM_FATAL     :   0
+** Report counts by id
+[BUILD]                 6
+[EXTRACT]               6
+[MAIN]                  6
+[RESET]                 6
+[RNTST]                 1
+[RUN]                   4
+[TEST_RUN]              2
+[do_phase_test]         9
+UVM_INFO @ 3 s: reporter [FINISH] UVM-SystemC phasing completed; simulation finished

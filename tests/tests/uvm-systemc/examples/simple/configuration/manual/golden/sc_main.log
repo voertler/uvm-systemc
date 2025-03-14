@@ -1,0 +1,65 @@
+SystemC Simulation
+UVM_INFO @ 0 s: reporter [RNTST] Running test ...
+topenv: In Build: debug = 0
+topenv.inst1: In Build: debug = 1
+topenv.inst2: In Build: debug = 1
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [UVMTOP] UVM testbench topology:
+----------------------------------------------------
+Name                  Type              Size  Value
+----------------------------------------------------
+topenv                my_env            -     @<removed by verify-uvm.pl>
+  inst1               A                 -     @<removed by verify-uvm.pl>
+    u1                C                 -     @<removed by verify-uvm.pl>
+      v               int               32    0x1e
+      s               int               32    0x10
+      myaa            aa_string_string  3     -
+        myaa[bar]     string            3     bye
+        myaa[foo]     string            3     boo
+        myaa[foobar]  string            6     boobah
+    u2                C                 -     @<removed by verify-uvm.pl>
+      v               int               32    0x5
+      s               int               32    0x10
+      myaa            aa_string_string  3     -
+        myaa[bar]     string            3     bye
+        myaa[foo]     string            2     hi
+        myaa[foobar]  string            5     howdy
+    debug             int               32    0x1
+  inst2               B                 -     @<removed by verify-uvm.pl>
+    u1                C                 -     @<removed by verify-uvm.pl>
+      v               int               32    0xa
+      s               int               32    0x0
+      myaa            aa_string_string  3     -
+        myaa[bar]     string            3     bye
+        myaa[foo]     string            2     hi
+        myaa[foobar]  string            5     howdy
+    debug             int               32    0x1
+  debug               int               32    0x0
+----------------------------------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 10 ms: reporter [UVM/RESOURCE/DUMP]
+=== resource pool ===
+ debug [/^topenv\..*$/] : (int) 1
+ myaa[bar] [/^.*$/] : (std::string) bye
+ myaa[foo] [/^topenv\.inst1\.u1$/] : (std::string) boo
+ myaa[foo] [/^.*$/] : (std::string) hi
+ myaa[foobar] [/^topenv\.inst1\.u1$/] : (std::string) boobah
+ myaa[foobar] [/^.*$/] : (std::string) howdy
+ s [/^topenv\.inst1\..*$/] : (int) 16
+ v [/^topenv\.inst2\.u1$/] : (int) 0
+ v [/^topenv\.inst1\..*$/] : (int) 0
+ v [/^topenv\.inst2\.u1$/] : (int) 3
+ v [/^topenv\.inst1\.u2$/] : (int) 5
+ v [/^topenv\.inst2\.u1$/] : (int) 10
+ v [/^topenv\..*\.u1$/] : (int) 30
+UVM_INFO <removed by verify-uvm.pl> @ 10 ms: reporter [UVM/RESOURCE/DUMP] === end of resource pool ===
+UVM_INFO <removed by verify-uvm.pl> @ 10 ms: reporter [UVM/REPORT/SERVER]
+--- UVM Report Summary ---
+** Report counts by severity
+UVM_INFO      :   4
+UVM_WARNING   :   0
+UVM_ERROR     :   0
+UVM_FATAL     :   0
+** Report counts by id
+[RNTST]                 1
+[UVM/RESOURCE/DUMP]     2
+[UVMTOP]                1
+UVM_INFO @ 10 ms: reporter [FINISH] UVM-SystemC phasing completed; simulation finished

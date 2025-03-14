@@ -1,0 +1,291 @@
+UVM_INFO <removed> @ 0: reporter [UVM/RELNOTES] 
+----------------------------------------------------------------
+UVM-1.2
+(C) 2007-2014 Mentor Graphics Corporation
+(C) 2007-2014 Cadence Design Systems, Inc.
+(C) 2006-2014 Synopsys, Inc.
+(C) 2011-2013 Cypress Semiconductor Corp.
+(C) 2013-2014 NVIDIA Corporation
+----------------------------------------------------------------
+
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_NO_DEPRECATED undefined.
+  See http://www.eda.org/svdb/view.php?id=3313 for more details.
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_OBJECT_DO_NOT_NEED_CONSTRUCTOR undefined.
+  See http://www.eda.org/svdb/view.php?id=3770 for more details.
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_INFO <removed> @ 0: reporter [top] In top initial block
+UVM_INFO @ 0: reporter [RNTST] Running test ...
+UVM_INFO <removed> @ 0: env.sequence_controller [PHASESEQ] No default phase sequence for phase 'run'
+UVM_INFO <removed> @ 0: env.sequence_controller@@sequence [sequenceA] Starting sequence
+UVM_INFO <removed> @ 0: env.sequence_controller@@sequence [sequenceA] Starting sequence
+UVM_INFO <removed> @ 0: env.sequence_controller@@sequence [sequenceA] Starting sequence
+UVM_INFO <removed> @ 0: env.sequence_controller@@sequence [sequenceA] Starting sequence
+UVM_INFO <removed> @ 0: env.sequence_controller@@sequence [sequenceA] Starting sequence
+UVM_INFO <removed> @ 0: env.sequence_controller@@sequence [sequenceA] Starting sequence
+UVM_INFO <removed> @ 0: env.sequence_controller@@sequence [sequenceA] Starting sequence
+UVM_INFO <removed> @ 0: env.sequence_controller@@sequence [sequenceA] Starting sequence
+UVM_INFO <removed> @ 0: env.sequence_controller@@sequence [sequenceA] Starting sequence
+UVM_INFO <removed> @ 0: env.sequence_controller@@sequence [sequenceA] Starting sequence
+UVM_INFO <removed> @ 0: env.sequence_controller [PHASESEQ] No default phase sequence for phase 'pre_reset'
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=00a, data=38
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=014, data=39
+UVM_INFO <removed> @ 0: env.sequence_controller [PHASESEQ] No default sequence to kill for phase 'pre_reset'
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=01e, data=3a
+UVM_INFO <removed> @ 0: env.sequence_controller [PHASESEQ] No default phase sequence for phase 'reset'
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=028, data=3b
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=032, data=3c
+UVM_INFO <removed> @ 0: env.sequence_controller [PHASESEQ] No default sequence to kill for phase 'reset'
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=03c, data=3d
+UVM_INFO <removed> @ 0: env.sequence_controller [PHASESEQ] No default phase sequence for phase 'post_reset'
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=046, data=3e
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=050, data=3f
+UVM_INFO <removed> @ 0: env.sequence_controller [PHASESEQ] No default sequence to kill for phase 'post_reset'
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=05a, data=40
+UVM_INFO <removed> @ 0: env.sequence_controller [PHASESEQ] No default phase sequence for phase 'pre_configure'
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=064, data=41
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=00a, data=38, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.sequence_controller [PHASESEQ] No default sequence to kill for phase 'pre_configure'
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=014, data=39, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.sequence_controller [PHASESEQ] No default phase sequence for phase 'configure'
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=01e, data=3a, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=028, data=3b, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.sequence_controller [PHASESEQ] No default sequence to kill for phase 'configure'
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=032, data=3c, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.sequence_controller [PHASESEQ] No default phase sequence for phase 'post_configure'
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=03c, data=3d, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=046, data=3e, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.sequence_controller [PHASESEQ] No default sequence to kill for phase 'post_configure'
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=050, data=3f, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.sequence_controller [PHASESEQ] No default phase sequence for phase 'pre_main'
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=05a, data=40, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=064, data=41, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.sequence_controller [PHASESEQ] No default sequence to kill for phase 'pre_main'
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=00b, data=39
+UVM_INFO <removed> @ 0: env.sequence_controller [PHASESEQ] No default phase sequence for phase 'main'
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=015, data=3a
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=01f, data=3b
+UVM_INFO <removed> @ 0: env.sequence_controller [PHASESEQ] No default sequence to kill for phase 'main'
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=029, data=3c
+UVM_INFO <removed> @ 0: env.sequence_controller [PHASESEQ] No default phase sequence for phase 'post_main'
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=033, data=3d
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=03d, data=3e
+UVM_INFO <removed> @ 0: env.sequence_controller [PHASESEQ] No default sequence to kill for phase 'post_main'
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=047, data=3f
+UVM_INFO <removed> @ 0: env.sequence_controller [PHASESEQ] No default phase sequence for phase 'pre_shutdown'
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=051, data=40
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=05b, data=41
+UVM_INFO <removed> @ 0: env.sequence_controller [PHASESEQ] No default sequence to kill for phase 'pre_shutdown'
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=065, data=42
+UVM_INFO <removed> @ 0: env.sequence_controller [PHASESEQ] No default phase sequence for phase 'shutdown'
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=00b, data=39, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=015, data=3a, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.sequence_controller [PHASESEQ] No default sequence to kill for phase 'shutdown'
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=01f, data=3b, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.sequence_controller [PHASESEQ] No default phase sequence for phase 'post_shutdown'
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=029, data=3c, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=033, data=3d, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=03d, data=3e, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=047, data=3f, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=051, data=40, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=05b, data=41, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=065, data=42, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=00c, data=3a
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=016, data=3b
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=020, data=3c
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=02a, data=3d
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=034, data=3e
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=03e, data=3f
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=048, data=40
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=052, data=41
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=05c, data=42
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=066, data=43
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=00c, data=3a, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=016, data=3b, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=020, data=3c, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=02a, data=3d, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=034, data=3e, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=03e, data=3f, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=048, data=40, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=052, data=41, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=05c, data=42, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=066, data=43, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=00d, data=3b
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=017, data=3c
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=021, data=3d
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=02b, data=3e
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=035, data=3f
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=03f, data=40
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=049, data=41
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=053, data=42
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=05d, data=43
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=067, data=44
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=00d, data=3b, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=017, data=3c, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=021, data=3d, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=02b, data=3e, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=035, data=3f, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=03f, data=40, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=049, data=41, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=053, data=42, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=05d, data=43, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=067, data=44, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=00e, data=3c
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=018, data=3d
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=022, data=3e
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=02c, data=3f
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=036, data=40
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=040, data=41
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=04a, data=42
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=054, data=43
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=05e, data=44
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=068, data=45
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=00e, data=3c, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=018, data=3d, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=022, data=3e, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=02c, data=3f, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=036, data=40, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=040, data=41, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=04a, data=42, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=054, data=43, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=05e, data=44, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=068, data=45, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=00f, data=3d
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=019, data=3e
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=023, data=3f
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=02d, data=40
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=037, data=41
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=041, data=42
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=04b, data=43
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=055, data=44
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=05f, data=45
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=069, data=46
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=00f, data=3d, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=019, data=3e, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=023, data=3f, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=02d, data=40, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=037, data=41, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=041, data=42, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=04b, data=43, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=055, data=44, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=05f, data=45, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=069, data=46, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=010, data=3e
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=01a, data=3f
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=024, data=40
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=02e, data=41
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=038, data=42
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=042, data=43
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=04c, data=44
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=056, data=45
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=060, data=46
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=06a, data=47
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=010, data=3e, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=01a, data=3f, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=024, data=40, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=02e, data=41, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=038, data=42, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=042, data=43, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=04c, data=44, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=056, data=45, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=060, data=46, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=06a, data=47, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=011, data=3f
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=01b, data=40
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=025, data=41
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=02f, data=42
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=039, data=43
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=043, data=44
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=04d, data=45
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=057, data=46
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=061, data=47
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=06b, data=48
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=011, data=3f, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=01b, data=40, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=025, data=41, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=02f, data=42, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=039, data=43, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=043, data=44, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=04d, data=45, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=057, data=46, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=061, data=47, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=06b, data=48, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=012, data=40
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=01c, data=41
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=026, data=42
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=030, data=43
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=03a, data=44
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=044, data=45
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=04e, data=46
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=058, data=47
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=062, data=48
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=06c, data=49
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=012, data=40, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=01c, data=41, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=026, data=42, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=030, data=43, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=03a, data=44, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=044, data=45, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=04e, data=46, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=058, data=47, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=062, data=48, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=06c, data=49, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=013, data=41
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=01d, data=42
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=027, data=43
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=031, data=44
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=03b, data=45
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=045, data=46
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=04f, data=47
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=059, data=48
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=063, data=49
+UVM_INFO <removed> @ 0: env.my_driver [sending] op BUS_WRITE: addr=06d, data=4a
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=013, data=41, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.sequence_controller@@sequence [sequenceA] Finishing sequence
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=01d, data=42, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.sequence_controller@@sequence [sequenceA] Finishing sequence
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=027, data=43, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.sequence_controller@@sequence [sequenceA] Finishing sequence
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=031, data=44, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.sequence_controller@@sequence [sequenceA] Finishing sequence
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=03b, data=45, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.sequence_controller@@sequence [sequenceA] Finishing sequence
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=045, data=46, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.sequence_controller@@sequence [sequenceA] Finishing sequence
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=04f, data=47, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.sequence_controller@@sequence [sequenceA] Finishing sequence
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=059, data=48, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.sequence_controller@@sequence [sequenceA] Finishing sequence
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=063, data=49, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.sequence_controller@@sequence [sequenceA] Finishing sequence
+UVM_INFO <removed> @ 0: env.my_driver [sending] op op BUS_READ: addr=06d, data=4a, status=STATUS_OK
+UVM_INFO <removed> @ 0: env.sequence_controller@@sequence [sequenceA] Finishing sequence
+UVM_INFO <removed> @ 0: reporter [TEST_DONE] All end-of-test objections have been dropped. Calling stop tasks
+UVM_INFO <removed> @ 0: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+UVM_INFO <removed> @ 0: env.sequence_controller [PHASESEQ] No default sequence to kill for phase 'run'
+UVM_INFO <removed> @ 0: env.sequence_controller [PHASESEQ] No default sequence to kill for phase 'post_shutdown'
+UVM_INFO <removed> @ 0: reporter [UVM/REPORT/SERVER] 
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :  251
+UVM_WARNING :    0
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[PHASESEQ]    26
+[RNTST]     1
+[TEST_DONE]     2
+[UVM/RELNOTES]     1
+[sending]   200
+[sequenceA]    20
+[top]     1
+
+Simulation complete via $finish(1) at time 0 FS + 442
+

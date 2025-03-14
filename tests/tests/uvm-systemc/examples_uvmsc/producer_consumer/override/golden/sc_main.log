@@ -1,0 +1,97 @@
+SystemC Simulation
+UVM_INFO @ 0 s: reporter [RNTST] Running test ...
+in producer ctor, in_file is ./override/stimulus.txt
+UVM_INFO <removed by verify-uvm.pl> @ 10 ns: topenv.parent_component.producer [topenv.parent_component.producer] Producer sending 16
+UVM_INFO <removed by verify-uvm.pl> @ 10 ns: topenv.parent_component.consumer [topenv.parent_component.consumer] fifo_consumer received: 16
+UVM_INFO <removed by verify-uvm.pl> @ 15 ns: topenv.parent_component.consumer [topenv.parent_component.consumer] fifo_consumer putting to fifo: 16
+UVM_INFO <removed by verify-uvm.pl> @ 15 ns: topenv.parent_component.consumer [topenv.parent_component.consumer] fifo_consumer got from fifo: 16
+-----------------------------
+Name      Type    Size  Value
+-----------------------------
+packet-0  packet  -     @<removed by verify-uvm.pl>
+  data    int     64    0x10
+-----------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 25 ns: topenv.parent_component.producer [topenv.parent_component.producer] Producer sending 19
+UVM_INFO <removed by verify-uvm.pl> @ 25 ns: topenv.parent_component.consumer [topenv.parent_component.consumer] fifo_consumer received: 19
+UVM_INFO <removed by verify-uvm.pl> @ 30 ns: topenv.parent_component.consumer [topenv.parent_component.consumer] fifo_consumer putting to fifo: 19
+UVM_INFO <removed by verify-uvm.pl> @ 30 ns: topenv.parent_component.consumer [topenv.parent_component.consumer] fifo_consumer got from fifo: 19
+-----------------------------
+Name      Type    Size  Value
+-----------------------------
+packet-1  packet  -     @<removed by verify-uvm.pl>
+  data    int     64    0x13
+-----------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 40 ns: topenv.parent_component.producer [topenv.parent_component.producer] Producer sending 21
+UVM_INFO <removed by verify-uvm.pl> @ 40 ns: topenv.parent_component.consumer [topenv.parent_component.consumer] fifo_consumer received: 21
+UVM_INFO <removed by verify-uvm.pl> @ 45 ns: topenv.parent_component.consumer [topenv.parent_component.consumer] fifo_consumer putting to fifo: 21
+UVM_INFO <removed by verify-uvm.pl> @ 45 ns: topenv.parent_component.consumer [topenv.parent_component.consumer] fifo_consumer got from fifo: 21
+-----------------------------
+Name      Type    Size  Value
+-----------------------------
+packet-2  packet  -     @<removed by verify-uvm.pl>
+  data    int     64    0x15
+-----------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 55 ns: topenv.parent_component.producer [topenv.parent_component.producer] Producer sending 23
+UVM_INFO <removed by verify-uvm.pl> @ 55 ns: topenv.parent_component.consumer [topenv.parent_component.consumer] fifo_consumer received: 23
+UVM_INFO <removed by verify-uvm.pl> @ 60 ns: topenv.parent_component.consumer [topenv.parent_component.consumer] fifo_consumer putting to fifo: 23
+UVM_INFO <removed by verify-uvm.pl> @ 60 ns: topenv.parent_component.consumer [topenv.parent_component.consumer] fifo_consumer got from fifo: 23
+-----------------------------
+Name      Type    Size  Value
+-----------------------------
+packet-3  packet  -     @<removed by verify-uvm.pl>
+  data    int     64    0x17
+-----------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 70 ns: topenv.parent_component.producer [topenv.parent_component.producer] Producer sending 245
+UVM_INFO <removed by verify-uvm.pl> @ 70 ns: topenv.parent_component.consumer [topenv.parent_component.consumer] fifo_consumer received: 245
+UVM_INFO <removed by verify-uvm.pl> @ 75 ns: topenv.parent_component.consumer [topenv.parent_component.consumer] fifo_consumer putting to fifo: 245
+UVM_INFO <removed by verify-uvm.pl> @ 75 ns: topenv.parent_component.consumer [topenv.parent_component.consumer] fifo_consumer got from fifo: 245
+-----------------------------
+Name      Type    Size  Value
+-----------------------------
+packet-4  packet  -     @<removed by verify-uvm.pl>
+  data    int     64    0xf5
+-----------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 85 ns: topenv.parent_component.producer [topenv.parent_component.producer] Producer sending 30
+UVM_INFO <removed by verify-uvm.pl> @ 85 ns: topenv.parent_component.consumer [topenv.parent_component.consumer] fifo_consumer received: 30
+UVM_INFO <removed by verify-uvm.pl> @ 90 ns: topenv.parent_component.consumer [topenv.parent_component.consumer] fifo_consumer putting to fifo: 30
+UVM_INFO <removed by verify-uvm.pl> @ 90 ns: topenv.parent_component.consumer [topenv.parent_component.consumer] fifo_consumer got from fifo: 30
+-----------------------------
+Name      Type    Size  Value
+-----------------------------
+packet-5  packet  -     @<removed by verify-uvm.pl>
+  data    int     64    0x1e
+-----------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 100 ns: topenv.parent_component.producer [topenv.parent_component.producer] Producer sending 45
+UVM_INFO <removed by verify-uvm.pl> @ 100 ns: topenv.parent_component.consumer [topenv.parent_component.consumer] fifo_consumer received: 45
+UVM_INFO <removed by verify-uvm.pl> @ 105 ns: topenv.parent_component.consumer [topenv.parent_component.consumer] fifo_consumer putting to fifo: 45
+UVM_INFO <removed by verify-uvm.pl> @ 105 ns: topenv.parent_component.producer [topenv.parent_component.producer] *** Done producing tokens, wait for 100 ns now so remaining tokens in fifo can be processed... ***
+UVM_INFO <removed by verify-uvm.pl> @ 105 ns: topenv.parent_component.consumer [topenv.parent_component.consumer] fifo_consumer got from fifo: 45
+-----------------------------
+Name      Type    Size  Value
+-----------------------------
+packet-6  packet  -     @<removed by verify-uvm.pl>
+  data    int     64    0x2d
+-----------------------------
+UVM_INFO <removed by verify-uvm.pl> @ 205 ns: reporter [UVM/FACTORY/DUMP]
+#### Factory Override Information (*)
+Given a request for an object of type 'consumer<T>' with an instance path of 'topenv', the factory encountered the following relevant overrides.An 'x' next to a
+ match indicates a match that was ignored.
+  Original Type  Instance Path  Override Type
+  -------------  -------------  ----------------  consumer<T>    *              fifo_consumer<T>  <type override>
+Result:
+  The factory will produce an object of type 'fifo_consumer<T>'
+(*) Types with no associated type name will be printed as <unknown>
+####
+UVM_INFO <removed by verify-uvm.pl> @ 205 ns: reporter [UVM/REPORT/SERVER]
+--- UVM Report Summary ---
+** Report counts by severity
+UVM_INFO      :  31
+UVM_WARNING   :   0
+UVM_ERROR     :   0
+UVM_FATAL     :   0
+** Report counts by id
+[RNTST]                 1
+[UVM/FACTORY/DUMP]      1
+[topenv.parent_component.consumer]                                     21
+[topenv.parent_component.producer]                                      8
+UVM_INFO @ 205 ns: reporter [FINISH] UVM-SystemC phasing completed; simulation finished

@@ -1,0 +1,58 @@
+SystemC Simulation
+content before packing:
+------------------------------
+Name     Type    Size  Value
+------------------------------
+packet1  packet  -     @<removed by verify-uvm.pl>
+  data   int     64    0x12
+  s      string  3     bla
+  addr   int     64    0x100
+  real   double  64    1.07967
+  time   double  64    0.0011
+  o      myobj   -     @<removed by verify-uvm.pl>
+    a    int     64    0x1
+    b    int     64    0x2
+------------------------------
+------------------------------
+Name     Type    Size  Value
+------------------------------
+packet2  packet  -     @<removed by verify-uvm.pl>
+  data   int     64    0x0
+  s      string  0     ""
+  addr   int     64    0x0
+  real   double  64    0
+  time   double  64    0
+  o      myobj   -     @<removed by verify-uvm.pl>
+    a    int     64    0x0
+    b    int     64    0x0
+------------------------------
+start packing...
+start unpacking...
+content after unpacking:
+------------------------------
+Name     Type    Size  Value
+------------------------------
+packet1  packet  -     @<removed by verify-uvm.pl>
+  data   int     64    0x12
+  s      string  3     bla
+  addr   int     64    0x100
+  real   double  64    1.07967
+  time   double  64    0.0011
+  o      myobj   -     @<removed by verify-uvm.pl>
+    a    int     64    0x1
+    b    int     64    0x2
+------------------------------
+------------------------------
+Name     Type    Size  Value
+------------------------------
+packet2  packet  -     @<removed by verify-uvm.pl>
+  data   int     64    0x12
+  s      string  3     bla
+  addr   int     64    0x100
+  real   double  64    1.07967
+  time   double  64    0.0011
+  o      myobj   -     @<removed by verify-uvm.pl>
+    a    int     64    0x1
+    b    int     64    0x2
+------------------------------
+packet1 and packet2 are the same.

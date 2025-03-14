@@ -1,0 +1,53 @@
+SystemC Simulation
+UVM_INFO @ 0 s: reporter [RNTST] Running test test...
+0 s: got severity UVM_INFO for id INFO1
+0 s: got severity UVM_INFO for id WARNING1
+0 s: got severity UVM_INFO for id ERROR1
+0 s: got severity UVM_INFO for id FATAL1
+0 s: got severity UVM_INFO for id INFO2
+0 s: got severity UVM_INFO for id WARNING2
+0 s: got severity UVM_INFO for id ERROR2
+0 s: got severity UVM_INFO for id FATAL2
+15 s: got severity UVM_WARNING for id INFO1
+15 s: got severity UVM_WARNING for id WARNING1
+15 s: got severity UVM_WARNING for id ERROR1
+15 s: got severity UVM_WARNING for id FATAL1
+15 s: got severity UVM_WARNING for id INFO2
+15 s: got severity UVM_WARNING for id WARNING2
+15 s: got severity UVM_WARNING for id ERROR2
+15 s: got severity UVM_WARNING for id FATAL2
+25 s: got severity UVM_ERROR for id INFO1
+25 s: got severity UVM_ERROR for id WARNING1
+25 s: got severity UVM_ERROR for id ERROR1
+25 s: got severity UVM_ERROR for id FATAL1
+25 s: got severity UVM_ERROR for id INFO2
+25 s: got severity UVM_ERROR for id WARNING2
+25 s: got severity UVM_ERROR for id ERROR2
+25 s: got severity UVM_ERROR for id FATAL2
+35 s: got severity UVM_FATAL for id INFO1
+35 s: got severity UVM_FATAL for id WARNING1
+35 s: got severity UVM_FATAL for id ERROR1
+35 s: got severity UVM_FATAL for id FATAL1
+35 s: got severity UVM_FATAL for id INFO2
+35 s: got severity UVM_FATAL for id WARNING2
+35 s: got severity UVM_FATAL for id ERROR2
+35 s: got severity UVM_FATAL for id FATAL2
+UVM_INFO <removed by verify-uvm.pl> @ 35 s: reporter [UVM/REPORT/CATCHER]
+--- UVM Report catcher Summary ---
+Number of demoted UVM_FATAL reports  :    0
+Number of demoted UVM_ERROR reports  :    0
+Number of demoted UVM_WARNING reports:    0
+Number of caught UVM_FATAL reports   :    8
+Number of caught UVM_ERROR reports   :    8
+Number of caught UVM_WARNING reports :    8
+UVM_INFO <removed by verify-uvm.pl> @ 35 s: reporter [UVM/REPORT/SERVER]
+--- UVM Report Summary ---
+** Report counts by severity
+UVM_INFO      :   2
+UVM_WARNING   :   0
+UVM_ERROR     :   0
+UVM_FATAL     :   0
+** Report counts by id
+[RNTST]                 1
+[UVM/REPORT/CATCHER]    1
+UVM_INFO @ 35 s: reporter [FINISH] UVM-SystemC phasing completed; simulation finished

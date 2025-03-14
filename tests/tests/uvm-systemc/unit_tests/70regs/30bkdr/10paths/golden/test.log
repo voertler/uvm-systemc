@@ -1,0 +1,29 @@
+SystemC Simulation
+Path(s) to model.b1:
+   $root.dut.b1
+Path(s) to model.b1.r1:
+   $root.dut.b1.r1
+Path(s) to model.b1.r1:
+   $root.dut.b1.r1
+Path(s) to model.b1.r1:
+   $root.dut.b1.r1
+   $root.dut.b1a.r1
+Path(s) to model.b1.r1:
+   $root.dut.b1.r1
+   $root.dut.b1a.r1
+Path(s) to model.b1.r1:
+   $root.dut.b1.r1
+   $root.dut.b1a.r1
+   {$root.dut.b1.r1a@[1+: 1], $root.dut.b1.r1a@[0+: 1]}
+   {$root.dut.b1a.r1a@[1+: 1], $root.dut.b1a.r1a@[0+: 1]}
+   $root.dut.b1.r1b
+   $root.dut.b1a.r1b
+UVM_INFO <removed by verify-uvm.pl> @ 0 s: reporter [UVM/REPORT/SERVER]
+--- UVM Report Summary ---
+** Report counts by severity
+UVM_INFO      :   0
+UVM_WARNING   :   0
+UVM_ERROR     :   0
+UVM_FATAL     :   0
+** Report counts by id
+** UVM TEST PASSED **

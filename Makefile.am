@@ -8,6 +8,7 @@ SUBDIRS = \
 DOC_FILES = \
 	AUTHORS.md \
 	ChangeLog \
+	CONTRIBUTING.md \
 	INSTALL.md \
 	LICENSE \
 	NEWS \
