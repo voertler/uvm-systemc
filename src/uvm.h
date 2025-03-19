@@ -20,7 +20,9 @@
 #ifndef UVM_H_
 #define UVM_H_
 
-#warning '#include <uvm.h>' is deprecated in favour of '#include <uvm>' and will be removed.
+#ifndef SUPPRESS_UVM_H_WARNING
+#warning '#include <uvm.h>' is deprecated in favour of '#include <uvm>' and will be removed in a future release.
+#endif
 
 // include some standard namespace (std) definitions
 
