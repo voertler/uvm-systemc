@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------
-//   Copyright 2013-2014 NXP B.V.
+//   Copyright 2013-2025 NXP B.V.
 //   Copyright 2011 Synopsys, Inc.
 //   All Rights Reserved
 //
