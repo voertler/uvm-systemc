@@ -335,7 +335,6 @@ template <typename REQ, typename RSP>
 bool uvm_sequencer<REQ,RSP>::try_next_item( REQ& req )
 {
   int selected_sequence;
-  sc_core::sc_time arb_time;
   uvm_sequence_base* seq;
 
   if (get_next_item_called)

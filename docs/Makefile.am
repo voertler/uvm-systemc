@@ -3,6 +3,8 @@ include $(top_srcdir)/config/Make-rules
 DOXYGEN = doxygen
 
 DOC_FILES = \
+	DEVELOPMENT.md \
+	git_branches.svg \
 	uvm-systemc-language-reference-manual.pdf \
 	UVM_goes_Universal_-_Introducing_UVM_in_SystemC_-_DVCON_Europe_2015.pdf
 
