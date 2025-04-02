@@ -121,7 +121,7 @@ class base : public uvm_component
   void extract_phase(uvm_phase& phase) override
   {
     phase_run[uvm_extract_phase::get()] = true;
-    UVM_INFO("EXTRACT", "Starting Extract", UVM_NONE);;
+    UVM_INFO("EXTRACT", "Starting Extract", UVM_NONE);
     // Even though there is not configure phase, the test is holding
     // up the configure phase.
     if(sc_time_stamp() != sc_time(3*phase_transition_time, SC_MS))

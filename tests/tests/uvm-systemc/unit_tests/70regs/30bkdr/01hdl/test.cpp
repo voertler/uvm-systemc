@@ -151,7 +151,7 @@ class test : public uvm_test
         uvm_report_error(hdl_path, str.str());
       }
     }
-  };;
+  };
 
   // Registers (of type sc_reg):
   // Deposit - overwrites value, DUT may change procedurally anytime

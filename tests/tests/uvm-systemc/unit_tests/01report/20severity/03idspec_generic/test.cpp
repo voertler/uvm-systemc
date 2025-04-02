@@ -136,7 +136,7 @@ public:
 
     for(itt it = ctchr.sev_map.begin(); it != ctchr.sev_map.end(); ++it)
     {
-      sev_id_pair p = it->first;;
+      sev_id_pair p = it->first;
       int cnt = it->second;
 
       if(cnt != 1)
