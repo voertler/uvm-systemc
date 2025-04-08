@@ -12,6 +12,7 @@
 .cproject
 .project
 .vscode
+.vs
 
 # ignore autoconf files
 /aclocal.m4
@@ -49,6 +50,7 @@ Makefile.in
 *.suo
 *.ncb
 *.vcproj.*
+*.vcxproj.*
 Release/
 Debug/
 #/msvc*/SystemC/SystemC.suo

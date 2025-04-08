@@ -325,33 +325,32 @@ Other options that are rarely used are available in the `configure` script.
 Use the `--help` option to print a list.
 
 
-# Installation Notes for Windows 10
+# Installation Notes for Windows 11
 
 ## System Requirements
 
-UVM-SystemC was tested on the following Windows platforms against SystemC 2.3.3,
-2.3.4, 3.0.0:
+UVM-SystemC was tested on the following Windows platforms against SystemC 3.0.0:
 
-| Platform   | VS 2015 | VS 2019 | MinGW64 GCC 13.1 | MinGW64 Clang 16
-| ---------- | ------- |-------- | ---------------- | ----------------
-| Windows 10 |    x    |    x    |         x        |         x
+| Platform   | VS 2019 | MinGW64 GCC 13.1 | MinGW64 Clang 16
+| ---------- | ------- | ---------------- | ----------------
+| Windows 11 |    x    |         x        |         x
 
-> **Note:** SystemC 3.0.0 requires at least VS2019 for C++17 support.
+> **Note:** SystemC 3.0.0 requires at least Visual Studio 2019 for C++17 support.
 
 Set the following environment variable(s) under Windows:
 ```
-  Variable: SYSTEMC
-  Value   : c:\my\path\to\systemc\msvc10
+  Variable: SYSTEMC_MSVC
+  Value   : c:\my\path\to\systemc\msvc16
 
-  Variable: UVMSYSTEMC
-  Value   : c:\my\path\to\uvm-systemc\msvc14
+  Variable: UVM_SYSTEMC_MSVC
+  Value   : c:\my\path\to\uvm-systemc\msvc16
 ```
 
-## Microsoft Visual Studio C++ 2015 or later
+## Microsoft Visual Studio C++ 2019 or later
 
-The root directory contains two subdirectories: `msvc14` and `examples`.
+The root directory contains two subdirectories: `msvc16` and `examples`.
 
-The `msvc14` subdirectory `uvmsc` contains the project and workspace files to
+The `msvc16` subdirectory `uvmsc` contains the project and workspace files to
 compile the `uvm-systemc.lib` library. Double-click on the `uvm-systemc.sln`
 file to launch Visual Studio C++ 2015 with the workspace file. The workspace file
 will have the proper switches set to compile for Visual Studio C++ 2015.
@@ -364,11 +363,12 @@ The UVM-SystemC examples reside in the directory `examples` at the
 highest level of the installation.
 
 Each examples contain the project and workspace files in the subdirectory
-`msvc14`. Go to one of these examples subdirectories and double-click on
+`msvc16`. Go to one of these examples subdirectories and double-click on
 the .vcxproj file to launch Visual Studio C++ with the workspace file. The
 workspace file will have the proper switches set to compile for Visual
-Studio C++ 2015. Select `Build <example>.exe` under the Build menu or press F7
-to build the example executable.
+Studio C++ 2019. Make sure the libraries and examples are all built using
+the same configuration (e.g., Release/Win32). Select `Build <example>.exe`
+under the Build menu or press F7 to build the example executable.
 
 ## Creating UVM-SystemC Applications in Microsoft Visual Studio C++
 
@@ -392,7 +392,7 @@ to build the example executable.
 
 7. From the C/C++ tab, select the General properties and add to
    `Additional Include Directories` the path 
-   `$(UVMSYSTEMC)\..\src;$(SYSTEMC)\..\src;`
+   `$(UVM_SYSTEMC_MSVC)\..\src;$(SYSTEMC_MSVC)\..\src;`
    
 8. From the C/C++ tab, select the Code Generation and set
    `Runtime Library` to `Multi-threaded DLL (/MD)` in case of a Release 
@@ -407,7 +407,7 @@ to build the example executable.
 
 11. From the Linker tab, select the General properties and add to 
     `Additional Library Directories` the path 
-    `$(SYSTEMC)\SystemC\Release;$(UVMSYSTEMC)\uvmsc\Release;`
+    `$(SYSTEMC_MSVC)\SystemC\Release;$(UVM_SYSTEMC_MSVC)\uvmsc\Release;`
     
 12. From the Linker tab, select the Input properties and add to 
     `Additional Dependencies` the files `systemc.lib;uvm-systemc.lib;`
@@ -418,5 +418,5 @@ to build the example executable.
 14. Click OK. If necessary repeat the same steps for Configuration Debug 
     or Release
 
-Also make sure that the Windows environment variables SYSTEMC and UVMSYSTEMC 
-are set, see section above.
+Also make sure that the Windows environment variables SYSTEMC_MSVC and
+UVM_SYSTEMC_MSVC are set, see section above.
