@@ -46,6 +46,10 @@ standard.
 Compared to the 1.0-beta5 release, this release adds:
   - Bugfixes
 
+Usage of "uvm.h" header is deprecated in favour of <uvm>. A preprocessor warning
+is issued if used. This can be suppressed by defining "SUPPRESS_UVM_H_WARNING"
+during compilation of your testbench.
+
 ## Known bugs
 The simple/registers/models/aliasing test is failing in case the TODO section
 from its source file tb_test.h is uncommented. This test has been literally
