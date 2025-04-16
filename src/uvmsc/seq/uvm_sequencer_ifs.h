@@ -20,7 +20,7 @@
 #ifndef UVM_SEQUENCER_IF_H_
 #define UVM_SEQUENCER_IF_H_
 
-#include <tlm.h>
+#include <tlm>
 
 namespace uvm {
 

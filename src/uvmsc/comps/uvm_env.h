@@ -26,6 +26,7 @@
 #include <string>
 
 #include "uvmsc/base/uvm_component.h"
+#include "uvmsc/base/uvm_component_name.h"
 
 namespace uvm {
 

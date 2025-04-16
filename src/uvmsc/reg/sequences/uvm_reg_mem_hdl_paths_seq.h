@@ -27,6 +27,7 @@
 #include <iostream>
 #include <vector>
 
+#include "uvmsc/reg/uvm_reg_block.h"
 #include "uvmsc/reg/uvm_reg_sequence.h"
 #include "uvmsc/dpi/uvm_hdl.h"
 

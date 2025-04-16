@@ -28,6 +28,8 @@
 #include <vector>
 
 #include "uvmsc/reg/uvm_reg_sequence.h"
+#include "uvmsc/reg/uvm_reg_block.h"
+#include "uvmsc/reg/uvm_reg_field.h"
 
 namespace uvm
 {

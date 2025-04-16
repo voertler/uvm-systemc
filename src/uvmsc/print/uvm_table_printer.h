@@ -45,7 +45,7 @@ class uvm_table_printer : public uvm_printer
 
   uvm_table_printer();
 
-  virtual std::string emit();
+  std::string emit() override;
 
   // Variables: m_max_*
   //

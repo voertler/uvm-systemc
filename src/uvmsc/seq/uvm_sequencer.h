@@ -26,7 +26,7 @@
 #define UVM_SEQUENCER_H_
 
 #include <systemc>
-#include <tlm.h>
+#include <tlm>
 
 #include "uvmsc/base/uvm_component_name.h"
 #include "uvmsc/seq/uvm_sequencer_param_base.h"

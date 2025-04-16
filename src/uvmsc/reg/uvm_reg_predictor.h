@@ -29,6 +29,7 @@
 #include <string>
 #include <iostream>
 
+#include "uvmsc/base/uvm_component_name.h"
 #include "uvmsc/base/uvm_component.h"
 #include "uvmsc/macros/uvm_component_defines.h"
 #include "uvmsc/factory/uvm_component_registry.h"
@@ -37,6 +38,7 @@
 #include "uvmsc/reg/uvm_reg_indirect_data.h"
 #include "uvmsc/reg/uvm_reg_map.h"
 #include "uvmsc/reg/uvm_reg_bus_op.h"
+#include "uvmsc/reg/uvm_reg_block.h"
 #include "uvmsc/tlm1/uvm_analysis_port.h"
 #include "uvmsc/tlm1/uvm_analysis_imp.h"
 #include "uvmsc/phasing/uvm_phase.h"

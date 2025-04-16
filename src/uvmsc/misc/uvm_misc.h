@@ -24,9 +24,8 @@
 #include <cstdarg>
 #include <systemc>
 
-#include "uvmsc/misc/uvm_scope_stack.h"
-#include "uvmsc/misc/uvm_status_container.h"
-#include "uvmsc/misc/uvm_copy_map.h"
+
+#include "uvmsc/base/uvm_object.h"
 
 //////////////
 

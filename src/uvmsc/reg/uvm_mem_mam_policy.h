@@ -23,6 +23,7 @@
 #ifndef UVM_MEM_MAM_POLICY_H_
 #define UVM_MEM_MAM_POLICY_H_
 
+#include "uvmsc/reg/uvm_mem_region.h"
 namespace uvm {
 
 

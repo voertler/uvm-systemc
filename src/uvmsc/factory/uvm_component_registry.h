@@ -25,11 +25,12 @@
 
 #ifndef UVM_COMPONENT_REGISTRY_H_
 #define UVM_COMPONENT_REGISTRY_H_
-
+    
 #include <systemc>
 #include <string>
 #include <sstream>
 
+#include "uvmsc/base/uvm_globals.h"
 #include "uvmsc/base/uvm_root.h"
 #include "uvmsc/base/uvm_component.h"
 #include "uvmsc/base/uvm_coreservice_t.h"
