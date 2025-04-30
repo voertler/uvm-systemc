@@ -1,4 +1,4 @@
-# UVM-SystemC Reference Implementation
+# UVM-SystemC Reference Implementation Test
 
 ## About UVM-SystemC
 
