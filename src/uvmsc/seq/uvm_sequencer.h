@@ -78,23 +78,59 @@ class uvm_sequencer : public uvm_sequencer_param_base<REQ,RSP>,
   //--------------------------------------------------------------------------
 
   //virtual REQ get_next_item( tlm::tlm_tag<REQ>* req = nullptr );
-  virtual REQ get_next_item( REQ* req = nullptr );
-  virtual void get_next_item( REQ& req );
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_ptr<uvm_sequence_item>")
+  REQ get_next_item( REQ* req ) override;
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_ptr<uvm_sequence_item>")
+  void get_next_item( REQ& req )  override;
 
-  virtual bool try_next_item( REQ& req );
+  uvm_ptr<REQ>  get_next_item( ) override // TODO 
+  {
+    
+  };
+  
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_ptr<uvm_sequence_item>")
+  bool try_next_item( REQ& req ) override;
+  
+  uvm_ptr<REQ> try_next_item() override {
+    //TODO
+    
+  };
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_ptr<uvm_sequence_item>")
+  void item_done( const RSP& item, bool use_item = true ) override;
+  void item_done( uvm_ptr<REQ> item) override {
+    // TODO
+  };
+  void item_done() override; 
 
-  virtual void item_done( const RSP& item, bool use_item = true );
-  virtual void item_done(); // TODO - set default to nullptr/NIL for template param, combine into one method?
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_ptr<uvm_sequence_item>")
+  void put( const RSP& rsp ) override;
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_ptr<uvm_sequence_item>")
+  void put_response( const RSP& rsp ) override ; // TODO not in standard anymore? remove?
 
-  virtual void put( const RSP& rsp );
-  virtual void put_response( const RSP& rsp ); // TODO not in standard anymore? remove?
+  void put_response( uvm_ptr<REQ> rsp ) override 
+  {
+    //TODO
+  };
 
-  virtual void get( REQ& req );
-  virtual REQ get( REQ* req = nullptr );
-  //virtual REQ get( tlm::tlm_tag<REQ>* req = nullptr );
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_ptr<uvm_sequence_item>")
+  REQ get( REQ* req) override;
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_ptr<uvm_sequence_item>")
+  void get( REQ& req ) override;
 
-  virtual void peek( REQ& req );
-  virtual REQ peek( REQ* req = nullptr );
+  uvm_ptr<REQ>  get( ) override 
+  {
+   // TODO 
+  };
+  
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_ptr<uvm_sequence_item>")
+  void peek( REQ& req ) override;
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_ptr<uvm_sequence_item>")
+  REQ peek( REQ* req ) override;
+  
+  uvm_ptr<REQ> peek() const override 
+  {
+    // TODO
+  };  
   //virtual REQ peek( tlm::tlm_tag<REQ>* req = nullptr ); // FIXME: should be const in line with SystemC TLM API?
 
   virtual void stop_sequences();
@@ -260,7 +296,7 @@ template <typename REQ, typename RSP>
 void uvm_sequencer<REQ,RSP>::get( REQ& req )
 {
   this->m_current_sequence_item = &req;
-  req = get();
+  req = get(nullptr);
 }
 
 //----------------------------------------------------------------------
@@ -293,7 +329,7 @@ REQ uvm_sequencer<REQ,RSP>::peek(REQ* req)
 template <typename REQ, typename RSP>
 void uvm_sequencer<REQ,RSP>::peek( REQ& req )
 {
-  req = peek();
+  req = peek(nullptr);
   this->m_current_sequence_item = &req;
 }
 
@@ -331,7 +367,7 @@ template <typename REQ, typename RSP>
 void uvm_sequencer<REQ,RSP>::get_next_item( REQ& req )
 {
   this->m_current_sequence_item = &req;
-  req = get_next_item();
+  req = get_next_item(nullptr);
 }
 
 

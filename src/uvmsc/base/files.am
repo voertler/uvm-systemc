@@ -12,6 +12,7 @@ H_FILES += \
 	base/uvm_object.h \
 	base/uvm_object_globals.h \
 	base/uvm_port_base.h \
+	base/uvm_ptr.h \
 	base/uvm_root.h \
 	base/uvm_transaction.h \
 	base/uvm_void.h \

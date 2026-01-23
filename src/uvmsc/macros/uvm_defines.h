@@ -27,4 +27,10 @@
 
 #define uvm_typeof(x) std::remove_reference<decltype((x))>::type
 
+#define UVM_DEPRECATED_MSG(msg) [[deprecated(msg)]]
+
+#ifndef UVM_DEPRECATED_1_0
+#define UVM_DEPRECATED_1_0(MSG) UVM_DEPRECATED_MSG(MSG)
+#endif
+
 #endif // UVM_DEFINES_H_
