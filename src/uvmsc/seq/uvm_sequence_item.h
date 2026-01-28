@@ -22,7 +22,8 @@
 
 #ifndef UVM_SEQUENCE_ITEM_H_
 #define UVM_SEQUENCE_ITEM_H_
-
+#include "uvmsc/macros/uvm_defines.h"
+#include "uvmsc/base/uvm_ptr.h"
 #include "uvmsc/base/uvm_transaction.h"
 
 namespace uvm {
@@ -68,8 +69,13 @@ class uvm_sequence_item: public uvm_transaction
   void set_use_sequence_info(bool value);
 
   bool get_use_sequence_info() const;
-
+  
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item deprecated use uvm_ptr<uvm_sequence_item>")
   void set_id_info(uvm_sequence_item& item);
+  
+  void set_id_info(uvm_ptr<uvm_sequence_item>){
+    // TODO
+  };
 
   virtual void set_sequencer(uvm_sequencer_base* sequencer);
 

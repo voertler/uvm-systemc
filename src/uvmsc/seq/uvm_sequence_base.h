@@ -123,9 +123,20 @@ class uvm_sequence_base: public uvm_sequence_item
                            int set_priority = -1,
                            uvm_sequencer_base* sequencer = nullptr );
 
+  virtual void start_item(uvm_ptr<uvm_sequence_item> item,
+						  int set_priority = -1,
+						  uvm_sequencer_base *sequencer = nullptr) {
+	  // TODO
+  };
+
   UVM_DEPRECATED_1_0("Use of uvm_sequence_item* deprecated use uvm_ptr<uvm_sequence_item>")  
   virtual void finish_item( uvm_sequence_item* item,
                             int set_priority = -1 );
+
+  virtual void finish_item(uvm_ptr<uvm_sequence_item> item,
+						   int set_priority = -1) {
+	  // TODO
+  };
 
   virtual void wait_for_grant( int item_priority = -1,
                                bool lock_request = false );
@@ -133,6 +144,11 @@ class uvm_sequence_base: public uvm_sequence_item
   UVM_DEPRECATED_1_0("Use of uvm_sequence_item* deprecated use uvm_ptr<uvm_sequence_item>")
   virtual void send_request( uvm_sequence_item* request,
                              bool rerandomize = false );
+
+  virtual void send_request(uvm_ptr<uvm_sequence_item> request,
+							bool rerandomize = false) {
+                                // TODO
+                            };
 
   virtual void wait_for_item_done( int transaction_id = -1 );
 
@@ -144,6 +160,11 @@ class uvm_sequence_base: public uvm_sequence_item
   bool get_use_response_handler() const;
   UVM_DEPRECATED_1_0("Use of uvm_sequence_item* deprecated use uvm_ptr<uvm_sequence_item>")
   virtual void response_handler( const uvm_sequence_item* response );
+
+  virtual void response_handler(uvm_ptr<uvm_sequence_item> response) {
+	  // TODO const?
+  };
+
   void set_response_queue_error_report_disabled( bool value );
   bool get_response_queue_error_report_disabled() const;
   void set_response_queue_depth( int value );
