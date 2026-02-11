@@ -1458,12 +1458,14 @@ uvm_component::~uvm_component()
 //! The settings are printing in the order of their precedence.
 //----------------------------------------------------------------------------
 
+#if UVM_DEPRECATED_1_0_ENABLED
 void uvm_component::print_config_settings( const std::string& field,
                                            uvm_component* comp,
                                            bool recurse )
 {
   UVM_FATAL("DEPRD", "This function has been deprecated.  Use print_config instead.");
 }
+#endif
 
 //----------------------------------------------------------------------------
 // member function: do_print (override)

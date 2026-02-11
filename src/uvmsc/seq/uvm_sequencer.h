@@ -78,54 +78,54 @@ class uvm_sequencer : public uvm_sequencer_param_base<REQ,RSP>,
   //--------------------------------------------------------------------------
 
   //virtual REQ get_next_item( tlm::tlm_tag<REQ>* req = nullptr );
-  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>")
-  REQ get_next_item( REQ* req ) override;
-  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>")
-  void get_next_item( REQ& req )  override;
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>",
+                     REQ get_next_item( REQ* req ) override;)
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>",
+                     void get_next_item( REQ& req )  override;)
 
   uvm_handle<REQ>  get_next_item( ) override // TODO 
   {
     
   };
   
-  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>")
-  bool try_next_item( REQ& req ) override;
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>",
+                     bool try_next_item( REQ& req ) override;)
   
   uvm_handle<REQ> try_next_item() override {
     //TODO
     
   };
-  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>")
-  void item_done( const RSP& item, bool use_item = true ) override;
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>",
+                     void item_done( const RSP& item, bool use_item = true ) override;)
   void item_done( uvm_handle<REQ> item) override {
     // TODO
   };
   void item_done() override; 
 
-  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>")
-  void put( const RSP& rsp ) override;
-  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>")
-  void put_response( const RSP& rsp ) override ; // TODO not in standard anymore? remove?
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>",
+                     void put( const RSP& rsp ) override;)
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>",
+                     void put_response( const RSP& rsp ) override;) // TODO not in standard anymore? remove?
 
   void put_response( uvm_handle<REQ> rsp ) override 
   {
     //TODO
   };
 
-  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>")
-  REQ get( REQ* req) override;
-  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>")
-  void get( REQ& req ) override;
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>",
+                     REQ get( REQ* req) override;)
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>",
+                     void get( REQ& req ) override;)
 
   uvm_handle<REQ>  get( ) override 
   {
    // TODO 
   };
   
-  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>")
-  void peek( REQ& req ) override;
-  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>")
-  REQ peek( REQ* req ) override;
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>",
+                     void peek( REQ& req ) override;)
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>",
+                     REQ peek( REQ* req ) override;)
   
   uvm_handle<REQ> peek() const override 
   {
@@ -226,8 +226,28 @@ const std::string uvm_sequencer<REQ,RSP>::get_type_name() const
 template <typename REQ, typename RSP>
 void uvm_sequencer<REQ,RSP>::item_done()
 {
-  RSP dummy;
-  item_done(dummy, false);
+  REQ req;
+
+  // Set flag to allow next get_next_item or peek to get a new sequence_item
+  sequence_item_requested = false;
+  get_next_item_called = false;
+
+  if (this->m_req_fifo.nb_get(req) == 0)
+  {
+    std::ostringstream str;
+    str << "Item_done() called with no outstanding requests." << std::endl;
+    str << "Each call to item_done() must be paired with a previous call to get_next_item().";
+    uvm_report_fatal(this->get_type_name(), str.str() );
+  }
+  else
+  {
+    this->m_wait_for_item_sequence_id = req.get_sequence_id();
+    this->m_wait_for_item_transaction_id = req.get_transaction_id();
+    this->m_wait_for_item_sequence_ev.notify();
+  }
+
+  // Grant any locks as soon as possible
+  this->grant_queued_locks();
 }
 
 //----------------------------------------------------------------------
@@ -237,6 +257,7 @@ void uvm_sequencer<REQ,RSP>::item_done()
 //! completed.
 //----------------------------------------------------------------------
 
+#if UVM_DEPRECATED_1_0_ENABLED
 template <typename REQ, typename RSP>
 void uvm_sequencer<REQ,RSP>::item_done(const RSP& item, bool use_item)
 {
@@ -463,6 +484,7 @@ void uvm_sequencer<REQ,RSP>::put_response( const RSP& rsp )
   this->put_response_base(*item);
   sc_core::wait(sc_core::SC_ZERO_TIME);  // TODO do we really need this?
 }
+#endif
 
 //----------------------------------------------------------------------
 // member function: stop_sequences

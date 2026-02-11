@@ -693,6 +693,7 @@ uvm_sequence_item* uvm_sequence_base::create_item( uvm_object_wrapper* type_var,
 //!  TODO - randomization not implemented
 //----------------------------------------------------------------------
 
+#if UVM_DEPRECATED_1_0_ENABLED
 void uvm_sequence_base::start_item( uvm_sequence_item* item,
                                     int set_priority,
                                     uvm_sequencer_base* sequencer )
@@ -746,6 +747,7 @@ void uvm_sequence_base::start_item( uvm_sequence_item* item,
 #endif
   pre_do(true);
 }
+#endif
 
 //----------------------------------------------------------------------
 // member function: finish_item (virtual)
@@ -756,6 +758,7 @@ void uvm_sequence_base::start_item( uvm_sequence_item* item,
 //! functions may be called between the calls #start_item and #finish_item.
 //----------------------------------------------------------------------
 
+#if UVM_DEPRECATED_1_0_ENABLED
 void uvm_sequence_base::finish_item( uvm_sequence_item* item,
                                      int set_priority )
 {
@@ -781,6 +784,7 @@ void uvm_sequence_base::finish_item( uvm_sequence_item* item,
 
   post_do(latest_item);
 }
+#endif
 
 //----------------------------------------------------------------------
 // member function: wait_for_grant (virtual)
@@ -816,6 +820,7 @@ void uvm_sequence_base::wait_for_grant( int item_priority, bool lock_request )
 //! randomized before being sent to the driver.
 //----------------------------------------------------------------------
 
+#if UVM_DEPRECATED_1_0_ENABLED
 void uvm_sequence_base::send_request( uvm_sequence_item* request, bool rerandomize )
 {
   // NOTE: this method shall not be called - is overloaded by implementation
@@ -825,6 +830,7 @@ void uvm_sequence_base::send_request( uvm_sequence_item* request, bool rerandomi
 
   get_sequencer()->send_request(this, request, rerandomize);
 }
+#endif
 
 //----------------------------------------------------------------------
 // member function: wait_for_item_done (virtual)
@@ -885,10 +891,12 @@ bool uvm_sequence_base::get_use_response_handler() const
 //! for this sequence.
 //----------------------------------------------------------------------
 
+#if UVM_DEPRECATED_1_0_ENABLED
 void uvm_sequence_base::response_handler( const uvm_sequence_item* response )
 {
   uvm_report_fatal("RSPHDL", "No response handler defined!", UVM_NONE);
 }
+#endif
 
 //----------------------------------------------------------------------
 // member function: set_response_queue_error_report_disabled

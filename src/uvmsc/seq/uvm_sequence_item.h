@@ -70,8 +70,8 @@ class uvm_sequence_item: public uvm_transaction
 
   bool get_use_sequence_info() const;
   
-  UVM_DEPRECATED_1_0("Use of uvm_sequence_item deprecated use uvm_handle<uvm_sequence_item>")
-  void set_id_info(uvm_sequence_item& item);
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item deprecated use uvm_handle<uvm_sequence_item>",
+                     void set_id_info(uvm_sequence_item& item);)
   
   void set_id_info(uvm_handle<uvm_sequence_item>){
     // TODO
