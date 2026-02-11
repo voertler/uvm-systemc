@@ -42,8 +42,17 @@ and further enhanced and extended to make it compatible with the UVM 1.1
 standard.
 
 ## What's new in this release?
+Compared to the 1.0-beta6 release, this release adds:
+  - add uvm_handle API for automatic memory management of transient objects
+  - Adds a preprocessor macro ALLOW_NON_IEEE_1800_2_2020 that can be used to access some internal methods that are defined in UVM SystemVerilog but not part of the IEEE Standard
+  - New deprecation policy for APIs:
+  - - By default, deprecated APIs are removed and cause compile errors when used.
+  - - ALLOW_UVM_SC_DEPRECATED: enables deprecated APIs and warns on use.
+  - - ALLOW_UVM_SC_DEPRECATED_SILENT: enables deprecated APIs without warnings (not recommended).
+  - Deprecated '#include <uvm.h>' now follows the same policy; SUPPRESS_UVM_H_WARNING has been removed.
+  
 
-Compared to the 1.0-beta5 release, this release adds:
+Compared to the 1.0-beta6 release, this release adds:
   - Bugfixes
 
 Usage of "uvm.h" header is deprecated in favour of <uvm>. A preprocessor warning
