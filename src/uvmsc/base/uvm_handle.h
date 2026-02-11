@@ -17,8 +17,8 @@
 //   permissions and limitations under the License.
 //----------------------------------------------------------------------
 
-#ifndef UVM_PTR_H_
-#define UVM_PTR_H_
+#ifndef UVM_HANDLE_H_
+#define UVM_HANDLE_H_
 
 #include <cstddef>     
 #include <cstdint>
@@ -29,31 +29,31 @@ namespace uvm
 {
 
 template <typename T>
-class uvm_weak_ptr;
+class uvm_weak_handle;
 
 template <typename T>
-class uvm_ptr
+class uvm_handle
 {
 public:
     using element_type = T;
     using deleter_type = void (*)(T *); 
 
     // Constructors / destructor
-    uvm_ptr() noexcept;
-    uvm_ptr(std::nullptr_t) noexcept;
+    uvm_handle() noexcept;
+    uvm_handle(std::nullptr_t) noexcept;
 
-    uvm_ptr(const uvm_ptr &other) noexcept;
-    uvm_ptr(uvm_ptr &&other) noexcept;
+    uvm_handle(const uvm_handle &other) noexcept;
+    uvm_handle(uvm_handle &&other) noexcept;
 
     template <typename U,
               typename = std::enable_if_t<std::is_convertible_v<U *, T *>>>
-    uvm_ptr(const uvm_ptr<U> &other) noexcept;
+    uvm_handle(const uvm_handle<U> &other) noexcept;
 
-    ~uvm_ptr();
+    ~uvm_handle();
 
     // Assignment
-    uvm_ptr &operator=(const uvm_ptr &other) noexcept;
-    uvm_ptr &operator=(uvm_ptr &&other) noexcept;
+    uvm_handle &operator=(const uvm_handle &other) noexcept;
+    uvm_handle &operator=(uvm_handle &&other) noexcept;
 
     // Observers
     T *get() const noexcept;
@@ -69,31 +69,31 @@ public:
 
     void reset(T *raw, deleter_type del) noexcept;
 
-    void swap(uvm_ptr &other) noexcept;
+    void swap(uvm_handle &other) noexcept;
 
     // Weak
-    uvm_weak_ptr<T> weak() const noexcept;
+    uvm_weak_handle<T> weak() const noexcept;
 
 private:
     struct control_block;
 
     // Private constructor used by adopt_ptr() and weak_ptr::lock()
-    uvm_ptr(T *raw, control_block *cb) noexcept;
+    uvm_handle(T *raw, control_block *cb) noexcept;
 
     template <typename U>
-    friend class uvm_ptr;
+    friend class uvm_handle;
     template <typename U>
-    friend class uvm_weak_ptr;
+    friend class uvm_weak_handle;
 
     template <typename U, typename... Args>
-    friend uvm_ptr<U> make_ptr(Args &&...args);
+    friend uvm_handle<U> make_ptr(Args &&...args);
 
     template <typename U>
-    friend uvm_ptr<U> adopt_ptr(U *raw) noexcept;
+    friend uvm_handle<U> adopt_ptr(U *raw) noexcept;
 
     template <typename U>
-    friend uvm_ptr<U> adopt_ptr(U *raw,
-                                typename uvm_ptr<U>::deleter_type del) noexcept;
+    friend uvm_handle<U> adopt_ptr(U *raw,
+                                typename uvm_handle<U>::deleter_type del) noexcept;
 
 private:
     T *ptr_;
@@ -101,38 +101,38 @@ private:
 };
 
 template <typename T>
-class uvm_weak_ptr
+class uvm_weak_handle
 {
 public:
     // Minimal lifecycle
-    uvm_weak_ptr() noexcept;
-    uvm_weak_ptr(const uvm_ptr<T> &strong) noexcept;
+    uvm_weak_handle() noexcept;
+    uvm_weak_handle(const uvm_handle<T> &strong) noexcept;
 
-    uvm_weak_ptr(const uvm_weak_ptr &other) noexcept;
-    uvm_weak_ptr(uvm_weak_ptr &&other) noexcept;
+    uvm_weak_handle(const uvm_weak_handle &other) noexcept;
+    uvm_weak_handle(uvm_weak_handle &&other) noexcept;
 
     template <typename U,
               typename = std::enable_if_t<std::is_convertible_v<U *, T *>>>
-    uvm_weak_ptr(const uvm_weak_ptr<U> &other) noexcept;
+    uvm_weak_handle(const uvm_weak_handle<U> &other) noexcept;
 
-    ~uvm_weak_ptr();
+    ~uvm_weak_handle();
 
-    uvm_weak_ptr &operator=(const uvm_weak_ptr &other) noexcept;
-    uvm_weak_ptr &operator=(uvm_weak_ptr &&other) noexcept;
+    uvm_weak_handle &operator=(const uvm_weak_handle &other) noexcept;
+    uvm_weak_handle &operator=(uvm_weak_handle &&other) noexcept;
 
     void reset() noexcept;
 
     // NEW: rebind weak pointer to track a different strong pointer
-    void reset(const uvm_ptr<T> &strong) noexcept;
+    void reset(const uvm_handle<T> &strong) noexcept;
 
     // The one essential operation
-    uvm_ptr<T> lock() const noexcept;
+    uvm_handle<T> lock() const noexcept;
 
 private:
-    using control_block = typename uvm_ptr<T>::control_block;
+    using control_block = typename uvm_handle<T>::control_block;
 
     // Used internally for converting weak pointers
-    uvm_weak_ptr(T *raw, control_block *cb) noexcept;
+    uvm_weak_handle(T *raw, control_block *cb) noexcept;
 
     template <typename U>
     friend class uvm_weak_ptr;
@@ -145,22 +145,22 @@ private:
 // Creation helpers (usable outside factory)
 
 template <typename T, typename... Args>
-uvm_ptr<T> make_ptr(Args &&...args);
+uvm_handle<T> make_ptr(Args &&...args);
 
 template <typename T>
-uvm_ptr<T> adopt_ptr(T *raw) noexcept;
+uvm_handle<T> adopt_ptr(T *raw) noexcept;
 
 template <typename T>
-uvm_ptr<T> adopt_ptr(T *raw, typename uvm_ptr<T>::deleter_type del) noexcept;
+uvm_handle<T> adopt_ptr(T *raw, typename uvm_handle<T>::deleter_type del) noexcept;
 
 // Cast Functions
 
 
 template <typename To, typename From>
-uvm_ptr<To> static_pointer_cast(const uvm_ptr<From>& p) noexcept;
+uvm_handle<To> static_pointer_cast(const uvm_handle<From>& p) noexcept;
 
 template <typename To, typename From>
-uvm_ptr<To> dynamic_pointer_cast(const uvm_ptr<From>& p) noexcept;
+uvm_handle<To> dynamic_pointer_cast(const uvm_handle<From>& p) noexcept;
 
 // ============================================================
 // Helpers: default deleter
@@ -173,14 +173,14 @@ static void default_delete(T *p) noexcept
 }
 
 // ============================================================
-// uvm_ptr<T>::control_block
+// uvm_handle```<T>::control_block
 // ============================================================
 //
-// Per-T control block (because it’s nested inside uvm_ptr<T>).
+// Per-T control block (because it’s nested inside uvm_handle```<T>).
 //
 // Counts follow the standard shared_ptr model:
 //
-// - strong_count: number of owning uvm_ptr instances
+// - strong_count: number of owning uvm_handle``` instances
 // - weak_count: number of uvm_weak_ptr instances
 //              PLUS one "implicit weak" while strong_count > 0
 //
@@ -190,7 +190,7 @@ static void default_delete(T *p) noexcept
 //   - if weak_count becomes 0, delete the control block
 //
 template <typename T>
-struct uvm_ptr<T>::control_block
+struct uvm_handle<T>::control_block
 {
     unsigned strong_count;
     unsigned weak_count;
@@ -217,32 +217,32 @@ struct uvm_ptr<T>::control_block
 };
 
 // ============================================================
-// uvm_ptr<T> implementation
+// uvm_handle```<T> implementation
 // ============================================================
 
 template <typename T>
-uvm_ptr<T>::uvm_ptr() noexcept
+uvm_handle<T>::uvm_handle() noexcept
     : ptr_(nullptr)
     , cb_(nullptr)
 {
 }
 
 template <typename T>
-uvm_ptr<T>::uvm_ptr(std::nullptr_t) noexcept
+uvm_handle<T>::uvm_handle(std::nullptr_t) noexcept
     : ptr_(nullptr)
     , cb_(nullptr)
 {
 }
 
 template <typename T>
-uvm_ptr<T>::uvm_ptr(T *raw, control_block *cb) noexcept
+uvm_handle<T>::uvm_handle(T *raw, control_block *cb) noexcept
     : ptr_(raw)
     , cb_(cb)
 {
 }
 
 template <typename T>
-uvm_ptr<T>::uvm_ptr(const uvm_ptr &other) noexcept
+uvm_handle<T>::uvm_handle(const uvm_handle &other) noexcept
     : ptr_(other.ptr_)
     , cb_(other.cb_)
 {
@@ -252,7 +252,7 @@ uvm_ptr<T>::uvm_ptr(const uvm_ptr &other) noexcept
 }
 
 template <typename T>
-uvm_ptr<T>::uvm_ptr(uvm_ptr &&other) noexcept
+uvm_handle<T>::uvm_handle(uvm_handle &&other) noexcept
     : ptr_(other.ptr_)
     , cb_(other.cb_)
 {
@@ -262,7 +262,7 @@ uvm_ptr<T>::uvm_ptr(uvm_ptr &&other) noexcept
 
 template <typename T>
 template <typename U, typename>
-uvm_ptr<T>::uvm_ptr(const uvm_ptr<U> &other) noexcept
+uvm_handle<T>::uvm_handle(const uvm_handle<U> &other) noexcept
     : ptr_(other.ptr_)
     , cb_(other.cb_)
 {
@@ -272,13 +272,13 @@ uvm_ptr<T>::uvm_ptr(const uvm_ptr<U> &other) noexcept
 }
 
 template <typename T>
-uvm_ptr<T>::~uvm_ptr()
+uvm_handle<T>::~uvm_handle()
 {
     reset();
 }
 
 template <typename T>
-uvm_ptr<T> &uvm_ptr<T>::operator=(const uvm_ptr &other) noexcept
+uvm_handle<T> &uvm_handle<T>::operator=(const uvm_handle &other) noexcept
 {
     if (this == &other)
         return *this;
@@ -295,7 +295,7 @@ uvm_ptr<T> &uvm_ptr<T>::operator=(const uvm_ptr &other) noexcept
 }
 
 template <typename T>
-uvm_ptr<T> &uvm_ptr<T>::operator=(uvm_ptr &&other) noexcept
+uvm_handle<T> &uvm_handle<T>::operator=(uvm_handle &&other) noexcept
 {
     if (this == &other)
         return *this;
@@ -311,37 +311,37 @@ uvm_ptr<T> &uvm_ptr<T>::operator=(uvm_ptr &&other) noexcept
 }
 
 template <typename T>
-T *uvm_ptr<T>::get() const noexcept
+T *uvm_handle<T>::get() const noexcept
 {
     return ptr_;
 }
 
 template <typename T>
-T &uvm_ptr<T>::operator*() const
+T &uvm_handle<T>::operator*() const
 {
     return *ptr_;
 }
 
 template <typename T>
-T *uvm_ptr<T>::operator->() const noexcept
+T *uvm_handle<T>::operator->() const noexcept
 {
     return ptr_;
 }
 
 template <typename T>
-uvm_ptr<T>::operator bool() const noexcept
+uvm_handle<T>::operator bool() const noexcept
 {
     return ptr_ != nullptr;
 }
 
 template <typename T>
-std::uint64_t uvm_ptr<T>::use_count() const noexcept
+std::uint64_t uvm_handle<T>::use_count() const noexcept
 {
     return (cb_ != nullptr) ? static_cast<long>(cb_->strong_count) : 0L;
 }
 
 template <typename T>
-void uvm_ptr<T>::reset() noexcept
+void uvm_handle<T>::reset() noexcept
 {
     if (cb_ == nullptr) {
         ptr_ = nullptr;
@@ -365,7 +365,7 @@ void uvm_ptr<T>::reset() noexcept
 }
 
 template <typename T>
-void uvm_ptr<T>::reset(T *raw) noexcept
+void uvm_handle<T>::reset(T *raw) noexcept
 {
     // Drop current managed object (if any)
     reset();
@@ -380,7 +380,7 @@ void uvm_ptr<T>::reset(T *raw) noexcept
 }
 
 template <typename T>
-void uvm_ptr<T>::reset(T *raw, deleter_type del) noexcept
+void uvm_handle<T>::reset(T *raw, deleter_type del) noexcept
 {
     // Drop current managed object (if any)
     reset();
@@ -399,16 +399,16 @@ void uvm_ptr<T>::reset(T *raw, deleter_type del) noexcept
 }
 
 template <typename T>
-void uvm_ptr<T>::swap(uvm_ptr &other) noexcept
+void uvm_handle<T>::swap(uvm_handle &other) noexcept
 {
     std::swap(ptr_, other.ptr_);
     std::swap(cb_, other.cb_);
 }
 
 template <typename T>
-uvm_weak_ptr<T> uvm_ptr<T>::weak() const noexcept
+uvm_weak_handle<T> uvm_handle<T>::weak() const noexcept
 {
-    return uvm_weak_ptr<T>(*this);
+    return uvm_weak_handle<T>(*this);
 }
 
 // ============================================================
@@ -416,14 +416,14 @@ uvm_weak_ptr<T> uvm_ptr<T>::weak() const noexcept
 // ============================================================
 
 template <typename T>
-uvm_weak_ptr<T>::uvm_weak_ptr() noexcept
+uvm_weak_handle<T>::uvm_weak_handle() noexcept
     : ptr_(nullptr)
     , cb_(nullptr)
 {
 }
 
 template <typename T>
-uvm_weak_ptr<T>::uvm_weak_ptr(const uvm_ptr<T> &strong) noexcept
+uvm_weak_handle<T>::uvm_weak_handle(const uvm_handle<T> &strong) noexcept
     : ptr_(strong.ptr_)
     , cb_(strong.cb_)
 {
@@ -433,7 +433,7 @@ uvm_weak_ptr<T>::uvm_weak_ptr(const uvm_ptr<T> &strong) noexcept
 }
 
 template <typename T>
-uvm_weak_ptr<T>::uvm_weak_ptr(T *raw, control_block *cb) noexcept
+uvm_weak_handle<T>::uvm_weak_handle(T *raw, control_block *cb) noexcept
     : ptr_(raw)
     , cb_(cb)
 {
@@ -443,7 +443,7 @@ uvm_weak_ptr<T>::uvm_weak_ptr(T *raw, control_block *cb) noexcept
 }
 
 template <typename T>
-uvm_weak_ptr<T>::uvm_weak_ptr(const uvm_weak_ptr &other) noexcept
+uvm_weak_handle<T>::uvm_weak_handle(const uvm_weak_handle &other) noexcept
     : ptr_(other.ptr_)
     , cb_(other.cb_)
 {
@@ -453,7 +453,7 @@ uvm_weak_ptr<T>::uvm_weak_ptr(const uvm_weak_ptr &other) noexcept
 }
 
 template <typename T>
-uvm_weak_ptr<T>::uvm_weak_ptr(uvm_weak_ptr &&other) noexcept
+uvm_weak_handle<T>::uvm_weak_handle(uvm_weak_handle &&other) noexcept
     : ptr_(other.ptr_)
     , cb_(other.cb_)
 {
@@ -463,7 +463,7 @@ uvm_weak_ptr<T>::uvm_weak_ptr(uvm_weak_ptr &&other) noexcept
 
 template <typename T>
 template <typename U, typename>
-uvm_weak_ptr<T>::uvm_weak_ptr(const uvm_weak_ptr<U> &other) noexcept
+uvm_weak_handle<T>::uvm_weak_handle(const uvm_weak_handle<U> &other) noexcept
     : ptr_(other.ptr_)
     , cb_(other.cb_)
 {
@@ -473,13 +473,13 @@ uvm_weak_ptr<T>::uvm_weak_ptr(const uvm_weak_ptr<U> &other) noexcept
 }
 
 template <typename T>
-uvm_weak_ptr<T>::~uvm_weak_ptr()
+uvm_weak_handle<T>::~uvm_weak_handle()
 {
     reset();
 }
 
 template <typename T>
-uvm_weak_ptr<T> &uvm_weak_ptr<T>::operator=(const uvm_weak_ptr &other) noexcept
+uvm_weak_handle<T> &uvm_weak_handle<T>::operator=(const uvm_weak_handle &other) noexcept
 {
     if (this == &other)
         return *this;
@@ -495,7 +495,7 @@ uvm_weak_ptr<T> &uvm_weak_ptr<T>::operator=(const uvm_weak_ptr &other) noexcept
 }
 
 template <typename T>
-uvm_weak_ptr<T> &uvm_weak_ptr<T>::operator=(uvm_weak_ptr &&other) noexcept
+uvm_weak_handle<T> &uvm_weak_handle<T>::operator=(uvm_weak_handle &&other) noexcept
 {
     if (this == &other)
         return *this;
@@ -510,7 +510,7 @@ uvm_weak_ptr<T> &uvm_weak_ptr<T>::operator=(uvm_weak_ptr &&other) noexcept
 }
 
 template <typename T>
-void uvm_weak_ptr<T>::reset() noexcept
+void uvm_weak_handle<T>::reset() noexcept
 {
     if (cb_ == nullptr) {
         ptr_ = nullptr;
@@ -531,7 +531,7 @@ void uvm_weak_ptr<T>::reset() noexcept
 }
 
 template <typename T>
-void uvm_weak_ptr<T>::reset(const uvm_ptr<T> &strong) noexcept
+void uvm_weak_handle<T>::reset(const uvm_handle<T> &strong) noexcept
 {
     // Drop current weak reference (if any)
     reset();
@@ -546,21 +546,21 @@ void uvm_weak_ptr<T>::reset(const uvm_ptr<T> &strong) noexcept
 }
 
 template <typename T>
-uvm_ptr<T> uvm_weak_ptr<T>::lock() const noexcept
+uvm_handle<T> uvm_weak_handle<T>::lock() const noexcept
 {
     // Single-threaded SystemC assumption:
     // It is safe to read cb_->strong_count without atomics.
     //
     // If strong_count == 0, the object is already destroyed.
     if (cb_ == nullptr || cb_->strong_count == 0) {
-        return uvm_ptr<T>(); // empty
+        return uvm_handle<T>(); // empty
     }
 
     // Promote weak -> strong
     ++cb_->strong_count;
 
     // Return a new owning handle to the same object/control block.
-    return uvm_ptr<T>(ptr_, cb_);
+    return uvm_handle<T>(ptr_, cb_);
 }
 
 // ============================================================
@@ -568,7 +568,7 @@ uvm_ptr<T> uvm_weak_ptr<T>::lock() const noexcept
 // ============================================================
 
 template <typename T, typename... Args>
-uvm_ptr<T> make_ptr(Args &&...args)
+uvm_handle<T> make_ptr(Args &&...args)
 {
     // Allocate and manage with the default deleter.
     T *raw = new T(std::forward<Args>(args)...);
@@ -576,21 +576,21 @@ uvm_ptr<T> make_ptr(Args &&...args)
 }
 
 template <typename T>
-uvm_ptr<T> adopt_ptr(T *raw) noexcept
+uvm_handle<T> adopt_ptr(T *raw) noexcept
 {
     if (raw == nullptr) {
-        return uvm_ptr<T>();
+        return uvm_handle<T>();
     }
 
-    auto *cb = new typename uvm_ptr<T>::control_block(raw, &default_delete<T>);
-    return uvm_ptr<T>(raw, cb);
+    auto *cb = new typename uvm_handle<T>::control_block(raw, &default_delete<T>);
+    return uvm_handle<T>(raw, cb);
 }
 
 template <typename T>
-uvm_ptr<T> adopt_ptr(T *raw, typename uvm_ptr<T>::deleter_type del) noexcept
+uvm_handle<T> adopt_ptr(T *raw, typename uvm_handle<T>::deleter_type del) noexcept
 {
     if (raw == nullptr) {
-        return uvm_ptr<T>();
+        return uvm_handle<T>();
     }
 
     // If caller passes nullptr, fall back to default delete.
@@ -598,43 +598,43 @@ uvm_ptr<T> adopt_ptr(T *raw, typename uvm_ptr<T>::deleter_type del) noexcept
         del = &default_delete<T>;
     }
 
-    auto *cb = new typename uvm_ptr<T>::control_block(raw, del);
-    return uvm_ptr<T>(raw, cb);
+    auto *cb = new typename uvm_handle<T>::control_block(raw, del);
+    return uvm_handle<T>(raw, cb);
 }
 
 template <typename To, typename From>
-uvm_ptr<To> static_pointer_cast(const uvm_ptr<From>& p) noexcept
+uvm_handle<To> static_pointer_cast(const uvm_handle<From>& p) noexcept
 {
     // If p is empty, return empty.
     if (!p.get()) {
-        return uvm_ptr<To>();
+        return uvm_handle<To>();
     }
 
-    // Create a new uvm_ptr<To> that shares the SAME control block.
+    // Create a new uvm_handle```<To> that shares the SAME control block.
     // We must increment the strong count because we're creating a new strong handle.
-    auto* cb = reinterpret_cast<typename uvm_ptr<To>::control_block*>(p.cb_);
+    auto* cb = reinterpret_cast<typename uvm_handle<To>::control_block*>(p.cb_);
     ++cb->strong_count;
 
-    return uvm_ptr<To>(static_cast<To*>(p.get()), cb);
+    return uvm_handle<To>(static_cast<To*>(p.get()), cb);
 }
 
 template <typename To, typename From>
-uvm_ptr<To> dynamic_pointer_cast(const uvm_ptr<From>& p) noexcept
+uvm_handle<To> dynamic_pointer_cast(const uvm_handle<From>& p) noexcept
 {
     if (!p.get()) {
-        return uvm_ptr<To>();
+        return uvm_handle<To>();
     }
 
     // Runtime checked cast
     To* casted = dynamic_cast<To*>(p.get());
     if (!casted) {
-        return uvm_ptr<To>(); // cast failed
+        return uvm_handle<To>(); // cast failed
     }
 
-    auto* cb = reinterpret_cast<typename uvm_ptr<To>::control_block*>(p.cb_);
+    auto* cb = reinterpret_cast<typename uvm_handle<To>::control_block*>(p.cb_);
     ++cb->strong_count;
 
-    return uvm_ptr<To>(casted, cb);
+    return uvm_handle<To>(casted, cb);
 }
 
 

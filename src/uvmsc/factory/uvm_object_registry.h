@@ -84,7 +84,7 @@ class uvm_object_registry : public uvm_object_wrapper
                     uvm_component* parent = nullptr,
                     const std::string& contxt = "" );
 
-  static uvm_ptr<T> create_uvm_ptr(const std::string& name = "",
+  static uvm_handle<T> create_uvm_handle(const std::string& name = "",
                                    uvm_component* parent = nullptr,
                                    const std::string& contxt = "" );                    
                     
@@ -219,7 +219,7 @@ T* uvm_object_registry<T>::create( const std::string& name,
 }
 
 //----------------------------------------------------------------------
-// member function: create_uvm_ptr (static)
+// member function: create_uvm_handle (static)
 //
 //! Returns a UVM pointer instance of the object type, T, represented by this proxy,
 //! subject to any factory overrides based on the context provided by the
@@ -229,7 +229,7 @@ T* uvm_object_registry<T>::create( const std::string& name,
 //----------------------------------------------------------------------
 
 template <typename T>
-uvm_ptr<T> uvm_object_registry<T>::create_uvm_ptr( const std::string& name,
+uvm_handle<T> uvm_object_registry<T>::create_uvm_handle( const std::string& name,
                                    uvm_component* parent,
                                    const std::string& contxt )
 {
@@ -241,7 +241,7 @@ uvm_ptr<T> uvm_object_registry<T>::create_uvm_ptr( const std::string& name,
 
   if (contxt.empty() && parent != nullptr)
     l_contxt = parent->get_full_name();
-  auto obj = f->create_uvm_ptr_object_by_type(get(), l_contxt, name );
+  auto obj = f->create_uvm_handle_object_by_type(get(), l_contxt, name );
   auto robj = dynamic_pointer_cast<T>(obj);
   if (robj.get() == nullptr)
   {

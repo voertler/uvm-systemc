@@ -22,7 +22,7 @@
 
 #include <tlm>
 
-#include "uvmsc/base/uvm_ptr.h"
+#include "uvmsc/base/uvm_handle.h"
 #include "uvmsc/macros/uvm_defines.h"
 namespace uvm {
 
@@ -39,47 +39,47 @@ class uvm_sqr_if_base : public virtual sc_core::sc_interface //: public tlm::tlm
 {
  public:
 
-  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_ptr<uvm_sequence_item>")
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>")
   virtual REQ get_next_item( REQ *req ) = 0;
 
-  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_ptr<uvm_sequence_item>")
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>")
   virtual void get_next_item( REQ& req ) { req = get_next_item(nullptr); }
 
-  virtual uvm_ptr<REQ>  get_next_item( ) = 0;
+  virtual uvm_handle<REQ>  get_next_item( ) = 0;
   
-  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_ptr<uvm_sequence_item>")
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>")
   virtual bool try_next_item( REQ& req ) = 0;
 
-  virtual  uvm_ptr<REQ> try_next_item() = 0;
+  virtual  uvm_handle<REQ> try_next_item() = 0;
 
-  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_ptr<uvm_sequence_item>")                                   
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>")                                   
   virtual void item_done(const RSP& item, bool use_item = true) = 0;
   
-  virtual void item_done( uvm_ptr<REQ> item) = 0;
+  virtual void item_done( uvm_handle<REQ> item) = 0;
   
   virtual void item_done() = 0;
 
-  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_ptr<uvm_sequence_item>")
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>")
   virtual void put_response( const RSP& rsp ) = 0; 
 
-  virtual void put_response( uvm_ptr<REQ> rsp ) = 0;
+  virtual void put_response( uvm_handle<REQ> rsp ) = 0;
   
-  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_ptr<uvm_sequence_item>")
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>")
   virtual REQ get( REQ *req ) = 0;
   
-  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_ptr<uvm_sequence_item>")
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>")
   virtual void get( REQ& req ) { req = get(nullptr); }
   
-  virtual uvm_ptr<REQ>  get( ) = 0;
+  virtual uvm_handle<REQ>  get( ) = 0;
 
-  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_ptr<uvm_sequence_item>")
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>")
   virtual REQ peek( REQ *req ) = 0; 
  
-  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_ptr<uvm_sequence_item>")
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>")
   virtual void peek( REQ& req ) { req = peek(nullptr); }   // FIXME in SystemC TLM1 this is a const method.
 
 
-  virtual uvm_ptr<REQ> peek() const = 0;    
+  virtual uvm_handle<REQ> peek() const = 0;    
   // TODO - do we need these at all?
   //virtual void stop_sequences() = 0; // TODO pure virtual or default implementation?
   //virtual void wait_for_sequences() const = 0; // TODO pure virtual or default implementation?

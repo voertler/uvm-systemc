@@ -697,10 +697,10 @@ uvm_component* uvm_default_factory::create_component_by_name( const std::string&
 }
 
 //----------------------------------------------------------------------------
-// member function: create_uvm_ptr_object_by_type
+// member function: create_uvm_handle_object_by_type
 //----------------------------------------------------------------------------
 
-uvm_ptr<uvm_object> uvm_default_factory::create_uvm_ptr_object_by_type( uvm_object_wrapper* requested_type,
+uvm_handle<uvm_object> uvm_default_factory::create_uvm_handle_object_by_type( uvm_object_wrapper* requested_type,
                                                 const std::string& parent_inst_path,
                                                 const std::string& name )
 {
@@ -723,10 +723,10 @@ uvm_ptr<uvm_object> uvm_default_factory::create_uvm_ptr_object_by_type( uvm_obje
 }
 
 //----------------------------------------------------------------------------
-// member function: create_uvm_ptr_component_by_type
+// member function: create_uvm_handle_component_by_type
 //----------------------------------------------------------------------------
 
-uvm_ptr<uvm_component> uvm_default_factory::create_uvm_ptr_component_by_type( uvm_object_wrapper* requested_type,
+uvm_handle<uvm_component> uvm_default_factory::create_uvm_handle_component_by_type( uvm_object_wrapper* requested_type,
                                                       const std::string& parent_inst_path,
                                                       const std::string& name,
                                                       uvm_component* parent )
@@ -750,10 +750,10 @@ uvm_ptr<uvm_component> uvm_default_factory::create_uvm_ptr_component_by_type( uv
 }
 
 //----------------------------------------------------------------------------
-// member function: create_uvm_ptr_object_by_name
+// member function: create_uvm_handle_object_by_name
 //----------------------------------------------------------------------------
 
-uvm_ptr<uvm_object> uvm_default_factory::create_uvm_ptr_object_by_name( const std::string& requested_type_name,
+uvm_handle<uvm_object> uvm_default_factory::create_uvm_handle_object_by_name( const std::string& requested_type_name,
                                                 const std::string& parent_inst_path,
                                                 const std::string& name )
 {
@@ -791,10 +791,10 @@ uvm_ptr<uvm_object> uvm_default_factory::create_uvm_ptr_object_by_name( const st
 }
 
 //----------------------------------------------------------------------------
-// member function: create_uvm_ptr_component_by_name
+// member function: create_uvm_handle_component_by_name
 //----------------------------------------------------------------------------
 
-uvm_ptr<uvm_component> uvm_default_factory::create_uvm_ptr_component_by_name( const std::string& requested_type_name,
+uvm_handle<uvm_component> uvm_default_factory::create_uvm_handle_component_by_name( const std::string& requested_type_name,
                                                       const std::string& parent_inst_path,
                                                       const std::string& name,
                                                       uvm_component* parent )

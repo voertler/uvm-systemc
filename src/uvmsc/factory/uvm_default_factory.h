@@ -101,20 +101,20 @@ public:
                                                    const std::string& name = "",
                                                    uvm_component* parent = nullptr ) override;
                                                    
-  uvm_ptr<uvm_object> create_uvm_ptr_object_by_type(uvm_object_wrapper *requested_type,
+  uvm_handle<uvm_object> create_uvm_handle_object_by_type(uvm_object_wrapper *requested_type,
                         const std::string &parent_inst_path = "",
                         const std::string &name = "") override;
 
-  uvm_ptr<uvm_component> create_uvm_ptr_component_by_type(uvm_object_wrapper *requested_type,
+  uvm_handle<uvm_component> create_uvm_handle_component_by_type(uvm_object_wrapper *requested_type,
                            const std::string &parent_inst_path = "",
                            const std::string &name = "",
                            uvm_component *parent = nullptr) override;
 
-  uvm_ptr<uvm_object> create_uvm_ptr_object_by_name(const std::string &requested_type_name,
+  uvm_handle<uvm_object> create_uvm_handle_object_by_name(const std::string &requested_type_name,
                         const std::string &parent_inst_path = "",
                         const std::string &name = "") override;
 
-  uvm_ptr<uvm_component> create_uvm_ptr_component_by_name(const std::string &requested_type_name,
+  uvm_handle<uvm_component> create_uvm_handle_component_by_name(const std::string &requested_type_name,
                            const std::string &parent_inst_path = "",
                            const std::string &name = "",
                            uvm_component *parent = nullptr) override;                                                     

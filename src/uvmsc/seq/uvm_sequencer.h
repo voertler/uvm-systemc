@@ -78,56 +78,56 @@ class uvm_sequencer : public uvm_sequencer_param_base<REQ,RSP>,
   //--------------------------------------------------------------------------
 
   //virtual REQ get_next_item( tlm::tlm_tag<REQ>* req = nullptr );
-  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_ptr<uvm_sequence_item>")
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>")
   REQ get_next_item( REQ* req ) override;
-  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_ptr<uvm_sequence_item>")
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>")
   void get_next_item( REQ& req )  override;
 
-  uvm_ptr<REQ>  get_next_item( ) override // TODO 
+  uvm_handle<REQ>  get_next_item( ) override // TODO 
   {
     
   };
   
-  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_ptr<uvm_sequence_item>")
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>")
   bool try_next_item( REQ& req ) override;
   
-  uvm_ptr<REQ> try_next_item() override {
+  uvm_handle<REQ> try_next_item() override {
     //TODO
     
   };
-  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_ptr<uvm_sequence_item>")
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>")
   void item_done( const RSP& item, bool use_item = true ) override;
-  void item_done( uvm_ptr<REQ> item) override {
+  void item_done( uvm_handle<REQ> item) override {
     // TODO
   };
   void item_done() override; 
 
-  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_ptr<uvm_sequence_item>")
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>")
   void put( const RSP& rsp ) override;
-  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_ptr<uvm_sequence_item>")
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>")
   void put_response( const RSP& rsp ) override ; // TODO not in standard anymore? remove?
 
-  void put_response( uvm_ptr<REQ> rsp ) override 
+  void put_response( uvm_handle<REQ> rsp ) override 
   {
     //TODO
   };
 
-  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_ptr<uvm_sequence_item>")
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>")
   REQ get( REQ* req) override;
-  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_ptr<uvm_sequence_item>")
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>")
   void get( REQ& req ) override;
 
-  uvm_ptr<REQ>  get( ) override 
+  uvm_handle<REQ>  get( ) override 
   {
    // TODO 
   };
   
-  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_ptr<uvm_sequence_item>")
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>")
   void peek( REQ& req ) override;
-  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_ptr<uvm_sequence_item>")
+  UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>")
   REQ peek( REQ* req ) override;
   
-  uvm_ptr<REQ> peek() const override 
+  uvm_handle<REQ> peek() const override 
   {
     // TODO
   };  

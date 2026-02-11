@@ -87,7 +87,7 @@ class uvm_component_registry : public uvm_object_wrapper
                     uvm_component* parent = nullptr,
                     const std::string& contxt = "" );
                     
-  static uvm_ptr<T> create_uvm_ptr( const std::string& name = "",
+  static uvm_handle<T> create_uvm_handle( const std::string& name = "",
                     uvm_component* parent = nullptr,
                     const std::string& contxt = "" );
 
@@ -217,7 +217,7 @@ T* uvm_component_registry<T>::create( const std::string& name,
 }
 
 //----------------------------------------------------------------------
-// member function: create_uvm_ptr (static)
+// member function: create_uvm_handle (static)
 //
 //! Returns an instance of the component type, T, represented by this proxy,
 //! subject to any factory overrides based on the context provided by the
@@ -227,7 +227,7 @@ T* uvm_component_registry<T>::create( const std::string& name,
 //----------------------------------------------------------------------
 
 template <typename T>
-uvm_ptr<T> uvm_component_registry<T>::create_uvm_ptr( const std::string& name,
+uvm_handle<T> uvm_component_registry<T>::create_uvm_handle( const std::string& name,
                                       uvm_component* parent,
                                       const std::string& contxt )
 {
@@ -237,7 +237,7 @@ uvm_ptr<T> uvm_component_registry<T>::create_uvm_ptr( const std::string& name,
 
   if (l_contxt.empty() && parent != nullptr)
     l_contxt = parent->get_full_name();
-  auto obj = f->create_uvm_ptr_component_by_name( get(), l_contxt, name, parent );
+  auto obj = f->create_uvm_handle_component_by_name( get(), l_contxt, name, parent );
 
   auto robj = dynamic_pointer_cast<T>(obj);
   if (robj.get() == nullptr)
