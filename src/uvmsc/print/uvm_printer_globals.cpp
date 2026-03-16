@@ -21,6 +21,8 @@
 //----------------------------------------------------------------------
 
 #include "uvmsc/print/uvm_printer_globals.h"
+#include "uvmsc/base/uvm_coreservice_t.h"
+#include "uvmsc/base/uvm_default_coreservice_t.h"
 
 namespace uvm {
 
@@ -35,7 +37,10 @@ namespace uvm {
 //! uvm_object::do_print to get tabular style printing.
 //----------------------------------------------------------------------
 
-uvm_table_printer* uvm_default_table_printer = new uvm_table_printer();
+uvm_table_printer* uvm_get_default_table_printer()
+{
+  return uvm_coreservice_t::get()->get_uvm_default_table_printer();
+}
 
 //----------------------------------------------------------------------
 // Member variable: uvm_default_printer
@@ -47,7 +52,20 @@ uvm_table_printer* uvm_default_table_printer = new uvm_table_printer();
 //! including the global line, tree, and table printers described above.
 //----------------------------------------------------------------------
 
-uvm_printer* uvm_default_printer = uvm_default_table_printer;
+uvm_printer* uvm_get_default_printer()
+{
+  return uvm_coreservice_t::get()->get_uvm_default_printer();
+}
+
+uvm_printer*& uvm_default_printer_ref()
+{
+  return uvm_coreservice_t::get()->get_uvm_default_printer_ref();
+}
+
+void uvm_set_default_printer( uvm_printer* printer )
+{
+  uvm_coreservice_t::get()->set_uvm_default_printer(printer);
+}
 
 //----------------------------------------------------------------------
 // Member variable: uvm_default_tree_printer
@@ -56,7 +74,10 @@ uvm_printer* uvm_default_printer = uvm_default_table_printer;
 //! uvm_object::do_print to get multi-line tree style printing.
 //----------------------------------------------------------------------
 
-uvm_tree_printer* uvm_default_tree_printer = new uvm_tree_printer();
+uvm_tree_printer* uvm_get_default_tree_printer()
+{
+  return uvm_coreservice_t::get()->get_uvm_default_tree_printer();
+}
 
 //----------------------------------------------------------------------
 // Member variable: uvm_default_line_printer
@@ -65,9 +86,10 @@ uvm_tree_printer* uvm_default_tree_printer = new uvm_tree_printer();
 //! uvm_object::do_print to get single-line style printing.
 //----------------------------------------------------------------------
 
-uvm_line_printer* uvm_default_line_printer = new uvm_line_printer();
+uvm_line_printer* uvm_get_default_line_printer()
+{
+  return uvm_coreservice_t::get()->get_uvm_default_line_printer();
+}
 
 
 } /* namespace uvm */
-
-

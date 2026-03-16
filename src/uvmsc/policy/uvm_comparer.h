@@ -45,7 +45,8 @@ namespace uvm {
 
 class uvm_comparer
 {
- public:
+public:
+  friend class uvm_default_coreservice_t;
 
   //--------------------------------------------------------------------------
   // UVM Standard LRM API below
@@ -120,6 +121,8 @@ class uvm_comparer
  private:
 
   uvm_comparer(); // constructor
+
+ public:
 
   virtual ~uvm_comparer(); // destructor
 

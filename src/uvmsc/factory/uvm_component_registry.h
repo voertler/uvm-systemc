@@ -29,6 +29,7 @@
 #include <systemc>
 #include <string>
 #include <sstream>
+#include <typeinfo>
 
 #include "uvmsc/base/uvm_globals.h"
 #include "uvmsc/base/uvm_root.h"
@@ -107,19 +108,7 @@ class uvm_component_registry : public uvm_object_wrapper
 
   static const std::string m_type_name_prop();
 
-  // data members
-
-  static uvm_component_registry<T>* me;
-
 }; // class uvm_component_registry
-
-
-//----------------------------------------------------------------------
-// definition of static members outside class definition
-//----------------------------------------------------------------------
-
-template <typename T>
-uvm_component_registry<T>* uvm_component_registry<T>::me = get();
 
 //----------------------------------------------------------------------
 // Constructor
@@ -171,6 +160,10 @@ const std::string uvm_component_registry<T>::get_type_name() const
 template <typename T>
 uvm_component_registry<T>* uvm_component_registry<T>::get()
 {
+  uvm_component_registry<T>*& me =
+    uvm_coreservice_t::get()->get_or_create_typed_store<uvm_component_registry<T>*>(
+      std::string("uvm_component_registry::me:") + typeid(T).name(), nullptr);
+
   if (me == nullptr)
   {
     uvm_coreservice_t* cs = uvm_coreservice_t::get();
@@ -339,13 +332,6 @@ void uvm_component_registry<T>::destroy( T* comp )
 template <typename T>
 uvm_component_registry<T>::~uvm_component_registry()
 {
-  // clean memory
-  if (me != nullptr)
-  {
-    delete me;
-    me = nullptr;
-  }
-
   uvm_coreservice_t* cs = uvm_coreservice_t::get();
   uvm_factory* f = cs->get_factory();
   f->m_delete_all_components();
@@ -357,4 +343,3 @@ uvm_component_registry<T>::~uvm_component_registry()
 } // namespace uvm
 
 #endif // UVM_COMPONENT_REGISTRY_H_
-

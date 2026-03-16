@@ -576,10 +576,11 @@ std::string uvm_default_report_server::compose_report_message(
     msg_body_str = report_message->get_message();
   else
   {
-    prefix = uvm_default_printer->knobs.prefix;
-    uvm_default_printer->knobs.prefix = " +";
+    uvm_printer* printer = uvm_get_default_printer();
+    prefix = printer->knobs.prefix;
+    printer->knobs.prefix = " +";
     msg_body_str = report_message->get_message() + "\n" + el_container->sprint();
-    uvm_default_printer->knobs.prefix = prefix;
+    printer->knobs.prefix = prefix;
   }
 
   if (report_object_name.empty())

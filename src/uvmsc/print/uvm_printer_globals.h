@@ -40,7 +40,7 @@ namespace uvm {
 //! uvm_object::do_print to get tabular style printing.
 //----------------------------------------------------------------------
 
-extern uvm_table_printer* uvm_default_table_printer;
+uvm_table_printer* uvm_get_default_table_printer();
 
 //----------------------------------------------------------------------
 // Member variable: uvm_default_printer
@@ -52,7 +52,9 @@ extern uvm_table_printer* uvm_default_table_printer;
 //! including the global line, tree, and table printers described above.
 //----------------------------------------------------------------------
 
-extern uvm_printer* uvm_default_printer;
+uvm_printer* uvm_get_default_printer();
+uvm_printer*& uvm_default_printer_ref();
+void uvm_set_default_printer( uvm_printer* printer );
 
 //----------------------------------------------------------------------
 // Member variable: uvm_default_tree_printer
@@ -61,7 +63,7 @@ extern uvm_printer* uvm_default_printer;
 //! uvm_object::do_print to get multi-line tree style printing.
 //----------------------------------------------------------------------
 
-extern uvm_tree_printer* uvm_default_tree_printer;
+uvm_tree_printer* uvm_get_default_tree_printer();
 
 //----------------------------------------------------------------------
 // Member variable: uvm_default_line_printer
@@ -70,7 +72,12 @@ extern uvm_tree_printer* uvm_default_tree_printer;
 //! uvm_object::do_print to get single-line style printing.
 //----------------------------------------------------------------------
 
-extern uvm_line_printer* uvm_default_line_printer;
+uvm_line_printer* uvm_get_default_line_printer();
+
+#define uvm_default_table_printer uvm_get_default_table_printer()
+#define uvm_default_printer uvm_default_printer_ref()
+#define uvm_default_tree_printer uvm_get_default_tree_printer()
+#define uvm_default_line_printer uvm_get_default_line_printer()
 
 
 

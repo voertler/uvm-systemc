@@ -56,6 +56,20 @@ using namespace sc_core;
 
 namespace uvm {
 
+namespace {
+
+bool& m_uvm_timeout_overridable_ref()
+{
+  return uvm_coreservice_t::get()->get_uvm_root_m_uvm_timeout_overridable();
+}
+
+bool& m_uvm_header_done_ref()
+{
+  return uvm_coreservice_t::get()->get_uvm_root_m_uvm_header_done();
+}
+
+} // namespace
+
 //----------------------------------------------------------------------
 // CLASS: uvm_root
 //
@@ -66,8 +80,7 @@ namespace uvm {
 // Initialization static data members
 //----------------------------------------------------------------------
 
-
-bool uvm_root::m_uvm_timeout_overridable = true;
+// Refactored from the former uvm_root::m_uvm_timeout_overridable global to uvm_coreservice_t.
 
 //----------------------------------------------------------------------
 // Constructor
@@ -82,7 +95,7 @@ uvm_root::uvm_root( uvm_component_name nm )
   m_phase_all_done = false;
   m_current_phase = nullptr;
 
-  m_uvm_timeout_overridable = true;
+  m_uvm_timeout_overridable_ref() = true;
 
   m_rh->set_name("reporter");
 
@@ -200,7 +213,9 @@ void uvm_root::die()
 
 void uvm_root::set_timeout( const sc_core::sc_time& timeout, bool overridable)
 {
-  if (!m_uvm_timeout_overridable)
+  bool& timeout_overridable = m_uvm_timeout_overridable_ref();
+
+  if (!timeout_overridable)
   {
     std::ostringstream str;
     str << "The global timeout setting of "
@@ -211,7 +226,7 @@ void uvm_root::set_timeout( const sc_core::sc_time& timeout, bool overridable)
     uvm_report_info("NOTIMOUTOVR", str.str(), UVM_NONE);
     return;
   }
-  m_uvm_timeout_overridable = overridable;
+  timeout_overridable = overridable;
   phase_timeout = timeout;
 }
 
@@ -321,7 +336,7 @@ void uvm_root::print_topology( uvm_printer* printer )
   std::string s;
 
   if (printer == nullptr)
-    printer = uvm_default_printer;
+    printer = uvm_get_default_printer();
 
   if (printer == nullptr)
     uvm_report_error("NULLPRINTER", "uvm_default_printer is nullptr");
@@ -420,15 +435,8 @@ void uvm_root::end_of_simulation()
 
 uvm_root* uvm_root::m_uvm_get_root()
 {
-  static uvm_root* m_root = nullptr;
-
-  if (m_root == nullptr)
-  {
-    m_root = new uvm_root(sc_core::sc_module_name("uvm_top"));
-    m_root->m_domain = uvm_domain::get_uvm_domain();
-  }
-
-  return m_root;
+  // Refactored from the former function-local m_root global to uvm_coreservice_t.
+  return uvm_coreservice_t::get()->get_root();
 }
 
 //----------------------------------------------------------------------
@@ -532,9 +540,10 @@ void uvm_root::m_register_test( const std::string& test_name )
 
 void uvm_root::m_uvm_header()
 {
-  static bool lnp = false;
+  bool& lnp = m_uvm_header_done_ref();
+
   if (lnp  || (getenv("UVM_SYSTEMC_DISABLE_COPYRIGHT_MESSAGE") != 0 )) {
-	  lnp = true;
+    lnp = true;
   } else
   {
 #ifdef REVISION
@@ -609,4 +618,3 @@ void uvm_root::m_unregister_test( const std::string& test_name )
 }
 
 } // namespace uvm
-
