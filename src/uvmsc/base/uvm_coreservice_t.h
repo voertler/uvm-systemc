@@ -138,11 +138,11 @@ class uvm_coreservice_t
 {
  public:
 
-  virtual uvm_factory* get_factory() = 0;
-  virtual void set_factory( uvm_factory* f ) = 0;
+  virtual std::shared_ptr<uvm_factory> get_factory() = 0;
+  virtual void set_factory( std::shared_ptr<uvm_factory> f ) = 0;
 
-  virtual uvm_report_server* get_report_server() = 0;
-  virtual void set_report_server( uvm_report_server* server ) = 0;
+  virtual std::shared_ptr<uvm_report_server> get_report_server() = 0;
+  virtual void set_report_server( std::shared_ptr<uvm_report_server> ) = 0;
 
 //  virtual uvm_tr_database* get_default_tr_database() = 0;
 //  virtual void set_default_tr_database( uvm_tr_database db ) = 0;
@@ -152,14 +152,20 @@ class uvm_coreservice_t
 
   virtual uvm_root* get_root() = 0;
   
-  virtual uvm_packer* get_default_packer() = 0;
-  virtual void set_default_packer(uvm_packer*) = 0;
+  virtual std::shared_ptr<uvm_packer> get_default_packer() = 0;
+  virtual void set_default_packer(std::shared_ptr<uvm_packer>) = 0;
   
 
-  virtual uvm_comparer* get_default_comparer() = 0;
-  virtual uvm_comparer* set_default_comparer() = 0;
+  virtual std::shared_ptr<uvm_comparer> get_default_comparer() = 0;
+  virtual void set_default_comparer(std::shared_ptr<uvm_comparer>) = 0;
+  
+
+  virtual std::shared_ptr<uvm_printer> get_default_printer() = 0;
+  virtual void set_default_printer(std::shared_ptr<uvm_printer>) = 0;
   
   static uvm_default_coreservice_t* get();
+  
+  // Implementation defined
 
   typedef std::map<uvm_object*, uvm_queue<uvm_callback*>*> callback_pool_map_t;
   typedef std::map<std::string, uvm_domain*> domain_map_t;
@@ -261,9 +267,6 @@ class uvm_coreservice_t
   // static char uvm_re[2048].
   virtual regex_buffer_t& get_uvm_globals_uvm_re() = 0;
 
-  // Replaces uvmsc/policy/uvm_packer.h / .cpp:
-  // uvm_default_packer.
-  virtual uvm_packer* get_uvm_default_packer() = 0;
   // Replaces uvmsc/base/uvm_object.h / .cpp:
   // uvm_object::__m_uvm_status_container.
   virtual uvm_status_container* get_uvm_object__m_uvm_status_container() = 0;
@@ -277,19 +280,17 @@ class uvm_coreservice_t
 
   // Replaces uvmsc/print/uvm_printer_globals.h / .cpp:
   // uvm_default_table_printer.
-  virtual uvm_table_printer* get_uvm_default_table_printer() = 0;
+  virtual std::shared_ptr<uvm_table_printer> get_uvm_default_table_printer() = 0;
+  // Replaces storage for the implementation-defined default table printer.
+  virtual void set_uvm_default_table_printer( std::shared_ptr<uvm_table_printer> printer ) = 0;
   // Replaces uvmsc/print/uvm_printer_globals.h / .cpp:
   // uvm_default_tree_printer.
-  virtual uvm_tree_printer* get_uvm_default_tree_printer() = 0;
+  virtual std::shared_ptr<uvm_tree_printer> get_uvm_default_tree_printer() = 0;
+  virtual void set_uvm_default_tree_printer(std::shared_ptr<uvm_tree_printer> printer ) =0 ;
   // Replaces uvmsc/print/uvm_printer_globals.h / .cpp:
   // uvm_default_line_printer.
-  virtual uvm_line_printer* get_uvm_default_line_printer() = 0;
-  // Replaces uvmsc/print/uvm_printer_globals.h / .cpp:
-  // uvm_default_printer and code paths that used uvm_default_printer_knobs
-  // through the selected printer instance.
-  virtual uvm_printer* get_uvm_default_printer() = 0;
-  virtual uvm_printer*& get_uvm_default_printer_ref() = 0;
-  virtual void set_uvm_default_printer( uvm_printer* printer ) = 0;
+  virtual std::shared_ptr<uvm_line_printer> get_uvm_default_line_printer() = 0;
+  virtual void set_uvm_default_line_printer( std::shared_ptr<uvm_line_printer> printer ) =0 ;
   // Replaces uvmsc/phasing/uvm_phase.h / .cpp:
   // uvm_phase::m_phase_hopper.
   virtual uvm_phase_queue<uvm_phase*>* get_uvm_phase_m_phase_hopper() = 0;

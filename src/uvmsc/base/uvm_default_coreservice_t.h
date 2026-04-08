@@ -98,20 +98,23 @@ class uvm_default_coreservice_t : public uvm_coreservice_t
  public:
   friend class uvm_coreservice_t;
 
-  uvm_factory* get_factory()  override;
-  void set_factory( uvm_factory* f ) override;
+  std::shared_ptr<uvm_factory> get_factory()  override;
+  void set_factory( std::shared_ptr<uvm_factory> f ) override;
 
 //  virtual uvm_tr_database* get_default_tr_database() const;
 //  virtual void set_default_tr_database( uvm_tr_database* db );
 
-  uvm_report_server* get_report_server()  override;
-  void set_report_server( uvm_report_server* server ) override;
+  std::shared_ptr<uvm_report_server> get_report_server()  override;
+  void set_report_server( std::shared_ptr<uvm_report_server> server ) override;
 
-  uvm_packer* get_default_packer()  override;
-  void set_default_packer(uvm_packer*)  override;
+  std::shared_ptr<uvm_packer> get_default_packer()  override;
+  void set_default_packer(std::shared_ptr<uvm_packer>)  override;
   
-  uvm_comparer* get_default_comparer() override;
-  uvm_comparer* set_default_comparer() override;
+  std::shared_ptr<uvm_comparer> get_default_comparer() override;
+  void set_default_comparer(std::shared_ptr<uvm_comparer>) override;
+  
+  std::shared_ptr<uvm_printer> get_default_printer() override;
+  void set_default_printer(std::shared_ptr<uvm_printer>)override;
   
   int allocate_uvm_object_m_inst_count() override;
   int get_uvm_object_m_inst_count() override;
@@ -137,18 +140,17 @@ class uvm_default_coreservice_t : public uvm_coreservice_t
   uvm_report_catcher_data& get_uvm_report_catcher_data_instance() override;
   uvm_coreservice_t::regex_buffer_t& get_uvm_globals_uvm_re() override;
 
-  uvm_packer* get_uvm_default_packer() override;
   uvm_status_container* get_uvm_object__m_uvm_status_container() override;
   uvm_resource_pool* get_uvm_resource_pool_rp() override;
   void reset_uvm_resource_pool_rp() override;
   bool& get_uvm_resource_pool_m_has_wildcard_names() override;
 
-  uvm_table_printer* get_uvm_default_table_printer() override;
-  uvm_tree_printer* get_uvm_default_tree_printer() override;
-  uvm_line_printer* get_uvm_default_line_printer() override;
-  uvm_printer* get_uvm_default_printer() override;
-  uvm_printer*& get_uvm_default_printer_ref() override;
-  void set_uvm_default_printer( uvm_printer* printer ) override;
+  std::shared_ptr<uvm_table_printer> get_uvm_default_table_printer() override;
+  void set_uvm_default_table_printer( std::shared_ptr<uvm_table_printer> printer ) override;
+  std::shared_ptr<uvm_tree_printer> get_uvm_default_tree_printer() override;
+  void set_uvm_default_tree_printer( std::shared_ptr<uvm_tree_printer> printer ) override;
+  std::shared_ptr<uvm_line_printer> get_uvm_default_line_printer() override;
+  void set_uvm_default_line_printer( std::shared_ptr<uvm_line_printer> printer ) override;
   uvm_phase_queue<uvm_phase*>* get_uvm_phase_m_phase_hopper() override;
   bool& get_uvm_phase_m_phase_trace() override;
   bool& get_uvm_root_m_uvm_timeout_overridable() override;
@@ -219,9 +221,9 @@ class uvm_default_coreservice_t : public uvm_coreservice_t
       : "<unknown>";
   }
 
-  mutable uvm_factory* factory;
+  std::shared_ptr<uvm_factory> factory;
 //  mutable uvm_tr_database* tr_database;
-  mutable uvm_report_server* report_server;
+  std::shared_ptr<uvm_report_server> report_server;
   int inst_count;
   int event_count;
   unsigned int resource_base_default_precedence;
@@ -240,13 +242,13 @@ class uvm_default_coreservice_t : public uvm_coreservice_t
   uvm_coreservice_t::reg_block_roots_map_t reg_block_roots;
   uvm_coreservice_t::typeid_map_t typeid_to_callback_map;
   uvm_coreservice_t::type_map_t callback_to_typeid_map;
-  uvm_packer* default_packer;
-  std::unique_ptr<uvm_comparer> default_comparer;
+  std::shared_ptr<uvm_packer> default_packer;
+  std::shared_ptr<uvm_comparer> default_comparer;
   std::unique_ptr<uvm_status_container> status_container;
   std::unique_ptr<uvm_resource_pool> resource_pool;
-  std::unique_ptr<uvm_table_printer> default_table_printer;
-  std::unique_ptr<uvm_tree_printer> default_tree_printer;
-  std::unique_ptr<uvm_line_printer> default_line_printer;
+  std::shared_ptr<uvm_table_printer> default_table_printer;
+  std::shared_ptr<uvm_tree_printer> default_tree_printer;
+  std::shared_ptr<uvm_line_printer> default_line_printer;
   std::unique_ptr<uvm_phase_queue<uvm_phase*> > phase_hopper;
   std::unique_ptr<uvm_reg_map> reg_map_backdoor;
   std::unique_ptr<uvm_phase> uvm_schedule;
@@ -280,7 +282,7 @@ class uvm_default_coreservice_t : public uvm_coreservice_t
   std::unique_ptr<uvm_pre_shutdown_phase> pre_shutdown_phase_ptr;
   std::unique_ptr<uvm_shutdown_phase> shutdown_phase_ptr;
   std::unique_ptr<uvm_post_shutdown_phase> post_shutdown_phase_ptr;
-  uvm_printer* default_printer;
+  std::shared_ptr<uvm_printer> default_printer;
   uvm_domain* common_domain;
   uvm_domain* uvm_domain_ptr;
   bool resource_pool_has_wildcard_names;

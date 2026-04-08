@@ -929,7 +929,7 @@ uvm_component* uvm_component::create_component( const std::string& requested_typ
                                                 const std::string& name )
 {
   uvm_coreservice_t* cs = uvm_coreservice_t::get();
-  uvm_factory* factory = cs->get_factory();
+  auto factory = cs->get_factory();
 
   return factory->create_component_by_name( requested_type_name,
                                             get_full_name(),
@@ -950,7 +950,7 @@ uvm_object* uvm_component::create_object( const std::string& requested_type_name
                                           const std::string& name )
 {
   uvm_coreservice_t* cs = uvm_coreservice_t::get();
-  uvm_factory* factory = cs->get_factory();
+  auto factory = cs->get_factory();
 
   return factory->create_object_by_name( requested_type_name,
                                          get_full_name(),
@@ -970,7 +970,7 @@ void uvm_component::set_type_override_by_type( uvm_object_wrapper* original_type
                                                bool replace )
 {
   uvm_coreservice_t* cs = uvm_coreservice_t::get();
-  uvm_factory* factory = cs->get_factory();
+  auto factory = cs->get_factory();
 
   factory->set_type_override_by_type( original_type, override_type, replace );
 }
@@ -991,7 +991,7 @@ void uvm_component::set_inst_override_by_type( const std::string& relative_inst_
   // TODO note: for some reason, the parameter order is slightly different between component and factory
 
   uvm_coreservice_t* cs = uvm_coreservice_t::get();
-  uvm_factory* factory = cs->get_factory();
+  auto factory = cs->get_factory();
 
   factory->set_inst_override_by_type( original_type, override_type, full_inst_path );
 }
@@ -1010,7 +1010,7 @@ void uvm_component::set_type_override( const std::string& original_type_name,
                                        bool replace )
 {
   uvm_coreservice_t* cs = uvm_coreservice_t::get();
-  uvm_factory* factory = cs->get_factory();
+  auto factory = cs->get_factory();
 
   factory->set_type_override_by_name( original_type_name, override_type_name, replace );
 }
@@ -1030,7 +1030,7 @@ void uvm_component::set_inst_override( const std::string& relative_inst_path,
   std::string path = prepend_name(relative_inst_path);
 
   uvm_coreservice_t* cs = uvm_coreservice_t::get();
-  uvm_factory* factory = cs->get_factory();
+  auto factory = cs->get_factory();
 
   factory->set_inst_override_by_name( original_type_name, override_type_name, path  );
 }
@@ -1048,7 +1048,7 @@ void uvm_component::print_override_info( const std::string& requested_type_name,
                                          const std::string& name )
 {
   uvm_coreservice_t* cs = uvm_coreservice_t::get();
-  uvm_factory* factory = cs->get_factory();
+  auto factory = cs->get_factory();
 
   factory->debug_create_by_name(requested_type_name, get_full_name(), name);
 }

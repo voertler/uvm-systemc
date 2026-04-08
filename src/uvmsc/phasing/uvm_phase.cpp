@@ -1916,7 +1916,7 @@ void uvm_phase::m_run_phases()
   //TODO clean up after ourselves
   //phase_runner_proc.kill();
 
-  uvm_report_server* rs = uvm_report_server::get_server();
+  auto rs = uvm_report_server::get_server();
   rs->report_summarize();
 
   // soft stop (pause) simulation; return sc_start

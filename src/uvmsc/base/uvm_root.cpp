@@ -39,7 +39,6 @@
 #include "uvmsc/comps/uvm_test.h"
 #include "uvmsc/print/uvm_printer.h"
 #include "uvmsc/print/uvm_table_printer.h"
-#include "uvmsc/print/uvm_printer_globals.h"
 #include "uvmsc/report/uvm_report_handler.h"
 #include "uvmsc/report/uvm_report_server.h"
 #include "uvmsc/conf/uvm_resource_pool.h"
@@ -188,7 +187,7 @@ void uvm_root::run_test( const std::string& test_name )
 
 void uvm_root::die()
 {
-  uvm_report_server* l_rs = uvm_report_server::get_server();
+  auto l_rs = uvm_report_server::get_server();
   // do the pre_abort callbacks
   m_do_pre_abort();
 
@@ -336,10 +335,7 @@ void uvm_root::print_topology( uvm_printer* printer )
   std::string s;
 
   if (printer == nullptr)
-    printer = uvm_get_default_printer();
-
-  if (printer == nullptr)
-    uvm_report_error("NULLPRINTER", "uvm_default_printer is nullptr");
+    printer = uvm_coreservice_t::get()->get_default_printer().get();
 
   if (m_children.size() == 0)
   {
@@ -502,7 +498,7 @@ void uvm_root::m_register_test( const std::string& test_name )
   if ( (comp_list.size() == 0) && (test_name.size() != 0) )
   {
     uvm_coreservice_t* cs = uvm_coreservice_t::get();
-    uvm_factory* factory = cs->get_factory();
+    auto factory = cs->get_factory();
 
     uvm_test_top = factory->create_component_by_name(
       test_name, "", test_name, nullptr);
@@ -607,7 +603,7 @@ void uvm_root::m_unregister_test( const std::string& test_name )
     if (comp_list.size() != 0)
     {
       uvm_coreservice_t* cs = uvm_coreservice_t::get();
-      uvm_factory* factory = cs->get_factory();
+      auto factory = cs->get_factory();
       for(std::vector<uvm_component*>::iterator 
           it = comp_list.begin(); 
           it != comp_list.end(); 

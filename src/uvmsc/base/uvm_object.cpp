@@ -33,7 +33,6 @@
 #include "uvmsc/print/uvm_printer.h"
 #include "uvmsc/print/uvm_table_printer.h"
 #include "uvmsc/print/uvm_tree_printer.h"
-#include "uvmsc/print/uvm_printer_globals.h"
 #include "uvmsc/policy/uvm_packer.h"
 #include "uvmsc/policy/uvm_recorder.h"
 #include "uvmsc/report/uvm_report_object.h"
@@ -199,7 +198,7 @@ const uvm_object_wrapper* uvm_object::get_object_type() const
     return nullptr;
 
   uvm_coreservice_t* cs = uvm_coreservice_t::get();
-  uvm_factory* factory = cs->get_factory();
+  auto factory = cs->get_factory();
 
   return factory->find_wrapper_by_name(get_type_name());
 }
@@ -278,10 +277,7 @@ uvm_object* uvm_object::clone()
 void uvm_object::print( uvm_printer* printer ) const
 {
   if (printer == nullptr)
-    printer = uvm_get_default_printer();
-
-  if (printer == nullptr)
-    uvm_report_error("nullptrPRINTER","uvm_default_printer is nullptr");
+    printer = uvm_coreservice_t::get()->get_default_printer().get();
 
   //$fwrite(printer.knobs.mcd,); // TODO printer knobs?
   std::string s = sprint(printer);
@@ -298,7 +294,8 @@ void uvm_object::print( uvm_printer* printer ) const
 std::string uvm_object::sprint( uvm_printer* printer ) const
 {
   if( printer == nullptr )
-    printer = uvm_get_default_printer();
+    printer = 
+  printer = uvm_coreservice_t::get()->get_default_printer().get();
 
   // not at top-level, must be recursing into sub-object
   if(!printer->istop())
@@ -463,7 +460,7 @@ void uvm_object::do_copy( const uvm_object& rhs )
 bool uvm_object::compare( const uvm_object& rhs,
                           const uvm_comparer* comparer ) const
 {
-  return do_compare(rhs, (comparer == nullptr) ? ::uvm::uvm_default_comparer() : comparer);
+  return do_compare(rhs, (comparer == nullptr) ? uvm_coreservice_t::get()->get_default_comparer().get() : comparer);
 }
 
 
@@ -498,7 +495,7 @@ void uvm_object::m_pack( uvm_packer*& packer )
   if( packer != nullptr)
     get_status_container()->packer = packer;
   else
-    get_status_container()->packer = uvm_default_packer();
+    get_status_container()->packer = uvm_coreservice_t::get()->get_default_packer().get();
 
   packer = get_status_container()->packer;
 
@@ -584,7 +581,7 @@ void uvm_object::m_unpack_pre( uvm_packer*& packer )
   if( packer != nullptr)
     get_status_container()->packer = packer;
   else
-    get_status_container()->packer = uvm_default_packer();
+    get_status_container()->packer = uvm_coreservice_t::get()->get_default_packer().get();
 
   packer = get_status_container()->packer;
 
@@ -761,7 +758,7 @@ void uvm_object::set_object_local( const std::string& field_name,
 
 std::ostream& operator<<( std::ostream& os, const uvm_object& obj ) {
   uvm_object* mobj = const_cast<uvm_object*>(&obj);
-  uvm_printer* prt = uvm_get_default_tree_printer();
+  uvm_printer* prt = uvm_tree_printer::get_default().get();
   os << mobj->sprint(prt);
   return os;
 }
@@ -769,7 +766,7 @@ std::ostream& operator<<( std::ostream& os, const uvm_object& obj ) {
 std::ostream& operator<<( std::ostream& os, const uvm_object* obj )
 {
   uvm_object* mobj = const_cast<uvm_object*>(obj);
-  uvm_printer* prt = uvm_get_default_tree_printer();
+  uvm_printer* prt = uvm_tree_printer::get_default().get();
   os << mobj->sprint(prt);
   return os;
 }
@@ -801,19 +798,6 @@ bool uvm_object::m_register_cb()
 {
   return false;
 }
-
-//----------------------------------------------------------------------------
-// member function: get_uvm_packer
-//
-//! Implementation defined
-//! Helper method to create a packer singleton as part of the uvm_object
-//----------------------------------------------------------------------------
-
-uvm_packer* uvm_object::get_uvm_packer()
-{
-  return uvm_default_packer();
-}
-
 
 ///////////
 

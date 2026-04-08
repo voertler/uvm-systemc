@@ -207,7 +207,7 @@ void uvm_sequencer_base::start_phase_sequence( uvm_phase& phase )
   uvm_sequence_base* seq = nullptr;
 
   uvm_coreservice_t* cs = uvm_coreservice_t::get();
-  uvm_factory* f = cs->get_factory();
+  auto f = cs->get_factory();
 
   // default sequence instance?
   if (!uvm_config_db<uvm_sequence_base*>::get(

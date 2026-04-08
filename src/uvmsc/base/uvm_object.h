@@ -48,7 +48,6 @@ class uvm_comparer;
 
 int uvm_create_inst_id();
 int uvm_get_inst_count();
-uvm_comparer* uvm_default_comparer();
 
 
 // TODO typesdefs for intstream, bytestream, etc.
@@ -210,8 +209,6 @@ public:
   friend bool operator == ( const uvm_object& a, const uvm_object& b );
   friend bool operator != ( const uvm_object& a, const uvm_object& b );
   */
-
-  static uvm_packer* get_uvm_packer();
 
  private:
   void m_pack( uvm_packer*& packer );

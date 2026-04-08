@@ -167,7 +167,7 @@ uvm_component_registry<T>* uvm_component_registry<T>::get()
   if (me == nullptr)
   {
     uvm_coreservice_t* cs = uvm_coreservice_t::get();
-    uvm_factory* f = cs->get_factory();
+    auto f = cs->get_factory();
     me = new uvm_component_registry<T>("comprgy_" + m_type_name_prop());
     f->do_register(me);
   }
@@ -192,7 +192,7 @@ T* uvm_component_registry<T>::create( const std::string& name,
   std::string l_contxt;
   uvm_component* obj = nullptr;
   uvm_coreservice_t* cs = uvm_coreservice_t::get();
-  uvm_factory* f = cs->get_factory();
+  auto f = cs->get_factory();
 
   if (l_contxt.empty() && parent != nullptr)
     l_contxt = parent->get_full_name();
@@ -226,7 +226,7 @@ void uvm_component_registry<T>::set_type_override( uvm_object_wrapper* override_
                                                    bool replace )
 {
   uvm_coreservice_t* cs = uvm_coreservice_t::get();
-  uvm_factory* factory = cs->get_factory();
+  auto factory = cs->get_factory();
   factory->set_type_override_by_type(get(), override_type, replace);
 }
 
@@ -260,7 +260,7 @@ void uvm_component_registry<T>::set_inst_override( uvm_object_wrapper* override_
       loc_inst_path << parent->get_full_name() << "." << inst_path;
   }
   uvm_coreservice_t* cs = uvm_coreservice_t::get();
-  uvm_factory* factory = cs->get_factory();
+  auto factory = cs->get_factory();
 
   factory->set_inst_override_by_type( get(), override_type,loc_inst_path.str());
 }
@@ -299,7 +299,7 @@ void uvm_component_registry<T>::destroy( T* comp )
   }
   
   uvm_coreservice_t* cs = uvm_coreservice_t::get();
-  uvm_factory* f = cs->get_factory();
+  auto f = cs->get_factory();
   uvm_root* root = cs->get_root();
 
   if (!root->get_phase_all_done()) 
@@ -332,9 +332,6 @@ void uvm_component_registry<T>::destroy( T* comp )
 template <typename T>
 uvm_component_registry<T>::~uvm_component_registry()
 {
-  uvm_coreservice_t* cs = uvm_coreservice_t::get();
-  uvm_factory* f = cs->get_factory();
-  f->m_delete_all_components();
 }
 
 

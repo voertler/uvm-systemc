@@ -61,18 +61,6 @@ uvm_comparer::uvm_comparer()
 }
 
 //----------------------------------------------------------------------------
-// member function: init (static)
-//
-//! Initialize default comparer
-//----------------------------------------------------------------------------
-
-uvm_comparer* uvm_comparer::init()
-{
-  return uvm_default_comparer();
-}
-
-
-//----------------------------------------------------------------------------
 // member function: compare_field
 //
 //! Compares two integral values.

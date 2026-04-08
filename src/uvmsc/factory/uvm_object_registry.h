@@ -169,7 +169,7 @@ uvm_object_registry<T>* uvm_object_registry<T>::get()
   if (me == nullptr)
   {
     uvm_coreservice_t* cs = uvm_coreservice_t::get();
-    uvm_factory* f = cs->get_factory();
+    auto f = cs->get_factory();
     me = new uvm_object_registry<T>("objrgy_" + m_type_name_prop());
     f->do_register(me);
   }
@@ -195,7 +195,7 @@ T* uvm_object_registry<T>::create( const std::string& name,
   uvm_object* obj = nullptr;
 
   uvm_coreservice_t* cs = uvm_coreservice_t::get();
-  uvm_factory* f = cs->get_factory();
+  auto f = cs->get_factory();
 
   if (contxt.empty() && parent != nullptr)
     l_contxt = parent->get_full_name();
@@ -229,7 +229,7 @@ void uvm_object_registry<T>::set_type_override(
   bool replace  )
 {
   uvm_coreservice_t* cs = uvm_coreservice_t::get();
-  uvm_factory* factory = cs->get_factory();
+  auto factory = cs->get_factory();
 
   factory->set_type_override_by_type(get(),override_type,replace);
 }
@@ -264,7 +264,7 @@ void uvm_object_registry<T>::set_inst_override(
       loc_inst_path << parent->get_full_name() << "." << inst_path;
   }
   uvm_coreservice_t* cs = uvm_coreservice_t::get();
-  uvm_factory* factory = cs->get_factory();
+  auto factory = cs->get_factory();
 
   factory->set_inst_override_by_type(get(), override_type, loc_inst_path.str());
 }
@@ -307,7 +307,7 @@ void uvm_object_registry<T>::destroy( T* obj )
   }
   
   uvm_coreservice_t* cs = uvm_coreservice_t::get();
-  uvm_factory* f = cs->get_factory();
+  auto f = cs->get_factory();
 
   if (!f->m_delete_object(obj))
   {
@@ -330,9 +330,6 @@ void uvm_object_registry<T>::destroy( T* obj )
 template <typename T>
 uvm_object_registry<T>::~uvm_object_registry()
 {
-  uvm_coreservice_t* cs = uvm_coreservice_t::get();
-  uvm_factory* f = cs->get_factory();
-  f->m_delete_all_objects();
 }
 
 
