@@ -247,7 +247,7 @@ uvm_handle<T> uvm_object_registry<T>::create_uvm_handle( const std::string& name
   {
     std::ostringstream msg;
     msg << "Factory did not return an object of type '" << m_type_name_prop() << "'."
-        << " A object of type '" << ( (obj == nullptr) ? "null" : obj->get_type_name() )
+        << " A object of type '" << ( (!obj) ? "null" : obj->get_type_name() )
         << "' was returned instead. Name=" << name << " Parent="
         << ( (parent == nullptr) ? "nullptr" : parent->get_type_name() ) << " contxt=" << l_contxt;
 
