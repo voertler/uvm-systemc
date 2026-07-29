@@ -48,7 +48,7 @@ class uvm_reg_read_only_cbs : public uvm_reg_cbs
 
   UVM_OBJECT_UTILS(uvm_reg_read_only_cbs)
    
-  virtual void pre_write( uvm_reg_item* rw );
+  virtual void pre_write( uvm_reg_item& rw );
 
   static void add( uvm_reg* rg );
 

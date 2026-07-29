@@ -107,7 +107,7 @@ class uvm_sequencer : public uvm_sequencer_param_base<REQ,RSP>,
   UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>",
                      void put_response( const RSP& rsp ) override;) // TODO not in standard anymore? remove?
 
-  void put_response( uvm_handle<REQ> rsp ) override 
+  void put_response( uvm_handle<RSP> rsp ) override 
   {
     //TODO
   };

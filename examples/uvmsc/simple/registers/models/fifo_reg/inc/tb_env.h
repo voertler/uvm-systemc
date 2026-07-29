@@ -41,7 +41,7 @@ class tb_env : public uvm::uvm_env
 
         reg_block_B* regmodel;
         apb_agent* apb;
-        uvm::uvm_reg_predictor<apb_rw>* predict;
+        uvm::uvm_reg_predictor<uvm::uvm_handle<apb_rw>>* predict;
 
         dut_top* dt;
 

@@ -719,7 +719,7 @@ uvm_handle<uvm_object> uvm_default_factory::create_uvm_handle_object_by_type( uv
 
   uvm_object* obj = requested_type->create_object(name);
 
-  return uvm::adopt_ptr(obj);
+  return uvm::adopt_handle(obj);
 }
 
 //----------------------------------------------------------------------------
@@ -746,7 +746,7 @@ uvm_handle<uvm_component> uvm_default_factory::create_uvm_handle_component_by_ty
   
   uvm_component* comp = requested_type->create_component(name, parent);
 
-  return uvm::adopt_ptr(comp); 
+  return uvm::adopt_handle(comp); 
 }
 
 //----------------------------------------------------------------------------
@@ -787,7 +787,7 @@ uvm_handle<uvm_object> uvm_default_factory::create_uvm_handle_object_by_name( co
 
   uvm_object* obj = wrapper->create_object(name);
 
-  return uvm::adopt_ptr(obj);
+  return uvm::adopt_handle(obj);
 }
 
 //----------------------------------------------------------------------------
@@ -829,7 +829,7 @@ uvm_handle<uvm_component> uvm_default_factory::create_uvm_handle_component_by_na
   }
   uvm_component* comp = wrapper->create_component(name, parent);
 
-  return uvm::adopt_ptr(comp);
+  return uvm::adopt_handle(comp);
 }
 
 

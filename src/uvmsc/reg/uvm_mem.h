@@ -255,24 +255,24 @@ class uvm_mem : public uvm_object
   void get_hdl_path_kinds( std::vector<std::string>& kinds ) const;
 
  protected:
-  virtual void backdoor_read( uvm_reg_item* rw );
+  virtual void backdoor_read( uvm_handle<uvm_reg_item>  rw );
 
  public: // public from here on...
-  virtual void backdoor_write( uvm_reg_item* rw );
+  virtual void backdoor_write( uvm_handle<uvm_reg_item>  rw );
 
-  virtual uvm_status_e backdoor_read_func( uvm_reg_item* rw );
+  virtual uvm_status_e backdoor_read_func( uvm_handle<uvm_reg_item>  rw );
 
   //--------------------------------------------------------------------
   // Group: Callbacks
   //--------------------------------------------------------------------
 
-  virtual void pre_write( uvm_reg_item* rw );
+  virtual void pre_write( uvm_reg_item&  rw );
 
-  virtual void post_write( uvm_reg_item* rw );
+  virtual void post_write( uvm_reg_item&  rw );
 
-  virtual void pre_read( uvm_reg_item* rw );
+  virtual void pre_read( uvm_reg_item&  rw );
 
-  virtual void post_read( uvm_reg_item* rw );
+  virtual void post_read( uvm_reg_item&  rw );
 
 
   //--------------------------------------------------------------------
@@ -335,9 +335,9 @@ class uvm_mem : public uvm_object
                        uvm_reg_map_info*& map_info, // output
                        const std::string& caller );
 
-  virtual void do_write( uvm_reg_item* rw );
+  virtual void do_write( uvm_handle<uvm_reg_item>  rw );
 
-  virtual void do_read( uvm_reg_item* rw );
+  virtual void do_read( uvm_handle<uvm_reg_item>  rw );
 
   // Implementation defined - coverage
 

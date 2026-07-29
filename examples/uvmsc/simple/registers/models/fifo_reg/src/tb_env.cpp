@@ -55,14 +55,14 @@ void tb_env::build_phase(uvm::uvm_phase & phase)
 
     apb = apb_agent::type_id::create("apb", this);
     uvm::uvm_config_db<int>::set(this, "apb", "is_active", uvm::UVM_ACTIVE);
-    predict = uvm::uvm_reg_predictor<apb_rw>::type_id::create("predict", this);
+    predict = uvm::uvm_reg_predictor<uvm::uvm_handle<apb_rw>>::type_id::create("predict", this);
 
 }
 
 void tb_env::connect_phase(uvm::uvm_phase & phase)
 {
     if (regmodel->get_parent() == nullptr) {
-        reg2apb_adapter* apb_adapter = new reg2apb_adapter("apb_adapter");
+        reg2apb_adapter* apb_adapter = reg2apb_adapter::type_id::create("apb_adapter");
         regmodel->default_map->set_sequencer(apb->sqr, apb_adapter);
         regmodel->default_map->set_auto_predict(0);
 

@@ -35,8 +35,7 @@ class reg2apb_adapter : public uvm::uvm_reg_adapter
 
         reg2apb_adapter(const std::string & name = "reg2apb_adapter") :
             uvm::uvm_reg_adapter(name) {}
-
-        virtual uvm::uvm_sequence_item* reg2bus(const uvm::uvm_reg_bus_op &);
+        virtual  uvm::uvm_handle<uvm::uvm_sequence_item>  reg2bus(const uvm::uvm_reg_bus_op &);
 
         virtual void bus2reg(const uvm::uvm_sequence_item *, uvm::uvm_reg_bus_op &);
 };

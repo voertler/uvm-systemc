@@ -199,17 +199,17 @@ public:
 
   bool get_check_on_read() const;
 
-  virtual void do_bus_write( uvm_reg_item* rw,
+  virtual void do_bus_write( uvm_handle<uvm_reg_item>  rw,
                              uvm_sequencer_base* sequencer,
                              uvm_reg_adapter* adapter );
 
-  virtual void do_bus_read( uvm_reg_item* rw,
+  virtual void do_bus_read( uvm_handle<uvm_reg_item>  rw,
                             uvm_sequencer_base* sequencer,
                             uvm_reg_adapter* adapter );
 
-  virtual void do_write( uvm_reg_item* rw );
+  virtual void do_write( uvm_handle<uvm_reg_item>  rw );
 
-  virtual void do_read( uvm_reg_item* rw );
+  virtual void do_read( uvm_handle<uvm_reg_item>  rw );
 
 
   /////////////////////////////////////////////////////
@@ -240,7 +240,7 @@ public:
 
   static uvm_reg_map* backdoor();
 
-  void m_get_bus_info( uvm_reg_item* rw,
+  void m_get_bus_info( uvm_handle<uvm_reg_item>  rw,
                        uvm_reg_map_info*& map_info,
                        unsigned int& size,
                        int& lsb,

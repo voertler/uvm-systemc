@@ -62,7 +62,7 @@ class uvm_sqr_if_base : public virtual sc_core::sc_interface //: public tlm::tlm
   UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>",
                      virtual void put_response( const RSP& rsp ) = 0;)
 
-  virtual void put_response( uvm_handle<REQ> rsp ) = 0;
+  virtual void put_response( uvm_handle<RSP> rsp ) = 0;
   
   UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>",
                      virtual REQ get( REQ *req ) = 0;)

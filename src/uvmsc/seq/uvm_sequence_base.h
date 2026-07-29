@@ -78,9 +78,9 @@ class uvm_sequence_base: public uvm_sequence_item
   virtual void pre_start();
   virtual void pre_body();
   virtual void pre_do( bool is_item );
-  virtual void mid_do( uvm_sequence_item* this_item );
+  virtual void mid_do( uvm_sequence_item& this_item );
   virtual void body();
-  virtual void post_do( uvm_sequence_item* this_item );
+  virtual void post_do( uvm_sequence_item& this_item );
   virtual void post_body();
   virtual void post_start();
 
@@ -114,7 +114,7 @@ class uvm_sequence_base: public uvm_sequence_item
   // Group: Sequence item execution
   //--------------------------------------------------------------------------
 
-  uvm_sequence_item* create_item( uvm_object_wrapper* type_var,
+  uvm_handle<uvm_sequence_item> create_item( uvm_object_wrapper* type_var,
                                   uvm_sequencer_base* l_sequencer,
                                   const std::string& name );
                                   
@@ -178,10 +178,10 @@ class uvm_sequence_base: public uvm_sequence_item
 
 protected:
 
-  virtual void put_response ( const uvm_sequence_item& response );
-  virtual void put_base_response( const uvm_sequence_item& response );
-  virtual uvm_sequence_item* get_base_response( int transaction_id = -1 );
-  virtual void del_base_response( uvm_sequence_item* response );
+  virtual void put_response ( const uvm_handle<uvm_sequence_item> response );
+  virtual void put_base_response( const uvm_handle<uvm_sequence_item> response );
+  virtual uvm_handle<uvm_sequence_item> get_base_response( int transaction_id = -1 );
+  virtual void del_base_response( uvm_handle<uvm_sequence_item> response );
 
 private:
   void m_start_core( uvm_sequence_base* parent_sequence, bool call_pre_post );
@@ -233,7 +233,7 @@ private:
   int response_queue_depth;
   bool response_queue_error_report_disabled;
 
-  typedef std::list<uvm_sequence_item*> response_queue_listT;
+  typedef std::list<uvm_handle<uvm_sequence_item>> response_queue_listT;
 
   response_queue_listT response_queue;
 

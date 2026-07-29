@@ -40,7 +40,7 @@ class ubus_master_monitor : public uvm::uvm_monitor
 {
 public:
 
-  uvm::uvm_analysis_port<ubus_transfer> item_collected_port;
+  uvm::uvm_analysis_port<uvm::uvm_handle<ubus_transfer>> item_collected_port;
 
   // TODO Transfer collected covergroup
   /*
@@ -107,7 +107,7 @@ private:
 
   // The following property holds the transaction information currently
   // begin captured (by the collect_address_phase and data_phase methods).
-  ubus_transfer trans_collected;
+  uvm::uvm_handle<ubus_transfer> trans_collected;
 
   // Fields to hold trans addr, data and wait_state.
   sc_dt::sc_uint<16> addr;

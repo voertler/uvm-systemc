@@ -777,13 +777,13 @@ void uvm_reg::write( uvm_status_e& status,
                      int lineno )
 {
    // create an abstract transaction for this operation
-   uvm_reg_item* rw;
+   uvm_handle<uvm_reg_item>  rw;
 
    m_atomic_check_lock(true);
 
    set(value);
 
-   rw = uvm_reg_item::type_id::create("write_item", nullptr, get_full_name());
+   rw = uvm_reg_item::type_id::create_uvm_handle("write_item", nullptr, get_full_name());
 
    // make sure we have reserved space to store an initial value
    if (rw->value.size() == 0)
@@ -806,8 +806,6 @@ void uvm_reg::write( uvm_status_e& status,
    status = rw->status;
 
    m_atomic_check_lock(false);
-  
-   uvm_reg_item::type_id::destroy(rw);
 }
 
 //----------------------------------------------------------------------
@@ -867,7 +865,7 @@ void uvm_reg::poke( uvm_status_e& status,
                     int lineno )
 {
   uvm_reg_backdoor* bkdr = get_backdoor();
-  uvm_reg_item* rw = nullptr;
+  uvm_handle<uvm_reg_item>  rw = nullptr;
 
   m_fname = fname;
   m_lineno = lineno;
@@ -884,7 +882,7 @@ void uvm_reg::poke( uvm_status_e& status,
     m_atomic_check_lock(true);
 
   // create an abstract transaction for this operation
-  rw = uvm_reg_item::type_id::create("reg_poke_item", nullptr, get_full_name());
+  rw = uvm_reg_item::type_id::create_uvm_handle("reg_poke_item", nullptr, get_full_name());
   rw->element      = this;
   rw->path         = UVM_BACKDOOR;
   rw->element_kind = UVM_REG;
@@ -914,8 +912,6 @@ void uvm_reg::poke( uvm_status_e& status,
 
   if (!m_is_locked_by_field)
     m_atomic_check_lock(false);
-  
-  uvm_reg_item::type_id::destroy(rw);
 }
 
 //----------------------------------------------------------------------
@@ -942,7 +938,7 @@ void uvm_reg::peek( uvm_status_e& status,
                     int lineno )
 {
   uvm_reg_backdoor* bkdr = get_backdoor();
-  uvm_reg_item* rw = nullptr;
+  uvm_handle<uvm_reg_item>  rw = nullptr;
 
   m_fname = fname;
   m_lineno = lineno;
@@ -959,7 +955,7 @@ void uvm_reg::peek( uvm_status_e& status,
     m_atomic_check_lock(true);
 
   // create an abstract transaction for this operation
-  rw = uvm_reg_item::type_id::create("mem_peek_item", nullptr, get_full_name());
+  rw = uvm_reg_item::type_id::create_uvm_handle("mem_peek_item", nullptr, get_full_name());
   rw->element      = this;
   rw->path         = UVM_BACKDOOR;
   rw->element_kind = UVM_REG;
@@ -989,8 +985,6 @@ void uvm_reg::peek( uvm_status_e& status,
 
   if (!m_is_locked_by_field)
     m_atomic_check_lock(false);
-  
-  uvm_reg_item::type_id::destroy(rw);
 }
 
 //----------------------------------------------------------------------
@@ -1133,7 +1127,8 @@ bool uvm_reg::predict( uvm_reg_data_t value,
                        const std::string&  fname,
                        int lineno )
 {
-  uvm_reg_item* rw = new uvm_reg_item();
+  uvm_handle<uvm_reg_item>  rw =
+    uvm_reg_item::type_id::create_uvm_handle("predict_item", nullptr, get_full_name());
 
   // make sure we have reserved space to store an initial value
   if (rw->value.size() == 0)
@@ -1586,7 +1581,7 @@ void uvm_reg::get_full_hdl_path( std::vector<uvm_hdl_path_concat>& paths,
 //! By default calls uvm_reg::backdoor_read_func().
 //----------------------------------------------------------------------
 
-void uvm_reg::backdoor_read( uvm_reg_item* rw )
+void uvm_reg::backdoor_read( uvm_handle<uvm_reg_item>  rw )
 {
   rw->status = backdoor_read_func(rw);
 }
@@ -1600,7 +1595,7 @@ void uvm_reg::backdoor_read( uvm_reg_item* rw )
 //! for this register type.
 //----------------------------------------------------------------------
 
-void uvm_reg::backdoor_write( uvm_reg_item* rw )
+void uvm_reg::backdoor_write( uvm_handle<uvm_reg_item>  rw )
 {
   /* TODO backdoor write
   std::vector<uvm_hdl_path_concat> paths;
@@ -1645,7 +1640,7 @@ void uvm_reg::backdoor_write( uvm_reg_item* rw )
 //! for this register type.
 //----------------------------------------------------------------------
 
-uvm_status_e uvm_reg::backdoor_read_func( uvm_reg_item* rw )
+uvm_status_e uvm_reg::backdoor_read_func( uvm_handle<uvm_reg_item>  rw )
 {
   /* TODO backdoor read func
 
@@ -1963,7 +1958,7 @@ void uvm_reg::sample_values()
 //! field callbacks
 //----------------------------------------------------------------------
 
-void uvm_reg::pre_write( uvm_reg_item* rw )
+void uvm_reg::pre_write( uvm_reg_item&  rw )
 {}
 
 
@@ -1982,7 +1977,7 @@ void uvm_reg::pre_write( uvm_reg_item* rw )
 //! field callbacks
 //----------------------------------------------------------------------
 
-void uvm_reg::post_write( uvm_reg_item* rw )
+void uvm_reg::post_write( uvm_reg_item&  rw )
 {}
 
 
@@ -2003,7 +1998,7 @@ void uvm_reg::post_write( uvm_reg_item* rw )
 //! field callbacks
 //----------------------------------------------------------------------
 
-void uvm_reg::pre_read( uvm_reg_item* rw )
+void uvm_reg::pre_read( uvm_reg_item&  rw )
 {}
 
 
@@ -2022,7 +2017,7 @@ void uvm_reg::pre_read( uvm_reg_item* rw )
 //! field callbacks
 //----------------------------------------------------------------------
 
-void uvm_reg::post_read( uvm_reg_item* rw )
+void uvm_reg::post_read( uvm_reg_item&  rw )
 {}
 
 ////////////////////////////////////////////////////////////////////////
@@ -2358,8 +2353,8 @@ void uvm_reg::m_read( uvm_status_e& status,
                       int lineno )
 {
    // create an abstract transaction for this operation
-   uvm_reg_item* rw;
-   rw = uvm_reg_item::type_id::create("read_item", nullptr, get_full_name());
+   uvm_handle<uvm_reg_item>  rw;
+   rw = uvm_reg_item::type_id::create_uvm_handle("read_item", nullptr, get_full_name());
 
    // make sure we have reserved space to store an initial value
    if (rw->value.size() == 0)
@@ -2379,8 +2374,6 @@ void uvm_reg::m_read( uvm_status_e& status,
    do_read(rw);
    status = rw->status;
    value = rw->value[0];
-
-  uvm_reg_item::type_id::destroy(rw);
 }
 
 
@@ -2418,7 +2411,7 @@ void uvm_reg::m_atomic_check_lock( bool on )
 // Implementation defined
 //----------------------------------------------------------------------
 
-bool uvm_reg::m_check_access( uvm_reg_item* rw,
+bool uvm_reg::m_check_access( uvm_handle<uvm_reg_item>  rw,
                               uvm_reg_map_info*& map_info,
                               const std::string& caller )
 {
@@ -2565,7 +2558,7 @@ bool uvm_reg::do_check( uvm_reg_data_t expected,
 // Implementation defined
 //----------------------------------------------------------------------
 
-void uvm_reg::do_write( uvm_reg_item* rw )
+void uvm_reg::do_write( uvm_handle<uvm_reg_item>  rw )
 {
   uvm_reg_cb_iter* cbs = new uvm_reg_cb_iter(this);
   uvm_reg_map_info* map_info = nullptr;
@@ -2601,13 +2594,13 @@ void uvm_reg::do_write( uvm_reg_item* rw )
       msk = msk_init << lsb;
 
       rw->value[0] = (value & msk) >> lsb;
-      f->pre_write(rw);
+      f->pre_write(*rw);
 
       for( uvm_reg_cbs* cb = cbsf->first(); cb != nullptr; cb = cbsf->next() )
       {
         rw->element = f;
         rw->element_kind = UVM_FIELD;
-        cb->pre_write(rw);
+        cb->pre_write(*rw);
       }
       value = (value & ~msk) | (rw->value[0] << lsb);
       delete cbsf;
@@ -2620,10 +2613,10 @@ void uvm_reg::do_write( uvm_reg_item* rw )
   rw->value[0] = value;
 
   // pre-write cbs - reg
-  pre_write(rw);
+  pre_write(*rw);
 
   for( uvm_reg_cbs* cb = cbs->first(); cb != nullptr; cb = cbs->next() )
-    cb->pre_write(rw);
+    cb->pre_write(*rw);
 
   if (rw->status != UVM_IS_OK)
   {
@@ -2722,9 +2715,9 @@ void uvm_reg::do_write( uvm_reg_item* rw )
   // post-write cbs - reg
 
   for( uvm_reg_cbs* cb = cbs->first(); cb != nullptr; cb = cbs->next() )
-    cb->post_write(rw);
+    cb->post_write(*rw);
 
-  post_write(rw);
+  post_write(*rw);
 
   // post-write cbs - fields
   for( unsigned int i = 0; i < m_fields.size(); i++)
@@ -2737,9 +2730,9 @@ void uvm_reg::do_write( uvm_reg_item* rw )
     rw->value[0] = (value >> f->get_lsb_pos()) & uvm_mask_size(f->get_n_bits());
 
     for( uvm_reg_cbs* cb = cbsf->first(); cb != nullptr; cb = cbsf->next() )
-      cb->post_write(rw);
+      cb->post_write(*rw);
 
-    f->post_write(rw);
+    f->post_write(*rw);
 
     delete cbsf;
   }
@@ -2785,7 +2778,7 @@ void uvm_reg::do_write( uvm_reg_item* rw )
 // Implementation defined
 //----------------------------------------------------------------------
 
-void uvm_reg::do_read( uvm_reg_item* rw )
+void uvm_reg::do_read( uvm_handle<uvm_reg_item>  rw )
 {
   uvm_reg_cb_iter*  cbs = new uvm_reg_cb_iter(this);
   uvm_reg_map_info* map_info = nullptr;
@@ -2809,10 +2802,10 @@ void uvm_reg::do_read( uvm_reg_item* rw )
     uvm_reg_field* f = m_fields[i];
     rw->element = f;
     rw->element_kind = UVM_FIELD;
-    m_fields[i]->pre_read(rw);
+    m_fields[i]->pre_read(*rw);
 
     for( uvm_reg_cbs* cb = cbsf->first(); cb != nullptr; cb = cbsf->next() )
-      cb->pre_read(rw);
+      cb->pre_read(*rw);
 
     delete cbsf;
   }
@@ -2821,10 +2814,10 @@ void uvm_reg::do_read( uvm_reg_item* rw )
   rw->element_kind = UVM_REG;
 
   // pre-read cbs - reg
-  pre_read(rw);
+  pre_read(*rw);
 
   for( uvm_reg_cbs* cb = cbs->first(); cb != nullptr; cb = cbs->next() )
-    cb->pre_read(rw);
+    cb->pre_read(*rw);
 
   if (rw->status != UVM_IS_OK)
   {
@@ -2969,9 +2962,9 @@ void uvm_reg::do_read( uvm_reg_item* rw )
   // POST-READ CBS - REG
 
   for( uvm_reg_cbs* cb = cbs->first(); cb != nullptr; cb = cbs->next())
-    cb->post_read(rw);
+    cb->post_read(*rw);
 
-  post_read(rw);
+  post_read(*rw);
 
   // POST-READ CBS - FIELDS
   for( unsigned int i = 0; i < m_fields.size(); i++)
@@ -2984,9 +2977,9 @@ void uvm_reg::do_read( uvm_reg_item* rw )
     rw->value[0] = (value >> f->get_lsb_pos()) & uvm_mask_size(f->get_n_bits());
 
     for( uvm_reg_cbs* cb = cbsf->first(); cb != nullptr; cb = cbsf->next() )
-      cb->post_read(rw);
+      cb->post_read(*rw);
 
-    f->post_read(rw);
+    f->post_read(*rw);
 
     delete cbsf;
   }
@@ -3030,7 +3023,7 @@ void uvm_reg::do_read( uvm_reg_item* rw )
 // Implementation defined
 //----------------------------------------------------------------------
 
-void uvm_reg::do_predict( uvm_reg_item* rw,
+void uvm_reg::do_predict( uvm_handle<uvm_reg_item>  rw,
                           uvm_predict_e kind,
                           uvm_reg_byte_en_t be)
 {

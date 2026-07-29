@@ -146,8 +146,8 @@ class incr_read_write_read_seq : public ubus_base_sequence
 
   UVM_OBJECT_UTILS(incr_read_write_read_seq);
 
-  incr_read_byte_seq*  read0;
-  incr_write_byte_seq* write0;
+  uvm::uvm_handle<incr_read_byte_seq>  read0;
+  uvm::uvm_handle<incr_write_byte_seq> write0;
 
   virtual void body()
   {
@@ -227,14 +227,14 @@ class read_modify_write_seq : public ubus_base_sequence
   read_modify_write_seq(const std::string& name = "read_modify_write_seq")
   : ubus_base_sequence(name)
   {
-	  read_byte_seq0 = read_byte_seq::type_id::create();
-	  write_byte_seq0 = write_byte_seq::type_id::create();
+	  read_byte_seq0 = read_byte_seq::type_id::create_uvm_handle();
+	  write_byte_seq0 = write_byte_seq::type_id::create_uvm_handle();
   }
 
   UVM_OBJECT_UTILS(read_modify_write_seq);
 
-  read_byte_seq*  read_byte_seq0 {nullptr};
-  write_byte_seq* write_byte_seq0 {nullptr};
+  uvm::uvm_handle<read_byte_seq>  read_byte_seq0;
+  uvm::uvm_handle<write_byte_seq> write_byte_seq0;
 
   /* rand */ sc_dt::sc_uint<16> addr_check;
   sc_dt::sc_uint<8> m_data0_check;
@@ -292,9 +292,6 @@ class read_modify_write_seq : public ubus_base_sequence
           << " ACT: " << read_byte_seq0->rsp->data[0];
       UVM_ERROR(get_type_name(), str.str());
     }
-    read_byte_seq::type_id::destroy(read_byte_seq0);
-    write_byte_seq::type_id::destroy(write_byte_seq0);
-
     UVM_INFO(get_type_name(), "sequence finished.", uvm::UVM_MEDIUM);
   }
 }; // class read_modify_write_seq
@@ -318,7 +315,7 @@ class loop_read_modify_write_seq : public ubus_base_sequence
 
   UVM_OBJECT_UTILS(loop_read_modify_write_seq);
 
-  read_modify_write_seq* rmw_seq;
+  uvm::uvm_handle<read_modify_write_seq> rmw_seq;
 
   virtual void body()
   {

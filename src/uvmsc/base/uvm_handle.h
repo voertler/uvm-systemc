@@ -22,6 +22,7 @@
 
 #include <cstddef>     
 #include <cstdint>
+#include <functional>
 #include <type_traits> 
 #include <utility>
 
@@ -86,14 +87,20 @@ private:
     friend class uvm_weak_handle;
 
     template <typename U, typename... Args>
-    friend uvm_handle<U> make_ptr(Args &&...args);
+    friend uvm_handle<U> make_handle(Args &&...args);
 
     template <typename U>
-    friend uvm_handle<U> adopt_ptr(U *raw) noexcept;
+    friend uvm_handle<U> adopt_handle(U *raw) noexcept;
 
     template <typename U>
-    friend uvm_handle<U> adopt_ptr(U *raw,
+    friend uvm_handle<U> adopt_handle(U *raw,
                                 typename uvm_handle<U>::deleter_type del) noexcept;
+
+    template <typename To, typename From>
+    friend uvm_handle<To> static_pointer_cast(const uvm_handle<From>& p) noexcept;
+
+    template <typename To, typename From>
+    friend uvm_handle<To> dynamic_pointer_cast(const uvm_handle<From>& p) noexcept;
 
 private:
     T *ptr_;
@@ -145,13 +152,13 @@ private:
 // Creation helpers (usable outside factory)
 
 template <typename T, typename... Args>
-uvm_handle<T> make_ptr(Args &&...args);
+uvm_handle<T> make_handle(Args &&...args);
 
 template <typename T>
-uvm_handle<T> adopt_ptr(T *raw) noexcept;
+uvm_handle<T> adopt_handle(T *raw) noexcept;
 
 template <typename T>
-uvm_handle<T> adopt_ptr(T *raw, typename uvm_handle<T>::deleter_type del) noexcept;
+uvm_handle<T> adopt_handle(T *raw, typename uvm_handle<T>::deleter_type del) noexcept;
 
 // Cast Functions
 
@@ -161,6 +168,27 @@ uvm_handle<To> static_pointer_cast(const uvm_handle<From>& p) noexcept;
 
 template <typename To, typename From>
 uvm_handle<To> dynamic_pointer_cast(const uvm_handle<From>& p) noexcept;
+
+template <typename T, typename U>
+bool operator==(const uvm_handle<T>& lhs, const uvm_handle<U>& rhs) noexcept;
+
+template <typename T, typename U>
+bool operator!=(const uvm_handle<T>& lhs, const uvm_handle<U>& rhs) noexcept;
+
+template <typename T>
+bool operator==(const uvm_handle<T>& lhs, std::nullptr_t) noexcept;
+
+template <typename T>
+bool operator==(std::nullptr_t, const uvm_handle<T>& rhs) noexcept;
+
+template <typename T>
+bool operator!=(const uvm_handle<T>& lhs, std::nullptr_t) noexcept;
+
+template <typename T>
+bool operator!=(std::nullptr_t, const uvm_handle<T>& rhs) noexcept;
+
+template <typename T, typename U>
+bool operator<(const uvm_handle<T>& lhs, const uvm_handle<U>& rhs) noexcept;
 
 // ============================================================
 // Helpers: default deleter
@@ -264,7 +292,7 @@ template <typename T>
 template <typename U, typename>
 uvm_handle<T>::uvm_handle(const uvm_handle<U> &other) noexcept
     : ptr_(other.ptr_)
-    , cb_(other.cb_)
+    , cb_(reinterpret_cast<control_block*>(other.cb_))
 {
     if (cb_ != nullptr) {
         ++cb_->strong_count;
@@ -564,19 +592,19 @@ uvm_handle<T> uvm_weak_handle<T>::lock() const noexcept
 }
 
 // ============================================================
-// Free functions: make_ptr / adopt_ptr
+// Free functions: make_handle / adopt_handle
 // ============================================================
 
 template <typename T, typename... Args>
-uvm_handle<T> make_ptr(Args &&...args)
+uvm_handle<T> make_handle(Args &&...args)
 {
     // Allocate and manage with the default deleter.
     T *raw = new T(std::forward<Args>(args)...);
-    return adopt_ptr(raw);
+    return adopt_handle(raw);
 }
 
 template <typename T>
-uvm_handle<T> adopt_ptr(T *raw) noexcept
+uvm_handle<T> adopt_handle(T *raw) noexcept
 {
     if (raw == nullptr) {
         return uvm_handle<T>();
@@ -587,7 +615,7 @@ uvm_handle<T> adopt_ptr(T *raw) noexcept
 }
 
 template <typename T>
-uvm_handle<T> adopt_ptr(T *raw, typename uvm_handle<T>::deleter_type del) noexcept
+uvm_handle<T> adopt_handle(T *raw, typename uvm_handle<T>::deleter_type del) noexcept
 {
     if (raw == nullptr) {
         return uvm_handle<T>();
@@ -635,6 +663,48 @@ uvm_handle<To> dynamic_pointer_cast(const uvm_handle<From>& p) noexcept
     ++cb->strong_count;
 
     return uvm_handle<To>(casted, cb);
+}
+
+template <typename T, typename U>
+bool operator==(const uvm_handle<T>& lhs, const uvm_handle<U>& rhs) noexcept
+{
+    return lhs.get() == rhs.get();
+}
+
+template <typename T, typename U>
+bool operator!=(const uvm_handle<T>& lhs, const uvm_handle<U>& rhs) noexcept
+{
+    return !(lhs == rhs);
+}
+
+template <typename T>
+bool operator==(const uvm_handle<T>& lhs, std::nullptr_t) noexcept
+{
+    return lhs.get() == nullptr;
+}
+
+template <typename T>
+bool operator==(std::nullptr_t, const uvm_handle<T>& rhs) noexcept
+{
+    return rhs == nullptr;
+}
+
+template <typename T>
+bool operator!=(const uvm_handle<T>& lhs, std::nullptr_t) noexcept
+{
+    return !(lhs == nullptr);
+}
+
+template <typename T>
+bool operator!=(std::nullptr_t, const uvm_handle<T>& rhs) noexcept
+{
+    return !(rhs == nullptr);
+}
+
+template <typename T, typename U>
+bool operator<(const uvm_handle<T>& lhs, const uvm_handle<U>& rhs) noexcept
+{
+    return std::less<const void*>()(lhs.get(), rhs.get());
 }
 
 

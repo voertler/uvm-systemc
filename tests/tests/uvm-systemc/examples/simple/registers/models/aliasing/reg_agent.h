@@ -170,7 +170,7 @@ class reg2rw_adapter : public uvm::uvm_reg_adapter
     provides_responses = true;
   }
 
-  virtual uvm::uvm_sequence_item* reg2bus( const uvm::uvm_reg_bus_op& rw )
+  virtual uvm::uvm_sequence_item* reg2bus( const uvm::uvm_reg_bus_op& rw ) override
   {
     reg_rw* bus = reg_rw::type_id::create("rw");
     bus->read    = (rw.kind == uvm::UVM_READ);
@@ -181,7 +181,7 @@ class reg2rw_adapter : public uvm::uvm_reg_adapter
   }
 
   virtual void bus2reg( const uvm::uvm_sequence_item* bus_item,
-                        uvm::uvm_reg_bus_op& rw )
+                        uvm::uvm_reg_bus_op& rw ) 
   {
     const reg_rw* bus;
     bus = dynamic_cast<const reg_rw*>(bus_item);

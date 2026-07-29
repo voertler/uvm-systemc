@@ -233,7 +233,7 @@ uvm_handle<T> uvm_component_registry<T>::create_uvm_handle( const std::string& n
 {
   std::string l_contxt;
    uvm_coreservice_t* cs = uvm_coreservice_t::get();
-  uvm_factory* f = cs->get_factory();
+  auto f = cs->get_factory();
 
   if (l_contxt.empty() && parent != nullptr)
     l_contxt = parent->get_full_name();

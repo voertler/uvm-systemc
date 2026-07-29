@@ -43,11 +43,11 @@ class uvm_sequence : public uvm_sequence_base
   explicit uvm_sequence( uvm_object_name name_ );
   virtual ~uvm_sequence();
 
-  void send_request( uvm_sequence_item* request, bool rerandomize = false );
+  void send_request( uvm_handle<uvm_sequence_item> request, bool rerandomize = false );
 
   REQ get_current_item() const;
 
-  virtual void get_response( RSP* response, int transaction_id = -1 );
+  virtual uvm::uvm_handle<RSP> get_response( int transaction_id = -1 ); // TODO LRM check if get_response shouldn't return uvm_handle
 
   // Variable: req
   //
@@ -70,7 +70,7 @@ class uvm_sequence : public uvm_sequence_base
 
  private:
 
-  virtual void put_response( const uvm_sequence_item& response_item );
+  virtual void put_response( uvm_handle<RSP> response_item );
 
   void do_print( const uvm_printer& printer ) const;
 
@@ -112,19 +112,19 @@ uvm_sequence<REQ,RSP>::~uvm_sequence()
 //----------------------------------------------------------------------
 
 template <typename REQ, typename RSP>
-void uvm_sequence<REQ,RSP>::send_request(uvm_sequence_item* request, bool rerandomize)
+void uvm_sequence<REQ,RSP>::send_request( uvm_handle<uvm_sequence_item> request, bool rerandomize)
 {
   REQ* m_request = nullptr;
 
   if (get_sequencer() == nullptr)
     uvm_report_fatal("SSENDREQ", "nullptr m_sequencer reference", UVM_NONE);
 
-  m_request = dynamic_cast<REQ*>(request);
+  m_request = dynamic_cast<REQ*>(request.get());
 
   if (m_request == nullptr)
     uvm_report_fatal("SSENDREQ", "Failure to cast uvm_sequence_item to request", UVM_NONE);
 
-  m_sequencer->send_request(this, request, rerandomize);
+  m_sequencer->send_request(this, request.get(), rerandomize);
 }
 
 
@@ -175,13 +175,14 @@ REQ uvm_sequence<REQ,RSP>::get_current_item() const
 //----------------------------------------------------------------------
 
 template <typename REQ, typename RSP>
-void uvm_sequence<REQ,RSP>::get_response( RSP* response, int transaction_id )
+uvm::uvm_handle<RSP> uvm_sequence<REQ,RSP>::get_response( int transaction_id )
 {
-  RSP* rsp;
-  uvm_sequence_item* item = get_base_response( transaction_id );
-  rsp = dynamic_cast<RSP*>(item);
-  *response = *rsp; // copy of the transaction
+  auto item = get_base_response( transaction_id );
+  auto rsp = dynamic_cast<RSP*>(item.get());
   del_base_response( item ); // flush response from memory
+  uvm::uvm_handle<RSP> response;
+  response.reset(rsp);
+  return response;
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -198,13 +199,13 @@ void uvm_sequence<REQ,RSP>::get_response( RSP* response, int transaction_id )
 //----------------------------------------------------------------------
 
 template <typename REQ, typename RSP>
-void uvm_sequence<REQ,RSP>::put_response( const uvm_sequence_item& response_item )
+void uvm_sequence<REQ,RSP>::put_response( uvm_handle<RSP> response_item )
 {
-  const RSP* crsp = dynamic_cast<const RSP*>(&response_item);
-  RSP* rsp = const_cast<RSP*>(crsp); // TODO avoid const_cast!
-
-  if (rsp == nullptr)
-    uvm_report_fatal("PUTRSP", "Failure to cast response in put_response.", UVM_NONE);
+//  const RSP* crsp = dynamic_cast<const RSP*>(&response_item);
+//  RSP* rsp = const_cast<RSP*>(crsp); // TODO avoid const_cast!
+//
+//  if (rsp == nullptr)
+//    uvm_report_fatal("PUTRSP", "Failure to cast response in put_response.", UVM_NONE);
 
   put_base_response(response_item);
 }

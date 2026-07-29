@@ -103,12 +103,6 @@ uvm_sequencer_base::uvm_sequencer_base( uvm_component_name name_ )
 
 uvm_sequencer_base::~uvm_sequencer_base()
 {
-  for( arb_sequence_q_vectorT::iterator
-       it = arb_sequence_q.begin();
-       it != arb_sequence_q.end();
-       it++ )
-    delete *it;
-
   for( lock_vectorT::iterator
        it = lock_list.begin();
        it != lock_list.end();
@@ -116,7 +110,6 @@ uvm_sequencer_base::~uvm_sequencer_base()
     delete *it;
 
   // now all dynamic objects are cleared, we can clear the list itself
-  arb_sequence_q.clear();
   lock_list.clear();
 }
 
@@ -178,12 +171,14 @@ int uvm_sequencer_base::user_priority_arbitration( std::vector<int> avail_sequen
 //! uvm_sequence_base::set_response_queue_error_report_disabled is called.
 //----------------------------------------------------------------------
 
-void uvm_sequencer_base::execute_item( uvm_sequence_item* item )
+void uvm_sequencer_base::execute_item( uvm_handle<uvm_sequence_item> item )
 {
-  uvm_sequence_base* seq = new uvm_sequence_base(sc_core::sc_gen_unique_name("parent_seq"));
+  uvm_handle<uvm_sequence_base> seq =
+    make_handle<uvm_sequence_base>(sc_core::sc_gen_unique_name("parent_seq"));
   item->set_sequencer(this);
-  item->set_parent_sequence(seq);
+  item->set_parent_sequence(seq.get());
   seq->set_sequencer(this);
+  // Don't delete sequence automatically 
   seq->start_item(item);
   seq->finish_item(item);
   // TODO check if we need to add a conditional seq->get_response(rsp);

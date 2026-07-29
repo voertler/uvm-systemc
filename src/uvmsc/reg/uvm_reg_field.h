@@ -198,13 +198,13 @@ class uvm_reg_field : public uvm_object
   // Group: Callbacks
   //---------------------------------------------------------------
 
-  virtual void pre_write( uvm_reg_item* rw );
+  virtual void pre_write( uvm_reg_item&  rw );
 
-  virtual void post_write( uvm_reg_item* rw );
+  virtual void post_write( uvm_reg_item&  rw );
 
-  virtual void pre_read( uvm_reg_item* rw);
+  virtual void pre_read( uvm_reg_item&  rw);
 
-  virtual void post_read( uvm_reg_item* rw);
+  virtual void post_read( uvm_reg_item&  rw);
 
   /////////////////////////////////////////////////////
   // Implementation-defined member functions below,
@@ -221,15 +221,15 @@ class uvm_reg_field : public uvm_object
 
   virtual uvm_reg_data_t m_update();
 
-  bool m_check_access( uvm_reg_item* rw,
+  bool m_check_access( uvm_handle<uvm_reg_item>  rw,
                        uvm_reg_map_info*& map_info,
                        const std::string& caller );
 
-  virtual void do_write( uvm_reg_item* rw );
+  virtual void do_write( uvm_handle<uvm_reg_item>  rw );
 
-  virtual void do_read( uvm_reg_item* rw );
+  virtual void do_read( uvm_handle<uvm_reg_item>  rw );
 
-  virtual void do_predict( uvm_reg_item* rw,
+  virtual void do_predict( uvm_handle<uvm_reg_item>  rw,
                            uvm_predict_e kind = UVM_PREDICT_DIRECT,
                            uvm_reg_byte_en_t be = -1 );
 

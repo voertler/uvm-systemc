@@ -267,11 +267,11 @@ class uvm_reg : public uvm_object
                           const std::string& kind = "",
                           const std::string& separator = ".") const;
 
-  virtual void backdoor_read( uvm_reg_item* rw );
+  virtual void backdoor_read( uvm_handle<uvm_reg_item>  rw );
 
-  virtual void backdoor_write( uvm_reg_item* rw );
+  virtual void backdoor_write( uvm_handle<uvm_reg_item>  rw );
 
-  virtual uvm_status_e backdoor_read_func( uvm_reg_item* rw );
+  virtual uvm_status_e backdoor_read_func( uvm_handle<uvm_reg_item>  rw );
 
   virtual void backdoor_watch();
 
@@ -309,13 +309,13 @@ class uvm_reg : public uvm_object
   // Group: Callbacks
   //--------------------------------------------------------------------------
 
-  virtual void pre_write( uvm_reg_item* rw );
+  virtual void pre_write( uvm_reg_item&  rw );
 
-  virtual void post_write( uvm_reg_item* rw );
+  virtual void post_write( uvm_reg_item&  rw );
 
-  virtual void pre_read( uvm_reg_item* rw );
+  virtual void pre_read( uvm_reg_item&  rw );
 
-  virtual void post_read( uvm_reg_item* rw );
+  virtual void post_read( uvm_reg_item&  rw );
 
 
   /////////////////////////////////////////////////////
@@ -369,7 +369,7 @@ class uvm_reg : public uvm_object
 
   void m_atomic_check_lock( bool on );
 
-  virtual bool m_check_access( uvm_reg_item* rw,
+  virtual bool m_check_access( uvm_handle<uvm_reg_item>  rw,
                                uvm_reg_map_info*& map_info,
                                const std::string& caller );
 
@@ -379,11 +379,11 @@ class uvm_reg : public uvm_object
                          uvm_reg_data_t actual,
                          uvm_reg_map* map);
 
-  virtual void do_write( uvm_reg_item* rw );
+  virtual void do_write( uvm_handle<uvm_reg_item>  rw );
 
-  virtual void do_read( uvm_reg_item* rw );
+  virtual void do_read( uvm_handle<uvm_reg_item>  rw );
 
-  virtual void do_predict( uvm_reg_item* rw,
+  virtual void do_predict( uvm_handle<uvm_reg_item>  rw,
                            uvm_predict_e kind = UVM_PREDICT_DIRECT,
                            uvm_reg_byte_en_t be = -1 );
 

@@ -1106,7 +1106,7 @@ bool uvm_reg_map::get_check_on_read() const
 //! Perform a bus write operation.
 //----------------------------------------------------------------------
 
-void uvm_reg_map::do_bus_write( uvm_reg_item* rw,
+void uvm_reg_map::do_bus_write( uvm_handle<uvm_reg_item>  rw,
                                 uvm_sequencer_base* sequencer,
                                 uvm_reg_adapter* adapter )
 {
@@ -1177,7 +1177,7 @@ void uvm_reg_map::do_bus_write( uvm_reg_item* rw,
 
     for( unsigned int i = 0; i < addrs.size(); i++ )
     {
-      uvm_sequence_item* bus_req;
+      uvm_handle<uvm_sequence_item> bus_req;
       uvm_reg_bus_op rw_access;
       uvm_reg_data_t data;
 
@@ -1211,14 +1211,14 @@ void uvm_reg_map::do_bus_write( uvm_reg_item* rw,
       bus_req = adapter->reg2bus(rw_access);
       adapter->m_set_item(nullptr);
 
-      if (bus_req == nullptr)
+      if (!bus_req)
         UVM_FATAL("RegMem","adapter [" + adapter->get_name() + "] did not return a bus transaction");
 
       bus_req->set_sequencer(sequencer);
       rw->parent->start_item(bus_req, rw->prior);
 
       if (rw->parent != nullptr && i == 0)
-        rw->parent->mid_do(rw);
+        rw->parent->mid_do(*rw.get());
 
       rw->parent->finish_item(bus_req);
 
@@ -1226,17 +1226,16 @@ void uvm_reg_map::do_bus_write( uvm_reg_item* rw,
 
       if (adapter->provides_responses)
       {
-        uvm_sequence_item* bus_rsp;
         // TODO: need to test for right trans type, if not put back in q
-        bus_rsp = rw->parent->get_base_response();
-        adapter->bus2reg(bus_rsp, rw_access);
+        auto bus_rsp = rw->parent->get_base_response();
+        adapter->bus2reg(bus_rsp.get(), rw_access);
         rw->parent->del_base_response(bus_rsp); // remove item from response queue
       }
       else
-        adapter->bus2reg(bus_req, rw_access);
+        adapter->bus2reg(bus_req.get(), rw_access);
 
        if (rw->parent != nullptr && i == addrs.size()-1)
-        rw->parent->post_do(rw);
+        rw->parent->post_do(*rw.get());
 
       rw->status = rw_access.status;
 
@@ -1273,7 +1272,7 @@ void uvm_reg_map::do_bus_write( uvm_reg_item* rw,
 //! Perform a bus read operation.
 //----------------------------------------------------------------------
 
-void uvm_reg_map::do_bus_read( uvm_reg_item* rw,
+void uvm_reg_map::do_bus_read( uvm_handle<uvm_reg_item>  rw,
                                uvm_sequencer_base* sequencer,
                                uvm_reg_adapter* adapter)
 {
@@ -1339,7 +1338,7 @@ void uvm_reg_map::do_bus_read( uvm_reg_item* rw,
 
     for( unsigned int i = 0; i < addrs.size(); i++ )
     {
-      uvm_sequence_item* bus_req;
+      uvm_handle<uvm_sequence_item> bus_req;
       uvm_reg_bus_op rw_access;
       uvm_reg_data_logic_t data;
 
@@ -1365,14 +1364,14 @@ void uvm_reg_map::do_bus_read( uvm_reg_item* rw,
       bus_req = adapter->reg2bus(rw_access);
       adapter->m_set_item(nullptr);
 
-      if (bus_req == nullptr)
+      if (!bus_req)
         UVM_FATAL("RegMem","Adapter [" + adapter->get_name() + "] did not return a bus transaction");
 
       bus_req->set_sequencer(sequencer);
       rw->parent->start_item(bus_req, rw->prior);
 
       if (rw->parent != nullptr && i == 0)
-        rw->parent->mid_do(rw);
+        rw->parent->mid_do(*rw.get());
 
       rw->parent->finish_item(bus_req);
 
@@ -1380,14 +1379,13 @@ void uvm_reg_map::do_bus_read( uvm_reg_item* rw,
 
       if (adapter->provides_responses)
       {
-        uvm_sequence_item* bus_rsp;
         // TODO: need to test for right trans type, if not put back in q
-        bus_rsp = rw->parent->get_base_response();
-        adapter->bus2reg(bus_rsp, rw_access);
+        auto bus_rsp = rw->parent->get_base_response();
+        adapter->bus2reg(bus_rsp.get(), rw_access);
         rw->parent->del_base_response(bus_rsp); // remove item from response queue
       }
       else
-        adapter->bus2reg(bus_req, rw_access);
+        adapter->bus2reg(bus_req.get(), rw_access);
 
       data = rw_access.data & uvm_mask_size(bus_width*8);
       rw->status = rw_access.status;
@@ -1420,7 +1418,7 @@ void uvm_reg_map::do_bus_read( uvm_reg_item* rw,
       rw->value[val_idx] = val;
 
       if (rw->parent != nullptr && i == addrs.size()-1)
-        rw->parent->post_do(rw);
+        rw->parent->post_do(*rw.get());
 
       curr_byte += bus_width;
       n_bits -= bus_width * 8;
@@ -1440,7 +1438,7 @@ void uvm_reg_map::do_bus_read( uvm_reg_item* rw,
 //! Perform a write operation.
 //----------------------------------------------------------------------
 
-void uvm_reg_map::do_write( uvm_reg_item* rw )
+void uvm_reg_map::do_write( uvm_handle<uvm_reg_item>  rw )
 {
   uvm_sequence_base* tmp_parent_seq = nullptr;
   uvm_reg_map* system_map = get_root_map();
@@ -1485,7 +1483,7 @@ void uvm_reg_map::do_write( uvm_reg_item* rw )
 //! Perform a read operation.
 //----------------------------------------------------------------------
 
-void uvm_reg_map::do_read( uvm_reg_item* rw )
+void uvm_reg_map::do_read( uvm_handle<uvm_reg_item>  rw )
 {
   uvm_sequence_base* tmp_parent_seq = nullptr;
   uvm_reg_map* system_map = get_root_map();
@@ -2012,7 +2010,7 @@ uvm_reg_map* uvm_reg_map::backdoor()
 // Implementation defined
 //----------------------------------------------------------------------
 
-void uvm_reg_map::m_get_bus_info( uvm_reg_item* rw,
+void uvm_reg_map::m_get_bus_info( uvm_handle<uvm_reg_item>  rw,
                                   uvm_reg_map_info*& map_info,
                                   unsigned int& size,
                                   int& lsb,
