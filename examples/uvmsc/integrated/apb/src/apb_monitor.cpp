@@ -58,7 +58,7 @@ void apb_monitor::run_phase(uvm::uvm_phase & phase)
         while ( this->sigs->psel != sc_dt::SC_LOGIC_1 ||
                 this->sigs->penable != sc_dt::SC_LOGIC_0);
 
-        auto tr = apb_rw::type_id::create_uvm_handle("tr", this);
+        auto tr = apb_rw::type_id::create_handle("tr", this);
         tr->kind_e = (this->sigs->pwrite == sc_dt::SC_LOGIC_1) ? WRITE : READ;
         tr->addr = this->sigs->paddr;
 

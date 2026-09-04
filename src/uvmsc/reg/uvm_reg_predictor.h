@@ -225,7 +225,7 @@ void uvm_reg_predictor<BUSTYPE>::write( const BUSTYPE& tr )
     if( m_pending.find(rg) == m_pending.end() ) // not exists
     {
       uvm_handle<uvm_reg_item> item =
-        uvm_reg_item::type_id::create_uvm_handle("predict_item");
+        uvm_reg_item::type_id::create_handle("predict_item");
       predict_info = new uvm_predict_s();
       item->element_kind = UVM_REG;
       item->element      = rg;

@@ -109,7 +109,7 @@ public:
   read_byte_seq( const std::string& name = "read_byte_seq")
   : ubus_base_sequence(name), start_addr(0), transmit_del(0)
   {
-      req = ubus_transfer::type_id::create_uvm_handle();
+      req = ubus_transfer::type_id::create_handle();
   }
 
   UVM_OBJECT_UTILS(read_byte_seq);
@@ -177,7 +177,7 @@ public:
   read_half_word_seq( const std::string& name = "read_half_word_seq")
   : ubus_base_sequence(name), start_addr(0), transmit_del(0)
   {
-      req = ubus_transfer::type_id::create_uvm_handle();
+      req = ubus_transfer::type_id::create_handle();
   }
   
   UVM_OBJECT_UTILS(read_half_word_seq);
@@ -246,7 +246,7 @@ public:
   read_word_seq( const std::string& name = "read_word_seq")
   : ubus_base_sequence(name), start_addr(0), transmit_del(0)
   {
-      req = ubus_transfer::type_id::create_uvm_handle();
+      req = ubus_transfer::type_id::create_handle();
   }
   
   UVM_OBJECT_UTILS(read_word_seq);
@@ -318,7 +318,7 @@ public:
   read_double_word_seq( const std::string& name = "read_double_word_seq")
   : ubus_base_sequence(name), start_addr(0), transmit_del(0)
   {
-      req = ubus_transfer::type_id::create_uvm_handle();
+      req = ubus_transfer::type_id::create_handle();
   }
   
   UVM_OBJECT_UTILS(read_double_word_seq);
@@ -399,7 +399,7 @@ public:
   write_byte_seq( const std::string& name = "write_byte_seq")
   : ubus_base_sequence(name), start_addr(0), data0(0), transmit_del(0)
   {
-      req = ubus_transfer::type_id::create_uvm_handle();
+      req = ubus_transfer::type_id::create_handle();
   }
 
   UVM_OBJECT_UTILS(write_byte_seq);
@@ -467,7 +467,7 @@ public:
   write_half_word_seq( const std::string& name = "write_half_word_seq")
   : ubus_base_sequence(name), start_addr(0), data0(0), data1(0), transmit_del(0)
   {
-      req = ubus_transfer::type_id::create_uvm_handle();
+      req = ubus_transfer::type_id::create_handle();
   }
 
   UVM_OBJECT_UTILS(write_half_word_seq);
@@ -541,7 +541,7 @@ public:
   : ubus_base_sequence(name), start_addr(0), data0(0),
     data1(0), data2(0), data3(0), transmit_del(0)
   {
-	  req = ubus_transfer::type_id::create_uvm_handle();
+	  req = ubus_transfer::type_id::create_handle();
   }
 
   UVM_OBJECT_UTILS(write_word_seq);
@@ -627,7 +627,7 @@ public:
     data1(0), data2(0), data3(0), data4(0),
     data5(0), data6(0), data7(0), transmit_del(0)
   {
-      req = ubus_transfer::type_id::create_uvm_handle();
+      req = ubus_transfer::type_id::create_handle();
   }
 
   UVM_OBJECT_UTILS(write_double_word_seq);

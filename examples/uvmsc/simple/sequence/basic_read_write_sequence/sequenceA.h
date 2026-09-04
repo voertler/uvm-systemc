@@ -48,7 +48,7 @@ class sequenceA : public uvm::uvm_sequence<REQ,RSP>
 
     for(unsigned int i = 0; i < NUM_LOOPS; i++)
     {
-      auto req = REQ::type_id::create_uvm_handle();
+      auto req = REQ::type_id::create_handle();
       req->addr = (my_id * NUM_LOOPS) + i;
       req->data = my_id + i + 55;
       req->op   = BUS_WRITE;
@@ -57,7 +57,7 @@ class sequenceA : public uvm::uvm_sequence<REQ,RSP>
       this->send_request(req);
       auto rsp = this->get_response();
 
-      req = REQ::type_id::create_uvm_handle();
+      req = REQ::type_id::create_handle();
       req->addr = (my_id * NUM_LOOPS) + i;
       req->data = 0;
       req->op   = BUS_READ;

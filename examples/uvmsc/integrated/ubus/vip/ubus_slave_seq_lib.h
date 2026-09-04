@@ -49,7 +49,7 @@ class simple_response_seq : public uvm::uvm_sequence<ubus_transfer>
   simple_response_seq( const std::string& name = "simple_response_seq")
   : uvm::uvm_sequence<ubus_transfer>(name)
   {
-      req = ubus_transfer::type_id::create_uvm_handle();
+      req = ubus_transfer::type_id::create_handle();
   }
   
   UVM_OBJECT_UTILS(simple_response_seq);

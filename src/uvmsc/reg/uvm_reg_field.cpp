@@ -785,7 +785,7 @@ void uvm_reg_field::write( uvm_status_e& status,
                            int lineno )
 {
    uvm_handle<uvm_reg_item>  rw;
-   rw = uvm_reg_item::type_id::create_uvm_handle("field_write_item", nullptr, get_full_name());
+   rw = uvm_reg_item::type_id::create_handle("field_write_item", nullptr, get_full_name());
    rw->element      = this;
    rw->element_kind = UVM_FIELD;
    rw->access_kind  = UVM_WRITE;
@@ -845,7 +845,7 @@ void uvm_reg_field::read( uvm_status_e& status, // output
                           int lineno )
 {
   uvm_handle<uvm_reg_item>  rw;
-  rw = uvm_reg_item::type_id::create_uvm_handle("field_read_item", nullptr, get_full_name());
+  rw = uvm_reg_item::type_id::create_handle("field_read_item", nullptr, get_full_name());
   rw->element      = this;
   rw->element_kind = UVM_FIELD;
   rw->access_kind  = UVM_READ;
@@ -1190,7 +1190,7 @@ bool uvm_reg_field::predict( uvm_reg_data_t value,
                              int lineno )
 {
   uvm_handle<uvm_reg_item>  rw =
-    uvm_reg_item::type_id::create_uvm_handle("field_predict_item", nullptr, get_full_name());
+    uvm_reg_item::type_id::create_handle("field_predict_item", nullptr, get_full_name());
   rw->value[0] = value;
   rw->path = path;
   rw->map = map;

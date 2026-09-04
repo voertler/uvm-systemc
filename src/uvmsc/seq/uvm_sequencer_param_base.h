@@ -54,7 +54,7 @@ template <typename REQ = uvm_sequence_item, typename RSP = REQ>
 class uvm_sequencer_param_base : public uvm_sequencer_base
 {
  public:
-  tlm::tlm_fifo<REQ> m_req_fifo;
+  tlm::tlm_fifo<uvm_handle<REQ>> m_req_fifo;
   //tlm::tlm_analysis_fifo<REQ> m_req_fifo; // TODO add analysis fifo
 
   uvm_analysis_export<RSP> rsp_export;

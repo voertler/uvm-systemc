@@ -176,7 +176,7 @@ public:
   static int& g_sequence_id_ref();
   static int& g_request_id_ref();
 
-  uvm_sequence_item* m_current_sequence_item;
+  uvm_handle<uvm_sequence_item> m_current_sequence_item;
 };
 
 //------------------------------------------------------------------------------

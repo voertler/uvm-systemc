@@ -783,7 +783,7 @@ void uvm_reg::write( uvm_status_e& status,
 
    set(value);
 
-   rw = uvm_reg_item::type_id::create_uvm_handle("write_item", nullptr, get_full_name());
+   rw = uvm_reg_item::type_id::create_handle("write_item", nullptr, get_full_name());
 
    // make sure we have reserved space to store an initial value
    if (rw->value.size() == 0)
@@ -882,7 +882,7 @@ void uvm_reg::poke( uvm_status_e& status,
     m_atomic_check_lock(true);
 
   // create an abstract transaction for this operation
-  rw = uvm_reg_item::type_id::create_uvm_handle("reg_poke_item", nullptr, get_full_name());
+  rw = uvm_reg_item::type_id::create_handle("reg_poke_item", nullptr, get_full_name());
   rw->element      = this;
   rw->path         = UVM_BACKDOOR;
   rw->element_kind = UVM_REG;
@@ -955,7 +955,7 @@ void uvm_reg::peek( uvm_status_e& status,
     m_atomic_check_lock(true);
 
   // create an abstract transaction for this operation
-  rw = uvm_reg_item::type_id::create_uvm_handle("mem_peek_item", nullptr, get_full_name());
+  rw = uvm_reg_item::type_id::create_handle("mem_peek_item", nullptr, get_full_name());
   rw->element      = this;
   rw->path         = UVM_BACKDOOR;
   rw->element_kind = UVM_REG;
@@ -1128,7 +1128,7 @@ bool uvm_reg::predict( uvm_reg_data_t value,
                        int lineno )
 {
   uvm_handle<uvm_reg_item>  rw =
-    uvm_reg_item::type_id::create_uvm_handle("predict_item", nullptr, get_full_name());
+    uvm_reg_item::type_id::create_handle("predict_item", nullptr, get_full_name());
 
   // make sure we have reserved space to store an initial value
   if (rw->value.size() == 0)
@@ -2354,7 +2354,7 @@ void uvm_reg::m_read( uvm_status_e& status,
 {
    // create an abstract transaction for this operation
    uvm_handle<uvm_reg_item>  rw;
-   rw = uvm_reg_item::type_id::create_uvm_handle("read_item", nullptr, get_full_name());
+   rw = uvm_reg_item::type_id::create_handle("read_item", nullptr, get_full_name());
 
    // make sure we have reserved space to store an initial value
    if (rw->value.size() == 0)

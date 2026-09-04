@@ -675,7 +675,7 @@ uvm_handle<uvm_sequence_item> uvm_sequence_base::create_item( uvm_object_wrapper
   auto f_ = cs->get_factory();
 
   uvm_handle<uvm_object> obj =
-    f_->create_uvm_handle_object_by_type( type_var, this->get_full_name(), name );
+    f_->create_handle_object_by_type( type_var, this->get_full_name(), name );
   uvm_handle<uvm_sequence_item> item =
     uvm::dynamic_pointer_cast<uvm_sequence_item>(obj);
 
@@ -752,6 +752,58 @@ void uvm_sequence_base::start_item( uvm_sequence_item* item,
 }
 #endif
 
+void uvm_sequence_base::start_item(uvm_handle<uvm_sequence_item> item,
+								   int set_priority,
+								   uvm_sequencer_base *sequencer) {
+	uvm_handle<uvm_sequence_base> seq;
+
+	if (item == nullptr) {
+		std::ostringstream msg;
+		msg << "attempting to start a nullptr item from sequence '"
+			<< get_full_name() << "'";
+		uvm_report_fatal("NULLITM", msg.str(), UVM_NONE);
+		return;
+	}
+
+	seq = dynamic_pointer_cast<uvm_sequence_base>(item);
+	if (seq != nullptr) {
+		std::ostringstream msg;
+		msg << "attempting to start a sequence using start_item() from "
+			   "sequence '"
+			<< get_full_name() << "'. Use seq.start() instead.";
+		uvm_report_fatal("SEQNOTITM", msg.str(), UVM_NONE);
+		return;
+	}
+
+	if (sequencer == nullptr)
+		sequencer = item->get_sequencer();
+
+	if (sequencer == nullptr)
+		sequencer = get_sequencer();
+
+	if (sequencer == nullptr) {
+		std::ostringstream msg;
+		msg << "neither the item's sequencer nor dedicated sequencer has been "
+			<< "supplied to start item in " << get_full_name();
+		uvm_report_fatal("SEQ", msg.str(), UVM_NONE);
+		return;
+	}
+
+	item->set_item_context(this, sequencer);
+
+	if (set_priority < 0)
+		set_priority = get_priority();
+
+	sequencer->wait_for_grant(this, set_priority);
+
+#ifndef UVM_DISABLE_AUTO_ITEM_RECORDING
+	// TODO transaction recording
+	// sequencer->begin_child_tr(item, m_tr_handle,
+	// item->get_root_sequence_name()));
+#endif
+	pre_do(true);
+};
+
 //----------------------------------------------------------------------
 // member function: finish_item (virtual)
 //
@@ -788,6 +840,33 @@ void uvm_sequence_base::finish_item( uvm_sequence_item* item,
   post_do(latest_item);
 }
 #endif
+
+void uvm_sequence_base::finish_item(uvm_handle<uvm_sequence_item> item,
+                                    int set_priority) {
+	uvm_sequencer_base *sequencer{};
+
+	sequencer = item->get_sequencer();
+
+	if (sequencer == nullptr)
+		uvm_report_fatal("STRITM", "sequence_item has nullptr sequencer",
+						 UVM_NONE);
+
+	mid_do(*item);
+	sequencer->send_request(this, item.get());
+	sequencer->wait_for_item_done(this, -1);
+
+	// FIXME: dirty workaround to comply to UVM-SV semantics which are non-TLM
+	// conform! Copy the current values of a request_item from the sequencer,
+	// which might be changed 'in flight' without asking for explicit response
+	// message using get_response(rsp)
+	auto latest_item = sequencer->m_current_sequence_item;
+
+#ifndef UVM_DISABLE_AUTO_ITEM_RECORDING
+	sequencer->end_tr(*item);
+#endif
+
+	post_do(*latest_item);
+};
 
 //----------------------------------------------------------------------
 // member function: wait_for_grant (virtual)
@@ -834,6 +913,17 @@ void uvm_sequence_base::send_request( uvm_sequence_item* request, bool rerandomi
   get_sequencer()->send_request(this, request, rerandomize);
 }
 #endif
+
+void uvm_sequence_base::send_request(uvm_handle<uvm_sequence_item> request,
+									 bool rerandomize) {
+	// NOTE: this method shall not be called - is overloaded by implementation
+	// in param_base class
+	if (get_sequencer() == nullptr)
+		uvm_report_fatal("SENDREQ", "Unable to find sequencer.",
+						 UVM_NONE); // was: Null m_sequencer reference
+
+	get_sequencer()->send_request(this, request.get(), rerandomize);
+};
 
 //----------------------------------------------------------------------
 // member function: wait_for_item_done (virtual)
@@ -894,12 +984,11 @@ bool uvm_sequence_base::get_use_response_handler() const
 //! for this sequence.
 //----------------------------------------------------------------------
 
-#if UVM_DEPRECATED_1_0_ENABLED
 void uvm_sequence_base::response_handler( const uvm_sequence_item* response )
 {
   uvm_report_fatal("RSPHDL", "No response handler defined!", UVM_NONE);
 }
-#endif
+
 
 //----------------------------------------------------------------------
 // member function: set_response_queue_error_report_disabled
@@ -1318,6 +1407,4 @@ void uvm_sequence_base::m_clear_phase_daps()
   m_automatic_phase_objection_dap = nullptr;
   m_starting_phase_dap = nullptr;
 }
-
-
 } // namespace uvm

@@ -325,7 +325,7 @@ void uvm_reg_backdoor::start_update_thread_core( uvm_object* element, uvm_reg* r
      uvm_reg_data_t  val;
 
      uvm_handle<uvm_reg_item>  r_item =
-       uvm_reg_item::type_id::create_uvm_handle("bd_r_item");
+       uvm_reg_item::type_id::create_handle("bd_r_item");
 
      r_item->element = rg;
      r_item->element_kind = UVM_REG;

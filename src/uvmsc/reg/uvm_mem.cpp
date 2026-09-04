@@ -703,7 +703,7 @@ void uvm_mem::write( uvm_status_e& status, // output
                      int lineno )
 {
   // create an abstract transaction for this operation
-  uvm_handle<uvm_reg_item>  rw = uvm_reg_item::type_id::create_uvm_handle("mem_write", nullptr, get_full_name() );
+  uvm_handle<uvm_reg_item>  rw = uvm_reg_item::type_id::create_handle("mem_write", nullptr, get_full_name() );
 
   rw->element      = this;
   rw->element_kind = UVM_MEM;
@@ -749,7 +749,7 @@ void uvm_mem::read( uvm_status_e& status, // output
                     int lineno )
 {
   uvm_handle<uvm_reg_item>  rw;
-  rw = uvm_reg_item::type_id::create_uvm_handle("mem_read", nullptr, get_full_name());
+  rw = uvm_reg_item::type_id::create_handle("mem_read", nullptr, get_full_name());
   rw->element      = this;
   rw->element_kind = UVM_MEM;
   rw->access_kind  = UVM_READ;
@@ -795,7 +795,7 @@ void uvm_mem::burst_write( uvm_status_e& status,
                            int lineno )
 {
   uvm_handle<uvm_reg_item>  rw;
-  rw = uvm_reg_item::type_id::create_uvm_handle("mem_burst_write", nullptr, get_full_name());
+  rw = uvm_reg_item::type_id::create_handle("mem_burst_write", nullptr, get_full_name());
   rw->element      = this;
   rw->element_kind = UVM_MEM;
   rw->access_kind  = UVM_BURST_WRITE;
@@ -841,7 +841,7 @@ void uvm_mem::burst_read( uvm_status_e& status, // output
                           int lineno )
 {
   uvm_handle<uvm_reg_item>  rw;
-  rw = uvm_reg_item::type_id::create_uvm_handle("mem_burst_read", nullptr, get_full_name());
+  rw = uvm_reg_item::type_id::create_handle("mem_burst_read", nullptr, get_full_name());
   rw->element      = this;
   rw->element_kind = UVM_MEM;
   rw->access_kind  = UVM_BURST_READ;
@@ -897,7 +897,7 @@ void uvm_mem::poke( uvm_status_e& status, // output
   }
 
   // create an abstract transaction for this operation
-  rw = uvm_reg_item::type_id::create_uvm_handle("mem_poke_item", nullptr, get_full_name());
+  rw = uvm_reg_item::type_id::create_handle("mem_poke_item", nullptr, get_full_name());
   rw->element      = this;
   rw->path         = UVM_BACKDOOR;
   rw->element_kind = UVM_MEM;
@@ -965,7 +965,7 @@ void uvm_mem::peek( uvm_status_e& status, // output
   }
 
   // create an abstract transaction for this operation
-  rw = uvm_reg_item::type_id::create_uvm_handle("mem_peek_item", nullptr, get_full_name());
+  rw = uvm_reg_item::type_id::create_handle("mem_peek_item", nullptr, get_full_name());
   rw->element      = this;
   rw->path         = UVM_BACKDOOR;
   rw->element_kind = UVM_MEM;

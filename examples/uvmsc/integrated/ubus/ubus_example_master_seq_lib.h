@@ -227,8 +227,8 @@ class read_modify_write_seq : public ubus_base_sequence
   read_modify_write_seq(const std::string& name = "read_modify_write_seq")
   : ubus_base_sequence(name)
   {
-	  read_byte_seq0 = read_byte_seq::type_id::create_uvm_handle();
-	  write_byte_seq0 = write_byte_seq::type_id::create_uvm_handle();
+	  read_byte_seq0 = read_byte_seq::type_id::create_handle();
+	  write_byte_seq0 = write_byte_seq::type_id::create_handle();
   }
 
   UVM_OBJECT_UTILS(read_modify_write_seq);

@@ -142,11 +142,14 @@ bool uvm_sequence_item::get_use_sequence_info() const
 #if UVM_DEPRECATED_1_0_ENABLED
 void uvm_sequence_item::set_id_info(uvm_sequence_item& item)
 {
-  this->set_transaction_id(item.get_transaction_id());
-  this->set_sequence_id(item.get_sequence_id());
+
 }
 #endif
 
+void uvm_sequence_item::set_id_info(uvm_handle<uvm_sequence_item> item){
+    this->set_transaction_id(item->get_transaction_id());
+    this->set_sequence_id(item->get_sequence_id());
+};
 //----------------------------------------------------------------------
 // member function: set_sequencer
 //

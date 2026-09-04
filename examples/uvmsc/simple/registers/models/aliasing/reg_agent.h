@@ -174,7 +174,7 @@ class reg2rw_adapter : public uvm::uvm_reg_adapter
 
   virtual uvm::uvm_handle<uvm::uvm_sequence_item> reg2bus( const uvm::uvm_reg_bus_op& rw )
   {
-    auto bus = reg_rw::type_id::create_uvm_handle("rw");
+    auto bus = reg_rw::type_id::create_handle("rw");
     bus->read    = (rw.kind == uvm::UVM_READ);
     bus->addr    = rw.addr;
     bus->data    = rw.data;

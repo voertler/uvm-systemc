@@ -292,7 +292,7 @@ void uvm_reg_indirect_data::write( uvm_status_e& status,
 
     m_atomic_check_lock(1);
 
-    rw = uvm_reg_item::type_id::create_uvm_handle("write_item", nullptr, get_full_name());
+    rw = uvm_reg_item::type_id::create_handle("write_item", nullptr, get_full_name());
     rw->element      = this;
     rw->element_kind = UVM_REG;
     rw->access_kind  = UVM_WRITE;

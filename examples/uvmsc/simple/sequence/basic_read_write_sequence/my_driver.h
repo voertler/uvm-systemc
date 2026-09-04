@@ -36,7 +36,7 @@ class my_driver : public uvm::uvm_driver<REQ,RSP>
 
   void run_phase(uvm::uvm_phase& phase)
   {
-    auto rsp = RSP::type_id::create_uvm_handle("rsp");;
+    auto rsp = RSP::type_id::create_handle("rsp");;
 
     for(;;) // forever loop
     {
