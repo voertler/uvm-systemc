@@ -90,7 +90,7 @@ class uvm_sequencer_param_base : public uvm_sequencer_base
 
   virtual const char* kind() const; // SystemC API
   virtual const std::string get_type_name() const;
-  void put_response_base( const RSP& rsp );
+  void put_response_base( uvm_handle<RSP> rsp );
   void m_last_req_push_front( uvm_handle<REQ> item );
   void m_last_rsp_push_front( uvm_handle<RSP> item );
 
@@ -444,7 +444,7 @@ uvm_handle<RSP> uvm_sequencer_param_base<REQ,RSP>::last_rsp(unsigned int n)
 //----------------------------------------------------------------------
 
 template <typename REQ, typename RSP>
-void uvm_sequencer_param_base<REQ,RSP>::put_response_base(const RSP& rsp)
+void uvm_sequencer_param_base<REQ,RSP>::put_response_base(uvm_handle<RSP> rsp)
 {
   uvm_sequence_base* sequence_ptr;
 
@@ -452,10 +452,10 @@ void uvm_sequencer_param_base<REQ,RSP>::put_response_base(const RSP& rsp)
   m_num_rsps_received++;
 
   // Check that set_id_info() was called
-  if (rsp.get_sequence_id() == -1)
+  if (rsp->get_sequence_id() == -1)
     uvm_report_fatal("SQRPUT", "Driver put a response with invalid sequence_id", UVM_NONE);
 
-  sequence_ptr = m_find_sequence(rsp.get_sequence_id());
+  sequence_ptr = m_find_sequence(rsp->get_sequence_id());
 
   if (sequence_ptr != nullptr)
   {
@@ -463,7 +463,7 @@ void uvm_sequencer_param_base<REQ,RSP>::put_response_base(const RSP& rsp)
     // then call the response handler
     if ( sequence_ptr->get_use_response_handler() )
     {
-      sequence_ptr->response_handler(&rsp);
+      sequence_ptr->response_handler(rsp);
       return;
     }
     sequence_ptr->put_response(rsp);
@@ -471,7 +471,7 @@ void uvm_sequencer_param_base<REQ,RSP>::put_response_base(const RSP& rsp)
   else
   {
     std::ostringstream str;
-    str << "Dropping response for sequence '" << rsp.get_name() << "' (id= " << rsp.get_sequence_id() << "), since sequence is not found. Probable cause: sequence exited or has been killed.";
+    str << "Dropping response for sequence '" << rsp->get_name() << "' (id= " << rsp->get_sequence_id() << "), since sequence is not found. Probable cause: sequence exited or has been killed.";
     uvm_report_info("Sequencer", str.str() );
   }
 }

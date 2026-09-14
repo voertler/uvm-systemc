@@ -69,7 +69,7 @@ namespace uvm {
   bool has_do_available() { return imp->has_do_available(); } \
   void put_response( uvm_handle<REQ> rsp_arg ) { imp->put_response(rsp_arg); } \
   uvm_handle<REQ> get() { return imp->get(); } \
-  uvm_handle<REQ> peek() const { return imp->peek(); }
+  uvm_handle<REQ> peek() { return imp->peek(); }
 #endif
 
 //-----------------------------------------------------------------------------

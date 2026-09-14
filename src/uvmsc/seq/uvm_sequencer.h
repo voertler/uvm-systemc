@@ -97,33 +97,27 @@ class uvm_sequencer : public uvm_sequencer_param_base<REQ,RSP>,
 
   UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>",
                      void put( const RSP& rsp ) override;)
+                     
+ UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>",
+                                        void put( const RSP& rsp ) override;)                   
   UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>",
-                     void put_response( const RSP& rsp ) override;) // TODO not in standard anymore? remove?
+                     void put_response( const RSP& rsp ) override;)
 
-  void put_response( uvm_handle<RSP> rsp ) override 
-  {
-    //TODO
-  };
+  void put_response(uvm_handle<RSP> rsp) override;
 
   UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>",
                      REQ get( REQ* req) override;)
   UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>",
                      void get( REQ& req ) override;)
 
-  uvm_handle<REQ>  get( ) override 
-  {
-   // TODO 
-  };
-  
+  uvm_handle<REQ> get() override;
+
   UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>",
                      void peek( REQ& req ) override;)
   UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>",
                      REQ peek( REQ* req ) override;)
-  
-  uvm_handle<REQ> peek() const override 
-  {
-    // TODO
-  };  
+
+  uvm_handle<REQ> peek() override;
   //virtual REQ peek( tlm::tlm_tag<REQ>* req = nullptr ); // FIXME: should be const in line with SystemC TLM API?
 
   virtual void stop_sequences();
@@ -339,6 +333,17 @@ void uvm_sequencer<REQ,RSP>::get( REQ& req )
   req = get(nullptr);
 }
 #endif
+
+template <typename REQ, typename RSP>
+inline uvm_handle<REQ> uvm_sequencer<REQ, RSP>::get() {
+    if (!sequence_item_requested)
+      this->m_select_sequence();
+    sequence_item_requested = true;
+
+    auto r = this->m_req_fifo.peek(); //note: we peek here, as we do the get in the item_done() call
+    item_done();
+    return r;
+};
 //----------------------------------------------------------------------
 // member function: peek
 //
@@ -373,6 +378,18 @@ void uvm_sequencer<REQ,RSP>::peek( REQ& req )
   this->m_current_sequence_item = &req;
 }
 #endif
+template <typename REQ, typename RSP>
+inline uvm_handle<REQ> uvm_sequencer<REQ, RSP>::peek() {
+    if (!sequence_item_requested )
+      this->m_select_sequence();
+
+     // Set flag indicating that the item has been requested to ensure that
+     // item_done() or get() is called between requests
+     sequence_item_requested = true;
+  
+     return this->m_req_fifo.peek();
+};
+
 //----------------------------------------------------------------------
 // member function: get_next_item
 //
@@ -573,6 +590,13 @@ void uvm_sequencer<REQ,RSP>::put_response( const RSP& rsp )
   sc_core::wait(sc_core::SC_ZERO_TIME);  // TODO do we really need this?
 }
 #endif
+template <typename REQ, typename RSP>
+inline void uvm_sequencer<REQ, RSP>::put_response(uvm_handle<RSP> rsp) {
+    this->put_response_base(rsp);
+    // sc_core::wait(sc_core::SC_ZERO_TIME);  // TODO do we really need this?
+};
+
+
 
 //----------------------------------------------------------------------
 // member function: stop_sequences

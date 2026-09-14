@@ -152,7 +152,7 @@ class uvm_sequence_base: public uvm_sequence_item
 
   void use_response_handler( bool enable );
   bool get_use_response_handler() const;
-  virtual void response_handler( const uvm_sequence_item* response );
+  virtual void response_handler( uvm_handle<uvm_sequence_item> response );
 
   void set_response_queue_error_report_disabled( bool value );
   bool get_response_queue_error_report_disabled() const;

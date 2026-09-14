@@ -984,7 +984,7 @@ bool uvm_sequence_base::get_use_response_handler() const
 //! for this sequence.
 //----------------------------------------------------------------------
 
-void uvm_sequence_base::response_handler( const uvm_sequence_item* response )
+void uvm_sequence_base::response_handler( uvm_handle<uvm_sequence_item> response )
 {
   uvm_report_fatal("RSPHDL", "No response handler defined!", UVM_NONE);
 }
