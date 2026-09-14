@@ -92,9 +92,7 @@ class uvm_sequencer : public uvm_sequencer_param_base<REQ,RSP>,
   uvm_handle<REQ> try_next_item() override;
   UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>",
                      void item_done( const RSP& item, bool use_item = true ) override;)
-  void item_done( uvm_handle<REQ> item) override {
-    // TODO
-  };
+  void item_done(uvm_handle<REQ> item) override;
   void item_done() override; 
 
   UVM_DEPRECATED_1_0("Use of uvm_sequence_item& deprecated use uvm_handle<uvm_sequence_item>",
@@ -154,9 +152,7 @@ class uvm_sequencer : public uvm_sequencer_param_base<REQ,RSP>,
 
   mutable bool sequence_item_requested;
   bool get_next_item_called;
-
-}; // class uvm_sequencer
-
+};
 
 /////////////////////////////////////////////
 // Class implementation starts here
@@ -221,7 +217,7 @@ const std::string uvm_sequencer<REQ,RSP>::get_type_name() const
 template <typename REQ, typename RSP>
 void uvm_sequencer<REQ,RSP>::item_done()
 {
-  REQ req;
+  uvm_handle<REQ> req;
 
   // Set flag to allow next get_next_item or peek to get a new sequence_item
   sequence_item_requested = false;
@@ -236,14 +232,41 @@ void uvm_sequencer<REQ,RSP>::item_done()
   }
   else
   {
-    this->m_wait_for_item_sequence_id = req.get_sequence_id();
-    this->m_wait_for_item_transaction_id = req.get_transaction_id();
+    this->m_wait_for_item_sequence_id = req->get_sequence_id();
+    this->m_wait_for_item_transaction_id = req->get_transaction_id();
     this->m_wait_for_item_sequence_ev.notify();
   }
 
   // Grant any locks as soon as possible
   this->grant_queued_locks();
 }
+
+template <typename REQ, typename RSP>
+inline void uvm_sequencer<REQ, RSP>::item_done(uvm_handle<REQ> item) {
+    uvm_handle<REQ> req;
+
+    // Set flag to allow next get_next_item or peek to get a new sequence_item
+    sequence_item_requested = false;
+    get_next_item_called = false;
+
+    if (this->m_req_fifo.nb_get(req) == 0)
+    {
+      std::ostringstream str;
+      str << "Item_done() called with no outstanding requests." << std::endl;
+      str << "Each call to item_done() must be paired with a previous call to get_next_item().";
+      uvm_report_fatal(this->get_type_name(), str.str() );
+    }
+    else
+    {
+      this->m_wait_for_item_sequence_id = req->get_sequence_id();
+      this->m_wait_for_item_transaction_id = req->get_transaction_id();
+      this->m_wait_for_item_sequence_ev.notify();
+    }
+
+    // Grant any locks as soon as possible
+    this->grant_queued_locks();
+}; // class uvm_sequencer
+
 
 //----------------------------------------------------------------------
 // member function: item_done(a,b)
@@ -563,7 +586,7 @@ void uvm_sequencer<REQ,RSP>::put_response( const RSP& rsp )
 template <typename REQ, typename RSP>
 void uvm_sequencer<REQ,RSP>::stop_sequences()
 {
-  REQ t;
+  uvm_handle<REQ> t;
   uvm_sequencer_param_base<REQ,RSP>::stop_sequences();
   sequence_item_requested  = false;
   get_next_item_called     = false;

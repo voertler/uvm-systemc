@@ -610,7 +610,7 @@ void uvm_sequencer_base::wait_for_sequences() const
 //----------------------------------------------------------------------
 
 void uvm_sequencer_base::send_request(uvm_sequence_base* sequence_ptr,
-                                      uvm_sequence_item* seq_item,
+                                      uvm_handle<uvm_sequence_item> seq_item,
                                       bool rerandomize)
 {
   // virtual member function, will be overloaded

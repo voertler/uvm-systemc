@@ -124,7 +124,7 @@ void uvm_sequence<REQ,RSP>::send_request( uvm_handle<uvm_sequence_item> request,
   if (m_request == nullptr)
     uvm_report_fatal("SSENDREQ", "Failure to cast uvm_sequence_item to request", UVM_NONE);
 
-  m_sequencer->send_request(this, request.get(), rerandomize);
+  m_sequencer->send_request(this, request, rerandomize);
 }
 
 

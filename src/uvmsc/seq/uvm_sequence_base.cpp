@@ -852,7 +852,7 @@ void uvm_sequence_base::finish_item(uvm_handle<uvm_sequence_item> item,
 						 UVM_NONE);
 
 	mid_do(*item);
-	sequencer->send_request(this, item.get());
+	sequencer->send_request(this, item);
 	sequencer->wait_for_item_done(this, -1);
 
 	// FIXME: dirty workaround to comply to UVM-SV semantics which are non-TLM
@@ -922,7 +922,7 @@ void uvm_sequence_base::send_request(uvm_handle<uvm_sequence_item> request,
 		uvm_report_fatal("SENDREQ", "Unable to find sequencer.",
 						 UVM_NONE); // was: Null m_sequencer reference
 
-	get_sequencer()->send_request(this, request.get(), rerandomize);
+	get_sequencer()->send_request(this, request, rerandomize);
 };
 
 //----------------------------------------------------------------------
