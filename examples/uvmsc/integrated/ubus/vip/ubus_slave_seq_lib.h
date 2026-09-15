@@ -54,7 +54,7 @@ class simple_response_seq : public uvm::uvm_sequence<ubus_transfer>
   
   UVM_OBJECT_UTILS(simple_response_seq);
   
-  virtual void body()
+  void body() override
   {
     p_sequencer = dynamic_cast<ubus_slave_sequencer*>(m_sequencer);
      
@@ -114,7 +114,7 @@ class slave_memory_seq : public uvm::uvm_sequence<ubus_transfer>
 
   UVM_DECLARE_P_SEQUENCER(ubus_slave_sequencer);
 
-  virtual void pre_do(bool is_item)
+  void pre_do(bool is_item) override
   {
     // Update the properties that are relevant to both read and write
     req->size       = util_transfer.size;
@@ -143,7 +143,7 @@ class slave_memory_seq : public uvm::uvm_sequence<ubus_transfer>
     }
   }
 
-  void post_do(uvm_sequence_item& item)
+  void post_do(uvm_sequence_item& item) override
   {
     ubus_transfer* trans = dynamic_cast<ubus_transfer*>(&item);
 
@@ -158,7 +158,7 @@ class slave_memory_seq : public uvm::uvm_sequence<ubus_transfer>
     }
   }
 
-  virtual void body()
+  void body() override
   {
     UVM_INFO(get_type_name(), get_sequence_path() +
       " starting...", uvm::UVM_MEDIUM);

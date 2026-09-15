@@ -162,7 +162,7 @@ void ubus_master_monitor::collect_address_phase()
 
 void ubus_master_monitor::collect_data_phase()
 {
-  unsigned int i;
+  unsigned int i{};
 
   if (trans_collected->read_write != NOP)
   {

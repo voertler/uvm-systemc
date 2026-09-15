@@ -126,7 +126,7 @@ void ubus_slave_monitor::run_phase(uvm::uvm_phase& phase)
 
 void ubus_slave_monitor::collect_transactions()
 {
-  bool range_check;
+  bool range_check{};
 
   while (true) // forever
   {

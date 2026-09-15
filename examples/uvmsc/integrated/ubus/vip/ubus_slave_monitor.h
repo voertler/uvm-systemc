@@ -102,7 +102,7 @@ protected:
 
   // This property is the virtual interface needed for this component to drive
   // and view HDL signals.
-  ubus_if* vif;
+  ubus_if* vif{};
 
   // The following two unsigned integer properties are used by
   // check_addr_range() method to detect if a transaction is for this target.
@@ -128,7 +128,7 @@ protected:
   // Fields to hold trans data and wait_state.  No coverage of dynamic arrays.
   sc_dt::sc_bv<16> addr;
   sc_dt::sc_bv<8> data;
-  unsigned int wait_state;
+  unsigned int wait_state{};
 
 
 }; // class ubus_slave_monitor

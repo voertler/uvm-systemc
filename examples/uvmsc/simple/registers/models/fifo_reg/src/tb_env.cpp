@@ -25,6 +25,7 @@
 #include <uvm>
 
 #include "../inc/tb_env.h"
+#include "../inc/dut_reset_seq.h"
 
 tb_env::tb_env(uvm::uvm_component_name name) :
     uvm::uvm_env(name),
@@ -32,18 +33,6 @@ tb_env::tb_env(uvm::uvm_component_name name) :
     apb(nullptr),
     predict(nullptr) {}
 
-tb_env::~tb_env()
-{
-    if (regmodel) {
-        delete regmodel;
-    }
-    if (apb) {
-        delete apb;
-    }
-    if (predict) {
-        delete predict;
-    }
-}
 
 void tb_env::build_phase(uvm::uvm_phase & phase)
 {
@@ -75,11 +64,11 @@ void tb_env::connect_phase(uvm::uvm_phase & phase)
 
 void tb_env::run_phase(uvm::uvm_phase & phase)
 {
-    uvm::uvm_status_e status;
+    uvm::uvm_status_e status {};
     uvm::uvm_reg_data_t data;
     std::vector<uvm::uvm_reg_data_t> expected;
-    unsigned max;
-    fifo_reg* FIFO;
+    unsigned max{};
+    fifo_reg* FIFO{};
 
     phase.raise_objection(this);
 

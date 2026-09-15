@@ -100,10 +100,10 @@ private:
 
   // This property is the virtual interfaced needed for this component to drive
   // and view HDL signals.
-  ubus_if* vif;
+  ubus_if* vif{};
 
   // Master Id
-  int master_id;
+  int master_id{};
 
   // The following property holds the transaction information currently
   // begin captured (by the collect_address_phase and data_phase methods).
@@ -112,7 +112,7 @@ private:
   // Fields to hold trans addr, data and wait_state.
   sc_dt::sc_uint<16> addr;
   sc_dt::sc_uint<8> data;
-  unsigned int wait_state;
+  unsigned int wait_state{};
 
   // The following two bits are used to control whether checks and coverage are
   // done both in the monitor class and the interface.

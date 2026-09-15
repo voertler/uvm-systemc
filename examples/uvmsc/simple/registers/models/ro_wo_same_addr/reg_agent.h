@@ -55,7 +55,7 @@ class reg_rw : public uvm::uvm_sequence_item
    `uvm_object_utils_end
    */
 
-  std::string convert2string() const
+  std::string convert2string() const override
   {
     std::ostringstream str;
     str << "reg_rw: "
@@ -173,7 +173,7 @@ class reg2rw_adapter : public uvm::uvm_reg_adapter
     provides_responses = true;
   }
 
-  virtual uvm::uvm_handle<uvm::uvm_sequence_item> reg2bus( const uvm::uvm_reg_bus_op& rw )
+  uvm::uvm_handle<uvm::uvm_sequence_item> reg2bus( const uvm::uvm_reg_bus_op& rw ) override
   {
     auto bus = reg_rw::type_id::create_handle("rw");
     bus->read    = (rw.kind == uvm::UVM_READ);
@@ -183,8 +183,8 @@ class reg2rw_adapter : public uvm::uvm_reg_adapter
     return bus;
   }
 
-  virtual void bus2reg( const uvm::uvm_sequence_item* bus_item,
-                        uvm::uvm_reg_bus_op& rw )
+  void bus2reg( const uvm::uvm_sequence_item* bus_item,
+                uvm::uvm_reg_bus_op& rw ) override
   {
     const reg_rw* bus;
     bus = dynamic_cast<const reg_rw*>(bus_item);

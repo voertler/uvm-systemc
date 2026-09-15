@@ -114,7 +114,7 @@ public:
 
   UVM_OBJECT_UTILS(read_byte_seq);
 
-  virtual void body()
+  void body() override
   {
     /* TODO constraints using macro
     UVM_DO_WITH(req,
@@ -182,7 +182,7 @@ public:
   
   UVM_OBJECT_UTILS(read_half_word_seq);
 
-  virtual void body()
+  void body() override
   {
     /* TODO constraints using macro
     UVM_DO_WITH(req,
@@ -251,7 +251,7 @@ public:
   
   UVM_OBJECT_UTILS(read_word_seq);
 
-  virtual void body()
+  void body() override
   {
     /* TODO constraints using macro
     UVM_DO_WITH(req,
@@ -323,7 +323,7 @@ public:
   
   UVM_OBJECT_UTILS(read_double_word_seq);
 
-  virtual void body()
+  void body() override
   {
     /* TODO constraints using macro
     UVM_DO_WITH(req,
@@ -404,7 +404,7 @@ public:
 
   UVM_OBJECT_UTILS(write_byte_seq);
 
-  virtual void body()
+  void body() override
   {
     /*
     uvm_do_with(req,
@@ -472,7 +472,7 @@ public:
 
   UVM_OBJECT_UTILS(write_half_word_seq);
 
-  virtual void body()
+  void body() override
   {
     /*
     uvm_do_with(req,
@@ -547,7 +547,7 @@ public:
   UVM_OBJECT_UTILS(write_word_seq);
 
 
-  virtual void body()
+  void body() override
   {
     /*
     UVM_DO_WITH(req,
@@ -632,7 +632,7 @@ public:
 
   UVM_OBJECT_UTILS(write_double_word_seq);
 
-  virtual void body()
+  void body() override
   {
     /*
     uvm_do_with(req,
