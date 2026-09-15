@@ -43,7 +43,7 @@ class uvm_sequence : public uvm_sequence_base
   explicit uvm_sequence( uvm_object_name name_ );
   virtual ~uvm_sequence();
 
-  void send_request( uvm_handle<uvm_sequence_item> request, bool rerandomize = false );
+  void send_request( uvm_handle<uvm_sequence_item> request, bool rerandomize = false ) override;
 
   REQ get_current_item() const;
 
@@ -70,9 +70,9 @@ class uvm_sequence : public uvm_sequence_base
 
  private:
 
-  virtual void put_response( uvm_handle<RSP> response_item );
+  void put_response( uvm_handle<uvm_sequence_item> response_item ) override;
 
-  void do_print( const uvm_printer& printer ) const;
+  void do_print( const uvm_printer& printer ) const override;
 
   uvm_sequencer_param_base<REQ, RSP>* param_sequencer;
 
@@ -197,7 +197,7 @@ uvm::uvm_handle<RSP> uvm_sequence<REQ,RSP>::get_response( int transaction_id )
 //----------------------------------------------------------------------
 
 template <typename REQ, typename RSP>
-void uvm_sequence<REQ,RSP>::put_response( uvm_handle<RSP> response_item )
+void uvm_sequence<REQ,RSP>::put_response( uvm_handle<uvm_sequence_item> response_item )
 {
 //  const RSP* crsp = dynamic_cast<const RSP*>(&response_item);
 //  RSP* rsp = const_cast<RSP*>(crsp); // TODO avoid const_cast!
