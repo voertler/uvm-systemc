@@ -120,6 +120,7 @@ class reg_driver: public uvm::uvm_component
       DO::rw(*rw_req);             // rw to dut
       mon->ap.write(rw_req);      // also pass value to the monitor
       seqr_port.get();         // item_done
+      seqr_port.put_response(rw_req);
     }
   }
 

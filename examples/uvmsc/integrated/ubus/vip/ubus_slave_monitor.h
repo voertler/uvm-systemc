@@ -36,7 +36,7 @@
 class ubus_slave_monitor : public uvm::uvm_monitor
 {
 public:
-  uvm::uvm_analysis_port<ubus_transfer> item_collected_port;
+  uvm::uvm_analysis_port<uvm::uvm_handle<ubus_transfer>> item_collected_port;
   uvm::uvm_blocking_peek_imp<ubus_transfer, ubus_slave_monitor> addr_ph_imp;
 
   // new - constructor
@@ -116,7 +116,7 @@ protected:
 
   // The following property holds the transaction information currently
   // begin captured (by the collect_address_phase and data_phase methods).
-  ubus_transfer trans_collected;
+  uvm::uvm_handle<ubus_transfer> trans_collected;
 
   // monitor notifier that the address phase (and full item) has been collected
   sc_core::sc_event address_phase_grabbed;
@@ -134,4 +134,3 @@ protected:
 }; // class ubus_slave_monitor
 
 #endif /* UBUS_SLAVE_MONITOR_H_ */
-
