@@ -88,14 +88,14 @@ class uvm_sequencer_param_base : public uvm_sequencer_base
   // not part of UVM Class reference / LRM
   /////////////////////////////////////////////////////
 
-  virtual const char* kind() const; // SystemC API
-  virtual const std::string get_type_name() const;
+  const char* kind() const override; // SystemC API
+  const std::string get_type_name() const override;
   void put_response_base( uvm_handle<RSP> rsp );
   void m_last_req_push_front( uvm_handle<REQ> item );
   void m_last_rsp_push_front( uvm_handle<RSP> item );
 
-  virtual void connect_phase( uvm_phase& phase );
-  virtual void build_phase( uvm_phase& phase );
+  void connect_phase( uvm_phase& phase ) override;
+  void build_phase( uvm_phase& phase ) override;
 
  private:
   // class data members

@@ -120,16 +120,16 @@ class uvm_sequencer : public uvm_sequencer_param_base<REQ,RSP>,
   uvm_handle<REQ> peek() override;
   //virtual REQ peek( tlm::tlm_tag<REQ>* req = nullptr ); // FIXME: should be const in line with SystemC TLM API?
 
-  virtual void stop_sequences();
+  void stop_sequences() override;
 
   /////////////////////////////////////////////////////
   // Implementation-defined member functions below,
   // not part of UVM Class reference / LRM
   /////////////////////////////////////////////////////
 
-  virtual const std::string get_type_name() const;
+  const std::string get_type_name() const override;
 
-  virtual const char* kind() const; // SystemC API
+  const char* kind() const override; // SystemC API
 
   this_type get_if()
   {

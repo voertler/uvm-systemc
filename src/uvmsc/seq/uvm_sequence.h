@@ -178,10 +178,8 @@ template <typename REQ, typename RSP>
 uvm::uvm_handle<RSP> uvm_sequence<REQ,RSP>::get_response( int transaction_id )
 {
   auto item = get_base_response( transaction_id );
-  auto rsp = dynamic_cast<RSP*>(item.get());
-  del_base_response( item ); // flush response from memory
-  uvm::uvm_handle<RSP> response;
-  response.reset(rsp);
+  auto response = uvm::dynamic_pointer_cast<RSP>(item);
+  del_base_response( item ); // remove response from queue
   return response;
 }
 
